@@ -1,10 +1,10 @@
-CREATE SEQUENCE seq_member START WITH 1 INCREMENT BY 1 NOCYCLE;
+CREATE SEQUENCE seq_rnd_plan START WITH 1 INCREMENT BY 1 NOCYCLE;
 
-CREATE TABLE member
+CREATE TABLE rnd_plan
 (
-    member_id NUMBER NOT NULL,
-    name      VARCHAR2(255) NOT NULL
+    rnd_plan_no NUMBER NOT NULL,
+    task_name   VARCHAR2(255) NOT NULL
 );
 
-INSERT INTO member (member_id, name)
-VALUES (NEXT VALUE FOR seq_member, '황철원');
+INSERT INTO rnd_plan (rnd_plan_no, task_name)
+VALUES (NEXT VALUE FOR seq_rnd_plan, '과제명1');
