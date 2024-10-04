@@ -1,0 +1,27 @@
+:root {
+    --main-bg-color: #2e406a;
+    --sub-bg-color: #e4ebfd;
+    --main-fnt-color: #ff8f27;
+}
+
+::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+
+::-webkit-scrollbar-thumb {
+    outline: none;
+    border-radius: 10px;
+    border: 4px solid transparent;
+    box-shadow: inset 6px 6px 0 hsl(222, 39%, 30%, 0.7);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    border: 4px solid transparent;
+    box-shadow: inset 6px 6px 0 var(--main-bg-color);
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: none;
+    background-color: transparent;
+}
