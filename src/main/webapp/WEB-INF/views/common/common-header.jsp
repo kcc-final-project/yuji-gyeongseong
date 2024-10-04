@@ -61,7 +61,7 @@
                 <!-- 로그인 O -->
                 <div class="row w-100">
                     <div class="col-7">
-                        <span class="common-header__item">사업공고</span>
+                        <span class="common-header__item common-header__item__pointer">사업공고</span>
                     </div>
                     <div class="col-5 h-100 d-flex justify-content-between">
                 <span
