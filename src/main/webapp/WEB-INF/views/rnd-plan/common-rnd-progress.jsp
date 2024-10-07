@@ -1,15 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>유지경성</title>
-    <link rel="stylesheet" href="/resources/css/rnd-plan/common-rnd-progress.css">
-</head>
-<body>
+
+<link rel="stylesheet" href="/resources/css/rnd-plan/common-rnd-progress.css">
+
+<h4>(신청용) 연구개발계획서</h4>
+<%-- 진행바 --%>
 <div class="multi-step-progress-bar">
     <div class="progress-container">
         <div class="progress px-1" style="height: 5px;">
@@ -49,6 +44,39 @@
         </div>
     </div>
 </div>
+
+<%-- 과제정보 --%>
+<div class="task-info mt-5">
+    <div class="header-section">
+        <div class="header-section__title">
+            <h5>과제정보</h5>
+        </div>
+        <div class="header-section__btn">
+            <div class="ctm-btn ctm-btn-outline">
+                <span class="material-icons ctm-icon">history_2</span>진행내역 조회
+            </div>
+        </div>
+    </div>
+    <div class="body-section">
+        <table class="table table-bordered mt-2">
+            <thead>
+            <tr>
+                <td class="ctm-th ctm-w45p">과제명</td>
+                <td class="ctm-th">연구개발기관</td>
+                <td class="ctm-th">연구 책임자</td>
+                <td class="ctm-th">연구개발 과제번호</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input class="form-control ctm-td" disabled readonly type="text"></td>
+                <td><input class="form-control ctm-td" disabled readonly type="text"></td>
+                <td><input class="form-control ctm-td" disabled readonly type="text"></td>
+                <td><input class="form-control ctm-td" disabled readonly type="text"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <script src="/resources/js/rnd-plan/common-rnd-progress.js"></script>
-</body>
-</html>

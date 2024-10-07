@@ -8,10 +8,13 @@ const displayStep = (stepNumber) => {
   if (MIN_STEP <= stepNumber && stepNumber <= MAX_STEP) {
     currentStep = stepNumber;
     updateProgressBar();
+
+    const path = switchPathFrom(currentStep);
+    loadStepContent(path);
   }
 };
 
-// 프로그래스 진행률 변경
+// 프로그래스 바 진행률 변경
 const updateProgressBar = () => {
   const progressPercentage = ((currentStep - 1) / (MAX_STEP - 1)) * 100;
   $(".progress-bar").css("width", progressPercentage + "%");
@@ -30,8 +33,42 @@ const updateStepStyles = () => {
   });
 };
 
+// 요청 경로 분기
+const switchPathFrom = (currentStep) => {
+  switch (currentStep) {
+    case 1:
+      return "/rnd-plan/basic";
+    case 2:
+      return "/rnd-plan/task-summary";
+    case 3:
+      return null;
+    case 4:
+      return null;
+    case 5:
+      return null;
+    case 6:
+      return null;
+  }
+};
+
+const loadStepContent = (path) => {
+  $.ajax({
+    url: `${path}`,
+    type: "GET",
+    success: function (res) {
+      $("#step-content").html(res);
+    },
+    error: function (err) {
+      console.log("[loadStepContent()] " + err.statusText + " - " + err.status);
+    },
+  });
+};
+
 $(document).ready(function () {
   updateProgressBar();
+
+  const path = switchPathFrom(currentStep);
+  loadStepContent(path);
 
   $(".next-step").click(function () {
     if (currentStep < MAX_STEP) {

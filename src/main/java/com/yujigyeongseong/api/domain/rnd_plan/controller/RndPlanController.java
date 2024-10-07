@@ -10,7 +10,17 @@ public class RndPlanController {
 
     @GetMapping
     public String getRndPlanPage() {
-        return "rnd-plan/rnd-plan-basic";
+        return "rnd-plan/rnd-plan";
+    }
+
+    @GetMapping("/basic")
+    public String getRndPlanBasicPage() {
+        return "rnd-plan/basic";
+    }
+
+    @GetMapping("/task-summary")
+    public String getRndPlanTaskSummaryPage() {
+        return "rnd-plan/task-summary";
     }
 
 }
