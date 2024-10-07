@@ -10,7 +10,7 @@ public class RndPlanController {
 
     @GetMapping
     public String getRndPlanPage() {
-        return "common/common-header";
+        return "rnd-plan/rnd-plan-basic";
     }
 
 }
