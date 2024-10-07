@@ -59,7 +59,7 @@
                     <h5>공모분야</h5>
                 </div>
                 <div class="header-section__info">
-                    <span>반드시 '신청자격 리스트'를 체크해주시길 바랍니다.</span>
+                    <span>반드시 '신청자격 리스트 및 확인서'를 체크해주시길 바랍니다.</span>
                 </div>
             </div>
             <div class="body-section">
@@ -164,6 +164,53 @@
                             </div>
                         </td>
                     </tr>
+                </table>
+            </div>
+        </div>
+
+        <%-- 연구분야 --%>
+        <div class="task-info mt-5">
+            <div class="header-section">
+                <div class="header-section__title">
+                    <h5>연구분야</h5>
+                </div>
+                <div class="header-section__info">
+                    <span>* 필수 항목</span>
+                </div>
+            </div>
+            <div class="body-section">
+                <table class="table table-bordered mt-2 align-middle">
+                    <thead>
+                    <tr>
+                        <td class="ctm-th ctm-w10p">구분</td>
+                        <td class="ctm-th ctm-w20p">기술분류</td>
+                        <td class="ctm-th">1순위</td>
+                        <td class="ctm-th ctm-w7p">가중치(%)</td>
+                        <td class="ctm-th">2순위</td>
+                        <td class="ctm-th ctm-w7p">가중치(%)</td>
+                        <td class="ctm-th">3순위</td>
+                        <td class="ctm-th ctm-w7p">가중치(%)</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="ctm-th__sub">R&D 공통</td>
+                        <td class="ctm-th__sub ">
+                            <div class="ctm-th__with-btn">
+                                <span><span class="required-item">* </span>국가과학기술표준분류</span>
+                                <div class="ctm-th__btn">
+                                    <span class="material-icons ctm-icon">content_copy</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><input class="form-control ctm-td" disabled readonly type="text"></td>
+                        <td><input class="form-control ctm-td" disabled readonly type="text"></td>
+                        <td><input class="form-control ctm-td" disabled readonly type="text"></td>
+                        <td><input class="form-control ctm-td" disabled readonly type="text"></td>
+                        <td><input class="form-control ctm-td" disabled readonly type="text"></td>
+                        <td><input class="form-control ctm-td" disabled readonly type="text"></td>
+                    </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
