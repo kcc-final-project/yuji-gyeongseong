@@ -2,6 +2,7 @@
     --main-bg-color: #2e406a;
     --sub-bg-color: #e4ebfd;
     --main-fnt-color: #ff8f27;
+    --red-color: #FF0000;
 }
 
 ::-webkit-scrollbar {
@@ -74,6 +75,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .ctm-btn-normal:hover {

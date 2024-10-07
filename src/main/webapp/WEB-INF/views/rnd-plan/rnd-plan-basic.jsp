@@ -2,6 +2,8 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ include file="../common/common-header.jsp" %>
+<%@ include file="../common/common-rnd-control.jsp" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -215,7 +217,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 </body>
 </html>
