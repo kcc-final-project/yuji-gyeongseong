@@ -33,3 +33,35 @@
     margin: 0 auto;
     margin-top: 90px;
 }
+
+/* 공통 버튼_1 */
+.ctm-btn {
+    width: 160px;
+    height: 30px;
+}
+
+.ctm-btn-outline {
+    border: 1.5px solid var(--main-bg-color);
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.ctm-btn-outline:hover {
+    background-color: var(--main-bg-color);
+    color: white;
+    transition: .5s all;
+}
+
+.ctm-icon {
+    width: 25px;
+    height: 25px;
+    font-size: 20px;
+    margin: 0 auto;
+    line-height: 25px;
+}
+
