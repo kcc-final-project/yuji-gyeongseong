@@ -4,5 +4,5 @@
 <link rel="stylesheet" href="/resources/css/rnd-plan/rnd-plan-basic.css"/>
 
 <div class="main">
-    <h1>과제요약입니다.</h1>
+    <h1>연구기관입니다.</h1>
 </div>

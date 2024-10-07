@@ -33,27 +33,28 @@ const updateStepStyles = () => {
   });
 };
 
-// 요청 경로 분기
+// 요청 경로 반환
 const switchPathFrom = (currentStep) => {
   switch (currentStep) {
     case 1:
-      return "/rnd-plan/basic";
+      return "/basic";
     case 2:
-      return "/rnd-plan/task-summary";
+      return "/task-summary";
     case 3:
-      return null;
+      return "/rsrch-institution";
     case 4:
-      return null;
+      return "/rnd-expenses";
     case 5:
-      return null;
+      return "/additional-file";
     case 6:
-      return null;
+      return "/final-submit";
   }
 };
 
+// 페이지 컴포넌트 AJAX 요청
 const loadStepContent = (path) => {
   $.ajax({
-    url: `${path}`,
+    url: "/rnd-plan" + path,
     type: "GET",
     success: function (res) {
       $("#step-content").html(res);

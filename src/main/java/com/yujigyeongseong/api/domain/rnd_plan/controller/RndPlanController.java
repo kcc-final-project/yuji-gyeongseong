@@ -23,4 +23,24 @@ public class RndPlanController {
         return "rnd-plan/task-summary";
     }
 
+    @GetMapping("/rsrch-institution")
+    public String getRndPlanRsrchInstitutionPage() {
+        return "rnd-plan/rsrch-institution";
+    }
+
+    @GetMapping("/rnd-expenses")
+    public String getRndPlanRndExpensesPage() {
+        return "rnd-plan/rnd-expenses";
+    }
+
+    @GetMapping("/additional-file")
+    public String getRndPlanAdditionalFilePage() {
+        return "rnd-plan/additional-file";
+    }
+
+    @GetMapping("/final-submit")
+    public String getRndPlanFinalSubmitPage() {
+        return "rnd-plan/final-submit";
+    }
+
 }
