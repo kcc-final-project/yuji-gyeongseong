@@ -2,12 +2,13 @@
     padding-top: 25px;
 }
 
-.main h4 {
+.main h4, h5 {
     font-weight: 600;
 }
 
-.main h5 {
+.main h6 {
     font-weight: 600;
+    font-size: 17px;
 }
 
 .multi-step-progress-bar {
@@ -35,12 +36,23 @@
     text-align: center !important;
 }
 
+.ctm-th__sub {
+    background-color: var(--sub-bg-color) !important;
+    /*color: white !important;*/
+    font-size: 15px !important;
+    text-align: center !important;
+}
+
 .ctm-w45p {
     width: 45% !important;
 }
 
 .ctm-w20p {
     width: 20% !important;
+}
+
+.ctm-w15p {
+    width: 15% !important;
 }
 
 .ctm-td {
