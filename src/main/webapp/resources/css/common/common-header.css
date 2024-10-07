@@ -32,10 +32,4 @@ body {
     cursor: pointer;
 }
 
-/* main */
-.common-main {
-    width: 1230px;
-    height: 100%;
-    margin: 0 auto;
-    margin-top: 90px;
-}
+
