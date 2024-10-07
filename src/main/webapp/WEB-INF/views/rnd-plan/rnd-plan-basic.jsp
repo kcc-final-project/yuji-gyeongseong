@@ -2,7 +2,6 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ include file="../common/common-header.jsp" %>
-<%@ include file="../common/common-rnd-control.jsp" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +15,7 @@
 <div class="common-main">
     <div class="main">
         <h4>(신청용) 연구개발계획서</h4>
-        <jsp:include page="../common/common-rnd-progress.jsp" />
+        <jsp:include page="common-rnd-progress.jsp"/>
 
         <%-- 과제정보 --%>
         <div class="task-info mt-5">
@@ -216,6 +215,6 @@
         </div>
     </div>
 </div>
-<jsp:include page="../common/common-rnd-progress.jsp"/>
+<jsp:include page="common-rnd-control.jsp"/>
 </body>
 </html>

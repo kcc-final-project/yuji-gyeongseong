@@ -7,7 +7,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>유지경성</title>
-    <link rel="stylesheet" href="/resources/css/common/common-rnd-progress.css">
+    <link rel="stylesheet" href="/resources/css/rnd-plan/common-rnd-progress.css">
 </head>
 <body>
 <div class="multi-step-progress-bar">
