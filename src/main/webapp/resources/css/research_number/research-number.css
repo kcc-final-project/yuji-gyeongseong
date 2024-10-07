@@ -1,0 +1,273 @@
+.research_title {
+    height: 200px;
+    width: 100%;
+    align-content: center;
+}
+
+.research_title p {
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.academic-info {
+    height: 300px;
+    width: 100%;
+}
+
+.career-info {
+    margin-top: 40px;
+    height: 300px;
+    width: 100%;
+}
+
+.title_warning {
+    display: flex;
+    justify-content: space-around;
+}
+
+.title {
+    font-size: large;
+    font-weight: bold;
+}
+
+.warning {
+    margin-left: 1000px;
+    color: #FF0000;
+    font-weight: bold;
+}
+
+hr {
+    height: 2px; /* 굵기 조절 */
+    background-color: #000000; /* 색상 변경 */
+    border: none; /* 기본 테두리 제거 */
+    margin-top: 5px; /* 상단 여백 */
+    margin-bottom: 5px; /* 하단 여백 */
+    opacity: unset;
+}
+
+.academic-list {
+    display: flex;
+}
+
+.list {
+    width: 100%;
+    height: 200px;
+    align-content: center;
+}
+
+.warn {
+    color: #FF0000;
+    font-weight: bold;
+}
+
+.inline-wrap {
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+    margin-top: 40px;
+    margin-left: 30px;
+}
+
+.form-select {
+    margin-left: 50px;
+    width: 400px;
+    height: 40px; /* 높이를 40px로 설정 */
+    padding: 5px 10px; /* 패딩 조정 */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-select:hover  {
+    cursor: pointer;
+}
+
+.form-input {
+    margin-left: 65px;
+    width: 400px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* border 색을 연한 회색으로 변경 */
+    outline: none; /* 포커스 시 기본 outline 제거 */
+}
+
+.input-group {
+    margin-left: 40px;
+    width: 400px;
+}
+
+.input-group-small {
+    width: 200px; /* 너비를 200px로 설정 */
+    margin-left: 0px;
+}
+
+.calen {
+    display: flex;
+    margin-left: 40px;
+}
+
+.form-select-two {
+    width: 200px; /* 동일한 너비 설정 */
+    height: 40px; /* 다른 셀렉트 박스와 동일한 높이 설정 */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.major {
+    margin-left: 55px; /* 여백 조정 */
+    display: flex;
+    justify-content: center;
+}
+
+.wid {
+    width: 200px;
+}
+
+.delete-button {
+    background-color: #ffffff;
+    color: #2e406a;
+    border: 1px solid #2e406a;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.delete-button:hover {
+    background-color: var(--main-bg-color);
+    color: white;
+    transition: .5s all;
+}
+
+.add-button {
+    background-color: #2e406a;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* 아이콘 크기 조정 */
+.material-icons-outlined {
+    font-size: 20px;
+}
+
+.material-icons-outlined:hover {
+    cursor: pointer;
+}
+
+.buttons {
+    margin-left: 620px;
+    gap: 20px;
+    display: flex;
+}
+
+.table-bordered th{
+    background-color: #2e406a;
+    color: #ffffff;
+}
+
+.table-bordered{
+    width: 100%;
+}
+
+/* 기술분야 테이블 스타일링 */
+.table-bordered {
+    width: 100%;
+    border-collapse: collapse; /* 테두리 겹침을 제거 */
+}
+
+.table-bordered th, .table-bordered td {
+    text-align: center; /* 가로 중앙 정렬 */
+    vertical-align: middle; /* 세로 중앙 정렬 */
+    padding: 15px;
+}
+
+.table-bordered th {
+    background-color: #2e406a;
+    color: #ffffff;
+    height: 50px; /* 헤더 높이 설정 */
+}
+
+.table-bordered td {
+    height: 50px;
+}
+
+/* 기술분야 테이블 높이 설정 */
+.technical-table-container {
+    margin-top: 20px;
+    height: auto;
+    max-height: 500px; /* 최대 높이를 설정하여 스크롤을 만들 수 있음 (선택 사항) */
+    overflow-y: auto; /* 내용이 많아지면 스크롤을 표시 (선택 사항) */
+}
+
+.issuance-info{
+    margin-top: 150px;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-content: center;
+}
+
+.datepicker.dropdown-menu {
+    border-radius: 10px; /* 모서리 둥글게 */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* 그림자 추가 */
+    border: none; /* 기본 테두리 제거 */
+    padding: 10px; /* 내부 패딩 */
+    transition: all 0.3s ease-in-out;
+}
+
+/* 달력 헤더 스타일링 */
+.datepicker .datepicker-days .table-condensed thead {
+    background-color: #2e406a; /* 헤더 배경색 */
+    color: #ffffff; /* 헤더 글자색 */
+}
+
+/* 달력 각 날짜 스타일링 */
+.datepicker table tr td,
+.datepicker table tr th {
+    text-align: center; /* 가운데 정렬 */
+    padding: 10px; /* 셀 내 여백 */
+}
+
+.datepicker table tr td.day:hover {
+    background-color: #f0f0f0; /* 마우스 오버 시 배경색 */
+    cursor: pointer; /* 마우스 포인터 */
+}
+
+/* 달력에서 오늘 날짜 강조 */
+.datepicker .day.today {
+    background-color: #2e406a;
+    color: #ffffff;
+    border-radius: 50%; /* 원형 강조 */
+}
+
+/* 달력에서 선택한 날짜 강조 */
+.datepicker .day.active {
+    background-color: #1c2c4b;
+    color: #ffffff;
+    border-radius: 50%; /* 원형 강조 */
+}
+
+/* 달력 네비게이션 화살표 스타일 */
+.datepicker .prev,
+.datepicker .next {
+    color: #ffffff;
+}
+
+.datepicker .prev:hover,
+.datepicker .next:hover {
+    color: #2e406a;
+}
+
+/* 달력 네비게이션 바 스타일 */
+.datepicker .datepicker-switch {
+    font-weight: bold;
+}
