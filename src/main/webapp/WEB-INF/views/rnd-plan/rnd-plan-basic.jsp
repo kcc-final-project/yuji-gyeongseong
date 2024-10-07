@@ -9,16 +9,14 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="/resources/css/rnd-plan/rnd-plan-basic.css">
+    <link rel="stylesheet" href="/resources/css/rnd-plan/rnd-plan-basic.css"/>
     <title>유지경성</title>
 </head>
 <body>
 <div class="common-main">
     <div class="main">
         <h4>(신청용) 연구개발계획서</h4>
-        <div class="multi-step-progress-bar">
-
-        </div>
+        <jsp:include page="../common/common-rnd-progress.jsp" />
 
         <%-- 과제정보 --%>
         <div class="task-info mt-5">
@@ -218,5 +216,6 @@
         </div>
     </div>
 </div>
+<jsp:include page="../common/common-rnd-progress.jsp"/>
 </body>
 </html>
