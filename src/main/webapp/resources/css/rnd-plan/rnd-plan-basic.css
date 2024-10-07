@@ -12,12 +12,9 @@
 
 .multi-step-progress-bar {
     width: 100%;
-    height: 110px;
+    height: 125px;
     margin: 20px 0px 25px 0px;
     background-color: red;
-}
-
-.task-info {
 }
 
 .task-info-header {
@@ -26,30 +23,60 @@
     align-items: flex-end;
 }
 
-.task-info__title {
-
-}
-
 .task-info__log {
     display: flex;
     align-items: center;
 }
 
-.task-info-body {
-
-}
-
 .ctm-th {
     background-color: var(--main-bg-color) !important;
     color: white !important;
-    font-size: 14px !important;
+    font-size: 15px !important;
     text-align: center !important;
 }
 
-.ctm-w{
+.ctm-w45p {
     width: 45% !important;
+}
+
+.ctm-w20p {
+    width: 20% !important;
 }
 
 .ctm-td {
     text-align: center;
+}
+
+.sub-announcement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.sub-announcement__info {
+    color: #FF0000;
+    font-size: 15px;
+}
+
+.sub-announcement-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.check-item-btn {
+    height: 38px;
+    width: 100%;
+}
+
+.check-item-btn__title {
+    width: 90%;
+}
+
+.icon-warning {
+    color: #FF0000;
+}
+
+.icon-success {
+    color: #60d33e;
 }
