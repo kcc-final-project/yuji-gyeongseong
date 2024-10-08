@@ -20,7 +20,6 @@ const announcements = [
     closingDate: "2024-10-20",
     fields: ["분야 3", "분야 4"],
   },
-  // 추가 공고 아이템들...
 ];
 
 function displayAnnouncements(filteredAnnouncements) {
@@ -47,7 +46,7 @@ function filterAndSortAnnouncements() {
 
   if (statusFilter !== "all") {
     filteredAnnouncements = announcements.filter(
-        (announcement) => announcement.status === statusFilter,
+      (announcement) => announcement.status === statusFilter,
     );
   }
 
@@ -55,7 +54,7 @@ function filterAndSortAnnouncements() {
     filteredAnnouncements.sort((a, b) => new Date(b.date) - new Date(a.date));
   } else if (sortFilter === "closing") {
     filteredAnnouncements.sort(
-        (a, b) => new Date(a.closingDate) - new Date(b.closingDate),
+      (a, b) => new Date(a.closingDate) - new Date(b.closingDate),
     );
   }
 
@@ -69,19 +68,16 @@ function showCategoryBox(announcement, item) {
   selectedTitle.innerHTML = `<h2>${announcement.title}</h2>`;
   categoryBox.dataset.title = announcement.title;
 
-  // Create a select element with the specified class and aria-label
   const select = document.createElement("select");
   select.className = "form-select select";
   select.setAttribute("aria-label", "Default select example");
   select.onchange = () => updateTable(announcement.title, select.value);
 
-  // Add an initial option
   const initialOption = document.createElement("option");
   initialOption.textContent = "공모분야를 선택해주세요.";
   initialOption.value = "";
   select.appendChild(initialOption);
 
-  // Add options for each field
   announcement.fields.forEach((field) => {
     const option = document.createElement("option");
     option.textContent = field;
@@ -89,19 +85,17 @@ function showCategoryBox(announcement, item) {
     select.appendChild(option);
   });
 
-  // Append the select element to the category box
   categoryBox.appendChild(select);
 
-  // Append the category box to the item
   item.appendChild(categoryBox);
   categoryBox.style.display = "block";
 }
 
 function updateTable(title, field) {
   const categoryTable = document
-      .getElementById("category-table")
-      .getElementsByTagName("tbody")[0];
-  categoryTable.innerHTML = ""; // 테이블 초기화
+    .getElementById("category-table")
+    .getElementsByTagName("tbody")[0];
+  categoryTable.innerHTML = "";
 
   const formSelect = document.createElement("select");
   formSelect.className = "form-input";
@@ -125,799 +119,802 @@ function updateTable(title, field) {
   techFieldCell.textContent = getTechField(field);
   formCell.appendChild(formSelect);
 
-  // Display initial form content
   displayFormContent(formSelect.value);
 }
 
 function displayFormContent(formType) {
   const formContent = document.getElementById("form-content");
-  formContent.innerHTML = ""; // Clear previous content
+  formContent.innerHTML = "";
 
   let content = "";
   switch (formType) {
     case "서식 1":
-      content = " <ul class=\"nav nav-tabs mt-5\" id=\"myTab\" role=\"tablist\">\n" +
-          "        <li class=\"nav-item\">\n" +
-          "          <a\n" +
-          "            class=\"nav-link active\"\n" +
-          "            id=\"common-tab\"\n" +
-          "            data-toggle=\"tab\"\n" +
-          "            href=\"#common\"\n" +
-          "            role=\"tab\"\n" +
-          "            aria-controls=\"common\"\n" +
-          "            aria-selected=\"true\"\n" +
-          "            >공통평가지</a\n" +
-          "          >\n" +
-          "        </li>\n" +
-          "        <li class=\"nav-item\">\n" +
-          "          <a\n" +
-          "            class=\"nav-link\"\n" +
-          "            id=\"skill-tab\"\n" +
-          "            data-toggle=\"tab\"\n" +
-          "            href=\"#skill\"\n" +
-          "            role=\"tab\"\n" +
-          "            aria-controls=\"skill\"\n" +
-          "            aria-selected=\"false\"\n" +
-          "            >기술분야 평가지</a\n" +
-          "          >\n" +
-          "        </li>\n" +
-          "      </ul>\n" +
-          "      <div class=\"tab-content\" id=\"myTabContent\">\n" +
-          "        <div\n" +
-          "          class=\"tab-pane fade show active\"\n" +
-          "          id=\"common\"\n" +
-          "          role=\"tabpanel\"\n" +
-          "          aria-labelledby=\"common-tab\"\n" +
-          "        >\n" +
-          "          <div class=\"card col-12 mb-3 mt-4 top-card\">\n" +
-          "            <div class=\"right-box-2-round\"></div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <input type=\"text\" class=\"form-control text-center\" id=\"surveyTitle\" placeholder=\"제목 없는 설문지\">\n" +
-          "            </div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <form>\n" +
-          "                <div class=\"form-group\">\n" +
-          "                  <textarea class=\"form-control\" id=\"questionDescription\" rows=\"3\" placeholder=\"설문지 설명\"></textarea>\n" +
-          "                </div>\n" +
-          "              </form>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "\n" +
-          "          <div class=\"card col-12 mb-3 mt-2\">\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <div class=\"row\">\n" +
-          "                <div class=\"col-8\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>설문지 항목</b></h4>\n" +
-          "                  <div id=\"items\">\n" +
-          "                    <div class=\"item card mb-3 mt-3 survay\">\n" +
-          "                      <div class=\"card-body survey\">\n" +
-          "                        <input type=\"text\" class=\"title-input form-control mb-2\" value=\"질문 1\" readonly>\n" +
-          "                        <div class=\"radio-group mb-2\">\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"5\" onclick=\"showScore(event)\">\n" +
-          "                            5점 매우 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"4\" onclick=\"showScore(event)\">\n" +
-          "                            4점 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"3\" onclick=\"showScore(event)\">\n" +
-          "                            3점 보통\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"2\" onclick=\"showScore(event)\">\n" +
-          "                            2점 못함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"1\" onclick=\"showScore(event)\">\n" +
-          "                            1점 매우 못함\n" +
-          "                          </label>\n" +
-          "                          <span class=\"score\"></span>\n" +
-          "                        </div>\n" +
-          "                        <button class=\"btn remove-button ctm-btn-normal\" onclick=\"removeItem(event)\" disabled>삭제</button>\n" +
-          "                      </div>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                  <div class=\"d-flex\">\n" +
-          "                    <div class=\"col-4\"></div>\n" +
-          "                    <button class=\"btn add-button ctm-btn-normal\" onclick=\"addItem()\" disabled\">+ 항목 추가</button>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "\n" +
-          "                <div class=\"col-4\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>질문 목록</b></h4>\n" +
-          "                  <div id=\"questions1\">\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 1</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 1')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 2</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 2')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 3</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 3')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "              </div>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "        </div>\n" +
-          "        <div\n" +
-          "          class=\"tab-pane fade\"\n" +
-          "          id=\"skiill\"\n" +
-          "          role=\"tabpanel\"\n" +
-          "          aria-labelledby=\"skill-tab\"\n" +
-          "        >\n" +
-          "          <div class=\"card col-12 mb-3 mt-4 top-card\">\n" +
-          "            <div class=\"right-box-2-round\"></div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <input type=\"text\" class=\"form-control text-center\" id=\"surveyTitle\" placeholder=\"제목 없는 설문지\">\n" +
-          "            </div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <form>\n" +
-          "                <div class=\"form-group\">\n" +
-          "                  <textarea class=\"form-control\" id=\"questionDescription\" rows=\"3\" placeholder=\"설문지 설명\"></textarea>\n" +
-          "                </div>\n" +
-          "              </form>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "\n" +
-          "          <div class=\"card col-12 mb-3 mt-2\">\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <div class=\"row\">\n" +
-          "                <div class=\"col-8\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>설문지 항목</b></h4>\n" +
-          "                  <div id=\"items\">\n" +
-          "                    <div class=\"item card mb-3 mt-3 survay\">\n" +
-          "                      <div class=\"card-body survey\">\n" +
-          "                        <input type=\"text\" class=\"title-input form-control mb-2\" value=\"질문 1\" readonly>\n" +
-          "                        <div class=\"radio-group mb-2\">\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"5\" onclick=\"showScore(event)\">\n" +
-          "                            5점 매우 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"4\" onclick=\"showScore(event)\">\n" +
-          "                            4점 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"3\" onclick=\"showScore(event)\">\n" +
-          "                            3점 보통\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"2\" onclick=\"showScore(event)\">\n" +
-          "                            2점 못함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"1\" onclick=\"showScore(event)\">\n" +
-          "                            1점 매우 못함\n" +
-          "                          </label>\n" +
-          "                          <span class=\"score\"></span>\n" +
-          "                        </div>\n" +
-          "                        <button class=\"btn remove-button ctm-btn-normal\" onclick=\"removeItem(event)\" disabled>삭제</button>\n" +
-          "                      </div>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                  <div class=\"d-flex\">\n" +
-          "                    <div class=\"col-4\"></div>\n" +
-          "                    <button class=\"btn add-button ctm-btn-normal\" onclick=\"addItem()\" disabled\">+ 항목 추가</button>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "\n" +
-          "                <div class=\"col-4\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>질문 목록</b></h4>\n" +
-          "                  <div id=\"questions1\">\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 1</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 1')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 2</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 2')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 3</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 3')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "              </div>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "        </div>\n" +
-          "      </div>";
+      content =
+        ' <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">\n' +
+        '        <li class="nav-item">\n' +
+        "          <a\n" +
+        '            class="nav-link active"\n' +
+        '            id="common-tab"\n' +
+        '            data-toggle="tab"\n' +
+        '            href="#common"\n' +
+        '            role="tab"\n' +
+        '            aria-controls="common"\n' +
+        '            aria-selected="true"\n' +
+        "            >공통평가지</a\n" +
+        "          >\n" +
+        "        </li>\n" +
+        '        <li class="nav-item">\n' +
+        "          <a\n" +
+        '            class="nav-link"\n' +
+        '            id="skill-tab"\n' +
+        '            data-toggle="tab"\n' +
+        '            href="#skill"\n' +
+        '            role="tab"\n' +
+        '            aria-controls="skill"\n' +
+        '            aria-selected="false"\n' +
+        "            >기술분야 평가지</a\n" +
+        "          >\n" +
+        "        </li>\n" +
+        "      </ul>\n" +
+        '      <div class="tab-content" id="myTabContent">\n' +
+        "        <div\n" +
+        '          class="tab-pane fade show active"\n' +
+        '          id="common"\n' +
+        '          role="tabpanel"\n' +
+        '          aria-labelledby="common-tab"\n' +
+        "        >\n" +
+        '          <div class="card col-12 mb-3 mt-4 top-card">\n' +
+        '            <div class="right-box-2-round"></div>\n' +
+        '            <div class="card-body">\n' +
+        '              <input type="text" class="form-control text-center" id="surveyTitle" placeholder="제목 없는 설문지">\n' +
+        "            </div>\n" +
+        '            <div class="card-body">\n' +
+        "              <form>\n" +
+        '                <div class="form-group">\n' +
+        '                  <textarea class="form-control" id="questionDescription" rows="3" placeholder="설문지 설명"></textarea>\n' +
+        "                </div>\n" +
+        "              </form>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "\n" +
+        '          <div class="card col-12 mb-3 mt-2">\n' +
+        '            <div class="card-body">\n' +
+        '              <div class="row">\n' +
+        '                <div class="col-8">\n' +
+        '                  <h4 class="text-center mt-3"><b>설문지 항목</b></h4>\n' +
+        '                  <div id="items">\n' +
+        '                    <div class="item card mb-3 mt-3 survay">\n' +
+        '                      <div class="card-body survey">\n' +
+        '                        <input type="text" class="title-input form-control mb-2" value="질문 1" readonly>\n' +
+        '                        <div class="radio-group mb-2">\n' +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="5" onclick="showScore(event)">\n' +
+        "                            5점 매우 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="4" onclick="showScore(event)">\n' +
+        "                            4점 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="3" onclick="showScore(event)">\n' +
+        "                            3점 보통\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="2" onclick="showScore(event)">\n' +
+        "                            2점 못함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="1" onclick="showScore(event)">\n' +
+        "                            1점 매우 못함\n" +
+        "                          </label>\n" +
+        '                          <span class="score"></span>\n' +
+        "                        </div>\n" +
+        '                        <button class="btn remove-button ctm-btn-normal" onclick="removeItem(event)" disabled>삭제</button>\n' +
+        "                      </div>\n" +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        '                  <div class="d-flex">\n' +
+        '                    <div class="col-4"></div>\n' +
+        '                    <button class="btn add-button ctm-btn-normal" onclick="addItem()" disabled">+ 항목 추가</button>\n' +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "\n" +
+        '                <div class="col-4">\n' +
+        '                  <h4 class="text-center mt-3"><b>질문 목록</b></h4>\n' +
+        '                  <div id="questions1">\n' +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 1</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 1\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 2</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 2\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 3</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 3\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "              </div>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "        </div>\n" +
+        "        <div\n" +
+        '          class="tab-pane fade"\n' +
+        '          id="skiill"\n' +
+        '          role="tabpanel"\n' +
+        '          aria-labelledby="skill-tab"\n' +
+        "        >\n" +
+        '          <div class="card col-12 mb-3 mt-4 top-card">\n' +
+        '            <div class="right-box-2-round"></div>\n' +
+        '            <div class="card-body">\n' +
+        '              <input type="text" class="form-control text-center" id="surveyTitle" placeholder="제목 없는 설문지">\n' +
+        "            </div>\n" +
+        '            <div class="card-body">\n' +
+        "              <form>\n" +
+        '                <div class="form-group">\n' +
+        '                  <textarea class="form-control" id="questionDescription" rows="3" placeholder="설문지 설명"></textarea>\n' +
+        "                </div>\n" +
+        "              </form>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "\n" +
+        '          <div class="card col-12 mb-3 mt-2">\n' +
+        '            <div class="card-body">\n' +
+        '              <div class="row">\n' +
+        '                <div class="col-8">\n' +
+        '                  <h4 class="text-center mt-3"><b>설문지 항목</b></h4>\n' +
+        '                  <div id="items">\n' +
+        '                    <div class="item card mb-3 mt-3 survay">\n' +
+        '                      <div class="card-body survey">\n' +
+        '                        <input type="text" class="title-input form-control mb-2" value="질문 1" readonly>\n' +
+        '                        <div class="radio-group mb-2">\n' +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="5" onclick="showScore(event)">\n' +
+        "                            5점 매우 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="4" onclick="showScore(event)">\n' +
+        "                            4점 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="3" onclick="showScore(event)">\n' +
+        "                            3점 보통\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="2" onclick="showScore(event)">\n' +
+        "                            2점 못함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="1" onclick="showScore(event)">\n' +
+        "                            1점 매우 못함\n" +
+        "                          </label>\n" +
+        '                          <span class="score"></span>\n' +
+        "                        </div>\n" +
+        '                        <button class="btn remove-button ctm-btn-normal" onclick="removeItem(event)" disabled>삭제</button>\n' +
+        "                      </div>\n" +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        '                  <div class="d-flex">\n' +
+        '                    <div class="col-4"></div>\n' +
+        '                    <button class="btn add-button ctm-btn-normal" onclick="addItem()" disabled">+ 항목 추가</button>\n' +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "\n" +
+        '                <div class="col-4">\n' +
+        '                  <h4 class="text-center mt-3"><b>질문 목록</b></h4>\n' +
+        '                  <div id="questions1">\n' +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 1</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 1\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 2</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 2\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 3</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 3\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "              </div>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "        </div>\n" +
+        "      </div>";
       break;
     case "서식 2":
-      content = " <ul class=\"nav nav-tabs mt-5\" id=\"myTab\" role=\"tablist\">\n" +
-          "        <li class=\"nav-item\">\n" +
-          "          <a\n" +
-          "            class=\"nav-link active\"\n" +
-          "            id=\"common-tab\"\n" +
-          "            data-toggle=\"tab\"\n" +
-          "            href=\"#common\"\n" +
-          "            role=\"tab\"\n" +
-          "            aria-controls=\"common\"\n" +
-          "            aria-selected=\"true\"\n" +
-          "            >공통평가지</a\n" +
-          "          >\n" +
-          "        </li>\n" +
-          "        <li class=\"nav-item\">\n" +
-          "          <a\n" +
-          "            class=\"nav-link\"\n" +
-          "            id=\"skill-tab\"\n" +
-          "            data-toggle=\"tab\"\n" +
-          "            href=\"#skill\"\n" +
-          "            role=\"tab\"\n" +
-          "            aria-controls=\"skill\"\n" +
-          "            aria-selected=\"false\"\n" +
-          "            >기술분야 평가지</a\n" +
-          "          >\n" +
-          "        </li>\n" +
-          "      </ul>\n" +
-          "      <div class=\"tab-content\" id=\"myTabContent\">\n" +
-          "        <div\n" +
-          "          class=\"tab-pane fade show active\"\n" +
-          "          id=\"common\"\n" +
-          "          role=\"tabpanel\"\n" +
-          "          aria-labelledby=\"common-tab\"\n" +
-          "        >\n" +
-          "          <div class=\"card col-12 mb-3 mt-4 top-card\">\n" +
-          "            <div class=\"right-box-2-round\"></div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <input type=\"text\" class=\"form-control text-center\" id=\"surveyTitle\" placeholder=\"제목 없는 설문지\">\n" +
-          "            </div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <form>\n" +
-          "                <div class=\"form-group\">\n" +
-          "                  <textarea class=\"form-control\" id=\"questionDescription\" rows=\"3\" placeholder=\"설문지 설명\"></textarea>\n" +
-          "                </div>\n" +
-          "              </form>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "\n" +
-          "          <div class=\"card col-12 mb-3 mt-2\">\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <div class=\"row\">\n" +
-          "                <div class=\"col-8\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>설문지 항목</b></h4>\n" +
-          "                  <div id=\"items\">\n" +
-          "                    <div class=\"item card mb-3 mt-3 survay\">\n" +
-          "                      <div class=\"card-body survay\">\n" +
-          "                        <input type=\"text\" class=\"title-input form-control mb-2\" value=\"질문 1\" readonly>\n" +
-          "                        <div class=\"radio-group mb-2\">\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"5\" onclick=\"showScore(event)\">\n" +
-          "                            5점 매우 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"4\" onclick=\"showScore(event)\">\n" +
-          "                            4점 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"3\" onclick=\"showScore(event)\">\n" +
-          "                            3점 보통\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"2\" onclick=\"showScore(event)\">\n" +
-          "                            2점 못함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"1\" onclick=\"showScore(event)\">\n" +
-          "                            1점 매우 못함\n" +
-          "                          </label>\n" +
-          "                          <span class=\"score\"></span>\n" +
-          "                        </div>\n" +
-          "                        <button class=\"btn remove-button ctm-btn-normal\" onclick=\"removeItem(event)\" disabled>삭제</button>\n" +
-          "                      </div>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                  <div class=\"d-flex\">\n" +
-          "                    <div class=\"col-4\"></div>\n" +
-          "                    <button class=\"btn add-button ctm-btn-normal\" onclick=\"addItem()\" disabled\">+ 항목 추가</button>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "\n" +
-          "                <div class=\"col-4\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>질문 목록</b></h4>\n" +
-          "                  <div id=\"questions1\">\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 1</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 1')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 2</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 2')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 3</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 3')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "              </div>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "        </div>\n" +
-          "        <div\n" +
-          "          class=\"tab-pane fade\"\n" +
-          "          id=\"skiill\"\n" +
-          "          role=\"tabpanel\"\n" +
-          "          aria-labelledby=\"skill-tab\"\n" +
-          "        >\n" +
-          "          <div class=\"card col-12 mb-3 mt-4 top-card\">\n" +
-          "            <div class=\"right-box-2-round\"></div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <input type=\"text\" class=\"form-control text-center\" id=\"surveyTitle\" placeholder=\"제목 없는 설문지\">\n" +
-          "            </div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <form>\n" +
-          "                <div class=\"form-group\">\n" +
-          "                  <textarea class=\"form-control\" id=\"questionDescription\" rows=\"3\" placeholder=\"설문지 설명\"></textarea>\n" +
-          "                </div>\n" +
-          "              </form>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "\n" +
-          "          <div class=\"card col-12 mb-3 mt-2\">\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <div class=\"row\">\n" +
-          "                <div class=\"col-8\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>설문지 항목</b></h4>\n" +
-          "                  <div id=\"items\">\n" +
-          "                    <div class=\"item card mb-3 mt-3 survay\">\n" +
-          "                      <div class=\"card-body survay\">\n" +
-          "                        <input type=\"text\" class=\"title-input form-control mb-2\" value=\"질문 1\" readonly>\n" +
-          "                        <div class=\"radio-group mb-2\">\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"5\" onclick=\"showScore(event)\">\n" +
-          "                            5점 매우 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"4\" onclick=\"showScore(event)\">\n" +
-          "                            4점 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"3\" onclick=\"showScore(event)\">\n" +
-          "                            3점 보통\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"2\" onclick=\"showScore(event)\">\n" +
-          "                            2점 못함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"1\" onclick=\"showScore(event)\">\n" +
-          "                            1점 매우 못함\n" +
-          "                          </label>\n" +
-          "                          <span class=\"score\"></span>\n" +
-          "                        </div>\n" +
-          "                        <button class=\"btn remove-button ctm-btn-normal\" onclick=\"removeItem(event)\" disabled>삭제</button>\n" +
-          "                      </div>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                  <div class=\"d-flex\">\n" +
-          "                    <div class=\"col-4\"></div>\n" +
-          "                    <button class=\"btn add-button ctm-btn-normal\" onclick=\"addItem()\" disabled\">+ 항목 추가</button>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "\n" +
-          "                <div class=\"col-4\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>질문 목록</b></h4>\n" +
-          "                  <div id=\"questions1\">\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 1</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 1')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 2</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 2')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 3</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 3')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "              </div>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "        </div>\n" +
-          "      </div>";
+      content =
+        ' <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">\n' +
+        '        <li class="nav-item">\n' +
+        "          <a\n" +
+        '            class="nav-link active"\n' +
+        '            id="common-tab"\n' +
+        '            data-toggle="tab"\n' +
+        '            href="#common"\n' +
+        '            role="tab"\n' +
+        '            aria-controls="common"\n' +
+        '            aria-selected="true"\n' +
+        "            >공통평가지</a\n" +
+        "          >\n" +
+        "        </li>\n" +
+        '        <li class="nav-item">\n' +
+        "          <a\n" +
+        '            class="nav-link"\n' +
+        '            id="skill-tab"\n' +
+        '            data-toggle="tab"\n' +
+        '            href="#skill"\n' +
+        '            role="tab"\n' +
+        '            aria-controls="skill"\n' +
+        '            aria-selected="false"\n' +
+        "            >기술분야 평가지</a\n" +
+        "          >\n" +
+        "        </li>\n" +
+        "      </ul>\n" +
+        '      <div class="tab-content" id="myTabContent">\n' +
+        "        <div\n" +
+        '          class="tab-pane fade show active"\n' +
+        '          id="common"\n' +
+        '          role="tabpanel"\n' +
+        '          aria-labelledby="common-tab"\n' +
+        "        >\n" +
+        '          <div class="card col-12 mb-3 mt-4 top-card">\n' +
+        '            <div class="right-box-2-round"></div>\n' +
+        '            <div class="card-body">\n' +
+        '              <input type="text" class="form-control text-center" id="surveyTitle" placeholder="제목 없는 설문지">\n' +
+        "            </div>\n" +
+        '            <div class="card-body">\n' +
+        "              <form>\n" +
+        '                <div class="form-group">\n' +
+        '                  <textarea class="form-control" id="questionDescription" rows="3" placeholder="설문지 설명"></textarea>\n' +
+        "                </div>\n" +
+        "              </form>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "\n" +
+        '          <div class="card col-12 mb-3 mt-2">\n' +
+        '            <div class="card-body">\n' +
+        '              <div class="row">\n' +
+        '                <div class="col-8">\n' +
+        '                  <h4 class="text-center mt-3"><b>설문지 항목</b></h4>\n' +
+        '                  <div id="items">\n' +
+        '                    <div class="item card mb-3 mt-3 survay">\n' +
+        '                      <div class="card-body survay">\n' +
+        '                        <input type="text" class="title-input form-control mb-2" value="질문 1" readonly>\n' +
+        '                        <div class="radio-group mb-2">\n' +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="5" onclick="showScore(event)">\n' +
+        "                            5점 매우 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="4" onclick="showScore(event)">\n' +
+        "                            4점 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="3" onclick="showScore(event)">\n' +
+        "                            3점 보통\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="2" onclick="showScore(event)">\n' +
+        "                            2점 못함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="1" onclick="showScore(event)">\n' +
+        "                            1점 매우 못함\n" +
+        "                          </label>\n" +
+        '                          <span class="score"></span>\n' +
+        "                        </div>\n" +
+        '                        <button class="btn remove-button ctm-btn-normal" onclick="removeItem(event)" disabled>삭제</button>\n' +
+        "                      </div>\n" +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        '                  <div class="d-flex">\n' +
+        '                    <div class="col-4"></div>\n' +
+        '                    <button class="btn add-button ctm-btn-normal" onclick="addItem()" disabled">+ 항목 추가</button>\n' +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "\n" +
+        '                <div class="col-4">\n' +
+        '                  <h4 class="text-center mt-3"><b>질문 목록</b></h4>\n' +
+        '                  <div id="questions1">\n' +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 1</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 1\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 2</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 2\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 3</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 3\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "              </div>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "        </div>\n" +
+        "        <div\n" +
+        '          class="tab-pane fade"\n' +
+        '          id="skiill"\n' +
+        '          role="tabpanel"\n' +
+        '          aria-labelledby="skill-tab"\n' +
+        "        >\n" +
+        '          <div class="card col-12 mb-3 mt-4 top-card">\n' +
+        '            <div class="right-box-2-round"></div>\n' +
+        '            <div class="card-body">\n' +
+        '              <input type="text" class="form-control text-center" id="surveyTitle" placeholder="제목 없는 설문지">\n' +
+        "            </div>\n" +
+        '            <div class="card-body">\n' +
+        "              <form>\n" +
+        '                <div class="form-group">\n' +
+        '                  <textarea class="form-control" id="questionDescription" rows="3" placeholder="설문지 설명"></textarea>\n' +
+        "                </div>\n" +
+        "              </form>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "\n" +
+        '          <div class="card col-12 mb-3 mt-2">\n' +
+        '            <div class="card-body">\n' +
+        '              <div class="row">\n' +
+        '                <div class="col-8">\n' +
+        '                  <h4 class="text-center mt-3"><b>설문지 항목</b></h4>\n' +
+        '                  <div id="items">\n' +
+        '                    <div class="item card mb-3 mt-3 survay">\n' +
+        '                      <div class="card-body survay">\n' +
+        '                        <input type="text" class="title-input form-control mb-2" value="질문 1" readonly>\n' +
+        '                        <div class="radio-group mb-2">\n' +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="5" onclick="showScore(event)">\n' +
+        "                            5점 매우 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="4" onclick="showScore(event)">\n' +
+        "                            4점 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="3" onclick="showScore(event)">\n' +
+        "                            3점 보통\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="2" onclick="showScore(event)">\n' +
+        "                            2점 못함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="1" onclick="showScore(event)">\n' +
+        "                            1점 매우 못함\n" +
+        "                          </label>\n" +
+        '                          <span class="score"></span>\n' +
+        "                        </div>\n" +
+        '                        <button class="btn remove-button ctm-btn-normal" onclick="removeItem(event)" disabled>삭제</button>\n' +
+        "                      </div>\n" +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        '                  <div class="d-flex">\n' +
+        '                    <div class="col-4"></div>\n' +
+        '                    <button class="btn add-button ctm-btn-normal" onclick="addItem()" disabled">+ 항목 추가</button>\n' +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "\n" +
+        '                <div class="col-4">\n' +
+        '                  <h4 class="text-center mt-3"><b>질문 목록</b></h4>\n' +
+        '                  <div id="questions1">\n' +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 1</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 1\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 2</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 2\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 3</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 3\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "              </div>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "        </div>\n" +
+        "      </div>";
       break;
     case "서식 3":
-      content = " <ul class=\"nav nav-tabs mt-5\" id=\"myTab\" role=\"tablist\">\n" +
-          "        <li class=\"nav-item\">\n" +
-          "          <a\n" +
-          "            class=\"nav-link active\"\n" +
-          "            id=\"common-tab\"\n" +
-          "            data-toggle=\"tab\"\n" +
-          "            href=\"#common\"\n" +
-          "            role=\"tab\"\n" +
-          "            aria-controls=\"common\"\n" +
-          "            aria-selected=\"true\"\n" +
-          "            >공통평가지</a\n" +
-          "          >\n" +
-          "        </li>\n" +
-          "        <li class=\"nav-item\">\n" +
-          "          <a\n" +
-          "            class=\"nav-link\"\n" +
-          "            id=\"skill-tab\"\n" +
-          "            data-toggle=\"tab\"\n" +
-          "            href=\"#skill\"\n" +
-          "            role=\"tab\"\n" +
-          "            aria-controls=\"skill\"\n" +
-          "            aria-selected=\"false\"\n" +
-          "            >기술분야 평가지</a\n" +
-          "          >\n" +
-          "        </li>\n" +
-          "      </ul>\n" +
-          "      <div class=\"tab-content\" id=\"myTabContent\">\n" +
-          "        <div\n" +
-          "          class=\"tab-pane fade show active\"\n" +
-          "          id=\"common\"\n" +
-          "          role=\"tabpanel\"\n" +
-          "          aria-labelledby=\"common-tab\"\n" +
-          "        >\n" +
-          "          <div class=\"card col-12 mb-3 mt-4 top-card\">\n" +
-          "            <div class=\"right-box-2-round\"></div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <input type=\"text\" class=\"form-control text-center\" id=\"surveyTitle\" placeholder=\"제목 없는 설문지\">\n" +
-          "            </div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <form>\n" +
-          "                <div class=\"form-group\">\n" +
-          "                  <textarea class=\"form-control\" id=\"questionDescription\" rows=\"3\" placeholder=\"설문지 설명\"></textarea>\n" +
-          "                </div>\n" +
-          "              </form>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "\n" +
-          "          <div class=\"card col-12 mb-3 mt-2\">\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <div class=\"row\">\n" +
-          "                <div class=\"col-8\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>설문지 항목</b></h4>\n" +
-          "                  <div id=\"items\">\n" +
-          "                    <div class=\"item card mb-3 mt-3 survay\">\n" +
-          "                      <div class=\"card-body survey\">\n" +
-          "                        <input type=\"text\" class=\"title-input form-control mb-2\" value=\"질문 1\" readonly>\n" +
-          "                        <div class=\"radio-group mb-2\">\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"5\" onclick=\"showScore(event)\">\n" +
-          "                            5점 매우 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"4\" onclick=\"showScore(event)\">\n" +
-          "                            4점 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"3\" onclick=\"showScore(event)\">\n" +
-          "                            3점 보통\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"2\" onclick=\"showScore(event)\">\n" +
-          "                            2점 못함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"1\" onclick=\"showScore(event)\">\n" +
-          "                            1점 매우 못함\n" +
-          "                          </label>\n" +
-          "                          <span class=\"score\"></span>\n" +
-          "                        </div>\n" +
-          "                        <button class=\"btn remove-button ctm-btn-normal\" onclick=\"removeItem(event)\" disabled>삭제</button>\n" +
-          "                      </div>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                  <div class=\"d-flex\">\n" +
-          "                    <div class=\"col-4\"></div>\n" +
-          "                    <button class=\"btn add-button ctm-btn-normal\" onclick=\"addItem()\" disabled\">+ 항목 추가</button>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "\n" +
-          "                <div class=\"col-4\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>질문 목록</b></h4>\n" +
-          "                  <div id=\"questions1\">\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 1</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 1')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 2</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 2')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 3</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 3')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "              </div>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "        </div>\n" +
-          "        <div\n" +
-          "          class=\"tab-pane fade\"\n" +
-          "          id=\"skiill\"\n" +
-          "          role=\"tabpanel\"\n" +
-          "          aria-labelledby=\"skill-tab\"\n" +
-          "        >\n" +
-          "          <div class=\"card col-12 mb-3 mt-4 top-card\">\n" +
-          "            <div class=\"right-box-2-round\"></div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <input type=\"text\" class=\"form-control text-center\" id=\"surveyTitle\" placeholder=\"제목 없는 설문지\">\n" +
-          "            </div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <form>\n" +
-          "                <div class=\"form-group\">\n" +
-          "                  <textarea class=\"form-control\" id=\"questionDescription\" rows=\"3\" placeholder=\"설문지 설명\"></textarea>\n" +
-          "                </div>\n" +
-          "              </form>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "\n" +
-          "          <div class=\"card col-12 mb-3 mt-2\">\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <div class=\"row\">\n" +
-          "                <div class=\"col-8\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>설문지 항목</b></h4>\n" +
-          "                  <div id=\"items\">\n" +
-          "                    <div class=\"item card mb-3 mt-3 survay\">\n" +
-          "                      <div class=\"card-body survey\">\n" +
-          "                        <input type=\"text\" class=\"title-input form-control mb-2\" value=\"질문 1\" readonly>\n" +
-          "                        <div class=\"radio-group mb-2\">\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"5\" onclick=\"showScore(event)\">\n" +
-          "                            5점 매우 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"4\" onclick=\"showScore(event)\">\n" +
-          "                            4점 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"3\" onclick=\"showScore(event)\">\n" +
-          "                            3점 보통\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"2\" onclick=\"showScore(event)\">\n" +
-          "                            2점 못함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"1\" onclick=\"showScore(event)\">\n" +
-          "                            1점 매우 못함\n" +
-          "                          </label>\n" +
-          "                          <span class=\"score\"></span>\n" +
-          "                        </div>\n" +
-          "                        <button class=\"btn remove-button ctm-btn-normal\" onclick=\"removeItem(event)\" disabled>삭제</button>\n" +
-          "                      </div>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                  <div class=\"d-flex\">\n" +
-          "                    <div class=\"col-4\"></div>\n" +
-          "                    <button class=\"btn add-button ctm-btn-normal\" onclick=\"addItem()\" disabled\">+ 항목 추가</button>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "\n" +
-          "                <div class=\"col-4\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>질문 목록</b></h4>\n" +
-          "                  <div id=\"questions1\">\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 1</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 1')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 2</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 2')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 3</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 3')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "              </div>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "        </div>\n" +
-          "      </div>";
+      content =
+        ' <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">\n' +
+        '        <li class="nav-item">\n' +
+        "          <a\n" +
+        '            class="nav-link active"\n' +
+        '            id="common-tab"\n' +
+        '            data-toggle="tab"\n' +
+        '            href="#common"\n' +
+        '            role="tab"\n' +
+        '            aria-controls="common"\n' +
+        '            aria-selected="true"\n' +
+        "            >공통평가지</a\n" +
+        "          >\n" +
+        "        </li>\n" +
+        '        <li class="nav-item">\n' +
+        "          <a\n" +
+        '            class="nav-link"\n' +
+        '            id="skill-tab"\n' +
+        '            data-toggle="tab"\n' +
+        '            href="#skill"\n' +
+        '            role="tab"\n' +
+        '            aria-controls="skill"\n' +
+        '            aria-selected="false"\n' +
+        "            >기술분야 평가지</a\n" +
+        "          >\n" +
+        "        </li>\n" +
+        "      </ul>\n" +
+        '      <div class="tab-content" id="myTabContent">\n' +
+        "        <div\n" +
+        '          class="tab-pane fade show active"\n' +
+        '          id="common"\n' +
+        '          role="tabpanel"\n' +
+        '          aria-labelledby="common-tab"\n' +
+        "        >\n" +
+        '          <div class="card col-12 mb-3 mt-4 top-card">\n' +
+        '            <div class="right-box-2-round"></div>\n' +
+        '            <div class="card-body">\n' +
+        '              <input type="text" class="form-control text-center" id="surveyTitle" placeholder="제목 없는 설문지">\n' +
+        "            </div>\n" +
+        '            <div class="card-body">\n' +
+        "              <form>\n" +
+        '                <div class="form-group">\n' +
+        '                  <textarea class="form-control" id="questionDescription" rows="3" placeholder="설문지 설명"></textarea>\n' +
+        "                </div>\n" +
+        "              </form>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "\n" +
+        '          <div class="card col-12 mb-3 mt-2">\n' +
+        '            <div class="card-body">\n' +
+        '              <div class="row">\n' +
+        '                <div class="col-8">\n' +
+        '                  <h4 class="text-center mt-3"><b>설문지 항목</b></h4>\n' +
+        '                  <div id="items">\n' +
+        '                    <div class="item card mb-3 mt-3 survay">\n' +
+        '                      <div class="card-body survey">\n' +
+        '                        <input type="text" class="title-input form-control mb-2" value="질문 1" readonly>\n' +
+        '                        <div class="radio-group mb-2">\n' +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="5" onclick="showScore(event)">\n' +
+        "                            5점 매우 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="4" onclick="showScore(event)">\n' +
+        "                            4점 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="3" onclick="showScore(event)">\n' +
+        "                            3점 보통\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="2" onclick="showScore(event)">\n' +
+        "                            2점 못함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="1" onclick="showScore(event)">\n' +
+        "                            1점 매우 못함\n" +
+        "                          </label>\n" +
+        '                          <span class="score"></span>\n' +
+        "                        </div>\n" +
+        '                        <button class="btn remove-button ctm-btn-normal" onclick="removeItem(event)" disabled>삭제</button>\n' +
+        "                      </div>\n" +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        '                  <div class="d-flex">\n' +
+        '                    <div class="col-4"></div>\n' +
+        '                    <button class="btn add-button ctm-btn-normal" onclick="addItem()" disabled">+ 항목 추가</button>\n' +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "\n" +
+        '                <div class="col-4">\n' +
+        '                  <h4 class="text-center mt-3"><b>질문 목록</b></h4>\n' +
+        '                  <div id="questions1">\n' +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 1</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 1\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 2</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 2\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 3</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 3\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "              </div>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "        </div>\n" +
+        "        <div\n" +
+        '          class="tab-pane fade"\n' +
+        '          id="skiill"\n' +
+        '          role="tabpanel"\n' +
+        '          aria-labelledby="skill-tab"\n' +
+        "        >\n" +
+        '          <div class="card col-12 mb-3 mt-4 top-card">\n' +
+        '            <div class="right-box-2-round"></div>\n' +
+        '            <div class="card-body">\n' +
+        '              <input type="text" class="form-control text-center" id="surveyTitle" placeholder="제목 없는 설문지">\n' +
+        "            </div>\n" +
+        '            <div class="card-body">\n' +
+        "              <form>\n" +
+        '                <div class="form-group">\n' +
+        '                  <textarea class="form-control" id="questionDescription" rows="3" placeholder="설문지 설명"></textarea>\n' +
+        "                </div>\n" +
+        "              </form>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "\n" +
+        '          <div class="card col-12 mb-3 mt-2">\n' +
+        '            <div class="card-body">\n' +
+        '              <div class="row">\n' +
+        '                <div class="col-8">\n' +
+        '                  <h4 class="text-center mt-3"><b>설문지 항목</b></h4>\n' +
+        '                  <div id="items">\n' +
+        '                    <div class="item card mb-3 mt-3 survay">\n' +
+        '                      <div class="card-body survey">\n' +
+        '                        <input type="text" class="title-input form-control mb-2" value="질문 1" readonly>\n' +
+        '                        <div class="radio-group mb-2">\n' +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="5" onclick="showScore(event)">\n' +
+        "                            5점 매우 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="4" onclick="showScore(event)">\n' +
+        "                            4점 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="3" onclick="showScore(event)">\n' +
+        "                            3점 보통\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="2" onclick="showScore(event)">\n' +
+        "                            2점 못함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="1" onclick="showScore(event)">\n' +
+        "                            1점 매우 못함\n" +
+        "                          </label>\n" +
+        '                          <span class="score"></span>\n' +
+        "                        </div>\n" +
+        '                        <button class="btn remove-button ctm-btn-normal" onclick="removeItem(event)" disabled>삭제</button>\n' +
+        "                      </div>\n" +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        '                  <div class="d-flex">\n' +
+        '                    <div class="col-4"></div>\n' +
+        '                    <button class="btn add-button ctm-btn-normal" onclick="addItem()" disabled">+ 항목 추가</button>\n' +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "\n" +
+        '                <div class="col-4">\n' +
+        '                  <h4 class="text-center mt-3"><b>질문 목록</b></h4>\n' +
+        '                  <div id="questions1">\n' +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 1</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 1\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 2</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 2\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 3</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 3\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "              </div>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "        </div>\n" +
+        "      </div>";
       break;
     case "서식 4":
-      content = " <ul class=\"nav nav-tabs mt-5\" id=\"myTab\" role=\"tablist\">\n" +
-          "        <li class=\"nav-item\">\n" +
-          "          <a\n" +
-          "            class=\"nav-link active\"\n" +
-          "            id=\"common-tab\"\n" +
-          "            data-toggle=\"tab\"\n" +
-          "            href=\"#common\"\n" +
-          "            role=\"tab\"\n" +
-          "            aria-controls=\"common\"\n" +
-          "            aria-selected=\"true\"\n" +
-          "            >공통평가지</a\n" +
-          "          >\n" +
-          "        </li>\n" +
-          "        <li class=\"nav-item\">\n" +
-          "          <a\n" +
-          "            class=\"nav-link\"\n" +
-          "            id=\"skill-tab\"\n" +
-          "            data-toggle=\"tab\"\n" +
-          "            href=\"#skill\"\n" +
-          "            role=\"tab\"\n" +
-          "            aria-controls=\"skill\"\n" +
-          "            aria-selected=\"false\"\n" +
-          "            >기술분야 평가지</a\n" +
-          "          >\n" +
-          "        </li>\n" +
-          "      </ul>\n" +
-          "      <div class=\"tab-content\" id=\"myTabContent\">\n" +
-          "        <div\n" +
-          "          class=\"tab-pane fade show active\"\n" +
-          "          id=\"common\"\n" +
-          "          role=\"tabpanel\"\n" +
-          "          aria-labelledby=\"common-tab\"\n" +
-          "        >\n" +
-          "          <div class=\"card col-12 mb-3 mt-4 top-card\">\n" +
-          "            <div class=\"right-box-2-round\"></div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <input type=\"text\" class=\"form-control text-center\" id=\"surveyTitle\" placeholder=\"제목 없는 설문지\">\n" +
-          "            </div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <form>\n" +
-          "                <div class=\"form-group\">\n" +
-          "                  <textarea class=\"form-control\" id=\"questionDescription\" rows=\"3\" placeholder=\"설문지 설명\"></textarea>\n" +
-          "                </div>\n" +
-          "              </form>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "\n" +
-          "          <div class=\"card col-12 mb-3 mt-2\">\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <div class=\"row\">\n" +
-          "                <div class=\"col-8\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>설문지 항목</b></h4>\n" +
-          "                  <div id=\"items\">\n" +
-          "                    <div class=\"item card mb-3 mt-3 survay\">\n" +
-          "                      <div class=\"card-body survey\">\n" +
-          "                        <input type=\"text\" class=\"title-input form-control mb-2\" value=\"질문 1\" readonly>\n" +
-          "                        <div class=\"radio-group mb-2\">\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"5\" onclick=\"showScore(event)\">\n" +
-          "                            5점 매우 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"4\" onclick=\"showScore(event)\">\n" +
-          "                            4점 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"3\" onclick=\"showScore(event)\">\n" +
-          "                            3점 보통\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"2\" onclick=\"showScore(event)\">\n" +
-          "                            2점 못함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"1\" onclick=\"showScore(event)\">\n" +
-          "                            1점 매우 못함\n" +
-          "                          </label>\n" +
-          "                          <span class=\"score\"></span>\n" +
-          "                        </div>\n" +
-          "                        <button class=\"btn remove-button ctm-btn-normal\" onclick=\"removeItem(event)\" disabled>삭제</button>\n" +
-          "                      </div>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                  <div class=\"d-flex\">\n" +
-          "                    <div class=\"col-4\"></div>\n" +
-          "                    <button class=\"btn add-button ctm-btn-normal\" onclick=\"addItem()\" disabled\">+ 항목 추가</button>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "\n" +
-          "                <div class=\"col-4\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>질문 목록</b></h4>\n" +
-          "                  <div id=\"questions1\">\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 1</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 1')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 2</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 2')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 3</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 3')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "              </div>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "        </div>\n" +
-          "        <div\n" +
-          "          class=\"tab-pane fade\"\n" +
-          "          id=\"skiill\"\n" +
-          "          role=\"tabpanel\"\n" +
-          "          aria-labelledby=\"skill-tab\"\n" +
-          "        >\n" +
-          "          <div class=\"card col-12 mb-3 mt-4 top-card\">\n" +
-          "            <div class=\"right-box-2-round\"></div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <input type=\"text\" class=\"form-control text-center\" id=\"surveyTitle\" placeholder=\"제목 없는 설문지\">\n" +
-          "            </div>\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <form>\n" +
-          "                <div class=\"form-group\">\n" +
-          "                  <textarea class=\"form-control\" id=\"questionDescription\" rows=\"3\" placeholder=\"설문지 설명\"></textarea>\n" +
-          "                </div>\n" +
-          "              </form>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "\n" +
-          "          <div class=\"card col-12 mb-3 mt-2\">\n" +
-          "            <div class=\"card-body\">\n" +
-          "              <div class=\"row\">\n" +
-          "                <div class=\"col-8\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>설문지 항목</b></h4>\n" +
-          "                  <div id=\"items\">\n" +
-          "                    <div class=\"item card mb-3 mt-3 survay\">\n" +
-          "                      <div class=\"card-body survey\">\n" +
-          "                        <input type=\"text\" class=\"title-input form-control mb-2\" value=\"질문 1\" readonly>\n" +
-          "                        <div class=\"radio-group mb-2\">\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"5\" onclick=\"showScore(event)\">\n" +
-          "                            5점 매우 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"4\" onclick=\"showScore(event)\">\n" +
-          "                            4점 잘함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"3\" onclick=\"showScore(event)\">\n" +
-          "                            3점 보통\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"2\" onclick=\"showScore(event)\">\n" +
-          "                            2점 못함\n" +
-          "                          </label>\n" +
-          "                          <label class=\"form-check-label me-2\">\n" +
-          "                            <input type=\"radio\" class=\"form-check-input\" name=\"question1\" value=\"1\" onclick=\"showScore(event)\">\n" +
-          "                            1점 매우 못함\n" +
-          "                          </label>\n" +
-          "                          <span class=\"score\"></span>\n" +
-          "                        </div>\n" +
-          "                        <button class=\"btn remove-button ctm-btn-normal\" onclick=\"removeItem(event)\" disabled>삭제</button>\n" +
-          "                      </div>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                  <div class=\"d-flex\">\n" +
-          "                    <div class=\"col-4\"></div>\n" +
-          "                    <button class=\"btn add-button ctm-btn-normal\" onclick=\"addItem()\" disabled\">+ 항목 추가</button>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "\n" +
-          "                <div class=\"col-4\">\n" +
-          "                  <h4 class=\"text-center mt-3\"><b>질문 목록</b></h4>\n" +
-          "                  <div id=\"questions1\">\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 1</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 1')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 2</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 2')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                    <div class=\"card question d-flex justify-content-between align-items-center mt-2\">\n" +
-          "                      <span>질문 3</span>\n" +
-          "                      <button class=\"btn btn-sm add-question-button ctm-btn-small\" onclick=\"addQuestion('질문 3')\" disabled>+ 추가</button>\n" +
-          "                    </div>\n" +
-          "                  </div>\n" +
-          "                </div>\n" +
-          "              </div>\n" +
-          "            </div>\n" +
-          "          </div>\n" +
-          "        </div>\n" +
-          "      </div>";
+      content =
+        ' <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">\n' +
+        '        <li class="nav-item">\n' +
+        "          <a\n" +
+        '            class="nav-link active"\n' +
+        '            id="common-tab"\n' +
+        '            data-toggle="tab"\n' +
+        '            href="#common"\n' +
+        '            role="tab"\n' +
+        '            aria-controls="common"\n' +
+        '            aria-selected="true"\n' +
+        "            >공통평가지</a\n" +
+        "          >\n" +
+        "        </li>\n" +
+        '        <li class="nav-item">\n' +
+        "          <a\n" +
+        '            class="nav-link"\n' +
+        '            id="skill-tab"\n' +
+        '            data-toggle="tab"\n' +
+        '            href="#skill"\n' +
+        '            role="tab"\n' +
+        '            aria-controls="skill"\n' +
+        '            aria-selected="false"\n' +
+        "            >기술분야 평가지</a\n" +
+        "          >\n" +
+        "        </li>\n" +
+        "      </ul>\n" +
+        '      <div class="tab-content" id="myTabContent">\n' +
+        "        <div\n" +
+        '          class="tab-pane fade show active"\n' +
+        '          id="common"\n' +
+        '          role="tabpanel"\n' +
+        '          aria-labelledby="common-tab"\n' +
+        "        >\n" +
+        '          <div class="card col-12 mb-3 mt-4 top-card">\n' +
+        '            <div class="right-box-2-round"></div>\n' +
+        '            <div class="card-body">\n' +
+        '              <input type="text" class="form-control text-center" id="surveyTitle" placeholder="제목 없는 설문지">\n' +
+        "            </div>\n" +
+        '            <div class="card-body">\n' +
+        "              <form>\n" +
+        '                <div class="form-group">\n' +
+        '                  <textarea class="form-control" id="questionDescription" rows="3" placeholder="설문지 설명"></textarea>\n' +
+        "                </div>\n" +
+        "              </form>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "\n" +
+        '          <div class="card col-12 mb-3 mt-2">\n' +
+        '            <div class="card-body">\n' +
+        '              <div class="row">\n' +
+        '                <div class="col-8">\n' +
+        '                  <h4 class="text-center mt-3"><b>설문지 항목</b></h4>\n' +
+        '                  <div id="items">\n' +
+        '                    <div class="item card mb-3 mt-3 survay">\n' +
+        '                      <div class="card-body survey">\n' +
+        '                        <input type="text" class="title-input form-control mb-2" value="질문 1" readonly>\n' +
+        '                        <div class="radio-group mb-2">\n' +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="5" onclick="showScore(event)">\n' +
+        "                            5점 매우 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="4" onclick="showScore(event)">\n' +
+        "                            4점 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="3" onclick="showScore(event)">\n' +
+        "                            3점 보통\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="2" onclick="showScore(event)">\n' +
+        "                            2점 못함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="1" onclick="showScore(event)">\n' +
+        "                            1점 매우 못함\n" +
+        "                          </label>\n" +
+        '                          <span class="score"></span>\n' +
+        "                        </div>\n" +
+        '                        <button class="btn remove-button ctm-btn-normal" onclick="removeItem(event)" disabled>삭제</button>\n' +
+        "                      </div>\n" +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        '                  <div class="d-flex">\n' +
+        '                    <div class="col-4"></div>\n' +
+        '                    <button class="btn add-button ctm-btn-normal" onclick="addItem()" disabled">+ 항목 추가</button>\n' +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "\n" +
+        '                <div class="col-4">\n' +
+        '                  <h4 class="text-center mt-3"><b>질문 목록</b></h4>\n' +
+        '                  <div id="questions1">\n' +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 1</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 1\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 2</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 2\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 3</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 3\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "              </div>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "        </div>\n" +
+        "        <div\n" +
+        '          class="tab-pane fade"\n' +
+        '          id="skiill"\n' +
+        '          role="tabpanel"\n' +
+        '          aria-labelledby="skill-tab"\n' +
+        "        >\n" +
+        '          <div class="card col-12 mb-3 mt-4 top-card">\n' +
+        '            <div class="right-box-2-round"></div>\n' +
+        '            <div class="card-body">\n' +
+        '              <input type="text" class="form-control text-center" id="surveyTitle" placeholder="제목 없는 설문지">\n' +
+        "            </div>\n" +
+        '            <div class="card-body">\n' +
+        "              <form>\n" +
+        '                <div class="form-group">\n' +
+        '                  <textarea class="form-control" id="questionDescription" rows="3" placeholder="설문지 설명"></textarea>\n' +
+        "                </div>\n" +
+        "              </form>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "\n" +
+        '          <div class="card col-12 mb-3 mt-2">\n' +
+        '            <div class="card-body">\n' +
+        '              <div class="row">\n' +
+        '                <div class="col-8">\n' +
+        '                  <h4 class="text-center mt-3"><b>설문지 항목</b></h4>\n' +
+        '                  <div id="items">\n' +
+        '                    <div class="item card mb-3 mt-3 survay">\n' +
+        '                      <div class="card-body survey">\n' +
+        '                        <input type="text" class="title-input form-control mb-2" value="질문 1" readonly>\n' +
+        '                        <div class="radio-group mb-2">\n' +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="5" onclick="showScore(event)">\n' +
+        "                            5점 매우 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="4" onclick="showScore(event)">\n' +
+        "                            4점 잘함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="3" onclick="showScore(event)">\n' +
+        "                            3점 보통\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="2" onclick="showScore(event)">\n' +
+        "                            2점 못함\n" +
+        "                          </label>\n" +
+        '                          <label class="form-check-label me-2">\n' +
+        '                            <input type="radio" class="form-check-input" name="question1" value="1" onclick="showScore(event)">\n' +
+        "                            1점 매우 못함\n" +
+        "                          </label>\n" +
+        '                          <span class="score"></span>\n' +
+        "                        </div>\n" +
+        '                        <button class="btn remove-button ctm-btn-normal" onclick="removeItem(event)" disabled>삭제</button>\n' +
+        "                      </div>\n" +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        '                  <div class="d-flex">\n' +
+        '                    <div class="col-4"></div>\n' +
+        '                    <button class="btn add-button ctm-btn-normal" onclick="addItem()" disabled">+ 항목 추가</button>\n' +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "\n" +
+        '                <div class="col-4">\n' +
+        '                  <h4 class="text-center mt-3"><b>질문 목록</b></h4>\n' +
+        '                  <div id="questions1">\n' +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 1</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 1\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 2</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 2\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        '                    <div class="card question d-flex justify-content-between align-items-center mt-2">\n' +
+        "                      <span>질문 3</span>\n" +
+        '                      <button class="btn btn-sm add-question-button ctm-btn-small" onclick="addQuestion(\'질문 3\')" disabled>+ 추가</button>\n' +
+        "                    </div>\n" +
+        "                  </div>\n" +
+        "                </div>\n" +
+        "              </div>\n" +
+        "            </div>\n" +
+        "          </div>\n" +
+        "        </div>\n" +
+        "      </div>";
       break;
     default:
       content = "<p>선택된 서식이 없습니다.</p>";
@@ -927,7 +924,6 @@ function displayFormContent(formType) {
 }
 
 function getTechField(field) {
-  // 공모 분야에 따른 기술 분야를 반환하는 로직을 여기에 추가하세요
   const techFields = {
     "분야 1": "기술 분야 1",
     "분야 2": "기술 분야 2",
@@ -938,7 +934,6 @@ function getTechField(field) {
 }
 
 function getForm(field) {
-  // 공모 분야에 따른 기본 서식을 반환하는 로직을 여기에 추가하세요
   const forms = {
     "분야 1": "서식 1",
     "분야 2": "서식 2",
@@ -949,11 +944,10 @@ function getForm(field) {
 }
 
 document
-    .getElementById("status-filter")
-    .addEventListener("change", filterAndSortAnnouncements);
+  .getElementById("status-filter")
+  .addEventListener("change", filterAndSortAnnouncements);
 document
-    .getElementById("sort-filter")
-    .addEventListener("change", filterAndSortAnnouncements);
+  .getElementById("sort-filter")
+  .addEventListener("change", filterAndSortAnnouncements);
 
-// 초기 공고 목록 표시
 displayAnnouncements(announcements);

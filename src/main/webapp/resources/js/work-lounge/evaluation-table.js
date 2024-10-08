@@ -1,9 +1,8 @@
-// # 평가표
 let itemCount = 1;
 
 function addItem(text = `항목 ${++itemCount}`, radioCount = 5) {
   const item = document.createElement("div");
-  item.className = "item card mb-3"; // card 클래스와 간격 추가
+  item.className = "item card mb-3";
   item.innerHTML = `<div class="card-body survay">
                             <input type="text" class="title-input form-control mb-2" value="${text}">
                             <div class="radio-group mb-2">
@@ -51,13 +50,12 @@ function saveSurvey() {
     input.setAttribute("readonly", true);
     input.classList.add("readonly");
     const removeButton = item.querySelector(".remove-button");
-    removeButton.disabled = true; // 삭제 버튼 비활성화
+    removeButton.disabled = true;
   });
   document.querySelector(".add-button").disabled = true;
   document.querySelector(".save-button").disabled = true;
   document.querySelector(".edit-button").disabled = false;
 
-  // 질문 목록의 추가 버튼 비활성화
   const addQuestionButtons = document.querySelectorAll(".add-question-button");
   addQuestionButtons.forEach((button) => (button.disabled = true));
 }
@@ -69,22 +67,19 @@ function enableEditing() {
     input.removeAttribute("readonly");
     input.classList.remove("readonly");
     const removeButton = item.querySelector(".remove-button");
-    removeButton.disabled = false; // 삭제 버튼 활성화
+    removeButton.disabled = false;
   });
   document.querySelector(".add-button").disabled = false;
   document.querySelector(".save-button").disabled = false;
   document.querySelector(".edit-button").disabled = true;
 
-  // 질문 목록의 추가 버튼 활성화
   const addQuestionButtons = document.querySelectorAll(".add-question-button");
   addQuestionButtons.forEach((button) => (button.disabled = false));
 }
 
-// 초기 상태에서 버튼 비활성화
 document.querySelector(".add-button").disabled = true;
 document.querySelector(".save-button").disabled = true;
 document.querySelector(".edit-button").disabled = false;
 
-// 질문 목록의 추가 버튼 비활성화
 const addQuestionButtons = document.querySelectorAll(".add-question-button");
 addQuestionButtons.forEach((button) => (button.disabled = true));

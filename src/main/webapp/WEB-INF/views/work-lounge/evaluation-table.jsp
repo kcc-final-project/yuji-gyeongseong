@@ -8,7 +8,6 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>전자평가표</title>
-    <!-- EvaluationTable CSS-->
     <link rel="stylesheet" href="/resources/css/work-lounge/evaluation-table.css"/>
 </head>
 <body>
@@ -33,9 +32,7 @@
     <hr>
     <div class="container mt-4">
         <div class="row justify-content-center">
-            <!-- left-box -->
             <div class="card col-3 mb-3 mx-3">
-                <!-- left-box-filter -->
                 <div class="row justify-content-center">
                     <div class="col-auto">
                         <div class="d-flex gap-2 mt-3">
@@ -51,21 +48,16 @@
                         </div>
                     </div>
                 </div>
-                <!-- left-box-body -->
                 <div class="announcement-list" id="announcement-list">
-                    <!-- 통합공고목록 아이템들이 여기에 표시됩니다 -->
                 </div>
 
                 <div id="sub-category" class="mt-3"></div>
             </div>
-            <!-- right-box -->
             <div class="col-8 mb-3 mx-3 mt-3">
                 <div class="row">
-                    <!-- right-box-1 -->
                     <div class="col-12">
                         <div id="selected-announcement-title"></div>
                         <div class="category-box" id="category-box">
-                            <!-- 공모 분야 선택 div가 여기에 표시됩니다 -->
                         </div>
                         <div class="table-box">
                             <table id="category-table">
@@ -78,7 +70,6 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <!-- 선택된 공모 분야가 여기에 추가됩니다 -->
                                 </tbody>
                             </table>
                         </div>
@@ -92,13 +83,12 @@
                     <script src="/resources/js/work-lounge/evaluation-range.js"></script>
                 </div>
             </div>
-            <!-- 하단 버튼 -->
             <div class="d-flex ">
                 <div class="col-5"></div>
                 <button class="btn ctm-btn-normal edit-button ctm-btn ctm-btn-normal" onclick="enableEditing()">
                     수정
                 </button>
-                &nbsp;
+                &nbsp
                 <button class="btn ctm-btn-normal save-button ctm-btn-normal" onclick="saveSurvey()">
                     저장
                 </button>
