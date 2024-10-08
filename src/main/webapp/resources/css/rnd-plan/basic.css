@@ -1,6 +1,6 @@
 .main {
     padding-top: 25px;
-    padding-bottom: 150px;
+    padding-bottom: 80px;
 }
 
 .main h4, h5, h6 {
@@ -47,6 +47,10 @@
 .ctm-th__btn:hover {
     background-color: var(--main-bg-color);
     color: white;
+}
+
+.ctm-w5p {
+    width: 5% !important;
 }
 
 .ctm-w7p {
