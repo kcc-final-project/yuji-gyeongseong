@@ -1,0 +1,161 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+}
+
+.left-box {
+    width: 30%;
+    padding: 20px;
+}
+
+.right-box {
+    width: 70%;
+    padding: 20px;
+}
+
+.filter-box {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+.filter-box select {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.announcement-list {
+    margin-top: 20px;
+}
+
+.announcement-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.category-box {
+    display: none;
+    margin-top: 10px;
+}
+
+.category-box div {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.table-box {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table,
+th,
+td {
+    border: 1px solid #ccc;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+.form-input {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.form-filter {
+    margin-top: 10px;
+}
+
+.ctm-btn-normal {
+    background-color: var(--main-bg-color);
+    width: 120px;
+    height: 38px;
+    color: white;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ctm-btn-normal:hover {
+    background-color: var(--main-bg-color);
+    border: 2px solid var(--main-bg-color);
+    color: var(--main-bg-color);
+    transition: 0.3s all;
+}
+
+.ctm-btn-small {
+    background-color: var(--main-bg-color);
+    width: 60px;
+    height: 38px;
+    color: white;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ctm-btn-small:hover {
+    background-color: var(--main-bg-color);
+    border: 2px solid var(--main-bg-color);
+    color: var(--main-bg-color);
+    transition: 0.3s all;
+}
+
+.top-card {
+    padding: 0 !important;
+    box-sizing: border-box;
+}
+
+.category-table {
+    background-color: var(--main-bg-color);
+    border-radius: 10px;
+}
+
+.text-white {
+    color: #ffffff;
+}
+
+.right-box-2-round {
+    background-color: var(--main-bg-color);
+    height: 20px;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    width: 100%;
+    margin: 0;
+}
+
+.survay {
+    background-color: #e4ebfd;
+}
+
+.small-text {
+    font-size: 0.875em;
+}
+
+.select {
+    background-color: var(--main-bg-color);
+    color: white;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: var(--main-bg-color);
+    color: white;
+}
