@@ -2,20 +2,18 @@
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ include file="../common/common-header.jsp" %>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>유지경성</title>
-
     <link rel="stylesheet" href="/resources/css/announcement/announcement.css"/>
     <script>
-        $(function(){
-            $('.go-to-btn').on('click', function() {
+        $(function () {
+            $('.go-to-btn').on('click', function () {
                 const element = document.documentElement
-                const scrollTop = function() {
+                const scrollTop = function () {
                     const position = element.scrollTop
                     if (position > 0) {
                         window.requestAnimationFrame(() => {
@@ -24,45 +22,44 @@
                         });
                     }
                 };
-                scrollTop(); // 함수 호출하여 스크롤 실행
+                scrollTop();
             });
             const buttons = document.querySelectorAll('.reception-status-wrap button');
-
             buttons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // 모든 버튼에서 active 클래스 제거
+                button.addEventListener('click', function () {
                     buttons.forEach(btn => btn.classList.remove('active'));
-
-                    // 클릭된 버튼에 active 클래스 추가
                     this.classList.add('active');
                 });
             });
-
-            $('.refresh-btn').on('click',function (){
+            $('.refresh-btn').on('click', function () {
                 location.reload(true);
             })
-
-            $('#select-all-checkbox').on('click', function(){
-                $('.ok').prop('checked',this.checked);
+            $('#select-one-all-checkbox').on('click', function () {
+                $('.ok').prop('checked', this.checked);
+            });
+            $('#select-two-all-checkbox').on('click', function () {
+                $('.ok2').prop('checked', this.checked);
+            });
+            $('#select-three-all-checkbox').on('click', function () {
+                $('.ok3').prop('checked', this.checked);
             });
         });
-        $(document).ready(function() {
-            var customPosition = 350; // 스크롤할 때 고정시키고 싶은 위치(px 단위)
+
+        $(document).ready(function () {
+            var customPosition = 350;
             var floatingElement = $('.floating');
-            var elementOffset = floatingElement.offset().top; // 요소의 초기 위치
-
-            $(window).on('scroll', function() {
-                var scrollTop = $(window).scrollTop();  // 현재 스크롤 위치
-
+            var elementOffset = floatingElement.offset().top;
+            $(window).on('scroll', function () {
+                var scrollTop = $(window).scrollTop();
                 if (scrollTop >= customPosition) {
                     floatingElement.css({
                         'position': 'fixed',
-                        'top': '80px' // 요소가 고정될 때 상단에서 20px 아래 위치하도록 설정
+                        'top': '80px'
                     });
                 } else {
                     floatingElement.css({
                         'position': 'absolute',
-                        'top': elementOffset + 'px' // 원래 위치로 복귀
+                        'top': elementOffset + 'px'
                     });
                 }
             });
@@ -72,7 +69,6 @@
 <body>
 <div class="common-main">
     <div class="announcement-container">
-
         <div class="announcement-title">
             <h2>사업공고</h2>
         </div>
@@ -89,7 +85,6 @@
             <button class="refresh-btn">
                 <span class="material-icons">restart_alt</span>
             </button>
-
         </div>
         <div class="contents-wrap">
             <div class="contents-filter-wrap">
@@ -116,142 +111,137 @@
                         <div class="jurisdiction-select-all">
                             <p>소관부처</p>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="select-all-checkbox">
-                                <label class="form-check-label" for="select-all-checkbox">
+                                <input class="form-check-input" type="checkbox" value="" id="select-one-all-checkbox">
+                                <label class="form-check-label" for="select-one-all-checkbox">
                                     전체선택
                                 </label>
                             </div>
                         </div>
                         <div class="jurisdiction-checkbox-wrap">
-
                             <div class="common-checkbox-area-1">
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
+                                    <input class="form-check-input ok" type="checkbox" value="">
+                                    <label class="form-check-label">
                                         범부처
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="" id="defaultCheck2">
-                                    <label class="form-check-label" for="defaultCheck2">
-                                        범부처
+                                    <input class="form-check-input ok" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        국방부
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="" id="defaultCheck3">
-                                    <label class="form-check-label" for="defaultCheck3">
-                                        범부처
+                                    <input class="form-check-input ok" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        환경부
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="" id="defaultCheck4">
-                                    <label class="form-check-label" for="defaultCheck4">
-                                        범부처
+                                    <input class="form-check-input ok" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        국방부
                                     </label>
                                 </div>
                             </div>
                             <div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="" id="defaultCheck5">
-                                    <label class="form-check-label" for="defaultCheck5">
-                                        범부처
+                                    <input class="form-check-input ok" type="checkbox" value="" i>
+                                    <label class="form-check-label">
+                                        국토교통부
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="" id="defaultCheck6">
-                                    <label class="form-check-label" for="defaultCheck6">
-                                        범부처
+                                    <input class="form-check-input ok" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        교육부
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="" id="defaultCheck7">
-                                    <label class="form-check-label" for="defaultCheck7">
-                                        범부처
+                                    <input class="form-check-input ok" type="checkbox" value="" i>
+                                    <label class="form-check-label">
+                                        기상청
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="" id="defaultCheck8">
-                                    <label class="form-check-label" for="defaultCheck8">
-                                        범부처
+                                    <input class="form-check-input ok" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        농림축산식품부
                                     </label>
                                 </div>
                             </div>
-
                         </div>
-
-
                     </div>
-                    <div class="common-checkbox">
+                    <div class="common-checkbox2">
                         <div class="jurisdiction-select-all">
                             <p>전문기관</p>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
+                                <input class="form-check-input" type="checkbox" value="" id="select-two-all-checkbox">
+                                <label class="form-check-label">
                                     전체선택
                                 </label>
                             </div>
                         </div>
-                        <div class="jurisdiction-checkbox-wrap">
+                        <div class="jurisdiction-checkbox-wrap2">
                             <div class="common-checkbox-area-1">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        범부처
+                                    <input class="form-check-input ok2" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        한국과학기술기획평가원
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                                    <label class="form-check-label" for="defaultCheck2">
-                                        범부처
+                                    <input class="form-check-input ok2" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        한국연구재단
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                                    <label class="form-check-label" for="defaultCheck3">
-                                        범부처
+                                    <input class="form-check-input ok2" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        국토교통과학기술진흥원
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
-                                    <label class="form-check-label" for="defaultCheck4">
-                                        범부처
+                                    <input class="form-check-input ok2" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        중소기업기술정보진흥원
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        정보통신기획평가원
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        한국산업기술기획평가원
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        한국에너지기술평가원
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        농촌진흥청
                                     </label>
                                 </div>
                             </div>
-                            <div class="common-checkbox-area-1">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        범부처
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                                    <label class="form-check-label" for="defaultCheck2">
-                                        범부처
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                                    <label class="form-check-label" for="defaultCheck3">
-                                        범부처
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
-                                    <label class="form-check-label" for="defaultCheck4">
-                                        범부처
-                                    </label>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="common-checkbox">
                         <div class="jurisdiction-select-all">
                             <p>기술분야</p>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
+                                <input class="form-check-input" type="checkbox" value="" id="select-three-all-checkbox">
+                                <label class="form-check-label">
                                     전체선택
                                 </label>
                             </div>
@@ -259,53 +249,53 @@
                         <div class="jurisdiction-checkbox-wrap">
                             <div class="common-checkbox-area-1">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        범부처
+                                    <input class="form-check-input ok3" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        수학
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                                    <label class="form-check-label" for="defaultCheck2">
-                                        범부처
+                                    <input class="form-check-input ok3" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        물리학
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                                    <label class="form-check-label" for="defaultCheck3">
-                                        범부처
+                                    <input class="form-check-input ok3" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        화학
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
-                                    <label class="form-check-label" for="defaultCheck4">
-                                        범부처
+                                    <input class="form-check-input ok3" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        지구과학
                                     </label>
                                 </div>
                             </div>
                             <div class="common-checkbox-area-1">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        범부처
+                                    <input class="form-check-input ok3" type="checkbox" value="" i>
+                                    <label class="form-check-label">
+                                        생명과학
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                                    <label class="form-check-label" for="defaultCheck2">
-                                        범부처
+                                    <input class="form-check-input ok3" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        농림수산식품
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                                    <label class="form-check-label" for="defaultCheck3">
-                                        범부처
+                                    <input class="form-check-input ok3" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        보건의료
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
-                                    <label class="form-check-label" for="defaultCheck4">
-                                        범부처
+                                    <input class="form-check-input ok3" type="checkbox" value="">
+                                    <label class="form-check-label">
+                                        기계
                                     </label>
                                 </div>
                             </div>
@@ -324,9 +314,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -341,9 +331,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -358,9 +348,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -375,9 +365,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -392,9 +382,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -409,9 +399,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -426,9 +416,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -443,9 +433,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -460,9 +450,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -477,9 +467,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -494,9 +484,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -511,9 +501,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -528,9 +518,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -545,9 +535,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -562,9 +552,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -579,9 +569,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -596,9 +586,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -613,9 +603,9 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
@@ -630,27 +620,21 @@
                             <p>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>
                         </div>
                         <div class="anno-bottom-wrap">
-                            <p>공고번호:  과학기술정보통신부 공고 제2024 - 0925호</p>
-                            <p>공모유형:  품목지정공모</p>
-                            <p>공고일자:  2024-09-23</p>
+                            <p>공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>
+                            <p>공모유형: 품목지정공모</p>
+                            <p>공고일자: 2024-09-23</p>
                             <button class="view-details-btn">상세보기</button>
                         </div>
                     </div>
-
-
                 </div>
             </div>
-
-
-
         </div>
     </div>
     <div class="go-to-top fixed-box">
         <button class="go-to-btn">
-            <span class="material-icons arrow" >arrow_circle_up</span>
+            <span class="material-icons arrow">arrow_circle_up</span>
         </button>
     </div>
 </div>
 </body>
-
 </html>
