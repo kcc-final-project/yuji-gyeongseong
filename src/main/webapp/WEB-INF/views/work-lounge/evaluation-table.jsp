@@ -9,9 +9,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>전자평가표</title>
     <!-- EvaluationTable CSS-->
-    <link rel="stylesheet" href="/resources/css/work-lounge/EvaluationTable.css"/>
+    <link rel="stylesheet" href="/resources/css/work-lounge/evaluation-table.css"/>
 </head>
 <body>
+<div class="common-header">
+    <div class="container d-flex h-100 pe-0">
+        <div
+                class="row row-cols-2 justify-content-between align-items-center w-100"
+        >
+            <div class="col-3 d-flex align-items-center ps-5 h-100">
+
+            </div>
+            <div class="col-3 d-flex align-items-center ps-5 h-100">
+                <h3>전자평가표</h3>
+            </div>
+            <div class="col-3 d-flex align-items-center ps-5 h-100">
+
+            </div>
+        </div>
+    </div>
+</div>
 <div class="common-main">
     <hr>
     <div class="container mt-4">
@@ -71,8 +88,8 @@
                     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
                     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-                    <script src="/resources/js/work-lounge/EvaluationTable.js"></script>
-                    <script src="/resources/js/work-lounge/Range.js"></script>
+                    <script src="/resources/js/work-lounge/evaluation-table.js"></script>
+                    <script src="/resources/js/work-lounge/evaluation-range.js"></script>
                 </div>
             </div>
             <!-- 하단 버튼 -->
