@@ -120,6 +120,9 @@
             <div class="header-section__title">
                 <h6>단계별 목표 및 내용</h6>
             </div>
+            <div class="header-section__info">
+                <span>* 필수 항목</span>
+            </div>
         </div>
         <div class="body-section">
             <table class="table table-bordered mt-2 align-middle">
