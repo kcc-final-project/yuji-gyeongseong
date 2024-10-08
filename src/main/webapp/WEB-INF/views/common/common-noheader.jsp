@@ -38,22 +38,6 @@
     ></script>
 </head>
 <body>
-<div class="common-header">
-    <div class="container d-flex h-100 pe-0">
-        <div
-                class="row row-cols-2 justify-content-between align-items-center w-100"
-        >
-            <div class="col-3 d-flex align-items-center ps-5 h-100">
 
-            </div>
-            <div class="col-3 d-flex align-items-center ps-5 h-100">
-                <h3>전자평가표</h3>
-            </div>
-            <div class="col-3 d-flex align-items-center ps-5 h-100">
-
-            </div>
-        </div>
-    </div>
-</div>
 </body>
 </html>
