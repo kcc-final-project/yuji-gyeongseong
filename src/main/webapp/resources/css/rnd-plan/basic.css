@@ -1,6 +1,6 @@
 .main {
     padding-top: 25px;
-    padding-bottom: 150px;
+    padding-bottom: 80px;
 }
 
 .main h4, h5, h6 {
@@ -47,6 +47,10 @@
 .ctm-th__btn:hover {
     background-color: var(--main-bg-color);
     color: white;
+}
+
+.ctm-w5p {
+    width: 5% !important;
 }
 
 .ctm-w7p {
@@ -123,4 +127,41 @@
 .required-item {
     color: var(--red-color);
     font-weight: 700;
+}
+
+.ctm-f {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fz14 {
+    font-size: 14px;
+}
+
+.add-btn {
+    background-color: white;
+    border: 1.5px solid var(--main-bg-color);
+    border-radius: 4px;
+    width: 25px;
+    height: 25px;
+}
+
+.add-btn:hover {
+    background-color: var(--main-bg-color);
+    color: white;
+    transition: .3s all;
+    cursor: pointer;
+}
+
+.add-btn > span {
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.ctm-datepicker{
+    padding-left: 47px;
+    margin: 0 auto;
+    width: 180px;
+    height: 25px;
 }
