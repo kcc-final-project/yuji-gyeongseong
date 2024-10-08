@@ -10,7 +10,7 @@
     <title>Insert title here</title>
 
     <!-- research-page CSS -->
-    <link rel="stylesheet" href="/resources/css/research_number/research-number.css"/>
+    <link rel="stylesheet" href="/resources/css/research-number/research-number.css"/>
 
     <!-- Date Picker CSS & JavaScript -->
     <link rel="stylesheet"
