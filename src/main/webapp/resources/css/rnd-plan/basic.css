@@ -77,6 +77,10 @@
     width: 45% !important;
 }
 
+/*.ctm-h30p {*/
+/*    height: 30% !important;*/
+/*}*/
+
 .ctm-td {
     text-align: center;
 }
@@ -123,4 +127,14 @@
 .required-item {
     color: var(--red-color);
     font-weight: 700;
+}
+
+.ctm-f {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fz14 {
+    font-size: 14px;
 }
