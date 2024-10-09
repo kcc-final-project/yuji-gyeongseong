@@ -1,5 +1,5 @@
-const TASK_TITLE_MAX_LEN = 60;
-const ENTER_KEY_CODE = 13;
+var TASK_TITLE_MAX_LEN = 60;
+var ENTER_KEY_CODE = 13;
 
 $(function () {
   setupEventHandlers();
@@ -11,6 +11,7 @@ function setupEventHandlers() {
   $("#ipt-task-title").on("keypress", function (event) {
     if (event.keyCode === ENTER_KEY_CODE) {
       updateTaskTitle();
+      this.blur();
     }
   });
 }
