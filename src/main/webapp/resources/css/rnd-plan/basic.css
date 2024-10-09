@@ -81,6 +81,10 @@
     width: 45% !important;
 }
 
+.ctm-h30 {
+    height: 30px;
+}
+
 .ctm-td {
     text-align: center;
 }
@@ -136,7 +140,7 @@
 }
 
 .fz14 {
-    font-size: 14px;
+    font-size: 14px !important;
 }
 
 .add-btn {
@@ -159,9 +163,35 @@
     line-height: 22px;
 }
 
-.ctm-datepicker{
+.ctm-datepicker {
     padding-left: 47px;
     margin: 0 auto;
     width: 180px;
     height: 25px;
+}
+
+.ctm-btn-hover {
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #6D99C1;
+    font-weight: 600;
+}
+
+.ctm-td-btn-center {
+    margin-left: 15px;
+    margin-top: 4px;
+}
+
+.ctm-rdo-btn {
+    border: 1.2px solid var(--main-bg-color);
+}
+
+.ctm-icon-main-clr {
+    color: var(--main-bg-color);
+}
+
+.ctm-btn-outline:hover .ctm-icon-main-clr {
+    color: white;
 }
