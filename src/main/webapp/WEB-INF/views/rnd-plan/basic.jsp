@@ -92,7 +92,7 @@
                                type="text" required maxlength="60">
                         <div class="d-flex">
                             <div id="task-title-feedback" class="invalid-feedback">
-                                연구개발과제명은 60자 이내로 입력해주시기 바랍니다.
+                                연구개발과제명은 최소 1자 이상 60자 이내로 입력해주시기 바랍니다.
                             </div>
                         </div>
                     </td>

@@ -42,7 +42,7 @@ function updateTaskTitle() {
 
 // 연구개발과제명 유효성 검사
 function isTaskTitleTooLong(taskTitle) {
-  return taskTitle.length > TASK_TITLE_MAX_LEN;
+  return taskTitle.length > TASK_TITLE_MAX_LEN || taskTitle.trim() === "";
 }
 
 // 유효성 검사에 따른 에러 텍스트 활성화
