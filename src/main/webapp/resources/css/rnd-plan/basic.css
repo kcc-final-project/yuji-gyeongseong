@@ -81,6 +81,10 @@
     width: 45% !important;
 }
 
+.ctm-h30 {
+    height: 30px;
+}
+
 .ctm-td {
     text-align: center;
 }
@@ -182,4 +186,12 @@
 
 .ctm-rdo-btn {
     border: 1.2px solid var(--main-bg-color);
+}
+
+.ctm-icon-main-clr {
+    color: var(--main-bg-color);
+}
+
+.ctm-btn-outline:hover .ctm-icon-main-clr {
+    color: white;
 }

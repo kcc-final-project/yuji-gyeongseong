@@ -58,7 +58,18 @@
                 <h5>연구원 구성</h5>
             </div>
             <div class="header-section__btn">
-                <%-- --%>
+                <div class="ctm-btn ctm-btn-normal ctm-w45p ctm-h30 fz14">
+                    <span class="material-icons ctm-icon">share</span>
+                    연구원 정보 불러오기
+                </div>
+                <div class="ctm-btn ctm-btn-outline fz14 ms-4 me-2">
+                    <span class="material-icons ctm-icon ctm-icon-main-clr">group_remove</span>
+                    연구원 삭제
+                </div>
+                <div class="ctm-btn ctm-btn-outline fz14">
+                    <span class="material-icons ctm-icon ctm-icon-main-clr">group_add</span>
+                    연구원 추가
+                </div>
             </div>
         </div>
         <div class="body-section">
