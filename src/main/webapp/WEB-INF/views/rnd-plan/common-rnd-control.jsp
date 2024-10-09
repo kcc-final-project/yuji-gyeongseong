@@ -3,6 +3,12 @@
 
 <link rel="stylesheet" href="/resources/css/rnd-plan/common-rnd-control.css">
 
+<%-- 앵커 버튼 --%>
+<div class="anchor-btn" data-target="#best">
+    <span class="material-icons">keyboard_double_arrow_up</span>
+</div>
+
+<%-- 컨트롤 바 --%>
 <div class="control-bar">
     <div class="control-bar-main">
         <div class="timer-group ctm-w40p">
@@ -35,3 +41,5 @@
         </div>
     </div>
 </div>
+
+<script src="/resources/js/rnd-plan/common-rnd-control.js"></script>
