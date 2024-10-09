@@ -3,7 +3,14 @@
     height: 125px;
     margin: 20px 0px 25px 0px;
     padding-top: 50px;
-    /*position: sticky;*/
+    position: sticky;
+    top: 90px;
+    z-index: 9;
+    background-color: white;
+}
+
+.multi-step-progress-bar.bar-shadow {
+    box-shadow: 0px 4px 2px -1px rgba(0, 0, 0, 0.1);
 }
 
 .progress-container {
