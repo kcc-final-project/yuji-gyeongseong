@@ -87,7 +87,8 @@
                         연구개발과제명
                     </td>
                     <td>
-                        <input id="ipt-task-title" class="form-control ps-3" value="" placeholder="연구개발과제명을 입력해주세요."
+                        <input id="ipt-task-title" class="form-control ps-3" value=""
+                               placeholder="연구개발과제명을 60자 이내로 입력해주세요."
                                type="text" required maxlength="60">
                         <div class="d-flex">
                             <div id="task-title-feedback" class="invalid-feedback">
@@ -105,6 +106,7 @@
         </div>
     </div>
 
+    <%-- 토스트 알림 --%>
     <div class="toast align-items-center ctm-toast" role="alert" aria-live="assertive" aria-atomic="true"
          id="success-toast">
         <div class="ctm-toast-line"></div>
