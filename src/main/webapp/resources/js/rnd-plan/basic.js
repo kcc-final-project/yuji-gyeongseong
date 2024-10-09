@@ -2,18 +2,28 @@ var TASK_TITLE_MAX_LEN = 60;
 var ENTER_KEY_CODE = 13;
 
 $(function () {
+  initializeTaskTitle();
   setupEventHandlers();
 });
+
+// 연구개발과제명 input 데이터 삽입
+function initializeTaskTitle() {
+  const taskTitle = $("#dpy-task-title").val();
+  $("#ipt-task-title").val(taskTitle);
+}
 
 // 이벤트 핸들러
 function setupEventHandlers() {
   $("#sbt-task-title").on("click", updateTaskTitle);
-  $("#ipt-task-title").on("keypress", function (event) {
-    if (event.keyCode === ENTER_KEY_CODE) {
-      updateTaskTitle();
-      this.blur();
-    }
-  });
+  $("#ipt-task-title").on("keypress", updateTaskTitleFromEnter);
+}
+
+// 연구개발과제명 변경(엔터키)
+function updateTaskTitleFromEnter(event) {
+  if (event.keyCode === ENTER_KEY_CODE) {
+    updateTaskTitle();
+    this.blur();
+  }
 }
 
 // 연구개발과제명 변경
