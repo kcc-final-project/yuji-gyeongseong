@@ -11,6 +11,58 @@
     font-size: 17px;
 }
 
+.ctm-w5p {
+    width: 5% !important;
+}
+
+.ctm-w7p {
+    width: 7% !important;
+}
+
+.ctm-w10p {
+    width: 10% !important;
+}
+
+.ctm-w15p {
+    width: 15% !important;
+}
+
+.ctm-w20p {
+    width: 20% !important;
+}
+
+.ctm-w35p {
+    width: 35% !important;
+}
+
+.ctm-w40p {
+    width: 40% !important;
+}
+
+.ctm-w45p {
+    width: 45% !important;
+}
+
+.ctm-h30 {
+    height: 30px;
+}
+
+.ctm-f {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ctm-f-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fz14 {
+    font-size: 14px !important;
+}
+
 .ctm-th {
     background-color: var(--main-bg-color) !important;
     color: white !important;
@@ -49,44 +101,13 @@
     color: white;
 }
 
-.ctm-w5p {
-    width: 5% !important;
-}
-
-.ctm-w7p {
-    width: 7% !important;
-}
-
-.ctm-w10p {
-    width: 10% !important;
-}
-
-.ctm-w15p {
-    width: 15% !important;
-}
-
-.ctm-w20p {
-    width: 20% !important;
-}
-
-.ctm-w35p {
-    width: 35% !important;
-}
-
-.ctm-w40p {
-    width: 40% !important;
-}
-
-.ctm-w45p {
-    width: 45% !important;
-}
-
-.ctm-h30 {
-    height: 30px;
-}
-
 .ctm-td {
     text-align: center;
+}
+
+.ctm-td-btn-center {
+    margin-left: 15px;
+    margin-top: 4px;
 }
 
 .header-section {
@@ -120,33 +141,17 @@
     width: 90%;
 }
 
+.required-item {
+    color: var(--red-color);
+    font-weight: 700;
+}
+
 .icon-warning {
     color: var(--red-color);
 }
 
 .icon-success {
     color: #60d33e;
-}
-
-.required-item {
-    color: var(--red-color);
-    font-weight: 700;
-}
-
-.ctm-f {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.ctm-f-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.fz14 {
-    font-size: 14px !important;
 }
 
 .add-btn {
@@ -183,11 +188,6 @@
     align-items: center;
     color: #6D99C1;
     font-weight: 600;
-}
-
-.ctm-td-btn-center {
-    margin-left: 15px;
-    margin-top: 4px;
 }
 
 .ctm-rdo-btn {

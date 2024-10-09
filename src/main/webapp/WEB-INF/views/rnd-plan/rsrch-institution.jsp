@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
-<link rel="stylesheet" href="/resources/css/rnd-plan/basic.css"/>
+<link rel="stylesheet" href="/resources/css/rnd-plan/common-rnd.css"/>
 
 <div class="main">
     <%-- 연구개발기관 정보 --%>
