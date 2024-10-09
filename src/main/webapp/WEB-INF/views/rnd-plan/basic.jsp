@@ -10,9 +10,6 @@
             <div class="header-section__title">
                 <h5>공모분야</h5>
             </div>
-            <div class="header-section__info">
-                <span>반드시 '신청자격 리스트 및 확인서'를 체크해주시길 바랍니다.</span>
-            </div>
         </div>
         <div class="body-section">
             <table class="table table-bordered mt-2 align-middle">
@@ -20,29 +17,11 @@
                     <td class="ctm-th ctm-w15p">통합공고명</td>
                     <td><input class="form-control ps-3" value="2024년도 양자과학기술 분야 국제협력거점 및 국제공동연구실 관련 공모" disabled
                                readonly type="text"></td>
-                    <td class="ctm-w20p">
-                        <div class="ctm-btn-outline check-item-btn">
-                            <span class="material-icons ctm-icon icon-warning">dangerous</span>
-                            <%--
-                               <span class="material-icons ctm-icon icon-success">check_circle</span>
-                           --%>
-                            <span class="check-item-btn__title ps-4">신청자격 리스트</span>
-                        </div
-                    </td>
                 </tr>
                 <tr>
                     <td class="ctm-th ctm-w15p">공모분야명</td>
                     <td><input class="form-control ps-3" value="(2024-양자국제협력-1) 양자광학기반 이산-연속변수 하이브리드 양자정보처리 국제공동연구실"
                                disabled readonly type="text">
-                    </td>
-                    <td class="ctm-w20p">
-                        <div class="ctm-btn-outline check-item-btn">
-                            <span class="material-icons ctm-icon icon-warning">dangerous</span>
-                            <%--
-                                <span class="material-icons ctm-icon icon-success">check_circle</span>
-                            --%>
-                            <span class="check-item-btn__title">우대 및 감점사항 확인서</span>
-                        </div>
                     </td>
                 </tr>
             </table>
