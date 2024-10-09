@@ -139,6 +139,12 @@
     align-items: center;
 }
 
+.ctm-f-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .fz14 {
     font-size: 14px !important;
 }
@@ -194,4 +200,21 @@
 
 .ctm-btn-outline:hover .ctm-icon-main-clr {
     color: white;
+}
+
+.ctm-toast {
+    position: fixed;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050;
+    height: 70px;
+    line-height: 38px;
+    font-weight: 600;
+}
+
+.ctm-toast-line {
+    width: 100%;
+    height: 8px;
+    background-color: var(--main-bg-color) !important;
 }

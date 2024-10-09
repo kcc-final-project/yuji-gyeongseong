@@ -87,15 +87,30 @@
                         연구개발과제명
                     </td>
                     <td>
-                        <input class="form-control ps-3" value="" placeholder="연구개발과제명을 입력해주세요." type="text">
+                        <input id="ipt-task-title" class="form-control ps-3" value="" placeholder="연구개발과제명을 입력해주세요."
+                               type="text" required maxlength="60">
+                        <div class="d-flex">
+                            <div id="task-title-feedback" class="invalid-feedback">
+                                연구개발과제명은 60자 이내로 입력해주시기 바랍니다.
+                            </div>
+                        </div>
                     </td>
                     <td class="ctm-w15p">
-                        <div class="ctm-btn-normal">
+                        <div id="sbt-task-title" class="ctm-btn-normal">
                             적용하기
                         </div>
                     </td>
                 </tr>
             </table>
+        </div>
+    </div>
+
+    <div class="toast align-items-center ctm-toast" role="alert" aria-live="assertive" aria-atomic="true"
+         id="success-toast">
+        <div class="ctm-toast-line"></div>
+        <div class="toast-body ctm-f-center">
+            <span class="material-icons icon-success me-1">check_circle</span>
+            <span>연구개발과제명이 적용되었습니다.</span>
         </div>
     </div>
 
@@ -146,3 +161,5 @@
         </div>
     </div>
 </div>
+
+<script src="/resources/js/rnd-plan/basic.js"></script>
