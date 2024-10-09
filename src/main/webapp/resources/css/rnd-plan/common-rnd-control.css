@@ -164,3 +164,7 @@
 .anchor-btn:hover {
     background-color: rgba(228, 228, 228, 0.5);
 }
+
+.time {
+    color: var(--main-fnt-color);
+}

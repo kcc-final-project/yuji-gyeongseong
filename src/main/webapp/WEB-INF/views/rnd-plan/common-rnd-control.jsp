@@ -17,8 +17,8 @@
             </div>
             <div class="timer-group__info">
                 <div class="timer-group__section1">
-                    <span class="remaining-time">로그인 세션 남은시간 <span>28분 30초 / 30분</span></span>
-                    <div class="ctm-btn-outline-orange">연장</div>
+                    <span class="remaining-time">로그인 세션 남은시간 <span class="time">60분 00초</span> / <span>60분</span></span>
+                    <div class="ctm-btn-outline-orange extend-session">연장</div>
                 </div>
                 <div class="timer-group__section2">
                     접수기간: <span>2024.09.23(월) 09:00 ~ 2024.09.30(월) 17:00</span>
