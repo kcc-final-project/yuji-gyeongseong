@@ -111,6 +111,7 @@ function loadStepContent(currentStep) {
     },
     complete: () => {
       $spinnerContainer.hide();
+      $("html").scrollTop(0);
     },
   });
 }
