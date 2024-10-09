@@ -95,15 +95,22 @@ function updateStepStyles() {
 // 페이지 컴포넌트 AJAX 요청
 function loadStepContent(currentStep) {
   const path = STEP_PATHS[currentStep - 1];
+  const $spinnerContainer = $(".spinner-container");
+  const $contentContainer = $("#content-container");
+
+  $spinnerContainer.show();
 
   $.ajax({
     url: "/rnd-plan" + path,
     type: "GET",
     success: (res) => {
-      $("#step-content").html(res);
+      $contentContainer.html(res);
     },
     error: (err) => {
       console.log("[loadStepContent()] " + err.statusText + " - " + err.status);
+    },
+    complete: () => {
+      $spinnerContainer.hide();
     },
   });
 }
