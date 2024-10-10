@@ -168,3 +168,24 @@
 .time {
     color: var(--main-fnt-color);
 }
+
+.ctm-toast {
+    position: fixed;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1050;
+    height: 70px;
+    line-height: 38px;
+    font-weight: 600;
+}
+
+.ctm-toast-line {
+    width: 100%;
+    height: 8px;
+    background-color: var(--main-bg-color) !important;
+}
+
+.icon-success2 {
+    color: var(--main-fnt-color);
+}

@@ -48,6 +48,7 @@ function resetSessionTimer() {
   remainingTime = sessionDuration;
   updateTimerDisplay(remainingTime);
   startSessionTimer();
+  showToastAboutTimer();
 }
 
 // 세션 만료 알림
@@ -58,4 +59,13 @@ function sessionExpired() {
 // 화면 최상단으로 스크롤 이동
 function scrollToTop() {
   $("html").scrollTop(0);
+}
+
+// 토스트 알림 활성화
+function showToastAboutTimer() {
+  const toast = new bootstrap.Toast($("#success-toast2"), {
+    autohide: true,
+    delay: 1800,
+  });
+  toast.show();
 }
