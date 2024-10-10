@@ -13,20 +13,25 @@
 .announcement-title h2 {
     font-weight: bold;
 }
-.floating-area{
+
+.floating-area {
     position: sticky;
     top: 89px;
     background-color: white;
 
 }
-.floating{
+
+.floating {
     position: sticky;
     width: 255px;
     top: 203px;
 }
- {
-    width: 270px;
-    position: sticky !important;
+
+{
+    width: 270px
+;
+    position: sticky !important
+;
 }
 .reception-status-wrap {
     margin-top: 20px;
@@ -57,9 +62,11 @@
     padding-left: 89px;
     padding-right: 41px;
 }
-.form-check-label{
+
+.form-check-label {
     font-size: small;
 }
+
 .search-box-area p {
     margin-top: 10px;
 }
@@ -108,18 +115,21 @@
     display: flex;
     margin-top: 20px;
 }
-.user-filter-wrap{
+
+.user-filter-wrap {
     width: 60%;
     display: flex;
     margin-top: 5px;
 }
-.tag-area{
+
+.tag-area {
     width: 614px;
 }
+
 .filter-wrap {
     display: flex;
     width: 34%;
-    display:flex;
+    display: flex;
     justify-content: space-around;
 }
 
@@ -162,6 +172,7 @@
     border-radius: 15px;
     height: 27%;
 }
+
 .common-checkbox2 {
     border: 1px solid #D1D1D1;
     margin-top: 25px;
@@ -186,12 +197,15 @@
     max-height: 130px;
     overflow: auto;
 }
-.common-checkbox-area-1{
+
+.common-checkbox-area-1 {
     height: 130px;
 }
-.common-checkbox-area-2{
+
+.common-checkbox-area-2 {
     height: 130px;
 }
+
 .jurisdiction-checkbox-wrap2 {
     border: 1px solid #D1D1D1;
     width: 88%;
@@ -303,7 +317,7 @@
     font-weight: 100;
 }
 
-.arrow:hover{
+.arrow:hover {
     color: #3627d3;
 }
 

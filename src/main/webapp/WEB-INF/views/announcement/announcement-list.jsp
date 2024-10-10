@@ -20,61 +20,49 @@
                     this.classList.add('active');
                 });
             });
-
             $(document).ready(function () {
-                let input = document.querySelector('#tag-input');  // Tagify input 엘리먼트
+                let input = document.querySelector('#tag-input');
                 let tagify = new Tagify(input);
 
                 function handleCheckboxClick(checkboxClass, selectAllCheckboxId) {
-                    $(checkboxClass).on('click', function() {
-                        let clickedValue = $(this).val();  // 클릭한 체크박스의 value 가져오기
-
+                    $(checkboxClass).on('click', function () {
+                        let clickedValue = $(this).val();
                         if ($(this).is(':checked')) {
-                            // 체크가 되어 있으면 태그 추가
                             tagify.addTags([clickedValue]);
                         } else {
-                            // 체크 해제 시 태그 제거
-                            let tags = tagify.value;  // 현재 태그 목록 가져오기
-                            let index = tags.findIndex(tag => tag.value === clickedValue);  // 클릭된 값과 일치하는 태그 찾기
-
+                            let tags = tagify.value;
+                            let index = tags.findIndex(tag => tag.value === clickedValue);
                             if (index !== -1) {
-                                tagify.removeTag(tags[index].value);  // 해당 태그 제거
+                                tagify.removeTag(tags[index].value);
                             }
                         }
                     });
-
                     $(selectAllCheckboxId).on('click', function () {
                         let isChecked = $(this).is(':checked');
-                        $(checkboxClass).prop('checked', isChecked);  // 모든 체크박스 체크/해제
-
-                        // 선택된 체크박스의 값을 태그로 추가/제거
+                        $(checkboxClass).prop('checked', isChecked);
                         $(checkboxClass).each(function () {
-                            let value = $(this).val();  // 체크박스의 값 가져오기
+                            let value = $(this).val();
                             if (isChecked) {
-                                tagify.addTags([value]);  // 해당 값으로 태그 추가
+                                tagify.addTags([value]);
                             } else {
-                                tagify.removeTag(value);  // 해당 태그 제거
+                                tagify.removeTag(value);
                             }
                         });
                     });
-
-                    // Tag 제거 시 체크박스 해제
-                    tagify.on('remove', function(e) {
-                        let removedValue = e.detail.data.value;  // 제거된 태그의 값
+                    tagify.on('remove', function (e) {
+                        let removedValue = e.detail.data.value;
                         $(checkboxClass).each(function () {
                             if ($(this).val() === removedValue) {
-                                $(this).prop('checked', false);  // 해당 체크박스 해제
+                                $(this).prop('checked', false);
                             }
                         });
                     });
                 }
 
-                // 각 체크박스 클래스와 전체 선택 체크박스 ID를 사용하여 이벤트 핸들러 등록
                 handleCheckboxClick('.ok', '#select-one-all-checkbox');
                 handleCheckboxClick('.ok2', '#select-two-all-checkbox');
                 handleCheckboxClick('.ok3', '#select-three-all-checkbox');
             });
-
 
             $('.go-to-btn').on('click', function () {
                 const element = document.documentElement
@@ -90,14 +78,10 @@
                 scrollTop();
             });
 
-
             $('.refresh-btn').on('click', function () {
                 location.reload(true);
             })
-
-
         });
-
     </script>
 </head>
 <body>
@@ -111,10 +95,11 @@
             <button type="button" class="btn btn-outline-secondary accepting tab-btn active">접수중</button>
             <button type="button" class="btn btn-outline-secondary deadline tab-btn">접수마감</button>
         </div>
-            <div class="floating-area">
+        <div class="floating-area">
             <div class="search-box-area">
                 <p>통합검색</p>
-                <input type="search" class="form-control rounded search-box"placeholder="검색어를 입력하세요." aria-label="Search"
+                <input type="search" class="form-control rounded search-box" placeholder="검색어를 입력하세요."
+                       aria-label="Search"
                        aria-describedby="search-addon"/>
                 <button type="button" class="search-btn">검색</button>
                 <button class="refresh-btn">
@@ -133,7 +118,7 @@
                     <p>전체 23건</p>
                 </div>
                 <div class="user-filter-wrap">
-                    <input id="tag-input" class="tag-area" placeholder="원하는 태그를 추가하세요" value="" />
+                    <input id="tag-input" class="tag-area" placeholder="원하는 태그를 추가하세요" value=""/>
                 </div>
                 <div class="filter-Latest-wrap floating-area">
                     <select class="form-select form-select-sm latest-form" aria-label=".form-select-sm example">
@@ -144,7 +129,6 @@
             </div>
         </div>
         <div class="contents-wrap">
-
             <div class="check-area-anno-list-wrap ">
                 <div class="check-area floating">
                     <div class="common-checkbox">
@@ -161,13 +145,13 @@
                             <div class="common-checkbox-area-1">
                                 <div class="form-check">
                                     <input class="form-check-input ok" type="checkbox" value="범부처">
-                                    <label class="form-check-label" >
+                                    <label class="form-check-label">
                                         범부처
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input ok" type="checkbox" value="국토교통부">
-                                    <label class="form-check-label" >
+                                    <label class="form-check-label">
                                         국토교통부
                                     </label>
                                 </div>
@@ -185,7 +169,7 @@
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input ok" type="checkbox" value="문화체육관광부">
-                                    <label class="form-check-label" >
+                                    <label class="form-check-label">
                                         문화체육관광부
                                     </label>
                                 </div>
@@ -241,13 +225,13 @@
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input ok" type="checkbox" value="농림축산식품부">
-                                    <label class="form-check-label" >
+                                    <label class="form-check-label">
                                         농림축산식품부
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input ok" type="checkbox" value="국가유산청">
-                                    <label class="form-check-label" >
+                                    <label class="form-check-label">
                                         국가유산청
                                     </label>
                                 </div>
@@ -404,10 +388,7 @@
                                         식품의약품안전평가원
                                     </label>
                                 </div>
-
-
                             </div>
-
                         </div>
                     </div>
                     <div class="common-checkbox">
@@ -545,7 +526,6 @@
                                         원자력
                                     </label>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -875,8 +855,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>

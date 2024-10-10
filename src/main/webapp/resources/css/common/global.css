@@ -63,6 +63,8 @@
     height: 25px;
     font-size: 20px;
     margin: 0 auto;
+    margin-left: 0px;
+    margin-right: 0px;
     line-height: 25px;
 }
 

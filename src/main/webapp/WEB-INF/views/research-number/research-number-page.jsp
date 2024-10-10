@@ -21,6 +21,23 @@
 
     <!-- Material Icons CSS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
+
+    <!-- jsTree 라이브러리 추가 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
+
+    <%--    fancytree 라이브러리 추가--%>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.fancytree/2.38.0/skin-win8/ui.fancytree.min.css"
+          rel="stylesheet">
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.fancytree/2.38.0/jquery.fancytree-all-deps.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.fancytree/2.38.0/jquery.fancytree.gridnav.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.fancytree/2.38.0/jquery.fancytree.table.min.js"></script>
+
+
 </head>
 <body>
 <div class="common-main">
@@ -94,11 +111,12 @@
                     <p class="warn">*</p>
 
                     <div class="input-group">
-                        <input type="text" name="degreeInstitutionName" class="form-control"
+                        <input type="text" name="degreeInstitutionName" id="degreeInstitutionName" class="form-control"
                                placeholder="취득기관명">
                         <span class="input-group-text">
-                            <i class="material-icons-outlined calendar-icon">search</i>
-                        </span>
+                    <i class="material-icons-outlined search-icon" data-toggle="modal"
+                       data-target="#institutionSearchModal">search</i>
+                </span>
                     </div>
                 </div>
 
@@ -141,10 +159,11 @@
                     <p>근무기관명</p>
                     <p class="warn">*</p>
                     <div class="input-group">
-                        <input type="text" name="workInstitutionName" class="form-control"
+                        <input type="text" name="workInstitutionName" id="workInstitutionName" class="form-control"
                                placeholder="근무기관명">
                         <span class="input-group-text">
-                            <i class="material-icons-outlined calendar-icon">search</i>
+            <i class="material-icons-outlined search-icon" data-bs-toggle="modal"
+               data-bs-target="#workInstitutionSearchModal">search</i>
                         </span>
                     </div>
                 </div>
@@ -174,7 +193,6 @@
                     <div class="calen">
 
                         <div class="input-group input-group-small">
-                            <!-- 근무 시작 기간 입력 -->
                             <input type="text" name="workStartDate" class="datepicker_input form-control"
                                    placeholder="근무시작기간" required
                                    aria-label="Start Date">
@@ -183,10 +201,9 @@
                             </span>
                         </div>
 
-                        <span style="margin: 0 10px;">~</span> <!-- 구분자 -->
+                        <span style="margin: 0 10px;">~</span>
 
                         <div class="input-group input-group-small">
-                            <!-- 근무 종료 기간 입력 -->
                             <input type="text" name="workEndDate" class="datepicker_input form-control"
                                    placeholder="근무종료기간" required
                                    aria-label="End Date">
@@ -255,58 +272,154 @@
             연구자 번호 발급
         </button>
     </div>
+
+
+    <!-- 기술분야 추가 모달 -->
+    <div class="modal fade" id="addTechnicalModal" tabindex="-1" aria-labelledby="addTechnicalModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTechnicalModalLabel">기술분류</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- 검색 영역 -->
+                    <div class="form-group mb-3">
+                        <label for="technicalGroupNameSearch">기술분류명</label>
+                        <div class="input-group">
+                            <input type="text" id="technicalGroupNameSearch" class="form-control"
+                                   placeholder="기술분류명을 입력하세요">
+                            <button class="btn ctm-btn-normal searchBtn" id="searchTechnical"><i
+                                    class="material-icons-outlined">search</i></button>
+                        </div>
+                    </div>
+
+                    <!-- 트리 구조 영역 -->
+                    <%--<div id="technicalTree" class="technical-tree-container"></div>--%>
+
+                    <div id="tree">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Key</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!-- Fancytree가 이 tbody를 채움 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary wid" data-bs-dismiss="modal">취소</button>
+                    <button type="button" id="addTechnicalConfirmBtn" class="btn ctm-btn-normal wid">선택</button>
+                </div>
+            </div>
+
+            <%--    <div id="tree" style="width: 100%; height: 500px; background-color: #60d33e"></div>--%>
+
+        </div>
+    </div>
 </div>
 
-<script>
-    $(document).ready(function () {
-        // Datepicker 초기화
-        $('.datepicker_input').datepicker({
-            format: "yyyy-mm-dd", // 날짜 형식 (년-월-일)
-            autoclose: true, // 날짜 선택 시 자동으로 닫힘
-            todayHighlight: true, // 오늘 날짜 강조 표시
-            language: "ko", // 한국어 설정
-            orientation: "bottom auto" // 달력 위치 설정 (아이콘 위/아래 자동 조정)
-        });
 
-        // 달력 아이콘 클릭 시 달력 열기
-        $('.calendar-icon').click(function () {
-            $(this).closest('.input-group').find('.datepicker_input').focus();
-        });
+<div class="modal fade" id="institutionSearchModal" tabindex="-1" role="dialog"
+     aria-labelledby="institutionSearchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="institutionSearchModalLabel">기관 조회 팝업</h5>
 
-        // 전체 선택 체크박스 클릭 시 모든 행의 체크박스 선택/해제
-        $('#selectAllCheckbox').click(function () {
-            $('.rowCheckbox').prop('checked', this.checked);
-        });
-    });
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Search Area -->
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" id="instituteNameSearch" class="form-control" placeholder="취득기관명">
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn ctm-btn-normal searchBtn" id="searchInstitution"><i
+                                    class="material-icons-outlined">search</i></button>
+                        </div>
+                    </div>
+                </div>
 
-    // 전공계열에 따른 세부 전공 매핑
-    const majorMap = {
-        "engineering": ["화공·고분자·에너지", "기계공학", "전자·전기", "컴퓨터공학", "토목·건축"],
-        "science": ["물리학", "화학", "생명과학", "지구과학", "수학"],
-        "humanities": ["철학", "역사학", "심리학", "사회학", "경제학"],
-        "medicine": ["의학", "간호학", "치의학", "약학", "한의학"],
-        "art": ["미술", "음악", "무용", "체육", "디자인"]
-    };
+                <div class="institution-table-container">
+                    <table id="institutionTable" class="table table-bordered mt-3">
+                        <thead>
+                        <tr>
+                            <th>선택</th>
+                            <th>기관ID</th>
+                            <th>기관명</th>
+                            <th>기관분류</th>
+                            <th>사업자번호</th>
+                        </tr>
+                        </thead>
+                        <tbody id="institutionTableBody">
 
-    // 첫 번째 셀렉트 박스의 선택에 따라 두 번째 셀렉트 박스를 업데이트하는 함수
-    function updateMajorSubcategory() {
-        const category = document.getElementById("major-category").value;
-        const subcategorySelect = document.getElementById("major-subcategory");
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
 
-        // 기존 옵션 제거
-        subcategorySelect.innerHTML = "";
 
-        // 해당 전공계열에 맞는 세부 전공 추가
-        majorMap[category].forEach(function (major) {
-            const option = document.createElement("option");
-            option.value = major;
-            option.text = major;
-            subcategorySelect.add(option);
-        });
-    }
+                <button type="button" class="btn btn-secondary wid" data-bs-dismiss="modal">닫기</button>
+                <button type="button" id="addInstitutionBtn" class="btn ctm-btn-normal wid">선택</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-    // 페이지 로드 시 기본값으로 첫 번째 옵션에 맞는 세부 전공 설정
-    window.onload = updateMajorSubcategory;
-</script>
+<div class="modal fade" id="workInstitutionSearchModal" tabindex="-1" role="dialog"
+     aria-labelledby="workInstitutionSearchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="workInstitutionSearchModalLabel">근무기관 조회</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" id="workInstitutionNameSearch" class="form-control" placeholder="근무기관명">
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn ctm-btn-normal searchBtn" id="searchWorkInstitution"><i
+                                    class="material-icons-outlined">search</i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="institution-table-container">
+                    <table id="workInstitutionTable" class="table table-bordered mt-3">
+                        <thead>
+                        <tr>
+                            <th>선택</th>
+                            <th>기관ID</th>
+                            <th>기관명</th>
+                            <th>기관분류</th>
+                            <th>사업자번호</th>
+                        </tr>
+                        </thead>
+                        <tbody id="workInstitutionTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary wid" data-bs-dismiss="modal">닫기</button>
+                <button type="button" id="addWorkInstitutionBtn" class="btn ctm-btn-normal wid">선택</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/resources/js/research-number/research-number.js"></script>
 </body>
 </html>

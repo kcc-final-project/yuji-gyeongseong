@@ -23,6 +23,7 @@
             $('#announcement-button, #competition-field-button, #attachment-file-button').removeClass('active');
             $(activeButton).addClass('active');
         }
+
         $('#announcement-button').on('click', function () {
             showField('.announcement-details', this);
         });
@@ -72,9 +73,9 @@
             </tr>
         </table>
         <div class="selector-item">
-            <button id="announcement-button" >공고문</button>
-            <button id="competition-field-button" >공모분야</button>
-            <button id="attachment-file-button" >공고 첨부파일</button>
+            <button id="announcement-button">공고문</button>
+            <button id="competition-field-button">공모분야</button>
+            <button id="attachment-file-button">공고 첨부파일</button>
         </div>
         <div class="announcement-details">
             <p class="announcement-number">과학기술정보통신부 공고 제2024-0925호</p>
@@ -125,7 +126,10 @@
                 </tr>
                 <tr>
                     <th scope="row">2</th>
-                    <td>[공공융합1] 극지고층대기 감시 및 미래 우주기상 예측 연구개발 전략수립 기획<button class="zoom-in-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="material-icons">zoom_in</span></button></td>
+                    <td>[공공융합1] 극지고층대기 감시 및 미래 우주기상 예측 연구개발 전략수립 기획
+                        <button class="zoom-in-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><span
+                                class="material-icons">zoom_in</span></button>
+                    </td>
                     <td>품목지정공모</td>
                     <td>신청용 연구개발계획서</td>
                     <td>2024-09-23</td>
@@ -133,7 +137,10 @@
                 </tr>
                 <tr>
                     <th scope="row">3</th>
-                    <td>[공공융합1] 극지고층대기 감시 및 미래 우주기상 예측 연구개발 전략수립 기획<button class="zoom-in-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="material-icons">zoom_in</span></button></td>
+                    <td>[공공융합1] 극지고층대기 감시 및 미래 우주기상 예측 연구개발 전략수립 기획
+                        <button class="zoom-in-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><span
+                                class="material-icons">zoom_in</span></button>
+                    </td>
                     <td>품목지정공모</td>
                     <td>신청용 연구개발계획서</td>
                     <td>2024-09-23</td>
@@ -141,7 +148,10 @@
                 </tr>
                 <tr>
                     <th scope="row">4</th>
-                    <td>[공공융합1] 극지고층대기 감시 및 미래 우주기상 예측 연구개발 전략수립 기획<button class="zoom-in-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="material-icons">zoom_in</span></button></td>
+                    <td>[공공융합1] 극지고층대기 감시 및 미래 우주기상 예측 연구개발 전략수립 기획
+                        <button class="zoom-in-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"><span
+                                class="material-icons">zoom_in</span></button>
+                    </td>
                     <td>품목지정공모</td>
                     <td>신청용 연구개발계획서</td>
                     <td>2024-09-23</td>
@@ -330,10 +340,6 @@
         </div>
     </div>
 </div>
-
-
-
-
 
 
 </body>
