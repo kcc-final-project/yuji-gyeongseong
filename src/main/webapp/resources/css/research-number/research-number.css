@@ -38,11 +38,11 @@
 }
 
 hr {
-    height: 2px; /* 굵기 조절 */
-    background-color: #000000; /* 색상 변경 */
-    border: none; /* 기본 테두리 제거 */
-    margin-top: 5px; /* 상단 여백 */
-    margin-bottom: 5px; /* 하단 여백 */
+    height: 2px;
+    background-color: #000000;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
     opacity: unset;
 }
 
@@ -63,7 +63,7 @@ hr {
 
 .inline-wrap {
     display: flex;
-    align-items: center; /* 수직 가운데 정렬 */
+    align-items: center;
     margin-top: 40px;
     margin-left: 30px;
 }
@@ -71,8 +71,8 @@ hr {
 .form-select {
     margin-left: 50px;
     width: 400px;
-    height: 40px; /* 높이를 40px로 설정 */
-    padding: 5px 10px; /* 패딩 조정 */
+    height: 40px;
+    padding: 5px 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-sizing: border-box;
@@ -87,8 +87,8 @@ hr {
     width: 400px;
     height: 40px;
     border-radius: 5px;
-    border: 1px solid #ccc; /* border 색을 연한 회색으로 변경 */
-    outline: none; /* 포커스 시 기본 outline 제거 */
+    border: 1px solid #ccc;
+    outline: none;
 }
 
 .input-group {
@@ -270,7 +270,7 @@ hr {
 }
 
 .modal-dialog {
-    max-width: 800px; /* 모달 크기를 조정 */
+    max-width: 800px;
 }
 
 .modal-dialog-centered {
@@ -281,8 +281,8 @@ hr {
 
 .technical-table-container {
     margin-top: 20px;
-    max-height: 300px; /* 테이블 최대 높이 설정 */
-    overflow-y: auto; /* 내용이 많아지면 스크롤 표시 */
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .table-bordered th {
@@ -297,19 +297,19 @@ hr {
 }
 
 .modal-header {
-    background-color: #2e406a; /* 헤더 배경색을 변경 */
-    color: #ffffff; /* 글자색을 흰색으로 변경 */
-    border-bottom: none; /* 기본 테두리 제거 */
+    background-color: #2e406a;
+    color: #ffffff;
+    border-bottom: none;
 }
 
 .btn-close {
     border: none;
-    color: #ffffff; /* 닫기 버튼 색을 헤더와 동일하게 */
-    opacity: 1; /* 버튼 투명도를 없앰 */
+    color: #ffffff;
+    opacity: 1;
 }
 
 .btn-close:hover {
-    color: #d9d9d9; /* 마우스 호버 시 색 변경 */
+    color: #d9d9d9;
     cursor: pointer;
 }
 
