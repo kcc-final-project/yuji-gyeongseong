@@ -28,4 +28,9 @@ public class WorkLoungeController {
         return "work-lounge/sharing-opinion";
     }
 
+    @GetMapping("/register-list")
+    public String getWorkLoungeRegisterListPage() {
+        return "work-lounge/register-list";
+    }
+
 }

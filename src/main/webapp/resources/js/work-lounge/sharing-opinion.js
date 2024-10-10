@@ -112,6 +112,7 @@ $(".uploadResult").on("click", "span", function (e) {
 
 var regex = new RegExp("(.*?).(exe|sh|zip|alz)$");
 var maxSize = 5242880;
+
 function checkExtension(fileName, fileSize) {
   if (fileSize >= maxSize) {
     alert("파일 사이즈 초과");
@@ -141,11 +142,9 @@ $(".file_btn").click(function () {
 });
 
 $(".submit_btn").click(function () {
-  let title = $(this).parents("td").find(".title_area").val();
   let content = $(this).parents("td").find(".content_area").val();
 
   var formData = new FormData();
-  formData.append("title", title);
   formData.append("content", content);
 
   $.ajax({

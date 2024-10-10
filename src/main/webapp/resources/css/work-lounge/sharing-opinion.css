@@ -51,6 +51,10 @@
     background-color: #e4ebfd !important;
 }
 
+.gray {
+    background-color: #f5f5f5 !important;
+}
+
 .ctm-btn-small {
     background-color: #fff3f3;
     width: 90px;
