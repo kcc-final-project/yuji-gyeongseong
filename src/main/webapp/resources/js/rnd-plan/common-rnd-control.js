@@ -123,6 +123,7 @@ function showResetConfirmation() {
   }).then((result) => {
     if (result.isConfirmed) {
       resetAllFields();
+      scrollToTop();
     }
   });
 }
