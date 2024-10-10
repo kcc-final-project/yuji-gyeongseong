@@ -23,4 +23,14 @@ public class WorkLoungeController {
         return "work-lounge/evaluation-paper";
     }
 
+    @GetMapping("/sharing-opinion")
+    public String getWorkLoungeSharingOpinionPage() {
+        return "work-lounge/sharing-opinion";
+    }
+
+    @GetMapping("/register-list")
+    public String getWorkLoungeRegisterListPage() {
+        return "work-lounge/register-list";
+    }
+
 }
