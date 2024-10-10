@@ -23,4 +23,9 @@ public class WorkLoungeController {
         return "work-lounge/evaluation-paper";
     }
 
+    @GetMapping("/sharing-opinion")
+    public String getWorkLoungeSharingOpinionPage() {
+        return "work-lounge/sharing-opinion";
+    }
+
 }
