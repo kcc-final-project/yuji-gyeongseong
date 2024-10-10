@@ -142,12 +142,15 @@
                             </div>
                         </div>
                     </td>
-                    <td><input class="form-control ctm-td" disabled readonly type="text"></td>
-                    <td><input class="form-control ctm-td" disabled readonly type="text"></td>
-                    <td><input class="form-control ctm-td" disabled readonly type="text"></td>
-                    <td><input class="form-control ctm-td" disabled readonly type="text"></td>
-                    <td><input class="form-control ctm-td" disabled readonly type="text"></td>
-                    <td><input class="form-control ctm-td" disabled readonly type="text"></td>
+                    <!-- 1순위 -->
+                    <td><input id="research-field-1" class="form-control ctm-td" disabled readonly type="text"></td>
+                    <td><input id="research-weight-1" class="form-control ctm-td" disabled readonly type="text"></td>
+                    <!-- 2순위 -->
+                    <td><input id="research-field-2" class="form-control ctm-td" disabled readonly type="text"></td>
+                    <td><input id="research-weight-2" class="form-control ctm-td" disabled readonly type="text"></td>
+                    <!-- 3순위 -->
+                    <td><input id="research-field-3" class="form-control ctm-td" disabled readonly type="text"></td>
+                    <td><input id="research-weight-3" class="form-control ctm-td" disabled readonly type="text"></td>
                 </tr>
                 </tbody>
             </table>
@@ -164,26 +167,52 @@
                     <div class="modal-body ctm-tech-field-mbody ctm-f">
                         <div class="techFieldSection ctm-w48p">
                             <h5>기술분류 목록</h5>
-                            <div class="techFieldSection-sub"></div>
+                            <div class="techFieldSection-sub ctm-f-center-start">
+                                <span class="fz14 fc-blue fw-bold">최소 1개 이상 3개 이하까지 기술분류를 선택해주세요.</span>
+                            </div>
                             <div class="techFieldSection-line"></div>
-                            <div class="techFieldSection-body">
-
+                            <div class="techFieldSection-body techFieldTree-body">
+                                <div class="techFieldTree"></div>
                             </div>
                         </div>
                         <div class="ctm-f-col-center gap-3">
-                            <div class="ctm-arrow-btn ctm-f-center">
+                            <div class="ctm-arrow-btn ctm-f-center" id="btn-add-selected">
                                 <span class="material-icons">arrow_forward_ios</span>
                             </div>
-                            <div class="ctm-arrow-btn ctm-f-center">
+                            <div class="ctm-arrow-btn ctm-f-center" id="btn-remove-selected">
                                 <span class="material-icons ms-2">arrow_back_ios</span>
                             </div>
                         </div>
+
                         <div class="techFieldSection ctm-w48p">
                             <h5>선택 기술분류 목록</h5>
-                            <div class="techFieldSection-sub"></div>
+                            <div class="techFieldSection-sub ctm-f-center-start">
+                                <span class="fz14 fc-blue fw-bold">여러 기술분류에 대한 가중치(%)의 합계는 100%가 되어야 합니다.</span>
+                            </div>
                             <div class="techFieldSection-line"></div>
                             <div class="techFieldSection-body">
-
+                                <div class="body-section ctm-f-col-center">
+                                    <table class="table table-bordered mt-2 table-hover align-middle">
+                                        <thead>
+                                        <tr>
+                                            <td class="ctm-th ctm-w5p">
+                                                <input id="select-all" class="form-check-input ctm-td-btn-center"
+                                                       type="checkbox"
+                                                       value=""/>
+                                            </td>
+                                            <td class="ctm-th">기술분류명</td>
+                                            <td class="ctm-th ctm-w20p">가중치(%)</td>
+                                            <td class="ctm-th ctm-w15p">순위</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <%-- --%>
+                                        </tbody>
+                                    </table>
+                                    <div id="weight-sum-error" class="invalid-message">
+                                        가중치의 합계는 100이어야 합니다.
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -191,7 +220,8 @@
                         <button type="button" class="ctm-btn ctm-btn-outline ctm-w10p ctm-h38 ctm-f-center"
                                 data-bs-dismiss="modal">취소
                         </button>
-                        <button type="button" class="ctm-btn ctm-btn-normal ctm-w10p">완료</button>
+                        <button type="button" id="btn-modal-complete" class="ctm-btn ctm-btn-normal ctm-w10p">완료
+                        </button>
                     </div>
                 </div>
             </div>
