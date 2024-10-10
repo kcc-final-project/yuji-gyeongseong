@@ -12,4 +12,9 @@ public class AnnouncementController {
     public String getAnnouncementList(){
         return "announcement/announcement-list";
     }
+    @GetMapping("/detail")
+    public String getDetailedNotice(){
+        return "announcement/detailed-notice";
+    }
+
 }
