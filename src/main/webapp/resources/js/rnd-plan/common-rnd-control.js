@@ -14,6 +14,7 @@ $(function () {
 function setupEventHandlers() {
   $(".extend-session").on("click", resetSessionTimer);
   $(".anchor-btn").on("click", scrollToTop);
+  $(".ctm-btn-init__init").on("click", showResetConfirmation);
 }
 
 // 세션 타이머 시작
@@ -79,8 +80,8 @@ function sessionExpired() {
     confirmButtonText: "확인",
     confirmButtonColor: "#2e406a",
     willClose: () => {
-      window.location.href = '/research_number'; // TODO: 로그인 URL로 수정
-    }
+      window.location.href = "/research_number"; // TODO: 로그인 URL로 수정
+    },
   });
 }
 
@@ -106,4 +107,62 @@ function showToastAboutTimer() {
       icon: "ctm-icon-size",
     },
   });
+}
+
+// 초기화 컨펌 알림
+function showResetConfirmation() {
+  Swal.fire({
+    title: "초기화",
+    text: "모든 입력값을 초기화하시겠습니까?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "확인",
+    cancelButtonText: "취소",
+    confirmButtonColor: "#ff8f27",
+    cancelButtonColor: "#2e406a",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      resetAllFields();
+    }
+  });
+}
+
+// 모든 필드 초기화
+function resetAllFields() {
+  $("#dpy-task-title").val("");
+
+  if ($("#ipt-task-title").length) {
+    $("#ipt-task-title").val("");
+
+    for (let i = 1; i <= 3; i++) {
+      $("#research-field-" + i).val("");
+      $("#research-weight-" + i).val("");
+    }
+
+    clearTechFieldModal();
+
+    Swal.fire({
+      toast: true,
+      position: "bottom",
+      showConfirmButton: false,
+      timer: 1300,
+      icon: "success",
+      title: "모든 입력값이 초기화되었습니다.",
+      width: 400,
+      background: "#fff",
+      color: "#333",
+      customClass: {
+        popup: "ctm-position",
+        icon: "ctm-icon-size",
+      },
+    });
+  }
+}
+
+// 기술분류 모달창 데이터 초기화
+function clearTechFieldModal() {
+  const $treeInstance = $(".techFieldTree").jstree(true);
+  $treeInstance.uncheck_all();
+
+  $(".techFieldSection-body tbody").empty();
 }
