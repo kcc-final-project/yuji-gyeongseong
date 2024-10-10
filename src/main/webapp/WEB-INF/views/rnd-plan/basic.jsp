@@ -136,7 +136,8 @@
                     <td class="ctm-th__sub ">
                         <div class="ctm-th__with-btn">
                             <span><span class="required-item">* </span>국가과학기술표준분류</span>
-                            <div class="ctm-th__btn">
+                            <div class="ctm-th__btn openTechFieldModal" data-bs-toggle="modal"
+                                 data-bs-target="#techFieldModal">
                                 <span class="material-icons ctm-icon">content_copy</span>
                             </div>
                         </div>
@@ -150,6 +151,50 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+
+        <%-- 기술분류 모달창 --%>
+        <div class="modal fade" id="techFieldModal" tabindex="-1" aria-labelledby="techFieldModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-xl ctm-modal-position">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fz16" id="techFieldModalLabel">기술분류 목록</h1>
+                    </div>
+                    <div class="modal-body ctm-tech-field-mbody ctm-f">
+                        <div class="techFieldSection ctm-w48p">
+                            <h5>기술분류 목록</h5>
+                            <div class="techFieldSection-sub"></div>
+                            <div class="techFieldSection-line"></div>
+                            <div class="techFieldSection-body">
+
+                            </div>
+                        </div>
+                        <div class="ctm-f-col-center gap-3">
+                            <div class="ctm-arrow-btn ctm-f-center">
+                                <span class="material-icons">arrow_forward_ios</span>
+                            </div>
+                            <div class="ctm-arrow-btn ctm-f-center">
+                                <span class="material-icons ms-2">arrow_back_ios</span>
+                            </div>
+                        </div>
+                        <div class="techFieldSection ctm-w48p">
+                            <h5>선택 기술분류 목록</h5>
+                            <div class="techFieldSection-sub"></div>
+                            <div class="techFieldSection-line"></div>
+                            <div class="techFieldSection-body">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer ctm-f-center gap-3">
+                        <button type="button" class="ctm-btn ctm-btn-outline ctm-w10p ctm-h38 ctm-f-center"
+                                data-bs-dismiss="modal">취소
+                        </button>
+                        <button type="button" class="ctm-btn ctm-btn-normal ctm-w10p">완료</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

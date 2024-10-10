@@ -49,6 +49,7 @@
 
 .ctm-btn-outline {
     border: 1.5px solid var(--main-bg-color);
+    background-color: white;
     border-radius: 6px;
     padding: 10px 15px;
     font-size: 15px;
