@@ -42,14 +42,4 @@
     </div>
 </div>
 
-<%-- 토스트 알림 --%>
-<div class="toast align-items-center ctm-toast" role="alert" aria-live="assertive" aria-atomic="true"
-     id="success-toast2">
-    <div class="ctm-toast-line"></div>
-    <div class="toast-body ctm-f-center">
-        <span class="material-icons icon-success2 me-1">hourglass_top</span>
-        <span>세션이 연장되었습니다.</span>
-    </div>
-</div>
-
 <script src="/resources/js/rnd-plan/common-rnd-control.js"></script>

@@ -37,7 +37,7 @@ function updateTaskTitle() {
 
   hideValidationFeedback();
   updateDisplayedTaskTitle(inputtedTaskTitle);
-  showToast();
+  showToastAboutTaskTitle();
 }
 
 // 연구개발과제명 유효성 검사
@@ -63,10 +63,20 @@ function updateDisplayedTaskTitle(taskTitle) {
 }
 
 // 토스트 알림 활성화
-function showToast() {
-  const toast = new bootstrap.Toast($("#success-toast"), {
-    autohide: true,
-    delay: 1800,
+function showToastAboutTaskTitle() {
+  Swal.fire({
+    toast: true,
+    position: "bottom",
+    showConfirmButton: false,
+    timer: 1300,
+    icon: "success",
+    title: "정상적으로 연구개발과제명이 적용되었습니다.",
+    width: 500,
+    background: "#fff",
+    color: "#333",
+    customClass: {
+      popup: "ctm-position",
+      icon: "ctm-icon-size",
+    },
   });
-  toast.show();
 }

@@ -106,16 +106,6 @@
         </div>
     </div>
 
-    <%-- 토스트 알림 --%>
-    <div class="toast align-items-center ctm-toast" role="alert" aria-live="assertive" aria-atomic="true"
-         id="success-toast">
-        <div class="ctm-toast-line"></div>
-        <div class="toast-body ctm-f-center">
-            <span class="material-icons icon-success me-1">check_circle</span>
-            <span>연구개발과제명이 적용되었습니다.</span>
-        </div>
-    </div>
-
     <%-- 연구분야 --%>
     <div class="task-info mt-5">
         <div class="header-section">

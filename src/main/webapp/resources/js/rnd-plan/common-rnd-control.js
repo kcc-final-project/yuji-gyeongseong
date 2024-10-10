@@ -63,9 +63,19 @@ function scrollToTop() {
 
 // 토스트 알림 활성화
 function showToastAboutTimer() {
-  const toast = new bootstrap.Toast($("#success-toast2"), {
-    autohide: true,
-    delay: 1800,
+  Swal.fire({
+    toast: true,
+    position: "bottom",
+    showConfirmButton: false,
+    timer: 1300,
+    icon: "success",
+    title: "정상적으로 세션이 연장되었습니다.",
+    width: 400,
+    background: "#fff",
+    color: "#333",
+    customClass: {
+      popup: "ctm-position",
+      icon: "ctm-icon-size",
+    },
   });
-  toast.show();
 }
