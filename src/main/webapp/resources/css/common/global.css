@@ -27,6 +27,12 @@
     background-color: transparent;
 }
 
+/* 아이콘 드래그 방지 */
+.material-icons {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
 /* main */
 .common-main {
     width: 1230px;
@@ -43,6 +49,7 @@
 
 .ctm-btn-outline {
     border: 1.5px solid var(--main-bg-color);
+    background-color: white;
     border-radius: 6px;
     padding: 10px 15px;
     font-size: 15px;

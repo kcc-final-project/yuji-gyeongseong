@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
-<link rel="stylesheet" href="/resources/css/rnd-plan/basic.css"/>
+<link rel="stylesheet" href="/resources/css/rnd-plan/common-rnd.css"/>
 
 <div class="main">
     <%-- 연구개발단계구성 및 연구개발기간 --%>
@@ -9,9 +9,6 @@
         <div class="header-section">
             <div class="header-section__title">
                 <h5>연구개발단계구성 및 연구개발기간</h5>
-            </div>
-            <div class="header-section__info">
-                <%-- <span>반드시 '신청자격 리스트 및 확인서'를 체크해주시길 바랍니다.</span>--%>
             </div>
         </div>
 

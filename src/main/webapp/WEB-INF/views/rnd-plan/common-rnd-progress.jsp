@@ -17,29 +17,29 @@
         </div>
 
         <div class="step-container d-flex justify-content-between">
-            <div class="step-group" onclick="displayStep(1)">
+            <div class="step-group" onclick="changeStep(1)">
                 <div class="step-circle">1</div>
-                <span>기본정보</span>
+                <span class="ctm-poiner">기본정보</span>
             </div>
-            <div class="step-group" onclick="displayStep(2)">
+            <div class="step-group" onclick="changeStep(2)">
                 <div class="step-circle">2</div>
-                <span>과제요약</span>
+                <span class="ctm-poiner">과제요약</span>
             </div>
-            <div class="step-group" onclick="displayStep(3)">
+            <div class="step-group" onclick="changeStep(3)">
                 <div class="step-circle">3</div>
-                <span>연구기관</span>
+                <span class="ctm-poiner">연구기관</span>
             </div>
-            <div class="step-group" onclick="displayStep(4)">
+            <div class="step-group" onclick="changeStep(4)">
                 <div class="step-circle">4</div>
-                <span>연구개발비</span>
+                <span class="ctm-poiner">연구개발비</span>
             </div>
-            <div class="step-group" onclick="displayStep(5)">
+            <div class="step-group" onclick="changeStep(5)">
                 <div class="step-circle">5</div>
-                <span>첨부파일</span>
+                <span class="ctm-poiner">첨부파일</span>
             </div>
-            <div class="step-group" onclick="displayStep(6)">
+            <div class="step-group" onclick="changeStep(6)">
                 <div class="step-circle">6</div>
-                <span>최종제출</span>
+                <span class="ctm-poiner">최종제출</span>
             </div>
         </div>
     </div>
@@ -69,7 +69,7 @@
             </thead>
             <tbody>
             <tr>
-                <td><input class="form-control ctm-td" disabled readonly type="text"></td>
+                <td><input id="dpy-task-title" class="form-control ctm-td" disabled readonly type="text"></td>
                 <td><input class="form-control ctm-td" disabled readonly type="text"></td>
                 <td><input class="form-control ctm-td" disabled readonly type="text"></td>
                 <td><input class="form-control ctm-td" disabled readonly type="text"></td>

@@ -142,3 +142,37 @@
     color: var(--main-bg-color);
     transition: .3s all;
 }
+
+.anchor-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    border: 1px solid var(--main-bg-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    right: 20px;
+    bottom: 20px;
+    z-index: 11;
+}
+
+.anchor-btn span {
+    font-size: 25px;
+}
+
+.anchor-btn:hover {
+    background-color: rgba(228, 228, 228, 0.5);
+}
+
+.time {
+    color: var(--main-fnt-color);
+}
+
+.ctm-position {
+    bottom: 120px !important;
+}
+
+.ctm-icon-size {
+    font-size: 12px !important;
+}
