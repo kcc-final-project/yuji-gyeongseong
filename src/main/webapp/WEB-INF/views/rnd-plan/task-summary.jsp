@@ -42,7 +42,7 @@
         </div>
     </div>
 
-    <%-- 최종목표 및 내용 --%>
+    <!-- 최종목표 및 내용 -->
     <div class="mt-5">
         <div class="header-section">
             <div class="header-section__title">
@@ -61,11 +61,12 @@
                         최종목표내용
                     </td>
                     <td>
-                        <textarea class="form-control" minlength="25" maxlength="2000" rows="4"></textarea>
+                        <textarea id="finalGoalContent" class="form-control textarea-input" minlength="25"
+                                  maxlength="2000" rows="4 required"></textarea>
                         <div class="ctm-f">
                             <span class="fz14">최소 25자 이상</span>
                             <div>
-                                <span>0</span>
+                                <span class="char-count" data-maxlength="2000">0</span>
                                 <span> / 2000</span>
                             </div>
                         </div>
@@ -77,11 +78,12 @@
                         연구개발내용
                     </td>
                     <td>
-                        <textarea class="form-control" minlength="100" maxlength="2000" rows="4"></textarea>
+                        <textarea id="rndContent" class="form-control textarea-input" minlength="100" maxlength="2000"
+                                  rows="4" required></textarea>
                         <div class="ctm-f">
                             <span class="fz14">최소 100자 이상</span>
                             <div>
-                                <span>0</span>
+                                <span class="char-count" data-maxlength="2000">0</span>
                                 <span> / 2000</span>
                             </div>
                         </div>
@@ -93,11 +95,12 @@
                         연구개발성과<br/> 활용계획 및 기대효과
                     </td>
                     <td>
-                        <textarea class="form-control" minlength="25" maxlength="2000" rows="4"></textarea>
+                        <textarea id="rndOutcomePlan" class="form-control textarea-input" minlength="25"
+                                  maxlength="2000" rows="4" required></textarea>
                         <div class="ctm-f">
                             <span class="fz14">최소 25자 이상</span>
                             <div>
-                                <span>0</span>
+                                <span class="char-count" data-maxlength="2000">0</span>
                                 <span> / 2000</span>
                             </div>
                         </div>

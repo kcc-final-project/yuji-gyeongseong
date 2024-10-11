@@ -339,17 +339,19 @@
 
 @keyframes highlightAnimation {
     0% {
-        color: blue;
-        font-weight: 700;
+        color: #7749F8;
+        font-weight: 500;
     }
-
     50% {
-        color: blue;
-        font-weight: 600;
+        color: #7749F8;
+        font-weight: 500;
     }
-
     100% {
         color: inherit;
         font-weight: normal;
     }
+}
+
+.invalid-border {
+    border: 2px solid var(--red-color) !important;
 }

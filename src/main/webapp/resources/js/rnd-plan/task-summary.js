@@ -7,6 +7,7 @@ $(function () {
   renderStageTable();
   updateOverallPeriod();
   setupEventHandlers();
+  setupTextareaHandlers();
 });
 
 // 초기값 설정
@@ -478,4 +479,33 @@ function animateChange($element) {
   setTimeout(function () {
     $element.removeClass("highlight");
   }, ANIMATION_TIMEOUT);
+}
+
+function setupTextareaHandlers() {
+  $('.textarea-input').each(function () {
+    const $textarea = $(this);
+    const $charCount = $textarea.closest('td').find('.char-count');
+    const minLength = parseInt($textarea.attr('minlength'));
+
+    // 입력 이벤트 처리
+    $textarea.on('input', function () {
+      const currentLength = $textarea.val().length;
+      $charCount.text(currentLength);
+
+      // 최소 글자 수 이상인지 검사하여 테두리 색상 변경
+      if (currentLength >= minLength) {
+        $textarea.removeClass('invalid-border');
+      }
+    });
+
+    // focusout 이벤트 처리
+    $textarea.on('focusout', function () {
+      const currentLength = $textarea.val().length;
+      if (currentLength < minLength) {
+        $textarea.addClass('invalid-border');
+      } else {
+        $textarea.removeClass('invalid-border');
+      }
+    });
+  });
 }
