@@ -21,5 +21,4 @@ public class ResearchNumberController {
     public String evalCommittee() {
         return "research-number/eval-committee-register";
     }
-
 }
