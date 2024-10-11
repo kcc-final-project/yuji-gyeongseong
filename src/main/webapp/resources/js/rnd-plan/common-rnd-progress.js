@@ -1,6 +1,5 @@
 const MIN_STEP = 1;
 const MAX_STEP = 6;
-const ANIMATION_TIMEOUT = 500;
 const STEP_PATHS = [
   "/basic", // 기본정보
   "/task-summary", // 과제요약
@@ -10,53 +9,12 @@ const STEP_PATHS = [
   "/final-submit", // 최종제출
 ];
 
-let currentStep = 1;
+var currentStep = 1;
 
 $(function () {
   initializeProgressBar();
-  setupEventHandlers();
   handleScrollEffect();
 });
-
-// 이벤트 핸들러
-function setupEventHandlers() {
-  $(".next-step").on("click", moveToNextStep);
-  $(".prev-step").on("click", moveToPrevStep);
-}
-
-// 다음 단계로 이동
-function moveToNextStep() {
-  if (currentStep < MAX_STEP) {
-    $(".step-" + currentStep).addClass(
-      "animate__animated animate__fadeOutLeft",
-    );
-    currentStep++;
-    setTimeout(function () {
-      $(".step").removeClass("animate__animated animate__fadeOutLeft").hide();
-      $(".step-" + currentStep)
-        .show()
-        .addClass("animate__animated animate__fadeInRight");
-      updateProgressBar();
-    }, ANIMATION_TIMEOUT);
-  }
-}
-
-// 이전 단계로 이동
-function moveToPrevStep() {
-  if (currentStep > MIN_STEP) {
-    $(".step-" + currentStep).addClass(
-      "animate__animated animate__fadeOutRight",
-    );
-    currentStep--;
-    setTimeout(function () {
-      $(".step").removeClass("animate__animated animate__fadeOutRight").hide();
-      $(".step-" + currentStep)
-        .show()
-        .addClass("animate__animated animate__fadeInLeft");
-      updateProgressBar();
-    }, ANIMATION_TIMEOUT);
-  }
-}
 
 // 프로그래스 바 초기화
 function initializeProgressBar() {
@@ -111,7 +69,7 @@ function loadStepContent(currentStep) {
     },
     complete: () => {
       $spinnerContainer.hide();
-      $("html").scrollTop(0);
+      scrollToTop();
     },
   });
 }

@@ -15,6 +15,28 @@ function setupEventHandlers() {
   $(".extend-session").on("click", resetSessionTimer);
   $(".anchor-btn").on("click", scrollToTop);
   $(".ctm-btn-init__init").on("click", showResetConfirmation);
+  $(".ctm-btn-init__next").on("click", showNextConfirmation);
+}
+
+// '다음' 버튼 클릭 시 확인 창 표시 함수
+function showNextConfirmation() {
+  Swal.fire({
+    title: "저장",
+    text: "다음으로 이동하기 전에 저장하시겠습니까?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonText: "확인",
+    cancelButtonText: "취소",
+    confirmButtonColor: "#ff8f27",
+    cancelButtonColor: "#2e406a",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // TODO: 저장 로직 처리
+      currentStep += 1;
+      updateProgressBar();
+      loadStepContent(currentStep);
+    }
+  });
 }
 
 // 세션 타이머 시작

@@ -171,7 +171,7 @@ function addSelectedTechFields() {
               ${techName}
             </td>
             <td>
-              <input class="form-control form-control-sm text-center" type="number" value=""/>
+              <input class="form-control form-control-sm text-center" type="number" value="0"/>
             </td>
             <td class="text-center">${currentCount + 1}</td>
           </tr>`;
