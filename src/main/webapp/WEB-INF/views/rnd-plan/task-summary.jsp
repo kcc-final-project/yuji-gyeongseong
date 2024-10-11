@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/resources/css/rnd-plan/common-rnd.css"/>
 
 <div class="main">
-    <%-- 연구개발단계구성 및 연구개발기간 --%>
+    <!-- 연구개발단계구성 및 연구개발기간 -->
     <div class="mt-5">
         <div class="header-section">
             <div class="header-section__title">
@@ -16,10 +16,10 @@
             <tr>
                 <td class="ctm-th ctm-w15p">전체 연구개발기간</td>
                 <td class="d-flex justify-content-around">
-                    <input class="form-control ps-3 ctm-w35p" value="2024-10-01" disabled readonly type="text">
+                    <input id="overall-start-date" class="form-control ps-3 ctm-w35p" disabled readonly type="text">
                     <span class="ctm-w5p text-center pt-1 fw-bolder">~</span>
-                    <input class="form-control ps-3 ctm-w35p" value="2028-12-31" disabled readonly type="text">
-                    <input class="form-control ps-3 ctm-w15p" value="51 개월" disabled readonly type="text">
+                    <input id="overall-end-date" class="form-control ps-3 ctm-w35p" disabled readonly type="text">
+                    <input id="overall-duration" class="form-control ps-3 ctm-w15p" disabled readonly type="text">
                 </td>
                 <td class="ctm-th ctm-w15p">(공고)연구기간</td>
                 <td class="ctm-w20p">
@@ -29,7 +29,7 @@
         </table>
 
         <div class="body-section">
-            <table class="table table-bordered mt-2 mb-5 align-middle text-center table-hover">
+            <table id="stage-table" class="table table-bordered mt-2 mb-5 align-middle text-center table-hover">
                 <tr>
                     <td class="ctm-th ctm-w15p">단계</td>
                     <td class="ctm-th ctm-w15p">연차</td>
@@ -37,124 +37,7 @@
                     <td class="ctm-th">연구개발종료일</td>
                     <td class="ctm-th">개월 수</td>
                 </tr>
-                <%-- 부모 --%>
-                <tr>
-                    <td class="d-flex ctm-th__sub justify-content-around">
-                        <div class="ctm-w45p text-center">1단계</div>
-                        <div class="add-btn">
-                            <span class="material-icons">add</span>
-                        </div>
-                    </td>
-                    <td class="ctm-th__sub">-</td>
-                    <td class="ctm-th__sub">2024-10-08</td>
-                    <td class="ctm-th__sub">2025-12-31</td>
-                    <td class="ctm-th__sub">15</td>
-                </tr>
-                <%-- 자식 --%>
-                <tr>
-                    <td>
-                        <div class="text-center">1단계</div>
-                    </td>
-                    <td class="d-flex justify-content-around">
-                        <div class="ctm-w45p text-center">1년차</div>
-                        <div class="add-btn">
-                            <span class="material-icons">add</span>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="date" class="form-control ctm-datepicker" value="2024-10-08">
-                    </td>
-                    <td>
-                        <input type="date" class="form-control ctm-datepicker" value="2024-12-30">
-                    </td>
-                    <td>3</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="text-center">1단계</div>
-                    </td>
-                    <td class="d-flex justify-content-around">
-                        <div class="ctm-w45p text-center">2년차</div>
-                        <div class="add-btn">
-                            <span class="material-icons">remove</span>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="date" class="form-control ctm-datepicker" value="2024-12-31">
-                    </td>
-                    <td>
-                        <input type="date" class="form-control ctm-datepicker" value="2025-12-31">
-                    </td>
-                    <td>12</td>
-                </tr>
-                <%-- 부모 --%>
-                <tr>
-                    <td class="d-flex ctm-th__sub justify-content-around">
-                        <div class="ctm-w45p text-center">2단계</div>
-                        <div class="add-btn">
-                            <span class="material-icons">add</span>
-                        </div>
-                    </td>
-                    <td class="ctm-th__sub">-</td>
-                    <td class="ctm-th__sub">2026-01-01</td>
-                    <td class="ctm-th__sub">2028-12-31</td>
-                    <td class="ctm-th__sub">36</td>
-                </tr>
-                <%-- 자식 --%>
-                <tr>
-                    <td>
-                        <div class="text-center">2단계</div>
-                    </td>
-                    <td class="d-flex justify-content-around">
-                        <div class="ctm-w45p text-center">1년차</div>
-                        <div class="add-btn">
-                            <span class="material-icons">add</span>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="date" class="form-control ctm-datepicker" value="2026-01-01">
-                    </td>
-                    <td>
-                        <input type="date" class="form-control ctm-datepicker" value="2026-12-31">
-                    </td>
-                    <td>12</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="text-center">2단계</div>
-                    </td>
-                    <td class="d-flex justify-content-around">
-                        <div class="ctm-w45p text-center">2년차</div>
-                        <div class="add-btn">
-                            <span class="material-icons">remove</span>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="date" class="form-control ctm-datepicker" value="2027-01-01">
-                    </td>
-                    <td>
-                        <input type="date" class="form-control ctm-datepicker" value="2027-12-31">
-                    </td>
-                    <td>12</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="text-center">2단계</div>
-                    </td>
-                    <td class="d-flex justify-content-around">
-                        <div class="ctm-w45p text-center">3년차</div>
-                        <div class="add-btn">
-                            <span class="material-icons">remove</span>
-                        </div>
-                    </td>
-                    <td>
-                        <input type="date" class="form-control ctm-datepicker" value="2028-01-01">
-                    </td>
-                    <td>
-                        <input type="date" class="form-control ctm-datepicker" value="2028-12-31">
-                    </td>
-                    <td>12</td>
-                </tr>
+                <!--  -->
             </table>
         </div>
     </div>
@@ -307,3 +190,5 @@
         </div>
     </div>
 </div>
+
+<script src="/resources/js/rnd-plan/task-summary.js"></script>

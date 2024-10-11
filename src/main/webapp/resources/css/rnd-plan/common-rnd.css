@@ -194,17 +194,18 @@
 }
 
 .add-btn {
-    background-color: white;
-    border: 1.5px solid var(--main-bg-color);
+    background-color: var(--main-bg-color) !important;
     border-radius: 4px;
+    color: white !important;
     width: 25px;
     height: 25px;
 }
 
 .add-btn:hover {
-    background-color: var(--main-bg-color);
-    color: white;
+    border: 1.5px solid var(--main-bg-color) !important;
+    background-color: white !important;;
     transition: .3s all;
+    color: var(--main-bg-color) !important;
     cursor: pointer;
 }
 
@@ -323,7 +324,7 @@
     margin-right: 10px;
 }
 
-.jstree-anchor{
+.jstree-anchor {
     margin-bottom: 10px;
 }
 
@@ -332,3 +333,23 @@
     color: var(--red-color);
 }
 
+.highlight {
+    animation: highlightAnimation 1.3s ease-in-out;
+}
+
+@keyframes highlightAnimation {
+    0% {
+        color: blue;
+        font-weight: 700;
+    }
+
+    50% {
+        color: blue;
+        font-weight: 600;
+    }
+
+    100% {
+        color: inherit;
+        font-weight: normal;
+    }
+}
