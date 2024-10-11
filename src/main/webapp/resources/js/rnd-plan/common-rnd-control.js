@@ -109,7 +109,7 @@ function sessionExpired() {
 
 // 화면 최상단으로 스크롤 이동
 function scrollToTop() {
-  $("html").scrollTop(0);
+  $("html, body").animate({ scrollTop: 0 }, 200, "linear");
 }
 
 // 세션 연장 성공 알림
