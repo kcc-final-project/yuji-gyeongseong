@@ -14,13 +14,12 @@
 <div class="common-main" style="margin-top: 50px">
     <div class="container">
         <div class="d-flex align-items-center my-3">
-            <h4>
+            <h4 class="col-6 me-5" style="margin-right: 6rem!important">
                 <b>평가위원회 목록</b>
             </h4>
-            <div class="col-1"></div>
 
-            <div class="row mb-3 offset-md-3" style="width: 630px">
-                <div class="col-1"></div>
+            <div class="row mb-3 mw-1 ms-6 col-5" style="width: 650px">
+                <div class="ms-2"></div>
                 <div class="col">
                     <select id="filterType" class="form-control">
                         <option value="all">전체</option>
@@ -94,7 +93,7 @@
                 조회결과
 
             </h5>
-            <div class="col-4"></div>
+            <div class="col-5 ms-4"></div>
             <h5 class="text-muted mb-0 ms-5 mt-1 mb-2">
                 총 6건
             </h5>
