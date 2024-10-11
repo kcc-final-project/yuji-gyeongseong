@@ -33,4 +33,10 @@ public class WorkLoungeController {
         return "work-lounge/register-list";
     }
 
+    @GetMapping("/evaluation-task-list")
+    public String getWorkLoungeEvaluationTaskListPage() {
+        return "work-lounge/evaluation-task-list";
+    }
+
+
 }
