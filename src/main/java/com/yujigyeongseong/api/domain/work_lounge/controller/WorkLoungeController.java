@@ -38,5 +38,4 @@ public class WorkLoungeController {
         return "work-lounge/evaluation-task-list";
     }
 
-
 }
