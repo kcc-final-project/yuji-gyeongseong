@@ -16,25 +16,28 @@
     margin-bottom: 37px;
     margin-top: 41px;
 }
-.section-title h2{
+
+.section-title h2 {
     font-weight: bold;
 }
-hr{
+
+hr {
     height: 2px;
     background-color: #000000;
     opacity: unset;
 }
+
 .card-container {
     display: flex;
-    flex-wrap: wrap; /* 줄바꿈 허용 */
-    gap: 20px; /* 카드 사이의 간격 */
-    justify-content: space-between; /* 카드 사이의 공간을 균등하게 분배 */
-    max-width: 1200px; /* 전체 컨테이너의 최대 너비를 설정 */
-    margin: 0 auto; /* 가운데 정렬 */
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .card {
-    max-width: 50%; /* 카드의 최대 너비 */
+    max-width: 50%;
     background-color: white;
     padding: 20px;
     border: 1px solid #ddd;
@@ -44,11 +47,12 @@ hr{
 }
 
 .card-name {
-    font-size:1.0em;
+    font-size: 1.0em;
     color: #666;
     margin-bottom: 10px;
 }
-.card-title{
+
+.card-title {
     color: #2F69FF;
     font-size: 1.1em;
     font-weight: bold;
@@ -63,15 +67,18 @@ hr{
     width: 100%;
 }
 
-.card-info-field{
+.card-info-field {
     width: 53%;
 }
-.field-contents{
+
+.field-contents {
     font-weight: bold;
 }
-.category-contents{
+
+.category-contents {
     font-weight: bold;
 }
+
 .buttons {
     display: flex;
     justify-content: center;
@@ -93,16 +100,19 @@ hr{
     background-color: white;
     color: #2E406A;
 }
-.detail-btn:hover{
+
+.detail-btn:hover {
     background-color: #2E406A;
     color: white;
     transition: .3s all;
 }
-.apply-btn{
+
+.apply-btn {
     background-color: #2E406A;
     color: white;
 }
-.apply-btn:hover{
+
+.apply-btn:hover {
     background-color: white;
     color: black;
     transition: .3s all;
