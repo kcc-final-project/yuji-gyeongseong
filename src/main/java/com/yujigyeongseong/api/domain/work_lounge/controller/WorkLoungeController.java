@@ -13,6 +13,11 @@ public class WorkLoungeController {
         return "work-lounge/work-lounge";
     }
 
+    @GetMapping("/business-timeline")
+    public String getWorkLoungeBusinessTimelinePage() {
+        return "work-lounge/business-timeline";
+    }
+
     @GetMapping("/evaluation-table")
     public String getWorkLoungeEvaluationTablePage() {
         return "work-lounge/evaluation-table";
@@ -36,6 +41,11 @@ public class WorkLoungeController {
     @GetMapping("/evaluation-task-list")
     public String getWorkLoungeEvaluationTaskListPage() {
         return "work-lounge/evaluation-task-list";
+    }
+
+    @GetMapping("/selection-evaluation")
+    public String getWorkLoungeSelectionEvaluationPage() {
+        return "work-lounge/selection-evaluation";
     }
 
 }
