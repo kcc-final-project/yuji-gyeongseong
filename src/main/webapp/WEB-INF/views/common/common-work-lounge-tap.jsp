@@ -13,7 +13,7 @@
     <!-- Common-layout CSS-->
     <link rel="stylesheet" href="/resources/css/common/common-work-lounge-tap.css"/>
 </head>
-<body>
+<body style="height: auto;">
 
 <div class="tabs-container">
     <div class="container">
