@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insert title here</title>
+    <title>유지경성</title>
 
     <!-- research-page CSS -->
     <link rel="stylesheet" href="/resources/css/research-number/research-number.css"/>
@@ -48,6 +48,7 @@
     <div class="academic-info">
         <div class="title_warning">
             <p class="title">학력정보</p>
+            <button id="addAcademicInfoButton" class="ctm-btn-normal" style="width: 150px">학력정보추가</button>
             <p class="warning">* 필수 항목</p>
         </div>
 
@@ -133,10 +134,8 @@
                             <option value="art">예술체육계열</option>
                         </select>
 
-                        <!-- 세부 전공 선택 -->
                         <select id="major-subcategory" name="majorSubcategory" class="form-select-two"
                                 aria-label="Default select example">
-                            <!-- 세부 전공 목록은 자바스크립트로 업데이트 -->
                         </select>
                     </div>
                 </div>
@@ -193,6 +192,7 @@
                     <div class="calen">
 
                         <div class="input-group input-group-small">
+
                             <input type="text" name="workStartDate" class="datepicker_input form-control"
                                    placeholder="근무시작기간" required
                                    aria-label="Start Date">
@@ -244,20 +244,6 @@
                 </tr>
                 </thead>
                 <tbody id="technicalInfoTableBody">
-                <!-- 새로운 기술분야 행 추가 -->
-                <tr>
-                    <td><input type="checkbox" class="rowCheckbox"></td>
-                    <td>테스트</td>
-                    <td>테스트</td>
-                    <td>테스트</td>
-                </tr>
-
-                <tr>
-                    <td><input type="checkbox" class="rowCheckbox"></td>
-                    <td>테스트 2</td>
-                    <td>테스트 2</td>
-                    <td>테스트 2</td>
-                </tr>
                 </tbody>
             </table>
         </div>
@@ -274,7 +260,6 @@
     </div>
 
 
-    <!-- 기술분야 추가 모달 -->
     <div class="modal fade" id="addTechnicalModal" tabindex="-1" aria-labelledby="addTechnicalModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -284,27 +269,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- 검색 영역 -->
+
                     <div class="form-group mb-3">
-                        <label for="technicalGroupNameSearch">기술분류명</label>
-                        <div class="input-group">
-                            <input type="text" id="technicalGroupNameSearch" class="form-control"
-                                   placeholder="기술분류명을 입력하세요">
-                            <button class="btn ctm-btn-normal searchBtn" id="searchTechnical"><i
-                                    class="material-icons-outlined">search</i></button>
-                        </div>
+                        <label for="searchInput" style="width: 200px">기술분류명:</label>
+                        <input type="text" id="searchInput" class="form-control" placeholder="검색어를 입력하세요">
                     </div>
 
                     <!-- 트리 구조 영역 -->
                     <%--<div id="technicalTree" class="technical-tree-container"></div>--%>
 
-                    <div id="tree">
+                    <div id="tree" class="fancytree-connectors fancytree-ext-table technical-tree-container">
                         <table>
                             <thead>
                             <tr>
                                 <th></th>
-                                <th>Name</th>
-                                <th>Key</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -319,7 +299,6 @@
                 </div>
             </div>
 
-            <%--    <div id="tree" style="width: 100%; height: 500px; background-color: #60d33e"></div>--%>
 
         </div>
     </div>
@@ -336,7 +315,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- Search Area -->
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
