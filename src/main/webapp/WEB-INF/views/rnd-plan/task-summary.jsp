@@ -122,73 +122,9 @@
         </div>
         <div class="body-section">
             <table class="table table-bordered mt-2 align-middle">
-                <tr>
-                    <td class="ctm-th ctm-w15p" rowspan="6">개별연구개발</td>
-                    <td class="ctm-th__sub ctm-w5p" rowspan="2">1단계</td>
-                    <td class="ctm-th__sub ctm-w10p">
-                        <span class="required-item">* </span>
-                        단계목표내용
-                    </td>
-                    <td>
-                        <textarea class="form-control" minlength="25" maxlength="2000" rows="3"></textarea>
-                        <div class="ctm-f">
-                            <span class="fz14">최소 25자 이상</span>
-                            <div>
-                                <span>0</span>
-                                <span> / 2000</span>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ctm-th__sub ctm-w10p">
-                        <span class="required-item">* </span>
-                        연구개발내용
-                    </td>
-                    <td>
-                        <textarea class="form-control" minlength="100" maxlength="2000" rows="3"></textarea>
-                        <div class="ctm-f">
-                            <span class="fz14">최소 100자 이상</span>
-                            <div>
-                                <span>0</span>
-                                <span> / 2000</span>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ctm-th__sub ctm-w5p" rowspan="2">2단계</td>
-                    <td class="ctm-th__sub ctm-w10p">
-                        <span class="required-item">* </span>
-                        단계목표내용
-                    </td>
-                    <td>
-                        <textarea class="form-control" minlength="25" maxlength="2000" rows="3"></textarea>
-                        <div class="ctm-f">
-                            <span class="fz14">최소 25자 이상</span>
-                            <div>
-                                <span>0</span>
-                                <span> / 2000</span>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="ctm-th__sub ctm-w10p">
-                        <span class="required-item">* </span>
-                        연구개발내용
-                    </td>
-                    <td>
-                        <textarea class="form-control" minlength="100" maxlength="2000" rows="3"></textarea>
-                        <div class="ctm-f">
-                            <span class="fz14">최소 100자 이상</span>
-                            <div>
-                                <span>0</span>
-                                <span> / 2000</span>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
+                <tbody id="stage-goals-section">
+                <%-- --%>
+                </tbody>
             </table>
         </div>
     </div>

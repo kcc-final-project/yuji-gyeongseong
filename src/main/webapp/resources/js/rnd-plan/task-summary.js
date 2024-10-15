@@ -5,6 +5,7 @@ var ANIMATION_TIMEOUT = 1000;
 $(function () {
   initializeStageData();
   renderStageTable();
+  renderStageGoals();
   updateOverallPeriod();
   setupEventHandlers();
   setupTextareaHandlers();
@@ -144,6 +145,7 @@ function addNewStage() {
 
   // 테이블 리렌더링
   renderStageTable();
+  renderStageGoals();
 
   // 전체 연구개발기간 갱신
   updateOverallPeriod();
@@ -169,6 +171,7 @@ function removeStage(stageNumber) {
 
   // 테이블 리렌더링
   renderStageTable();
+  renderStageGoals();
 
   // 전체 연구개발기간 갱신
   updateOverallPeriod();
@@ -204,7 +207,7 @@ function createYearRow(stageNumber, yearData, isFirstYear) {
   `;
 }
 
-// 이벤트 핸들러 설정(?)
+// 이벤트 핸들러 설정
 function setupEventHandlers() {
   // 시작일 변경 시 종료일 및 다음 연차 시작일 갱신
   $(document).on("change", ".start-date", function () {
@@ -509,3 +512,59 @@ function setupTextareaHandlers() {
     });
   });
 }
+
+// 단계별 목표 및 내용 섹션 렌더링
+function renderStageGoals() {
+  const $stageGoalsSection = $("#stage-goals-section");
+
+  // 기존 내용 제거
+  $stageGoalsSection.empty();
+
+  // 단계별로 반복하여 요소 생성
+  stageData.forEach((stage) => {
+    const stageNumber = stage.stageNumber;
+
+    const stageGoalContent = `
+      <tr>
+        ${stageNumber === 1 ? `<td class="ctm-th ctm-w15p" rowspan="${stageData.length * 2}">개별연구개발</td>` : ''}
+        <td class="ctm-th__sub ctm-w5p" rowspan="2">${stageNumber}단계</td>
+        <td class="ctm-th__sub ctm-w10p">
+          <span class="required-item">* </span>
+          단계목표내용
+        </td>
+        <td>
+          <textarea class="form-control" minlength="25" maxlength="2000" rows="3"></textarea>
+          <div class="ctm-f">
+            <span class="fz14">최소 25자 이상</span>
+            <div>
+              <span class="char-count">0</span>
+              <span> / 2000</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="ctm-th__sub ctm-w10p">
+          <span class="required-item">* </span>
+          연구개발내용
+        </td>
+        <td>
+          <textarea class="form-control" minlength="100" maxlength="2000" rows="3"></textarea>
+          <div class="ctm-f">
+            <span class="fz14">최소 100자 이상</span>
+            <div>
+              <span class="char-count">0</span>
+              <span> / 2000</span>
+            </div>
+          </div>
+        </td>
+      </tr>
+    `;
+
+    $stageGoalsSection.append(stageGoalContent);
+  });
+
+  // 텍스트 영역 이벤트 핸들러 재설정
+  setupTextareaHandlers();
+}
+
