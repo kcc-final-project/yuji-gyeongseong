@@ -315,6 +315,7 @@ function applySelectedTechFields() {
     }
 
     $("#techFieldModal").modal("hide");
+    $("#techField-feedback").hide();
     return;
   }
 
@@ -339,4 +340,5 @@ function applySelectedTechFields() {
   });
 
   $("#techFieldModal").modal("hide");
+  $("#techField-feedback").hide();
 }

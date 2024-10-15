@@ -402,3 +402,8 @@
 .ctm-tb-w283 {
     width: 283.5px !important;
 }
+
+.error-title {
+    color: var(--red-color);
+    font-weight: 600;
+}

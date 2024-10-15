@@ -18,6 +18,48 @@ function setupEventHandlers() {
   $(".ctm-btn-init__next").on("click", showNextConfirmation);
 }
 
+// 필수 입력 값 확인
+function validateRequiredFields() {
+  let isValid = true;
+  let inValidSection = null;
+  let hasResearchField = false;
+
+  // 연구개발과제명 확인
+  const taskTitle = $("#ipt-task-title").val().trim();
+  if (taskTitle === "") {
+    isValid = false;
+    showValidationFeedback();
+    inValidSection = $(".task-title");
+  }
+
+  // 연구분야 확인
+  for (let i = 1; i <= 3; i++) {
+    const fieldValue = $(`#research-field-${i}`).val().trim();
+
+    if (fieldValue !== "") {
+      hasResearchField = true;
+      break;
+    }
+  }
+
+  if (!hasResearchField) {
+    isValid = false;
+    $("#techField-feedback").show();
+    inValidSection = $(".task-info");
+  }
+
+  if (!isValid) {
+    $("html, body").animate(
+      {
+        scrollTop: inValidSection.offset().top - (-250),
+      },
+      500,
+    );
+  }
+
+  return isValid;
+}
+
 // '다음' 버튼 클릭 시 확인 창 표시 함수
 function showNextConfirmation() {
   Swal.fire({
@@ -31,10 +73,19 @@ function showNextConfirmation() {
     cancelButtonColor: "#2e406a",
   }).then((result) => {
     if (result.isConfirmed) {
-      // TODO: 저장 로직 처리
-      currentStep += 1;
-      updateProgressBar();
-      loadStepContent(currentStep);
+      if (validateRequiredFields()) {
+        // TODO: 저장 로직 처리
+        currentStep += 1;
+        updateProgressBar();
+        loadStepContent(currentStep);
+      } else {
+        Swal.fire({
+          icon: "warning",
+          text: "필수 항목 값을 모두 입력해주시기 바랍니다.",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#2e406a",
+        });
+      }
     }
   });
 }
