@@ -13,6 +13,12 @@ public class WorkLoungeController {
         return "work-lounge/work-lounge";
     }
 
+    @GetMapping("/business-timeline")
+    public String getWorkLoungeBusinessTimelinePage() {
+        return "work-lounge/business-timeline";
+    }
+
+
     @GetMapping("/evaluation-table")
     public String getWorkLoungeEvaluationTablePage() {
         return "work-lounge/evaluation-table";
@@ -33,4 +39,28 @@ public class WorkLoungeController {
         return "work-lounge/register-list";
     }
 
+    @GetMapping("/evaluation-task-list")
+    public String getWorkLoungeEvaluationTaskListPage() {
+        return "work-lounge/evaluation-task-list";
+    }
+
+    @GetMapping("/selection-evaluation")
+    public String getWorkLoungeSelectionEvaluationPage() {
+        return "work-lounge/selection-evaluation";
+    }
+
+    @GetMapping("/selection-evaluation-detail")
+    public String getWorkLoungeSelectionEvaluationDetailPage() {
+        return "work-lounge/selection-evaluation-detail";
+    }
+
+    @GetMapping("/radar-chart")
+    public String getWorkLoungeRadarChartPage() {
+        return "work-lounge/radar-chart";
+    }
+
+    @GetMapping("/bubble-chart")
+    public String getWorkLoungeBubbleChartPage() {
+        return "work-lounge/bubble-chart";
+    }
 }

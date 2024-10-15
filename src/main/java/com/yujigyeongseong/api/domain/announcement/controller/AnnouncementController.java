@@ -16,5 +16,9 @@ public class AnnouncementController {
     public String getDetailedNotice(){
         return "announcement/detailed-notice";
     }
+    @GetMapping("/apply")
+    public String getApplyNotice(){
+        return "announcement/apply-for-notice";
+    }
 
 }

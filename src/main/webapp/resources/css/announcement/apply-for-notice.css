@@ -1,0 +1,143 @@
+
+.header {
+    background-color: #2E406A;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 6%;
+    margin-bottom: 20px;
+    margin-top: 166px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 37px;
+    margin-top: 41px;
+}
+
+.section-title h2 {
+    font-weight: bold;
+}
+
+hr {
+    height: 2px;
+    background-color: #000000;
+    opacity: unset;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    max-width: 50%;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 12px;
+}
+
+.card-name {
+    font-size: 1.0em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    color: #2F69FF;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 41px;
+}
+
+.card-info {
+    font-size: 0.9em;
+    color: #333;
+    display: flex;
+    height: 14%;
+    width: 100%;
+}
+
+.card-info-field {
+    width: 53%;
+}
+
+.field-contents {
+    font-weight: bold;
+}
+
+.category-contents {
+    font-weight: bold;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 27px;
+}
+
+
+.detail-btn,
+.apply-btn {
+    width: 50%;
+    border: 1px solid #2E406A;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.detail-btn {
+    background-color: white;
+    color: #2E406A;
+}
+
+.detail-btn:hover {
+    background-color: #2E406A;
+    color: white;
+    transition: .3s all;
+}
+
+.apply-btn {
+    background-color: #2E406A;
+    color: white;
+}
+
+.apply-btn:hover {
+    background-color: white;
+    color: black;
+    transition: .3s all;
+}
+
+.footer-buttons {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-btn,
+.list-btn {
+    background-color: white;
+    color: #2E406A;
+    border: 1px solid #2E406A;
+    padding: 10px 20px;
+    width: 131px;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.back-btn:hover,
+.list-btn:hover {
+    background-color: #2E406A;
+    color: white;
+    transition: .3s all;
+}
