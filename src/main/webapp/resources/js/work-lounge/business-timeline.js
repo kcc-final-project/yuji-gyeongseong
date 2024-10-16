@@ -20,4 +20,61 @@ $(document).ready(function() {
             }
         });
     });
+
+    $.ajax({
+        url: "/api/notifications",
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            let alarmsContainer = $(".alarms");
+            // alarmsContainer.empty(); // 기존 알림 삭제 선택
+
+            data.forEach(notification => {
+                let notificationCard = `
+                    <div class="notification-card" data-category="${notification.category}">
+                        <div class="icon-container">
+                            <span class="material-icons-outlined" style="font-size: 50px">info</span>
+                        </div>
+                        <div class="notification-content">
+                            <p class="notification-title">[${notification.category} 알림]</p>
+                            <p class="notification-description">${notification.description}</p>
+                        </div>
+                        <div class="notification-timestamp">${notification.timestamp}</div>`;
+
+                if (notification.actionUrl) {
+                    notificationCard += `
+                        <div class="button-alarm">
+                            <button class="reject-button" onclick="window.location.href='${notification.actionUrl}'">상세보기</button>
+                        </div>`;
+                }
+
+                notificationCard += `</div>`;
+                alarmsContainer.append(notificationCard);
+            });
+        },
+        error: function (error) {
+            console.log("알림 오류 발생", error);
+        }
+    });
+
+    $('.filter-button').on('click', function() {
+        $('.filter-button').removeClass('active');
+        $(this).addClass('active');
+
+        let filter = $(this).attr('id');
+
+        $('.notification-card').each(function() {
+            let category = $(this).attr('data-category');
+
+            if (filter === 'all') {
+                $(this).show();
+            } else {
+                if (category && category.toLowerCase() === filter.toLowerCase()) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            }
+        });
+    });
 });
