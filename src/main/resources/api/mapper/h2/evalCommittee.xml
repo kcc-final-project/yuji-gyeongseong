@@ -4,13 +4,19 @@
 <mapper namespace="com.yujigyeongseong.api.domain.research_number.dao.EvalCommitteeMapper">
 
     <!-- 특정 회원의 모든 경력 정보 조회 -->
-    <select id="selectAllCareersByMemberId" parameterType="long" resultType="com.yujigyeongseong.api.domain.research_number.dto.Career">
-        SELECT * FROM career WHERE mem_no = #{id}
+    <select id="selectAllCareersByMemberId" parameterType="long"
+            resultType="com.yujigyeongseong.api.domain.research_number.dto.Career">
+        SELECT *
+        FROM career
+        WHERE mem_no = #{id}
     </select>
 
     <!-- 특정 회원의 모든 학력 정보 조회 -->
-    <select id="selectAllAcadAbilitiesByMemberId" parameterType="long" resultType="com.yujigyeongseong.api.domain.research_number.dto.AcadAbility">
-        SELECT * FROM acad_ability WHERE mem_no = #{id}
+    <select id="selectAllAcadAbilitiesByMemberId" parameterType="long"
+            resultType="com.yujigyeongseong.api.domain.research_number.dto.AcadAbility">
+        SELECT *
+        FROM acad_ability
+        WHERE mem_no = #{id}
     </select>
 
 </mapper>

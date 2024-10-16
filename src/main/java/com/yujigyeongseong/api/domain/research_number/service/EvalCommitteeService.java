@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface EvalCommitteeService {
     List<Career> getAllCareersByMemberId(Long id);
+
     List<AcadAbility> getAllAcadAbilitiesByMemberId(Long id);
 }

@@ -19,5 +19,4 @@ public class AcadAbility {
     private final Timestamp created_at;
     private final Timestamp updated_at;
     private final Long mem_no;
-
 }

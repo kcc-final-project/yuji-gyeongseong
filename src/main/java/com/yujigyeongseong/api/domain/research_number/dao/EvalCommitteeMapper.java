@@ -12,5 +12,4 @@ public interface EvalCommitteeMapper {
     List<Career> selectAllCareersByMemberId(Long Id);
 
     List<AcadAbility> selectAllAcadAbilitiesByMemberId(Long Id);
-
 }

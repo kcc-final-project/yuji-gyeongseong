@@ -28,6 +28,7 @@ public class ResearchNumberController {
     public String test() {
         return "work-lounge/business-timeline";
     }
+
     @GetMapping("/eval_committee")
     public String evalCommittee() {
         return "research-number/eval-committee-register";

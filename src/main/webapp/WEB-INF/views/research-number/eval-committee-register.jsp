@@ -38,7 +38,7 @@
                         </div>
                         <div class="field">
                             <label>취득연월</label>
-                            <div class="value"><fmt:formatDate value="${acad.acquired_at}" pattern="yyyy-MM-dd" /></div>
+                            <div class="value"><fmt:formatDate value="${acad.acquired_at}" pattern="yyyy-MM-dd"/></div>
                         </div>
                     </div>
                     <div class="list">
@@ -90,11 +90,11 @@
                     <div class="list">
                         <div class="field">
                             <label>근무시작일</label>
-                            <div class="value"><fmt:formatDate value="${career.started_at}" pattern="yyyy-MM-dd" /></div>
+                            <div class="value"><fmt:formatDate value="${career.started_at}" pattern="yyyy-MM-dd"/></div>
                         </div>
                         <div class="field">
                             <label>근무종료일</label>
-                            <div class="value"><fmt:formatDate value="${career.ended_at}" pattern="yyyy-MM-dd" /></div>
+                            <div class="value"><fmt:formatDate value="${career.ended_at}" pattern="yyyy-MM-dd"/></div>
                         </div>
                     </div>
                 </c:forEach>

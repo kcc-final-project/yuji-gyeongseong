@@ -170,11 +170,11 @@ $(document).ready(function () {
   });
 
   $("#degreeInstitutionName")
-      .next(".input-group-text")
-      .find(".search-icon")
-      .click(function () {
-        $("#institutionSearchModal").modal("show");
-      });
+    .next(".input-group-text")
+    .find(".search-icon")
+    .click(function () {
+      $("#institutionSearchModal").modal("show");
+    });
 
   var institutions = [
     {
@@ -218,23 +218,23 @@ $(document).ready(function () {
     var tbodyHtml = "";
     filteredInstitutions.forEach(function (institution) {
       tbodyHtml +=
-          "<tr>" +
-          '<td><input type="checkbox" class="select-institution" data-name="' +
-          institution.name +
-          '"></td>' +
-          "<td>" +
-          institution.id +
-          "</td>" +
-          "<td>" +
-          institution.name +
-          "</td>" +
-          "<td>" +
-          institution.category +
-          "</td>" +
-          "<td>" +
-          institution.registrationNumber +
-          "</td>" +
-          "</tr>";
+        "<tr>" +
+        '<td><input type="checkbox" class="select-institution" data-name="' +
+        institution.name +
+        '"></td>' +
+        "<td>" +
+        institution.id +
+        "</td>" +
+        "<td>" +
+        institution.name +
+        "</td>" +
+        "<td>" +
+        institution.category +
+        "</td>" +
+        "<td>" +
+        institution.registrationNumber +
+        "</td>" +
+        "</tr>";
     });
     $("#institutionTableBody").html(tbodyHtml);
   });
@@ -273,31 +273,31 @@ $(document).ready(function () {
   $("#searchWorkInstitution").click(function () {
     var searchKeyword = $("#workInstitutionNameSearch").val();
     var filteredWorkInstitutions = workInstitutions.filter(
-        function (institution) {
-          return institution.name.toLowerCase().includes(searchKeyword);
-        },
+      function (institution) {
+        return institution.name.toLowerCase().includes(searchKeyword);
+      },
     );
 
     var tbodyHtml = "";
     filteredWorkInstitutions.forEach(function (institution) {
       tbodyHtml +=
-          "<tr>" +
-          '<td><input type="checkbox" class="select-work-institution" data-name="' +
-          institution.name +
-          '"></td>' +
-          "<td>" +
-          institution.id +
-          "</td>" +
-          "<td>" +
-          institution.name +
-          "</td>" +
-          "<td>" +
-          institution.category +
-          "</td>" +
-          "<td>" +
-          institution.registrationNumber +
-          "</td>" +
-          "</tr>";
+        "<tr>" +
+        '<td><input type="checkbox" class="select-work-institution" data-name="' +
+        institution.name +
+        '"></td>' +
+        "<td>" +
+        institution.id +
+        "</td>" +
+        "<td>" +
+        institution.name +
+        "</td>" +
+        "<td>" +
+        institution.category +
+        "</td>" +
+        "<td>" +
+        institution.registrationNumber +
+        "</td>" +
+        "</tr>";
     });
     $("#workInstitutionTableBody").html(tbodyHtml);
   });
@@ -321,73 +321,73 @@ $(document).ready(function () {
   });
 
   $("#tree")
-      .fancytree({
-        extensions: ["table", "gridnav", "filter"],
-        checkbox: true,
-        table: {
-          checkboxColumnIdx: 0,
-          nodeColumnIdx: 1,
+    .fancytree({
+      extensions: ["table", "gridnav", "filter"],
+      checkbox: true,
+      table: {
+        checkboxColumnIdx: 0,
+        nodeColumnIdx: 1,
+      },
+      source: [
+        {
+          title: "생명과학",
+          key: "LA",
+          folder: true,
+          checkbox: false,
+          children: [
+            {
+              title: "분자세포생물학",
+              key: "LA01",
+              folder: true,
+              checkbox: false,
+              children: [
+                { title: "신호전달", key: "LA0101" },
+                { title: "세포구조/운동", key: "LA0102" },
+                { title: "세포변화/사멸", key: "LA0103" },
+                { title: "막 생물학", key: "LA0104" },
+                { title: "유전자 발현 조절", key: "LA0105" },
+                { title: "달리 분류되지 않은 분자세포 생물학", key: "LA0199" },
+              ],
+            },
+          ],
         },
-        source: [
-          {
-            title: "생명과학",
-            key: "LA",
-            folder: true,
-            checkbox: false,
-            children: [
-              {
-                title: "분자세포생물학",
-                key: "LA01",
-                folder: true,
-                checkbox: false,
-                children: [
-                  { title: "신호전달", key: "LA0101" },
-                  { title: "세포구조/운동", key: "LA0102" },
-                  { title: "세포변화/사멸", key: "LA0103" },
-                  { title: "막 생물학", key: "LA0104" },
-                  { title: "유전자 발현 조절", key: "LA0105" },
-                  { title: "달리 분류되지 않은 분자세포 생물학", key: "LA0199" },
-                ],
-              },
-            ],
-          },
-          {
-            title: "화학",
-            key: "CH",
-            folder: true,
-            checkbox: false,
-            children: [
-              {
-                title: "물리화학",
-                key: "CH01",
-                folder: true,
-                checkbox: false,
-                children: [
-                  { title: "양자화학", key: "CH0101" },
-                  { title: "화학 반응속도론", key: "CH0102" },
-                  { title: "달리 분류되지 않은 물리화학", key: "CH0199" },
-                ],
-              },
-            ],
-          },
-        ],
+        {
+          title: "화학",
+          key: "CH",
+          folder: true,
+          checkbox: false,
+          children: [
+            {
+              title: "물리화학",
+              key: "CH01",
+              folder: true,
+              checkbox: false,
+              children: [
+                { title: "양자화학", key: "CH0101" },
+                { title: "화학 반응속도론", key: "CH0102" },
+                { title: "달리 분류되지 않은 물리화학", key: "CH0199" },
+              ],
+            },
+          ],
+        },
+      ],
 
-        filter: {
-          autoApply: true, // 입력할 때 자동으로 필터 적용
-          counter: true, // 일치하는 노드 개수를 카운트
-          fuzzy: false, // 퍼지 검색 여부
-          hideExpandedCounter: true,
-          highlight: true, // 검색어와 일치하는 부분을 강조 표시
-        },
+      filter: {
+        autoApply: true, // 입력할 때 자동으로 필터 적용
+        counter: true, // 일치하는 노드 개수를 카운트
+        fuzzy: false, // 퍼지 검색 여부
+        hideExpandedCounter: true,
+        highlight: true, // 검색어와 일치하는 부분을 강조 표시
+      },
 
-        renderColumns: function (event, data) {
-          var node = data.node,
-              $tdList = $(node.tr).find(">td");
-          $tdList.eq(2).text(node.key);
-        },
-      })
-      .fancytree("getTree")
-      .$container.addClass("fancytree-connectors");
+      renderColumns: function (event, data) {
+        var node = data.node,
+          $tdList = $(node.tr).find(">td");
+        $tdList.eq(2).text(node.key);
+      },
+    })
+    .fancytree("getTree")
+    .$container.addClass("fancytree-connectors");
 
   // 검색 기능 연결
   $("#searchInput").keyup(function () {
@@ -401,8 +401,8 @@ $(document).ready(function () {
     // 필터링된 노드를 모두 펼침
     tree.visit(function (node) {
       if (
-          node.match ||
-          (node.children && node.children.some((child) => child.match))
+        node.match ||
+        (node.children && node.children.some((child) => child.match))
       ) {
         node.setExpanded(true);
       }
@@ -465,7 +465,7 @@ $(document).ready(function () {
       degreeDate: $("#degreeDate").val(),
       degreeInstitutionName: $("#degreeInstitutionName").val(),
       majorCategory: $("#majorCategory").val(),
-      majorSubcategory: $("#majorSubcategory").val()
+      majorSubcategory: $("#majorSubcategory").val(),
     };
     academicInfos.push(basicAcademicInfo);
 
@@ -478,27 +478,27 @@ $(document).ready(function () {
         degreeDate: $(`#degreeDate${i}`).val(),
         degreeInstitutionName: $(`#degreeInstitutionName${i}`).val(),
         majorCategory: $(`#majorCategory${i}`).val(),
-        majorSubcategory: $(`#majorSubcategory${i}`).val()
+        majorSubcategory: $(`#majorSubcategory${i}`).val(),
       };
       academicInfos.push(additionalAcademicInfo);
     }
 
     let basicCareerInfo = {
-      workInstitutionName : $("#workInstitutionName").val(),
-      workDepartment : $("#workDepartment").val(),
-      employmentType : $("#employmentType").val(),
-      workStartDate : $("#workStartDate").val(),
-      workEndDate : $("#workEndDate").val()
+      workInstitutionName: $("#workInstitutionName").val(),
+      workDepartment: $("#workDepartment").val(),
+      employmentType: $("#employmentType").val(),
+      workStartDate: $("#workStartDate").val(),
+      workEndDate: $("#workEndDate").val(),
     };
     careerInfos.push(basicCareerInfo);
 
-    for(let i = 2; i< careerInfoCount; i++){
+    for (let i = 2; i < careerInfoCount; i++) {
       let additionalCareerInfo = {
-        workInstitutionName : $(`#workInstitutionName${i}`).val(),
-        workDepartment : $(`#workDepartment${i}`).val(),
-        employmentType : $(`#employmentType${i}`).val(),
-        workStartDate : $(`#workStartDate${i}`).val(),
-        workEndDate : $(`#workEndDate${i}`).val()
+        workInstitutionName: $(`#workInstitutionName${i}`).val(),
+        workDepartment: $(`#workDepartment${i}`).val(),
+        employmentType: $(`#employmentType${i}`).val(),
+        workStartDate: $(`#workStartDate${i}`).val(),
+        workEndDate: $(`#workEndDate${i}`).val(),
       };
       careerInfos.push(additionalCareerInfo);
     }
@@ -510,7 +510,7 @@ $(document).ready(function () {
       let technicalInfo = {
         techGroupName: $(this).find("td").eq(1).text(),
         techCode: $(this).find("td").eq(2).text(),
-        techName: $(this).find("td").eq(3).text()
+        techName: $(this).find("td").eq(3).text(),
       };
       technicalInfos.push(technicalInfo);
     });
@@ -518,8 +518,8 @@ $(document).ready(function () {
     // 학력 및 경력 및 기술분야 정보를 함께 저장하는 AJAX 요청
     let requestData = {
       academicInfos: academicInfos,
-      careerInfos : careerInfos,
-      technicalInfos: technicalInfos
+      careerInfos: careerInfos,
+      technicalInfos: technicalInfos,
     };
 
     // ajax 예제

@@ -1,4 +1,4 @@
-.common-main{
+.common-main {
     width: 1000px;
     margin-top: 50px;
 }
@@ -11,7 +11,7 @@
 .filters {
     display: flex;
     gap: 15px;
-    padding : 5px;
+    padding: 5px;
     margin-bottom: 5px;
     border-radius: 10px;
 }
