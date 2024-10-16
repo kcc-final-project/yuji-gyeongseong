@@ -26,12 +26,12 @@
         <span class="service-content">과제의 진행현황을 실시간 확인하고, 업무 내용을 공동 연구자들과 공유하실 수 있습니다.</span>
     </div>
     <div class="filters">
-        <button class="filter-button active">전체</button>
-        <button class="filter-button">서비스</button>
-        <button class="filter-button">평가위원</button>
-        <button class="filter-button">담당자</button></div>
+        <button id = "all" class="filter-button active">전체</button>
+        <button id = "service" class="filter-button">서비스</button>
+        <button id = "committee" class="filter-button">평가위원</button>
+        <button id = "manager" class="filter-button">담당자</button></div>
     <div class="alarms">
-        <div class="notification-card" data-category="계획서">
+        <div class="notification-card" data-category="service">
             <div class="icon-container">
                 <span class="material-icons-outlined" style="font-size: 50px">info</span>
             </div>
@@ -42,11 +42,11 @@
             </div>
             <div class="notification-timestamp">2024-10-10 14:05:55</div>
         </div>
-        <div class="notification-card">
+        <div class="notification-card" data-category="committee">
             <div class="icon-container">
                 <span class="material-icons-outlined" style="font-size: 50px">diversity_3</span>
             </div>
-            <div class="notification-content" data-category="평가위원">
+            <div class="notification-content">
                 <p class="notification-title">[평가위원회 알림]</p>
                 <p class="notification-description">[2024-RM-03-일반] 경수형 SMR 리스크 평가 규제기반기술 개발_평가위원회4의 의견공유가
                     활성화 되었습니다. 의견공유 및 평가를 진행해 주세요.</p>
@@ -56,11 +56,11 @@
                 <button class="reject-button">의견공유 페이지</button>
             </div>
         </div>
-        <div class="notification-card">
+        <div class="notification-card" data-category="service">
             <div class="icon-container">
                 <span class="material-icons-outlined" style="font-size: 50px">forward_to_inbox</span>
             </div>
-            <div class="notification-content" data-category="서비스">
+            <div class="notification-content" >
                 <p class="notification-title">[서비스 알림]</p>
                 <p class="notification-description">[2024-RM-03-일반] 경수형 SMR 리스크 평가 규제기반기술 개발_평가위원회4에 참여하여
                     평가위원 제안을 수락하실지 여부를 선택해 주세요.</p>
@@ -71,7 +71,7 @@
                 <button id="approveButton" class="approve-button">승인</button>
             </div>
         </div>
-        <div class="notification-card">
+        <div class="notification-card" data-category="manager">
             <div class="icon-container">
                 <span class="material-icons-outlined" style="font-size: 50px">person_outline</span>
             </div>
