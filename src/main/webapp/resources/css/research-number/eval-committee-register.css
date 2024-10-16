@@ -68,7 +68,7 @@ hr {
     width: 100%;
 }
 
-#academicDetails, #careerDetails, #technicDetails {
+#academic_details, #career_details, #technicDetails {
     display: flex;
     flex-direction: column;
     gap: 20px;
