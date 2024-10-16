@@ -9,15 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AnnouncementController {
 
     @GetMapping
-    public String getAnnouncementList(){
+    public String getAnnouncementList() {
         return "announcement/announcement-list";
     }
+
     @GetMapping("/detail")
-    public String getDetailedNotice(){
+    public String getDetailedNotice() {
         return "announcement/detailed-notice";
     }
+
     @GetMapping("/apply")
-    public String getApplyNotice(){
+    public String getApplyNotice() {
         return "announcement/apply-for-notice";
     }
 

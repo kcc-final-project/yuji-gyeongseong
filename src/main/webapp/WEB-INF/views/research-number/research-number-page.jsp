@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insert title here</title>
+    <title>유지경성</title>
 
     <!-- research-page CSS -->
     <link rel="stylesheet" href="/resources/css/research-number/research-number.css"/>
@@ -48,17 +48,18 @@
     <div class="academic-info">
         <div class="title_warning">
             <p class="title">학력정보</p>
+            <button id="addAcademicInfoButton" class="ctm-btn-normal" style="width: 150px">학력정보추가</button>
             <p class="warning">* 필수 항목</p>
         </div>
 
         <hr>
 
-        <div class="academic-list">
+        <div class="academic-list" id="academicList">
             <div class="list">
                 <div class="inline-wrap">
                     <p>학력구분</p>
                     <p class="warn">*</p>
-                    <select name="degreeType" class="form-select" aria-label="Default select example">
+                    <select id="degreeType" name="degreeType" class="form-select" aria-label="Default select example">
                         <option value="1">학사</option>
                         <option value="2">석사</option>
                         <option value="3">박사</option>
@@ -71,7 +72,8 @@
                 <div class="inline-wrap">
                     <p>취득국가</p>
                     <p class="warn">*</p>
-                    <select name="degreeCountry" class="form-select" aria-label="Default select example">
+                    <select id="degreeCountry" name="degreeCountry" class="form-select"
+                            aria-label="Default select example">
                         <option value="kr">대한민국</option>
                         <option value="us">미국</option>
                         <option value="jp">일본</option>
@@ -87,7 +89,7 @@
                 <div class="inline-wrap">
                     <p>전공명</p>
                     <p class="warn">*</p>
-                    <input type="text" name="majorName" class="form-input" placeholder="전공명을(를) 입력하세요">
+                    <input type="text" id="majorName" name="majorName" class="form-input" placeholder="전공명을(를) 입력하세요">
                 </div>
             </div>
             <div class="list">
@@ -97,12 +99,8 @@
                     <p class="warn">*</p>
 
                     <div class="input-group">
-                        <input type="text" name="degreeDate" class="datepicker_input form-control" placeholder="취득연월"
-                               required
-                               aria-label="Date input 3 (using aria-label)">
-                        <span class="input-group-text">
-                            <i class="material-icons-outlined calendar-icon">calendar_month</i>
-                        </span>
+                        <input type="date" id="degreeDate" name="degreeDate" class="form-input"
+                               style="margin-left: 10px">
                     </div>
                 </div>
 
@@ -124,7 +122,7 @@
                     <p>전공계열</p>
                     <p class="warn">*</p>
                     <div class="major">
-                        <select id="major-category" name="majorCategory" class="form-select-two"
+                        <select id="majorCategory" name="majorCategory" class="form-select-two"
                                 aria-label="Default select example" onchange="updateMajorSubcategory()">
                             <option value="engineering">공학계열</option>
                             <option value="science">자연과학계열</option>
@@ -133,10 +131,8 @@
                             <option value="art">예술체육계열</option>
                         </select>
 
-                        <!-- 세부 전공 선택 -->
-                        <select id="major-subcategory" name="majorSubcategory" class="form-select-two"
+                        <select id="majorSubcategory" name="majorSubcategory" class="form-select-two"
                                 aria-label="Default select example">
-                            <!-- 세부 전공 목록은 자바스크립트로 업데이트 -->
                         </select>
                     </div>
                 </div>
@@ -144,15 +140,16 @@
         </div>
     </div>
 
-    <div class="career-info">
+    <div class="career-info" style="margin-top: 50px">
         <div class="title_warning">
             <p class="title">경력정보</p>
+            <button id="addCareerInfoButton" class="ctm-btn-normal" style="width: 150px">경력정보추가</button>
             <p class="warning">* 필수 항목</p>
         </div>
 
         <hr>
 
-        <div class="academic-list">
+        <div class="career-list">
             <div class="list">
 
                 <div class="inline-wrap">
@@ -171,14 +168,16 @@
                 <div class="inline-wrap">
                     <p>근무부서</p>
                     <p class="warn">*</p>
-                    <input type="text" name="workDepartment" class="form-input" placeholder="근무부서을(를) 입력하세요">
+                    <input type="text" id="workDepartment" name="workDepartment" class="form-input"
+                           placeholder="근무부서을(를) 입력하세요">
                 </div>
             </div>
             <div class="list">
                 <div class="inline-wrap">
                     <p>고용형태</p>
                     <p class="warn">*</p>
-                    <select name="employmentType" class="form-select" aria-label="Default select example">
+                    <select id="employmentType" name="employmentType" class="form-select"
+                            aria-label="Default select example">
                         <option value="1">정규직</option>
                         <option value="2">계약직</option>
                         <option value="3">프리랜서</option>
@@ -193,32 +192,24 @@
                     <div class="calen">
 
                         <div class="input-group input-group-small">
-                            <input type="text" name="workStartDate" class="datepicker_input form-control"
-                                   placeholder="근무시작기간" required
+                            <input type="date" id="workStartDate" name="workStartDate"
+                                   class="form-control"
                                    aria-label="Start Date">
-                            <span class="input-group-text">
-                                <i class="material-icons-outlined calendar-icon">calendar_month</i>
-                            </span>
                         </div>
 
                         <span style="margin: 0 10px;">~</span>
 
                         <div class="input-group input-group-small">
-                            <input type="text" name="workEndDate" class="datepicker_input form-control"
-                                   placeholder="근무종료기간" required
+                            <input type="date" id="workEndDate" name="workEndDate" class="form-control"
                                    aria-label="End Date">
-                            <span class="input-group-text">
-                                <i class="material-icons-outlined calendar-icon">calendar_month</i>
-                            </span>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <div class="technical-info">
+    <div class="technical-info" style="margin-top: 50px">
         <div class="title_warning">
             <p class="title">기술분야정보</p>
             <div class="buttons">
@@ -244,20 +235,6 @@
                 </tr>
                 </thead>
                 <tbody id="technicalInfoTableBody">
-                <!-- 새로운 기술분야 행 추가 -->
-                <tr>
-                    <td><input type="checkbox" class="rowCheckbox"></td>
-                    <td>테스트</td>
-                    <td>테스트</td>
-                    <td>테스트</td>
-                </tr>
-
-                <tr>
-                    <td><input type="checkbox" class="rowCheckbox"></td>
-                    <td>테스트 2</td>
-                    <td>테스트 2</td>
-                    <td>테스트 2</td>
-                </tr>
                 </tbody>
             </table>
         </div>
@@ -274,7 +251,6 @@
     </div>
 
 
-    <!-- 기술분야 추가 모달 -->
     <div class="modal fade" id="addTechnicalModal" tabindex="-1" aria-labelledby="addTechnicalModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -284,27 +260,22 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- 검색 영역 -->
+
                     <div class="form-group mb-3">
-                        <label for="technicalGroupNameSearch">기술분류명</label>
-                        <div class="input-group">
-                            <input type="text" id="technicalGroupNameSearch" class="form-control"
-                                   placeholder="기술분류명을 입력하세요">
-                            <button class="btn ctm-btn-normal searchBtn" id="searchTechnical"><i
-                                    class="material-icons-outlined">search</i></button>
-                        </div>
+                        <label for="searchInput" style="width: 200px">기술분류명:</label>
+                        <input type="text" id="searchInput" class="form-control" placeholder="검색어를 입력하세요">
                     </div>
 
                     <!-- 트리 구조 영역 -->
                     <%--<div id="technicalTree" class="technical-tree-container"></div>--%>
 
-                    <div id="tree">
+                    <div id="tree" class="fancytree-connectors fancytree-ext-table technical-tree-container">
                         <table>
                             <thead>
                             <tr>
                                 <th></th>
-                                <th>Name</th>
-                                <th>Key</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -319,7 +290,6 @@
                 </div>
             </div>
 
-            <%--    <div id="tree" style="width: 100%; height: 500px; background-color: #60d33e"></div>--%>
 
         </div>
     </div>
@@ -336,7 +306,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <!-- Search Area -->
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
@@ -367,8 +336,6 @@
                 </div>
             </div>
             <div class="modal-footer">
-
-
                 <button type="button" class="btn btn-secondary wid" data-bs-dismiss="modal">닫기</button>
                 <button type="button" id="addInstitutionBtn" class="btn ctm-btn-normal wid">선택</button>
             </div>

@@ -11,7 +11,7 @@
     font-weight: bold;
 }
 
-.title{
+.title {
     display: flex;
     font-size: x-large;
 }
@@ -31,7 +31,7 @@
     padding-right: 20px;
 }
 
-.technic{
+.technic {
     flex: 1;
 }
 
@@ -46,16 +46,17 @@
     font-weight: bold;
 }
 
-.academic-name{
+.academic-name {
     margin-left: 30px;
 }
 
 .career-name {
     margin-left: 410px;
 }
+
 .technic-name {
-     margin-left: 410px;
- }
+    margin-left: 410px;
+}
 
 
 hr {
@@ -68,13 +69,13 @@ hr {
     width: 100%;
 }
 
-#academicDetails, #careerDetails, #technicDetails {
+#academic_details, #career_details, #technicDetails {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-#technicDetails{
+#technicDetails {
     margin-top: 20px;
 }
 
@@ -110,11 +111,12 @@ hr {
     gap: 10px;
     margin-top: 70px;
 }
-.btnwid{
+
+.btnwid {
     width: 100px;
 }
 
-.ctm-btn-cancel{
+.ctm-btn-cancel {
     border: 1.5px solid var(--main-bg-color);
     border-radius: 6px;
     height: 38px;
