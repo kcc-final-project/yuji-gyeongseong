@@ -34,6 +34,8 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
     ></script>
+    <!-- Jquery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <!-- Bootstrap5 Script -->
     <script
             src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

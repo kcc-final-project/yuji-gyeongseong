@@ -52,7 +52,8 @@
             <h5>과제정보</h5>
         </div>
         <div class="header-section__btn">
-            <div class="ctm-btn ctm-btn-outline">
+            <div class="ctm-btn ctm-btn-outline" data-bs-toggle="modal"
+                 data-bs-target="#progressHistoryModal">
                 <span class="material-icons ctm-icon">history_2</span>진행내역 조회
             </div>
         </div>
@@ -76,6 +77,129 @@
             </tr>
             </tbody>
         </table>
+    </div>
+</div>
+
+<%-- 진행내역 조회 모달창 --%>
+<div class="modal fade" id="progressHistoryModal" tabindex="-1" aria-labelledby="progressHistoryModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-xl ctm-modal-position">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fz16" id="progressHistoryModalLabel">진행내역</h1>
+            </div>
+            <div class="modal-body ctm-f">
+                <div class="progressHistorySection">
+                    <h5>진행내역</h5>
+                    <div class="techFieldSection-sub ctm-f-center-start">
+                        <span class="fz14 fc-blue fw-bold">시스템 상 자동으로 임시저장 처리되는 경우 처리자 항목이 '시스템 처리'로 표시됩니다.</span>
+                    </div>
+                    <div class="techFieldSection-line"></div>
+                    <div class="progressHistorySection-body">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <td class="ctm-th ctm-tb-w53">No.</td>
+                                <td class="ctm-th ctm-tb-w215">처리상태</td>
+                                <td class="ctm-th ctm-tb-w215">처리자</td>
+                                <td class="ctm-th ctm-tb-w323">처리일시</td>
+                                <td class="ctm-th ctm-tb-w283">비고</td>
+                            </tr>
+                            </thead>
+                        </table>
+                        <div class="ctm-tb-scroll">
+                            <table class="table table-bordered table-striped">
+                                <tbody>
+                                <tr>
+                                    <td class="text-center ctm-w5p">1</td>
+                                    <td class="text-center ctm-w20p">계획서 작성중</td>
+                                    <td class="text-center ctm-w20p">황철원</td>
+                                    <td class="text-center">2024-09-12 11:15:21:70</td>
+                                    <td class="text-center ctm-w25p">기본정보 - 작성중</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">계획서 작성중</td>
+                                    <td class="text-center">황철원</td>
+                                    <td class="text-center">2024-09-12 11:15:21:70</td>
+                                    <td class="text-center">기본정보 - 작성중</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">계획서 작성중</td>
+                                    <td class="text-center">황철원</td>
+                                    <td class="text-center">2024-09-12 11:15:21:70</td>
+                                    <td class="text-center">기본정보 - 작성중</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">계획서 작성중</td>
+                                    <td class="text-center">황철원</td>
+                                    <td class="text-center">2024-09-12 11:15:21:70</td>
+                                    <td class="text-center">기본정보 - 작성중</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">계획서 작성중</td>
+                                    <td class="text-center">황철원</td>
+                                    <td class="text-center">2024-09-12 11:15:21:70</td>
+                                    <td class="text-center">기본정보 - 작성중</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">계획서 작성중</td>
+                                    <td class="text-center">황철원</td>
+                                    <td class="text-center">2024-09-12 11:15:21:70</td>
+                                    <td class="text-center">기본정보 - 작성중</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">계획서 작성중</td>
+                                    <td class="text-center">황철원</td>
+                                    <td class="text-center">2024-09-12 11:15:21:70</td>
+                                    <td class="text-center">기본정보 - 작성중</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">계획서 작성중</td>
+                                    <td class="text-center">황철원</td>
+                                    <td class="text-center">2024-09-12 11:15:21:70</td>
+                                    <td class="text-center">기본정보 - 작성중</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">계획서 작성중</td>
+                                    <td class="text-center">황철원</td>
+                                    <td class="text-center">2024-09-12 11:15:21:70</td>
+                                    <td class="text-center">기본정보 - 작성중</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">계획서 작성중</td>
+                                    <td class="text-center">황철원</td>
+                                    <td class="text-center">2024-09-12 11:15:21:70</td>
+                                    <td class="text-center">기본정보 - 작성중</td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">1</td>
+                                    <td class="text-center">계획서 작성중</td>
+                                    <td class="text-center">황철원</td>
+                                    <td class="text-center">2024-09-12 11:15:21:70</td>
+                                    <td class="text-center">기본정보 - 작성중</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer ctm-f-center">
+                <button type="button" class="ctm-btn ctm-btn-outline ctm-w10p ctm-h38 ctm-f-center"
+                        data-bs-dismiss="modal">닫기
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 

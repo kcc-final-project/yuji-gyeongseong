@@ -22,6 +22,11 @@ function setupEventHandlers() {
   $("#btn-remove-selected").on("click", removeSelectedTechFields);
   $("#select-all").on("change", toggleSelectAllRows);
   $(".techFieldSection-body tbody").on("input", validateWeightSum);
+  $(".techFieldSection-body tbody").on(
+    "focusout",
+    'input[type="number"]',
+    sortTableRows,
+  );
   $("#btn-modal-complete").on("click", applySelectedTechFields);
 }
 
@@ -244,22 +249,22 @@ function validateWeightSum() {
   let totalWeight = 0;
   let valid = true;
 
-  $(".techFieldSection-body tbody input[type='number']").each(function () {
-    const value = $(this).val();
-    if (value === "") {
-      valid = false;
-      return false;
-    }
+  $(".techFieldSection-body tbody tr").each(function () {
+    const $row = $(this);
+    const value = $row.find('input[type="number"]').val();
 
-    const num = parseInt(value, 10);
-    if (isNaN(num)) {
+    let num = parseInt(value, 10);
+
+    // 입력 필드가 비어있거나 유효하지 않은 경우
+    if (value === "" || isNaN(num)) {
       valid = false;
-      return false;
+      num = 0;
     }
 
     totalWeight += num;
   });
 
+  // 유효성 검사 결과에 따라 에러 메시지 표시
   if (!valid || totalWeight !== 100) {
     $("#weight-sum-error").show();
   } else {
@@ -267,54 +272,115 @@ function validateWeightSum() {
   }
 }
 
-// 연구분야 테이블에 데이터 반영
-function applySelectedTechFields() {
-  let totalWeight = 0;
-  let valid = true;
+// 가중치 크기 따라 요소 정렬
+function sortTableRows() {
+  let rowData = [];
 
-  $(".techFieldSection-body tbody input[type='number']").each(function () {
-    const value = $(this).val();
-    if (value === "") {
-      valid = false;
-      return false;
-    }
-
+  $(".techFieldSection-body tbody tr").each(function () {
+    const $row = $(this);
+    const techName = $row.find("td:eq(1)").text().trim();
+    const value = $row.find('input[type="number"]').val();
     const num = parseInt(value, 10);
-    if (isNaN(num)) {
-      valid = false;
-      return false;
-    }
 
-    totalWeight += num;
+    rowData.push({
+      techName: techName,
+      weight: num,
+      $row: $row.detach(),
+    });
   });
 
-  if (!valid || totalWeight !== 100) {
-    Swal.fire({
-      icon: "warning",
-      text: "가중치의 합계는 100이어야 합니다.",
-      showConfirmButton: true,
-    });
+  // 내림차순 정렬
+  rowData.sort(function (a, b) {
+    return b.weight - a.weight;
+  });
+
+  // 정렬된 요소로 테이블 갱신
+  const $tableBody = $(".techFieldSection-body tbody");
+  rowData.forEach(function (data, index) {
+    data.$row.find("td:last").text(index + 1);
+    $tableBody.append(data.$row);
+  });
+}
+
+// 연구분야 테이블에 데이터 반영
+function applySelectedTechFields() {
+  const $tableBody = $(".techFieldSection-body tbody");
+  const $rows = $tableBody.find("tr");
+  const rowData = [];
+
+  if ($rows.length === 0) {
+    for (let i = 1; i <= TECH_FIELD_MAX_COUNT; i++) {
+      $("#research-field-" + i).val("");
+      $("#research-weight-" + i).val("");
+    }
+
+    $("#techFieldModal").modal("hide");
+    $("#techField-feedback").hide();
     return;
   }
 
-  const $tableBody = $(".techFieldSection-body tbody");
-  const $rows = $tableBody.find("tr");
+  $rows.each(function () {
+    const $row = $(this);
+    const value = $row.find('input[type="number"]').val();
+    const techName = $row.find("td:eq(1)").text().trim();
+    let num = parseInt(value, 10);
 
-  $rows.each(function (index) {
-    const techName = $(this).find("td:eq(1)").text().trim();
-    const weight = $(this).find('input[type="number"]').val().trim();
+    rowData.push({
+      techName: techName,
+      weight: num,
+    });
+  });
 
+  rowData.forEach(function (data, index) {
     const fieldInput = $("#research-field-" + (index + 1));
     const weightInput = $("#research-weight-" + (index + 1));
 
-    fieldInput.val(techName);
-    weightInput.val(weight);
+    fieldInput.val(data.techName);
+    weightInput.val(data.weight);
   });
 
-  for (let i = $rows.length + 1; i <= TECH_FIELD_MAX_COUNT; i++) {
-    $("#research-field-" + i).val("");
-    $("#research-weight-" + i).val("");
+  $("#techFieldModal").modal("hide");
+  $("#techField-feedback").hide();
+}
+
+// 필수 입력 값 확인
+function validateBasicFields() {
+  let isValid = true;
+  let inValidSection = null;
+  let hasResearchField = false;
+
+  // 연구개발과제명 확인
+  const taskTitle = $("#ipt-task-title").val().trim();
+  if (taskTitle === "") {
+    isValid = false;
+    showValidationFeedback();
+    inValidSection = $(".task-title");
   }
 
-  $("#techFieldModal").modal("hide");
+  // 연구분야 확인
+  for (let i = 1; i <= 3; i++) {
+    const fieldValue = $(`#research-field-${i}`).val().trim();
+
+    if (fieldValue !== "") {
+      hasResearchField = true;
+      break;
+    }
+  }
+
+  if (!hasResearchField) {
+    isValid = false;
+    $("#techField-feedback").show();
+    inValidSection = $(".task-info");
+  }
+
+  if (!isValid) {
+    $("html, body").animate(
+        {
+          scrollTop: inValidSection.offset().top - -250,
+        },
+        500,
+    );
+  }
+
+  return isValid;
 }
