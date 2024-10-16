@@ -38,9 +38,11 @@ public class ResearchNumberController {
     public String getResearchNumber(@PathVariable Long id, Model model) {
         List<AcadAbility> academicList = evalCommitteeService.getAllAcadAbilitiesByMemberId(id);
         List<Career> careerList = evalCommitteeService.getAllCareersByMemberId(id);
+        List<String> techNameList = evalCommitteeService.getAllTechFieldNameByMemberId(id);
 
         model.addAttribute("academic_list", academicList);
         model.addAttribute("career_list", careerList);
+        model.addAttribute("tech_name_list", techNameList);
 
         return "research-number/eval-committee-register";
     }

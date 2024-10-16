@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
+<body style="height: auto;">
 <div class="common-main">
     <div class="eval_title">
         <p>후보단 등록</p>
@@ -104,18 +104,12 @@
         <div class="technic">
             <hr>
             <div id="technicDetails">
-                <div class="field">
-                    <label>기술분야명1</label>
-                    <div id="secDetailedTech" class="value">분자 세포 생물학</div>
-                </div>
-                <div class="field">
-                    <label>기술분야명2</label>
-                    <div id="firstDetailedTech" class="value">분자 세포 생물학</div>
-                </div>
-                <div class="field">
-                    <label>기술분야명3</label>
-                    <div id="thirdDetailedTech" class="value">분자 세포 생물학</div>
-                </div>
+                <c:forEach var="Name" items="${tech_name_list}" varStatus="status">
+                    <div class="field">
+                        <label>기술분야명 ${status.count}</label>
+                        <div class="value">${Name}</div>
+                    </div>
+                </c:forEach>
             </div>
         </div>
     </div>

@@ -23,4 +23,9 @@ public class EvalCommitteeServiceImpl implements EvalCommitteeService {
     public List<AcadAbility> getAllAcadAbilitiesByMemberId(Long id) {
         return evalCommitteeMapper.selectAllAcadAbilitiesByMemberId(id);
     }
+
+    @Override
+    public List<String> getAllTechFieldNameByMemberId(Long id) {
+        return evalCommitteeMapper.selectAllTechFieldNameByMemberId(id);
+    }
 }
