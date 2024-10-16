@@ -5,70 +5,67 @@
 
     <select id="selectAcceptionAnnouncementList" resultType="Announcement">
         SELECT
-            ANN_NO AS annNo,
-            TOTAL_ANN_NO AS totalAnnNo,
-            TOTAL_TITLE AS totalTitle,
-            COMPETENT_MINISTRY AS competentMinistry,
-            SPEC_INSTITUTION AS specInstitution,
-            ANN_TYPE AS annType,
-            SUB_ANN_COUNT AS subAnnCount,
-            RECEPTION_TYPE AS receptionType,
-            STATUS AS status,
-            FORMATDATETIME(STARTED_AT, 'yyyy-MM-dd') AS startedAt,
---             STARTED_AT AS startedAt,
-            CLOSED_AT AS closedAt,
-            CREATED_AT AS createdAt,
-            UPDATED_AT AS updatedAt,
-            BUCKET_NO AS bucketNo
+            ann_no AS annno,
+            total_ann_no AS totalannno,
+            total_title AS totaltitle,
+            competent_ministry AS competentministry,
+            spec_institution AS specinstitution,
+            ann_type AS anntype,
+            sub_ann_count AS subanncount,
+            reception_type AS receptiontype,
+            status AS status,
+            FORMATDATETIME(started_at, 'yyyy-MM-dd') AS startedat,
+            closed_at AS closedat,
+            created_at AS createdat,
+            updated_at AS updatedat,
+            bucket_no AS bucketno
         FROM
             announcement
         WHERE
-            STATUS = '접수중';
+            status = '접수중';
 
     </select>
 
     <select id="selectExpectedAnnouncementList" resultType="Announcement">
         SELECT
-            ANN_NO AS annNo,
-            TOTAL_ANN_NO AS totalAnnNo,
-            TOTAL_TITLE AS totalTitle,
-            COMPETENT_MINISTRY AS competentMinistry,
-            SPEC_INSTITUTION AS specInstitution,
-            ANN_TYPE AS annType,
-            SUB_ANN_COUNT AS subAnnCount,
-            RECEPTION_TYPE AS receptionType,
-            STATUS AS status,
-            FORMATDATETIME(STARTED_AT, 'yyyy-MM-dd') AS startedAt,
---             STARTED_AT AS startedAt,
-            CLOSED_AT AS closedAt,
-            CREATED_AT AS createdAt,
-            UPDATED_AT AS updatedAt,
-            BUCKET_NO AS bucketNo
+            ann_no AS annno,
+            total_ann_no AS totalannno,
+            total_title AS totaltitle,
+            competent_ministry AS competentministry,
+            spec_institution AS specinstitution,
+            ann_type AS anntype,
+            sub_ann_count AS subanncount,
+            reception_type AS receptiontype,
+            status AS status,
+            FORMATDATETIME(started_at, 'yyyy-MM-dd') AS startedat,
+            closed_at AS closedat,
+            created_at AS createdat,
+            updated_at AS updatedat,
+            bucket_no AS bucketno
         FROM
             announcement
         WHERE
-            STATUS = '접수예정';
+            status = '접수예정';
     </select>
     <select id="selectDeadLineAnnouncementList" resultType="Announcement">
         SELECT
-            ANN_NO AS annNo,
-            TOTAL_ANN_NO AS totalAnnNo,
-            TOTAL_TITLE AS totalTitle,
-            COMPETENT_MINISTRY AS competentMinistry,
-            SPEC_INSTITUTION AS specInstitution,
-            ANN_TYPE AS annType,
-            SUB_ANN_COUNT AS subAnnCount,
-            RECEPTION_TYPE AS receptionType,
-            STATUS AS status,
-            FORMATDATETIME(STARTED_AT, 'yyyy-MM-dd') AS startedAt,
---             STARTED_AT AS startedAt,
-            CLOSED_AT AS closedAt,
-            CREATED_AT AS createdAt,
-            UPDATED_AT AS updatedAt,
-            BUCKET_NO AS bucketNo
+            ann_no AS annno,
+            total_ann_no AS totalannno,
+            total_title AS totaltitle,
+            competent_ministry AS competentministry,
+            spec_institution AS specinstitution,
+            ann_type AS anntype,
+            sub_ann_count AS subanncount,
+            reception_type AS receptiontype,
+            status AS status,
+            FORMATDATETIME(started_at, 'yyyy-MM-dd') AS startedat,
+            closed_at AS closedat,
+            created_at AS createdat,
+            updated_at AS updatedat,
+            bucket_no AS bucketno
         FROM
             announcement
         WHERE
-            STATUS = '접수마감';
+            status = '접수마감';
     </select>
 </mapper>

@@ -1,10 +1,10 @@
 $(function () {
-    // 공고 목록 로드
     loadAnnouncements();
 
+    //접수중 공고 목록 조회
     function loadAnnouncements() {
         $.ajax({
-            url: '/anno/accepting', // 공고 데이터를 가져올 API 엔드포인트
+            url: '/anno/accepting',
             method: 'GET',
             success: function (data) {
                 // 받은 데이터를 기반으로 공고 목록 생성
@@ -16,39 +16,38 @@ $(function () {
         });
     }
 
-    function loadExpectedAnnouncements(){
+    //접수예정 공고 목록 조회
+    function loadExpectedAnnouncements() {
         $.ajax({
-            url:'/anno/expected',
+            url: '/anno/expected',
             method: 'GET',
-            success: function(data){
+            success: function (data) {
                 renderAnnouncements(data);
             },
-            error:function(){
+            error: function () {
                 alert('공고 목록을 불러오는 데 실패했습니다.');
             }
         })
     }
 
-    function loadDeadlineAnnouncements(){
+    //접수마감 공고 목록 조회
+    function loadDeadlineAnnouncements() {
         $.ajax({
-            url:'/anno/deadline',
-            method:'GET',
-            success: function(data){
+            url: '/anno/deadline',
+            method: 'GET',
+            success: function (data) {
                 renderAnnouncements(data)
             },
-            error:function(){
+            error: function () {
                 alert('공고 목록을 불러오는 데 실패했습니다.');
             }
         })
     }
 
-
-
+    //공고 목록 추가(공통)
     function renderAnnouncements(announcements) {
-
-        $('#announcementContainer').empty(); // 기존 목록 비우기
-
-        announcements.forEach(function (announcementRequest) { // 클래스 이름에 맞게 수정
+        $('#announcementContainer').empty();
+        announcements.forEach(function (announcementRequest) {
             var announcementHtml = `
             <div class="anno-list shadow-sm">
                 <div class="technology-field">
@@ -68,10 +67,9 @@ $(function () {
                 </div>
             </div>
         `;
-            $('#announcementContainer').append(announcementHtml); // HTML 추가
+            $('#announcementContainer').append(announcementHtml);
         });
     }
-
 
     const buttons = document.querySelectorAll('.reception-status-wrap button');
     buttons.forEach(button => {
@@ -81,14 +79,11 @@ $(function () {
             buttons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
 
-            if(btnStatus==="접수예정"){
-                console.log("접수예정 클릭");
+            if (btnStatus === "접수예정") {
                 loadExpectedAnnouncements()
-            }else if(btnStatus==="접수마감"){
-                console.log("접수마감 클릭");
+            } else if (btnStatus === "접수마감") {
                 loadDeadlineAnnouncements();
-            }else{
-                console.log("접수중 클릭");
+            } else {
                 loadAnnouncements()
             }
         });
@@ -131,7 +126,6 @@ $(function () {
                 });
             });
         }
-
         handleCheckboxClick('.ok', '#select-one-all-checkbox');
         handleCheckboxClick('.ok2', '#select-two-all-checkbox');
         handleCheckboxClick('.ok3', '#select-three-all-checkbox');

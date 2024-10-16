@@ -14,13 +14,11 @@ public class AnnouncementListImpl implements AnnouncementListService {
 
     @Override
     public List<Announcement> getAcceptingAnnouncementList() {
-        System.out.println("서비스 구현체에서 가져온 값 : " + announcementMapper.selectAcceptionAnnouncementList());
         return announcementMapper.selectAcceptionAnnouncementList();
     }
 
     @Override
     public List<Announcement> getExpectedAnnouncementList() {
-        System.out.println("접수예정 서비스에서 가져온 값 : " + announcementMapper.selectAcceptionAnnouncementList());
         return announcementMapper.selectExpectedAnnouncementList();
     }
 

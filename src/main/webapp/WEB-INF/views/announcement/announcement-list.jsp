@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="/resources/css/announcement/announcement.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
     <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.min.js"></script>
-    <script>
-
-    </script>
 </head>
 <body>
 <div class="common-main">
@@ -462,25 +459,6 @@
                     </div>
                 </div>
                 <div class="anno-list-area" id="announcementContainer">
-
-<%--                                        <div class="anno-list shadow-sm">--%>
-<%--                                            <div class="technology-field">--%>
-<%--                                                &lt;%&ndash;소관부처,전문기관 합친게 technology-title로 들어갈것임&ndash;%&gt;--%>
-<%--                                                <p class="technology-title">과학기술정보통신부 > 혁신형소형모듈원자로기술개발사업단</p>--%>
-<%--                                                <div class="anno-status">--%>
-<%--                                                    <p class="status">접수중</p>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="anno-announcement-title">--%>
-<%--                                                <p class="total_title">2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</p>--%>
-<%--                                            </div>--%>
-<%--                                            <div class="anno-bottom-wrap">--%>
-<%--                                                <p class="total_ann_no">공고번호: 과학기술정보통신부 공고 제2024 - 0925호</p>--%>
-<%--                                                <p class="ann_type">공모유형: 품목지정공모</p>--%>
-<%--                                                <p class="started_at">공고일자: 2024-09-23</p>--%>
-<%--                                                <button class="view-details-btn">상세보기</button>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
 
                 </div>
             </div>
