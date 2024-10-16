@@ -18,7 +18,6 @@ public class WorkLoungeController {
         return "work-lounge/business-timeline";
     }
 
-
     @GetMapping("/evaluation-table")
     public String getWorkLoungeEvaluationTablePage() {
         return "work-lounge/evaluation-table";
@@ -62,5 +61,10 @@ public class WorkLoungeController {
     @GetMapping("/bubble-chart")
     public String getWorkLoungeBubbleChartPage() {
         return "work-lounge/bubble-chart";
+    }
+
+    @GetMapping("/eval-compose")
+    public String getWorkLoungeEvalComposePage() {
+        return "work-lounge/eval-committee-compose";
     }
 }
