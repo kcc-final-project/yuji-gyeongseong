@@ -272,7 +272,9 @@
 
 .anno-bottom-wrap {
     display: flex;
-    justify-content: space-evenly;
+    width: 90%;
+    margin: auto;
+    justify-content: space-between;
 }
 
 .anno-bottom-wrap p {
