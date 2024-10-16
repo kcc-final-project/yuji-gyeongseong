@@ -31,10 +31,50 @@ function showNextConfirmation() {
     cancelButtonColor: "#2e406a",
   }).then((result) => {
     if (result.isConfirmed) {
-      // TODO: 저장 로직 처리
-      currentStep += 1;
-      updateProgressBar();
-      loadStepContent(currentStep);
+      // 기본정보 유효성 검사 후 페이지 이동
+      if (currentStep === 1 && validateBasicFields()) {
+        // TODO: 저장 로직 처리
+        currentStep += 1;
+        updateProgressBar();
+        loadStepContent(currentStep);
+      }
+      // 과제요약 유효성 검사 후 페이지 이동
+      else if (currentStep === 2 && validateTaskSummaryFields()) {
+        // TODO: 저장 로직 처리
+        currentStep += 1;
+        updateProgressBar();
+        loadStepContent(currentStep);
+      }
+      // 연구기관 유효성 검사 후 페이지 이동
+      else if (currentStep === 3) {
+        // TODO: 저장 로직 처리
+        currentStep += 1;
+        updateProgressBar();
+        loadStepContent(currentStep);
+      }
+      // 연구개발비 유효성 검사 후 페이지 이동
+      else if (currentStep === 4) {
+        // TODO: 저장 로직 처리
+        currentStep += 1;
+        updateProgressBar();
+        loadStepContent(currentStep);
+      }
+      // 첨부파일 유효성 검사 후 페이지 이동
+      else if (currentStep === 4) {
+        // TODO: 저장 로직 처리
+        currentStep += 1;
+        updateProgressBar();
+        loadStepContent(currentStep);
+      }
+      // 필수 항목에 대한 경고창
+      else {
+        Swal.fire({
+          icon: "warning",
+          text: "필수 항목 값을 모두 입력해주시기 바랍니다.",
+          confirmButtonText: "확인",
+          confirmButtonColor: "#2e406a",
+        });
+      }
     }
   });
 }
@@ -109,7 +149,7 @@ function sessionExpired() {
 
 // 화면 최상단으로 스크롤 이동
 function scrollToTop() {
-  $("html").scrollTop(0);
+  $("html, body").animate({ scrollTop: 0 }, 150, "linear");
 }
 
 // 세션 연장 성공 알림

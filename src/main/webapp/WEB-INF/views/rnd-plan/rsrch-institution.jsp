@@ -57,18 +57,16 @@
             <div class="header-section__title">
                 <h5>연구원 구성</h5>
             </div>
-            <div class="header-section__btn">
-                <div class="ctm-btn ctm-btn-normal ctm-w45p ctm-h30 fz14">
-                    <span class="material-icons ctm-icon">share</span>
-                    연구원 정보 불러오기
+            <div class="header-section__btn ctm-w25p">
+                <div class="ctm-btn ctm-btn-normal ctm-w35p ctm-h30 fz14" data-bs-toggle="modal"
+                     data-bs-target="#rsrchSyncModal">
+                    <span class="material-icons ctm-icon me-2">share</span>
+                    <span>불러오기</span>
                 </div>
-                <div class="ctm-btn ctm-btn-outline fz14 ms-4 me-2">
-                    <span class="material-icons ctm-icon ctm-icon-main-clr">group_remove</span>
-                    연구원 삭제
-                </div>
-                <div class="ctm-btn ctm-btn-outline fz14">
+                <div class="ctm-btn ctm-btn-outline ctm-w45p fz14 ms-3" data-bs-toggle="modal"
+                     data-bs-target="#rsrchModal">
                     <span class="material-icons ctm-icon ctm-icon-main-clr">group_add</span>
-                    연구원 추가
+                    <span>연구원 설정</span>
                 </div>
             </div>
         </div>
@@ -172,6 +170,219 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <%-- 연구원 인력 모달창 --%>
+    <div class="modal fade overflow-hidden" id="rsrchModal" tabindex="-1" aria-labelledby="rsrchModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-xl ctm-rsrchModal-position">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fz16" id="techFieldModalLabel">연구원 검색</h1>
+                </div>
+                <div class="modal-body ctm-rsrch-mbody">
+                    <table class="table table-bordered mt-2 align-middle">
+                        <tr>
+                            <td class="ctm-th ctm-w20p">성명</td>
+                            <td class="ctm-th">
+                                <input class="form-control form-control-sm" type="text">
+                            </td>
+                            <td class="ctm-th ctm-w20p">국가연구자번호</td>
+                            <td class="ctm-th">
+                                <input class="form-control form-control-sm" type="text">
+                            </td>
+                            <td rowspan="2">
+                                <button type="button" class="ctm-btn-orange-search">검색</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="ctm-th ctm-w20p">소속기관</td>
+                            <td class="ctm-th">
+                                <input class="form-control form-control-sm" type="text">
+                            </td>
+                            <td class="ctm-th ctm-w20p">부서</td>
+                            <td class="ctm-th">
+                                <input class="form-control form-control-sm" type="text">
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="ctm-f-col-center">
+                        <div class="ctm-w100p">
+                            <div class="ctm-f-center-between mb-2">
+                                <h5 class="rsrch-section__title">인력목록</h5>
+                                <span>전체 <span>1</span>건</span>
+                            </div>
+
+                            <div class="rsrch-table">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <td class="ctm-th ctm-tb-w58">
+                                            <input id="select-all" class="form-check-input ctm-td-btn-center"
+                                                   type="checkbox"
+                                                   value=""/>
+                                        </td>
+                                        <td class="ctm-th ctm-tb-w117">성명</td>
+                                        <td class="ctm-th ctm-tb-w176">연구자번호</td>
+                                        <td class="ctm-th ctm-tb-w234">소속기관</td>
+                                        <td class="ctm-th ctm-tb-w176">부서</td>
+                                        <td class="ctm-th ctm-tb-w117">직위</td>
+                                        <td class="ctm-th ctm-tb-w190">생년월일</td>
+                                    </tr>
+                                    </thead>
+                                </table>
+                                <div class="ctm-tb-scroll2">
+                                    <table class="table table-sm table-bordered table-striped table-hover">
+                                        <tbody>
+                                        <tr>
+                                            <td class="text-center ctm-w5p">
+                                                <input class="form-check-input ctm-td-btn-center"
+                                                       type="checkbox"
+                                                       value=""/>
+                                            </td>
+                                            <td class="text-center ctm-w10p">황철원</td>
+                                            <td class="text-center ctm-w15p">28484721</td>
+                                            <td class="text-center ctm-w20p">kcc 정보통신</td>
+                                            <td class="text-center ctm-w15p">개발 1팀</td>
+                                            <td class="text-center ctm-w10p">대리</td>
+                                            <td class="text-center ctm-w15p">1997-09-03</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center ctm-w5p">
+                                                <input class="form-check-input ctm-td-btn-center"
+                                                       type="checkbox"
+                                                       value=""/>
+                                            </td>
+                                            <td class="text-center ctm-w10p">황철원</td>
+                                            <td class="text-center ctm-w15p">28484721</td>
+                                            <td class="text-center ctm-w20p">kcc 정보통신</td>
+                                            <td class="text-center ctm-w15p">개발 1팀</td>
+                                            <td class="text-center ctm-w10p">대리</td>
+                                            <td class="text-center ctm-w15p">1997-09-03</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center ctm-w5p">
+                                                <input class="form-check-input ctm-td-btn-center"
+                                                       type="checkbox"
+                                                       value=""/>
+                                            </td>
+                                            <td class="text-center ctm-w10p">황철원</td>
+                                            <td class="text-center ctm-w15p">28484721</td>
+                                            <td class="text-center ctm-w20p">kcc 정보통신</td>
+                                            <td class="text-center ctm-w15p">개발 1팀</td>
+                                            <td class="text-center ctm-w10p">대리</td>
+                                            <td class="text-center ctm-w15p">1997-09-03</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center ctm-w5p">
+                                                <input class="form-check-input ctm-td-btn-center"
+                                                       type="checkbox"
+                                                       value=""/>
+                                            </td>
+                                            <td class="text-center ctm-w10p">황철원</td>
+                                            <td class="text-center ctm-w15p">28484721</td>
+                                            <td class="text-center ctm-w20p">kcc 정보통신</td>
+                                            <td class="text-center ctm-w15p">개발 1팀</td>
+                                            <td class="text-center ctm-w10p">대리</td>
+                                            <td class="text-center ctm-w15p">1997-09-03</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center ctm-w5p">
+                                                <input class="form-check-input ctm-td-btn-center"
+                                                       type="checkbox"
+                                                       value=""/>
+                                            </td>
+                                            <td class="text-center ctm-w10p">황철원</td>
+                                            <td class="text-center ctm-w15p">28484721</td>
+                                            <td class="text-center ctm-w20p">kcc 정보통신</td>
+                                            <td class="text-center ctm-w15p">개발 1팀</td>
+                                            <td class="text-center ctm-w10p">대리</td>
+                                            <td class="text-center ctm-w15p">1997-09-03</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center ctm-w5p">
+                                                <input class="form-check-input ctm-td-btn-center"
+                                                       type="checkbox"
+                                                       value=""/>
+                                            </td>
+                                            <td class="text-center ctm-w10p">황철원</td>
+                                            <td class="text-center ctm-w15p">28484721</td>
+                                            <td class="text-center ctm-w20p">kcc 정보통신</td>
+                                            <td class="text-center ctm-w15p">개발 1팀</td>
+                                            <td class="text-center ctm-w10p">대리</td>
+                                            <td class="text-center ctm-w15p">1997-09-03</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ctm-w100p ctm-f-center gap-3 mt-3 my-3">
+                            <div class="ctm-arrow-btn__row ctm-f-center" id="btn-add-selected">
+                                <span class="material-icons">keyboard_arrow_up</span>
+                            </div>
+                            <div class="ctm-arrow-btn__row ctm-f-center" id="btn-remove-selected">
+                                <span class="material-icons">keyboard_arrow_down</span>
+                            </div>
+                        </div>
+
+                        <div class="ctm-w100p">
+                            <div class="ctm-f-center-between mb-2">
+                                <h5 class="rsrch-section__title">선택 인력목록</h5>
+                                <span>전체 <span>1</span>건</span>
+                            </div>
+
+                            <div class="rsrch-table">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <td class="ctm-th ctm-tb-w58">
+                                            <input id="select-all2" class="form-check-input ctm-td-btn-center"
+                                                   type="checkbox"
+                                                   value=""/>
+                                        </td>
+                                        <td class="ctm-th ctm-tb-w117">성명</td>
+                                        <td class="ctm-th ctm-tb-w176">연구자번호</td>
+                                        <td class="ctm-th ctm-tb-w234">소속기관</td>
+                                        <td class="ctm-th ctm-tb-w176">부서</td>
+                                        <td class="ctm-th ctm-tb-w117">직위</td>
+                                        <td class="ctm-th ctm-tb-w190">생년월일</td>
+                                    </tr>
+                                    </thead>
+                                </table>
+                                <div class="ctm-tb-scroll2">
+                                    <table class="table table-sm table-bordered table-hover">
+                                        <tbody>
+                                        <tr>
+                                            <td class="text-center ctm-w5p">
+                                                <input class="form-check-input ctm-td-btn-center"
+                                                       type="checkbox"
+                                                       value=""/>
+                                            </td>
+                                            <td class="text-center ctm-w10p">황철원</td>
+                                            <td class="text-center ctm-w15p">28484721</td>
+                                            <td class="text-center ctm-w20p">kcc 정보통신</td>
+                                            <td class="text-center ctm-w15p">개발 1팀</td>
+                                            <td class="text-center ctm-w10p">대리</td>
+                                            <td class="text-center ctm-w15p">1997-09-03</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer ctm-f-center gap-3">
+                    <button type="button" class="ctm-btn ctm-btn-outline ctm-w10p ctm-h38 ctm-f-center"
+                            data-bs-dismiss="modal">취소
+                    </button>
+                    <button type="button" class="ctm-btn ctm-btn-normal ctm-w10p">완료
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 

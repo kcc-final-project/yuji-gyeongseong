@@ -91,8 +91,8 @@
                                placeholder="연구개발과제명을 60자 이내로 입력해주세요."
                                type="text" required maxlength="60">
                         <div class="d-flex">
-                            <div id="task-title-feedback" class="invalid-feedback">
-                                연구개발과제명은 최소 1자 이상 60자 이내로 입력해주시기 바랍니다.
+                            <div id="task-title-feedback" class="invalid-feedback error-title">
+                                반드시 최소 1자 이상 60자 이내로 입력해주시기 바랍니다.
                             </div>
                         </div>
                     </td>
@@ -107,7 +107,7 @@
     </div>
 
     <%-- 연구분야 --%>
-    <div class="task-info mt-5">
+    <div class="techField-info mt-5">
         <div class="header-section">
             <div class="header-section__title">
                 <h5>연구분야</h5>
@@ -154,6 +154,9 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+        <div id="techField-feedback" class="invalid-feedback error-title text-center">
+            반드시 최소 1개 이상의 기술분류 선택해주시기 바랍니다.
         </div>
 
         <%-- 기술분류 모달창 --%>

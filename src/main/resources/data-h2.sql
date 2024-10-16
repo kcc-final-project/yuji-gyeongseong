@@ -595,3 +595,37 @@ ALTER TABLE opinion
     ADD CONSTRAINT fk_opinion_no_parent
         FOREIGN KEY (parent_opinion_no)
             REFERENCES opinion (opinion_no);
+
+
+
+-- 더미 예제
+
+--  회원
+
+INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
+VALUES (NEXT VALUE FOR seq_institution, '서울대학교', '123-45-67890', '서울특별시 관악구 관악로', '대학교', '교육기관');
+
+INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
+                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
+VALUES (NEXT VALUE FOR seq_member, NULL, 'user01', 'password123', '홍길동', 'hong@example.com',
+             current_timestamp, 'M', '010-1234-5678', '서울특별시 강남구 테헤란로',
+             '연구기관', '컴퓨터공학과', '연구원', '활성', current_timestamp, current_timestamp, NULL, 1);
+
+INSERT INTO acad_ability (acad_ability_no, ability_type, org_name, acquired_country, major_affiliation,
+                          major_field, major_name, acquired_at, created_at, updated_at, mem_no)
+VALUES (NEXT VALUE FOR seq_acad_ability, '학사', '서울대학교', '대한민국', '공학계열',
+             '컴퓨터공학', '소프트웨어공학', current_timestamp, current_timestamp, current_timestamp, 1);
+
+INSERT INTO acad_ability (acad_ability_no, ability_type, org_name, acquired_country, major_affiliation,
+                          major_field, major_name, acquired_at, created_at, updated_at, mem_no)
+VALUES (NEXT VALUE FOR seq_acad_ability, '석사', '카이스트', '대한민국', '공학계열',
+             '전자공학', '반도체공학', current_timestamp, current_timestamp, current_timestamp, 1);
+
+INSERT INTO career (career_no, org_name, dept_name, career_type, started_at, ended_at, created_at, updated_at, mem_no)
+VALUES (NEXT VALUE FOR seq_career, '삼성전자', '개발팀', '정규직', current_timestamp, current_timestamp, current_timestamp,
+             current_timestamp, 1);
+
+INSERT INTO career (career_no, org_name, dept_name, career_type, started_at, ended_at, created_at, updated_at, mem_no)
+VALUES (NEXT VALUE FOR seq_career, 'LG화학', '연구소', '계약직', current_timestamp, current_timestamp, current_timestamp,
+             current_timestamp, 1);
+
