@@ -70,6 +70,9 @@
                                 <span> / 2000</span>
                             </div>
                         </div>
+                        <div id="final-goal-content-feedback" class="invalid-feedback error-title">
+                            반드시 최소 25자 이상 입력해주시기 바랍니다.
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -87,6 +90,9 @@
                                 <span> / 2000</span>
                             </div>
                         </div>
+                        <div id="rnd-content-feedback" class="invalid-feedback error-title">
+                            반드시 최소 100자 이상 입력해주시기 바랍니다.
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -103,6 +109,9 @@
                                 <span class="char-count" data-maxlength="2000">0</span>
                                 <span> / 2000</span>
                             </div>
+                        </div>
+                        <div id="rnd-outcome-feedback" class="invalid-feedback error-title">
+                            반드시 최소 25자 이상 입력해주시기 바랍니다.
                         </div>
                     </td>
                 </tr>

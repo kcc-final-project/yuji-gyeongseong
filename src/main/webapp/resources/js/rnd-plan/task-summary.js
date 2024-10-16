@@ -33,7 +33,7 @@ function getToday() {
   return formatDate(today);
 }
 
-// 종료일 반환
+// 제야 날짜 반환
 function getEndOfYear(dateString) {
   const date = new Date(dateString);
   const year = date.getFullYear();
@@ -51,44 +51,40 @@ function formatDate(date) {
   return `${yyyy}-${mm}-${dd}`;
 }
 
-// 테이블 렌더링
+// 연구개발단계구성 및 연구개발기간 테이블 렌더링
 function renderStageTable() {
   const $table = $("#stage-table");
 
   // 기존 데이터 제거
   $table.find("tr:gt(0)").remove();
 
-  stageData.forEach((stage) => {
-    // 부모 행 추가
-    const parentRow = createParentRow(stage.stageNumber);
-    $table.append(parentRow);
+  stageData.forEach(({ stageNumber, years }) => {
+    // 단계(부모) 행 추가
+    const isFirstStage = stageNumber === 1;
+    const stageRow = createStageRow(stageNumber, isFirstStage);
+    $table.append(stageRow);
 
-    // 자식 행 추가
-    stage.years.forEach((year, index) => {
-      const isFirstYear = index === 0;
-      const yearRow = createYearRow(stage.stageNumber, year, isFirstYear);
+    // 연차(자식) 행 추가
+    years.forEach((yearData) => {
+      const isFirstYear = yearData.yearNumber === 1;
+      const yearRow = createYearRow(stageNumber, yearData, isFirstYear);
       $table.append(yearRow);
-    });
-  });
 
-  // 단계별 연차의 시작일/종료일, 개월 수 갱신
-  stageData.forEach((stage) => {
-    stage.years.forEach((year) => {
-      const $row = $(
-        `tr[data-stage="${stage.stageNumber}"][data-year="${year.yearNumber}"]`,
+      // 개월 수 갱신
+      const $yearRow = $(
+        `tr[data-stage="${stageNumber}"][data-year="${yearData.yearNumber}"]`,
       );
-
-      updateDuration($row);
+      updateDuration($yearRow);
     });
 
-    updateParentDates(stage.stageNumber);
+    // 단계(부모)의 시작일 및 종료일 갱신
+    updateEachStageTotalDates(stageNumber);
   });
 }
 
-// 부모(단계) 행 생성
-function createParentRow(stageNumber) {
-  const isFirstStage = stageNumber === 1;
-  const buttonType = addOrRemoveBtnEl(stageNumber, isFirstStage);
+// 단계(부모) 행 생성
+function createStageRow(stageNumber, isFirstStage) {
+  const buttonType = stageRowBtnType(stageNumber, isFirstStage);
 
   return `
     <tr data-stage="${stageNumber}">
@@ -104,54 +100,58 @@ function createParentRow(stageNumber) {
   `;
 }
 
-// 부모(단계) 행 버튼 분기
-function addOrRemoveBtnEl(stageNumber, isFirstStage) {
+// 단계(부모) 행 버튼 분기
+function stageRowBtnType(stageNumber, isFirstStage) {
   return isFirstStage
-    ? `<div class="add-btn ctm-f-center">
-         <span class="material-icons" onclick="addNewStage()">add</span>
+    ? `<div class="add-btn ctm-f-center" onclick="addStageHandler()">
+         <span class="material-icons">add</span>
        </div>`
-    : `<div class="add-btn ctm-f-center">
-         <span class="material-icons" onclick="removeStage(${stageNumber})">remove</span>
+    : `<div class="add-btn ctm-f-center" onclick="removeStageHandler(${stageNumber})">
+         <span class="material-icons">remove</span>
        </div>`;
 }
 
-// 부모(단계) 행 추가 이벤트 핸들러
-function addNewStage() {
+// 단계(부모) 행 추가 이벤트 핸들러
+function addStageHandler() {
   // 최대 3단계까지 생성 가능
   if (stageData.length >= STAGE_LIMIT) {
     return;
   }
 
   // 이전 단계의 종료일 가져오기
-  const prevStage = stageData[stageData.length - 1];
-  const prevEndDate = prevStage.years[prevStage.years.length - 1].endDate;
+  const lastStage = stageData.length - 1;
+  const prevStage = stageData[lastStage];
+  const lastYear = prevStage.years.length - 1;
+  const prevEndDate = prevStage.years[lastYear].endDate;
 
+  // 새로운 단계에 대한 단계, 시작일, 종료일 설정
   const newStageNumber = stageData.length + 1;
   const newStartDate = addOneDay(prevEndDate);
-  const newEndDate = getEndOfYear(newStartDate); // 수정된 부분
+  const newEndDate = getEndOfYear(newStartDate);
 
   const newStage = {
     stageNumber: newStageNumber,
     years: [
       {
-        yearNumber: 1,
+        yearNumber: 1, // 1년차
         startDate: newStartDate,
         endDate: newEndDate,
       },
     ],
   };
-
   stageData.push(newStage);
 
-  // 테이블 리렌더링
+  // 연구개발단계구성 및 연구개발기간 테이블 리렌더링
   renderStageTable();
+
+  // 단계별 목표 및 내용 테이블 리렌더링
   renderStageGoals();
 
   // 전체 연구개발기간 갱신
   updateOverallPeriod();
 }
 
-// 기준 날짜 +1 Day 반환
+// 기준 날짜의 +1 Day 반환
 function addOneDay(dateString) {
   const date = new Date(dateString);
   date.setDate(date.getDate() + 1);
@@ -159,33 +159,29 @@ function addOneDay(dateString) {
   return formatDate(date);
 }
 
-// 부모(단계) 행 제거 이벤트 핸들러
-function removeStage(stageNumber) {
-  // 해당 단계 삭제
-  stageData = stageData.filter((stage) => stage.stageNumber !== stageNumber);
+// 단계(부모) 행 제거 이벤트 핸들러
+function removeStageHandler(selectedStageNumber) {
+  // 해당 단계 삭제 및 단계 번호 재설정
+  stageData = stageData
+    .filter(({ stageNumber }) => stageNumber !== selectedStageNumber)
+    .map((item, index) => ({
+      ...item,
+      stageNumber: index + 1,
+    }));
 
-  // 단계 번호 재설정
-  stageData.forEach((stage, index) => {
-    stage.stageNumber = index + 1;
-  });
-
-  // 테이블 리렌더링
+  // 연구개발단계구성 및 연구개발기간 테이블 리렌더링
   renderStageTable();
+
+  // 단계별 목표 및 내용 테이블 리렌더링
   renderStageGoals();
 
   // 전체 연구개발기간 갱신
   updateOverallPeriod();
 }
 
-// 연차 행 생성 함수
+// 연차(자식) 행 생성
 function createYearRow(stageNumber, yearData, isFirstYear) {
-  const addOrRemoveButton = isFirstYear
-    ? `<div class="add-btn ctm-f-center">
-         <span class="material-icons" onclick="addSiblingYear(${stageNumber})">add</span>
-       </div>`
-    : `<div class="add-btn ctm-f-center">
-         <span class="material-icons" onclick="removeYear(${stageNumber}, ${yearData.yearNumber})">remove</span>
-       </div>`;
+  const buttonType = yearBtnType(stageNumber, yearData.yearNumber, isFirstYear);
 
   return `
     <tr data-stage="${stageNumber}" data-year="${yearData.yearNumber}">
@@ -194,7 +190,7 @@ function createYearRow(stageNumber, yearData, isFirstYear) {
       </td>
       <td class="d-flex justify-content-around align-items-center">
         <div class="ctm-w45p text-center">${yearData.yearNumber}년차</div>
-        ${addOrRemoveButton}
+        ${buttonType}
       </td>
       <td>
         <input type="date" class="form-control ctm-datepicker start-date" value="${yearData.startDate}">
@@ -205,6 +201,17 @@ function createYearRow(stageNumber, yearData, isFirstYear) {
       <td class="duration"></td>
     </tr>
   `;
+}
+
+// 연차(자식) 행 버튼 분기
+function yearBtnType(stageNumber, yearNumber, isFirstYear) {
+  return isFirstYear
+    ? `<div class="add-btn ctm-f-center">
+         <span class="material-icons" onclick="addYearHandler(${stageNumber})">add</span>
+       </div>`
+    : `<div class="add-btn ctm-f-center">
+         <span class="material-icons" onclick="removeYearHandler(${stageNumber}, ${yearNumber})">remove</span>
+       </div>`;
 }
 
 // 이벤트 핸들러 설정
@@ -240,11 +247,11 @@ function setupEventHandlers() {
           // 개월 수 갱신
           updateDuration($row);
 
-          // 다음 연차들의 시작일 및 종료일 갱신
-          updateFollowingYears(stage, yearNumber - 1);
+          // 다음 연차들의 시작일 갱신
+          updateStartDateFollowingYears(stage, yearNumber - 1);
 
           // 부모의 날짜 및 개월 수 갱신
-          updateParentDates(stageNumber);
+          updateEachStageTotalDates(stageNumber);
 
           // 전체 연구개발기간 갱신
           updateOverallPeriod();
@@ -268,9 +275,9 @@ function setupEventHandlers() {
         year.endDate = newEndDate;
 
         // 다음 연차들의 시작일 갱신
-        updateFollowingYears(stage, yearNumber);
+        updateStartDateFollowingYears(stage, yearNumber);
 
-        // 테이블 리렌더링
+        // 연구개발단계구성 및 연구개발기간 테이블 리렌더링
         renderStageTable();
 
         // 전체 연구개발기간 갱신
@@ -280,22 +287,23 @@ function setupEventHandlers() {
   });
 }
 
-// 다음 연차들의 시작일 및 종료일 갱신 함수
-function updateFollowingYears(stage, yearIndex) {
-  for (let i = yearIndex; i < stage.years.length - 1; i++) {
-    const currentYear = stage.years[i];
-    const nextYear = stage.years[i + 1];
+// 다음 연차들의 시작일 갱신
+function updateStartDateFollowingYears({ stageNumber, years }, yearIndex) {
+  for (let i = yearIndex; i < years.length - 1; i++) {
+    const currentYear = years[i];
+    const nextYear = years[i + 1];
     const newStartDate = addOneDay(currentYear.endDate);
 
     if (nextYear.startDate !== newStartDate) {
-      nextYear.startDate = newStartDate;
+      nextYear.startDate = newStartDate; // 시작일 갱신
 
-      // 다음 연차의 시작일이 변경되었으므로, 해당 입력 필드 갱신 및 애니메이션 적용
       const $nextRow = $(
-        `tr[data-stage="${stage.stageNumber}"][data-year="${nextYear.yearNumber}"]`,
+        `tr[data-stage="${stageNumber}"][data-year="${nextYear.yearNumber}"]`,
       );
       const $startDateInput = $nextRow.find(".start-date");
       $startDateInput.val(newStartDate);
+
+      // 애니메이션 적용
       animateChange($startDateInput);
 
       // 개월 수 갱신
@@ -305,13 +313,13 @@ function updateFollowingYears(stage, yearIndex) {
 }
 
 // 개월 수 갱신
-function updateDuration($row) {
-  const startDate = $row.find(".start-date").val();
-  const endDate = $row.find(".end-date").val();
+function updateDuration($yearRow) {
+  const startDate = $yearRow.find(".start-date").val();
+  const endDate = $yearRow.find(".end-date").val();
 
   const durationMonths = calculateMonthsDifference(startDate, endDate);
 
-  const $durationCell = $row.find(".duration");
+  const $durationCell = $yearRow.find(".duration");
   const oldDuration = $durationCell.text();
 
   if (parseInt(oldDuration) !== durationMonths) {
@@ -331,46 +339,46 @@ function calculateMonthsDifference(startDate, endDate) {
   return years * 12 + months + 1;
 }
 
-// 부모의 시작일 및 종료일 갱신
-function updateParentDates(stageNumber) {
-  const stage = stageData.find((s) => s.stageNumber === stageNumber);
-  if (stage) {
-    const startDates = stage.years.map((y) => y.startDate);
-    const endDates = stage.years.map((y) => y.endDate);
+// 단계(부모)의 시작일 및 종료일 갱신
+function updateEachStageTotalDates(stageNumber) {
+  const stage = stageData.find((stage) => stage.stageNumber === stageNumber);
 
-    const minStartDate = startDates.reduce((a, b) => (a < b ? a : b));
-    const maxEndDate = endDates.reduce((a, b) => (a > b ? a : b));
+  if (stage) {
+    const startDates = stage.years.map((year) => year.startDate);
+    const endDates = stage.years.map((year) => year.endDate);
+
+    // 최소 시작일, 최대 종료일
+    const minTotalStartDate = startDates.reduce((a, b) => (a < b ? a : b));
+    const maxTotalEndDate = endDates.reduce((a, b) => (a > b ? a : b));
 
     const $startDateCell = $(`#stage-${stageNumber}-start-date`);
     const $endDateCell = $(`#stage-${stageNumber}-end-date`);
 
-    const oldStartDate = $startDateCell.text();
-    const oldEndDate = $endDateCell.text();
+    // 이전 최소 시작일, 이전 최대 종료일
+    const prevTotalStartDate = $startDateCell.text();
+    const prevEndDate = $endDateCell.text();
 
-    if (oldStartDate !== minStartDate) {
-      $startDateCell.text(minStartDate);
+    if (prevTotalStartDate !== minTotalStartDate) {
+      $startDateCell.text(minTotalStartDate);
       animateChange($startDateCell);
     }
 
-    if (oldEndDate !== maxEndDate) {
-      $endDateCell.text(maxEndDate);
+    if (prevEndDate !== maxTotalEndDate) {
+      $endDateCell.text(maxTotalEndDate);
       animateChange($endDateCell);
     }
 
-    // 자식 연차들의 개월 수 합산
+    // 각 단계의 총 개월 수
     let totalDuration = 0;
-    stage.years.forEach((year) => {
-      const durationMonths = calculateMonthsDifference(
-        year.startDate,
-        year.endDate,
-      );
+    stage.years.forEach(({ startDate, endDate }) => {
+      const durationMonths = calculateMonthsDifference(startDate, endDate);
       totalDuration += durationMonths;
     });
 
     const $durationCell = $(`#stage-${stageNumber}-duration`);
-    const oldDuration = $durationCell.text();
+    const prevTotalDuration = $durationCell.text();
 
-    if (parseInt(oldDuration) !== totalDuration) {
+    if (parseInt(prevTotalDuration) !== totalDuration) {
       $durationCell.text(totalDuration);
       animateChange($durationCell);
     }
@@ -379,34 +387,39 @@ function updateParentDates(stageNumber) {
 
 // 전체 연구개발기간 갱신
 function updateOverallPeriod() {
-  const parentStartDates = stageData.map((stage) => {
-    return stage.years[0].startDate;
+  // 각 단계의 최소 시작일
+  const eachStageStartDates = stageData.map(({ years }) => {
+    return years[0].startDate;
   });
-  const parentEndDates = stageData.map((stage) => {
-    const lastYear = stage.years[stage.years.length - 1];
+
+  // 각 단계의 최대 종료일
+  const eachStageEndDates = stageData.map(({ years }) => {
+    const lastYear = years[years.length - 1];
     return lastYear.endDate;
   });
 
-  const overallStartDate = parentStartDates.reduce((a, b) => (a < b ? a : b));
-  const overallEndDate = parentEndDates.reduce((a, b) => (a > b ? a : b));
+  const overallStartDate = eachStageStartDates.reduce((a, b) =>
+    a < b ? a : b,
+  );
+  const overallEndDate = eachStageEndDates.reduce((a, b) => (a > b ? a : b));
 
   const $startDateInput = $("#overall-start-date");
   const $endDateInput = $("#overall-end-date");
 
-  const oldStartDate = $startDateInput.val();
-  const oldEndDate = $endDateInput.val();
+  const prevOverallStartDate = $startDateInput.val();
+  const prevOverallEndDate = $endDateInput.val();
 
-  if (oldStartDate !== overallStartDate) {
+  if (prevOverallStartDate !== overallStartDate) {
     $startDateInput.val(overallStartDate);
     animateChange($startDateInput);
   }
 
-  if (oldEndDate !== overallEndDate) {
+  if (prevOverallEndDate !== overallEndDate) {
     $endDateInput.val(overallEndDate);
     animateChange($endDateInput);
   }
 
-  // 전체 기간은 각 단계의 개월 수 합산
+  // 전체 개월 수
   let totalDuration = 0;
   stageData.forEach((stage) => {
     const durationText = $(`#stage-${stage.stageNumber}-duration`).text();
@@ -415,26 +428,31 @@ function updateOverallPeriod() {
   });
 
   const $durationInput = $("#overall-duration");
-  const oldDuration = $durationInput.val();
+  const prevDuration = $durationInput.val();
 
-  if (oldDuration !== `${totalDuration} 개월`) {
+  if (prevDuration !== `${totalDuration} 개월`) {
     $durationInput.val(`${totalDuration} 개월`);
     animateChange($durationInput);
   }
 }
 
-// 연차 추가 함수
-function addSiblingYear(stageNumber) {
-  const stage = stageData.find((s) => s.stageNumber === stageNumber);
+// 연차(자식) 행 추가 이벤트 핸들러
+function addYearHandler(stageNumber) {
+  const stage = stageData.find((stage) => stage.stageNumber === stageNumber);
+
   if (stage) {
+    // 1단계(최대 2년차)
+    // 2단계(최대 2년차)
+    // 3단계(최대 1년차)
     const maxYears = stageNumber === STAGE_LIMIT ? 1 : 2;
     if (stage.years.length >= maxYears) {
       return;
     }
 
+    // 새로운 연차 정보 설정
     const lastYearNumber = stage.years[stage.years.length - 1].yearNumber;
-
     const newYearNumber = lastYearNumber + 1;
+
     const prevEndDate = stage.years[stage.years.length - 1].endDate;
     const newStartDate = addOneDay(prevEndDate);
     const newEndDate = getEndOfYear(newStartDate);
@@ -444,10 +462,9 @@ function addSiblingYear(stageNumber) {
       startDate: newStartDate,
       endDate: newEndDate,
     };
-
     stage.years.push(newYear);
 
-    // 테이블 리렌더링
+    // 연구개발단계구성 및 연구개발기간 테이블 리렌더링
     renderStageTable();
 
     // 전체 연구개발기간 갱신
@@ -455,19 +472,20 @@ function addSiblingYear(stageNumber) {
   }
 }
 
-// 연차 삭제 함수
-function removeYear(stageNumber, yearNumber) {
-  const stage = stageData.find((s) => s.stageNumber === stageNumber);
+// 연차(자식) 행 제거 이벤트 핸들러
+function removeYearHandler(stageNumber, yearNumber) {
+  const stage = stageData.find((stage) => stage.stageNumber === stageNumber);
+
   if (stage) {
-    // 연차 삭제
-    stage.years = stage.years.filter((y) => y.yearNumber !== yearNumber);
+    // 연차 삭제 및 번호 재설정
+    stage.years = stage.years
+      .filter((year) => year.yearNumber !== yearNumber)
+      .map((item, index) => ({
+        ...item,
+        yearNumber: index + 1,
+      }));
 
-    // 연차 번호 재설정
-    stage.years.forEach((year, index) => {
-      year.yearNumber = index + 1;
-    });
-
-    // 테이블 리렌더링
+    // 연구개발단계구성 및 연구개발기간 테이블 리렌더링
     renderStageTable();
 
     // 전체 연구개발기간 갱신
@@ -484,36 +502,7 @@ function animateChange($element) {
   }, ANIMATION_TIMEOUT);
 }
 
-function setupTextareaHandlers() {
-  $(".textarea-input").each(function () {
-    const $textarea = $(this);
-    const $charCount = $textarea.closest("td").find(".char-count");
-    const minLength = parseInt($textarea.attr("minlength"));
-
-    // 입력 이벤트 처리
-    $textarea.on("input", function () {
-      const currentLength = $textarea.val().length;
-      $charCount.text(currentLength);
-
-      // 최소 글자 수 이상인지 검사하여 테두리 색상 변경
-      if (currentLength >= minLength) {
-        $textarea.removeClass("invalid-border");
-      }
-    });
-
-    // focusout 이벤트 처리
-    $textarea.on("focusout", function () {
-      const currentLength = $textarea.val().length;
-      if (currentLength < minLength) {
-        $textarea.addClass("invalid-border");
-      } else {
-        $textarea.removeClass("invalid-border");
-      }
-    });
-  });
-}
-
-// 단계별 목표 및 내용 섹션 렌더링
+// 단계별 목표 및 내용 테이블 렌더링
 function renderStageGoals() {
   const $stageGoalsSection = $("#stage-goals-section");
 
@@ -526,20 +515,28 @@ function renderStageGoals() {
 
     const stageGoalContent = `
       <tr>
-        ${stageNumber === 1 ? `<td class="ctm-th ctm-w15p" rowspan="${stageData.length * 2}">개별연구개발</td>` : ''}
+        ${
+          stageNumber === 1
+            ? `<td class="ctm-th ctm-w15p" 
+                rowspan="${stageData.length * 2}">개별연구개발</td>`
+            : ""
+        }
         <td class="ctm-th__sub ctm-w5p" rowspan="2">${stageNumber}단계</td>
         <td class="ctm-th__sub ctm-w10p">
           <span class="required-item">* </span>
           단계목표내용
         </td>
         <td>
-          <textarea class="form-control" minlength="25" maxlength="2000" rows="3"></textarea>
+          <textarea class="form-control textarea-input" name="stage-goal-${stageNumber}" minlength="25" maxlength="2000" rows="3"></textarea>
           <div class="ctm-f">
             <span class="fz14">최소 25자 이상</span>
             <div>
-              <span class="char-count">0</span>
+              <span class="char-count" data-maxlength="2000">0</span>
               <span> / 2000</span>
             </div>
+          </div>
+          <div id="stage-goal-feedback-${stageNumber}" class="invalid-feedback error-title" style="display:none;">
+            반드시 최소 25자 이상 입력해주시기 바랍니다.
           </div>
         </td>
       </tr>
@@ -549,13 +546,16 @@ function renderStageGoals() {
           연구개발내용
         </td>
         <td>
-          <textarea class="form-control" minlength="100" maxlength="2000" rows="3"></textarea>
+          <textarea class="form-control textarea-input" name="stage-rnd-content-${stageNumber}" minlength="100" maxlength="2000" rows="3"></textarea>
           <div class="ctm-f">
             <span class="fz14">최소 100자 이상</span>
             <div>
-              <span class="char-count">0</span>
+              <span class="char-count" data-maxlength="2000">0</span>
               <span> / 2000</span>
             </div>
+          </div>
+          <div id="stage-rnd-content-feedback-${stageNumber}" class="invalid-feedback error-title" style="display:none;">
+            반드시 최소 100자 이상 입력해주시기 바랍니다.
           </div>
         </td>
       </tr>
@@ -564,7 +564,174 @@ function renderStageGoals() {
     $stageGoalsSection.append(stageGoalContent);
   });
 
-  // 텍스트 영역 이벤트 핸들러 재설정
+  // textarea 이벤트 핸들러 갱신
   setupTextareaHandlers();
 }
 
+// textarea 이벤트 핸들러 설정
+function setupTextareaHandlers() {
+  $(".textarea-input").each(function () {
+    const $textarea = $(this);
+    const $charCount = $textarea.closest("td").find(".char-count");
+    const minLength = parseInt($textarea.attr("minlength"));
+
+    // 입력 이벤트 처리
+    $textarea.on("input", function () {
+      const currentLength = $textarea.val().length;
+      $charCount.text(currentLength);
+
+      // 유효한 입력값에 따른 경고 메시지 비활성화
+      if (currentLength >= minLength) {
+        $textarea.removeClass("invalid-border");
+
+        const $feedbackElement = findFeedbackElement($textarea);
+        if ($feedbackElement) {
+          $feedbackElement.hide();
+        }
+      }
+    });
+  });
+}
+
+// 경고 메시지 비활성화 할 요소 반환
+function findFeedbackElement($textarea) {
+  const textareaId = $textarea.attr("id");
+  const textareaName = $textarea.attr("name");
+
+  if (textareaId === "finalGoalContent") {
+    return $("#final-goal-content-feedback");
+  }
+
+  if (textareaId === "rndContent") {
+    return $("#rnd-content-feedback");
+  }
+
+  if (textareaId === "rndOutcomePlan") {
+    return $("#rnd-outcome-feedback");
+  }
+
+  if (textareaName && textareaName.startsWith("stage-goal-")) {
+    const stageNumber = textareaName.split("stage-goal-")[1];
+    return $(`#stage-goal-feedback-${stageNumber}`);
+  }
+
+  if (textareaName && textareaName.startsWith("stage-rnd-content-")) {
+    const stageNumber = textareaName.split("stage-rnd-content-")[1];
+    return $(`#stage-rnd-content-feedback-${stageNumber}`);
+  }
+
+  return null;
+}
+
+// 과제요약 유효성 검사
+function validateTaskSummaryFields() {
+  let isValid = true;
+  let invalidElement = null;
+
+  // 최종 목표 및 내용 유효성 검사
+  const finalGoalContent = $("#finalGoalContent");
+  const rndContent = $("#rndContent");
+  const rndOutcomePlan = $("#rndOutcomePlan");
+
+  // 1. 최종목표내용
+  if (
+    finalGoalContent.val().trim().length <
+    parseInt(finalGoalContent.attr("minlength"))
+  ) {
+    isValid = false;
+    $("#final-goal-content-feedback").show();
+    finalGoalContent.addClass("invalid-border");
+
+    if (!invalidElement) {
+      invalidElement = finalGoalContent;
+    }
+  } else {
+    $("#final-goal-content-feedback").hide();
+    finalGoalContent.removeClass("invalid-border");
+  }
+
+  // 2. 연구개발내용
+  if (rndContent.val().trim().length < parseInt(rndContent.attr("minlength"))) {
+    isValid = false;
+    $("#rnd-content-feedback").show();
+    rndContent.addClass("invalid-border");
+
+    if (!invalidElement) {
+      invalidElement = rndContent;
+    }
+  } else {
+    $("#rnd-content-feedback").hide();
+    rndContent.removeClass("invalid-border");
+  }
+
+  // 3. 연구개발성과 활용계획 및 기대효과
+  if (
+    rndOutcomePlan.val().trim().length <
+    parseInt(rndOutcomePlan.attr("minlength"))
+  ) {
+    isValid = false;
+    $("#rnd-outcome-feedback").show();
+    rndOutcomePlan.addClass("invalid-border");
+
+    if (!invalidElement) {
+      invalidElement = rndOutcomePlan;
+    }
+  } else {
+    $("#rnd-outcome-feedback").hide();
+    rndOutcomePlan.removeClass("invalid-border");
+  }
+
+  // 단계별 목표 및 내용 유효성 검사
+  stageData.forEach((stage) => {
+    const stageNumber = stage.stageNumber;
+
+    // 1. 단계목표내용
+    const stageGoalTextarea = $(`textarea[name="stage-goal-${stageNumber}"]`);
+    const stageGoalFeedback = $(`#stage-goal-feedback-${stageNumber}`);
+    const stageGoalMinlength = parseInt(stageGoalTextarea.attr("minlength"));
+
+    if (stageGoalTextarea.val().trim().length < stageGoalMinlength) {
+      isValid = false;
+      stageGoalFeedback.show();
+      stageGoalTextarea.addClass("invalid-border");
+
+      if (!invalidElement) {
+        invalidElement = stageGoalTextarea;
+      }
+    } else {
+      stageGoalFeedback.hide();
+      stageGoalTextarea.removeClass("invalid-border");
+    }
+
+    // 2. 연구개발내용
+    const rndContentTextarea = $(
+      `textarea[name="stage-rnd-content-${stageNumber}"]`,
+    );
+    const rndContentFeedback = $(`#stage-rnd-content-feedback-${stageNumber}`);
+    const rndContentMinlength = parseInt(rndContentTextarea.attr("minlength"));
+
+    if (rndContentTextarea.val().trim().length < rndContentMinlength) {
+      isValid = false;
+      rndContentFeedback.show();
+      rndContentTextarea.addClass("invalid-border");
+
+      if (!invalidElement) {
+        invalidElement = rndContentTextarea;
+      }
+    } else {
+      rndContentFeedback.hide();
+      rndContentTextarea.removeClass("invalid-border");
+    }
+  });
+
+  if (!isValid) {
+    $("html, body").animate(
+      {
+        scrollTop: invalidElement.offset().top - 20,
+      },
+      500,
+    );
+  }
+
+  return isValid;
+}

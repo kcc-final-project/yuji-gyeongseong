@@ -18,48 +18,6 @@ function setupEventHandlers() {
   $(".ctm-btn-init__next").on("click", showNextConfirmation);
 }
 
-// 필수 입력 값 확인
-function validateRequiredFields() {
-  let isValid = true;
-  let inValidSection = null;
-  let hasResearchField = false;
-
-  // 연구개발과제명 확인
-  const taskTitle = $("#ipt-task-title").val().trim();
-  if (taskTitle === "") {
-    isValid = false;
-    showValidationFeedback();
-    inValidSection = $(".task-title");
-  }
-
-  // 연구분야 확인
-  for (let i = 1; i <= 3; i++) {
-    const fieldValue = $(`#research-field-${i}`).val().trim();
-
-    if (fieldValue !== "") {
-      hasResearchField = true;
-      break;
-    }
-  }
-
-  if (!hasResearchField) {
-    isValid = false;
-    $("#techField-feedback").show();
-    inValidSection = $(".task-info");
-  }
-
-  if (!isValid) {
-    $("html, body").animate(
-      {
-        scrollTop: inValidSection.offset().top - -250,
-      },
-      500,
-    );
-  }
-
-  return isValid;
-}
-
 // '다음' 버튼 클릭 시 확인 창 표시 함수
 function showNextConfirmation() {
   Swal.fire({
@@ -74,14 +32,14 @@ function showNextConfirmation() {
   }).then((result) => {
     if (result.isConfirmed) {
       // 기본정보 유효성 검사 후 페이지 이동
-      if (currentStep === 1 && validateRequiredFields()) {
+      if (currentStep === 1 && validateBasicFields()) {
         // TODO: 저장 로직 처리
         currentStep += 1;
         updateProgressBar();
         loadStepContent(currentStep);
       }
       // 과제요약 유효성 검사 후 페이지 이동
-      else if (currentStep === 2) {
+      else if (currentStep === 2 && validateTaskSummaryFields()) {
         // TODO: 저장 로직 처리
         currentStep += 1;
         updateProgressBar();
