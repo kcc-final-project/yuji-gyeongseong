@@ -34,32 +34,32 @@
                     <div class="list">
                         <div class="field">
                             <label>학력구분</label>
-                            <div class="value">${acad.ability_type}</div>
+                            <div class="value">${acad.abilityType}</div>
                         </div>
                         <div class="field">
                             <label>취득연월</label>
-                            <div class="value"><fmt:formatDate value="${acad.acquired_at}" pattern="yyyy-MM-dd"/></div>
+                            <div class="value"><fmt:formatDate value="${acad.acquiredAt}" pattern="yyyy-MM-dd"/></div>
                         </div>
                     </div>
                     <div class="list">
                         <div class="field">
                             <label>취득국가</label>
-                            <div class="value">${acad.acquired_country}</div>
+                            <div class="value">${acad.acquiredCountry}</div>
                         </div>
                         <div class="field">
                             <label>취득기관명</label>
-                            <div class="value">${acad.org_name}</div>
+                            <div class="value">${acad.orgName}</div>
                         </div>
                     </div>
                     <div class="list">
                         <div class="field">
                             <label>전공명</label>
-                            <div class="value">${acad.major_name}</div>
+                            <div class="value">${acad.majorName}</div>
                         </div>
                         <div class="field">
                             <label>학력구분</label>
-                            <div class="value">${acad.major_affiliation}</div>
-                            <div class="value">${acad.major_field}</div>
+                            <div class="value">${acad.majorAffiliation}</div>
+                            <div class="value">${acad.majorField}</div>
                         </div>
                     </div>
                 </c:forEach>
@@ -74,27 +74,27 @@
                     <div class="list">
                         <div class="field">
                             <label>근무기관명</label>
-                            <div class="value">${career.org_name}</div>
+                            <div class="value">${career.orgName}</div>
                         </div>
                     </div>
                     <div class="list">
                         <div class="field">
                             <label>근무부서</label>
-                            <div class="value">${career.dept_name}</div>
+                            <div class="value">${career.deptName}</div>
                         </div>
                         <div class="field">
                             <label>고용형태</label>
-                            <div class="value">${career.career_type}</div>
+                            <div class="value">${career.careerType}</div>
                         </div>
                     </div>
                     <div class="list">
                         <div class="field">
                             <label>근무시작일</label>
-                            <div class="value"><fmt:formatDate value="${career.started_at}" pattern="yyyy-MM-dd"/></div>
+                            <div class="value"><fmt:formatDate value="${career.startedAt}" pattern="yyyy-MM-dd"/></div>
                         </div>
                         <div class="field">
                             <label>근무종료일</label>
-                            <div class="value"><fmt:formatDate value="${career.ended_at}" pattern="yyyy-MM-dd"/></div>
+                            <div class="value"><fmt:formatDate value="${career.endedAt}" pattern="yyyy-MM-dd"/></div>
                         </div>
                     </div>
                 </c:forEach>

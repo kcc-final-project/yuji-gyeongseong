@@ -7,9 +7,9 @@ import java.sql.Timestamp;
 
 @RequiredArgsConstructor
 @Getter
-public class memTechField {
-    private final Long mem_no;
-    private final Long tech_field_no;
-    private final Timestamp created_at;
-    private final Timestamp updated_at;
+public class MemTechField {
+    private final Long memNo;
+    private final Long techFieldNo;
+    private final Timestamp createdAt;
+    private final Timestamp updatedAt;
 }

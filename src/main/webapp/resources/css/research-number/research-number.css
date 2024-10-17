@@ -350,3 +350,8 @@ hr {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+.institution-table-container {
+    height: 500px;
+    overflow-y: auto;
+}
