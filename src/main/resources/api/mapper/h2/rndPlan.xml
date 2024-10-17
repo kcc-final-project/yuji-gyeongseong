@@ -2,10 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yujigyeongseong.api.domain.rnd_plan.dao.RndPlanMapper">
-
+    <!-- TODO: 테스트 용 기능이니 나중에 지우기 -->
     <select id="selectRndPlanById">
         SELECT rnd_plan_no, task_name
         FROM rnd_plan
+    </select>
+
+    <select id="selectRndPlanBasicBySubAnnNo">
+        SELECT total_title,
+               ann_type,
+               reception_type,
+               sub_title,
+               task_type,
+               planning_year,
+               tech_field_name,
+               perf_owner
+        FROM announcement a
+                 INNER JOIN sub_announcement sa
+                            ON a.ann_no = sa.ann_no
+        WHERE sa.sub_ann_no = #{subAnnNO}
     </select>
 
 </mapper>
