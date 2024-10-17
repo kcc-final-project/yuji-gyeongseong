@@ -5,9 +5,9 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Getter
-public class techField {
-    private final Long tech_field_no;
+public class TechField {
+    private final Long techFieldNo;
     private final String name;
     private final String code;
-    private final Long parent_tech_field_no;
+    private final Long parentTechFieldNo;
 }

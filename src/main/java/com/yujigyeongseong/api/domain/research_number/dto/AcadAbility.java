@@ -8,15 +8,15 @@ import java.sql.Timestamp;
 @RequiredArgsConstructor
 @Getter
 public class AcadAbility {
-    private final Long acad_ability_no;
-    private final String ability_type;
-    private final String org_name;
-    private final String acquired_country;
-    private final String major_affiliation;
-    private final String major_field;
-    private final String major_name;
-    private final Timestamp acquired_at;
-    private final Timestamp created_at;
-    private final Timestamp updated_at;
-    private final Long mem_no;
+    private final Long acadAbilityNo;
+    private final String abilityType;
+    private final String orgName;
+    private final String acquiredCountry;
+    private final String majorAffiliation;
+    private final String majorField;
+    private final String majorName;
+    private final Timestamp acquiredAt;
+    private final Timestamp createdAt;
+    private final Timestamp updatedAt;
+    private final Long memNo;
 }
