@@ -3,6 +3,8 @@ package com.yujigyeongseong.api.domain.research_number.service;
 import com.yujigyeongseong.api.domain.research_number.dao.EvalCommitteeMapper;
 import com.yujigyeongseong.api.domain.research_number.dto.AcadAbility;
 import com.yujigyeongseong.api.domain.research_number.dto.Career;
+import com.yujigyeongseong.api.domain.research_number.dto.request.AcadRequest;
+import com.yujigyeongseong.api.domain.research_number.dto.request.CareerRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,5 +29,15 @@ public class EvalCommitteeServiceImpl implements EvalCommitteeService {
     @Override
     public List<String> getAllTechFieldNameByMemberId(Long id) {
         return evalCommitteeMapper.selectAllTechFieldNameByMemberId(id);
+    }
+
+    @Override
+    public int setCareersByMemberId(Long id, List<CareerRequest> careers) {
+        return evalCommitteeMapper.insertAllCareersByMemberId(id, careers);
+    }
+
+    @Override
+    public int setAcadAbilitiesByMemberId(Long id, List<AcadRequest> acadAbilities) {
+        return evalCommitteeMapper.insertAllAcadAbilitiesByMemberId(id, acadAbilities);
     }
 }
