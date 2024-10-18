@@ -12,12 +12,14 @@ import java.util.Map;
 @Getter
 public class ErrorResponse {
 
-    private ErrorCode errorCode;
+    private String errCode;
+    private String errMsg;
     private Map<String, String> errors;
 
     @Builder
     private ErrorResponse(ErrorCode errorCode, Map<String, String> errors) {
-        this.errorCode = errorCode;
+        this.errCode = errorCode.getCode();
+        this.errMsg = errorCode.getMessage();
         this.errors = errors;
     }
 

@@ -16,6 +16,7 @@ public class RndPlanRestController {
 
     private final RndPlanService rndPlanService;
 
+    // TODO: 테스트 용이라 나중에 삭제해야 함
     @GetMapping("/{id}")
     public ResponseEntity<RndPlan> getRndPlanById(@PathVariable Long id) {
         RndPlan member = rndPlanService.getMemberById(id);
