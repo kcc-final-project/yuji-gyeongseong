@@ -24,6 +24,8 @@ create table bucketfile
     file_size        number(10,0) not null,
     mandatory_status varchar2(255) not null,
     created_at       timestamp default current_timestamp,
+    source           varchar2(255) not null,
+    source_number    number(10,0) not null,
     bucket_no        number(10,0) not null,
     constraint fk_bucketfile_bucket_no foreign key (bucket_no) references bucket (bucket_no)
 );
@@ -43,6 +45,7 @@ create table announcement
     content            CLOB not null,
     competent_ministry varchar2(255) not null,
     spec_institution   varchar2(100) not null,
+    ann_tech_field_name varchar2(20) not null,
     ann_type           varchar2(50) not null,
     sub_ann_count      number(2,0) not null,
     reception_type     varchar2(50) not null,
@@ -54,6 +57,1103 @@ create table announcement
     bucket_no          number(10,0)  not null,
     constraint fk_announcement_bucket_no foreign key (bucket_no) references bucket (bucket_no)
 );
+
+INSERT INTO bucket (BUCKET_NO)
+VALUES (NEXTVAL('seq_bucket'));
+
+INSERT INTO announcement(
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY,
+    SPEC_INSTITUTION, ann_tech_field_name, ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE,
+    STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '중소벤처기업부 공고 제2024 -465호',
+             '2024년 제2차 전략기술 테마별 프로젝트(DCP) 기업 지원계획 공고',
+             '<p class="announcement-number">과학기술정보통신부 공고 제2024-0925호</p>
+              <h4>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</h4>
+              <p>과학기술정보통신부가 추진하는 『혁신형 소형모듈원자로 기술개발사업』의 신규과제를 아래와 같이 재공고하오니 관심있는 연구자분들의 많은 참여 바랍니다.</p>
+              <p class="announcement-date">2024년 9월 23일</p>
+              <div class="announcement-wrap">
+                  <p class="Order department">&lt;주무부처&gt; 과학기술정보통신부 장관<span>우상임</span></p>
+                  <p>
+                  <p class="professional-organization">
+                      &lt;전문기관&gt; 과학기술정보통신부 기술개발사업단 단장<span>김한근</span></p>
+              </div>
+              <h5>가. 사업목적</h5>
+              <p>28년까지 경제성·안정성·유연성 측면에서 경쟁력을 갖춘 혁신형 소형모듈원자로(혁신형 SMR 또는 i-SMR)을 개발하고, 표준설계인가 취득 추진</p>
+              <h5>나. 사업내용</h5>
+              <p>(설계)<br>- 노심, 계통, 종합설계의 3개 설계분야로 구성되며 각 설계분야는 혁신기술 및 혁신제조 분야와 유기적으로 연계되어 혁신형 SMR의 표준설계 수행</p>',
+             '중소벤처기업부',
+             '중소기업기술정보진흥원',
+             '에너지/자원',
+             '지정공모',
+             4,
+             '신청용 연구개발계획서',
+             '접수중',
+             '2024-10-01',
+             '2024-11-02',
+             '2024-08-01',
+             NULL,
+             1
+         );
+
+INSERT INTO bucket (BUCKET_NO)
+VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement(
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY,
+    SPEC_INSTITUTION, ann_tech_field_name, ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE,
+    STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '환경부 공고 제2024 -567호',
+             '2024년 제3차 환경 보호 프로젝트 지원계획 공고',
+             '<p class="announcement-number">환경부 공고 제2024-567호</p>
+              <h4>2024년도 환경 보호 혁신 프로젝트 신규과제 공고</h4>
+              <p>환경부가 추진하는 『환경 보호 혁신 프로젝트』의 신규과제를 아래와 같이 공고하오니 많은 참여 바랍니다.</p>
+              <p class="announcement-date">2024년 10월 20일</p>
+              <div class="announcement-wrap">
+                  <p class="Order department">&lt;주무부처&gt; 환경부 장관<span>김수진</span></p>
+                  <p>
+                  <p class="professional-organization">
+                      &lt;전문기관&gt; 한국환경산업기술원 원장<span>이민호</span></p>
+              </div>
+              <h5>가. 사업목적</h5>
+              <p>환경 보호 및 지속 가능한 발전을 위한 혁신적인 접근 방식 개발 지원</p>
+              <h5>나. 사업내용</h5>
+              <p>(설계)<br>- 다양한 환경 보호 분야에서의 혁신적 프로젝트 지원</p>',
+             '환경부',
+             '한국환경산업기술원',
+            '환경',
+             '지정공모',
+             4,
+             '신청용 연구개발계획서',
+             '접수중',
+             '2024-10-21',
+             '2024-12-15',
+             '2024-10-01',
+             NULL,
+             2
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '과학기술정보통신부 공고 제2024-001호',
+             '2024년도 신기술 융합 프로젝트 공고',
+             '<p class="announcement-number">과학기술정보통신부 공고 제2024-001호</p>
+             <h4>2024년도 신기술 융합 연구 과제 선정 공고</h4>
+             <p>본 연구과제는 신기술 융합을 통해 산업 경쟁력을 높이기 위한 연구를 지원합니다. 관심 있는 연구자들의 많은 참여 바랍니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>첨단 기술을 융합하여 국가 경쟁력 강화를 목표로 함.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내 연구기관 및 기업 대상.</p>
+             <p class="announcement-date">2024년 1월 10일</p>',
+             '과학기술정보통신부',
+             '한국과학기술기획평가원',
+             '물리학',
+             '지정공모',
+             4,
+             '신청서 제출',
+             '접수중',
+             '2024-10-01',
+             '2024-11-10',
+             '2024-08-01',
+             NULL,
+             3
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '산업통상자원부 공고 제2024-002호',
+             '2024년 산업기술개발 연구 공모',
+             '<p class="announcement-number">산업통상자원부 공고 제2024-002호</p>
+             <h4>2024년도 산업기술개발사업 신규 과제 공모</h4>
+             <p>산업기술 분야의 혁신을 위한 연구개발을 지원합니다. 선정된 연구기관은 산업 발전을 위해 주요 과제를 수행하게 됩니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>산업기술 혁신을 통한 국가 경쟁력 강화 및 고도화.</p>
+             <h5>나. 사업내용</h5>
+             <p>(1) 혁신 기술 개발<br>(2) 기존 기술 개선 및 고도화.</p>
+             <p class="announcement-date">2024년 2월 20일</p>',
+             '산업통상자원부',
+             '한국산업기술진흥원',
+             '기계',
+             '자유공모',
+             4,
+             '연구개발계획서 제출',
+             '접수예정',
+             '2024-11-01',
+             '2024-12-15',
+             '2024-08-02',
+             NULL,
+             4
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '국토교통부 공고 제2024-003호',
+             '국토교통 연구개발 지원사업 공고',
+             '<p class="announcement-number">국토교통부 공고 제2024-003호</p>
+             <h4>2024년도 국토교통 R&D 지원 사업 신규과제 공모</h4>
+             <p>본 공모는 국토교통 기술개발을 위한 중점 연구 과제를 선정하여 지원하는 프로그램입니다. 국토 교통 산업의 발전에 기여하고자 합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>국토교통 분야의 혁신 기술 개발 및 스마트 시티 관련 연구 지원.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 연구기관 및 대학, 기업.</p>
+             <p class="announcement-date">2024년 3월 5일</p>',
+             '국토교통부',
+             '국토교통과학기술진흥원',
+             '건설/교통',
+             '분야공모',
+             4,
+             '연구계획서',
+             '접수중',
+             '2024-11-15',
+             '2024-12-30',
+             '2024-08-03',
+             NULL,
+             5
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '과학기술정보통신부 공고 제2024-101호',
+             '2024년도 ICT 연구개발 지원사업 공고',
+             '<p class="announcement-number">과학기술정보통신부 공고 제2024-101호</p>
+             <h4>2024년도 ICT 신기술 연구개발 지원사업 신규과제 공모</h4>
+             <p>본 사업은 ICT 신기술 개발을 위해 연구과제를 지원하는 프로그램입니다. 혁신적인 ICT 기술을 통해 국가 산업 경쟁력을 강화하고자 합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>ICT 신기술 개발을 통한 국가 경제 발전 및 경쟁력 제고.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내 대학 및 연구기관, ICT 관련 기업.</p>
+             <p class="announcement-date">2024년 3월 10일</p>',
+             '과학기술정보통신부',
+             '정보통신기획평가원',
+             '전기/전자',
+             '지정공모',
+             4,
+             '연구계획서',
+             '접수중',
+             '2024-10-20',
+             '2024-12-31',
+             '2024-08-10',
+             NULL,
+             6
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '중소벤처기업부 공고 제2024-102호',
+             '2024년 중소기업 기술개발 지원사업 공고',
+             '<p class="announcement-number">중소벤처기업부 공고 제2024-102호</p>
+             <h4>2024년도 중소기업 기술개발 신규과제 지원 공모</h4>
+             <p>본 사업은 중소기업의 기술 개발을 위해 연구과제를 지원합니다. 참여 중소기업은 기술 개발 및 사업화까지 전 주기를 지원받게 됩니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>중소기업의 기술 경쟁력 강화를 통한 경제 활성화.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내 중소기업 및 연구기관.</p>
+             <p class="announcement-date">2024년 3월 15일</p>',
+             '중소벤처기업부',
+             '중소기업기술정보진흥원',
+             '전기전자',
+             '자유공모',
+             4,
+             '기술개발계획서',
+             '접수중',
+             '2024-10-25',
+             '2024-12-20',
+             '2024-08-12',
+             NULL,
+             7
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '국토교통부 공고 제2024-103호',
+             '2024년 국토교통 기술개발사업 공고',
+             '<p class="announcement-number">국토교통부 공고 제2024-103호</p>
+             <h4>2024년도 국토교통 기술개발 신규과제 공모</h4>
+             <p>국토교통 산업의 기술 발전을 위해 연구과제를 선정하여 지원하는 사업입니다. 다양한 국토교통 관련 연구개발을 수행할 연구자들의 참여를 바랍니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>국토교통 기술 혁신을 통한 산업 발전 및 기술 경쟁력 강화.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 연구기관 및 관련 기업.</p>
+             <p class="announcement-date">2024년 4월 5일</p>',
+             '국토교통부',
+             '국토교통과학기술진흥원',
+             '건설/교통',
+             '분야공모',
+             4,
+             '계획서 제출',
+             '접수예정',
+             '2024-11-01',
+             '2025-01-15',
+             '2024-08-13',
+             NULL,
+             8
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '해양수산부 공고 제2024-104호',
+             '2024년 해양수산 연구개발 지원 공고',
+             '<p class="announcement-number">해양수산부 공고 제2024-104호</p>
+             <h4>2024년도 해양수산 연구개발 지원사업 신규과제 공모</h4>
+             <p>해양수산 분야의 기술 연구 및 개발을 위해 신규과제를 모집합니다. 지속 가능한 해양 자원의 활용을 목표로 합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>해양수산 기술 연구를 통한 자원 관리 및 산업 발전.</p>
+             <h5>나. 지원대상</h5>
+             <p>해양수산 관련 국내 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 4월 15일</p>',
+             '해양수산부',
+             '해양수산과학기술진흥원',
+             '생명과학',
+             '지정공모',
+             4,
+             '연구개발계획서 제출',
+             '접수중',
+             '2024-11-05',
+             '2025-01-10',
+             '2024-08-14',
+             NULL,
+             9
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '보건복지부 공고 제2024-105호',
+             '2024년 보건의료기술 연구개발 지원사업 공고',
+             '<p class="announcement-number">보건복지부 공고 제2024-105호</p>
+             <h4>2024년도 보건의료기술 연구개발 지원사업 신규과제 공모</h4>
+             <p>보건의료 분야의 신기술 연구개발을 위해 신규과제를 모집합니다. 건강한 사회를 위한 기술 개발에 기여할 연구자들의 많은 참여를 바랍니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>보건의료 신기술 개발을 통한 국민 건강 증진 및 의료 서비스 개선.</p>
+             <h5>나. 지원대상</h5>
+             <p>보건의료 관련 국내 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 4월 25일</p>',
+             '보건복지부',
+             '한국보건산업진흥원',
+             '보건의료',
+             '지정공모',
+             4,
+             '계획서 제출',
+             '접수중',
+             '2024-11-10',
+             '2025-01-05',
+             '2024-08-15',
+             NULL,
+             10
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '환경부 공고 제2024-106호',
+             '2024년 환경기술 연구개발 지원사업 공고',
+             '<p class="announcement-number">환경부 공고 제2024-106호</p>
+             <h4>2024년도 환경기술 연구개발 신규과제 공모</h4>
+             <p>본 공모는 환경기술 개발을 통해 지속 가능한 환경 보호 및 자원 관리를 목표로 하고 있습니다. 연구자들의 많은 참여 바랍니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>환경보호 기술 개발을 통한 자원 절약 및 친환경 산업 육성.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 환경기술 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 5월 10일</p>',
+             '환경부',
+             '한국환경산업기술원',
+             '환경',
+             '자유공모',
+             4,
+             '연구계획서',
+             '접수예정',
+             '2024-12-01',
+             '2025-02-01',
+             '2024-09-01',
+             NULL,
+             11
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '기상청 공고 제2024-107호',
+             '2024년 기상기술 연구개발 지원사업 공고',
+             '<p class="announcement-number">기상청 공고 제2024-107호</p>
+             <h4>2024년도 기상기술 연구개발 신규과제 공모</h4>
+             <p>기상기술 발전을 위한 연구개발 과제를 모집합니다. 기상 예측 및 재해 예방을 위한 첨단 기술 개발을 목표로 하고 있습니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>첨단 기상기술 개발을 통한 재난 예방 및 기후 변화 대응.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내 기상 연구기관 및 관련 기업.</p>
+             <p class="announcement-date">2024년 5월 15일</p>',
+             '기상청',
+             '한국기상산업기술원',
+             '지구과학',
+             '분야공모',
+             4,
+             '기술개발계획서',
+             '접수중',
+             '2024-11-20',
+             '2025-01-20',
+             '2024-09-05',
+             NULL,
+             12
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '보건복지부 공고 제2024-108호',
+             '2024년 감염병 예방 및 대응기술 개발 지원 공고',
+             '<p class="announcement-number">보건복지부 공고 제2024-108호</p>
+             <h4>2024년도 감염병 예방 및 대응기술 연구개발 공모</h4>
+             <p>본 공모는 감염병 예방 및 대응기술을 연구개발하여 국가 보건 안전을 강화하는 것을 목표로 하고 있습니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>감염병 대응기술 개발을 통한 국민 건강 증진 및 보건 안전 강화.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 보건 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 5월 20일</p>',
+             '보건복지부',
+             '질병관리청',
+             '보건의료',
+             '지정공모',
+             4,
+             '연구계획서 제출',
+             '접수중',
+             '2024-12-10',
+             '2025-02-10',
+             '2024-09-10',
+             NULL,
+             13
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '해양수산부 공고 제2024-109호',
+             '2024년 해양기술 연구개발 지원사업 공고',
+             '<p class="announcement-number">해양수산부 공고 제2024-109호</p>
+             <h4>2024년도 해양기술 연구개발 신규과제 공모</h4>
+             <p>해양기술 분야의 혁신 연구개발을 위해 신규 과제를 모집합니다. 해양 자원 개발 및 환경 보호를 위한 기술적 솔루션을 개발하는 것이 목표입니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>해양 자원 개발 및 지속 가능한 해양 환경 보호 기술 개발.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내 해양기술 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 6월 1일</p>',
+             '해양수산부',
+             '해양수산과학기술진흥원',
+             '생명과학',
+             '자유공모',
+             4,
+             '기술개발계획서 제출',
+             '접수중',
+             '2024-12-15',
+             '2025-02-28',
+             '2024-09-15',
+             NULL,
+             14
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '국방부 공고 제2024-110호',
+             '2024년 방위산업 기술개발 지원사업 공고',
+             '<p class="announcement-number">국방부 공고 제2024-110호</p>
+             <h4>2024년도 방위산업 기술개발 신규과제 공모</h4>
+             <p>방위산업 발전을 위한 기술개발 과제를 모집합니다. 국방 산업의 기술 혁신과 자주 국방 역량 강화를 목표로 하고 있습니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>방위산업 기술 개발을 통한 국가 안보 강화 및 자주 국방 역량 제고.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내 방위산업 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 6월 15일</p>',
+             '국방부',
+             '국방기술품질원',
+             '기계',
+             '지정공모',
+             4,
+             '연구개발계획서',
+             '접수예정',
+             '2024-12-20',
+             '2025-03-01',
+             '2024-09-20',
+             NULL,
+             15
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '과학기술정보통신부 공고 제2024-111호',
+             '2024년 정보통신기술 연구개발 지원사업 공고',
+             '<p class="announcement-number">과학기술정보통신부 공고 제2024-111호</p>
+             <h4>2024년도 정보통신기술 연구개발 신규과제 공모</h4>
+             <p>정보통신기술 발전을 위한 신규 과제를 모집합니다. IT 산업 발전과 4차 산업혁명 기술 개발에 기여하는 프로젝트입니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>IT 기술 개발을 통한 국가 경쟁력 강화 및 4차 산업혁명 대비.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 IT 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 7월 1일</p>',
+             '과학기술정보통신부',
+             '정보통신기획평가원',
+             '전기/전자',
+             '품목지정공모',
+             4,
+             '기술계획서 제출',
+             '접수중',
+             '2024-12-25',
+             '2025-03-15',
+             '2024-09-25',
+             NULL,
+             16
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '산림청 공고 제2024-112호',
+             '2024년 산림자원 개발사업 지원 공고',
+             '<p class="announcement-number">산림청 공고 제2024-112호</p>
+             <h4>2024년도 산림자원 개발사업 신규과제 공모</h4>
+             <p>산림 자원 보호 및 산림 자원 활용을 위한 연구개발 사업을 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>산림 자원의 지속 가능한 관리 및 활용을 위한 기술 개발.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 산림 자원 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 7월 10일</p>',
+             '산림청',
+             '한국임업진흥원',
+             '재료',
+             '지정공모',
+             4,
+             '연구개발계획서',
+             '접수예정',
+             '2025-01-10',
+             '2025-03-10',
+             '2024-09-30',
+             NULL,
+             17
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '보건복지부 공고 제2024-113호',
+             '2024년 의료기술 연구개발 지원사업 공고',
+             '<p class="announcement-number">보건복지부 공고 제2024-113호</p>
+             <h4>2024년도 의료기술 연구개발 신규과제 공모</h4>
+             <p>의료기술 발전을 위한 연구개발 사업을 공모합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>의료기술 개발을 통한 국민 보건 증진 및 의료 기술 혁신.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 의료기술 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 8월 1일</p>',
+             '보건복지부',
+             '국가신약개발사업단',
+             '보건의료',
+             '지정공모',
+             4,
+             '연구개발계획서',
+             '접수마감',
+             '2024-09-01',
+             '2024-10-15',
+             '2024-07-01',
+             NULL,
+             18
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '국방부 공고 제2024-114호',
+             '2024년 자주국방 기술개발 지원사업 공고',
+             '<p class="announcement-number">국방부 공고 제2024-114호</p>
+             <h4>2024년도 자주국방 기술개발 신규과제 공모</h4>
+             <p>국방 기술 혁신을 위한 연구개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>국방 기술 개발을 통한 국가 안보 강화 및 자주국방 실현.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 국방 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 8월 15일</p>',
+             '국방부',
+             '국방기술품질원',
+             '기계',
+             '품목지정공모',
+             4,
+             '연구개발계획서',
+             '접수예정',
+             '2024-12-15',
+             '2025-03-01',
+             '2024-09-25',
+             NULL,
+             19
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '행정안전부 공고 제2024-115호',
+             '2024년 재난안전기술 연구개발 지원사업 공고',
+             '<p class="announcement-number">행정안전부 공고 제2024-115호</p>
+             <h4>2024년도 재난안전기술 연구개발 신규과제 공모</h4>
+             <p>재난 대응 및 안전 기술 개발을 위한 연구개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>재난 대응 기술 개발을 통한 국민 안전 보장.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 안전기술 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 9월 1일</p>',
+             '행정안전부',
+             '국립재난안전연구원',
+             '원자력',
+             '지정공모',
+             4,
+             '기술개발계획서 제출',
+             '접수마감',
+             '2024-09-20',
+             '2024-11-15',
+             '2024-08-01',
+             NULL,
+             20
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '중소벤처기업부 공고 제2024-116호',
+             '2024년 중소기업 기술개발 지원사업 공고',
+             '<p class="announcement-number">중소벤처기업부 공고 제2024-116호</p>
+             <h4>2024년도 중소기업 기술개발 지원 신규과제 공모</h4>
+             <p>중소기업 기술 역량 강화를 위한 연구개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>중소기업 기술개발을 통한 기술 경쟁력 강화 및 시장 확대.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내 중소기업 및 연구기관.</p>
+             <p class="announcement-date">2024년 9월 15일</p>',
+             '중소벤처기업부',
+             '중소기업기술정보진흥원',
+             '전기/전자',
+             '자유공모',
+             4,
+             '연구계획서 제출',
+             '접수마감',
+             '2024-09-30',
+             '2024-11-20',
+             '2024-08-10',
+             NULL,
+             21
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '식품의약품안전처 공고 제2024-117호',
+             '2024년 의약품 안전기술 연구개발 지원사업 공고',
+             '<p class="announcement-number">식품의약품안전처 공고 제2024-117호</p>
+             <h4>2024년도 의약품 안전기술 연구개발 신규과제 공모</h4>
+             <p>의약품 안전성을 확보하기 위한 기술개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>의약품 안전성을 위한 기술 개발 및 보건 향상.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 의약품 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 10월 1일</p>',
+             '식품의약품안전처',
+             '식품의약품안전평가원',
+             '보건의료',
+             '지정공모',
+             4,
+             '기술계획서',
+             '접수예정',
+             '2025-01-01',
+             '2025-03-31',
+             '2024-09-01',
+             NULL,
+             22
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '농림축산식품부 공고 제2024-118호',
+             '2024년 농식품 기술 연구개발 지원사업 공고',
+             '<p class="announcement-number">농림축산식품부 공고 제2024-118호</p>
+             <h4>2024년도 농식품 기술 연구개발 신규과제 공모</h4>
+             <p>농식품 산업 발전을 위한 연구개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>농식품 산업 기술 혁신 및 경쟁력 강화를 위한 연구.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 농식품 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 10월 15일</p>',
+             '농림축산식품부',
+             '농림식품기술기획평가원',
+             '농림수산식품',
+             '자유공모',
+             4,
+             '연구계획서 제출',
+             '접수예정',
+             '2025-02-01',
+             '2025-04-30',
+             '2024-09-10',
+             NULL,
+             23
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '우주항공청 공고 제2024-119호',
+             '2024년 우주항공 기술개발 지원사업 공고',
+             '<p class="announcement-number">우주항공청 공고 제2024-119호</p>
+             <h4>2024년도 우주항공 기술개발 신규과제 공모</h4>
+             <p>우주항공 기술 혁신을 위한 연구개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>우주항공 기술 개발을 통한 국가 경쟁력 확보 및 기술력 강화.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 우주항공 기술 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 11월 1일</p>',
+             '우주항공청',
+             '우주항공청',
+             '지구과학',
+             '지정공모',
+             4,
+             '연구계획서 제출',
+             '접수예정',
+             '2025-03-01',
+             '2025-05-31',
+             '2024-09-20',
+             NULL,
+             24
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '경찰청 공고 제2024-120호',
+             '2024년 치안기술 연구개발 지원사업 공고',
+             '<p class="announcement-number">경찰청 공고 제2024-120호</p>
+             <h4>2024년도 치안기술 연구개발 신규과제 공모</h4>
+             <p>치안 및 사회 안전을 위한 연구개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>국가 치안 기술력 향상을 위한 연구개발 지원.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 치안 기술 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 11월 15일</p>',
+             '경찰청',
+             '과학치안진흥센터',
+             '건설/교통',
+             '분야공모',
+             4,
+             '연구개발계획서',
+             '접수마감',
+             '2024-12-01',
+             '2025-02-28',
+             '2024-10-01',
+             NULL,
+             25
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '해양수산부 공고 제2024-121호',
+             '2024년 해양기술 연구개발 지원사업 공고',
+             '<p class="announcement-number">해양수산부 공고 제2024-121호</p>
+             <h4>2024년도 해양기술 연구개발 신규과제 공모</h4>
+             <p>해양 자원 및 해양 환경 보호를 위한 연구개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>해양 자원의 지속 가능성 확보 및 기술 개발.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 해양 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 7월 20일</p>',
+             '해양수산부',
+             '한국해양수산개발원',
+             '생명과학',
+             '자유공모',
+             4,
+             '연구계획서',
+             '접수마감',
+             '2024-08-01',
+             '2024-09-30',
+             '2024-06-15',
+             NULL,
+             26
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '환경부 공고 제2024-122호',
+             '2024년 환경기술 연구개발 지원사업 공고',
+             '<p class="announcement-number">환경부 공고 제2024-122호</p>
+             <h4>2024년도 환경기술 연구개발 신규과제 공모</h4>
+             <p>환경 보호와 지속 가능한 발전을 위한 기술 개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>환경 보존 기술 및 재생에너지 기술 개발 지원.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 환경 기술 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 8월 15일</p>',
+             '환경부',
+             '한국환경산업기술원',
+             '환경',
+             '지정공모',
+             4,
+             '기술계획서',
+             '접수마감',
+             '2024-09-01',
+             '2024-10-30',
+             '2024-07-20',
+             NULL,
+             27
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '과학기술정보통신부 공고 제2024-123호',
+             '2024년 정보통신 기술개발 지원사업 공고',
+             '<p class="announcement-number">과학기술정보통신부 공고 제2024-123호</p>
+             <h4>2024년도 정보통신 기술개발 신규과제 공모</h4>
+             <p>정보통신 기술 혁신을 위한 연구개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>정보통신 기술력 강화를 통한 국가 디지털 경쟁력 제고.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 정보통신 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 9월 1일</p>',
+             '과학기술정보통신부',
+             '정보통신기술진흥센터',
+             '정보/통신',
+             '분야공모',
+             4,
+             '연구개발계획서',
+             '접수마감',
+             '2024-09-20',
+             '2024-11-15',
+             '2024-07-10',
+             NULL,
+             28
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '고용노동부 공고 제2024-124호',
+             '2024년 노동환경 개선 연구 지원사업 공고',
+             '<p class="announcement-number">고용노동부 공고 제2024-124호</p>
+             <h4>2024년도 노동환경 개선 연구개발 신규과제 공모</h4>
+             <p>노동환경 개선을 위한 연구개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>노동자의 건강과 안전을 보장하기 위한 기술 개발 지원.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 9월 10일</p>',
+             '고용노동부',
+             '안전보건공단',
+             '인문학',
+             '지정공모',
+             4,
+             '기술계획서 제출',
+             '접수마감',
+             '2024-10-01',
+             '2024-11-30',
+             '2024-08-15',
+             NULL,
+             29
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '문화체육관광부 공고 제2024-125호',
+             '2024년 문화콘텐츠 산업 육성 지원사업 공고',
+             '<p class="announcement-number">문화체육관광부 공고 제2024-125호</p>
+             <h4>2024년도 문화콘텐츠 산업 육성 연구개발 신규과제 공모</h4>
+             <p>문화콘텐츠 산업 발전을 위한 연구개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>문화콘텐츠 기술 개발을 통한 산업 경쟁력 강화.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 문화콘텐츠 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 9월 20일</p>',
+             '문화체육관광부',
+             '한국콘텐츠진흥원',
+             '인문학',
+             '분야공모',
+             4,
+             '기술개발계획서',
+             '접수마감',
+             '2024-09-25',
+             '2024-11-15',
+             '2024-07-30',
+             NULL,
+             30
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '산업통상자원부 공고 제2024-126호',
+             '2024년 산업기술 연구개발 지원사업 공고',
+             '<p class="announcement-number">산업통상자원부 공고 제2024-126호</p>
+             <h4>2024년도 산업기술 연구개발 신규과제 공모</h4>
+             <p>산업 기술 혁신을 위한 연구개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>국내 산업기술 발전을 통한 글로벌 경쟁력 강화.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 산업기술 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 9월 25일</p>',
+             '산업통상자원부',
+             '한국산업기술진흥원',
+             '사회과학',
+             '지정공모',
+             4,
+             '기술계획서',
+             '접수마감',
+             '2024-10-15',
+             '2024-12-30',
+             '2024-08-01',
+             NULL,
+             31
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '중소벤처기업부 공고 제2024-127호',
+             '2024년 중소기업 기술개발 지원사업 공고',
+             '<p class="announcement-number">중소벤처기업부 공고 제2024-127호</p>
+             <h4>2024년도 중소기업 기술개발 신규과제 공모</h4>
+             <p>중소기업 기술 혁신을 위한 연구개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>중소기업의 기술 경쟁력 강화를 위한 지원.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 중소기업 및 관련 연구기관.</p>
+             <p class="announcement-date">2024년 10월 1일</p>',
+             '중소벤처기업부',
+             '중소기업기술정보진흥원',
+             '화공',
+             '자유공모',
+             4,
+             '연구개발계획서',
+             '접수마감',
+             '2024-11-01',
+             '2024-12-31',
+             '2024-09-01',
+             NULL,
+             32
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '농촌진흥청 공고 제2024-128호',
+             '2024년 농업기술 연구개발 지원사업 공고',
+             '<p class="announcement-number">농촌진흥청 공고 제2024-128호</p>
+             <h4>2024년도 농업기술 연구개발 신규과제 공모</h4>
+             <p>농업 기술 발전을 위한 연구개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>농업 기술의 혁신 및 식량안보 확보.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 농업 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 10월 5일</p>',
+             '농촌진흥청',
+             '농촌진흥청',
+             '농림수산식품',
+             '지정공모',
+             4,
+             '기술계획서',
+             '접수마감',
+             '2024-10-20',
+             '2025-01-15',
+             '2024-08-10',
+             NULL,
+             33
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '여성가족부 공고 제2024-129호',
+             '2024년 양성평등 연구 지원사업 공고',
+             '<p class="announcement-number">여성가족부 공고 제2024-129호</p>
+             <h4>2024년도 양성평등 연구개발 신규과제 공모</h4>
+             <p>양성평등 및 인권 향상을 위한 연구개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>양성평등 문화 조성 및 사회적 가치 증진을 위한 연구개발.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 연구기관 및 관련 기업.</p>
+             <p class="announcement-date">2024년 10월 10일</p>',
+             '여성가족부',
+             '한국양성평등교육진흥원',
+             '인문학',
+             '분야공모',
+             4,
+             '기술개발계획서',
+             '접수마감',
+             '2024-11-01',
+             '2025-01-15',
+             '2024-09-05',
+             NULL,
+             34
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '보건복지부 공고 제2024-130호',
+             '2024년 보건의료 연구개발 지원사업 공고',
+             '<p class="announcement-number">보건복지부 공고 제2024-130호</p>
+             <h4>2024년도 보건의료 연구개발 신규과제 공모</h4>
+             <p>보건의료 분야의 혁신 기술 개발을 위한 연구개발 과제를 모집합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>보건의료 기술 발전 및 국민 건강 증진을 위한 연구개발 지원.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 보건의료 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 10월 15일</p>',
+             '보건복지부',
+             '한국보건산업진흥원',
+             '보건의료',
+             '자유공모',
+             4,
+             '연구계획서 제출',
+             '접수마감',
+             '2024-12-01',
+             '2025-02-28',
+             '2024-09-10',
+             NULL,
+             35
+         );
+
+INSERT INTO bucket (BUCKET_NO) VALUES (NEXTVAL('seq_bucket'));
+INSERT INTO announcement (
+    ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY, SPEC_INSTITUTION, ann_tech_field_name,
+    ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE, STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO
+) VALUES (
+             NEXTVAL('seq_announcement'),
+             '보건복지부 공고 제2024-113호',
+             '2024년 의료기술 연구개발 지원사업 공고',
+             '<p class="announcement-number">보건복지부 공고 제2024-113호</p>
+             <h4>2024년도 의료기술 연구개발 신규과제 공모</h4>
+             <p>의료기술 발전을 위한 연구개발 사업을 공모합니다.</p>
+             <h5>가. 사업목적</h5>
+             <p>의료기술 개발을 통한 국민 보건 증진 및 의료 기술 혁신.</p>
+             <h5>나. 지원대상</h5>
+             <p>국내외 의료기술 관련 연구기관 및 기업.</p>
+             <p class="announcement-date">2024년 8월 1일</p>',
+             '보건복지부',
+             '국가신약개발사업단',
+             '보건의료',
+             '지정공모',
+             4,
+             '연구개발계획서',
+             '접수마감',
+             '2024-09-01',
+             '2024-10-15',
+             '2023-07-01',
+             NULL,
+             36
+         );
 
 alter table announcement
     add constraint pk_announcement
@@ -68,11 +1168,11 @@ create table sub_announcement
     sub_ann_uni_no      varchar2(100) not null,
     sub_title           varchar2(255) not null,
     plan_type           varchar2(50) not null,
-    task_type           varchar2(50) not null,
+    TASK_TYPE           VARCHAR2(50) not null,
     spec_institution_no varchar2(50) not null,
     tech_field_name     varchar2(100) not null,
     mgr_name            varchar2(20) not null,
-    mgr_tel             varchar2(20) not null,
+    mgr_tel         varchar2(20) not null,
     planning_year       number(4,0) not null,
     total_subsidy       number(10,0)  not null,
     total_dev_month     number(2,0)  not null,
@@ -84,10 +1184,104 @@ create table sub_announcement
     constraint fk_sub_announcement_ann_no foreign key (ann_no) references announcement (ann_no),
     constraint fk_sub_announcement_bucket_no foreign key (bucket_no) references bucket (bucket_no)
 );
-
 alter table sub_announcement
     add constraint pk_sub_announcement
         primary key (sub_ann_no);
+
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME,
+                              MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH, ONE_YEAR_SUBSIDY,
+                              ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-01', '저탄소 연료생산을 위한 이산화탄소 전환기술 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-01',
+        '에너지/자원 > 온실가스 처리 > CO2 전환기술', '이민수', '02-231-1202', '2024', 3600000, 36, 285000, 3, '연구기관귀속', '1', '1');
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME,
+                              MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH, ONE_YEAR_SUBSIDY,
+                              ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-02', 'Ge-on-Si 단파장 적외선 이미지센서 및 카메라 시스템 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-02',
+        '전기/전자 > 반도체 소자·회로 > 반도체 재료', '이민선', '02-231-1207', '2024', 3600000, 36, 285000, 3, '연구기관귀속', '1', '1');
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME,
+                              MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH, ONE_YEAR_SUBSIDY,
+                              ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-03', '저궤도 상 On-board AI 영상 처리 시스템 장착 초소형 위성 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-03',
+        '기계 > 우주시스템 > 우주시스템 추적/관제/수신/활용 기술', '이훈희', '02-231-3697', '2024', 3600000, 36, 285000, 3, '연구기관귀속', '1', '1');
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME,
+                              MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH, ONE_YEAR_SUBSIDY,
+                              ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-04', '자가 적응 AI 기반 이차전지 모듈팩 통합 시스템 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-04',
+        '정보/통신 > 정보이론 > 인공지능', '이민성', '02-231-5617', '2024', 3600000, 36, 285000, 3, '연구기관귀속', '1', '1');
+
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME, MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH,
+                              ONE_YEAR_SUBSIDY, ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-11', '전력망 스마트화 기술 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-11', '에너지/자원 > 전력 > 스마트 그리드 기술', '장민호', '02-231-1212', '2024', 4000000, 36, 300000, 3, '연구기관귀속', '2', '2');
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME, MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH,
+                              ONE_YEAR_SUBSIDY, ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-12', '차세대 에너지 저장 기술 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-12', '에너지/자원 > 에너지 저장 > 배터리 기술', '이수진', '02-231-1213', '2024', 3900000, 36, 290000, 3, '연구기관귀속', '2', '2');
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME, MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH,
+                              ONE_YEAR_SUBSIDY, ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-13', '스마트 물류 관리 시스템 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-13', '물류/운송 > 스마트 물류 > 물류 자동화 기술', '안성준', '02-231-1214', '2024', 4500000, 36, 340000, 3, '연구기관귀속', '2', '2');
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME, MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH,
+                              ONE_YEAR_SUBSIDY, ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-14', '농업 빅데이터 활용 기술 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-14', '농업/식품 > 데이터 활용 > 빅데이터 분석 기술', '이한솔', '02-231-1215', '2024', 3600000, 36, 280000, 3, '연구기관귀속', '2', '2');
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME, MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH,
+                              ONE_YEAR_SUBSIDY, ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-15', '스마트 농업 솔루션 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-15', '농업/식품 > 스마트 농업 > 농업 자동화 기술', '김태희', '02-231-1216', '2024', 4200000, 36, 320000, 3, '연구기관귀속', '3', '3');
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME, MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH,
+                              ONE_YEAR_SUBSIDY, ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-16', '차세대 식물 공장 기술 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-16', '농업/식품 > 식물공장 > 자동화 기술', '하정우', '02-231-1217', '2024', 4800000, 36, 360000, 3, '연구기관귀속', '3', '3');
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME, MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH,
+                              ONE_YEAR_SUBSIDY, ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-17', '스마트 온실 기술 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-17', '농업/식품 > 스마트 온실 > 온실 관리 기술', '이재현', '02-231-1218', '2024', 4300000, 36, 330000, 3, '연구기관귀속', '3', '3');
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME, MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH,
+                              ONE_YEAR_SUBSIDY, ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-18', '농업 자원 효율화를 위한 연구', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-18', '농업/식품 > 자원 관리 > 농업 효율화 기술', '정유진', '02-231-1219', '2024', 3900000, 36, 290000, 3, '연구기관귀속', '3', '3');
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME, MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH,
+                              ONE_YEAR_SUBSIDY, ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-19', '스마트 축산 기술 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-19', '농업/식품 > 축산업 > 스마트 축산 기술', '이상훈', '02-231-1220', '2024', 4200000, 36, 310000, 3, '연구기관귀속', '4', '4');
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME, MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH,
+                              ONE_YEAR_SUBSIDY, ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-20', '수산물 유통 기술 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-20', '농업/식품 > 수산업 > 유통 기술', '문수영', '02-231-1221', '2024', 4400000, 36, 340000, 3, '연구기관귀속', '4', '4');
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME, MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH,
+                              ONE_YEAR_SUBSIDY, ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-21', '고급 수산물 가공 기술 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-21', '농업/식품 > 수산물 가공 > 가공 기술', '장다솜', '02-231-1222', '2024', 4600000, 36, 350000, 3, '연구기관귀속', '4', '4');
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME, MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH,
+                              ONE_YEAR_SUBSIDY, ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-22', '스마트 식품 안전 관리 기술 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-22', '농업/식품 > 식품 안전 > 안전 관리 기술', '이민주', '02-231-1223', '2024', 4700000, 36, 360000, 3, '연구기관귀속', '4', '4');
+INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
+                              TECH_FIELD_NAME, MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH,
+                              ONE_YEAR_SUBSIDY, ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
+VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-23', '스마트 시티 구축을 위한 기술 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
+        '2024-DCP-23', '도시/환경 > 스마트 시티 > 도시 관리 기술', '김민지', '02-231-1224', '2024', 5000000, 36, 400000, 3, '연구기관귀속', '18', '18');
 
 -- institution
 create sequence seq_institution START WITH 1 INCREMENT BY 1 NOCYCLE;
@@ -232,7 +1426,6 @@ create table tech_field
     tech_field_no        number(10,0) not null,
     name                 varchar2(25) not null,
     code                 varchar2(25) not null,
-    type                 varchar2(10) not null,
     parent_tech_field_no number(10,0)
 );
 
@@ -246,6 +1439,7 @@ ALTER TABLE tech_field
             REFERENCES tech_field (tech_field_no);
 
 -- mem_tech_field
+create sequence seq_mem_tech_field START WITH 1 INCREMENT BY 1 NOCYCLE;
 
 create table mem_tech_field
 (
@@ -597,647 +1791,3 @@ ALTER TABLE opinion
     ADD CONSTRAINT fk_opinion_no_parent
         FOREIGN KEY (parent_opinion_no)
             REFERENCES opinion (opinion_no);
-
-
--- 더미 예제
-
---  회원
-
-INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
-VALUES (NEXT VALUE FOR seq_institution, '서울대학교', '123-45-67890', '서울특별시 관악구 관악로', '대학교', '교육기관');
-
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, NULL, 'user01', 'password123', '홍길동', 'hong@example.com',
-             current_timestamp, 'M', '010-1234-5678', '서울특별시 강남구 테헤란로',
-             '연구기관', '컴퓨터공학과', '연구원', '활성', current_timestamp, current_timestamp, NULL, 1);
-
-INSERT INTO acad_ability (acad_ability_no, ability_type, org_name, acquired_country, major_affiliation,
-                          major_field, major_name, acquired_at, created_at, updated_at, mem_no)
-VALUES (NEXT VALUE FOR seq_acad_ability, '학사', '서울대학교', '대한민국', '공학계열',
-             '컴퓨터공학', '소프트웨어공학', current_timestamp, current_timestamp, current_timestamp, 1);
-
-INSERT INTO acad_ability (acad_ability_no, ability_type, org_name, acquired_country, major_affiliation,
-                          major_field, major_name, acquired_at, created_at, updated_at, mem_no)
-VALUES (NEXT VALUE FOR seq_acad_ability, '석사', '카이스트', '대한민국', '공학계열',
-             '전자공학', '반도체공학', current_timestamp, current_timestamp, current_timestamp, 1);
-
-INSERT INTO career (career_no, org_name, dept_name, career_type, started_at, ended_at, created_at, updated_at, mem_no)
-VALUES (NEXT VALUE FOR seq_career, '삼성전자', '개발팀', '정규직', current_timestamp, current_timestamp, current_timestamp,
-             current_timestamp, 1);
-
-INSERT INTO career (career_no, org_name, dept_name, career_type, started_at, ended_at, created_at, updated_at, mem_no)
-VALUES (NEXT VALUE FOR seq_career, 'LG화학', '연구소', '계약직', current_timestamp, current_timestamp, current_timestamp,
-             current_timestamp, 1);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (1, '생명과학', 'LA', 'root', NULL);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (2, '분자세포생물학', 'LA01', 'parent', 1);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (3, '신호전달', 'LA0101', 'child', 2);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (4, '세포구조/운동', 'LA0102', 'child', 2);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (5, '세포분화/사멸', 'LA0103', 'child', 2);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (6, '막 생물학', 'LA0104', 'child', 2);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (7, '유전자 발현조절', 'LA0105', 'child', 2);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (8, '달리 분류되지 않는 분자세포 생물학', 'LA0199', 'child', 2);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (9, '유전학·유전체학', 'LA02', 'parent', 1);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (10, '분자유전학', 'LA0201', 'child', 9);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (11, '세포유전학', 'LA0202', 'child', 9);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (12, '집단유전학', 'LA0203', 'child', 9);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (13, '유전체학', 'LA0204', 'child', 9);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (14, '형질전환 생물모델', 'LA0205', 'child', 9);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (15, '유전자 편집·치료', 'LA0206', 'child', 9);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (16, '기능유전체학', 'LA0207', 'child', 9);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (17, '후성유전체학', 'LA0208', 'child', 9);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (18, '메타유전체학', 'LA0209', 'child', 9);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (19, '달리 분류되지 않는 유전학·유전체학', 'LA0299', 'child', 9);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (20, '발생/신경생물학', 'LA03', 'parent', 1);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (21, '배아발생/기관형성', 'LA0301', 'child', 20);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (22, '내분비생물학', 'LA0302', 'child', 20);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (23, '생식생물학', 'LA0303', 'child', 20);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (24, '신경 생화학/생리학', 'LA0304', 'child', 20);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (25, '신경질환생물학', 'LA0305', 'child', 20);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (26, '줄기세포생물학', 'LA0306', 'child', 20);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (27, '달리 분류되지 않는 발생/신경생물학', 'LA0399', 'child', 20);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (28, '면역학/생리학', 'LA04', 'parent', 1);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (29, '면역계 발생/기능', 'LA0401', 'child', 28);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (30, '선천성 면역', 'LA0402', 'child', 28);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (31, '세포성/체액성 면역', 'LA0403', 'child', 28);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (32, '세포생리학', 'LA0404', 'child', 28);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (33, '전기생리학', 'LA0405', 'child', 28);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (34, '달리 분류되지 않는 면역학/생리학', 'LA0499', 'child', 28);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (35, '분류/생태/환경생물학', 'LA05', 'parent', 1);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (36, '계통분류학', 'LA0501', 'child', 35);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (37, '진화학', 'LA0502', 'child', 35);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (38, '생태학', 'LA0503', 'child', 35);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (39, '환경생물학', 'LA0504', 'child', 35);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (40, '행동생물학', 'LA0505', 'child', 35);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (41, '생물자원/다양성', 'LA0506', 'child', 35);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (42, '달리 분류되지 않는 분류/생태/환경생물학', 'LA0599', 'child', 35);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (43, '생화학/구조생물학', 'LA06', 'parent', 1);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (44, '단백질 구조와 기능', 'LA0601', 'child', 43);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (45, '핵산 생화학', 'LA0602', 'child', 43);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (46, '단백질체학', 'LA0603', 'child', 43);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (47, '당생물학', 'LA0604', 'child', 43);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (48, '지질생화학', 'LA0605', 'child', 43);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (49, '구조생물학', 'LA0606', 'child', 43);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (50, '달리 분류되지 않는 생화학/ 구조 생물학', 'LA0699', 'child', 43);
-
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (51, '수학', 'NA', 'root', NULL);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (52, '기타 수학', 'NA99', 'parent', 51);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (53, '기하학', 'NA04', 'parent', 51);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (54, '대수학', 'NA01', 'parent', 51);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (55, '위상수학', 'NA03', 'parent', 51);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (56, '응용수학', 'NA05', 'parent', 51);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (57, '응용통계', 'NA09', 'parent', 51);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (58, '이산/정보수학', 'NA06', 'parent', 51);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (59, '통계 방법론·계산', 'NA08', 'parent', 51);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (60, '통계이론', 'NA07', 'parent', 51);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (61, '해석학', 'NA02', 'parent', 51);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (62, '확률/확률과정', 'NA10', 'parent', 51);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (63, '결합환', 'NA0106', 'child', 54);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (64, '경제/경영통계', 'NA0902', 'child', 57);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (65, '계산수학', 'NA0510', 'child', 56);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (66, '고전/일반기하', 'NA0401', 'child', 53);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (67, '고전/조화해석', 'NA0201', 'child', 61);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (68, '공업통계', 'NA0906', 'child', 57);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (69, '과학/공학의 수학적 방법론', 'NA0504', 'child', 56);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (70, '군/표현', 'NA0104', 'child', 54);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (71, '금융/보험통계', 'NA0903', 'child', 57);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (72, '금융수학', 'NA0505', 'child', 56);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (73, '기하위상수학/미분위상수학', 'NA0303', 'child', 55);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (74, '다변량통계', 'NA0803', 'child', 59);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (75, '달리 분류되지 않는 기하학', 'NA0499', 'child', 53);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (76, '달리 분류되지 않는 대수학', 'NA0199', 'child', 54);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (77, '달리 분류되지 않는 수학', 'NA9999', 'child', 52);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (78, '달리 분류되지 않는 위상수학', 'NA0399', 'child', 55);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (79, '달리 분류되지 않는 응용수학', 'NA0599', 'child', 56);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (80, '달리 분류되지 않는 응용통계', 'NA0999', 'child', 57);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (81, '달리 분류되지 않는 이산/정보수학', 'NA0699', 'child', 58);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (82, '달리 분류되지 않는 통계 방법론·계산', 'NA0899', 'child', 59);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (83, '달리 분류되지 않는 통계이론', 'NA0799', 'child', 60);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (84, '달리 분류되지 않는 해석학', 'NA0299', 'child', 61);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (85, '달리 분류되지 않는 확률/확률과정', 'NA1099', 'child', 62);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (86, '대수기하/가환환', 'NA0105', 'child', 54);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (87, '대수적위상수학', 'NA0302', 'child', 55);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (88, '대역해석학/다양체위의 해석학', 'NA0207', 'child', 61);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (89, '동력계/상미분방정식', 'NA0205', 'child', 61);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (90, '리군/위상군', 'NA0304', 'child', 55);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (91, '리대수/비결합환', 'NA0107', 'child', 54);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (92, '모수추론', 'NA0701', 'child', 60);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (93, '미분기하', 'NA0403', 'child', 53);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (94, '바이오수학', 'NA0506', 'child', 56);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (95, '베이지안추론', 'NA0703', 'child', 60);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (96, '변분론/비선형해석', 'NA0204', 'child', 61);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (97, '보험수학', 'NA0509', 'child', 56);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (98, '복소기하', 'NA0404', 'child', 53);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (99, '복소해석', 'NA0202', 'child', 61);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (100, '볼록기하/이산기하', 'NA0402', 'child', 53);
-
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (101, '물리학', 'NB', 'root', NULL);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (102, '광학·양자전자학', 'NB05', 'parent', 101);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (103, '기타 물리학', 'NB99', 'parent', 101);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (104, '복합물리', 'NB09', 'parent', 101);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (105, '원자/분자물리', 'NB07', 'parent', 101);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (106, '유체·플라즈마물리', 'NB04', 'parent', 101);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (107, '응집물질물리', 'NB06', 'parent', 101);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (108, '입자/장물리', 'NB01', 'parent', 101);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (109, '천체물리', 'NB08', 'parent', 101);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (110, '통계물리', 'NB02', 'parent', 101);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (111, '핵물리', 'NB03', 'parent', 101);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (112, 'X선 광학', 'NB0510', 'child', 102);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (113, '가속기/충돌 물리', 'NB0105', 'child', 108);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (114, '강입자 물리', 'NB0303', 'child', 111);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (115, '고에너지 중이온 반응', 'NB0304', 'child', 111);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (116, '고에너지천체', 'NB0806', 'child', 109);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (117, '광자학', 'NB0505', 'child', 102);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (118, '기하/파동 광학', 'NB0507', 'child', 102);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (119, '나노 광학', 'NB0509', 'child', 102);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (120, '나노구조/나노소자', 'NB0617', 'child', 107);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (121, '달리 분류되지 않는 광학·양자전자학', 'NB0599', 'child', 102);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (122, '달리 분류되지 않는 물리학', 'NB9999', 'child', 103);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (123, '달리 분류되지 않는 복합물리', 'NB0999', 'child', 104);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (124, '달리 분류되지 않는 원자/분자물리', 'NB0799', 'child', 105);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (125, '달리 분류되지 않는 유체·플라즈마물리', 'NB0499', 'child', 106);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (126, '달리 분류되지 않는 응집물질물리', 'NB0699', 'child', 107);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (127, '달리 분류되지 않는 입자/장물리', 'NB0199', 'child', 108);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (128, '달리 분류되지 않는 천체물리', 'NB0899', 'child', 109);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (129, '달리 분류되지 않는 통계물리', 'NB0299', 'child', 110);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (130, '달리 분류되지 않는 핵물리', 'NB0399', 'child', 111);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (131, '디스플레이 광학', 'NB0508', 'child', 102);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (132, '레이저광학', 'NB0503', 'child', 102);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (133, '무른물질/유기물질', 'NB0612', 'child', 107);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (134, '무질서계', 'NB0202', 'child', 110);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (135, '반도체', 'NB0607', 'child', 107);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (136, '복잡계', 'NB0204', 'child', 110);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (137, '분광학', 'NB0501', 'child', 102);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (138, '분자물리학', 'NB0702', 'child', 105);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (139, '비선형 동력학', 'NB0203', 'child', 110);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (140, '비선형광학', 'NB0504', 'child', 102);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (141, '생물물리', 'NB0901', 'child', 104);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (142, '양자광학', 'NB0502', 'child', 102);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (143, '양자정보', 'NB0703', 'child', 105);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (144, '원자물리학', 'NB0701', 'child', 105);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (145, '원자핵 데이터', 'NB0305', 'child', 111);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (146, '유전체/강유전체', 'NB0609', 'child', 107);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (147, '유체운동/수송론', 'NB0402', 'child', 106);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (148, '음향학', 'NB0905', 'child', 104);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (149, '응집물성 측정법', 'NB0614', 'child', 107);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (150, '응집물질 계산과학', 'NB0602', 'child', 107);
-
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (151, '화학', 'NC', 'root', NULL);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (152, '고분자화학', 'NC05', 'parent', 151);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (153, '광화학', 'NC07', 'parent', 151);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (154, '기타 화학', 'NC99', 'parent', 151);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (155, '무기화학', 'NC03', 'parent', 151);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (156, '물리화학', 'NC01', 'parent', 151);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (157, '분석화학', 'NC04', 'parent', 151);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (158, '생화학', 'NC06', 'parent', 151);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (159, '유기화학', 'NC02', 'parent', 151);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (160, '융합화학', 'NC10', 'parent', 151);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (161, '재료화학', 'NC09', 'parent', 151);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (162, '전기화학', 'NC08', 'parent', 151);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (163, '계산화학', 'NC1005', 'child', 160);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (164, '고분자 구조/물성', 'NC0502', 'child', 152);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (165, '고분자 물리화학', 'NC0503', 'child', 152);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (166, '고분자 합성', 'NC0501', 'child', 152);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (167, '고분자광화학', 'NC0704', 'child', 153);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (168, '고분자재료화학', 'NC0905', 'child', 161);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (169, '고체무기화학/결정학', 'NC0305', 'child', 155);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (170, '고체물리화학', 'NC0106', 'child', 156);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (171, '고효율 생리활성 검색', 'NC1007', 'child', 160);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (172, '광소재화학', 'NC0706', 'child', 153);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (173, '구조분석화학', 'NC0404', 'child', 157);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (174, '구조생화학', 'NC0605', 'child', 158);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (175, '기능성 고분자', 'NC0506', 'child', 152);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (176, '나노광화학', 'NC0907', 'child', 161);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (177, '나노재료화학', 'NC0901', 'child', 161);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (178, '단백질/효소분자 생화학', 'NC0602', 'child', 158);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (179, '단백질체학', 'NC0608', 'child', 158);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (180, '달리 분류되지 않는 고분자화학', 'NC0599', 'child', 152);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (181, '달리 분류되지 않는 광화학', 'NC0799', 'child', 153);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (182, '달리 분류되지 않는 무기화학', 'NC0399', 'child', 155);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (183, '달리 분류되지 않는 물리화학', 'NC0199', 'child', 156);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (184, '달리 분류되지 않는 분석화학', 'NC0499', 'child', 157);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (185, '달리 분류되지 않는 생화학', 'NC0699', 'child', 158);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (186, '달리 분류되지 않는 유기화학', 'NC0299', 'child', 159);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (187, '달리 분류되지 않는 융합화학', 'NC1099', 'child', 160);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (188, '달리 분류되지 않는 재료화학', 'NC0999', 'child', 161);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (189, '달리 분류되지 않는 전기화학', 'NC0899', 'child', 162);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (190, '달리 분류되지 않는 화학', 'NC9999', 'child', 154);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (191, '대사분자 생화학', 'NC0606', 'child', 158);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (192, '마이크로칩 화학분석', 'NC0409', 'child', 157);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (193, '무기광화학', 'NC0702', 'child', 153);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (194, '무기소재화학', 'NC0306', 'child', 155);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (195, '무기의약화학', 'NC0308', 'child', 155);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (196, '무기재료화학', 'NC0904', 'child', 161);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (197, '무기초분자화학', 'NC0302', 'child', 155);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (198, '물리광화학', 'NC0705', 'child', 153);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (199, '물리전기화학', 'NC0801', 'child', 162);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (200, '바이오재료화학', 'NC0906', 'child', 161);
-
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (201, '지구과학(지구/대기/해양/천문)', 'ND', 'root', NULL);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (202, '극지과학', 'ND11', 'parent', 201);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (203, '기상과학', 'ND05', 'parent', 201);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (204, '기타 지구과학', 'ND99', 'parent', 201);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (205, '기후과학', 'ND06', 'parent', 201);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (206, '대기과학', 'ND04', 'parent', 201);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (207, '우주과학', 'ND13', 'parent', 201);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (208, '자연재해 분석/예측', 'ND07', 'parent', 201);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (209, '지구물리학', 'ND02', 'parent', 201);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (210, '지구화학', 'ND03', 'parent', 201);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (211, '지질과학', 'ND01', 'parent', 201);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (212, '천문우주관측기술', 'ND14', 'parent', 201);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (213, '천문학', 'ND12', 'parent', 201);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (214, '해양과학', 'ND08', 'parent', 201);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (215, '해양생명', 'ND10', 'parent', 201);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (216, '해양자원', 'ND09', 'parent', 201);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (217, '가뭄재해발생 분석/예측', 'ND0710', 'child', 208);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (218, '고기후학', 'ND0605', 'child', 205);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (219, '고에너지복사 관측기술', 'ND1404', 'child', 212);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (220, '고에너지천문학', 'ND1207', 'child', 213);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (221, '고천문학/천문역법', 'ND1209', 'child', 213);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (222, '고층대기', 'ND0407', 'child', 206);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (223, '고해양학', 'ND0805', 'child', 214);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (224, '광물학', 'ND0101', 'child', 211);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (225, '광상/자원지질학', 'ND0103', 'child', 211);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (226, '광학천문기술', 'ND1401', 'child', 212);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (227, '구조지질학', 'ND0104', 'child', 211);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (228, '극지 광물자원 탐사', 'ND1105', 'child', 202);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (229, '극지 생물자원 탐사/수집/활용', 'ND1104', 'child', 202);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (230, '극지 생태계 모니터링', 'ND1106', 'child', 202);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (231, '극지 인프라구축 및 활용', 'ND1110', 'child', 202);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (232, '극지 저온생물학/적응생리', 'ND1109', 'child', 202);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (233, '극지 해양', 'ND1107', 'child', 202);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (234, '극지환경감시/극지 생지화학 순환', 'ND1103', 'child', 202);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (235, '기상관측/분석기술', 'ND0501', 'child', 203);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (236, '기상예보기술', 'ND0503', 'child', 203);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (237, '기상원격탐사기술', 'ND0502', 'child', 203);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (238, '기상재해 분석/예측', 'ND0701', 'child', 208);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (239, '기상조절', 'ND0504', 'child', 203);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (240, '기후모델링/예측기술', 'ND0603', 'child', 205);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (241, '기후변화영향평가/대응기술', 'ND0604', 'child', 205);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (242, '기후시스템 관측/분석기술', 'ND0601', 'child', 205);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (243, '기후역학', 'ND0602', 'child', 205);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (244, '농업기상', 'ND0506', 'child', 203);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (245, '달리 분류되지 않는 극지과학', 'ND1199', 'child', 202);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (246, '달리 분류되지 않는 기상과학', 'ND0599', 'child', 203);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (247, '달리 분류되지 않는 기후과학', 'ND0699', 'child', 205);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (248, '달리 분류되지 않는 대기과학', 'ND0499', 'child', 206);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (249, '달리 분류되지 않는 우주과학', 'ND1399', 'child', 207);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (250, '달리 분류되지 않는 자연재해 분석/예측', 'ND0799', 'child', 208);
-
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (251, '농림수산식품', 'LB', 'root', NULL);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (252, '기타 농림수산식품', 'LB99', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (253, '농림수산식품경영/정보 등', 'LB20', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (254, '농생물학', 'LB03', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (255, '농수축산물 품질·안전 관리', 'LB16', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (256, '농업·식품 기계·설비', 'LB08', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (257, '농업인프라 공학', 'LB09', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (258, '농업환경생태', 'LB05', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (259, '농화학', 'LB04', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (260, '동물자원과학', 'LB06', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (261, '산림자원학', 'LB10', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (262, '수산양식', 'LB13', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (263, '수산자원/어장환경', 'LB14', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (264, '수의과학', 'LB07', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (265, '식량작물과학', 'LB01', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (266, '식품과학', 'LB17', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (267, '식품영양과학', 'LB18', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (268, '식품조리/외식/식생활개선', 'LB19', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (269, '어업생산/이용가공', 'LB15', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (270, '원예특용작물과학', 'LB02', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (271, '임산공학', 'LB12', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (272, '조경학', 'LB11', 'parent', 251);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (273, '곤충 분류/동정/생태', 'LB0305', 'child', 254);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (274, '곤충 생리/병리/활용', 'LB0306', 'child', 254);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (275, '곤충 생명공학', 'LB0307', 'child', 254);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (276, '공예/사료/녹비작물', 'LB0107', 'child', 265);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (277, '급식/외식상품개발', 'LB1904', 'child', 268);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (278, '기능성식품', 'LB1801', 'child', 267);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (279, '농림수산식품 경영/경제', 'LB2001', 'child', 253);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (280, '농림수산식품 유통', 'LB2002', 'child', 253);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (281, '농림수산식품 정보', 'LB2003', 'child', 253);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (282, '농산물 위생/품질관리', 'LB1601', 'child', 255);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (283, '농어업/농어촌 정책', 'LB2006', 'child', 253);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (284, '농업 금융/보험', 'LB2004', 'child', 253);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (285, '농업 생태', 'LB0503', 'child', 258);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (286, '농업 시설', 'LB0901', 'child', 257);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (287, '농업 환경정화', 'LB0504', 'child', 258);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (288, '농업·식품 동력·에너지', 'LB0802', 'child', 256);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (289, '농업·식품 생산 기계', 'LB0801', 'child', 256);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (290, '농업·식품 생산 시설·환경', 'LB0805', 'child', 256);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (291, '농업·식품 생산 자동화·로봇', 'LB0804', 'child', 256);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (292, '농업기상', 'LB0505', 'child', 258);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (293, '농업미생물', 'LB0302', 'child', 254);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (294, '농업수자원/수문학', 'LB0903', 'child', 257);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (295, '농업자원 순환/활용', 'LB0507', 'child', 258);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (296, '농지 공학', 'LB0902', 'child', 257);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (297, '농촌 계획 공학', 'LB0905', 'child', 257);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (298, '농촌 사회/문화', 'LB2005', 'child', 253);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (299, '농촌 환경 공학', 'LB0904', 'child', 257);
-INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
-VALUES (300, '농축산물 가공/품질 계측', 'LB0803', 'child', 256);
-
-INSERT INTO mem_tech_field(mem_no, tech_field_no, created_at, updated_at)
-VALUES (1, 15, current_timestamp, current_timestamp);
-INSERT INTO mem_tech_field(mem_no, tech_field_no, created_at, updated_at)
-VALUES (1, 58, current_timestamp, current_timestamp);
-INSERT INTO mem_tech_field(mem_no, tech_field_no, created_at, updated_at)
-VALUES (1, 158, current_timestamp, current_timestamp);

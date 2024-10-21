@@ -1,20 +1,21 @@
-package com.yujigyeongseong.api.domain.announcement.dto;
+package com.yujigyeongseong.api.domain.announcement.dto.request;
 
-import lombok.*;
-
-import java.sql.Clob;
-import java.sql.SQLException;
-
+import com.yujigyeongseong.api.domain.announcement.dto.SubAnnouncement;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Announcement{
+public class SubAnnouncementRequest {
     private Long annNo;
     private String totalAnnNo;
     private String totalTitle;
-    private Clob content;
+    private String content;
     private String competentMinistry;
     private String specInstitution;
     private String annTechFieldName;
@@ -27,4 +28,5 @@ public class Announcement{
     private String createdAt;
     private String updatedAt;
     private int bucketNo;
+    private List<SubAnnouncement> subAnnouncements;
 }
