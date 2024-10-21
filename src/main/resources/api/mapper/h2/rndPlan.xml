@@ -70,4 +70,16 @@
         </foreach>
     </insert>
 
+    <select id="selectTaskNameByRndPlanNo">
+        SELECT task_name
+        FROM rnd_plan
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </select>
+
+    <select id="selectRndFieldsByRndPlanNo">
+        SELECT name, weight, rank
+        FROM rnd_field
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </select>
+
 </mapper>

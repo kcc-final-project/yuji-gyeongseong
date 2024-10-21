@@ -1,15 +1,19 @@
 package com.yujigyeongseong.api.domain.rnd_plan.service;
 
 import com.yujigyeongseong.api.domain.rnd_plan.dao.RndPlanMapper;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.RndField;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasic;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.request.RndField;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasicData;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.SaveRndFieldRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.SaveRndPlanBasicRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundRndPlanBasic;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -32,19 +36,26 @@ public class RndPlanServiceImpl implements RndPlanService {
 
     @Override
     @Transactional
-    public boolean insertRndPlanBasic(final SaveRndPlanBasicRequest request) {
+    public Long insertRndPlanBasic(final SaveRndPlanBasicRequest request) {
 
         Long rndPlanSeq = rndPlanMapper.selectRndPlanSequence();
         request.assignRndTaskNo(rndPlanSeq);
         request.assignRndPlanNo(rndPlanSeq);
-        for (RndField rndField : request.getRndFields()) {
+        for (SaveRndFieldRequest rndField : request.getRndFields()) {
             rndField.assignRndPlanNo(rndPlanSeq);
         }
 
         rndPlanMapper.insertRndPlanBasic(request);
         rndPlanMapper.insertRndFields(request.getRndFields());
 
-        return true;
+        return rndPlanSeq;
+    }
+
+    @Override
+    public RndPlanBasicData getBasicInfoByRndPlanNo(Long rndPlanNo) {
+        String taskName = rndPlanMapper.selectTaskNameByRndPlanNo(rndPlanNo);
+        List<RndField> rndFields = rndPlanMapper.selectRndFieldsByRndPlanNo(rndPlanNo);
+        return new RndPlanBasicData(taskName, rndFields);
     }
 
 }

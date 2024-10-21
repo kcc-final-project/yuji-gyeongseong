@@ -15,7 +15,7 @@ public class SaveRndPlanBasicRequest {
     private Long subAnnNo; // 공모분야번호
     private Long memNo; // 등록자번호
     private String taskName; // 과제명
-    private List<RndField> rndFields; // 연구분야
+    private List<SaveRndFieldRequest> rndFields; // 연구분야
     private String planStatus = "작성중"; // 계획서 상태
     private Integer currStep = 1; // 현재 작성 단계
 

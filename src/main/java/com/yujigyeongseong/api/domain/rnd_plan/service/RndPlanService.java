@@ -2,6 +2,7 @@ package com.yujigyeongseong.api.domain.rnd_plan.service;
 
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasic;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasicData;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.SaveRndPlanBasicRequest;
 
 public interface RndPlanService {
@@ -11,6 +12,8 @@ public interface RndPlanService {
 
     RndPlanBasic getBasicInfoBySubAnnNo(final Long subAnnNo);
 
-    boolean insertRndPlanBasic(final SaveRndPlanBasicRequest request);
+    Long insertRndPlanBasic(final SaveRndPlanBasicRequest request);
+
+    RndPlanBasicData getBasicInfoByRndPlanNo(final Long rndPlanNo);
 
 }

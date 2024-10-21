@@ -403,9 +403,14 @@ function submitBasicData() {
     url: "/api/v1/rnd-plans/basic",
     type: "POST",
     contentType: "application/json",
+    dataType: "json",
     data: JSON.stringify(data),
-    success: () => {},
-    error: () => {},
+    success: ({ data }) => {
+      localStorage.setItem("rndPlanNo", data);
+    },
+    error: (err) => {
+      console.log("[submitBasicData()] " + err.statusText + " - " + err.status);
+    },
   });
 }
 
@@ -430,25 +435,3 @@ function getResearchFieldsData() {
   return rndFields;
 }
 
-/**
- * {
- *    taskName: String,
- *    rndFields: [
- *       {
- *           name: String
- *           weight: Integer
- *           rank: Integer
- *       },
- *       {
- *           name: String
- *           weight: Integer
- *           rank: Integer
- *       },
- *       {
- *           name: String
- *           weight: Integer
- *           rank: Integer
- *       },
- *    ]
- * }
- */

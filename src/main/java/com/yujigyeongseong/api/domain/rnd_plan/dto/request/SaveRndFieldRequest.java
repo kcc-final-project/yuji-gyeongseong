@@ -5,7 +5,7 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @ToString
-public class RndField {
+public class SaveRndFieldRequest {
 
     private Long rndPlanNo;
     private String name;

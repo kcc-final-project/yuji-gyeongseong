@@ -1,8 +1,9 @@
 package com.yujigyeongseong.api.domain.rnd_plan.dao;
 
+import com.yujigyeongseong.api.domain.rnd_plan.dto.RndField;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasic;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.request.RndField;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.SaveRndFieldRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.SaveRndPlanBasicRequest;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -22,6 +23,10 @@ public interface RndPlanMapper {
 
     int insertRndPlanBasic(SaveRndPlanBasicRequest request);
 
-    int insertRndFields(@Param("rndFields") List<RndField> rndFields);
+    int insertRndFields(@Param("rndFields") List<SaveRndFieldRequest> rndFields);
+
+    String selectTaskNameByRndPlanNo(Long rndPlanNo);
+
+    List<RndField> selectRndFieldsByRndPlanNo(Long rndPlanNo);
 
 }

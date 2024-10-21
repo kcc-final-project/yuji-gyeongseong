@@ -1,11 +1,16 @@
 package com.yujigyeongseong.api.domain.rnd_plan.controller;
 
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasicData;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.SaveRndPlanBasicRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.service.RndPlanService;
+import com.yujigyeongseong.api.global.dto.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 
 @RequestMapping("/api/v1/rnd-plans")
 @RestController
@@ -23,8 +28,14 @@ public class RndPlanRestController {
 
     @PostMapping("/basic")
     public ResponseEntity<?> saveRndPlanBasic(@RequestBody SaveRndPlanBasicRequest request) {
-        rndPlanService.insertRndPlanBasic(request);
-        return null;
+        Long rndPlanNo = rndPlanService.insertRndPlanBasic(request);
+        return ApiResponse.success(CREATED, rndPlanNo);
+    }
+
+    @GetMapping("/basic/{rndPlanNo}")
+    public ResponseEntity<?> getRndPlanBasic(@PathVariable Long rndPlanNo) {
+        RndPlanBasicData basicInfoByRndPlanNo = rndPlanService.getBasicInfoByRndPlanNo(rndPlanNo);
+        return ApiResponse.success(OK, basicInfoByRndPlanNo);
     }
 
 }
