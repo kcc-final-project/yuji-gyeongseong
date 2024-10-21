@@ -111,7 +111,7 @@ async function getBasicData(rndPlanNo) {
     dataType: "json",
     success: ({ data }) => {
       applyTechFieldsData(data);
-      applyTaskName(data);
+      applyTaskNameAndTaskNo(data);
     },
     error: (err) => {
       console.log("[submitBasicData()] " + err.statusText + " - " + err.status);
@@ -132,7 +132,8 @@ function applyTechFieldsData({ rndFields }) {
   });
 }
 
-function applyTaskName({ taskName }) {
+function applyTaskNameAndTaskNo({ taskName, rndTaskNo }) {
   $("#ipt-task-title").val(taskName);
   $("#dpy-task-title").val(taskName);
+  $("#dpy-rnd-task-no").val(rndTaskNo);
 }

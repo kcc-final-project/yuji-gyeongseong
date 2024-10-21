@@ -71,7 +71,7 @@
     </insert>
 
     <select id="selectTaskNameByRndPlanNo">
-        SELECT task_name
+        SELECT task_name, rnd_task_no
         FROM rnd_plan
         WHERE rnd_plan_no = #{rndPlanNo}
     </select>

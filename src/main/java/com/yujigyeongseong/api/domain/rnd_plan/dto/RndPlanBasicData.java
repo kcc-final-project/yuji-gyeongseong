@@ -10,6 +10,11 @@ import java.util.List;
 public class RndPlanBasicData {
 
     private final String taskName;
-    private final List<RndField> rndFields;
+    private final String rndTaskNo;
+    private List<RndField> rndFields;
+
+    public void assignRndFields(List<RndField> rndFields) {
+        this.rndFields = rndFields;
+    }
 
 }

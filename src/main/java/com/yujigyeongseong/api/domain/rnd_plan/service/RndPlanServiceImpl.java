@@ -55,9 +55,10 @@ public class RndPlanServiceImpl implements RndPlanService {
 
     @Override
     public RndPlanBasicData getBasicDataByRndPlanNo(Long rndPlanNo) {
-        String taskName = rndPlanMapper.selectTaskNameByRndPlanNo(rndPlanNo);
+        RndPlanBasicData rndPlanBasicData = rndPlanMapper.selectTaskNameByRndPlanNo(rndPlanNo);
         List<RndField> rndFields = rndPlanMapper.selectRndFieldsByRndPlanNo(rndPlanNo);
-        return new RndPlanBasicData(taskName, rndFields);
+        rndPlanBasicData.assignRndFields(rndFields);
+        return rndPlanBasicData;
     }
 
     @Override
