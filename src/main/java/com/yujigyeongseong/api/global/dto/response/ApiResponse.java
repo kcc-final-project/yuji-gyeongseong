@@ -21,11 +21,27 @@ public class ApiResponse<T> {
     private boolean success;
     private T data;
 
+    public ApiResponse(String path, boolean success) {
+        timestamp = LocalDateTime.now();
+        this.path = path;
+        this.success = success;
+    }
+
     public ApiResponse(String path, boolean success, T data) {
         timestamp = LocalDateTime.now();
         this.path = path;
         this.success = success;
         this.data = data;
+    }
+
+    public static <T> ResponseEntity<ApiResponse<T>> success(HttpStatus status) {
+        String path = (String) RequestContextHolder.getRequestAttributes()
+                .getAttribute("requestURI", RequestAttributes.SCOPE_REQUEST);
+
+        return ResponseEntity
+                .status(status)
+                .contentType(APPLICATION_JSON)
+                .body(new ApiResponse<>(path, true));
     }
 
     public static <T> ResponseEntity<ApiResponse<T>> success(HttpStatus status, T data) {

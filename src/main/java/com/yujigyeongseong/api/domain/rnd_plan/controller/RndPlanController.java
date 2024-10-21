@@ -24,10 +24,7 @@ public class RndPlanController {
     }
 
     @GetMapping("/basic")
-    public String getRndPlanBasicPage(@RequestParam(required = false) Long subAnnNo,
-                                      @RequestParam(required = false) Long memNo,
-                                      @RequestParam(required = false) Long rndPlanNo,
-                                      Model model) {
+    public String getRndPlanBasicPage(@RequestParam(required = false) Long subAnnNo, Model model) {
         RndPlanBasic rndPlanBasic = rndPlanService.getBasicInfoBySubAnnNo(subAnnNo);
         model.addAttribute("rndPlanBasic", rndPlanBasic);
 

@@ -5,8 +5,9 @@ import com.yujigyeongseong.api.domain.rnd_plan.dto.RndField;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasic;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasicData;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.request.SaveRndFieldRequest;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.request.SaveRndPlanBasicRequest;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateRndFieldRequest;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateRndPlanBasicRequest;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.UpdateRndPlanBasicRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundRndPlanBasic;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Slf4j
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class RndPlanServiceImpl implements RndPlanService {
 
@@ -36,12 +38,12 @@ public class RndPlanServiceImpl implements RndPlanService {
 
     @Override
     @Transactional
-    public Long insertRndPlanBasic(final SaveRndPlanBasicRequest request) {
+    public Long insertRndPlanBasic(final CreateRndPlanBasicRequest request) {
 
         Long rndPlanSeq = rndPlanMapper.selectRndPlanSequence();
         request.assignRndTaskNo(rndPlanSeq);
         request.assignRndPlanNo(rndPlanSeq);
-        for (SaveRndFieldRequest rndField : request.getRndFields()) {
+        for (CreateRndFieldRequest rndField : request.getRndFields()) {
             rndField.assignRndPlanNo(rndPlanSeq);
         }
 
@@ -52,10 +54,24 @@ public class RndPlanServiceImpl implements RndPlanService {
     }
 
     @Override
-    public RndPlanBasicData getBasicInfoByRndPlanNo(Long rndPlanNo) {
+    public RndPlanBasicData getBasicDataByRndPlanNo(Long rndPlanNo) {
         String taskName = rndPlanMapper.selectTaskNameByRndPlanNo(rndPlanNo);
         List<RndField> rndFields = rndPlanMapper.selectRndFieldsByRndPlanNo(rndPlanNo);
         return new RndPlanBasicData(taskName, rndFields);
+    }
+
+    @Override
+    @Transactional
+    public void patchBasicInfo(final Long rndPlanNo,
+                               final UpdateRndPlanBasicRequest request) {
+        request.assignRndPlanNo(rndPlanNo);
+        for (CreateRndFieldRequest rndField : request.getRndFields()) {
+            rndField.assignRndPlanNo(rndPlanNo);
+        }
+
+        rndPlanMapper.updateTaskNameByRndPlanNo(rndPlanNo, request.getTaskName());
+        rndPlanMapper.deleteRndFieldsByRndPlanNo(rndPlanNo);
+        rndPlanMapper.insertRndFields(request.getRndFields());
     }
 
 }

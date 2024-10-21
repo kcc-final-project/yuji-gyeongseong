@@ -8,14 +8,14 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @ToString
-public class SaveRndPlanBasicRequest {
+public class CreateRndPlanBasicRequest {
 
     private Long rndPlanNo; // 연구개발계획서번호
     private String rndTaskNo; // 연구개발과제번호
     private Long subAnnNo; // 공모분야번호
     private Long memNo; // 등록자번호
     private String taskName; // 과제명
-    private List<SaveRndFieldRequest> rndFields; // 연구분야
+    private List<CreateRndFieldRequest> rndFields; // 연구분야
     private String planStatus = "작성중"; // 계획서 상태
     private Integer currStep = 1; // 현재 작성 단계
 

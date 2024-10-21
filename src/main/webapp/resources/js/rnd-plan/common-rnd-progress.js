@@ -63,10 +63,8 @@ function updateStepStyles() {
 // 페이지 컴포넌트 AJAX 요청
 async function loadStepContent(currentStep) {
   const subAnnNo = $("#sub-ann-no").text();
-  const memNo = 0;
-  const rndPlanNo = 0;
-
   const path = STEP_PATHS[currentStep - 1];
+
   const $spinnerContainer = $(".spinner-container");
   const $contentContainer = $("#content-container");
 
@@ -74,7 +72,7 @@ async function loadStepContent(currentStep) {
 
   try {
     const res = await $.ajax({
-      url: `/rnd-plans${path}?subAnnNo=${subAnnNo}&memNo=${memNo}&rndPlanNo=${rndPlanNo}`,
+      url: `/rnd-plans${path}?subAnnNo=${subAnnNo}`,
       type: "GET",
     });
 

@@ -327,6 +327,12 @@ function applySelectedTechFields() {
     });
   });
 
+  // ?
+  for (let i = 1; i <= TECH_FIELD_MAX_COUNT; i++) {
+    $("#research-field-" + i).val("");
+    $("#research-weight-" + i).val("");
+  }
+
   rowData.forEach(function (data, index) {
     const fieldInput = $("#research-field-" + (index + 1));
     const weightInput = $("#research-weight-" + (index + 1));
@@ -382,7 +388,15 @@ function validateBasicFields() {
 }
 
 // AJAX 기본정보 데이터 저장
-function submitBasicData() {
+async function submitBasicData() {
+  const rndPlanNo = localStorage.getItem("rndPlanNo");
+
+  const url = rndPlanNo
+    ? `/api/v1/rnd-plans/basic/${rndPlanNo}` // PUT URL
+    : `/api/v1/rnd-plans/basic`; // POST URL
+
+  const method = rndPlanNo ? "PATCH" : "POST";
+
   // 연구개발과제명
   const taskTitle = $("#ipt-task-title").val().trim();
   // 기술분야
@@ -392,26 +406,28 @@ function submitBasicData() {
   // 등록자 번호
   const memNo = 1; // TODO: 회원 관리 개발 시 수정 필요
 
-  const data = {
+  const bodyData = {
     subAnnNo: subAnnNo,
     memNo: memNo,
     taskName: taskTitle,
     rndFields: rndFields,
   };
 
-  $.ajax({
-    url: "/api/v1/rnd-plans/basic",
-    type: "POST",
-    contentType: "application/json",
-    dataType: "json",
-    data: JSON.stringify(data),
-    success: ({ data }) => {
+  try {
+    const { data } = await $.ajax({
+      url: url,
+      type: method,
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify(bodyData),
+    });
+
+    if (!rndPlanNo) {
       localStorage.setItem("rndPlanNo", data);
-    },
-    error: (err) => {
-      console.log("[submitBasicData()] " + err.statusText + " - " + err.status);
-    },
-  });
+    }
+  } catch (err) {
+    console.log("[submitBasicData()] " + err.statusText + " - " + err.status);
+  }
 }
 
 // 연구분야 입력 데이터 가져오기
@@ -434,4 +450,3 @@ function getResearchFieldsData() {
 
   return rndFields;
 }
-

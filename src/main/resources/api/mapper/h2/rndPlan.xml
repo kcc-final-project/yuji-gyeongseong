@@ -82,4 +82,16 @@
         WHERE rnd_plan_no = #{rndPlanNo}
     </select>
 
+    <delete id="deleteRndFieldsByRndPlanNo">
+        DELETE
+        FROM rnd_field
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </delete>
+
+    <update id="updateTaskNameByRndPlanNo">
+        UPDATE rnd_plan
+        SET task_name = #{taskName}
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </update>
+
 </mapper>
