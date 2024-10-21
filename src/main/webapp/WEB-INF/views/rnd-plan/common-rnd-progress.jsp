@@ -3,6 +3,8 @@
 
 <link rel="stylesheet" href="/resources/css/rnd-plan/common-rnd-progress.css">
 
+<div id="sub-ann-no" class="visually-hidden">${subAnnNo}</div>
+
 <h4>(신청용) 연구개발계획서</h4>
 <%-- 진행바 --%>
 <div class="multi-step-progress-bar">

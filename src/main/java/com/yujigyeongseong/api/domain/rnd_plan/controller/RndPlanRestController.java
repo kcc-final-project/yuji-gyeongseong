@@ -1,15 +1,13 @@
 package com.yujigyeongseong.api.domain.rnd_plan.controller;
 
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.SaveRndPlanBasicRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.service.RndPlanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/api/v1/rnd-plan")
+@RequestMapping("/api/v1/rnd-plans")
 @RestController
 @RequiredArgsConstructor
 public class RndPlanRestController {
@@ -21,6 +19,12 @@ public class RndPlanRestController {
     public ResponseEntity<RndPlan> getRndPlanById(@PathVariable Long id) {
         RndPlan member = rndPlanService.getMemberById(id);
         return ResponseEntity.ok(member);
+    }
+
+    @PostMapping("/basic")
+    public ResponseEntity<?> saveRndPlanBasic(@RequestBody SaveRndPlanBasicRequest request) {
+        rndPlanService.insertRndPlanBasic(request);
+        return null;
     }
 
 }

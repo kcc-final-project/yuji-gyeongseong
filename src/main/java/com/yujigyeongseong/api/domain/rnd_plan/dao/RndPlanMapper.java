@@ -2,8 +2,12 @@ package com.yujigyeongseong.api.domain.rnd_plan.dao;
 
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasic;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.RndField;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.SaveRndPlanBasicRequest;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
 import java.util.Optional;
 
 @Mapper
@@ -13,5 +17,11 @@ public interface RndPlanMapper {
     Optional<RndPlan> selectRndPlanById(Long id);
 
     Optional<RndPlanBasic> selectRndPlanBasicBySubAnnNo(Long subAnnNo);
+
+    Long selectRndPlanSequence();
+
+    int insertRndPlanBasic(SaveRndPlanBasicRequest request);
+
+    int insertRndFields(@Param("rndFields") List<RndField> rndFields);
 
 }

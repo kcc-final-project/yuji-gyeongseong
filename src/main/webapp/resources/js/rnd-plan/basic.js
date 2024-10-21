@@ -380,3 +380,75 @@ function validateBasicFields() {
 
   return isValid;
 }
+
+// AJAX 기본정보 데이터 저장
+function submitBasicData() {
+  // 연구개발과제명
+  const taskTitle = $("#ipt-task-title").val().trim();
+  // 기술분야
+  const rndFields = getResearchFieldsData();
+  // 공모분야번호
+  const subAnnNo = $("#sub-ann-no").text();
+  // 등록자 번호
+  const memNo = 1; // TODO: 회원 관리 개발 시 수정 필요
+
+  const data = {
+    subAnnNo: subAnnNo,
+    memNo: memNo,
+    taskName: taskTitle,
+    rndFields: rndFields,
+  };
+
+  $.ajax({
+    url: "/api/v1/rnd-plans/basic",
+    type: "POST",
+    contentType: "application/json",
+    data: JSON.stringify(data),
+    success: () => {},
+    error: () => {},
+  });
+}
+
+// 연구분야 입력 데이터 가져오기
+function getResearchFieldsData() {
+  const rndFields = [];
+
+  for (let i = 1; i <= TECH_FIELD_MAX_COUNT; i++) {
+    const name = $(`#research-field-${i}`).val().trim();
+    const weight = $(`#research-weight-${i}`).val().trim();
+    const rank = i;
+
+    if (name && weight) {
+      rndFields.push({
+        name: name,
+        weight: parseInt(weight, 10),
+        rank: rank,
+      });
+    }
+  }
+
+  return rndFields;
+}
+
+/**
+ * {
+ *    taskName: String,
+ *    rndFields: [
+ *       {
+ *           name: String
+ *           weight: Integer
+ *           rank: Integer
+ *       },
+ *       {
+ *           name: String
+ *           weight: Integer
+ *           rank: Integer
+ *       },
+ *       {
+ *           name: String
+ *           weight: Integer
+ *           rank: Integer
+ *       },
+ *    ]
+ * }
+ */

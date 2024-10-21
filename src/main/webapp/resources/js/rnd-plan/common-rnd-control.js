@@ -34,6 +34,7 @@ function showNextConfirmation() {
       // 기본정보 유효성 검사 후 페이지 이동
       if (currentStep === 1 && validateBasicFields()) {
         // TODO: 저장 로직 처리
+        submitBasicData();
         currentStep += 1;
         updateProgressBar();
         loadStepContent(currentStep);

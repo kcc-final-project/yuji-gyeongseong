@@ -69,7 +69,7 @@ function loadStepContent(currentStep) {
       $contentContainer.html(res);
     },
     error: (err) => {
-      console.log(err);
+      console.log(err.responseJSON);
     },
     complete: () => {
       $spinnerContainer.hide();

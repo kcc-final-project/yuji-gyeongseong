@@ -24,7 +24,6 @@
                 </div>
             </div>
             <div id="content-container">
-                <div id="sub-ann-no" class="visually-hidden">${subAnnNo}</div>
                 <%-- 렌더링 영역 --%>
             </div>
         </div>
