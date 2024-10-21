@@ -38,10 +38,10 @@
                 <div class="filter-wrap ">
                     <p>사업년도</p>
                     <select class="form-select form-select-sm select-form" aria-label=".form-select-sm example">
-                        <option value="1">2024</option>
-                        <option value="2">2023</option>
-                        <option value="3">2022</option>
-                        <option value="4">2021</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
                     </select>
                     <p>전체 23건</p>
                 </div>
@@ -50,8 +50,8 @@
                 </div>
                 <div class="filter-Latest-wrap floating-area">
                     <select class="form-select form-select-sm latest-form" aria-label=".form-select-sm example">
-                        <option value="1">최신순</option>
-                        <option value="2">마감순</option>
+                        <option value="최신순">최신순</option>
+                        <option value="마감순">마감순</option>
                     </select>
                 </div>
             </div>
@@ -72,151 +72,132 @@
                         <div class="jurisdiction-checkbox-wrap">
                             <div class="common-checkbox-area-1">
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="범부처">
-                                    <label class="form-check-label">
-                                        범부처
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="범부처" id="ministry0">
+                                    <label class="form-check-label" for="ministry0">범부처</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="국토교통부">
-                                    <label class="form-check-label">
-                                        국토교통부
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="과학기술정보통신부" id="ministry1">
+                                    <label class="form-check-label" for="ministry1">과학기술정보통신부</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="기상청">
-                                    <label class="form-check-label">
-                                        기상청
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="산업통상자원부" id="ministry2">
+                                    <label class="form-check-label" for="ministry2">산업통상자원부</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="농촌진흥청">
-                                    <label class="form-check-label">
-                                        농촌진흥청
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="중소벤처기업부" id="ministry3">
+                                    <label class="form-check-label" for="ministry3">중소벤처기업부</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="문화체육관광부">
-                                    <label class="form-check-label">
-                                        문화체육관광부
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="국토교통부" id="ministry4">
+                                    <label class="form-check-label" for="ministry4">국토교통부</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="보건복지부">
-                                    <label class="form-check-label">
-                                        보건복지부
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="교육부" id="ministry5">
+                                    <label class="form-check-label" for="ministry5">교육부</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="해양수산부">
-                                    <label class="form-check-label">
-                                        해양수산부
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="기상청" id="ministry6">
+                                    <label class="form-check-label" for="ministry6">기상청</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="환경부">
-                                    <label class="form-check-label">
-                                        환경부
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="농림축산식품부" id="ministry7">
+                                    <label class="form-check-label" for="ministry7">농림축산식품부</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="국방부">
-                                    <label class="form-check-label">
-                                        국방부
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="농촌진흥청" id="ministry8">
+                                    <label class="form-check-label" for="ministry8">농촌진흥청</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="소방청">
-                                    <label class="form-check-label">
-                                        소방청
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="국가유산청" id="ministry9">
+                                    <label class="form-check-label" for="ministry9">국가유산청</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="조달청">
-                                    <label class="form-check-label">
-                                        조달청
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="문화체육관광부" id="ministry10">
+                                    <label class="form-check-label" for="ministry10">문화체육관광부</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="대통령경호처">
-                                    <label class="form-check-label">
-                                        대통령경호처
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="방위사업청" id="ministry11">
+                                    <label class="form-check-label" for="ministry11">방위사업청</label>
                                 </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok" type="checkbox" value="보건복지부" id="ministry12">
+                                    <label class="form-check-label" for="ministry12">보건복지부</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok" type="checkbox" value="산림청" id="ministry13">
+                                    <label class="form-check-label" for="ministry13">산림청</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok" type="checkbox" value="식품의약품안전처" id="ministry14">
+                                    <label class="form-check-label" for="ministry14">식품의약품안전처</label>
+                                </div>
+
+
+
                             </div>
                             <div class="common-checkbox-area-2">
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="교육부">
-                                    <label class="form-check-label">
-                                        교육부
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="원자력안전위원회" id="ministry15">
+                                    <label class="form-check-label" for="ministry15">원자력안전위원회</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="농림축산식품부">
-                                    <label class="form-check-label">
-                                        농림축산식품부
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="해양수산부" id="ministry16">
+                                    <label class="form-check-label" for="ministry16">해양수산부</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="국가유산청">
-                                    <label class="form-check-label">
-                                        국가유산청
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="행정안전부" id="ministry17">
+                                    <label class="form-check-label" for="ministry17">행정안전부</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="방위사업청">
-                                    <label class="form-check-label">
-                                        방위사업청
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="환경부" id="ministry18">
+                                    <label class="form-check-label" for="ministry18">환경부</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="산림청">
-                                    <label class="form-check-label">
-                                        산림청
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="법무부" id="ministry19">
+                                    <label class="form-check-label" for="ministry19">법무부</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="행정안전부">
-                                    <label class="form-check-label">
-                                        행정안전부
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="국방부" id="ministry20">
+                                    <label class="form-check-label" for="ministry20">국방부</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="법무부">
-                                    <label class="form-check-label">
-                                        법무부
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="경찰청" id="ministry21">
+                                    <label class="form-check-label" for="ministry21">경찰청</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="경찰청">
-                                    <label class="form-check-label">
-                                        경찰청
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="소방청" id="ministry22">
+                                    <label class="form-check-label" for="ministry22">소방청</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="해양경찰청">
-                                    <label class="form-check-label">
-                                        해양경찰청
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="해양경찰청" id="ministry23">
+                                    <label class="form-check-label" for="ministry23">해양경찰청</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="질병관리청">
-                                    <label class="form-check-label">
-                                        질병관리청
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="조달청" id="ministry24">
+                                    <label class="form-check-label" for="ministry24">조달청</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="국민안전처">
-                                    <label class="form-check-label">
-                                        국민안전처
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="질병관리청" id="ministry25">
+                                    <label class="form-check-label" for="ministry25">질병관리청</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok" type="checkbox" value="우주항공청">
-                                    <label class="form-check-label">
-                                        우주항공청
-                                    </label>
+                                    <input class="form-check-input ok" type="checkbox" value="개인정보보호위원회" id="ministry26">
+                                    <label class="form-check-label" for="ministry26">개인정보보호위원회</label>
                                 </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok" type="checkbox" value="국민안전처" id="ministry27">
+                                    <label class="form-check-label" for="ministry27">국민안전처</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok" type="checkbox" value="대통령경호처" id="ministry28">
+                                    <label class="form-check-label" for="ministry28">대통령경호처</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok" type="checkbox" value="우주항공청" id="ministry29">
+                                    <label class="form-check-label" for="ministry29">우주항공청</label>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -233,89 +214,158 @@
                         <div class="jurisdiction-checkbox-wrap2">
                             <div class="common-checkbox-area-1">
                                 <div class="form-check">
-                                    <input class="form-check-input ok2" type="checkbox" value="한국과학기술기획평가원">
-                                    <label class="form-check-label">
-                                        한국과학기술기획평가원
-                                    </label>
+                                    <input class="form-check-input ok2" type="checkbox" value="한국과학기술기획평가원" id="institution1">
+                                    <label class="form-check-label" for="institution1">한국과학기술기획평가원</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok2" type="checkbox" value="한국연구재단">
-                                    <label class="form-check-label">
-                                        한국연구재단
-                                    </label>
+                                    <input class="form-check-input ok2" type="checkbox" value="한국연구재단" id="institution2">
+                                    <label class="form-check-label" for="institution2">한국연구재단</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok2" type="checkbox" value="국토교통과학기술진흥원">
-                                    <label class="form-check-label">
-                                        국토교통과학기술진흥원
-                                    </label>
+                                    <input class="form-check-input ok2" type="checkbox" value="국토교통과학기술진흥원" id="institution3">
+                                    <label class="form-check-label" for="institution3">국토교통과학기술진흥원</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok2" type="checkbox" value="정보통신기획평가원">
-                                    <label class="form-check-label">
-                                        정보통신기획평가원
-                                    </label>
+                                    <input class="form-check-input ok2" type="checkbox" value="중소기업기술정보진흥원" id="institution4">
+                                    <label class="form-check-label" for="institution4">중소기업기술정보진흥원</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok2" type="checkbox" value="한국산업기술기획평가원">
-                                    <label class="form-check-label">
-                                        한국산업기술기획평가원
-                                    </label>
+                                    <input class="form-check-input ok2" type="checkbox" value="정보통신기획평가원" id="institution5">
+                                    <label class="form-check-label" for="institution5">정보통신기획평가원</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok2" type="checkbox" value="한국산업기술진흥원">
-                                    <label class="form-check-label">
-                                        한국산업기술진흥원
-                                    </label>
+                                    <input class="form-check-input ok2" type="checkbox" value="한국산업기술기획평가원" id="institution6">
+                                    <label class="form-check-label" for="institution6">한국산업기술기획평가원</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok2" type="checkbox" value="한국에너지기술평가원">
-                                    <label class="form-check-label">
-                                        한국에너지기술평가원
-                                    </label>
+                                    <input class="form-check-input ok2" type="checkbox" value="한국산업기술진흥원" id="institution7">
+                                    <label class="form-check-label" for="institution7">한국산업기술진흥원</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok2" type="checkbox" value="한국보건산업진흥원">
-                                    <label class="form-check-label">
-                                        한국보건산업진흥원
-                                    </label>
+                                    <input class="form-check-input ok2" type="checkbox" value="한국에너지기술평가원" id="institution8">
+                                    <label class="form-check-label" for="institution8">한국에너지기술평가원</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok2" type="checkbox" value="농촌진흥청">
-                                    <label class="form-check-label">
-                                        농촌진흥청
-                                    </label>
+                                    <input class="form-check-input ok2" type="checkbox" value="한국보건산업진흥원" id="institution9">
+                                    <label class="form-check-label" for="institution9">한국보건산업진흥원</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok2" type="checkbox" value="해양수산과학기술진흥원">
-                                    <label class="form-check-label">
-                                        해양수산과학기술진흥원
-                                    </label>
+                                    <input class="form-check-input ok2" type="checkbox" value="농촌진흥청" id="institution10">
+                                    <label class="form-check-label" for="institution10">농촌진흥청</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok2" type="checkbox" value="농림식품기술기획평가원">
-                                    <label class="form-check-label">
-                                        농림식품기술기획평가원
-                                    </label>
+                                    <input class="form-check-input ok2" type="checkbox" value="해양수산과학기술진흥원" id="institution11">
+                                    <label class="form-check-label" for="institution11">해양수산과학기술진흥원</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok2" type="checkbox" value="한국환경산업기술원">
-                                    <label class="form-check-label">
-                                        한국환경산업기술원
-                                    </label>
+                                    <input class="form-check-input ok2" type="checkbox" value="농림식품기술기획평가원" id="institution12">
+                                    <label class="form-check-label" for="institution12">농림식품기술기획평가원</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok2" type="checkbox" value="한국기상산업기술원">
-                                    <label class="form-check-label">
-                                        한국기상산업기술원
-                                    </label>
+                                    <input class="form-check-input ok2" type="checkbox" value="한국환경산업기술원" id="institution13">
+                                    <label class="form-check-label" for="institution13">한국환경산업기술원</label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input ok2" type="checkbox" value="식품의약품안전평가원">
-                                    <label class="form-check-label">
-                                        식품의약품안전평가원
-                                    </label>
+                                    <input class="form-check-input ok2" type="checkbox" value="한국기상산업기술원" id="institution14">
+                                    <label class="form-check-label" for="institution14">한국기상산업기술원</label>
                                 </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="식품의약품안전평가원" id="institution15">
+                                    <label class="form-check-label" for="institution15">식품의약품안전평가원</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="국방기술품질원" id="institution16">
+                                    <label class="form-check-label" for="institution16">국방기술품질원</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="한국콘텐츠진흥원" id="institution17">
+                                    <label class="form-check-label" for="institution17">한국콘텐츠진흥원</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="국립문화유산연구원" id="institution18">
+                                    <label class="form-check-label" for="institution18">국립문화유산연구원</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="한국원자력안전재단" id="institution19">
+                                    <label class="form-check-label" for="institution19">한국원자력안전재단</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="국립재난안전연구원" id="institution20">
+                                    <label class="form-check-label" for="institution20">국립재난안전연구원</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="한국임업진흥원" id="institution21">
+                                    <label class="form-check-label" for="institution21">한국임업진흥원</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="범부처전주기의료기기연구개발사업단" id="institution22">
+                                    <label class="form-check-label" for="institution22">범부처전주기의료기기연구개발사업단</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="범부처재생의료기술개발사업단" id="institution23">
+                                    <label class="form-check-label" for="institution23">범부처재생의료기술개발사업단</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="재단법인 국가신약개발사업단" id="institution24">
+                                    <label class="form-check-label" for="institution24">재단법인 국가신약개발사업단</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="한국농업기술진흥원" id="institution25">
+                                    <label class="form-check-label" for="institution25">한국농업기술진흥원</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="과학기술사업화진흥원" id="institution26">
+                                    <label class="form-check-label" for="institution26">과학기술사업화진흥원</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="한국인터넷진흥원" id="institution27">
+                                    <label class="form-check-label" for="institution27">한국인터넷진흥원</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="과학치안진흥센터" id="institution28">
+                                    <label class="form-check-label" for="institution28">과학치안진흥센터</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="한국탄소산업진흥원" id="institution29">
+                                    <label class="form-check-label" for="institution29">한국탄소산업진흥원</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="한국여성과학기술인육성재단" id="institution30">
+                                    <label class="form-check-label" for="institution30">한국여성과학기술인육성재단</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="혁신형소형모듈원자로기술개발사업단" id="institution31">
+                                    <label class="form-check-label" for="institution31">혁신형소형모듈원자로기술개발사업단</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="한국원자력연구원" id="institution32">
+                                    <label class="form-check-label" for="institution32">한국원자력연구원</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="국립암센터" id="institution33">
+                                    <label class="form-check-label" for="institution33">국립암센터</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="연구개발특구진흥재단" id="institution34">
+                                    <label class="form-check-label" for="institution34">연구개발특구진흥재단</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="한국기초과학지원연구원" id="institution35">
+                                    <label class="form-check-label" for="institution35">한국기초과학지원연구원</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="나노종합기술원" id="institution36">
+                                    <label class="form-check-label" for="institution36">나노종합기술원</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="우주항공청" id="institution37">
+                                    <label class="form-check-label" for="institution37">우주항공청</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input ok2" type="checkbox" value="소형모듈원자로규제연구추진단" id="institution38">
+                                    <label class="form-check-label" for="institution38">소형모듈원자로규제연구추진단</label>
+                                </div>
+
                             </div>
                         </div>
                     </div>

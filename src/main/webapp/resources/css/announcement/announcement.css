@@ -171,6 +171,7 @@
     margin-top: 25px;
     border-radius: 15px;
     height: 27%;
+    width: 340px;
 }
 
 .common-checkbox2 {
@@ -178,6 +179,7 @@
     margin-top: 25px;
     border-radius: 15px;
     height: 30%;
+    width: 340px;
 }
 
 .jurisdiction-select-all {
@@ -229,7 +231,7 @@
     margin-top: 20px;
     border: 1px solid #D1D1D1;
     border-radius: 15px;
-    margin-left: 32px;
+    margin-left: 84px;
 }
 
 .technology-field {
@@ -272,13 +274,27 @@
 
 .anno-bottom-wrap {
     display: flex;
-    width: 90%;
-    margin: auto;
+    width: 95%;
     justify-content: space-between;
 }
 
 .anno-bottom-wrap p {
     font-size: 13px;
+}
+
+.ann_type{
+    width: 20%;
+}
+
+.started_at{
+    width: 20%;
+}
+
+
+
+.total_ann_no{
+    width: 39%;
+    margin-left: 42px;
 }
 
 .view-details-btn {
