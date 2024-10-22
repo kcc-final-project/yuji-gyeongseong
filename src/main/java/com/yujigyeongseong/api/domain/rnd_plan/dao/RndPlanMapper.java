@@ -2,6 +2,7 @@ package com.yujigyeongseong.api.domain.rnd_plan.dao;
 
 import com.yujigyeongseong.api.domain.rnd_plan.dto.BasicInfo;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndField;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateBasicInfoRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
 import org.apache.ibatis.annotations.Mapper;
@@ -15,6 +16,9 @@ public interface RndPlanMapper {
 
     // 기본정보 페이지 데이터 조회 쿼리
     Optional<BasicInfo> selectBasicInfoBySubAnnNo(final Long subAnnNo);
+
+    // 과제정보 데이터 조회 쿼리
+    Optional<RndPlan> selectRndPlanBySubAnnNo(final Long subAnnNo);
 
     // TODO: SelectKey로 처리할 수 있지 않을까?
     Long selectRndPlanSequence();

@@ -37,7 +37,8 @@ function showNextConfirmation() {
         await submitBasicData();
         currentStep += 1;
         updateProgressBar();
-        loadStepContent(currentStep);
+        await loadStepContent(currentStep);
+        await getRndPlanData();
       }
       // 과제요약 유효성 검사 후 페이지 이동
       else if (currentStep === 2 && validateTaskSummaryFields()) {

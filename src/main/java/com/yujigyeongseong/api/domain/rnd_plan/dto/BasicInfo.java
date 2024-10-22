@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @RequiredArgsConstructor
 @Getter
 @ToString
@@ -14,6 +16,10 @@ public class BasicInfo {
     private final String annType; // 공모유형 (공고)
 
     private final String receptionType; // 접수유형 (공고)
+
+    private final LocalDateTime startedAt; // 접수 시작일 (공고)
+
+    private final LocalDateTime endedAt; // 접수 마감일 (공고)
 
     private final String subTitle; // 공모분야명 (공모분야)
 

@@ -20,7 +20,6 @@ public class RndPlanController {
     @GetMapping("/{subAnnNo}")
     public String getRndPlanPage(@PathVariable final Long subAnnNo,
                                  final Model model) {
-
         model.addAttribute("subAnnNo", subAnnNo);
         return "rnd-plan/rnd-plan";
     }

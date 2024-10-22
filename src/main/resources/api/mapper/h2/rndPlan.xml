@@ -2,17 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yujigyeongseong.api.domain.rnd_plan.dao.RndPlanMapper">
-    <!-- TODO: 테스트 용 기능이니 나중에 지우기 -->
-    <select id="selectRndPlanById">
-        SELECT rnd_plan_no, task_name
-        FROM rnd_plan
-    </select>
 
     <!-- 기본정보 페이지 데이터 조회 쿼리   -->
     <select id="selectBasicInfoBySubAnnNo">
         SELECT total_title,
                ann_type,
                reception_type,
+               started_at,
+               closed_at,
                sub_title,
                task_type,
                planning_year,
@@ -22,6 +19,24 @@
                  INNER JOIN sub_announcement sa
                             ON a.ann_no = sa.ann_no
         WHERE sa.sub_ann_no = #{subAnnNO}
+    </select>
+
+    <!-- 과제정보 데이터 조회 쿼리 -->
+    <select id="selectRndPlanBySubAnnNo">
+        SELECT rp.sub_ann_no,
+               rp.task_name,
+               rp.rnd_task_no,
+               m.name AS researcher_name,
+               i.name AS institution_name
+        FROM rnd_plan rp
+                 LEFT JOIN researcher r
+                           ON r.rnd_plan_no = rp.rnd_plan_no
+                               AND r.manpower_role = '연구책임자'
+                 LEFT JOIN member m
+                           ON m.mem_no = r.mem_no
+                 LEFT JOIN institution i
+                           ON i.institution_no = m.institution_no
+        WHERE rp.sub_ann_no = #{subAnnNo}
     </select>
 
     <!-- 연구개발계획서 시퀀스 최대값 가져오기 -->

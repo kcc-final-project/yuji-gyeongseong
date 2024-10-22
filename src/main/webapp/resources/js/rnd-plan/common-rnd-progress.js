@@ -19,7 +19,9 @@ $(function () {
 // 프로그래스 바 초기화
 async function initializeProgressBar() {
   updateProgressBar();
+
   await loadStepContent(currentStep);
+  await getRndPlanData();
 
   const rndPlanNo = localStorage.getItem("rndPlanNo");
   if (currentStep === 1 && rndPlanNo) {
@@ -32,7 +34,9 @@ async function changeStep(stepNumber) {
   if (MIN_STEP <= stepNumber && stepNumber <= MAX_STEP) {
     currentStep = stepNumber;
     updateProgressBar();
+
     await loadStepContent(currentStep);
+    await getRndPlanData();
 
     const rndPlanNo = localStorage.getItem("rndPlanNo");
     if (currentStep === 1 && rndPlanNo) {
@@ -136,4 +140,34 @@ function applyTaskNameAndTaskNo({ taskName, rndTaskNo }) {
   $("#ipt-task-title").val(taskName);
   $("#dpy-task-title").val(taskName);
   $("#dpy-rnd-task-no").val(rndTaskNo);
+}
+
+async function getRndPlanData() {
+  const rndPlanNo = localStorage.getItem("rndPlanNo");
+
+  if (rndPlanNo) {
+    try {
+      const { data } = await $.ajax({
+        url: `/api/v1/rnd-plans/${rndPlanNo}`,
+        type: "GET",
+      });
+
+      applyRndPlan(data);
+    } catch (err) {
+      console.log(err.responseJSON);
+    }
+  }
+}
+
+function applyRndPlan({
+  taskName,
+  rndTaskNo,
+  researcherName,
+  institutionName,
+}) {
+  $("#ipt-task-title").val(taskName);
+  $("#dpy-task-title").val(taskName);
+  $("#dpy-rnd-task-no").val(rndTaskNo);
+  $("#dpy-researcher").val(researcherName);
+  $("#dpy-institution").val(institutionName);
 }

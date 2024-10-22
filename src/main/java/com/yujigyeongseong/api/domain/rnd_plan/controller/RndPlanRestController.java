@@ -1,5 +1,6 @@
 package com.yujigyeongseong.api.domain.rnd_plan.controller;
 
+import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateBasicInfoRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.UpdateBasicInfoRequest;
@@ -18,6 +19,13 @@ import static org.springframework.http.HttpStatus.OK;
 public class RndPlanRestController {
 
     private final RndPlanService rndPlanService;
+
+    // 과제정보 데이터 조회 API
+    @GetMapping("/{rndPlanNo}")
+    public ResponseEntity<?> getRndPlan(@PathVariable Long rndPlanNo) {
+        RndPlan rndPlan = rndPlanService.getRndPlanDataBySubAnnNo(rndPlanNo);
+        return ApiResponse.success(OK, rndPlan);
+    }
 
     // 기본정보 데이터 등록 API
     @PostMapping("/basic")

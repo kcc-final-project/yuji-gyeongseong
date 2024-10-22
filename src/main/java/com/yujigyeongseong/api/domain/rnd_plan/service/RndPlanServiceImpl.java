@@ -3,9 +3,11 @@ package com.yujigyeongseong.api.domain.rnd_plan.service;
 import com.yujigyeongseong.api.domain.rnd_plan.dao.RndPlanMapper;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.BasicInfo;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndField;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateBasicInfoRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.UpdateBasicInfoRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
+import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundRndPlan;
 import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundRndPlanBasic;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,13 @@ public class RndPlanServiceImpl implements RndPlanService {
     public BasicInfo getBasicInfoPageBySubAnnNo(final Long subAnnNo) {
         return rndPlanMapper.selectBasicInfoBySubAnnNo(subAnnNo)
                 .orElseThrow(NotFoundRndPlanBasic::new);
+    }
+
+    // 과제정보 데이터 조회 API
+    @Override
+    public RndPlan getRndPlanDataBySubAnnNo(Long subAnnNo) {
+        return rndPlanMapper.selectRndPlanBySubAnnNo(subAnnNo)
+                .orElseThrow(NotFoundRndPlan::new);
     }
 
     // 기본정보 데이터 등록 API
@@ -60,7 +69,7 @@ public class RndPlanServiceImpl implements RndPlanService {
     @Transactional
     @Override
     public void updateBasicInfo(final Long rndPlanNo,
-                               final UpdateBasicInfoRequest request) {
+                                final UpdateBasicInfoRequest request) {
 
         request.assignRndPlanNo(rndPlanNo);
         for (RndField rndField : request.getRndFields()) {
