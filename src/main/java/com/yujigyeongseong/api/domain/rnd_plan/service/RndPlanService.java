@@ -1,22 +1,22 @@
 package com.yujigyeongseong.api.domain.rnd_plan.service;
 
-import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasic;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasicData;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateRndPlanBasicRequest;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.request.UpdateRndPlanBasicRequest;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.BasicInfo;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateBasicInfoRequest;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.UpdateBasicInfoRequest;
 
 public interface RndPlanService {
 
-    // TODO: 테스트 용 기능이니 나중에 지우기
-    RndPlan getMemberById(Long id);
+    // 기본정보 페이지 조회 API
+    BasicInfo getBasicInfoPageBySubAnnNo(final Long subAnnNo);
 
-    RndPlanBasic getBasicInfoBySubAnnNo(final Long subAnnNo);
+    // 기본정보 데이터 등록 API
+    Long registerBasicInfo(final CreateBasicInfoRequest request);
 
-    Long insertRndPlanBasic(final CreateRndPlanBasicRequest request);
+    // 기본정보 데이터 조회 API
+    BasicInfoResponse getBasicInfoDataByRndPlanNo(final Long rndPlanNo);
 
-    RndPlanBasicData getBasicDataByRndPlanNo(final Long rndPlanNo);
-
-    void patchBasicInfo(final Long rndPlanNo, final UpdateRndPlanBasicRequest request);
+    // 기본정보 데이터 수정 API
+    void updateBasicInfo(final Long rndPlanNo, final UpdateBasicInfoRequest request);
 
 }

@@ -1,9 +1,8 @@
 package com.yujigyeongseong.api.domain.rnd_plan.controller;
 
-import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasicData;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateRndPlanBasicRequest;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.request.UpdateRndPlanBasicRequest;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateBasicInfoRequest;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.UpdateBasicInfoRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.service.RndPlanService;
 import com.yujigyeongseong.api.global.dto.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
@@ -20,29 +19,25 @@ public class RndPlanRestController {
 
     private final RndPlanService rndPlanService;
 
-    // TODO: 테스트 용이라 나중에 삭제해야 함
-    @GetMapping("/{id}")
-    public ResponseEntity<RndPlan> getRndPlanById(@PathVariable Long id) {
-        RndPlan member = rndPlanService.getMemberById(id);
-        return ResponseEntity.ok(member);
-    }
-
+    // 기본정보 데이터 등록 API
     @PostMapping("/basic")
-    public ResponseEntity<?> saveRndPlanBasic(@RequestBody CreateRndPlanBasicRequest request) {
-        Long rndPlanNo = rndPlanService.insertRndPlanBasic(request);
+    public ResponseEntity<?> saveRndPlanBasic(@RequestBody final CreateBasicInfoRequest request) {
+        Long rndPlanNo = rndPlanService.registerBasicInfo(request);
         return ApiResponse.success(CREATED, rndPlanNo);
     }
 
+    // 기본정보 데이터 조회 API
     @GetMapping("/basic/{rndPlanNo}")
-    public ResponseEntity<?> getRndPlanBasic(@PathVariable Long rndPlanNo) {
-        RndPlanBasicData rndPlanBasicData = rndPlanService.getBasicDataByRndPlanNo(rndPlanNo);
-        return ApiResponse.success(OK, rndPlanBasicData);
+    public ResponseEntity<?> getRndPlanBasic(@PathVariable final Long rndPlanNo) {
+        BasicInfoResponse basicInfoResponse = rndPlanService.getBasicInfoDataByRndPlanNo(rndPlanNo);
+        return ApiResponse.success(OK, basicInfoResponse);
     }
 
+    // 기본정보 데이터 수정 API
     @PatchMapping("/basic/{rndPlanNo}")
-    public ResponseEntity<?> patchRndPlanBasic(@PathVariable Long rndPlanNo,
-                                               @RequestBody UpdateRndPlanBasicRequest request) {
-        rndPlanService.patchBasicInfo(rndPlanNo, request);
+    public ResponseEntity<?> patchRndPlanBasic(@PathVariable final Long rndPlanNo,
+                                               @RequestBody final UpdateBasicInfoRequest request) {
+        rndPlanService.updateBasicInfo(rndPlanNo, request);
         return ApiResponse.success(OK);
     }
 

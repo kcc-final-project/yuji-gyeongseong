@@ -1,11 +1,9 @@
 package com.yujigyeongseong.api.domain.rnd_plan.dao;
 
+import com.yujigyeongseong.api.domain.rnd_plan.dto.BasicInfo;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndField;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasic;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasicData;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateRndFieldRequest;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateRndPlanBasicRequest;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateBasicInfoRequest;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,23 +13,29 @@ import java.util.Optional;
 @Mapper
 public interface RndPlanMapper {
 
-    // TODO: 테스트 용 기능이니 나중에 지우기
-    Optional<RndPlan> selectRndPlanById(Long id);
+    // 기본정보 페이지 데이터 조회 쿼리
+    Optional<BasicInfo> selectBasicInfoBySubAnnNo(final Long subAnnNo);
 
-    Optional<RndPlanBasic> selectRndPlanBasicBySubAnnNo(Long subAnnNo);
-
+    // TODO: SelectKey로 처리할 수 있지 않을까?
     Long selectRndPlanSequence();
 
-    int insertRndPlanBasic(CreateRndPlanBasicRequest request);
+    // 기본정보 데이터 등록 쿼리
+    int insertBasicInfo(final CreateBasicInfoRequest request);
 
-    int insertRndFields(@Param("rndFields") List<CreateRndFieldRequest> rndFields);
+    // 연구분야 데이터 등록 쿼리
+    int insertRndFields(@Param("rndFields") final List<RndField> rndFields);
 
-    RndPlanBasicData selectTaskNameByRndPlanNo(Long rndPlanNo);
+    // 기본정보 데이터 조회 쿼리__과제명/계획서번호
+    BasicInfoResponse selectTaskNameAndTaskNoByRndPlanNo(final Long rndPlanNo);
 
-    List<RndField> selectRndFieldsByRndPlanNo(Long rndPlanNo);
+    // 기본정보 데이터 조회 쿼리__연구분야
+    List<RndField> selectRndFieldsByRndPlanNo(final Long rndPlanNo);
 
-    int deleteRndFieldsByRndPlanNo(Long rndPlanNo);
+    // 연구분야 데이터 삭제 쿼리
+    int deleteRndFieldsByRndPlanNo(final Long rndPlanNo);
 
-    int updateTaskNameByRndPlanNo(@Param("rndPlanNo") Long rndPlanNo, @Param("taskName") String taskName);
+    // 과제명 데이터 수정 쿼리
+    int updateTaskNameByRndPlanNo(@Param("rndPlanNo") final Long rndPlanNo,
+                                  @Param("taskName") String taskName);
 
 }

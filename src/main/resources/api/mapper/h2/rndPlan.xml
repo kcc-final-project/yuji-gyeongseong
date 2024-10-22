@@ -8,8 +8,8 @@
         FROM rnd_plan
     </select>
 
-    <!-- 기본정보 데이터 가져오기   -->
-    <select id="selectRndPlanBasicBySubAnnNo">
+    <!-- 기본정보 페이지 데이터 조회 쿼리   -->
+    <select id="selectBasicInfoBySubAnnNo">
         SELECT total_title,
                ann_type,
                reception_type,
@@ -30,8 +30,8 @@
         FROM DUAL
     </select>
 
-    <!-- 기본정보 데이터 저장하기  -->
-    <insert id="insertRndPlanBasic">
+    <!-- 기본정보 데이터 등록 쿼리  -->
+    <insert id="insertBasicInfo">
         INSERT INTO rnd_plan(rnd_plan_no,
                              rnd_task_no,
                              sub_ann_no,
@@ -50,7 +50,7 @@
                 CURRENT_TIMESTAMP)
     </insert>
 
-    <!-- 연구분야 데이터 저장하기 -->
+    <!-- 연구분야 데이터 등록 쿼리 -->
     <insert id="insertRndFields">
         INSERT INTO rnd_field (
         rnd_field_no,
@@ -70,24 +70,28 @@
         </foreach>
     </insert>
 
-    <select id="selectTaskNameByRndPlanNo">
+    <!-- 기본정보 데이터 조회 쿼리__과제명/계획서번호 -->
+    <select id="selectTaskNameAndTaskNoByRndPlanNo">
         SELECT task_name, rnd_task_no
         FROM rnd_plan
         WHERE rnd_plan_no = #{rndPlanNo}
     </select>
 
+    <!-- 기본정보 데이터 조회 쿼리__연구분야 -->
     <select id="selectRndFieldsByRndPlanNo">
         SELECT name, weight, rank
         FROM rnd_field
         WHERE rnd_plan_no = #{rndPlanNo}
     </select>
 
+    <!-- 연구분야 데이터 삭제 쿼리 -->
     <delete id="deleteRndFieldsByRndPlanNo">
         DELETE
         FROM rnd_field
         WHERE rnd_plan_no = #{rndPlanNo}
     </delete>
 
+    <!-- 과제명 데이터 수정 쿼리 -->
     <update id="updateTaskNameByRndPlanNo">
         UPDATE rnd_plan
         SET task_name = #{taskName}

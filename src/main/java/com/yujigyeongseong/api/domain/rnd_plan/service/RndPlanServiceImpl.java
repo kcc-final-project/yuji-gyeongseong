@@ -1,72 +1,69 @@
 package com.yujigyeongseong.api.domain.rnd_plan.service;
 
 import com.yujigyeongseong.api.domain.rnd_plan.dao.RndPlanMapper;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.BasicInfo;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndField;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasic;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlanBasicData;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateRndFieldRequest;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateRndPlanBasicRequest;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.request.UpdateRndPlanBasicRequest;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateBasicInfoRequest;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.UpdateBasicInfoRequest;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundRndPlanBasic;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Slf4j
 @Service
-@Transactional(readOnly = true)
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class RndPlanServiceImpl implements RndPlanService {
 
     private final RndPlanMapper rndPlanMapper;
 
-    // TODO: 테스트 용 기능이니 나중에 지우기
+    // 기본정보 페이지 조회 API
     @Override
-    public RndPlan getMemberById(Long id) {
-        return rndPlanMapper.selectRndPlanById(id).get();
-    }
-
-    @Override
-    public RndPlanBasic getBasicInfoBySubAnnNo(final Long subAnnNo) {
-        return rndPlanMapper.selectRndPlanBasicBySubAnnNo(subAnnNo)
+    public BasicInfo getBasicInfoPageBySubAnnNo(final Long subAnnNo) {
+        return rndPlanMapper.selectBasicInfoBySubAnnNo(subAnnNo)
                 .orElseThrow(NotFoundRndPlanBasic::new);
     }
 
-    @Override
+    // 기본정보 데이터 등록 API
     @Transactional
-    public Long insertRndPlanBasic(final CreateRndPlanBasicRequest request) {
+    @Override
+    public Long registerBasicInfo(final CreateBasicInfoRequest request) {
 
         Long rndPlanSeq = rndPlanMapper.selectRndPlanSequence();
         request.assignRndTaskNo(rndPlanSeq);
         request.assignRndPlanNo(rndPlanSeq);
-        for (CreateRndFieldRequest rndField : request.getRndFields()) {
+        for (RndField rndField : request.getRndFields()) {
             rndField.assignRndPlanNo(rndPlanSeq);
         }
 
-        rndPlanMapper.insertRndPlanBasic(request);
+        rndPlanMapper.insertBasicInfo(request);
         rndPlanMapper.insertRndFields(request.getRndFields());
 
         return rndPlanSeq;
     }
 
+    // 기본정보 데이터 조회 API
     @Override
-    public RndPlanBasicData getBasicDataByRndPlanNo(Long rndPlanNo) {
-        RndPlanBasicData rndPlanBasicData = rndPlanMapper.selectTaskNameByRndPlanNo(rndPlanNo);
+    public BasicInfoResponse getBasicInfoDataByRndPlanNo(final Long rndPlanNo) {
+
+        BasicInfoResponse basicInfoResponse = rndPlanMapper.selectTaskNameAndTaskNoByRndPlanNo(rndPlanNo);
         List<RndField> rndFields = rndPlanMapper.selectRndFieldsByRndPlanNo(rndPlanNo);
-        rndPlanBasicData.assignRndFields(rndFields);
-        return rndPlanBasicData;
+        basicInfoResponse.assignRndFields(rndFields);
+
+        return basicInfoResponse;
     }
 
-    @Override
+    // 기본정보 데이터 수정 API
     @Transactional
-    public void patchBasicInfo(final Long rndPlanNo,
-                               final UpdateRndPlanBasicRequest request) {
+    @Override
+    public void updateBasicInfo(final Long rndPlanNo,
+                               final UpdateBasicInfoRequest request) {
+
         request.assignRndPlanNo(rndPlanNo);
-        for (CreateRndFieldRequest rndField : request.getRndFields()) {
+        for (RndField rndField : request.getRndFields()) {
             rndField.assignRndPlanNo(rndPlanNo);
         }
 
