@@ -1,6 +1,7 @@
 package com.yujigyeongseong.api.domain.rnd_plan.controller;
 
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateTaskSummaryRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateBasicInfoRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.UpdateBasicInfoRequest;
@@ -47,6 +48,13 @@ public class RndPlanRestController {
                                                @RequestBody final UpdateBasicInfoRequest request) {
         rndPlanService.updateBasicInfo(rndPlanNo, request);
         return ApiResponse.success(OK);
+    }
+
+    // 과제요약 데이터 등록 API
+    @PostMapping("/task-summary")
+    public ResponseEntity<?> saveRndPlanTaskSummary(@RequestBody final CreateTaskSummaryRequest request) {
+        rndPlanService.registerTaskSummary(request);
+        return ApiResponse.success(CREATED);
     }
 
 }

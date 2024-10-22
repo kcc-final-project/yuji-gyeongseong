@@ -735,3 +735,134 @@ function validateTaskSummaryFields() {
 
   return isValid;
 }
+
+// AJAX 과제요약 데이터 저장
+async function submitTaskSummaryData() {
+  const rndPlanNo = localStorage.getItem("rndPlanNo");
+
+  const finalTgtContent = $("#finalGoalContent").val();
+  const rndContent = $("#rndContent").val();
+  const perfContent = $("#rndOutcomePlan").val();
+
+  const rndPeriods = getRndPeriodsData();
+  const stageContents = getStageContentsData();
+
+  const bodyData = {
+    rndPlanNo,
+    finalTgtContent,
+    rndContent,
+    perfContent,
+    rndPeriods,
+    stageContents,
+  };
+
+  try {
+    await $.ajax({
+      url: "/api/v1/rnd-plans/task-summary",
+      type: "POST",
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify(bodyData),
+    });
+  } catch (err) {
+    console.log(
+      "[submitTaskSummaryData()] " + err.statusText + " - " + err.status,
+    );
+  }
+}
+
+// 연구개발기간 입력 데이터 가져오기
+function getRndPeriodsData() {
+  const rndPeriods = [];
+  const rndPlanNo = localStorage.getItem("rndPlanNo");
+
+  stageData.forEach((stage) => {
+    const stageNo = stage.stageNumber;
+
+    stage.years.forEach((year) => {
+      const yearNo = year.yearNumber;
+      const startedAt = year.startDate;
+      const endedAt = year.endDate;
+      const month = calculateMonthsDifference(startedAt, endedAt);
+
+      rndPeriods.push({
+        stageNo,
+        yearNo,
+        startedAt,
+        endedAt,
+        month,
+        rndPlanNo,
+      });
+    });
+  });
+
+  return rndPeriods;
+}
+
+// 단계별 내용 입력 데이터 가져오기
+function getStageContentsData() {
+  const stageContents = [];
+  const rndPlanNo = localStorage.getItem("rndPlanNo");
+
+  stageData.forEach((stage) => {
+    const stageNo = stage.stageNumber;
+
+    const stageGoalTextarea = $(`textarea[name="stage-goal-${stageNo}"]`);
+    const stgTgtContent = stageGoalTextarea.val().trim();
+
+    const rndContentTextarea = $(
+      `textarea[name="stage-rnd-content-${stageNo}"]`,
+    );
+    const rndContent = rndContentTextarea.val().trim();
+
+    stageContents.push({
+      stageNo,
+      stgTgtContent,
+      rndContent,
+      rndPlanNo,
+    });
+  });
+
+  return stageContents;
+}
+
+/**
+ * finalTgtContent:  ,
+ * rndContent:  ,
+ * perfContent:  ,
+ * rndPeriods: [
+ *     {
+ *         stageNo:  ,
+ *         yearNo:  ,
+ *         startedAt:  ,
+ *         endedAt:  ,
+ *         month:  ,
+ *         rndPlanNo:
+ *     },
+ *     {
+ *         stageNo:  ,
+ *         yearNo:  ,
+ *         startedAt:  ,
+ *         endedAt:  ,
+ *         month:  ,
+ *         rndPlanNo:
+ *     },
+ * ],
+ * stageContents: [
+ *     {
+ *         stageNo:  ,
+ *         stgTgtContent:  ,
+ *         rndContent:  ,
+ *         perfContent:  ,
+ *         rndPlanNo:
+ *     },
+ *     {
+ *         stageNo:  ,
+ *         stgTgtContent:  ,
+ *         rndContent:  ,
+ *         perfContent:  ,
+ *         rndPlanNo:
+ *     }
+ * ]
+ *
+ */

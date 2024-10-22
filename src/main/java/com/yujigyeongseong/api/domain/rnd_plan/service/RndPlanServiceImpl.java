@@ -5,16 +5,19 @@ import com.yujigyeongseong.api.domain.rnd_plan.dto.BasicInfo;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndField;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateBasicInfoRequest;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateTaskSummaryRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.UpdateBasicInfoRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundRndPlan;
 import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundRndPlanBasic;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -79,6 +82,16 @@ public class RndPlanServiceImpl implements RndPlanService {
         rndPlanMapper.updateTaskNameByRndPlanNo(rndPlanNo, request.getTaskName());
         rndPlanMapper.deleteRndFieldsByRndPlanNo(rndPlanNo);
         rndPlanMapper.insertRndFields(request.getRndFields());
+    }
+
+    // 과제요약 데이터 등록 API
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public void registerTaskSummary(final CreateTaskSummaryRequest request) {
+
+        rndPlanMapper.insertTaskSummaryByRndPlanNo(request);
+        rndPlanMapper.insertRndPeriods(request.getRndPeriods());
+        rndPlanMapper.insertStageContent(request.getStageContents());
     }
 
 }

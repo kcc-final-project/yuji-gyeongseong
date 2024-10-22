@@ -113,4 +113,58 @@
         WHERE rnd_plan_no = #{rndPlanNo}
     </update>
 
+    <!-- 과제요약 데이터 수정 쿼리 -->
+    <update id="insertTaskSummaryByRndPlanNo">
+        UPDATE rnd_plan
+        SET (final_tgt_content,
+                perf_content,
+                rnd_content)
+                = (
+                   #{finalTgtContent},
+                   #{perfContent},
+                   #{rndContent}
+                )
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </update>
+
+    <!-- 연구개발기간 데이터 등록 쿼리 -->
+    <insert id="insertRndPeriods">
+        INSERT INTO rnd_period (
+        stage_no,
+        year_no,
+        started_at,
+        ended_at,
+        mxnth,
+        rnd_plan_no
+        ) VALUES
+        <foreach collection="rndPeriods" item="rndPeriod" separator=",">
+            (
+            #{rndPeriod.stageNo},
+            #{rndPeriod.yearNo},
+            #{rndPeriod.startedAt},
+            #{rndPeriod.endedAt},
+            #{rndPeriod.month},
+            #{rndPeriod.rndPlanNo}
+            )
+        </foreach>
+    </insert>
+
+    <!-- 단계별 내용 데이터 등록 쿼리 -->
+    <insert id="insertStageContent">
+        INSERT INTO stage_content (
+        stage_no,
+        stg_tgt_content,
+        rnd_content,
+        rnd_plan_no
+        ) VALUES
+        <foreach collection="stageContents" item="stageContent" separator=",">
+            (
+            #{stageContent.stageNo},
+            #{stageContent.stgTgtContent},
+            #{stageContent.rndContent},
+            #{stageContent.rndPlanNo}
+            )
+        </foreach>
+    </insert>
+
 </mapper>
