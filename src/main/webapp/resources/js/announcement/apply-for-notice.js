@@ -14,6 +14,24 @@ $(function(){
         })
     })
 
+
+    $('.apply-btn').on('click', function() {
+        // Find the closest parent with the class 'card' and get its data-subAnnNo
+        let subAnnoNo = $(this).closest('.card').data('subannno');
+        console.log(subAnnoNo);
+        $.ajax({
+            url: '/rnd-plans',
+            type: 'GET',
+            data: {subAnnNo: subAnnoNo},
+            success:function(){
+                alert("ok");
+            },
+            errors:function (){
+                alert("no");
+            }
+        })
+    });
+
 })
 
 
