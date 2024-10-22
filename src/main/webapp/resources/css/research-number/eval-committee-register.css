@@ -1,0 +1,148 @@
+
+.eval_title {
+    height: 200px;
+    width: 100%;
+    align-content: center;
+}
+
+.eval_title p {
+    text-align: center;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.title {
+    display: flex;
+    font-size: x-large;
+}
+
+.informs {
+    display: flex;
+    height: 400px;
+    width: 100%;
+}
+
+.academic, .career, .technic {
+    flex: 2;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.technic {
+    flex: 1;
+}
+
+.info {
+    height: 300px;
+    width: 100%;
+}
+
+.academic-name, .career-name, .technic-name {
+    padding-top: 10px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.academic-name {
+    margin-left: 30px;
+}
+
+.career-name {
+    margin-left: 410px;
+}
+
+.technic-name {
+    margin-left: 410px;
+}
+
+
+hr {
+    height: 2px;
+    background-color: #000000;
+    border: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    opacity: unset;
+    width: 100%;
+}
+
+#academic_details, #career_details, #technicDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#technicDetails {
+    margin-top: 20px;
+}
+
+.list {
+    display: flex;
+    gap: 30px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.field label {
+    margin-bottom: 5px;
+    font-size: small;
+}
+
+.value {
+    background-color: #F0F0F0;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    height: 32px;
+    margin-bottom: 6px;
+}
+
+.info-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 70px;
+}
+
+.btnwid {
+    width: 100px;
+}
+
+.ctm-btn-cancel {
+    border: 1.5px solid var(--main-bg-color);
+    border-radius: 6px;
+    height: 38px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.ctm-btn-cancel:hover {
+    background-color: var(--main-bg-color);
+    color: white;
+    transition: .5s all;
+}
+
+.swal2-buttons-center {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.swal2-confirm {
+    order: 2;
+}
+
+.swal2-cancel {
+    order: 1;
+}

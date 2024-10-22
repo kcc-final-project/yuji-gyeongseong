@@ -1,0 +1,78 @@
+.multi-step-progress-bar {
+    width: 100%;
+    height: 140px;
+    margin: 20px 0px 25px 0px;
+    padding-top: 50px;
+    position: sticky;
+    top: 90px;
+    z-index: 9;
+    background-color: white;
+}
+
+.multi-step-progress-bar.bar-shadow {
+    box-shadow: 0px 5px 2px -1px rgba(0, 0, 0, 0.1);
+}
+
+.progress-container {
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.progress {
+    background-color: #FFD4AC;
+    width: 950px !important;
+    margin: 0 auto;
+}
+
+.progress-bar {
+    background-color: var(--main-fnt-color);
+}
+
+.step-container {
+    position: relative;
+    text-align: center;
+    transform: translateY(-25%);
+}
+
+.step-group {
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step-group span {
+    transition: font-size 0.3s, color 0.3s;
+    font-size: 18px;
+    color: #666;
+    font-weight: 600;
+}
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #FFD4AC;
+    line-height: 30px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.active-circle {
+    background-color: var(--main-fnt-color);
+}
+
+.active-step {
+    font-size: 24px !important;
+}
+
+.ctm-poiner {
+    cursor: pointer;
+}

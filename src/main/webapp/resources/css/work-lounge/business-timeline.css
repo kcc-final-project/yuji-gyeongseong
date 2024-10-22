@@ -1,0 +1,120 @@
+.common-main {
+    width: 1000px;
+    margin-top: 50px;
+}
+
+.title {
+    height: 50px;
+    width: 100%;
+}
+
+.filters {
+    display: flex;
+    gap: 15px;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
+
+.filter-button {
+    padding: 5px 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #333;
+    cursor: pointer;
+    font-size: medium;
+}
+
+.filter-button:hover {
+    background-color: #e6e6e6;
+    border-color: #b3b3b3;
+}
+
+.filter-button.active {
+    background-color: #2e406a;
+    color: #ffffff;
+    border-color: #2e406a;
+}
+
+.alarms {
+    height: 500px;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.service-title {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.service-content {
+    margin-left: 30px;
+    color: #2F69FF;
+}
+
+.notification-card {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    max-width: 100%;
+    margin: 15px auto;
+    position: relative;
+}
+
+.icon-container {
+    flex: 0 0 auto;
+    margin-right: 15px;
+    font-size: 36px;
+    color: #003366;
+}
+
+.notification-content {
+    flex-grow: 1;
+}
+
+.notification-title {
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.notification-timestamp {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: medium;
+    color: #666;
+}
+
+.button-alarm {
+    position: absolute;
+    bottom: 5px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.reject-button,
+.approve-button {
+    border: 1.5px solid #666565;
+    font-size: small;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 2rem;
+    width: 8rem;
+}
+
+.reject-button {
+    background-color: #ffffff;
+    color: #666565;
+}
+
+.approve-button {
+    background-color: #FF8F27;
+    color: white;
+}

@@ -1,0 +1,178 @@
+.control-bar {
+    background-color: white;
+    border-top: 1px solid #b6b6b6;
+    width: 100%;
+    height: 80px;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+}
+
+.control-bar-main {
+    width: 1230px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timer-group {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.timer-group__icon {
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.timer-icon {
+    font-size: 55px;
+    color: var(--main-fnt-color);
+}
+
+.timer-group__info {
+    width: 85%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+}
+
+.timer-group__section1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.timer-group__section2 {
+    font-size: 14px;
+}
+
+.remaining-time {
+    font-size: 15px;
+    font-weight: 600;
+    margin-right: 15px;
+}
+
+.ctm-btn-outline-orange {
+    width: 50px;
+    background-color: var(--main-fnt-color);
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.ctm-btn-outline-orange:hover {
+    border: 1.5px solid var(--main-fnt-color);
+    background-color: white;
+    color: var(--main-fnt-color);
+    transition: .3s all;
+}
+
+.cbar-btn-group {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ctm-btn-init {
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    line-height: 38px;
+    font-size: 14.5px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.ctm-btn-init__init {
+    background-color: var(--main-fnt-color);
+    color: white;
+}
+
+.ctm-btn-init__init:hover {
+    border: 1.5px solid var(--main-fnt-color);
+    background-color: white;
+    color: var(--main-fnt-color);
+    transition: .3s all;
+}
+
+.ctm-btn-init__cancel {
+    background-color: white;
+    color: var(--red-color);
+    border: 1.5px solid var(--red-color);
+}
+
+.ctm-btn-init__cancel:hover {
+    background-color: var(--red-color);
+    color: white;
+    transition: .3s all;
+}
+
+.ctm-btn-init__save {
+    background-color: white;
+    color: var(--main-bg-color);
+    border: 1.5px solid var(--main-bg-color);
+}
+
+.ctm-btn-init__save:hover {
+    background-color: var(--main-bg-color);
+    color: white;
+    transition: .3s all;
+}
+
+.ctm-btn-init__next {
+    background-color: var(--main-bg-color);
+    color: white;
+}
+
+.ctm-btn-init__next:hover {
+    border: 1.5px solid var(--main-bg-color);
+    background-color: white;
+    color: var(--main-bg-color);
+    transition: .3s all;
+}
+
+.anchor-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    border: 1px solid var(--main-bg-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    right: 20px;
+    bottom: 20px;
+    z-index: 11;
+}
+
+.anchor-btn span {
+    font-size: 25px;
+}
+
+.anchor-btn:hover {
+    background-color: rgba(228, 228, 228, 0.5);
+}
+
+.time {
+    color: var(--main-fnt-color);
+}
+
+.ctm-position {
+    bottom: 120px !important;
+}
+
+.ctm-icon-size {
+    font-size: 12px !important;
+}

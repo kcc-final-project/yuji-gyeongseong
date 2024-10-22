@@ -1,0 +1,345 @@
+.announcement-container {
+    width: 100%;
+    margin: auto;
+}
+
+.announcement-title {
+    width: 100%;
+    height: 5%;
+    text-align: center;
+    margin-top: 150px;
+}
+
+.announcement-title h2 {
+    font-weight: bold;
+}
+
+.floating-area {
+    position: sticky;
+    top: 89px;
+    background-color: white;
+
+}
+
+.floating {
+    position: sticky;
+    width: 255px;
+    top: 203px;
+}
+
+{
+    width: 270px
+;
+    position: sticky !important
+;
+}
+.reception-status-wrap {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.reception-status-wrap button {
+    width: 250px;
+    margin-left: 5px;
+    height: 45px;
+}
+
+.reception-status-wrap button:hover {
+    background-color: #2E406A;
+    transition: .6s all;
+}
+
+.search-box-area {
+    width: 100%;
+    height: 60px;
+    background-color: #e4ebfd;
+    margin-top: 40px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-left: 89px;
+    padding-right: 41px;
+}
+
+.form-check-label {
+    font-size: small;
+}
+
+.search-box-area p {
+    margin-top: 10px;
+}
+
+.search-box {
+    width: 50%;
+    height: 50%;
+}
+
+.search-btn {
+    background-color: var(--main-bg-color);
+    height: 38px;
+    color: white;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10%;
+}
+
+.search-btn:hover {
+    background-color: white;
+    border: 2px solid var(--main-bg-color);
+    color: var(--main-bg-color);
+    transition: .3s all;
+}
+
+.refresh-btn {
+    background-color: white;
+    border-radius: 10px;
+    border: 1.8px solid #2E406A;
+}
+
+.refresh-btn:hover {
+    background-color: #eceef4;
+}
+
+.contents-wrap {
+    width: 100%;
+    height: 100%;
+}
+
+.contents-filter-wrap {
+    width: 100%;
+    height: 5%;
+    display: flex;
+    margin-top: 20px;
+}
+
+.user-filter-wrap {
+    width: 60%;
+    display: flex;
+    margin-top: 5px;
+}
+
+.tag-area {
+    width: 614px;
+}
+
+.filter-wrap {
+    display: flex;
+    width: 34%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.filter-wrap p {
+    margin-top: 5px;
+}
+
+.select-form {
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+}
+
+.filter-Latest-wrap {
+    width: 10%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.latest-form {
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+}
+
+.check-area-anno-list-wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.check-area {
+    height: 730px;
+    width: 287px;
+}
+
+.common-checkbox {
+    border: 1px solid #D1D1D1;
+    margin-top: 25px;
+    border-radius: 15px;
+    height: 27%;
+    width: 340px;
+}
+
+.common-checkbox2 {
+    border: 1px solid #D1D1D1;
+    margin-top: 25px;
+    border-radius: 15px;
+    height: 30%;
+    width: 340px;
+}
+
+.jurisdiction-select-all {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 8px;
+}
+
+.jurisdiction-checkbox-wrap {
+    border: 1px solid #D1D1D1;
+    width: 88%;
+    height: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-height: 130px;
+    overflow: auto;
+}
+
+.common-checkbox-area-1 {
+    height: 130px;
+}
+
+.common-checkbox-area-2 {
+    height: 130px;
+}
+
+.jurisdiction-checkbox-wrap2 {
+    border: 1px solid #D1D1D1;
+    width: 88%;
+    height: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-height: 230px;
+    overflow: auto;
+}
+
+.anno-list-area {
+    width: 79%;
+    height: 93%;
+    margin-top: 5px;
+}
+
+.anno-list {
+    height: 130px;
+    margin-top: 20px;
+    border: 1px solid #D1D1D1;
+    border-radius: 15px;
+    margin-left: 84px;
+}
+
+.technology-field {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.technology-title {
+    color: #7280FA;
+    font-size: 14px;
+    margin: 0;
+}
+
+.anno-status {
+    width: 71px;
+    height: 25px;
+    text-align: center;
+    justify-content: center;
+    border-radius: 50px;
+    border: 1.4px solid #2E406A;
+}
+
+.anno-status p {
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.anno-announcement-title {
+    width: 90%;
+    margin: auto;
+}
+
+.anno-announcement-title p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.anno-bottom-wrap {
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+}
+
+.anno-bottom-wrap p {
+    font-size: 13px;
+}
+
+.ann_type{
+    width: 20%;
+}
+
+.started_at{
+    width: 20%;
+}
+
+
+
+.total_ann_no{
+    width: 39%;
+    margin-left: 42px;
+}
+
+.view-details-btn {
+    height: 30px;
+    width: 120px;
+    border-style: none;
+    background-color: var(--main-bg-color);
+    color: white;
+    border-radius: 6px;
+}
+
+.view-details-btn:hover {
+    background-color: white;
+    border: 2px solid var(--main-bg-color);
+    color: var(--main-bg-color);
+    transition: .3s all;
+}
+
+.go-to-top {
+    height: 100px;
+    width: 100px;
+}
+
+.fixed-box {
+    position: fixed;
+    bottom: 0;
+    right: 6px;
+}
+
+.go-to-btn {
+    border-style: none;
+    background-color: white;
+}
+
+.arrow {
+    font-size: 61px;
+    color: #2E406A;
+    font-weight: 100;
+}
+
+.arrow:hover {
+    color: #3627d3;
+}
+
+.active {
+    background-color: #2E406A !important;
+    color: white;
+}
