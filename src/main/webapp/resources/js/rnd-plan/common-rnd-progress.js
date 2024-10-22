@@ -17,17 +17,27 @@ $(function () {
 });
 
 // 프로그래스 바 초기화
-function initializeProgressBar() {
+async function initializeProgressBar() {
   updateProgressBar();
-  loadStepContent(currentStep);
+  await loadStepContent(currentStep);
+
+  const rndPlanNo = localStorage.getItem("rndPlanNo");
+  if (currentStep === 1 && rndPlanNo) {
+    await getBasicData(rndPlanNo);
+  }
 }
 
 // 이동할 단계에 대한 이벤트 처리
-function changeStep(stepNumber) {
+async function changeStep(stepNumber) {
   if (MIN_STEP <= stepNumber && stepNumber <= MAX_STEP) {
     currentStep = stepNumber;
     updateProgressBar();
-    loadStepContent(currentStep);
+    await loadStepContent(currentStep);
+
+    const rndPlanNo = localStorage.getItem("rndPlanNo");
+    if (currentStep === 1 && rndPlanNo) {
+      await getBasicData(rndPlanNo);
+    }
   }
 }
 
@@ -51,27 +61,28 @@ function updateStepStyles() {
 }
 
 // 페이지 컴포넌트 AJAX 요청
-function loadStepContent(currentStep) {
+async function loadStepContent(currentStep) {
+  const subAnnNo = $("#sub-ann-no").text();
   const path = STEP_PATHS[currentStep - 1];
+
   const $spinnerContainer = $(".spinner-container");
   const $contentContainer = $("#content-container");
 
   $spinnerContainer.show();
 
-  $.ajax({
-    url: "/rnd-plan" + path,
-    type: "GET",
-    success: (res) => {
-      $contentContainer.html(res);
-    },
-    error: (err) => {
-      console.log("[loadStepContent()] " + err.statusText + " - " + err.status);
-    },
-    complete: () => {
-      $spinnerContainer.hide();
-      scrollToTop();
-    },
-  });
+  try {
+    const res = await $.ajax({
+      url: `/rnd-plans${path}?subAnnNo=${subAnnNo}`,
+      type: "GET",
+    });
+
+    $contentContainer.html(res);
+  } catch (err) {
+    console.log(err.responseJSON);
+  } finally {
+    $spinnerContainer.hide();
+    scrollToTop();
+  }
 }
 
 // 스크롤 시 프로그래스 바 상단 고정 및 그림자 효과 부여
@@ -84,4 +95,45 @@ function handleScrollEffect() {
       $(window).scrollTop() > headerHeight,
     );
   });
+}
+
+async function getBasicData(rndPlanNo) {
+  if (rndPlanNo === undefined && isNaN(rndPlanNo)) {
+    return;
+  }
+
+  const $spinnerContainer = $(".spinner-container");
+  $spinnerContainer.show();
+
+  $.ajax({
+    url: `/api/v1/rnd-plans/basic/${rndPlanNo}`,
+    type: "GET",
+    dataType: "json",
+    success: ({ data }) => {
+      applyTechFieldsData(data);
+      applyTaskNameAndTaskNo(data);
+    },
+    error: (err) => {
+      console.log("[submitBasicData()] " + err.statusText + " - " + err.status);
+    },
+    complete: () => {
+      $spinnerContainer.hide();
+    },
+  });
+}
+
+function applyTechFieldsData({ rndFields }) {
+  rndFields.forEach(function (data, index) {
+    const fieldInput = $("#research-field-" + (index + 1));
+    const weightInput = $("#research-weight-" + (index + 1));
+
+    fieldInput.val(data.name);
+    weightInput.val(data.weight);
+  });
+}
+
+function applyTaskNameAndTaskNo({ taskName, rndTaskNo }) {
+  $("#ipt-task-title").val(taskName);
+  $("#dpy-task-title").val(taskName);
+  $("#dpy-rnd-task-no").val(rndTaskNo);
 }

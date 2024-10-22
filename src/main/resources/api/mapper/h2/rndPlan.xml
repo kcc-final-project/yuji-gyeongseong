@@ -2,10 +2,96 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yujigyeongseong.api.domain.rnd_plan.dao.RndPlanMapper">
-
+    <!-- TODO: 테스트 용 기능이니 나중에 지우기 -->
     <select id="selectRndPlanById">
         SELECT rnd_plan_no, task_name
         FROM rnd_plan
     </select>
+
+    <!-- 기본정보 데이터 가져오기   -->
+    <select id="selectRndPlanBasicBySubAnnNo">
+        SELECT total_title,
+               ann_type,
+               reception_type,
+               sub_title,
+               task_type,
+               planning_year,
+               tech_field_name,
+               perf_owner
+        FROM announcement a
+                 INNER JOIN sub_announcement sa
+                            ON a.ann_no = sa.ann_no
+        WHERE sa.sub_ann_no = #{subAnnNO}
+    </select>
+
+    <!-- 연구개발계획서 시퀀스 최대값 가져오기 -->
+    <select id="selectRndPlanSequence">
+        SELECT NEXT VALUE FOR seq_rnd_plan
+        FROM DUAL
+    </select>
+
+    <!-- 기본정보 데이터 저장하기  -->
+    <insert id="insertRndPlanBasic">
+        INSERT INTO rnd_plan(rnd_plan_no,
+                             rnd_task_no,
+                             sub_ann_no,
+                             mem_no,
+                             task_name,
+                             plan_status,
+                             curr_step,
+                             created_at)
+        VALUES (#{rndPlanNo},
+                #{rndTaskNo},
+                #{subAnnNo},
+                #{memNo},
+                #{taskName},
+                #{planStatus},
+                #{currStep},
+                CURRENT_TIMESTAMP)
+    </insert>
+
+    <!-- 연구분야 데이터 저장하기 -->
+    <insert id="insertRndFields">
+        INSERT INTO rnd_field (
+        rnd_field_no,
+        rnd_plan_no,
+        name,
+        weight,
+        rank
+        ) VALUES
+        <foreach collection="rndFields" item="rndField" separator=",">
+            (
+            NEXT VALUE FOR seq_rnd_field,
+            #{rndField.rndPlanNo},
+            #{rndField.name},
+            #{rndField.weight},
+            #{rndField.rank}
+            )
+        </foreach>
+    </insert>
+
+    <select id="selectTaskNameByRndPlanNo">
+        SELECT task_name, rnd_task_no
+        FROM rnd_plan
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </select>
+
+    <select id="selectRndFieldsByRndPlanNo">
+        SELECT name, weight, rank
+        FROM rnd_field
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </select>
+
+    <delete id="deleteRndFieldsByRndPlanNo">
+        DELETE
+        FROM rnd_field
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </delete>
+
+    <update id="updateTaskNameByRndPlanNo">
+        UPDATE rnd_plan
+        SET task_name = #{taskName}
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </update>
 
 </mapper>

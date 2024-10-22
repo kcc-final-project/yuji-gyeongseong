@@ -29,11 +29,12 @@ function showNextConfirmation() {
     cancelButtonText: "취소",
     confirmButtonColor: "#ff8f27",
     cancelButtonColor: "#2e406a",
-  }).then((result) => {
+  }).then(async (result) => {
     if (result.isConfirmed) {
       // 기본정보 유효성 검사 후 페이지 이동
       if (currentStep === 1 && validateBasicFields()) {
         // TODO: 저장 로직 처리
+        await submitBasicData();
         currentStep += 1;
         updateProgressBar();
         loadStepContent(currentStep);

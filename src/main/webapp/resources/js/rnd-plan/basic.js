@@ -95,48 +95,44 @@ function showToastAboutTaskTitle() {
 
 // 기술분류 트리 초기화
 function initializeJsTree() {
-  // TODO: 서버로부터 데이터 가져오기
-  // id: LA -> id: 1 변경해야 함
-  let techFieldData = [
-    { id: "LA", parent: "#", text: "생명과학", type: "root" },
-    { id: "LA01", parent: "LA", text: "분자세포생물학", type: "parent" },
-    { id: "LA0101", parent: "LA01", text: "신호전달", type: "child" },
-    { id: "LA0102", parent: "LA01", text: "세포구조/운동", type: "child" },
-    { id: "LA0103", parent: "LA01", text: "세포분화/사멸", type: "child" },
-    { id: "LA0104", parent: "LA01", text: "막 생물학", type: "child" },
-    { id: "LA0105", parent: "LA01", text: "유전자 발현조절", type: "child" },
-    { id: "LA0106", parent: "LA01", text: "기타", type: "child" },
-    { id: "LA02", parent: "LA", text: "유전학·유전체학", type: "parent" },
-    { id: "LA0201", parent: "LA02", text: "분자유전학", type: "child" },
-    { id: "LA0202", parent: "LA02", text: "세포유전학", type: "child" },
-    { id: "LA0203", parent: "LA02", text: "형질전환 생물모델", type: "child" },
-    { id: "LA0204", parent: "LA02", text: "유전자 편집·치료", type: "child" },
-  ];
+  $.ajax({
+    url: "/api/v1/tech-fields/rnd-plan/basic",
+    type: "GET",
+    dataType: "json",
+    success: ({ data }) => {
+      let techFieldData = data;
 
-  $(".techFieldTree")
-    .jstree({
-      core: {
-        data: techFieldData,
-        check_callback: true,
-      },
-      types: {
-        root: {
-          icon: "/resources/img/tech-field/root-icon.svg",
-        },
-        parent: {
-          icon: "/resources/img/tech-field/parent-icon.svg",
-        },
-        child: {
-          icon: "/resources/img/tech-field/child-icon.svg",
-        },
-      },
-      checkbox: {
-        keep_selected_style: false,
-        three_state: false,
-      },
-      plugins: ["wholerow", "checkbox", "types"],
-    })
-    .on("redraw.jstree open_node.jstree", hideCheckboxes);
+      $(".techFieldTree")
+        .jstree({
+          core: {
+            data: techFieldData,
+            check_callback: true,
+          },
+          types: {
+            root: {
+              icon: "/resources/img/tech-field/root-icon.svg",
+            },
+            parent: {
+              icon: "/resources/img/tech-field/parent-icon.svg",
+            },
+            child: {
+              icon: "/resources/img/tech-field/child-icon.svg",
+            },
+          },
+          checkbox: {
+            keep_selected_style: false,
+            three_state: false,
+          },
+          plugins: ["wholerow", "checkbox", "types"],
+        })
+        .on("redraw.jstree open_node.jstree", hideCheckboxes);
+    },
+    error: (err) => {
+      console.log(
+        "[initializeJsTree()] " + err.statusText + " - " + err.status,
+      );
+    },
+  });
 }
 
 // Jstree 체크박스 숨기기
@@ -331,6 +327,12 @@ function applySelectedTechFields() {
     });
   });
 
+  // ?
+  for (let i = 1; i <= TECH_FIELD_MAX_COUNT; i++) {
+    $("#research-field-" + i).val("");
+    $("#research-weight-" + i).val("");
+  }
+
   rowData.forEach(function (data, index) {
     const fieldInput = $("#research-field-" + (index + 1));
     const weightInput = $("#research-weight-" + (index + 1));
@@ -375,12 +377,76 @@ function validateBasicFields() {
 
   if (!isValid) {
     $("html, body").animate(
-        {
-          scrollTop: inValidSection.offset().top - -250,
-        },
-        500,
+      {
+        scrollTop: inValidSection.offset().top - -250,
+      },
+      500,
     );
   }
 
   return isValid;
+}
+
+// AJAX 기본정보 데이터 저장
+async function submitBasicData() {
+  const rndPlanNo = localStorage.getItem("rndPlanNo");
+
+  const url = rndPlanNo
+    ? `/api/v1/rnd-plans/basic/${rndPlanNo}` // PUT URL
+    : `/api/v1/rnd-plans/basic`; // POST URL
+
+  const method = rndPlanNo ? "PATCH" : "POST";
+
+  // 연구개발과제명
+  const taskTitle = $("#ipt-task-title").val().trim();
+  // 기술분야
+  const rndFields = getResearchFieldsData();
+  // 공모분야번호
+  const subAnnNo = $("#sub-ann-no").text();
+  // 등록자 번호
+  const memNo = 1; // TODO: 회원 관리 개발 시 수정 필요
+
+  const bodyData = {
+    subAnnNo: subAnnNo,
+    memNo: memNo,
+    taskName: taskTitle,
+    rndFields: rndFields,
+  };
+
+  try {
+    const { data } = await $.ajax({
+      url: url,
+      type: method,
+      contentType: "application/json",
+      dataType: "json",
+      data: JSON.stringify(bodyData),
+    });
+
+    if (!rndPlanNo) {
+      localStorage.setItem("rndPlanNo", data);
+    }
+  } catch (err) {
+    console.log("[submitBasicData()] " + err.statusText + " - " + err.status);
+  }
+}
+
+// 연구분야 입력 데이터 가져오기
+function getResearchFieldsData() {
+  const rndFields = [];
+
+  for (let i = 1; i <= TECH_FIELD_MAX_COUNT; i++) {
+    const name = $(`#research-field-${i}`).val().trim();
+    const weight = $(`#research-weight-${i}`).val().trim();
+    const rank = i;
+
+    if (name && weight) {
+      rndFields.push({
+        name: name,
+        weight: parseInt(weight, 10),
+        rank: rank,
+      });
+    }
+  }
+
+  return rndFields;
 }

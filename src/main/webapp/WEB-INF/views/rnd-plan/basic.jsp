@@ -15,12 +15,12 @@
             <table class="table table-bordered mt-2 align-middle">
                 <tr>
                     <td class="ctm-th ctm-w15p">통합공고명</td>
-                    <td><input class="form-control ps-3" value="2024년도 양자과학기술 분야 국제협력거점 및 국제공동연구실 관련 공모" disabled
+                    <td><input class="form-control ps-3" value="${rndPlanBasic.totalTitle}" disabled
                                readonly type="text"></td>
                 </tr>
                 <tr>
                     <td class="ctm-th ctm-w15p">공모분야명</td>
-                    <td><input class="form-control ps-3" value="(2024-양자국제협력-1) 양자광학기반 이산-연속변수 하이브리드 양자정보처리 국제공동연구실"
+                    <td><input class="form-control ps-3" value="${rndPlanBasic.subTitle}"
                                disabled readonly type="text">
                     </td>
                 </tr>
@@ -39,29 +39,29 @@
             <table class="table table-bordered mt-2 align-middle">
                 <tr>
                     <td class="ctm-th__sub ctm-w15p ">시행연도</td>
-                    <td><input class="form-control ps-3" value="2024년" disabled
+                    <td><input class="form-control ps-3" value="${rndPlanBasic.planningYear}년" disabled
                                readonly type="text"></td>
                     <td class="ctm-th__sub ctm-w15p">접수유형</td>
-                    <td><input class="form-control ps-3" value="신청용 연구개발계획서" disabled
+                    <td><input class="form-control ps-3" value="${rndPlanBasic.receptionType}" disabled
                                readonly type="text"></td>
                 </tr>
                 <tr>
-                    <td class="ctm-th__sub ctm-w15p">공고구분</td>
-                    <td><input class="form-control ps-3" value="지정공모"
+                    <td class="ctm-th__sub ctm-w15p">공모유형</td>
+                    <td><input class="form-control ps-3" value="${rndPlanBasic.annType}"
                                disabled readonly type="text">
                     </td>
                     <td class="ctm-th__sub ctm-w15p">과제구분</td>
-                    <td><input class="form-control ps-3" value="(일반)연구개발과제"
+                    <td><input class="form-control ps-3" value="${rndPlanBasic.taskType}"
                                disabled readonly type="text">
                     </td>
                 </tr>
                 <tr>
-                    <td class="ctm-th__sub ctm-w15p">정부지원금한도</td>
-                    <td><input class="form-control ps-3" value="신청용 연구개발계획서"
+                    <td class="ctm-th__sub ctm-w15p">기술분야</td>
+                    <td><input class="form-control ps-3" value="${rndPlanBasic.techFieldName}"
                                disabled readonly type="text">
                     </td>
                     <td class="ctm-th__sub ctm-w15p">성과물 소유주체</td>
-                    <td><input class="form-control ps-3" value="연구기관귀속"
+                    <td><input class="form-control ps-3" value="${rndPlanBasic.perfOwner}"
                                disabled readonly type="text">
                     </td>
                 </tr>
@@ -175,7 +175,9 @@
                             </div>
                             <div class="techFieldSection-line"></div>
                             <div class="techFieldSection-body techFieldTree-body">
-                                <div class="techFieldTree"></div>
+                                <div class="techFieldTree">
+                                    <%-- --%>
+                                </div>
                             </div>
                         </div>
                         <div class="ctm-f-col-center gap-3">
