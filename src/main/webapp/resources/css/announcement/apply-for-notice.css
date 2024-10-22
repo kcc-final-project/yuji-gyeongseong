@@ -37,7 +37,7 @@ hr {
 }
 
 .card {
-    max-width: 50%;
+    min-width:48%;
     background-color: white;
     padding: 20px;
     border: 1px solid #ddd;
@@ -66,17 +66,17 @@ hr {
     height: 14%;
     width: 100%;
 }
-
-.card-info-field {
+.card-info-field{
     width: 53%;
 }
-
 .field-contents {
     font-weight: bold;
+    width: 253px;
 }
 
 .category-contents {
     font-weight: bold;
+    margin-left: 30px;
 }
 
 .buttons {
@@ -140,4 +140,96 @@ hr {
     background-color: #2E406A;
     color: white;
     transition: .3s all;
+}
+.modal-dialog.sang {
+    max-width: 60%;
+    height: 90vh;
+}
+
+.modal-content.hak {
+    height: 100%;
+}
+
+.modal-header {
+    background-color: #2E406A;
+}
+
+.modal-title {
+    color: white;
+    font-weight: bold;
+}
+
+.yea-area {
+    width: 100%;
+    height: 100%;
+}
+
+.yea-header {
+    width: 100%;
+    height: 6%;
+    border-bottom: 2px solid black;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.yea-header p, .file-title-area p {
+    font-size: x-large;
+}
+
+.yea-body {
+    width: 100%;
+    height: 56%;
+}
+
+.pdf {
+    color: #FF6666;
+}
+
+.download-icon {
+    cursor: pointer;
+}
+
+.modal-close {
+    background-color: white;
+    border: 1px solid #333;
+    margin: auto;
+    color: #333;
+    width: 100px;
+}
+
+.file-title-area {
+    width: 100%;
+    height: 8%;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #2E406A;
+    color: white;
+}
+
+th {
+    padding: 12px 16px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+td {
+    padding: 12px 15px;
+}
+
+tbody tr {
+    background-color: white;
+}
+
+.table-title {
+    background-color: #2E406A;
+    color: white;
 }

@@ -59,37 +59,37 @@
                 <div class="inline-wrap">
                     <p>학력구분</p>
                     <p class="warn">*</p>
-                    <select id="degreeType" name="degreeType" class="form-select" aria-label="Default select example">
-                        <option value="1">학사</option>
-                        <option value="2">석사</option>
-                        <option value="3">박사</option>
-                        <option value="4">고등학교</option>
-                        <option value="5">준석사</option>
-                        <option value="6">전문학사</option>
+                    <select id="degreeType1" name="degreeType" class="form-select" aria-label="Default select example">
+                        <option value="학사">학사</option>
+                        <option value="석사">석사</option>
+                        <option value="박사">박사</option>
+                        <option value="고등학교">고등학교</option>
+                        <option value="준석사">준석사</option>
+                        <option value="전문학사">전문학사</option>
                     </select>
                 </div>
 
                 <div class="inline-wrap">
                     <p>취득국가</p>
                     <p class="warn">*</p>
-                    <select id="degreeCountry" name="degreeCountry" class="form-select"
+                    <select id="degreeCountry1" name="degreeCountry" class="form-select"
                             aria-label="Default select example">
-                        <option value="kr">대한민국</option>
-                        <option value="us">미국</option>
-                        <option value="jp">일본</option>
-                        <option value="cn">중국</option>
-                        <option value="de">독일</option>
-                        <option value="fr">프랑스</option>
-                        <option value="uk">영국</option>
-                        <option value="in">인도</option>
-                        <option value="au">호주</option>
+                        <option value="대한민국">대한민국</option>
+                        <option value="미국">미국</option>
+                        <option value="일본">일본</option>
+                        <option value="중국">중국</option>
+                        <option value="독일">독일</option>
+                        <option value="프랑스">프랑스</option>
+                        <option value="영국">영국</option>
+                        <option value="인도">인도</option>
+                        <option value="호주">호주</option>
                     </select>
                 </div>
 
                 <div class="inline-wrap">
                     <p>전공명</p>
                     <p class="warn">*</p>
-                    <input type="text" id="majorName" name="majorName" class="form-input" placeholder="전공명을(를) 입력하세요">
+                    <input type="text" id="majorName1" name="majorName" class="form-input" placeholder="전공명을(를) 입력하세요">
                 </div>
             </div>
             <div class="list">
@@ -99,7 +99,7 @@
                     <p class="warn">*</p>
 
                     <div class="input-group">
-                        <input type="date" id="degreeDate" name="degreeDate" class="form-input"
+                        <input type="date" id="degreeDate1" name="degreeDate" class="form-input"
                                style="margin-left: 10px">
                     </div>
                 </div>
@@ -109,11 +109,12 @@
                     <p class="warn">*</p>
 
                     <div class="input-group">
-                        <input type="text" name="degreeInstitutionName" id="degreeInstitutionName" class="form-control"
-                               placeholder="취득기관명">
+                        <input type="text" name="degreeInstitutionName1" id="degreeInstitutionName1"
+                               class="form-control"
+                               placeholder="취득기관명" readonly>
                         <span class="input-group-text">
-                    <i class="material-icons-outlined search-icon" data-toggle="modal"
-                       data-target="#institutionSearchModal">search</i>
+                    <i class="material-icons-outlined search-icon" data-bs-toggle="modal"
+                       data-bs-target="#institutionSearchModal" data-index="1">search</i>
                 </span>
                     </div>
                 </div>
@@ -122,16 +123,16 @@
                     <p>전공계열</p>
                     <p class="warn">*</p>
                     <div class="major">
-                        <select id="majorCategory" name="majorCategory" class="form-select-two"
+                        <select id="majorCategory1" name="majorCategory" class="form-select-two majorCategory"
                                 aria-label="Default select example" onchange="updateMajorSubcategory()">
-                            <option value="engineering">공학계열</option>
-                            <option value="science">자연과학계열</option>
-                            <option value="humanities">인문사회계열</option>
-                            <option value="medicine">의약계열</option>
-                            <option value="art">예술체육계열</option>
+                            <option value="공학계열">공학계열</option>
+                            <option value="자연과학계열">자연과학계열</option>
+                            <option value="인문사회계열">인문사회계열</option>
+                            <option value="의약계열">의약계열</option>
+                            <option value="예술체육계열">예술체육계열</option>
                         </select>
 
-                        <select id="majorSubcategory" name="majorSubcategory" class="form-select-two"
+                        <select id="majorSubcategory1" name="majorSubcategory" class="form-select-two majorSubcategory"
                                 aria-label="Default select example">
                         </select>
                     </div>
@@ -156,11 +157,11 @@
                     <p>근무기관명</p>
                     <p class="warn">*</p>
                     <div class="input-group">
-                        <input type="text" name="workInstitutionName" id="workInstitutionName" class="form-control"
-                               placeholder="근무기관명">
+                        <input type="text" name="workInstitutionName1" id="workInstitutionName1" class="form-control"
+                               placeholder="근무기관명" readonly>
                         <span class="input-group-text">
             <i class="material-icons-outlined search-icon" data-bs-toggle="modal"
-               data-bs-target="#workInstitutionSearchModal">search</i>
+               data-bs-target="#workInstitutionSearchModal" data-index="1">search</i>
                         </span>
                     </div>
                 </div>
@@ -168,7 +169,7 @@
                 <div class="inline-wrap">
                     <p>근무부서</p>
                     <p class="warn">*</p>
-                    <input type="text" id="workDepartment" name="workDepartment" class="form-input"
+                    <input type="text" id="workDepartment1" name="workDepartment" class="form-input"
                            placeholder="근무부서을(를) 입력하세요">
                 </div>
             </div>
@@ -176,12 +177,12 @@
                 <div class="inline-wrap">
                     <p>고용형태</p>
                     <p class="warn">*</p>
-                    <select id="employmentType" name="employmentType" class="form-select"
+                    <select id="employmentType1" name="employmentType" class="form-select"
                             aria-label="Default select example">
-                        <option value="1">정규직</option>
-                        <option value="2">계약직</option>
-                        <option value="3">프리랜서</option>
-                        <option value="4">인턴</option>
+                        <option value="정규직">정규직</option>
+                        <option value="계약직">계약직</option>
+                        <option value="프리랜서">프리랜서</option>
+                        <option value="인턴">인턴</option>
                     </select>
                 </div>
 
@@ -192,7 +193,7 @@
                     <div class="calen">
 
                         <div class="input-group input-group-small">
-                            <input type="date" id="workStartDate" name="workStartDate"
+                            <input type="date" id="workStartDate1" name="workStartDate"
                                    class="form-control"
                                    aria-label="Start Date">
                         </div>
@@ -200,7 +201,7 @@
                         <span style="margin: 0 10px;">~</span>
 
                         <div class="input-group input-group-small">
-                            <input type="date" id="workEndDate" name="workEndDate" class="form-control"
+                            <input type="date" id="workEndDate1" name="workEndDate" class="form-control"
                                    aria-label="End Date">
                         </div>
                     </div>

@@ -4,19 +4,64 @@
 <mapper namespace="com.yujigyeongseong.api.domain.research_number.dao.EvalCommitteeMapper">
 
     <!-- 특정 회원의 모든 경력 정보 조회 -->
-    <select id="selectAllCareersByMemberId" parameterType="long"
-            resultType="com.yujigyeongseong.api.domain.research_number.dto.Career">
-        SELECT *
+    <select id="selectAllCareersByMemberId" parameterType="long">
+        SELECT career_no,
+               org_name,
+               dept_name,
+               career_type,
+               started_at,
+               ended_at,
+               created_at,
+               updated_at,
+               mem_no
         FROM career
         WHERE mem_no = #{id}
     </select>
 
     <!-- 특정 회원의 모든 학력 정보 조회 -->
-    <select id="selectAllAcadAbilitiesByMemberId" parameterType="long"
-            resultType="com.yujigyeongseong.api.domain.research_number.dto.AcadAbility">
-        SELECT *
+    <select id="selectAllAcadAbilitiesByMemberId" parameterType="long">
+        SELECT acad_ability_no,
+               ability_type,
+               org_name,
+               acquired_country,
+               major_affiliation,
+               major_field,
+               major_name,
+               acquired_at,
+               created_at,
+               updated_at,
+               mem_no
         FROM acad_ability
         WHERE mem_no = #{id}
     </select>
+
+    <!-- 특정 회원의 모든 기술분류 정보 조회 -->
+    <select id="selectAllTechFieldNameByMemberId" parameterType="long">
+        SELECT t.name
+        FROM mem_tech_field m
+                 JOIN tech_field t ON m.tech_field_no = t.tech_field_no
+        WHERE m.mem_no = #{id}
+    </select>
+
+    <insert id="insertAllCareersByMemberId">
+        INSERT INTO career (career_no, org_name, dept_name, career_type, started_at, ended_at, created_at,
+        updated_at,mem_no)
+        VALUES
+        <foreach collection="careers" item="career" separator=",">
+            (NEXT VALUE FOR seq_career, #{career.orgName}, #{career.deptName}, #{career.careerType},
+            #{career.startedAt}, #{career.endedAt}, current_timestamp, null, #{id})
+        </foreach>
+    </insert>
+
+    <insert id="insertAllAcadAbilitiesByMemberId">
+        INSERT INTO acad_ability (acad_ability_no, ability_type, org_name, acquired_country, major_affiliation,
+        major_field, major_name, acquired_at, created_at, updated_at, mem_no)
+        VALUES
+        <foreach collection="acadAbilities" item="acad" separator=",">
+            (NEXT VALUE FOR seq_acad_ability, #{acad.abilityType}, #{acad.orgName}, #{acad.acquiredCountry},
+            #{acad.majorAffiliation}, #{acad.majorField}, #{acad.majorName}, #{acad.acquiredAt}, current_timestamp,
+            null, #{id})
+        </foreach>
+    </insert>
 
 </mapper>
