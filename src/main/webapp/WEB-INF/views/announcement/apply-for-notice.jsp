@@ -21,8 +21,8 @@
     </div>
     <hr>
     <div class="card-container">
-        <c:forEach var="data" items="${applyAnnouncement.subAnnouncements}" varStatus="index">
-            <div class="card">
+        <c:forEach var="data" items="${applyAnnouncement.subAnnouncements}" varStatus="index" >
+            <div class="card" data-subAnnNo = ${data.subAnnNo}>
                 <h3 class="card-name">공모분야명</h3>
                 <h5 class="card-title">${data.subTitle}</h5>
                 <div class="card-info">
