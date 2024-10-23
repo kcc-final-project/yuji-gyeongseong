@@ -16,60 +16,7 @@ $(function () {
   handleScrollEffect();
 });
 
-// 프로그래스 바 초기화
-async function initializeProgressBar() {
-  updateProgressBar();
-
-  await loadStepContent(currentStep);
-  await getRndPlanData();
-
-  const rndPlanNo = localStorage.getItem("rndPlanNo");
-  if (currentStep === 1 && rndPlanNo) {
-    await getBasicData(rndPlanNo);
-  }
-
-}
-
-// 이동할 단계에 대한 이벤트 처리
-async function changeStep(stepNumber) {
-  if (MIN_STEP <= stepNumber && stepNumber <= MAX_STEP) {
-    currentStep = stepNumber;
-    updateProgressBar();
-
-    await loadStepContent(currentStep);
-    await getRndPlanData();
-
-    const rndPlanNo = localStorage.getItem("rndPlanNo");
-    if (currentStep === 1 && rndPlanNo) {
-      await getBasicData(rndPlanNo);
-    }
-
-    if (currentStep === 2 && rndPlanNo) {
-      await getTaskSummaryData(rndPlanNo);
-    }
-  }
-}
-
-// 프로그래스 바 진행률 변경
-function updateProgressBar() {
-  const progressPercentage = ((currentStep - 1) / (MAX_STEP - 1)) * 100;
-  $(".progress-bar").css("width", progressPercentage + "%");
-  updateStepStyles();
-}
-
-// 프로그래스 바 진행률 스타일 변경
-function updateStepStyles() {
-  $(".step-group").each(function (index) {
-    if (index + 1 === currentStep) {
-      $(this).find(".step-circle").addClass("active-circle");
-      $(this).find("span").addClass("active-step");
-    } else {
-      $(this).find("span").removeClass("active-step");
-    }
-  });
-}
-
-// 페이지 컴포넌트 AJAX 요청
+// [공통] AJAX 페이지(jsp) 가져오기
 async function loadStepContent(currentStep) {
   const subAnnNo = $("#sub-ann-no").text();
   const path = STEP_PATHS[currentStep - 1];
@@ -94,7 +41,60 @@ async function loadStepContent(currentStep) {
   }
 }
 
-// 스크롤 시 프로그래스 바 상단 고정 및 그림자 효과 부여
+// [프로그래스 바] 초기화
+async function initializeProgressBar() {
+  updateProgressBar();
+
+  await loadStepContent(currentStep);
+  await getRndPlanData();
+
+  const rndPlanNo = localStorage.getItem("rndPlanNo");
+  if (currentStep === 1 && rndPlanNo) {
+    await getBasicData(rndPlanNo);
+  }
+
+}
+
+// [프로그래스 바] 단계 이동에 대한 이벤트 핸들러
+async function changeStep(stepNumber) {
+  if (MIN_STEP <= stepNumber && stepNumber <= MAX_STEP) {
+    currentStep = stepNumber;
+    updateProgressBar();
+
+    await loadStepContent(currentStep);
+    await getRndPlanData();
+
+    const rndPlanNo = localStorage.getItem("rndPlanNo");
+    if (currentStep === 1 && rndPlanNo) {
+      await getBasicData(rndPlanNo);
+    }
+
+    if (currentStep === 2 && rndPlanNo) {
+      await getTaskSummaryData(rndPlanNo);
+    }
+  }
+}
+
+// [프로그래스 바] 진행률 변경
+function updateProgressBar() {
+  const progressPercentage = ((currentStep - 1) / (MAX_STEP - 1)) * 100;
+  $(".progress-bar").css("width", progressPercentage + "%");
+  updateStepStyles();
+}
+
+// [프로그래스 바] 스타일 애니메이션 적용
+function updateStepStyles() {
+  $(".step-group").each(function (index) {
+    if (index + 1 === currentStep) {
+      $(this).find(".step-circle").addClass("active-circle");
+      $(this).find("span").addClass("active-step");
+    } else {
+      $(this).find("span").removeClass("active-step");
+    }
+  });
+}
+
+// [프로그래스 바] 스크롤 애니메이션 적용 (box-shadow)
 function handleScrollEffect() {
   const headerHeight = $(".common-header").outerHeight();
 
@@ -106,6 +106,7 @@ function handleScrollEffect() {
   });
 }
 
+// [기본정보] AJAX 기본정보 데이터 가져오기
 async function getBasicData(rndPlanNo) {
   if (rndPlanNo === undefined && isNaN(rndPlanNo)) {
     return;
@@ -131,6 +132,7 @@ async function getBasicData(rndPlanNo) {
   });
 }
 
+// [기본정보] 연구분야 JSON 데이터 바인딩
 function applyTechFieldsData({ rndFields }) {
   rndFields.forEach(function (data, index) {
     const fieldInput = $("#research-field-" + (index + 1));
@@ -141,12 +143,14 @@ function applyTechFieldsData({ rndFields }) {
   });
 }
 
+// [기본정보] 과제명 및 연구과제번호 JSON 데이터 바인딩
 function applyTaskNameAndTaskNo({ taskName, rndTaskNo }) {
   $("#ipt-task-title").val(taskName);
   $("#dpy-task-title").val(taskName);
   $("#dpy-rnd-task-no").val(rndTaskNo);
 }
 
+// [과제정보] AJAX 과제정보 데이터 가져오기
 async function getRndPlanData() {
   const rndPlanNo = localStorage.getItem("rndPlanNo");
 
@@ -164,6 +168,7 @@ async function getRndPlanData() {
   }
 }
 
+// [과제정보] 과제정보 JSON 데이터 바인딩
 function applyRndPlan({
   taskName,
   rndTaskNo,
@@ -177,6 +182,7 @@ function applyRndPlan({
   $("#dpy-institution").val(institutionName);
 }
 
+// [과제요약] AJAX 과제요약 데이터 가져오기
 async function getTaskSummaryData(rndPlanNo) {
   if (rndPlanNo === undefined && isNaN(rndPlanNo)) {
     return;
@@ -211,7 +217,7 @@ async function getTaskSummaryData(rndPlanNo) {
   });
 }
 
-// 연구개발기간 JSON 데이터 바인딩
+// [과제요약] 연구개발기간 JSON 데이터 바인딩
 function applyRndPeriodData(rndPeriods) {
   const stageDataMap = {};
 
@@ -245,14 +251,14 @@ function applyRndPeriodData(rndPeriods) {
   updateOverallPeriod();
 }
 
-// 최종목표 및 내용 JSON 데이터 바인딩
+// [과제요약] 최종목표 및 내용 JSON 데이터 바인딩
 function applyFinalContentData(finalTgtContent, rndContent, perfContent) {
   $("#finalGoalContent").val(finalTgtContent);
   $("#rndContent").val(rndContent);
   $("#rndOutcomePlan").val(perfContent);
 }
 
-// 단계별 목표 및 내용 JSON 데이터 바인딩
+// [과제요약] 단계별 목표 및 내용 JSON 데이터 바인딩
 function applyStageContentData(stageContents) {
   renderStageGoals();
 

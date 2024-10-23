@@ -11,7 +11,7 @@ $(function () {
   setupTextareaHandlers();
 });
 
-// 초기값 설정
+// [연구개발기간] 초기화
 function initializeStageData() {
   stageData = [
     {
@@ -27,13 +27,13 @@ function initializeStageData() {
   ];
 }
 
-// 시스템 날짜 반환
+// [연구개발기간] 시스템 날짜 반환
 function getToday() {
   const today = new Date();
   return formatDate(today);
 }
 
-// 제야 날짜 반환
+// [연구개발기간] 제야 날짜 반환
 function getEndOfYear(dateString) {
   const date = new Date(dateString);
   const year = date.getFullYear();
@@ -42,7 +42,7 @@ function getEndOfYear(dateString) {
   return formatDate(endDate);
 }
 
-// 날짜 형식 반환
+// [연구개발기간] 날짜 형식 반환 (YYYY-MM-DD)
 function formatDate(date) {
   const yyyy = date.getFullYear();
   const mm = ("0" + (date.getMonth() + 1)).slice(-2);
@@ -51,7 +51,7 @@ function formatDate(date) {
   return `${yyyy}-${mm}-${dd}`;
 }
 
-// 연구개발단계구성 및 연구개발기간 테이블 렌더링
+// [연구개발기간] 테이블 렌더링
 function renderStageTable() {
   const $table = $("#stage-table");
 
@@ -82,7 +82,7 @@ function renderStageTable() {
   });
 }
 
-// 단계(부모) 행 생성
+// [연구개발기간] 단계(부모) 행 생성
 function createStageRow(stageNumber, isFirstStage) {
   const buttonType = stageRowBtnType(stageNumber, isFirstStage);
 
@@ -100,7 +100,7 @@ function createStageRow(stageNumber, isFirstStage) {
   `;
 }
 
-// 단계(부모) 행 버튼 분기
+// [연구개발기간] 단계(부모) 행 버튼 분기
 function stageRowBtnType(stageNumber, isFirstStage) {
   return isFirstStage
     ? `<div class="add-btn ctm-f-center" onclick="addStageHandler()">
@@ -111,7 +111,7 @@ function stageRowBtnType(stageNumber, isFirstStage) {
        </div>`;
 }
 
-// 단계(부모) 행 추가 이벤트 핸들러
+// [연구개발기간] 단계(부모) 행 추가 이벤트 핸들러
 function addStageHandler() {
   // 최대 3단계까지 생성 가능
   if (stageData.length >= STAGE_LIMIT) {
@@ -151,7 +151,7 @@ function addStageHandler() {
   updateOverallPeriod();
 }
 
-// 기준 날짜의 +1 Day 반환
+// [연구개발기간] 기준 날짜의 +1 Day 반환
 function addOneDay(dateString) {
   const date = new Date(dateString);
   date.setDate(date.getDate() + 1);
@@ -159,7 +159,7 @@ function addOneDay(dateString) {
   return formatDate(date);
 }
 
-// 단계(부모) 행 제거 이벤트 핸들러
+// [연구개발기간] 단계(부모) 행 제거 이벤트 핸들러
 function removeStageHandler(selectedStageNumber) {
   // 해당 단계 삭제 및 단계 번호 재설정
   stageData = stageData
@@ -179,7 +179,7 @@ function removeStageHandler(selectedStageNumber) {
   updateOverallPeriod();
 }
 
-// 연차(자식) 행 생성
+// [연구개발기간] 연차(자식) 행 생성
 function createYearRow(stageNumber, yearData, isFirstYear) {
   const buttonType = yearBtnType(stageNumber, yearData.yearNumber, isFirstYear);
 
@@ -203,7 +203,7 @@ function createYearRow(stageNumber, yearData, isFirstYear) {
   `;
 }
 
-// 연차(자식) 행 버튼 분기
+// [연구개발기간] 연차(자식) 행 버튼 분기
 function yearBtnType(stageNumber, yearNumber, isFirstYear) {
   return isFirstYear
     ? `<div class="add-btn ctm-f-center">
@@ -214,7 +214,7 @@ function yearBtnType(stageNumber, yearNumber, isFirstYear) {
        </div>`;
 }
 
-// 이벤트 핸들러 설정
+// 이벤트 핸들러 등록
 function setupEventHandlers() {
   // 시작일 변경 시 종료일 및 다음 연차 시작일 갱신
   $(document).on("change", ".start-date", function () {
@@ -287,7 +287,7 @@ function setupEventHandlers() {
   });
 }
 
-// 다음 연차들의 시작일 갱신
+// [연구개발기간] 다음 연차들의 시작일 갱신
 function updateStartDateFollowingYears({ stageNumber, years }, yearIndex) {
   for (let i = yearIndex; i < years.length - 1; i++) {
     const currentYear = years[i];
@@ -312,7 +312,7 @@ function updateStartDateFollowingYears({ stageNumber, years }, yearIndex) {
   }
 }
 
-// 개월 수 갱신
+// [연구개발기간] 개월 수 갱신
 function updateDuration($yearRow) {
   const startDate = $yearRow.find(".start-date").val();
   const endDate = $yearRow.find(".end-date").val();
@@ -328,7 +328,7 @@ function updateDuration($yearRow) {
   }
 }
 
-// 개월 수 계산
+// [연구개발기간] 개월 수 계산
 function calculateMonthsDifference(startDate, endDate) {
   const start = new Date(startDate);
   const end = new Date(endDate);
@@ -339,7 +339,7 @@ function calculateMonthsDifference(startDate, endDate) {
   return years * 12 + months + 1;
 }
 
-// 단계(부모)의 시작일 및 종료일 갱신
+// [연구개발기간] 단계(부모)의 시작일 및 종료일 갱신
 function updateEachStageTotalDates(stageNumber) {
   const stage = stageData.find((stage) => stage.stageNumber === stageNumber);
 
@@ -385,7 +385,7 @@ function updateEachStageTotalDates(stageNumber) {
   }
 }
 
-// 전체 연구개발기간 갱신
+// [연구개발기간] 전체 연구개발기간 갱신
 function updateOverallPeriod() {
   // 각 단계의 최소 시작일
   const eachStageStartDates = stageData.map(({ years }) => {
@@ -436,7 +436,7 @@ function updateOverallPeriod() {
   }
 }
 
-// 연차(자식) 행 추가 이벤트 핸들러
+// [연구개발기간] 연차(자식) 행 추가 이벤트 핸들러
 function addYearHandler(stageNumber) {
   const stage = stageData.find((stage) => stage.stageNumber === stageNumber);
 
@@ -472,7 +472,7 @@ function addYearHandler(stageNumber) {
   }
 }
 
-// 연차(자식) 행 제거 이벤트 핸들러
+// [연구개발기간] 연차(자식) 행 제거 이벤트 핸들러
 function removeYearHandler(stageNumber, yearNumber) {
   const stage = stageData.find((stage) => stage.stageNumber === stageNumber);
 
@@ -493,7 +493,7 @@ function removeYearHandler(stageNumber, yearNumber) {
   }
 }
 
-// 애니메이션 적용
+// [연구개발기간] 스타일 애니메이션 적용 (글자 깜박거림)
 function animateChange($element) {
   $element.addClass("highlight");
 
@@ -502,7 +502,7 @@ function animateChange($element) {
   }, ANIMATION_TIMEOUT);
 }
 
-// 단계별 목표 및 내용 테이블 렌더링
+// [단계별 목표 및 내용] 테이블 렌더링
 function renderStageGoals() {
   const $stageGoalsSection = $("#stage-goals-section");
 
@@ -568,7 +568,7 @@ function renderStageGoals() {
   setupTextareaHandlers();
 }
 
-// textarea 이벤트 핸들러 설정
+// [단계별 목표 및 내용] textarea 이벤트 핸들러
 function setupTextareaHandlers() {
   $(".textarea-input").each(function () {
     const $textarea = $(this);
@@ -593,7 +593,7 @@ function setupTextareaHandlers() {
   });
 }
 
-// 경고 메시지 비활성화 할 요소 반환
+// [최종목표 및 내용] [단계별 목표 및 내용] 경고 메시지 비활성화 할 요소 반환
 function findFeedbackElement($textarea) {
   const textareaId = $textarea.attr("id");
   const textareaName = $textarea.attr("name");
@@ -623,7 +623,7 @@ function findFeedbackElement($textarea) {
   return null;
 }
 
-// 과제요약 유효성 검사
+// [최종목표 및 내용] [단계별 목표 및 내용] 유효성 검사
 function validateTaskSummaryFields() {
   let isValid = true;
   let invalidElement = null;
@@ -736,7 +736,7 @@ function validateTaskSummaryFields() {
   return isValid;
 }
 
-// AJAX 과제요약 데이터 저장
+// [과제요약] AJAX 과제요약 데이터 등록하기
 async function submitTaskSummaryData() {
   const rndPlanNo = localStorage.getItem("rndPlanNo");
 
@@ -771,7 +771,7 @@ async function submitTaskSummaryData() {
   }
 }
 
-// 연구개발기간 입력 데이터 가져오기
+// [연구개발기간] 입력 데이터 가져오기
 function getRndPeriodsData() {
   const rndPeriods = [];
   const rndPlanNo = localStorage.getItem("rndPlanNo");
@@ -799,7 +799,7 @@ function getRndPeriodsData() {
   return rndPeriods;
 }
 
-// 단계별 내용 입력 데이터 가져오기
+// [단계별 목표 및 내용] 입력 데이터 가져오기
 function getStageContentsData() {
   const stageContents = [];
   const rndPlanNo = localStorage.getItem("rndPlanNo");
