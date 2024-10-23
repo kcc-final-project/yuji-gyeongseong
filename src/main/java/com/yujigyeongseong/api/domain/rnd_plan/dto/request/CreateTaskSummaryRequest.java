@@ -13,6 +13,8 @@ import java.util.List;
 @ToString
 public class CreateTaskSummaryRequest {
 
+    private Integer currentStep;
+
     private Long rndPlanNo;
 
     private String finalTgtContent;

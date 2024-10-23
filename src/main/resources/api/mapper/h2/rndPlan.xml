@@ -113,6 +113,20 @@
         WHERE rnd_plan_no = #{rndPlanNo}
     </update>
 
+    <!-- 연구개발계획서 현재작성단계 조회 쿼리 -->
+    <select id="selectCurrStepByRndPlanNo">
+        SELECT curr_step
+        FROM rnd_plan
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </select>
+
+    <!-- 연구개발계획서 현재작성단계 수정 쿼리 -->
+    <update id="updateCurrStepByRndPlanNo">
+        UPDATE rnd_plan
+        SET curr_step = #{currStep}
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </update>
+
     <!-- 과제요약 데이터 수정 쿼리 -->
     <update id="insertTaskSummaryByRndPlanNo">
         UPDATE rnd_plan

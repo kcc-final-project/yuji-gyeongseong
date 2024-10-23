@@ -41,17 +41,23 @@ function showNextConfirmation() {
 
         await loadStepContent(currentStep);
         await getRndPlanData();
-        await getTaskSummaryData(rndPlanNo);
+
+        // if (isTaskSummarySaved) {
+        //   await getTaskSummaryData(rndPlanNo);
+        // }
       }
+
       // 과제요약 유효성 검사 후 페이지 이동
       else if (currentStep === 2 && validateTaskSummaryFields()) {
         await submitTaskSummaryData();
+
         currentStep += 1;
         updateProgressBar();
 
         await loadStepContent(currentStep);
         await getRndPlanData();
       }
+
       // 연구기관 유효성 검사 후 페이지 이동
       else if (currentStep === 3) {
         // TODO: 저장 로직 처리
@@ -59,6 +65,7 @@ function showNextConfirmation() {
         updateProgressBar();
         loadStepContent(currentStep);
       }
+
       // 연구개발비 유효성 검사 후 페이지 이동
       else if (currentStep === 4) {
         // TODO: 저장 로직 처리
@@ -66,6 +73,7 @@ function showNextConfirmation() {
         updateProgressBar();
         loadStepContent(currentStep);
       }
+
       // 첨부파일 유효성 검사 후 페이지 이동
       else if (currentStep === 4) {
         // TODO: 저장 로직 처리
@@ -73,6 +81,7 @@ function showNextConfirmation() {
         updateProgressBar();
         loadStepContent(currentStep);
       }
+
       // 필수 항목에 대한 경고창
       else {
         Swal.fire({

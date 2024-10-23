@@ -26,7 +26,7 @@ public interface RndPlanService {
     void updateBasicInfo(final Long rndPlanNo, final UpdateBasicInfoRequest request);
 
     // 과제요약 데이터 등록 API
-    void registerTaskSummary(final CreateTaskSummaryRequest request);
+    int registerTaskSummary(final CreateTaskSummaryRequest request);
 
     // 과제요약 데이터 조회 API
     TaskSummaryResponse getTaskSummaryDataByRndPlanNo(final Long rndPlanNo);

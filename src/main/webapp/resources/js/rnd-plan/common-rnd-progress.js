@@ -10,6 +10,7 @@ const STEP_PATHS = [
 ];
 
 var currentStep = 1;
+var currentStepFromDB;
 
 $(function () {
   initializeProgressBar();
@@ -52,7 +53,6 @@ async function initializeProgressBar() {
   if (currentStep === 1 && rndPlanNo) {
     await getBasicData(rndPlanNo);
   }
-
 }
 
 // [프로그래스 바] 단계 이동에 대한 이벤트 핸들러

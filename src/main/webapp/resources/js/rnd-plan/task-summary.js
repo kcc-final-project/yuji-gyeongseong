@@ -748,6 +748,7 @@ async function submitTaskSummaryData() {
   const stageContents = getStageContentsData();
 
   const bodyData = {
+    currentStep,
     rndPlanNo,
     finalTgtContent,
     rndContent,
@@ -757,13 +758,15 @@ async function submitTaskSummaryData() {
   };
 
   try {
-    await $.ajax({
+    const { data } = await $.ajax({
       url: "/api/v1/rnd-plans/task-summary",
       type: "POST",
       contentType: "application/json",
       dataType: "json",
       data: JSON.stringify(bodyData),
     });
+
+    currentStepFromDB = data;
   } catch (err) {
     console.log(
       "[submitTaskSummaryData()] " + err.statusText + " - " + err.status,

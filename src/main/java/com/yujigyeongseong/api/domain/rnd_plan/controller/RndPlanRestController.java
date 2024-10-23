@@ -54,8 +54,8 @@ public class RndPlanRestController {
     // 과제요약 데이터 등록 API
     @PostMapping("/task-summary")
     public ResponseEntity<?> saveRndPlanTaskSummary(@RequestBody final CreateTaskSummaryRequest request) {
-        rndPlanService.registerTaskSummary(request);
-        return ApiResponse.success(CREATED);
+        int currStep = rndPlanService.registerTaskSummary(request);
+        return ApiResponse.success(CREATED, currStep);
     }
 
     // 과제요약 데이터 조회 API

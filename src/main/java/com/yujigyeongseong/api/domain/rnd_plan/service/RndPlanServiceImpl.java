@@ -94,7 +94,13 @@ public class RndPlanServiceImpl implements RndPlanService {
     // 과제요약 데이터 등록 API
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void registerTaskSummary(final CreateTaskSummaryRequest request) {
+    public int registerTaskSummary(final CreateTaskSummaryRequest request) {
+        // 요청 보낸 currentStep이 DB currentStep 크면(>) UPDATE
+        int currStep = rndPlanMapper.selectCurrStepByRndPlanNo(request.getRndPlanNo());
+        if (request.getCurrentStep() > currStep) {
+            currStep += 1;
+            rndPlanMapper.updateCurrStepByRndPlanNo(request.getRndPlanNo(), currStep);
+        }
 
         rndPlanMapper.insertTaskSummaryByRndPlanNo(request);
 
@@ -103,6 +109,8 @@ public class RndPlanServiceImpl implements RndPlanService {
 
         rndPlanMapper.deleteStageContentsByRndPlanNo(request.getRndPlanNo());
         rndPlanMapper.insertStageContents(request.getStageContents());
+
+        return currStep;
     }
 
     // 과제요약 데이터 조회 API

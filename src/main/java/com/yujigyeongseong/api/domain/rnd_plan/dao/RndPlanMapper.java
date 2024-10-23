@@ -43,6 +43,12 @@ public interface RndPlanMapper {
     int updateTaskNameByRndPlanNo(@Param("rndPlanNo") final Long rndPlanNo,
                                   @Param("taskName") String taskName);
 
+    // '연구개발계획서' 현재 작성 단계 '조회' 쿼리
+    int selectCurrStepByRndPlanNo(final Long rndPlanNo);
+
+    // '연구개발계획서' 현재 작서 단계 '수정' 쿼리
+    int updateCurrStepByRndPlanNo(final Long rndPlanNo, final Integer currStep);
+
     // '과제요약' 데이터 '등록' 쿼리
     int insertTaskSummaryByRndPlanNo(final CreateTaskSummaryRequest request);
 
