@@ -578,7 +578,6 @@ $(document).ready(function () {
           contentType: "application/json",
           data: JSON.stringify(EvalNotiRequest),
           success: function(response) {
-            alert("저장 알림 성공")
           },
           error:function (error){
             alert("저장 알림 실패")
