@@ -11,8 +11,9 @@ import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateTaskSummaryRequ
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.UpdateBasicInfoRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.TaskSummaryResponse;
-import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundRndPlan;
 import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundBasicInfo;
+import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundRndPlan;
+import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundSubAnn;
 import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundTaskSummary;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +34,7 @@ public class RndPlanServiceImpl implements RndPlanService {
     @Override
     public BasicInfo getBasicInfoPageBySubAnnNo(final Long subAnnNo) {
         return rndPlanMapper.selectBasicInfoBySubAnnNo(subAnnNo)
-                .orElseThrow(NotFoundBasicInfo::new);
+                .orElseThrow(NotFoundSubAnn::new);
     }
 
     // 과제정보 데이터 조회 API
@@ -65,7 +66,9 @@ public class RndPlanServiceImpl implements RndPlanService {
     @Override
     public BasicInfoResponse getBasicInfoDataByRndPlanNo(final Long rndPlanNo) {
 
-        BasicInfoResponse basicInfoResponse = rndPlanMapper.selectTaskNameAndTaskNoByRndPlanNo(rndPlanNo);
+        BasicInfoResponse basicInfoResponse = rndPlanMapper.selectTaskNameAndTaskNoByRndPlanNo(rndPlanNo)
+                .orElseThrow(NotFoundBasicInfo::new);
+
         List<RndField> rndFields = rndPlanMapper.selectRndFieldsByRndPlanNo(rndPlanNo);
         basicInfoResponse.assignRndFields(rndFields);
 

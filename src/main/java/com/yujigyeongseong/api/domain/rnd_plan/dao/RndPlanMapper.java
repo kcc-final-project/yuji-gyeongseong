@@ -31,7 +31,7 @@ public interface RndPlanMapper {
     int insertRndFields(@Param("rndFields") final List<RndField> rndFields);
 
     // 기본정보 데이터 '조회' 쿼리__'과제명/계획서번호'
-    BasicInfoResponse selectTaskNameAndTaskNoByRndPlanNo(final Long rndPlanNo);
+    Optional<BasicInfoResponse> selectTaskNameAndTaskNoByRndPlanNo(final Long rndPlanNo);
 
     // 기본정보 데이터 '조회' 쿼리__'연구분야'
     List<RndField> selectRndFieldsByRndPlanNo(final Long rndPlanNo);
