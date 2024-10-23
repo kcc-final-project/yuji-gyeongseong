@@ -184,39 +184,6 @@ $(document).ready(function () {
       $("#institutionSearchModal").modal("show");
     });
 
-  var institutions = [
-    {
-      id: 1,
-      name: "서울대학교",
-      category: "대학교",
-      registrationNumber: "1000000001",
-    },
-    {
-      id: 2,
-      name: "연세대학교",
-      category: "대학교",
-      registrationNumber: "1000000002",
-    },
-    {
-      id: 3,
-      name: "고려대학교",
-      category: "대학교",
-      registrationNumber: "1000000003",
-    },
-    {
-      id: 4,
-      name: "성균관대학교",
-      category: "대학교",
-      registrationNumber: "1000000004",
-    },
-    {
-      id: 5,
-      name: "kcc대학교",
-      category: "대학교",
-      registrationNumber: "1000000005",
-    },
-  ];
-
   $("#searchInstitution").click(function () {
     var searchKeyword = $("#instituteNameSearch").val().toLowerCase();
     var filteredInstitutions = institutions.filter(function (institution) {
@@ -275,39 +242,6 @@ $(document).ready(function () {
 
   // 모달 열릴 때 전체 리스트 띄우기
   $("#institutionSearchModal").on("shown.bs.modal", function () {
-    var institutions = [
-      {
-        id: 1,
-        name: "서울대학교",
-        category: "대학교",
-        registrationNumber: "1000000001",
-      },
-      {
-        id: 2,
-        name: "연세대학교",
-        category: "대학교",
-        registrationNumber: "1000000002",
-      },
-      {
-        id: 3,
-        name: "고려대학교",
-        category: "대학교",
-        registrationNumber: "1000000003",
-      },
-      {
-        id: 4,
-        name: "성균관대학교",
-        category: "대학교",
-        registrationNumber: "1000000004",
-      },
-      {
-        id: 5,
-        name: "kcc대학교",
-        category: "대학교",
-        registrationNumber: "1000000005",
-      },
-    ];
-
     // 엔터 검색 기능
     $("#instituteNameSearch").keypress(function (event) {
       if (event.which === 13) {
@@ -330,17 +264,6 @@ $(document).ready(function () {
     });
     $("#institutionTableBody").html(tbodyHtml);
   });
-
-  var workInstitutions = [
-    {
-      id: 1,
-      name: "kcc정보통신",
-      category: "기업",
-      registrationNumber: "1000000001",
-    },
-    { id: 2, name: "삼성", category: "기업", registrationNumber: "1000000002" },
-    { id: 3, name: "LG", category: "기업", registrationNumber: "1000000003" },
-  ];
 
   $("#searchWorkInstitution").click(function () {
     var searchKeyword = $("#workInstitutionNameSearch").val();
@@ -403,22 +326,6 @@ $(document).ready(function () {
 
   // 기관 모달 열릴 때 전체 리스트 띄우기
   $("#workInstitutionSearchModal").on("shown.bs.modal", function () {
-    var workInstitutions = [
-      {
-        id: 1,
-        name: "kcc정보통신",
-        category: "기업",
-        registrationNumber: "1000000001",
-      },
-      {
-        id: 2,
-        name: "삼성",
-        category: "기업",
-        registrationNumber: "1000000002",
-      },
-      { id: 3, name: "LG", category: "기업", registrationNumber: "1000000003" },
-    ];
-
     // 엔터 검색 기능
     $("#workInstitutionNameSearch").keypress(function (event) {
       if (event.which === 13) {
@@ -574,42 +481,68 @@ $(document).ready(function () {
       alert("소분류 항목을 선택해 주세요.");
     }
   });
-
   $("#issuanceButton").click(function () {
     let academicInfos = [];
     let careerInfos = [];
     let technicalInfos = [];
 
+    let isValid = true; // 유효성 검사 플래그
+
     for (let i = 1; i <= academicInfoCount; i++) {
       let academicInfo = {
-        abilityType: $(`#degreeType${i}`).val(),
-        orgName: $(`#degreeInstitutionName${i}`).val(),
-        acquiredCountry: $(`#degreeCountry${i}`).val(),
-        majorAffiliation: $(`#majorCategory${i}`).val(),
-        majorField: $(`#majorSubcategory${i}`).val(),
-        majorName: $(`#majorName${i}`).val(),
-        acquiredAt: $(`#degreeDate${i}`).val(),
+        abilityType: $(`#degreeType${i}`).val().trim(),
+        orgName: $(`#degreeInstitutionName${i}`).val().trim(),
+        acquiredCountry: $(`#degreeCountry${i}`).val().trim(),
+        majorAffiliation: $(`#majorCategory${i}`).val().trim(),
+        majorField: $(`#majorSubcategory${i}`).val().trim(),
+        majorName: $(`#majorName${i}`).val().trim(),
+        acquiredAt: $(`#degreeDate${i}`).val().trim(),
       };
+      // 입력 필드의 유효성 검사
+      if (!academicInfo.abilityType || !academicInfo.orgName || !academicInfo.acquiredCountry ||
+          !academicInfo.majorAffiliation || !academicInfo.majorField || !academicInfo.majorName ||
+          !academicInfo.acquiredAt) {
+        alert("모든 학력 정보 필드를 채워주세요.");
+        isValid = false;
+        break;
+      }
       academicInfos.push(academicInfo);
     }
 
+    if (!isValid) return; // 유효하지 않으면 더 이상 진행하지 않음
+
     for (let i = 1; i <= careerInfoCount; i++) {
       let careerInfo = {
-        orgName: $(`#workInstitutionName${i}`).val(),
-        deptName: $(`#workDepartment${i}`).val(),
-        careerType: $(`#employmentType${i}`).val(),
-        startedAt: $(`#workStartDate${i}`).val(),
-        endedAt: $(`#workEndDate${i}`).val(),
+        orgName: $(`#workInstitutionName${i}`).val().trim(),
+        deptName: $(`#workDepartment${i}`).val().trim(),
+        careerType: $(`#employmentType${i}`).val().trim(),
+        startedAt: $(`#workStartDate${i}`).val().trim(),
+        endedAt: $(`#workEndDate${i}`).val().trim(),
       };
+      // 입력 필드의 유효성 검사
+      if (!careerInfo.orgName || !careerInfo.deptName || !careerInfo.careerType ||
+          !careerInfo.startedAt || !careerInfo.endedAt) {
+        alert("모든 경력 정보 필드를 채워주세요.");
+        isValid = false;
+        break;
+      }
       careerInfos.push(careerInfo);
     }
 
+    if (!isValid) return; // 유효하지 않으면 더 이상 진행하지 않음
+
     $("#technicalInfoTableBody tr").each(function () {
       let technicalInfo = {
-        techGroupName: $(this).find("td").eq(1).text(),
-        techCode: $(this).find("td").eq(2).text(),
-        techName: $(this).find("td").eq(3).text(),
+        techGroupName: $(this).find("td").eq(1).text().trim(),
+        techCode: $(this).find("td").eq(2).text().trim(),
+        techName: $(this).find("td").eq(3).text().trim(),
       };
+      // 입력 필드의 유효성 검사
+      if (!technicalInfo.techGroupName || !technicalInfo.techCode || !technicalInfo.techName) {
+        alert("모든 기술분야 정보 필드를 채워주세요.");
+        isValid = false;
+        return false; // each 루프 중단
+      }
       technicalInfos.push(technicalInfo);
     });
 
@@ -620,21 +553,38 @@ $(document).ready(function () {
       technicalInfos: technicalInfos,
     };
 
-    console.log("academicInfos:", academicInfos);
-    console.log("careerInfos:", careerInfos);
-    console.log("technicalInfos:", technicalInfos);
-
     // 로그인 회원의 번호
     let memberId = 1;
 
+    let EvalNotiRequest ={
+      content: "윤채원님의 연구자 번호가 발급되었습니다.",
+      notiType: "연구자",
+      dataCategory: "service",
+      memNo: memberId
+    };
+
     // ajax 예제
     $.ajax({
-      url: "/api/v1/research_number/register/" + memberId,
+      url: "/api/v1/research_number/register/research/" + memberId,
       type: "POST",
       contentType: "application/json",
       data: JSON.stringify(SubmitResearchRequest),
       success: function (response) {
         alert("학력 정보 저장 완료");
+
+        $.ajax({
+          url: "/api/v1/research_number/register/eval/" + memberId,
+          type: "POST",
+          contentType: "application/json",
+          data: JSON.stringify(EvalNotiRequest),
+          success: function(response) {
+            alert("저장 알림 성공")
+          },
+          error:function (error){
+            alert("저장 알림 실패")
+            console.log(error, "error");
+          }
+        });
       },
       error: function (error) {
         alert("학력 정보 저장 중 오류 발생");
@@ -643,20 +593,6 @@ $(document).ready(function () {
     });
   });
 });
-
-const majorMap = {
-  공학계열: [
-    "화공·고분자·에너지",
-    "기계공학",
-    "전자·전기",
-    "컴퓨터공학",
-    "토목·건축",
-  ],
-  자연과학계열: ["물리학", "화학", "생명과학", "지구과학", "수학"],
-  인문사회계열: ["철학", "역사학", "심리학", "사회학", "경제학"],
-  의약계열: ["의학", "간호학", "치의학", "약학", "한의학"],
-  예술체육계열: ["미술", "음악", "무용", "체육", "디자인"],
-};
 
 // 첫 번째 셀렉트 박스의 선택에 따라 두 번째 셀렉트 박스를 업데이트하는 함수
 function updateMajorSubcategory() {
@@ -681,3 +617,286 @@ function updateMajorSubcategory() {
 $(document).ready(function () {
   window.onload = updateMajorSubcategory;
 });
+
+var institutions = [
+  {
+    id: 1,
+    name: "서울대학교",
+    category: "대학교",
+    registrationNumber: "1000000001",
+  },
+  {
+    id: 2,
+    name: "연세대학교",
+    category: "대학교",
+    registrationNumber: "1000000002",
+  },
+  {
+    id: 3,
+    name: "고려대학교",
+    category: "대학교",
+    registrationNumber: "1000000003",
+  },
+  {
+    id: 4,
+    name: "성균관대학교",
+    category: "대학교",
+    registrationNumber: "1000000004",
+  },
+  {
+    id: 5,
+    name: "kcc대학교",
+    category: "대학교",
+    registrationNumber: "1000000005",
+  },
+  {
+    id: 6,
+    name: "한양대학교",
+    category: "대학교",
+    registrationNumber: "1000000006",
+  },
+  {
+    id: 7,
+    name: "중앙대학교",
+    category: "대학교",
+    registrationNumber: "1000000007",
+  },
+  {
+    id: 8,
+    name: "경희대학교",
+    category: "대학교",
+    registrationNumber: "1000000008",
+  },
+  {
+    id: 9,
+    name: "서강대학교",
+    category: "대학교",
+    registrationNumber: "1000000009",
+  },
+  {
+    id: 10,
+    name: "한국외국어대학교",
+    category: "대학교",
+    registrationNumber: "1000000010",
+  },
+  {
+    id: 11,
+    name: "이화여자대학교",
+    category: "대학교",
+    registrationNumber: "1000000011",
+  },
+  {
+    id: 12,
+    name: "동국대학교",
+    category: "대학교",
+    registrationNumber: "1000000012",
+  },
+  {
+    id: 13,
+    name: "홍익대학교",
+    category: "대학교",
+    registrationNumber: "1000000013",
+  },
+  {
+    id: 14,
+    name: "국민대학교",
+    category: "대학교",
+    registrationNumber: "1000000014",
+  },
+  {
+    id: 15,
+    name: "숭실대학교",
+    category: "대학교",
+    registrationNumber: "1000000015",
+  },
+  {
+    id: 16,
+    name: "서울시립대학교",
+    category: "대학교",
+    registrationNumber: "1000000016",
+  },
+  {
+    id: 17,
+    name: "서울과학기술대학교",
+    category: "대학교",
+    registrationNumber: "1000000017",
+  },
+  {
+    id: 18,
+    name: "가톨릭대학교",
+    category: "대학교",
+    registrationNumber: "1000000018",
+  },
+  {
+    id: 19,
+    name: "세종대학교",
+    category: "대학교",
+    registrationNumber: "1000000019",
+  },
+  {
+    id: 20,
+    name: "상명대학교",
+    category: "대학교",
+    registrationNumber: "1000000020",
+  },
+];
+
+var workInstitutions = [
+  {
+    id: 1,
+    name: "kcc정보통신",
+    category: "기업",
+    registrationNumber: "1000000001",
+  },
+  { id: 2, name: "삼성", category: "기업", registrationNumber: "1000000002" },
+  { id: 3, name: "LG", category: "기업", registrationNumber: "1000000003" },
+  {
+    id: 4,
+    name: "SK텔레콤",
+    category: "기업",
+    registrationNumber: "1000000004",
+  },
+  {
+    id: 5,
+    name: "현대자동차",
+    category: "기업",
+    registrationNumber: "1000000005",
+  },
+  { id: 6, name: "롯데", category: "기업", registrationNumber: "1000000006" },
+  { id: 7, name: "한화", category: "기업", registrationNumber: "1000000007" },
+  {
+    id: 8,
+    name: "GS칼텍스",
+    category: "기업",
+    registrationNumber: "1000000008",
+  },
+  { id: 9, name: "포스코", category: "기업", registrationNumber: "1000000009" },
+  { id: 10, name: "KT", category: "기업", registrationNumber: "1000000010" },
+  { id: 11, name: "CJ", category: "기업", registrationNumber: "1000000011" },
+  {
+    id: 12,
+    name: "네이버",
+    category: "기업",
+    registrationNumber: "1000000012",
+  },
+  {
+    id: 13,
+    name: "카카오",
+    category: "기업",
+    registrationNumber: "1000000013",
+  },
+  {
+    id: 14,
+    name: "신세계",
+    category: "기업",
+    registrationNumber: "1000000014",
+  },
+  { id: 15, name: "두산", category: "기업", registrationNumber: "1000000015" },
+  { id: 16, name: "한진", category: "기업", registrationNumber: "1000000016" },
+  {
+    id: 17,
+    name: "한국전력",
+    category: "기업",
+    registrationNumber: "1000000017",
+  },
+  {
+    id: 18,
+    name: "한국가스공사",
+    category: "기업",
+    registrationNumber: "1000000018",
+  },
+  {
+    id: 19,
+    name: "LS그룹",
+    category: "기업",
+    registrationNumber: "1000000019",
+  },
+  { id: 20, name: "다음", category: "기업", registrationNumber: "1000000020" },
+];
+
+var majorMap = {
+  공학계열: [
+    "화공·고분자·에너지",
+    "기계공학",
+    "전자·전기",
+    "컴퓨터공학",
+    "토목·건축",
+    "산업공학",
+    "재료공학",
+    "생명공학",
+    "항공우주공학",
+    "로봇공학"
+  ],
+  자연과학계열: [
+    "물리학",
+    "화학",
+    "생명과학",
+    "지구과학",
+    "수학",
+    "천문학",
+    "해양학",
+    "환경과학",
+    "식물학",
+    "동물학"
+  ],
+  인문사회계열: [
+    "철학",
+    "역사학",
+    "심리학",
+    "사회학",
+    "경제학",
+    "정치학",
+    "문화학",
+    "언어학",
+    "문학",
+    "법학"
+  ],
+  의약계열: [
+    "의학",
+    "간호학",
+    "치의학",
+    "약학",
+    "한의학",
+    "생리학",
+    "병리학",
+    "소아과학",
+    "정신의학",
+    "피부과학"
+  ],
+  예술체육계열: [
+    "미술",
+    "음악",
+    "무용",
+    "체육",
+    "디자인",
+    "극작",
+    "영화학",
+    "건축",
+    "사진학",
+    "조각"
+  ],
+  비즈니스경영계열: [
+    "경영학",
+    "마케팅",
+    "회계",
+    "재무",
+    "인사관리",
+    "국제비즈니스",
+    "물류학",
+    "경영정보시스템",
+    "경영전략",
+    "조직행동"
+  ],
+  정보기술계열: [
+    "정보보안",
+    "데이터사이언스",
+    "인공지능",
+    "네트워킹",
+    "소프트웨어 개발",
+    "시스템 분석",
+    "클라우드 컴퓨팅",
+    "모바일 애플리케이션 개발",
+    "게임 개발",
+    "빅데이터 분석"
+  ]
+};
