@@ -3,7 +3,6 @@
 
 <mapper namespace="com.yujigyeongseong.api.domain.research_number.dao.EvalCommitteeMapper">
 
-    <!-- 특정 회원의 모든 경력 정보 조회 -->
     <select id="selectAllCareersByMemberId" parameterType="long">
         SELECT career_no,
                org_name,
@@ -18,7 +17,6 @@
         WHERE mem_no = #{id}
     </select>
 
-    <!-- 특정 회원의 모든 학력 정보 조회 -->
     <select id="selectAllAcadAbilitiesByMemberId" parameterType="long">
         SELECT acad_ability_no,
                ability_type,
@@ -35,7 +33,6 @@
         WHERE mem_no = #{id}
     </select>
 
-    <!-- 특정 회원의 모든 기술분류 정보 조회 -->
     <select id="selectAllTechFieldNameByMemberId" parameterType="long">
         SELECT t.name
         FROM mem_tech_field m
@@ -62,6 +59,19 @@
             #{acad.majorAffiliation}, #{acad.majorField}, #{acad.majorName}, #{acad.acquiredAt}, current_timestamp,
             null, #{id})
         </foreach>
+    </insert>
+
+    <select id="selectAllNotiByMemberId" parameterType="long">
+        SELECT *
+        FROM noti
+        WHERE mem_no = #{id}
+        ORDER BY created_at DESC
+    </select>
+
+    <insert id="insertEvalNotiByMemberId" parameterType="EvalNotiRequest">
+        INSERT INTO noti (notification_no, content, created_at, deleted_at, noti_content_no, noti_type, data_category,
+                          mem_no)
+        VALUES (NEXT VALUE FOR seq_noti, #{content}, default, null, null, #{notiType}, #{dataCategory}, #{memNo})
     </insert>
 
 </mapper>
