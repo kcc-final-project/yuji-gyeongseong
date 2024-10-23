@@ -7,11 +7,14 @@ html {
     height: 100vh;
 }
 
-/* 워크라운지 탭 */
 .tabs-container {
     background-color: #000000;
     padding: 10px 0;
     margin-top: 90px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 }
 
 .nav-tabs {
@@ -42,7 +45,7 @@ html {
 .nav-link.active {
     color: #ffffff;
     font-weight: bold;
-    border-bottom: 3px solid #ffffff; /* 활성 탭의 하단 강조선 */
+    border-bottom: 3px solid #ffffff;
 }
 
 .nav-link:hover {
