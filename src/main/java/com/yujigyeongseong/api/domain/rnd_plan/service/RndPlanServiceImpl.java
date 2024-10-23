@@ -90,8 +90,12 @@ public class RndPlanServiceImpl implements RndPlanService {
     public void registerTaskSummary(final CreateTaskSummaryRequest request) {
 
         rndPlanMapper.insertTaskSummaryByRndPlanNo(request);
+
+        rndPlanMapper.deleteRndPeriodsByRndPlanNo(request.getRndPlanNo());
         rndPlanMapper.insertRndPeriods(request.getRndPeriods());
-        rndPlanMapper.insertStageContent(request.getStageContents());
+
+        rndPlanMapper.deleteStageContentsByRndPlanNo(request.getRndPlanNo());
+        rndPlanMapper.insertStageContents(request.getStageContents());
     }
 
 }

@@ -127,6 +127,13 @@
         WHERE rnd_plan_no = #{rndPlanNo}
     </update>
 
+    <!-- 연구개발기간 데이터 삭제 쿼리 -->
+    <delete id="deleteRndPeriodsByRndPlanNo">
+        DELETE
+        FROM rnd_period
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </delete>
+
     <!-- 연구개발기간 데이터 등록 쿼리 -->
     <insert id="insertRndPeriods">
         INSERT INTO rnd_period (
@@ -149,8 +156,15 @@
         </foreach>
     </insert>
 
+    <!-- 연구개발기간 데이터 삭제 쿼리 -->
+    <delete id="deleteStageContentsByRndPlanNo">
+        DELETE
+        FROM stage_content
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </delete>
+
     <!-- 단계별 내용 데이터 등록 쿼리 -->
-    <insert id="insertStageContent">
+    <insert id="insertStageContents">
         INSERT INTO stage_content (
         stage_no,
         stg_tgt_content,

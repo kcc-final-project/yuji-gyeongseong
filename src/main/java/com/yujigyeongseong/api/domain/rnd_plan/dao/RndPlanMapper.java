@@ -44,10 +44,16 @@ public interface RndPlanMapper {
     // '과제요약' 데이터 '등록' 쿼리
     int insertTaskSummaryByRndPlanNo(final CreateTaskSummaryRequest request);
 
+    // '연구개발기간' 데이터 '삭제' 쿼리
+    int deleteRndPeriodsByRndPlanNo(final Long rndPlanNo);
+
     // '연구개발기간' 데이터 '등록' 쿼리
     int insertRndPeriods(@Param("rndPeriods") final List<RndPeriod> rndPeriods);
 
+    // '단계별 내용' 데이터 '삭제' 쿼리
+    int deleteStageContentsByRndPlanNo(final Long rndPlanNo);
+
     // '단계별 내용' 데이터 '등록' 쿼리
-    int insertStageContent(@Param("stageContents") final List<StageContent> stageContents);
+    int insertStageContents(@Param("stageContents") final List<StageContent> stageContents);
 
 }
