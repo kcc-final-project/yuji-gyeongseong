@@ -31,6 +31,8 @@ function showNextConfirmation() {
     cancelButtonColor: "#2e406a",
   }).then(async (result) => {
     if (result.isConfirmed) {
+      const rndPlanNo = localStorage.getItem("rndPlanNo");
+
       // 기본정보 유효성 검사 후 페이지 이동
       if (currentStep === 1 && validateBasicFields()) {
         await submitBasicData();
@@ -39,6 +41,7 @@ function showNextConfirmation() {
 
         await loadStepContent(currentStep);
         await getRndPlanData();
+        await getTaskSummaryData(rndPlanNo);
       }
       // 과제요약 유효성 검사 후 페이지 이동
       else if (currentStep === 2 && validateTaskSummaryFields()) {

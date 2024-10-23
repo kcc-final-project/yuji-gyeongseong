@@ -3,13 +3,17 @@ package com.yujigyeongseong.api.domain.rnd_plan.service;
 import com.yujigyeongseong.api.domain.rnd_plan.dao.RndPlanMapper;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.BasicInfo;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.RndField;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPlan;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPeriod;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.StageContent;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.response.RndPlanResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateBasicInfoRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateTaskSummaryRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.UpdateBasicInfoRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.response.TaskSummaryResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundRndPlan;
-import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundRndPlanBasic;
+import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundBasicInfo;
+import com.yujigyeongseong.api.domain.rnd_plan.exception.NotFoundTaskSummary;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -29,12 +33,12 @@ public class RndPlanServiceImpl implements RndPlanService {
     @Override
     public BasicInfo getBasicInfoPageBySubAnnNo(final Long subAnnNo) {
         return rndPlanMapper.selectBasicInfoBySubAnnNo(subAnnNo)
-                .orElseThrow(NotFoundRndPlanBasic::new);
+                .orElseThrow(NotFoundBasicInfo::new);
     }
 
     // 과제정보 데이터 조회 API
     @Override
-    public RndPlan getRndPlanDataBySubAnnNo(Long subAnnNo) {
+    public RndPlanResponse getRndPlanDataBySubAnnNo(Long subAnnNo) {
         return rndPlanMapper.selectRndPlanBySubAnnNo(subAnnNo)
                 .orElseThrow(NotFoundRndPlan::new);
     }
@@ -96,6 +100,22 @@ public class RndPlanServiceImpl implements RndPlanService {
 
         rndPlanMapper.deleteStageContentsByRndPlanNo(request.getRndPlanNo());
         rndPlanMapper.insertStageContents(request.getStageContents());
+    }
+
+    // 과제요약 데이터 조회 API
+    @Override
+    public TaskSummaryResponse getTaskSummaryDataByRndPlanNo(final Long rndPlanNo) {
+
+        TaskSummaryResponse taskSummaryResponse = rndPlanMapper.selectTaskSummaryByRndPlanNo(rndPlanNo)
+                .orElseThrow(NotFoundTaskSummary::new);
+
+        List<RndPeriod> rndPeriods = rndPlanMapper.selectRndPeriodsByRndPlanNo(rndPlanNo);
+        taskSummaryResponse.assignRndPeriods(rndPeriods);
+
+        List<StageContent> stageContents = rndPlanMapper.selectStageContentsByRndPlanNo(rndPlanNo);
+        taskSummaryResponse.assignStageContents(stageContents);
+
+        return taskSummaryResponse;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.yujigyeongseong.api.domain.rnd_plan.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;

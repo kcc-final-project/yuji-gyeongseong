@@ -1,4 +1,4 @@
-package com.yujigyeongseong.api.domain.rnd_plan.dto;
+package com.yujigyeongseong.api.domain.rnd_plan.dto.response;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.ToString;
 @RequiredArgsConstructor
 @Getter
 @ToString
-public class RndPlan {
+public class RndPlanResponse {
 
     private final Long subAnnNo; // 공모분야 번호
 

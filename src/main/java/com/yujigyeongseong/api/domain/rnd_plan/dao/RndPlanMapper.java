@@ -4,6 +4,8 @@ import com.yujigyeongseong.api.domain.rnd_plan.dto.*;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateBasicInfoRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateTaskSummaryRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.response.RndPlanResponse;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.response.TaskSummaryResponse;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -17,7 +19,7 @@ public interface RndPlanMapper {
     Optional<BasicInfo> selectBasicInfoBySubAnnNo(final Long subAnnNo);
 
     // '과제정보' 데이터 '조회' 쿼리
-    Optional<RndPlan> selectRndPlanBySubAnnNo(final Long subAnnNo);
+    Optional<RndPlanResponse> selectRndPlanBySubAnnNo(final Long subAnnNo);
 
     // TODO: SelectKey로 처리할 수 있지 않을까?
     Long selectRndPlanSequence();
@@ -55,5 +57,14 @@ public interface RndPlanMapper {
 
     // '단계별 내용' 데이터 '등록' 쿼리
     int insertStageContents(@Param("stageContents") final List<StageContent> stageContents);
+
+    // '과제요약' 데이터 '조회' 쿼리
+    Optional<TaskSummaryResponse> selectTaskSummaryByRndPlanNo(final Long rndPlanNo);
+
+    // '연구개발기간' 데이터 '조회' 쿼리
+    List<RndPeriod> selectRndPeriodsByRndPlanNo(final Long rndPlanNo);
+
+    // '단계별 내용' 데이터 '조회' 쿼리
+    List<StageContent> selectStageContentsByRndPlanNo(final Long rndPlanNo);
 
 }

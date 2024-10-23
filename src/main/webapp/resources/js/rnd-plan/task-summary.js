@@ -783,14 +783,14 @@ function getRndPeriodsData() {
       const yearNo = year.yearNumber;
       const startedAt = year.startDate;
       const endedAt = year.endDate;
-      const month = calculateMonthsDifference(startedAt, endedAt);
+      const mxnth = calculateMonthsDifference(startedAt, endedAt);
 
       rndPeriods.push({
         stageNo,
         yearNo,
         startedAt,
         endedAt,
-        month,
+        mxnth,
         rndPlanNo,
       });
     });
@@ -825,44 +825,3 @@ function getStageContentsData() {
 
   return stageContents;
 }
-
-/**
- * finalTgtContent:  ,
- * rndContent:  ,
- * perfContent:  ,
- * rndPeriods: [
- *     {
- *         stageNo:  ,
- *         yearNo:  ,
- *         startedAt:  ,
- *         endedAt:  ,
- *         month:  ,
- *         rndPlanNo:
- *     },
- *     {
- *         stageNo:  ,
- *         yearNo:  ,
- *         startedAt:  ,
- *         endedAt:  ,
- *         month:  ,
- *         rndPlanNo:
- *     },
- * ],
- * stageContents: [
- *     {
- *         stageNo:  ,
- *         stgTgtContent:  ,
- *         rndContent:  ,
- *         perfContent:  ,
- *         rndPlanNo:
- *     },
- *     {
- *         stageNo:  ,
- *         stgTgtContent:  ,
- *         rndContent:  ,
- *         perfContent:  ,
- *         rndPlanNo:
- *     }
- * ]
- *
- */

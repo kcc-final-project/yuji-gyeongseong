@@ -150,7 +150,7 @@
             #{rndPeriod.yearNo},
             #{rndPeriod.startedAt},
             #{rndPeriod.endedAt},
-            #{rndPeriod.month},
+            #{rndPeriod.mxnth},
             #{rndPeriod.rndPlanNo}
             )
         </foreach>
@@ -180,5 +180,36 @@
             )
         </foreach>
     </insert>
+
+    <!-- 과제요약 데이터 조회 쿼리 -->
+    <select id="selectTaskSummaryByRndPlanNo">
+        SELECT final_tgt_content,
+               rnd_content,
+               perf_content
+        FROM rnd_plan
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </select>
+
+    <!-- 연구개발기간 데이터 조회 쿼리 -->
+    <select id="selectRndPeriodsByRndPlanNo">
+        SELECT rnd_plan_no,
+               stage_no,
+               year_no,
+               started_at,
+               ended_at,
+               mxnth
+        FROM rnd_period
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </select>
+
+    <!-- 단계별 내용 데이터 조회 쿼리 -->
+    <select id="selectStageContentsByRndPlanNo">
+        SELECT rnd_plan_no,
+               stage_no,
+               stg_tgt_content,
+               rnd_content
+        FROM stage_content
+        WHERE rnd_plan_no = #{rndPlanNo}
+    </select>
 
 </mapper>

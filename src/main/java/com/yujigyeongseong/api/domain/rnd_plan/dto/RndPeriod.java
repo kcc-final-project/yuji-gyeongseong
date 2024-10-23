@@ -1,5 +1,6 @@
 package com.yujigyeongseong.api.domain.rnd_plan.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -21,6 +22,6 @@ public class RndPeriod {
 
     private final LocalDate endedAt; // 연구개발종료일
 
-    private final Integer month; // 개월
+    private final Integer mxnth; // 개월
 
 }

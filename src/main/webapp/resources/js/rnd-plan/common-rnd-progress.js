@@ -27,6 +27,7 @@ async function initializeProgressBar() {
   if (currentStep === 1 && rndPlanNo) {
     await getBasicData(rndPlanNo);
   }
+
 }
 
 // 이동할 단계에 대한 이벤트 처리
@@ -41,6 +42,10 @@ async function changeStep(stepNumber) {
     const rndPlanNo = localStorage.getItem("rndPlanNo");
     if (currentStep === 1 && rndPlanNo) {
       await getBasicData(rndPlanNo);
+    }
+
+    if (currentStep === 2 && rndPlanNo) {
+      await getTaskSummaryData(rndPlanNo);
     }
   }
 }
@@ -118,7 +123,7 @@ async function getBasicData(rndPlanNo) {
       applyTaskNameAndTaskNo(data);
     },
     error: (err) => {
-      console.log("[submitBasicData()] " + err.statusText + " - " + err.status);
+      console.log("[getBasicData()] " + err.statusText + " - " + err.status);
     },
     complete: () => {
       $spinnerContainer.hide();
@@ -170,4 +175,96 @@ function applyRndPlan({
   $("#dpy-rnd-task-no").val(rndTaskNo);
   $("#dpy-researcher").val(researcherName);
   $("#dpy-institution").val(institutionName);
+}
+
+async function getTaskSummaryData(rndPlanNo) {
+  if (rndPlanNo === undefined && isNaN(rndPlanNo)) {
+    return;
+  }
+
+  const $spinnerContainer = $(".spinner-container");
+  $spinnerContainer.show();
+
+  $.ajax({
+    url: `/api/v1/rnd-plans/task-summary/${rndPlanNo}`,
+    type: "GET",
+    dataType: "json",
+    success: ({ data }) => {
+      applyRndPeriodData(data.rndPeriods);
+
+      applyFinalContentData(
+        data.finalTgtContent,
+        data.rndContent,
+        data.perfContent,
+      );
+
+      applyStageContentData(data.stageContents);
+    },
+    error: (err) => {
+      console.log(
+        "[getTaskSummaryData()] " + err.statusText + " - " + err.status,
+      );
+    },
+    complete: () => {
+      $spinnerContainer.hide();
+    },
+  });
+}
+
+// 연구개발기간 JSON 데이터 바인딩
+function applyRndPeriodData(rndPeriods) {
+  const stageDataMap = {};
+
+  for (const rndPeriod of rndPeriods) {
+    const stageNumber = rndPeriod.stageNo;
+    const years = {
+      yearNumber: rndPeriod.yearNo,
+      startDate: rndPeriod.startedAt,
+      endDate: rndPeriod.endedAt,
+    };
+
+    if (!stageDataMap[stageNumber]) {
+      stageDataMap[stageNumber] = {
+        stageNumber: stageNumber,
+        years: [years],
+      };
+    } else {
+      stageDataMap[stageNumber].years.push(years);
+    }
+  }
+
+  // 배열 변환 후 오름차순 정렬
+  stageDataArr = Object.values(stageDataMap);
+  stageDataArr.sort((a, b) => a.stageNumber - b.stageNumber);
+  stageDataArr.forEach((stage) => {
+    stage.years.sort((a, b) => a.yearNumber - b.yearNumber);
+  });
+
+  stageData = stageDataArr;
+  renderStageTable();
+  updateOverallPeriod();
+}
+
+// 최종목표 및 내용 JSON 데이터 바인딩
+function applyFinalContentData(finalTgtContent, rndContent, perfContent) {
+  $("#finalGoalContent").val(finalTgtContent);
+  $("#rndContent").val(rndContent);
+  $("#rndOutcomePlan").val(perfContent);
+}
+
+// 단계별 목표 및 내용 JSON 데이터 바인딩
+function applyStageContentData(stageContents) {
+  renderStageGoals();
+
+  for (const stageContent of stageContents) {
+    const stageNumber = stageContent.stageNo;
+
+    $(`textarea[name=stage-goal-${stageNumber}]`).val(
+      stageContent.stgTgtContent,
+    );
+
+    $(`textarea[name=stage-rnd-content-${stageNumber}]`).val(
+      stageContent.rndContent,
+    );
+  }
 }
