@@ -26,7 +26,7 @@
     <div class="committee-setting" id="committee-setting">
         <div class="setting-one">
             <div class="setting-text">공모분야명</div>
-            <input id="projectName" type="text" value="[${subAnnouncement.subAnnUniNo}] ${subAnnouncement.subTitle}"
+            <input id="projectName" type="text" value="[${subAnnounce.subAnnUniNo}] ${subAnnounce.subTitle}"
                    readonly/>
 
             <div class="setting-text" style="margin-left: 150px">평가기간</div>
@@ -91,7 +91,7 @@
                             <tr data-committee-id="${committee.evalCommitteeNo}"
                                 onclick="loadResearcherInfo(${committee.evalCommitteeNo})">
                                 <td><input type="checkbox" name="committee" checked/></td>
-                                <td class="subAnnounceName" data-sub-announce-name="[${subAnnouncement.subAnnUniNo}] ${committee.name}">[${subAnnouncement.subAnnUniNo}] ${committee.name}</td>
+                                <td class="subAnnounceName" data-sub-announce-name="[${subAnnounce.subAnnUniNo}] ${committee.name}">[${subAnnounce.subAnnUniNo}] ${committee.name}</td>
                                 <td><fmt:formatDate value='${evalCommittee.evalStartedAt}' pattern='yyyy-MM-dd'/></td>
                                 <td><fmt:formatDate value='${evalCommittee.evalClosedAt}' pattern='yyyy-MM-dd'/></td>
                                 <td><span class="status stayed">승인대기</span></td>
