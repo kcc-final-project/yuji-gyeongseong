@@ -16,6 +16,7 @@ public class Noti {
     private final Timestamp deletedAt;
     private final String notiContentNo;
     private final String notiType;
+    private final String readState;
     private final String dataCategory;
     private final Long memNo;
 }

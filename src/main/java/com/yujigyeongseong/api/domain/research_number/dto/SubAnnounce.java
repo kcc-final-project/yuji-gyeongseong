@@ -1,4 +1,5 @@
 package com.yujigyeongseong.api.domain.research_number.dto;
+
 import lombok.*;
 
 @RequiredArgsConstructor

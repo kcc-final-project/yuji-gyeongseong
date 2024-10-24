@@ -46,4 +46,18 @@
         WHERE m.mem_no = #{id}
     </select>
 
+    <update id="udpateEvaluationMemberByNotiContentNo">
+        UPDATE evaluation_member
+        SET recv_status     = #{evalMemberRequest.recvStatus},
+            recv_status_eng = #{evalMemberRequest.recvStatusEng}
+        WHERE mem_no = #{memberId}
+          AND eval_committee_no = #{notiContentNo}
+    </update>
+
+    <update id="updateNotiByNotificationNo">
+        UPDATE noti
+        SET read_state = '확인완료'
+        WHERE notification_no = #{id}
+    </update>
+
 </mapper>

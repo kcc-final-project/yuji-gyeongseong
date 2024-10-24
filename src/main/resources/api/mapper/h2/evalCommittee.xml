@@ -69,9 +69,11 @@
     </select>
 
     <insert id="insertEvalNotiByMemberId" parameterType="EvalNotiRequest">
-        INSERT INTO noti (notification_no, content, created_at, deleted_at, noti_content_no, noti_type, data_category,
+        INSERT INTO noti (notification_no, content, created_at, deleted_at, noti_content_no, noti_type, read_state,
+                          data_category,
                           mem_no)
-        VALUES (NEXT VALUE FOR seq_noti, #{content}, default, null, null, #{notiType}, #{dataCategory}, #{memNo})
+        VALUES (NEXT VALUE FOR seq_noti, #{content}, default, null, #{notiContentNo}, #{notiType}, '확인대기',
+                     #{dataCategory}, #{memNo})
     </insert>
 
 </mapper>

@@ -122,7 +122,7 @@ hr {
     border: 1px solid #666565;
 }
 
-.committee-table td{
+.committee-table td {
     cursor: pointer;
 }
 
@@ -240,4 +240,33 @@ hr {
 
 .summary-item:last-child {
     text-align: right;
+}
+
+.info-icon {
+    font-size: 70px;
+    color: #6BC256;
+}
+
+.info-text {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.info-card {
+    height: 100%;
+    width: 100%;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    align-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.selected-row {
+    background-color: #DDDDDD;
+    color: white;
 }

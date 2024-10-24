@@ -1,19 +1,16 @@
 package com.yujigyeongseong.api.domain.research_number.controller;
 
 import com.yujigyeongseong.api.domain.research_number.dto.EvaluationMember;
-import com.yujigyeongseong.api.domain.research_number.dto.Member;
-import com.yujigyeongseong.api.domain.research_number.dto.request.EvalNotiRequest;
-import com.yujigyeongseong.api.domain.research_number.dto.request.MemberDetails;
-import com.yujigyeongseong.api.domain.research_number.dto.request.MemberEvalRequest;
-import com.yujigyeongseong.api.domain.research_number.dto.request.SubmitResearchRequest;
+import com.yujigyeongseong.api.domain.research_number.dto.request.*;
 import com.yujigyeongseong.api.domain.research_number.service.EvalCommitteeService;
 import com.yujigyeongseong.api.domain.research_number.service.EvalComposeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequestMapping("/api/v1/research_number")
 @RestController
@@ -50,13 +47,28 @@ public class EvalCommitteeRestController {
     public ResponseEntity<List<MemberEvalRequest>> getEvaluationMembersByCommittee(@PathVariable Long committeeId) {
         List<EvaluationMember> evaluationMembers = evalComposeService.getEvaluationMembersByCommittee(committeeId);
 
-        List<MemberEvalRequest> membersDetails = evaluationMembers.stream()
-                .map(em -> {
-                    MemberDetails member = evalComposeService.getOneMemberDetailWithInstitution(em.getMemNo());
-                    return new MemberEvalRequest(member, em);
-                })
-                .collect(Collectors.toList());
-
+        List<MemberEvalRequest> membersDetails = new ArrayList<>();
+        for (EvaluationMember em : evaluationMembers) {
+            MemberDetails member = evalComposeService.getOneMemberDetailWithInstitution(em.getMemNo());
+            MemberEvalRequest memberRequest = new MemberEvalRequest(member, em);
+            membersDetails.add(memberRequest);
+        }
         return ResponseEntity.ok(membersDetails);
+    }
+
+    @PostMapping("/update/evalMember/{memberId}/{notiContentNo}")
+    public ResponseEntity<?> setEvaluationMemberByNotiContentNo(@RequestBody EvalMemberRequest evalMemberRequest, @PathVariable Long memberId, @PathVariable Long notiContentNo) {
+
+        evalComposeService.setEvaluationMemberByNotiContentNo(memberId, notiContentNo, evalMemberRequest);
+
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @PostMapping("/update/noti/{notificationNo}")
+    public ResponseEntity<?> setNotiByNotificationNo(@PathVariable Long notificationNo) {
+
+        evalComposeService.setNotiByNotificationNo(notificationNo);
+
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 }

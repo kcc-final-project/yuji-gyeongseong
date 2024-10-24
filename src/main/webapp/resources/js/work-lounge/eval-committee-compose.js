@@ -5,69 +5,104 @@ $(document).ready(function () {
     $(".committee-summary").show();
   });
 
-    // 연구자에게 알림 전송
-    $("#sendButton").click(function() {
-        $("input[name='committee']:checked").each(function() { // 체크된 모든 체크박스를 순회
-            var committeeId = $(this).closest('tr').data('committee-id'); // 해당 체크박스가 속한 행의 data-committee-id 값을 가져옴
-            sendNotificationToCommitteeMembers(committeeId);
-        });
+  // 테이블 평가위원 이름 눌렀을 시
+  $(".committee-table tbody tr").on("click", function () {
+    $(".committee-table tbody tr").removeClass("selected-row");
+    $(this).addClass("selected-row");
+
+    // 연구원 정보 불러오기
+    var committeeId = $(this).data("committee-id");
+    loadResearcherInfo(committeeId);
+  });
+
+  // 연구자에게 알림 전송
+  $("#sendButton").click(function () {
+    alert("알림 전송");
+    $("input[name='committee']:checked").each(function () {
+      var committeeRow = $(this).closest("tr");
+      var committeeId = committeeRow.data("committee-id");
+      var startDate = committeeRow.data("start-date");
+      var endDate = committeeRow.data("end-date");
+      var title = committeeRow.data("title");
+      sendNotificationToCommitteeMembers(
+        committeeId,
+        startDate,
+        endDate,
+        title,
+      );
     });
+  });
 });
 
 // 알림을 받을 위원회 연구원 검색 함수
-function sendNotificationToCommitteeMembers(committeeId) {
-    $.ajax({
-        url: `/api/v1/research_number/researchers/${committeeId}`,
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            data.forEach(function(item) {
-                sendNotification(item.member.memNo);
-            });
-        },
-        error: function(error) {
-            console.error("연구원 검색 실패 : ", error);
-        }
-    });
+function sendNotificationToCommitteeMembers(
+  committeeId,
+  startDate,
+  endDate,
+  title,
+) {
+  $.ajax({
+    url: `/api/v1/research_number/researchers/${committeeId}`,
+    type: "GET",
+    dataType: "json",
+    success: function (data) {
+      data.forEach(function (item) {
+        sendNotification(
+          item.member.memNo,
+          committeeId,
+          startDate,
+          endDate,
+          title,
+        );
+      });
+    },
+    error: function (error) {
+      console.error("연구원 검색 실패 : ", error);
+    },
+  });
 }
 
 // 각 연구원 알림 함수
-function sendNotification(memberId, memberName) {
-    let EvalNotiRequest = {
-        content: "평가할겁니까?!? 으이?!?!?",
-        notiType: "평가위원",
-        dataCategory: "service",
-        memNo: memberId
-    };
+function sendNotification(memberId, committeeId, startDate, endDate, title) {
+  let content = `평가를 진행하시겠습니까 ? <br> 평가명 : ${title} <br> 평가 기간: ${startDate} ~ ${endDate}`;
 
-    $.ajax({
-        url: "/api/v1/research_number/register/eval/" + memberId,
-        type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(EvalNotiRequest),
-        success: function(response) {
-            console.log("알림 전송 성공");
-        },
-        error: function(error) {
-            console.log("알림 전송 실패 : ", error);
-        }
-    });
+  let EvalNotiRequest = {
+    content: content,
+    notiType: "평가위원",
+    dataCategory: "committee",
+    // 평가위원회 번호 보내기
+    notiContentNo: committeeId,
+    memNo: memberId,
+  };
+
+  $.ajax({
+    url: "/api/v1/research_number/register/eval/" + memberId,
+    type: "POST",
+    contentType: "application/json",
+    data: JSON.stringify(EvalNotiRequest),
+    success: function (response) {},
+    error: function (error) {
+      console.log("알림 전송 실패 : ", error);
+    },
+  });
 }
 
 function loadResearcherInfo(committeeId) {
-    $.ajax({
-        url: `/api/v1/research_number/researchers/${committeeId}`,
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            const researcherContainer = document.getElementById('researcherContainer');
-            researcherContainer.innerHTML = '';  // 기존 내용 삭제
+  $.ajax({
+    url: `/api/v1/research_number/researchers/${committeeId}`,
+    type: "GET",
+    dataType: "json",
+    success: function (data) {
+      const researcherContainer = document.getElementById(
+        "researcherContainer",
+      );
+      researcherContainer.innerHTML = ""; // 기존 내용 삭제
 
-            data.forEach(function(item) {
-                const member = item.member;
-                const evaluationMember = item.evaluationMember;
+      data.forEach(function (item) {
+        const member = item.member;
+        const evaluationMember = item.evaluationMember;
 
-                const card = `
+        const card = `
                     <div class="card">
                         <div class="card-row">
                             <span class="card-label">기관명</span>
@@ -88,11 +123,11 @@ function loadResearcherInfo(committeeId) {
                         </div>
                     </div>
                 `;
-                researcherContainer.innerHTML += card;
-            });
-        },
-        error: function(error) {
-            console.error('연구원 불러오기 실패 : :', error);
-        }
-    });
+        researcherContainer.innerHTML += card;
+      });
+    },
+    error: function (error) {
+      console.error("연구원 불러오기 실패 : :", error);
+    },
+  });
 }

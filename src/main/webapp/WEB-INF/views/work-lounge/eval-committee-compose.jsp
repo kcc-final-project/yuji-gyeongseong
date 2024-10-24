@@ -28,7 +28,6 @@
             <div class="setting-text">공모분야명</div>
             <input id="projectName" type="text" value="[${subAnnounce.subAnnUniNo}] ${subAnnounce.subTitle}"
                    readonly/>
-
             <div class="setting-text" style="margin-left: 150px">평가기간</div>
             <input id="evaluationStartDate" class="sedium"
                    value="<fmt:formatDate value='${evalCommittee.evalStartedAt}' pattern='yyyy-MM-dd' />" readonly/>
@@ -89,9 +88,13 @@
 
                         <c:forEach var="committee" items="${committees}">
                             <tr data-committee-id="${committee.evalCommitteeNo}"
-                                onclick="loadResearcherInfo(${committee.evalCommitteeNo})">
+                                data-start-date="<fmt:formatDate value='${evalCommittee.evalStartedAt}' pattern='yyyy-MM-dd'/>"
+                                data-end-date="<fmt:formatDate value='${evalCommittee.evalClosedAt}' pattern='yyyy-MM-dd'/>"
+                                data-title="[${subAnnounce.subAnnUniNo}] ${committee.name}">
                                 <td><input type="checkbox" name="committee" checked/></td>
-                                <td class="subAnnounceName" data-sub-announce-name="[${subAnnounce.subAnnUniNo}] ${committee.name}">[${subAnnounce.subAnnUniNo}] ${committee.name}</td>
+                                <td class="subAnnounceName"
+                                    data-sub-announce-name="[${subAnnounce.subAnnUniNo}] ${committee.name}">
+                                    [${subAnnounce.subAnnUniNo}] ${committee.name}</td>
                                 <td><fmt:formatDate value='${evalCommittee.evalStartedAt}' pattern='yyyy-MM-dd'/></td>
                                 <td><fmt:formatDate value='${evalCommittee.evalClosedAt}' pattern='yyyy-MM-dd'/></td>
                                 <td><span class="status stayed">승인대기</span></td>
@@ -104,9 +107,12 @@
             </div>
         </div>
 
-        <div class="committee-card" id = "researcherContainer">
-            <div class="material-icons-outlined" style="font-size: 70px; color: #6BC256; margin-top: 70px">info</div>
-            <h3>연구원 정보를 확인하려면 평가위원회를 눌러주세요</h3>
+        <div class="committee-card" id="researcherContainer">
+            <div class="info-card">
+                <div class="material-icons-outlined" style="font-size: 70px; color: #6BC256;">info
+                </div>
+                <div class="info-text">연구원 정보를 확인하려면 평가위원회를 눌러주세요</div>
+            </div>
         </div>
     </div>
 

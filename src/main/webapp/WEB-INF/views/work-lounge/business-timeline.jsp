@@ -33,12 +33,11 @@
         <button id="manager" class="filter-button">담당자</button>
     </div>
     <div class="alarms">
-
         <div>
             <c:forEach var="noti" items="${noti_list}">
                 <div class="notification-card" data-category="${noti.dataCategory}">
                     <div class="icon-container">
-                        <span class="material-icons-outlined" style="font-size: 50px">info</span>
+                        <span class="material-icons-outlined" style="font-size: 50px"></span>
                     </div>
                     <div class="notification-content">
                         <p class="notification-title">[${noti.notiType} 알림]</p>
@@ -46,6 +45,31 @@
                     </div>
                     <div class="notification-timestamp"><fmt:formatDate value="${noti.createdAt}"
                                                                         pattern="yyyy-MM-dd HH:mm:ss"/></div>
+
+                        <%--평가위원일 때 버튼 추가--%>
+                    <c:if test="${noti.dataCategory == 'committee'}">
+                        <c:if test="${noti.readState == '확인대기'}">
+
+                            <div id="action-${noti.notificationNo}">
+                                <button type="button" id="approve-${noti.notificationNo}" class="ctm-btn-normal"
+                                        style="width: 100px; display: inline-block;"
+                                        onclick="approveButton(${noti.notificationNo}, ${noti.memNo}, ${noti.notiContentNo})">
+                                    승인
+                                </button>
+                                <button type="button" id="reject-${noti.notificationNo}"
+                                        class="ctm-btn-normal delete-button"
+                                        style="margin-left: 20px; width: 100px; display: inline-block;"
+                                        onclick="approveButton(${noti.notificationNo}, ${noti.memNo}, ${noti.notiContentNo})">
+                                    거부
+                                </button>
+                            </div>
+                        </c:if>
+                        <c:if test="${noti.readState == '확인완료'}">
+                            <span>선택완료</span>
+                        </c:if>
+                    </c:if>
+
+                        <%--그 외 페이지 이동 버튼 추가 예정--%>
                 </div>
             </c:forEach>
         </div>
