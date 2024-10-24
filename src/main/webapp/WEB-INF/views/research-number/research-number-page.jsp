@@ -130,6 +130,8 @@
                             <option value="인문사회계열">인문사회계열</option>
                             <option value="의약계열">의약계열</option>
                             <option value="예술체육계열">예술체육계열</option>
+                            <option value="비즈니스경영계열">비즈니스경영계열</option>
+                            <option value="정보기술계열">정보기술계열</option>
                         </select>
 
                         <select id="majorSubcategory1" name="majorSubcategory" class="form-select-two majorSubcategory"

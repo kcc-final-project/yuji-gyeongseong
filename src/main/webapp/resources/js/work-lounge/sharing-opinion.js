@@ -5,8 +5,6 @@ $(function () {
     var inputFile = $("input[name='uploadFile']");
     var files = inputFile[0].files;
 
-    console.log(files);
-
     for (var i = 0; i < files.length; i++) {
       if (!checkExtension(files[i].name, files[i].size)) {
         return false;
@@ -97,7 +95,6 @@ $(".bigPictureWrapper").on("click", function (e) {
 $(".uploadResult").on("click", "span", function (e) {
   var targetFile = $(this).data("file");
   var type = $(this).data("type");
-  console.log(targetFile);
 
   $.ajax({
     url: "/deleteFile",

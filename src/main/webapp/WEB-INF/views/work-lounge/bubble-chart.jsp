@@ -18,31 +18,42 @@
         }
     </style>
 </head>
-<body>
-<h3 class="mb-3">[기관별 연구 실적]</h3>
-<div id="filters">
-    <label for="year">년도:</label>
-    <select id="year">
-        <option value="2022">2022년</option>
-        <option value="2023">2023년</option>
-    </select>
-    <label for="institution">기관:</label>
-    <select id="institution" onchange="updateChart()">
-        <option value="all">전체</option>
-        <option value="A기관">A기관</option>
-        <option value="B기관">B기관</option>
-    </select>
+<body class="mt-5">
+
+<div class="d-flex align-items-center">
+    <div class="form-group col-md-2 ms-1">
+        <label for="year">년도:</label>
+        <select id="year" class="form-control-sm">
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+        </select>
+    </div>
+    <div class="form-group col-md-2 ms-4">
+        <label for="institution">기관:</label>
+        <select id="institution" class="form-control-sm" onchange="updateChart()">
+            <option value="all">전체</option>
+            <option value="A기관">A기관</option>
+            <option value="B기관">B기관</option>
+        </select>
+    </div>
 </div>
+
 <canvas id="myChart"></canvas>
 
 <template id="institution-template">
-    <div class="info">
-        <h4>기관 정보</h4>
-        <p>기관명: <span class="institution-name"></span></p>
-        <p>사업자등록번호: <span class="business-number"></span></p>
-        <p>기업유형: <span class="type"></span></p>
-        <p>소재지: <span class="location"></span></p>
-        <p>기관구분: <span class="category"></span></p>
+    <div class="info card mb-3">
+        <div class="card-body d-flex">
+            <div class="col-5">
+                <h4 class="card-title ms-5">기관 정보</h4>
+            </div>
+            <div class="col-7">
+                <p class="card-text">기관명: <span class="institution-name"></span></p>
+                <p class="card-text">사업자등록번호: <span class="business-number"></span></p>
+                <p class="card-text">기업유형: <span class="type"></span></p>
+                <p class="card-text">소재지: <span class="location"></span></p>
+                <p class="card-text">기관구분: <span class="category"></span></p>
+            </div>
+        </div>
     </div>
 </template>
 

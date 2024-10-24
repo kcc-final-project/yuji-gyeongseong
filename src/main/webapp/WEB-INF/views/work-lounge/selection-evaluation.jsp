@@ -40,581 +40,67 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="clickable-row">
-                <th class="icon"><i class="arrow down"></i></th>
-                <td class="truncate-text">2024년도 혁신형 소형 모듈원자로 기술개발사업 신규과제
-                    재공고sssssssssssssssssssssssssssssssssssssssssss
-                </td>
-                <th></th>
-                <th></th>
-                <td><span class="badge text-bg-success">심사완료</span></td>
-                <th class="ps-5 pe-5"></th>
-                <th class="ps-5 pe-5"></th>
-            </tr>
-            <tr class="hidden-row" style="font-size: 16px;">
-                <td colspan="7" class="blue" style="padding: 0px">
-                    <table class="table  table-sm text-center" style="background-color: #ffffff !important;">
-                        <thead style="vertical-align: baseline;">
-                        <tr>
-                            <th class="ps-3 pe-3">
-                            </th>
-                            <td class="truncate-text1">[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 구성
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </td>
-                        </tr>
-                        </thead>
-                        <tbody style="vertical-align: baseline;">
-                        <tr>
-                            <td></td>
-                            <td class="truncate-text1">[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 재편성
-                                </button>
-                            </th>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </th>
-                        </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr class="clickable-row">
-                <th class="icon"><i class="arrow down"></i></th>
-                <td>2024년도 혁신형 소형 모듈원자로 기술개발사업 신규과제 재공고</td>
-                <th></th>
-                <th></th>
-                <td><span class="badge text-bg-secondary">심사중</span></td>
-                <th class="ps-5 pe-5"></th>
-                <th class="ps-5 pe-5"></th>
-            </tr>
-            <tr class="hidden-row" style="font-size: 16px;">
-                <td colspan="7" class="blue" style="padding: 0px">
-                    <table class="table  table-sm text-center" style="background-color: #ffffff !important;">
-                        <thead style="vertical-align: baseline;">
-                        <tr>
-                            <th class="ps-3 pe-3"></th>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 구성
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </td>
-                        </tr>
-                        </thead>
-                        <tbody style="vertical-align: baseline;">
-                        <tr>
-                            <td></td>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 재편성
-                                </button>
-                            </th>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </th>
-                        </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr class="clickable-row">
-                <th class="icon"><i class="arrow down"></i></th>
-                <td>2024년도 혁신형 소형 모듈원자로 기술개발사업 신규과제 재공고</td>
-                <th></th>
-                <th></th>
-                <td><span class="badge text-bg-secondary">심사중</span></td>
-                <th class="ps-5 pe-5"></th>
-                <th class="ps-5 pe-5"></th>
-            </tr>
-            <tr class="hidden-row" style="font-size: 16px;">
-                <td colspan="7" class="blue" style="padding: 0px">
-                    <table class="table  table-sm text-center" style="background-color: #ffffff !important;">
-                        <thead style="vertical-align: baseline;">
-                        <tr>
-                            <th class="ps-3 pe-3"></th>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 구성
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </td>
-                        </tr>
-                        </thead>
-                        <tbody style="vertical-align: baseline;">
-                        <tr>
-                            <td></td>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 재편성
-                                </button>
-                            </th>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </th>
-                        </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr class="clickable-row">
-                <th class="icon"><i class="arrow down"></i></th>
-                <td>2024년도 혁신형 소형 모듈원자로 기술개발사업 신규과제 재공고</td>
-                <th></th>
-                <th></th>
-                <td><span class="badge text-bg-secondary">심사중</span></td>
-                <th class="ps-5 pe-5"></th>
-                <th class="ps-5 pe-5"></th>
-            </tr>
-            <tr class="hidden-row" style="font-size: 16px;">
-                <td colspan="7" class="blue" style="padding: 0px">
-                    <table class="table  table-sm text-center" style="background-color: #ffffff !important;">
-                        <thead style="vertical-align: baseline;">
-                        <tr>
-                            <th class="ps-3 pe-3"></th>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 구성
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </td>
-                        </tr>
-                        </thead>
-                        <tbody style="vertical-align: baseline;">
-                        <tr>
-                            <td></td>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 재편성
-                                </button>
-                            </th>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </th>
-                        </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr class="clickable-row">
-                <th class="icon"><i class="arrow down"></i></th>
-                <td>2024년도 혁신형 소형 모듈원자로 기술개발사업 신규과제 재공고</td>
-                <th></th>
-                <th></th>
-                <td><span class="badge text-bg-secondary">심사중</span></td>
-                <th class="ps-5 pe-5"></th>
-                <th class="ps-5 pe-5"></th>
-            </tr>
-            <tr class="hidden-row" style="font-size: 16px;">
-                <td colspan="7" class="blue" style="padding: 0px">
-                    <table class="table  table-sm text-center" style="background-color: #ffffff !important;">
-                        <thead style="vertical-align: baseline;">
-                        <tr>
-                            <th class="ps-3 pe-3"></th>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 구성
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </td>
-                        </tr>
-                        </thead>
-                        <tbody style="vertical-align: baseline;">
-                        <tr>
-                            <td></td>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 재편성
-                                </button>
-                            </th>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </th>
-                        </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr class="clickable-row">
-                <th class="icon"><i class="arrow down"></i></th>
-                <td>2024년도 혁신형 소형 모듈원자로 기술개발사업 신규과제 재공고</td>
-                <th></th>
-                <th></th>
-                <td><span class="badge text-bg-secondary">심사중</span></td>
-                <th class="ps-5 pe-5"></th>
-                <th class="ps-5 pe-5"></th>
-            </tr>
-            <tr class="hidden-row" style="font-size: 16px;">
-                <td colspan="7" class="blue" style="padding: 0px">
-                    <table class="table  table-sm text-center" style="background-color: #ffffff !important;">
-                        <thead style="vertical-align: baseline;">
-                        <tr>
-                            <th class="ps-3 pe-3"></th>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 구성
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </td>
-                        </tr>
-                        </thead>
-                        <tbody style="vertical-align: baseline;">
-                        <tr>
-                            <td></td>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 재편성
-                                </button>
-                            </th>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </th>
-                        </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr class="clickable-row">
-                <th class="icon"><i class="arrow down"></i></th>
-                <td>2024년도 혁신형 소형 모듈원자로 기술개발사업 신규과제 재공고1</td>
-                <th></th>
-                <th></th>
-                <td><span class="badge text-bg-secondary">심사중</span></td>
-                <th class="ps-5 pe-5"></th>
-                <th class="ps-5 pe-5"></th>
-            </tr>
-            <tr class="hidden-row" style="font-size: 16px;">
-                <td colspan="7" class="blue" style="padding: 0px">
-                    <table class="table  table-sm text-center" style="background-color: #ffffff !important;">
-                        <thead style="vertical-align: baseline;">
-                        <tr>
-                            <th class="ps-3 pe-3"></th>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 구성
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </td>
-                        </tr>
-                        </thead>
-                        <tbody style="vertical-align: baseline;">
-                        <tr>
-                            <td></td>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 재편성
-                                </button>
-                            </th>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </th>
-                        </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr class="clickable-row">
-                <th class="icon"><i class="arrow down"></i></th>
-                <td>2024년도 혁신형 소형 모듈원자로 기술개발사업 신규과제 재공고1</td>
-                <th></th>
-                <th></th>
-                <td><span class="badge text-bg-success">심사완료</span></td>
-                <th class="ps-5 pe-5"></th>
-                <th class="ps-5 pe-5"></th>
-            </tr>
-            <tr class="hidden-row" style="font-size: 16px;">
-                <td colspan="7" class="blue" style="padding: 0px">
-                    <table class="table  table-sm text-center" style="background-color: #ffffff !important;">
-                        <thead style="vertical-align: baseline;">
-                        <tr>
-                            <th class="ps-3 pe-3"></th>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 구성
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </td>
-                        </tr>
-                        </thead>
-                        <tbody style="vertical-align: baseline;">
-                        <tr>
-                            <td></td>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 재편성
-                                </button>
-                            </th>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </th>
-                        </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-            <tr class="clickable-row">
-                <th class="icon"><i class="arrow down"></i></th>
-                <td>2024년도 혁신형 소형 모듈원자로 기술개발사업 신규과제 재공고1</td>
-                <th></th>
-                <th></th>
-                <td><span class="badge text-bg-success">심사완료</span></td>
-                <th class="ps-5 pe-5"></th>
-                <th class="ps-5 pe-5"></th>
-            </tr>
-            <tr class="hidden-row" style="font-size: 16px;">
-                <td colspan="7" class="blue" style="padding: 0px">
-                    <table class="table  table-sm text-center" style="background-color: #ffffff !important;">
-                        <thead style="vertical-align: baseline;">
-                        <tr>
-                            <th class="ps-3 pe-3"></th>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 구성
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </td>
-                        </tr>
-                        </thead>
-                        <tbody style="vertical-align: baseline;">
-                        <tr>
-                            <td></td>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 재편성
-                                </button>
-                            </th>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </th>
-                        </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-
-            <tr class="clickable-row">
-                <th class="icon"><i class="arrow down"></i></th>
-                <td>2024년도 혁신형 소형 모듈원자로 기술개발사업 신규과제 재공고1</td>
-                <th></th>
-                <th></th>
-                <td><span class="badge text-bg-secondary">심사중</span></td>
-                <th class="ps-5 pe-5"></th>
-                <th class="ps-5 pe-5"></th>
-            </tr>
-            <tr class="hidden-row" style="font-size: 16px;">
-                <td colspan="7" class="blue" style="padding: 0px">
-                    <table class="table  table-sm text-center" style="background-color: #ffffff !important;">
-                        <thead style="vertical-align: baseline;">
-                        <tr>
-                            <th class="ps-3 pe-3"></th>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 구성
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </td>
-                        </tr>
-                        </thead>
-                        <tbody style="vertical-align: baseline;">
-                        <tr>
-                            <td></td>
-                            <td>[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
-                            <td>2024-10-15</td>
-                            <td>2024-10-18</td>
-                            <td><span class="badge text-bg-secondary">선정평가대기</span></td>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    위원 재편성
-                                </button>
-                            </th>
-                            <th>
-                                <button type="button" class="btn btn-back-orange"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                    선정평가
-                                </button>
-                            </th>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
+            <c:forEach items="${selectEvaluationList}" var="selectEvaluation" varStatus="status">
+                <tr class="clickable-row">
+                    <th class="icon"><i class="arrow down"></i></th>
+                    <td class="truncate-text"><c:out value="${selectEvaluation.totalTitle}"/></td>
+                    <th></th>
+                    <th></th>
+                    <td><span class="badge text-bg-success"><c:out value="${selectEvaluation.evalStatus}"/></span></td>
+                    <th class="ps-5 pe-5"></th>
+                    <th class="ps-5 pe-5"></th>
+                </tr>
+                <tr class="hidden-row" style="font-size: 16px;">
+                    <td colspan="7" class="blue" style="padding: 0px">
+                        <table class="table  table-sm text-center" style="background-color: #ffffff !important;">
+                            <thead style="vertical-align: baseline;">
+                            <tr>
+                                <th class="ps-3 pe-3">
+                                </th>
+                                <td class="truncate-text1"><c:out value="${selectEvaluation.subTitle}"/></td>
+                                <td><c:out value="${selectEvaluation.closedAt}"/></td>
+                                <td><c:out value="${selectEvaluation.finalSelectedAt}"/></td>
+                                <td><span class="badge text-bg-secondary"><c:out
+                                        value="${selectEvaluation.evalStatus}"/></span></td>
+                                <td>
+                                    <button type="button" class="btn btn-back-orange"
+                                            onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
+                                        위원 구성
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-back-orange"
+                                            onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
+                                        선정평가
+                                    </button>
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody style="vertical-align: baseline;">
+                            <tr>
+                                <td></td>
+                                <td class="truncate-text1">[2024-RM-03-총괄] 경수형 SMR 사고해석 및 핵 설계 규제검증 기반기술 개발</td>
+                                <td>2024-10-15</td>
+                                <td>2024-10-18</td>
+                                <td><span class="badge text-bg-secondary">선정평가대기</span></td>
+                                <th>
+                                    <button type="button" class="btn btn-back-orange"
+                                            onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
+                                        위원 재편성
+                                    </button>
+                                </th>
+                                <th>
+                                    <button type="button" class="btn btn-back-orange"
+                                            onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
+                                        선정평가
+                                    </button>
+                                </th>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </c:forEach>
             </tbody>
         </table>
     </div>
