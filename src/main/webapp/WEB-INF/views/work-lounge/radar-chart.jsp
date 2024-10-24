@@ -14,35 +14,40 @@
         }
     </style>
 </head>
-<body>
-<h3 class="mb-3">[기관규모]</h3>
-<div id="filters">
-    <label for="year">년도:</label>
-    <select id="year">
-        <option value="2022">2022</option>
-        <option value="2023">2023</option>
-    </select>
-
-    <label for="institution1">기관명:</label>
-    <select id="institution1">
-        <option value="A">주관연구기관A</option>
-        <option value="B">주관연구기관B</option>
-    </select>
-
-    <label for="institution2">기관명:</label>
-    <select id="institution2">
-        <option value="A">주관연구기관A</option>
-        <option value="B">주관연구기관B</option>
-    </select>
-
-    <label for="quarter">분기:</label>
-    <select id="quarter">
-        <option value="Q1">1분기</option>
-        <option value="Q2">2분기</option>
-        <option value="Q3">3분기</option>
-        <option value="Q4">4분기</option>
-    </select>
+<body class="mt-5">
+<div class="d-flex align-items-center">
+    <div class="form-group col-md-2 ms-1">
+        <label for="year">년도:</label>
+        <select id="year" class="form-control-sm">
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+        </select>
+    </div>
+    <div class="form-group col-md-2 ms-4">
+        <label for="institution1">기관A:</label>
+        <select id="institution1" class="form-control-sm">
+            <option value="A">기상청</option>
+            <option value="B">한국수자원공사</option>
+        </select>
+    </div>
+    <div class="form-group col-md-2 ms-4">
+        <label for="institution2">기관B:</label>
+        <select id="institution2" class="form-control-sm">
+            <option value="A">기상청</option>
+            <option value="B">한국수자원공사</option>
+        </select>
+    </div>
+    <div class="form-group col-md-2 ms-4">
+        <label for="quarter">분기:</label>
+        <select id="quarter" class="form-control-sm">
+            <option value="Q1">1분기</option>
+            <option value="Q2">2분기</option>
+            <option value="Q3">3분기</option>
+            <option value="Q4">4분기</option>
+        </select>
+    </div>
 </div>
+
 <div class="d-flex justify-content-end align-items-center">
     <p class="me-4">[단위: 천]</p>
 </div>
