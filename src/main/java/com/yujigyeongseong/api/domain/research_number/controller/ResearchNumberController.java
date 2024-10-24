@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RequestMapping("/research_number")
@@ -56,14 +55,14 @@ public class ResearchNumberController {
     @GetMapping("/work-lounge/eval-compose/{id}")
     public String getEvalCompose(@PathVariable Long id, Model model) {
 
-        SubAnnouncement subAnnouncement = evalComposeService.getSubAnnounceById(id);
+        SubAnnounce subAnnounce = evalComposeService.getSubAnnounceById(id);
         EvalCommittee evalCommittee = evalComposeService.getOneEvalCommitteeById(id);
         List<EvalCommittee> evalCommittees = evalComposeService.getAllEvalCommitteeById(id);
         int rndPlanCnt = evalComposeService.getRndPlanCntById(id);
         Long subAnnounceId = id;
 
 
-        model.addAttribute("subAnnouncement", subAnnouncement);
+        model.addAttribute("subAnnounce", subAnnounce);
         model.addAttribute("evalCommittee", evalCommittee);
         model.addAttribute("committees", evalCommittees);
         model.addAttribute("rndPlanCnt", rndPlanCnt);

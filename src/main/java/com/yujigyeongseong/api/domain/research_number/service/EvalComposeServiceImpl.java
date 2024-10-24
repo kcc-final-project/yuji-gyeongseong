@@ -1,11 +1,8 @@
 package com.yujigyeongseong.api.domain.research_number.service;
 
-import com.yujigyeongseong.api.domain.research_number.dao.EvalCommitteeMapper;
 import com.yujigyeongseong.api.domain.research_number.dao.EvalComposeMapper;
 import com.yujigyeongseong.api.domain.research_number.dto.*;
-import com.yujigyeongseong.api.domain.research_number.dto.request.AcadRequest;
-import com.yujigyeongseong.api.domain.research_number.dto.request.CareerRequest;
-import com.yujigyeongseong.api.domain.research_number.dto.request.EvalNotiRequest;
+import com.yujigyeongseong.api.domain.research_number.dto.request.EvalMemberRequest;
 import com.yujigyeongseong.api.domain.research_number.dto.request.MemberDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +16,7 @@ public class EvalComposeServiceImpl implements EvalComposeService {
     private final EvalComposeMapper evalComposeMapper;
 
     @Override
-    public SubAnnouncement getSubAnnounceById(Long id) {
+    public SubAnnounce getSubAnnounceById(Long id) {
         return evalComposeMapper.selectSubAnnounceById(id);
     }
 
@@ -52,6 +49,16 @@ public class EvalComposeServiceImpl implements EvalComposeService {
     @Override
     public MemberDetails getOneMemberDetailWithInstitution(Long id) {
         return evalComposeMapper.selectOneMemberDetailWithInstitution(id);
+    }
+
+    @Override
+    public int setEvaluationMemberByNotiContentNo(Long memberId, Long notiContentNo, EvalMemberRequest evalMemberRequest) {
+        return evalComposeMapper.udpateEvaluationMemberByNotiContentNo(memberId, notiContentNo, evalMemberRequest);
+    }
+
+    @Override
+    public int setNotiByNotificationNo(Long notificationNo) {
+        return evalComposeMapper.updateNotiByNotificationNo(notificationNo);
     }
 
 }
