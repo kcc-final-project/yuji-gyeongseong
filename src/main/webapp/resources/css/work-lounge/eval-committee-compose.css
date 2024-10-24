@@ -1,5 +1,5 @@
 .common-main {
-    width: 1600px;
+    width: 95%;
     margin: auto;
     margin-top: 20px;
 }
@@ -64,7 +64,7 @@ hr {
 .committee-setting input {
     border-radius: 5px;
     border: none;
-    background-color: #dddddd;
+    background-color: #B9B9B9;
     width: 800px;
     align-content: center;
     text-align: center;
@@ -82,11 +82,6 @@ hr {
     background-color: #ffffff !important;
 }
 
-.sedium {
-    width: 150px !important;
-    background-color: #dddddd !important;
-}
-
 .committee-info {
     display: flex;
 }
@@ -100,10 +95,6 @@ hr {
     height: 100%;
     width: 45%;
     border: 1px solid #666565;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: flex-start;
 }
 
 .table-container {
@@ -120,10 +111,6 @@ hr {
     padding: 15px;
     text-align: center;
     border: 1px solid #666565;
-}
-
-.committee-table td {
-    cursor: pointer;
 }
 
 .committee-table thead {
@@ -155,19 +142,17 @@ hr {
     background-color: #ffffff;
 }
 
-.status.stayed {
-    color: #AAAAAA;
-    border: 1px solid #AAAAAA;
-    background-color: #ffffff;
+.card {
+    padding: 15px;
+    margin: 10px 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.card {
-    flex: 0 0 48%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-top: 10px;
-    padding: 15px;
-    background-color: #ffffff;
-    border-radius: 8px;
+.card-part {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
 }
 
 .card-row {
@@ -240,33 +225,4 @@ hr {
 
 .summary-item:last-child {
     text-align: right;
-}
-
-.info-icon {
-    font-size: 70px;
-    color: #6BC256;
-}
-
-.info-text {
-    color: #333;
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0;
-}
-
-.info-card {
-    height: 100%;
-    width: 100%;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    align-content: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.selected-row {
-    background-color: #DDDDDD;
-    color: white;
 }

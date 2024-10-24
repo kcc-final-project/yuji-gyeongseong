@@ -1076,4 +1076,3 @@ VALUES (NEXT VALUE FOR seq_rnd_plan, 'RTN-0010', 'Task-10', 'Institution-1', 4, 
              'Final target content for plan 9', 'Research and Development content for plan 9',
              'Performance content for plan 9', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, NULL);
 
-
