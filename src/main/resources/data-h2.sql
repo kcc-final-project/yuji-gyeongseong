@@ -39,22 +39,22 @@ create sequence seq_announcement START WITH 1 INCREMENT BY 1 NOCYCLE;
 
 create table announcement
 (
-    ann_no             number(10,0) not null,
-    total_ann_no       varchar2(100) not null,
-    total_title        varchar2(255) not null,
-    content            CLOB not null,
-    competent_ministry varchar2(255) not null,
-    spec_institution   varchar2(100) not null,
+    ann_no              number(10,0) not null,
+    total_ann_no        varchar2(100) not null,
+    total_title         varchar2(255) not null,
+    content             CLOB not null,
+    competent_ministry  varchar2(255) not null,
+    spec_institution    varchar2(100) not null,
     ann_tech_field_name varchar2(20) not null,
-    ann_type           varchar2(50) not null,
-    sub_ann_count      number(2,0) not null,
-    reception_type     varchar2(50) not null,
-    status             varchar2(20) not null,
-    started_at         timestamp default current_timestamp,
-    closed_at          timestamp default current_timestamp,
-    created_at         timestamp default current_timestamp,
-    updated_at         timestamp default current_timestamp,
-    bucket_no          number(10,0)  not null,
+    ann_type            varchar2(50) not null,
+    sub_ann_count       number(2,0) not null,
+    reception_type      varchar2(50) not null,
+    status              varchar2(20) not null,
+    started_at          timestamp default current_timestamp,
+    closed_at           timestamp default current_timestamp,
+    created_at          timestamp default current_timestamp,
+    updated_at          timestamp default current_timestamp,
+    bucket_no           number(10,0)  not null,
     constraint fk_announcement_bucket_no foreign key (bucket_no) references bucket (bucket_no)
 );
 
@@ -524,7 +524,7 @@ create table evaluation_member
     recv_start_at     timestamp default current_timestamp,
     recv_close_at     timestamp default current_timestamp,
     recv_status       varchar2(20) not null,
-    recv_status_eng       varchar2(20) not null,
+    recv_status_eng   varchar2(20) not null,
     constraint pk_eval_member primary key (eval_committee_no, mem_no),
     constraint fk_eval_member_eval_no foreign key (eval_committee_no) references eval_committee (eval_committee_no),
     constraint fk_eval_member_mem_no foreign key (mem_no) references member (mem_no)
@@ -559,6 +559,7 @@ create table noti
     deleted_at      timestamp default null,
     noti_content_no number(10,0) null,
     noti_type       varchar2(25) null,
+    read_state      varchar2(25) not null,
     data_category   varchar2(25) not null,
     mem_no          number(10,0) not null,
     constraint fk_noti_mno foreign key (mem_no) references member (mem_no)
@@ -598,35 +599,73 @@ ALTER TABLE opinion
             REFERENCES opinion (opinion_no);
 
 -- 더미 예제
-
+-- 교육기관 (20개)
 INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
-VALUES (NEXT VALUE FOR seq_institution, '서울대학교', '123-45-67890', '서울특별시 관악구 관악로', '대학교', '교육기관');
+VALUES (NEXT VALUE FOR seq_institution, '서울대학교', '123-45-67890', '서울특별시 관악구 관악로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '연세대학교', '234-56-78901', '서울특별시 서대문구 연세로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '고려대학교', '345-67-89012', '서울특별시 성북구 안암로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '부산대학교', '456-78-90123', '부산광역시 금정구 부산대학로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '성균관대학교', '567-89-01234', '서울특별시 종로구 성균관로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '경희대학교', '678-90-12345', '서울특별시 동대문구 경희대로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '중앙대학교', '789-01-23456', '서울특별시 동작구 흑석로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '서강대학교', '890-12-34567', '서울특별시 마포구 서강로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '이화여자대학교', '901-23-45678', '서울특별시 서대문구 이화여대길', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '한국외국어대학교', '012-34-56789', '서울특별시 동대문구 이문로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '서울과학기술대학교', '123-45-67891', '서울특별시 노원구 공릉로', '대학(4년미만)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '충남대학교', '234-56-78912', '대전광역시 유성구 대학로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '전남대학교', '345-67-89023', '광주광역시 북구 용봉로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '제주대학교', '456-78-90134', '제주특별자치도 제주시 제주대학로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '서울예술대학교', '567-89-01245', '경기도 안산시 단원구 예술대학로', '대학(4년미만)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '대전고등학교', '678-90-12356', '대전광역시 중구 문화로', '초중고교', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '부산여자중학교', '789-01-23467', '부산광역시 수영구 무학로', '초중고교', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '서울고등학교', '890-12-34578', '서울특별시 강남구 도산대로', '초중고교', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '부산외국어대학교', '901-23-45689', '부산광역시 금정구 부산외대길', '외국대학', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '외국대학교', '012-34-56790', '서울특별시 중구 퇴계로', '외국대학', '교육기관');
 
+-- 산업체 (20개)
 INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
-VALUES (NEXT VALUE FOR seq_institution, '고려대학교', '234-56-78901', '서울특별시 성북구 안암로', '대학교', '교육기관');
-
+VALUES (NEXT VALUE FOR seq_institution, '삼성전자', '111-11-11111', '서울특별시 강남구 테헤란로', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '현대자동차', '222-22-22222', '서울특별시 서초구 헌릉로', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, 'LG전자', '333-33-33333', '서울특별시 강서구 마곡동', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, 'SK하이닉스', '444-44-44444', '경기도 이천시 부발읍', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '포스코', '555-55-55555', '경상북도 포항시 남구', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '현대중공업', '666-66-66666', '울산광역시 동구 방어진순환도로', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, 'KT', '777-77-77777', '서울특별시 종로구 종로', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '한화그룹', '888-88-88888', '서울특별시 중구 청계천로', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '네이버', '999-99-99999', '경기도 성남시 분당구 불정로', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '카카오', '000-00-00000', '경기도 성남시 분당구 판교로', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '코오롱', '111-22-33333', '서울특별시 강서구 마곡동', '중견기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '한전KPS', '222-33-44444', '전라남도 나주시 빛가람동', '공기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '두산중공업', '333-44-55555', '경상남도 창원시 성산구', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '오뚜기', '444-55-66666', '서울특별시 용산구 한강대로', '중견기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '대상', '555-66-77777', '서울특별시 동작구 상도동', '중견기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '남양유업', '666-77-88888', '서울특별시 강남구 테헤란로', '중견기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '삼양사', '777-88-99999', '서울특별시 중구 충무로', '중견기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, 'LG화학', '888-99-00000', '서울특별시 영등포구 여의도동', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '한미약품', '999-00-11111', '경기도 화성시 향남읍', '중견기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '대한항공', '000-11-22222', '서울특별시 강서구 방화동', '대기업', '산업체');
+-- 연구기관 (20개)
 INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
-VALUES (NEXT VALUE FOR seq_institution, '연세대학교', '345-67-89012', '서울특별시 서대문구 연세로', '대학교', '교육기관');
-
--- 산업체 데이터 추가
-INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
-VALUES (NEXT VALUE FOR seq_institution, '삼성전자', '456-78-90123', '경기도 수원시 영통구 삼성로', '기업', '산업체');
-
-INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
-VALUES (NEXT VALUE FOR seq_institution, 'LG전자', '567-89-01234', '서울특별시 영등포구 여의대로', '기업', '산업체');
-
-INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
-VALUES (NEXT VALUE FOR seq_institution, 'SK하이닉스', '678-90-12345', '경기도 이천시 부발읍 경충대로', '기업', '산업체');
-
--- 연구기관 데이터 추가
-INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
-VALUES (NEXT VALUE FOR seq_institution, '한국과학기술연구원', '789-01-23456', '대전광역시 유성구 과학로', '연구소', '연구기관');
-
-INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
-VALUES (NEXT VALUE FOR seq_institution, '한국전자통신연구원', '890-12-34567', '대전광역시 유성구 가정로', '연구소', '연구기관');
-
-INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
-VALUES (NEXT VALUE FOR seq_institution, '한국기초과학지원연구원', '901-23-45678', '대전광역시 유성구 과학로', '연구소', '연구기관');
+VALUES (NEXT VALUE FOR seq_institution, '한국전자통신연구원', '222-33-44455', '대전광역시 유성구 가정북로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국생명공학연구원', '333-44-55566', '대전광역시 유성구 과학로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국항공우주연구원', '444-55-66677', '대전광역시 유성구 과학로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국원자력연구원', '555-66-77788', '대전광역시 유성구 대덕대로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국기계연구원', '666-77-88899', '대전광역시 유성구 가정로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국화학연구원', '777-88-99900', '대전광역시 유성구 대학로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국에너지기술연구원', '888-99-00011', '대전광역시 유성구 가정로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국표준과학연구원', '999-00-11122', '대전광역시 유성구 연구원로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국지질자원연구원', '000-11-22233', '대전광역시 유성구 과학로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국건설기술연구원', '111-22-33344', '경기도 고양시 일산서구 고봉로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국교통연구원', '222-33-44455', '세종특별자치시 시청대로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국해양과학기술원', '333-44-55566', '부산광역시 영도구 태종로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국천문연구원', '444-55-66677', '대전광역시 유성구 대덕대로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국전력연구원', '555-66-77788', '대전광역시 유성구 유성대로', '공기업', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '국방과학연구소', '666-77-88899', '대전광역시 유성구 자운로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '서울시립과학기술연구원', '777-88-99900', '서울특별시 마포구 성산로', '지자체출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '경기도경제과학진흥원', '888-99-00011', '경기도 수원시 영통구 광교로', '지자체출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '부산테크노파크', '999-00-11122', '부산광역시 해운대구 센텀동로', '지자체출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '대구테크노파크', '000-11-22233', '대구광역시 동구 동대구로', '지자체출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '광주과학기술원', '111-22-33344', '광주광역시 북구 첨단과기로', '정부출연연', '연구기관');
 
 INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
                     affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
@@ -942,13 +981,13 @@ VALUES (1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
 INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
 VALUES (1, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
 INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (1, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '미승인', 'not-approved');
+VALUES (1, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
 INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
 VALUES (1, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
 INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
 VALUES (1, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
 INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (1, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인완료', 'approved');
+VALUES (1, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
 INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
 VALUES (2, 7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
 INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
@@ -1037,11 +1076,4 @@ VALUES (NEXT VALUE FOR seq_rnd_plan, 'RTN-0010', 'Task-10', 'Institution-1', 4, 
              'Final target content for plan 9', 'Research and Development content for plan 9',
              'Performance content for plan 9', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, NULL);
 
-INSERT INTO noti (notification_no, content, created_at, deleted_at, noti_content_no, noti_type, data_category, mem_no)
-VALUES (NEXT VALUE FOR seq_noti, '윤채원님의 연구자 번호가 발급되었습니다.',
-             default, null, null, '연구자', 'service', 1);
-
-INSERT INTO noti (notification_no, content, created_at, deleted_at, noti_content_no, noti_type, data_category, mem_no)
-VALUES (NEXT VALUE FOR seq_noti, '윤채원님의 계획서가 최종 제출 되었습니다.',
-             default, null, null, '계획서', 'service', 1);
 
