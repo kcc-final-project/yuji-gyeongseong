@@ -21,40 +21,18 @@ $(document).ready(function () {
     });
   });
 
-  $.ajax({
-    url: "/api/notifications",
-    type: "GET",
-    dataType: "json",
-    success: function (data) {
-      let alarmsContainer = $(".alarms");
-      // alarmsContainer.empty(); // 기존 알림 삭제 선택
+  $(".notification-card").each(function () {
+    var category = $(this).data("category");
 
-      data.forEach((notification) => {
-        let notificationCard = `
-                    <div class="notification-card" data-category="${notification.category}">
-                        <div class="icon-container">
-                            <span class="material-icons-outlined" style="font-size: 50px">info</span>
-                        </div>
-                        <div class="notification-content">
-                            <p class="notification-title">[${notification.category} 알림]</p>
-                            <p class="notification-description">${notification.description}</p>
-                        </div>
-                        <div class="notification-timestamp">${notification.timestamp}</div>`;
-
-        if (notification.actionUrl) {
-          notificationCard += `
-                        <div class="button-alarm">
-                            <button class="reject-button" onclick="window.location.href='${notification.actionUrl}'">상세보기</button>
-                        </div>`;
-        }
-
-        notificationCard += `</div>`;
-        alarmsContainer.append(notificationCard);
-      });
-    },
-    error: function (error) {
-      console.log("알림 오류 발생", error);
-    },
+    if (category === "service") {
+      $(this).find(".icon-container span").text("notifications");
+    } else if (category === "committee") {
+      $(this).find(".icon-container span").text("diversity_3");
+    } else if (category === "manager") {
+      $(this).find(".icon-container span").text("person_outline");
+    } else {
+      $(this).find(".icon-container span").text("info");
+    }
   });
 
   $(".filter-button").on("click", function () {
@@ -78,3 +56,59 @@ $(document).ready(function () {
     });
   });
 });
+
+function approveButton(notificationNo, memNo, notiContentNo) {
+  let evalMemberRequest;
+
+  if (event.target.innerText === "승인") {
+    alert("평가 제안 승인");
+    evalMemberRequest = {
+      recvStatus: "승인완료",
+      recvStatusEng: "approved",
+    };
+  } else {
+    alert("평가 제안 거부");
+    evalMemberRequest = {
+      recvStatus: "미승인",
+      recvStatusEng: "not-approved",
+    };
+  }
+
+  // 평가위원 승인/거부 상태 저장
+  $.ajax({
+    url:
+      "/api/v1/research_number/update/evalMember/" +
+      memNo +
+      "/" +
+      notiContentNo,
+    type: "POST",
+    contentType: "application/json",
+    data: JSON.stringify(evalMemberRequest),
+    success: function (response) {
+    },
+    error: function (error) {
+      console.log("알림 전송 실패 : ", error);
+    },
+  });
+
+  // 알림 읽음 상태 변경
+  $.ajax({
+    url: "/api/v1/research_number/update/noti/" + notificationNo,
+    type: "POST",
+    contentType: "application/json",
+    success: function (response) {
+    },
+    error: function (error) {
+      console.log("알림 상태 변경 실패 : ", error);
+    },
+  });
+
+  // 버튼 선택 후 텍스트로 변환
+  document.getElementById(`action-${notificationNo}`).style.display = "none";
+
+  const selectedText = document.createElement("span");
+  selectedText.innerText = "선택완료";
+  document
+    .getElementById(`action-${notificationNo}`)
+    .parentNode.appendChild(selectedText);
+}

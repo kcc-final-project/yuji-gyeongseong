@@ -1,10 +1,11 @@
 package com.yujigyeongseong.api.domain.research_number.dto;
+
 import lombok.*;
 
 @RequiredArgsConstructor
 @Getter
 
-public class SubAnnouncement {
+public class SubAnnounce {
     private final Long subAnnNo;
     private final String subAnnUniNo;
     private final String subTitle;
