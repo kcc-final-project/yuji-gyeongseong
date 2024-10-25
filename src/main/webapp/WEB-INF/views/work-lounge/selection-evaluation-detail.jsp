@@ -13,53 +13,59 @@
             rel="stylesheet"
             href="/resources/css/work-lounge/selection-evaluation-detail.css"
     />
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
+    />
 </head>
 <body>
-<div class="common-header">
-    <div class="container d-flex h-100 pe-0">
-        <div
-                class="row row-cols-2 justify-content-between align-items-center w-100"
-        >
-            <div class="col-3 d-flex align-items-center ps-5 h-100"></div>
-            <div class="col-3 d-flex align-items-center ps-5 h-100">
-                <h2><b>선정평가</b></h2>
-            </div>
-            <div class="col-3 d-flex align-items-center ps-5 h-100"></div>
-        </div>
-    </div>
-</div>
-<div class="common-main">
+<div class="common-main" style="margin-top: 50px;">
+    <h2 class="text-center">선정평가</h2>
     <div class="container pt-3">
         <div style="max-height: 320px; overflow-y: auto">
 
             <table class="table table-bordered text-center table-hover">
                 <thead>
                 <tr class="domain" style="font-size: 15px">
-                    <td class="col-1 align-middle">평가상태</td>
-                    <td class="col-1 align-middle">
-                        <span class="badge text-bg-secondary black"
-                              style="background-color: #b9b9b9 !important;">선정평가대기</span>
+                    <td class="col-1">
+                        <h5>
+                            <span class="pt-1 pb-1 badge text-bg-secondary black"
+                                  style="background-color: #b9b9b9 !important;">
+                                선정평가대기
+                            </span>
+                        </h5>
                     </td>
-                    <td class="col-5 align-middle">
+                    <td class="col-5 align-middle" colspan="2">
                         <div class="d-flex justify-content-center align-items-center">
-                            공모분야명
-                            <div class="border d-inline-block align-middle p-2 ms-2 black truncate-text"
-                                 style="border: 1px solid black !important; border-radius: 3px; background-color: #b9b9b9;">
-                                [2024-RM-03-총괄] 경수형 SMR 사고해석 및 사고회로가나다라마바사
-                            </div>
+                            <span class="me-2 w-25">공모분야명</span>
+                            <input class="border d-inline-block form-control form-control-sm align-middle p-2 truncate-text"
+                                   style="border: 1px solid black; border-radius: 3px; background-color: #b9b9b9;"
+                                   value="[2024-RM-03-총괄] 경수형 SMR 사고해석 및 사고회로가나다라마바사" disabled readonly>
                         </div>
+
                     </td>
                     <td class="col-4 align-middle" colspan="3">
                         <div class="input-group w-100">
                             <div class="d-flex justify-content-center align-items-center">
-                                최종선정 기간
-                                <div class="input-group ms-2" style="width: 72%">
-                                    <input type="text" class="form-control date-input" id="startDate"
-                                           placeholder="시작일"/>
+                                <span class="w-25">최종선정기간</span>
+                                <div class="input-group w-75">
+
+                                    <input
+                                            type="text"
+                                            class="form-control date-input"
+                                            id="startDate"
+                                            placeholder="시작일"
+                                    />
                                     <div class="input-group-append">
                                         <span class="input-group-text">~</span>
                                     </div>
-                                    <input type="text" class="form-control date-input" id="endDate" placeholder="종료일"/>
+                                    <input
+                                            type="text"
+                                            class="form-control date-input"
+                                            id="endDate"
+                                            placeholder="종료일"
+                                    />
+
                                 </div>
                             </div>
                         </div>
@@ -192,30 +198,49 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-6" style="max-height: 570px; overflow-y: auto">
+            <div class="col-5 p-2" style="max-height: 600px; overflow-y: auto">
                 <div class="d-flex align-items-center">
                     <div id="committeeList"></div>
                 </div>
 
             </div>
-            <div class="col-6">
-                <canvas id="deviationChart" class="mt-5" width="400" height="300"></canvas>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <hr>
-            <div class="col-6" style="padding: 0px;">
-                <div class="d-flex align-items-center">
-                    <iframe src="http://localhost:8082/work-lounge/radar-chart" width="100%" height="690px"></iframe>
+            <div class="col-7 mt-2">
+                <select class="form-select" aria-label="Default select example" id="chartSelector"
+                        onchange="showChart(this.value)">
+                    <option value="deviation">[연구계획서 점수 분석]</option>
+                    <option value="radar">[기관 규모]</option>
+                    <option value="bubble">[기관별 연구 실적]</option>
+                </select>
+
+                <div id="deviation" class="chart-container">
+                    <canvas id="deviationChart" class="mt-5" width="400" height="300"></canvas>
                 </div>
-            </div>
-            <div class="col-6">
-                <iframe src="http://localhost:8082/work-lounge/bubble-chart" width="100%" height="690px"></iframe>
+
+                <div id="radar" class="chart-container">
+                    <iframe src="http://localhost:8082/work-lounge/radar-chart" width="100%" height="745px"></iframe>
+                </div>
+
+                <div id="bubble" class="chart-container">
+                    <iframe src="http://localhost:8082/work-lounge/bubble-chart" width="100%" height="650px"></iframe>
+                </div>
+
+                <script>
+                    function showChart(chartId) {
+                        document.querySelectorAll('.chart-container').forEach(chart => {
+                            chart.classList.remove('active');
+                        });
+                        document.getElementById(chartId).classList.add('active');
+                    }
+
+                    document.addEventListener("DOMContentLoaded", function () {
+                        showChart('deviation');
+                    });
+                </script>
             </div>
         </div>
     </div>
     <hr>
-    <div id="button-area" class="d-flex justify-content-between mt-5">
+    <div id="button-area" class="d-flex justify-content-between mt-2">
         <div class="d-flex">
             <button
                     class="btn ctm-btn-mirror"
@@ -244,6 +269,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="/resources/js/work-lounge/selection-evaluation-detail.js"></script>
 <script>
     var data = [
@@ -301,16 +327,13 @@
     ];
 
     $(document).ready(function () {
-        // Load initial committee list for the first plan
         var initialPlanNumber = $(".plan-number").first().data("plan");
         loadCommitteeList(initialPlanNumber);
-        loadBarChartForPlan(initialPlanNumber); // Call new function to load the bar chart
+        loadBarChartForPlan(initialPlanNumber);
 
         $("#allcheck-input").on("click", function () {
-            // 전체 체크박스 선택 상태 가져오기
             var isChecked = $(this).prop("checked");
 
-            // 모든 plan-checkbox의 checked 속성을 현재 상태와 반대로 설정
             $(".plan-checkbox").prop("checked", isChecked);
         });
 
@@ -318,10 +341,9 @@
             var planNumber = $(this).data("plan");
             loadCommitteeList(planNumber);
 
-            // Get committee member scores for the selected plan (or checked plans) -막대
             const selectedPlans = $(".plan-checkbox:checked").map(function () {
                 return $(this).data("plan");
-            }).get(); // Get an array of selected plan numbers
+            }).get();
 
             const committeeScores = [];
             selectedPlans.forEach(planNumber => {
@@ -334,13 +356,11 @@
                 }
             });
 
-            // Remove any existing bar chart
             const existingBarChart = document.getElementById('barChart');
             if (existingBarChart) {
                 existingBarChart.parentNode.removeChild(existingBarChart);
             }
 
-            // Create the bar chart (if there are selected plans)
             if (committeeScores.length > 0) {
                 createBarChart(committeeScores);
             }
@@ -349,20 +369,17 @@
         $(".plan-number").on("click", function () {
             var planNumber = $(this).data("plan");
 
-            // Simulate checkbox click (uncheck all first)
             uncheckAllCheckboxes();
 
-            // Find the checkbox for the clicked plan and check it
             const checkbox = $(".plan-checkbox[data-plan='" + planNumber + "']");
             checkbox.prop('checked', true);
 
             loadCommitteeList(planNumber);
-            loadBarChartForPlan(planNumber); // Call function to load chart for clicked plan
+            loadBarChartForPlan(planNumber);
 
-            // Get committee member scores for the selected plan (or checked plans) - 막대
             const selectedPlans = $(".plan-checkbox:checked").map(function () {
                 return $(this).data("plan");
-            }).get(); // Get an array of selected plan numbers
+            }).get();
 
             const committeeScores = [];
             selectedPlans.forEach(planNumber => {
@@ -375,13 +392,11 @@
                 }
             });
 
-            // Remove any existing bar chart
             const existingBarChart = document.getElementById('barChart');
             if (existingBarChart) {
                 existingBarChart.parentNode.removeChild(existingBarChart);
             }
 
-            // Create the bar chart (if there are selected plans)
             if (committeeScores.length > 0) {
                 createBarChart(committeeScores);
             }
@@ -390,14 +405,14 @@
         $("#committeeSelect").on("change", function () {
             var selectedCommittee = $(this).val();
             if (selectedCommittee === "전체") {
-                $("#plansTable tr").show(); // Show all rows if "전체" is selected
+                $("#plansTable tr").show();
             } else {
-                $("#plansTable tr").show(); // Show all rows initially
+                $("#plansTable tr").show();
                 $("#plansTable tr")
                     .filter(function () {
                         return $(this).data("committee") !== selectedCommittee;
                     })
-                    .hide(); // Hide rows that do not match the selected committee
+                    .hide();
             }
             const filteredRowCount = $("#plansTable tr:visible").length;
             document.getElementById("row-count").textContent = filteredRowCount;
@@ -416,10 +431,9 @@
             var tableContent =
                 '<div class="d-flex align-items-center"><h4 class="mb-0">평가위원</h4><h5 class="mb-0 ms-2">[전체 ' + committeeCount + '명]</h5></div><table class="table table-bordered mt-3 text-center table-hover"><thead><tr class="domain"><td>성명</td><td>소속기관</td><td>국가연구자번호</td><td>평가점수</td><td>편차(%)</td></tr></thead><tbody>';
             selectedPlan.committees.forEach(function (committee) {
-                // Calculate deviation
+
                 const deviation = committee.score - selectedPlan.average_score;
                 const deviationPercentage = (deviation / selectedPlan.average_score) * 100;
-
                 tableContent +=
                     "<tr><td>" +
                     committee.name +
@@ -431,7 +445,7 @@
                     committee.score +
                     "</td><td style='color: red'>" +
                     deviationPercentage.toFixed(1) +
-                    "</td></tr>"; // Display deviation with 1 decimal place
+                    "</td></tr>";
             });
             tableContent += "</tbody></table>";
             $("#committeeList").html(tableContent);
@@ -442,34 +456,26 @@
         }
     }
 
-    // New function to load bar chart for a specific plan number
     function loadBarChartForPlan(planNumber) {
         const selectedPlan = data.find(plan => plan.plan_number === planNumber);
         if (selectedPlan) {
             const committeeScores = selectedPlan.committees.map(member => ({name: member.name, score: member.score}));
 
-            // Remove any existing bar chart
             const existingBarChart = document.getElementById('barChart');
             if (existingBarChart) {
                 existingBarChart.parentNode.removeChild(existingBarChart);
             }
 
-            // Create the bar chart (if there are committee members)
             if (committeeScores.length > 0) {
                 createBarChart(committeeScores);
             }
         }
     }
 
-    // 계획서용
-    // 테이블의 tbody 요소 선택
     const tableBody = document.querySelector("tbody");
-    // tbody 요소의 자식 요소(tr) 개수를 세어 변수에 저장
     const rowCount = tableBody.rows.length;
-    // 결과를 HTML에 출력
     document.getElementById("row-count").textContent = rowCount;
 
-    // 체크박스
     function uncheckAllCheckboxes() {
         $('.plan-checkbox').prop('checked', false);
     }
@@ -482,15 +488,14 @@
         loadCommitteeList(planNumber);
     });
 
-    // Chart configuration
     const ctx = document.getElementById('deviationChart').getContext('2d');
     const chart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [], // This will be filled with plan numbers
+            labels: [],
             datasets: [{
                 label: '연구계획서 점수 분석',
-                data: [], // This will be filled with average scores
+                data: [],
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1
@@ -508,69 +513,60 @@
     });
 
     function updateDeviationChart(data) {
-        // Clear existing data
+
         chart.data.labels.length = 0;
         chart.data.datasets[0].data.length = 0;
 
-        // Filter data based on selected committee (if applicable)
         const filteredData = data.filter(plan => {
             const selectedCommittee = $("#committeeSelect").val();
             return selectedCommittee === "전체" || plan.committee === selectedCommittee;
         });
 
-        // Extract plan numbers and average scores
         filteredData.forEach(plan => {
             chart.data.labels.push(plan.plan_number);
             chart.data.datasets[0].data.push(plan.average_score);
         });
 
-        // Update chart
         chart.update();
     }
 
-    // Call update function on initial load and committee change
     updateDeviationChart(data);
 
     $("#committeeSelect").on("change", function () {
         updateDeviationChart(data);
     });
 
-    // 막대그래프
     function createBarChart(committeeScores) {
-        // Create a new chart element (canvas)
         const barChartCanvas = document.createElement('canvas');
         barChartCanvas.id = 'barChart';
-        barChartCanvas.width = 400;
-        barChartCanvas.height = 200;
+        barChartCanvas.width = 52;
+        barChartCanvas.height = 27;
 
-        // Get the container for the bar chart
-        const barChartContainer = document.querySelector('.col-6:nth-child(1)'); // Assuming the second col-6 element is for the bar chart
+        const barChartContainer = document.querySelector('.col-5:nth-child(1)');
         barChartContainer.appendChild(barChartCanvas);
 
-        // Get the context of the canvas
         const barChartCtx = barChartCanvas.getContext('2d');
 
-        // Create a new Chart.js bar chart
         const barChart = new Chart(barChartCtx, {
             type: 'bar',
             data: {
-                labels: committeeScores.map(member => member.name), // Extract committee member names
+                labels: committeeScores.map(member => member.name),
                 datasets: [{
                     label: '평가점수',
-                    data: committeeScores.map(member => member.score), // Extract committee member scores
+                    data: committeeScores.map(member => member.score),
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
                         'rgba(255, 206, 86, 0.2)',
                         'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)' // Example colors, adjust as needed
+                        'rgba(153, 102, 255, 0.2)'
                     ],
                     borderColor: [
                         'rgba(255, 99, 132, 1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
                         'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)' // Example colors, adjust as needed
+                        'rgba(153, 102, 255, 1)'
                     ],
                     borderWidth: 1
                 }]

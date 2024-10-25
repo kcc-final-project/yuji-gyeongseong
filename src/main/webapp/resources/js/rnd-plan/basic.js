@@ -8,13 +8,7 @@ $(function () {
   initializeJsTree();
 });
 
-// 연구개발과제명 input 데이터 삽입
-function initializeTaskTitle() {
-  const taskTitle = $("#dpy-task-title").val();
-  $("#ipt-task-title").val(taskTitle);
-}
-
-// 이벤트 핸들러
+// 이벤트 핸들러 등록
 function setupEventHandlers() {
   $("#sbt-task-title").on("click", updateTaskTitle);
   $("#ipt-task-title").on("keypress", updateTaskTitleFromEnter);
@@ -30,7 +24,13 @@ function setupEventHandlers() {
   $("#btn-modal-complete").on("click", applySelectedTechFields);
 }
 
-// 연구개발과제명 변경(엔터키)
+// [과제명] 과제정보 연구개발과제명 입력 데이터 가져와 삽입
+function initializeTaskTitle() {
+  const taskTitle = $("#dpy-task-title").val();
+  $("#ipt-task-title").val(taskTitle);
+}
+
+// [과제명] 연구개발과제명 변경 이벤트 핸들러(엔터키)
 function updateTaskTitleFromEnter(event) {
   if (event.keyCode === ENTER_KEY_CODE) {
     updateTaskTitle();
@@ -38,7 +38,7 @@ function updateTaskTitleFromEnter(event) {
   }
 }
 
-// 연구개발과제명 변경
+// [과제명] 과제정보 연구개발과제명 갱신
 function updateTaskTitle() {
   const inputtedTaskTitle = $("#ipt-task-title").val();
 
@@ -52,29 +52,29 @@ function updateTaskTitle() {
   showToastAboutTaskTitle();
 }
 
-// 연구개발과제명 유효성 검사
+// [과제명] 유효성 검사
 function isTaskTitleTooLong(taskTitle) {
   return taskTitle.length > TASK_TITLE_MAX_LEN || taskTitle.trim() === "";
 }
 
-// 유효성 검사에 따른 에러 텍스트 활성화
+// [과제명] 유효성 검사 실패 - 에러 텍스트 활성화
 function showValidationFeedback() {
   $("#ipt-task-title").addClass("is-invalid");
   $("#task-title-feedback").show();
 }
 
-// 유효성 검사에 따른 에러 텍스트 비활성화
+// [과제명] 유효성 검사 실패 - 에러 텍스트 비활성화
 function hideValidationFeedback() {
   $("#ipt-task-title").removeClass("is-invalid");
   $("#task-title-feedback").hide();
 }
 
-// 과제정보(과제명) 입력값 적용
+// [과제정보] 연구개발과제명 데이터 갱신
 function updateDisplayedTaskTitle(taskTitle) {
   $("#dpy-task-title").val(taskTitle);
 }
 
-// 토스트 알림 활성화
+// [공통] 연구개발과제명 적용 알림
 function showToastAboutTaskTitle() {
   Swal.fire({
     toast: true,
@@ -93,7 +93,7 @@ function showToastAboutTaskTitle() {
   });
 }
 
-// 기술분류 트리 초기화
+// [연구분야] Jstree 초기화
 function initializeJsTree() {
   $.ajax({
     url: "/api/v1/tech-fields/rnd-plan/basic",
@@ -135,7 +135,7 @@ function initializeJsTree() {
   });
 }
 
-// Jstree 체크박스 숨기기
+// [연구분야] Jstree 체크박스 숨기기
 function hideCheckboxes() {
   $(".jstree-node").each(function () {
     let type = $.jstree.reference(this).get_type(this);
@@ -148,7 +148,7 @@ function hideCheckboxes() {
   });
 }
 
-// 선택한 기술분야 추가
+// [연구분야] 선택한 기술분야 추가
 function addSelectedTechFields() {
   const $selectedNodes = $(".techFieldTree").jstree("get_checked", true);
   const $tableBody = $(".techFieldSection-body tbody");
@@ -194,7 +194,7 @@ function addSelectedTechFields() {
   });
 }
 
-// 선택한 기술분야 제거
+// [연구분야] 선택한 기술분야 제거
 function removeSelectedTechFields() {
   const $tableBody = $(".techFieldSection-body tbody");
   const $checkedRows = $tableBody
@@ -230,7 +230,7 @@ function removeSelectedTechFields() {
   $("#weight-sum-error").hide();
 }
 
-// 전체 선택/해제 토글
+// [연구분야] 전체 선택/해제 토글
 function toggleSelectAllRows() {
   const isChecked = $(this).is(":checked");
 
@@ -240,7 +240,7 @@ function toggleSelectAllRows() {
   );
 }
 
-// 가중치 합계(100) 유효성 검사
+// [연구분야] 유효성 검사 - 가중치 합계(100)
 function validateWeightSum() {
   let totalWeight = 0;
   let valid = true;
@@ -268,7 +268,7 @@ function validateWeightSum() {
   }
 }
 
-// 가중치 크기 따라 요소 정렬
+// [연구분야] 가중치 크기 따라 요소 정렬
 function sortTableRows() {
   let rowData = [];
 
@@ -298,7 +298,7 @@ function sortTableRows() {
   });
 }
 
-// 연구분야 테이블에 데이터 반영
+// [연구분야] 테이블 바인딩
 function applySelectedTechFields() {
   const $tableBody = $(".techFieldSection-body tbody");
   const $rows = $tableBody.find("tr");
@@ -345,7 +345,7 @@ function applySelectedTechFields() {
   $("#techField-feedback").hide();
 }
 
-// 필수 입력 값 확인
+// [과제명] [연구분야] 유효성 검사
 function validateBasicFields() {
   let isValid = true;
   let inValidSection = null;
@@ -387,7 +387,7 @@ function validateBasicFields() {
   return isValid;
 }
 
-// AJAX 기본정보 데이터 저장
+// [기본정보] AJAX 기본정보 데이터 등록하기
 async function submitBasicData() {
   const rndPlanNo = localStorage.getItem("rndPlanNo");
 
@@ -430,7 +430,7 @@ async function submitBasicData() {
   }
 }
 
-// 연구분야 입력 데이터 가져오기
+// [연구분야] 연구분야 입력 데이터 가져오기
 function getResearchFieldsData() {
   const rndFields = [];
 

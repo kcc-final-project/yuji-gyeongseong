@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yujigyeongseong.api.domain.work_lounge.dao.EvaluationPaperMapper">
+
+    <select id="selectEvaluationPaperList" resultType="EvaluationPaperDTO">
+        select ann.total_title                                     as totaltitle,
+               rnd.rnd_plan_no                                     as rndplanno,
+               rnd.task_name                                       as taskname,
+               rnd.rnd_institution                                 as rndinstitution,
+               et.eval_completed_at                                as evalcompletedat,
+               (SELECT name FROM member WHERE mem_no = rnd.mem_no) AS rndmem,
+               (SELECT name FROM member WHERE mem_no = et.mem_no)  AS etmem,
+               mem.affil_type                                      as affiltype,
+               mem.affil_dept                                      as affildept,
+               mem.position as position, qu.type as type, evta.form_type as formType
+        from announcement ann inner join bucket b
+        ON ann.bucket_no = b.bucket_no
+            inner join rnd_plan rnd on b.bucket_no = rnd.bucket_no
+            inner join eval_task et on rnd.rnd_plan_no = et.rnd_plan_no
+            inner join member mem on rnd.mem_no = mem.mem_no
+            inner join eval_score es on et.eval_committee_no = es.eval_committee_no
+            inner join evaluation_question eq on eq.question_no = es.question_no
+            inner join evaluation_table evta on evta.evaluation_table_no = eq.evaluation_table_no
+            inner join question qu on qu.question_no = eq.question_no
+        where rnd.rnd_plan_no = #{rndPlanNo}
+          and et.mem_no = #{memNo}
+    </select>
+
+    <resultMap id="questionList" type="EvaluationPaperQuestionDTO">
+        <result column="title" property="title"/>
+        <result column="description" property="description"/>
+        <result column="form_type" property="formType"/>
+        <result column="question_no" property="questionNo"/>
+        <result column="type" property="type"/>
+        <result column="content" property="content"/>
+    </resultMap>
+
+    <select id="selectContentList" resultMap="questionList">
+        select evta.title, evta.description, evta.form_type, qu.question_no, qu.type, qu.content
+        from evaluation_table evta
+                 inner join evaluation_question evqe on evta.evaluation_table_no = evqe.evaluation_table_no
+                 inner join question qu on qu.question_no = evqe.question_no
+        WHERE evta.form_type = #{formType}
+          and qu.type = #{type}
+    </select>
+
+</mapper>
