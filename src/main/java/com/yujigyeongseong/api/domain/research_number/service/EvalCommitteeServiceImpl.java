@@ -3,8 +3,10 @@ package com.yujigyeongseong.api.domain.research_number.service;
 import com.yujigyeongseong.api.domain.research_number.dao.EvalCommitteeMapper;
 import com.yujigyeongseong.api.domain.research_number.dto.AcadAbility;
 import com.yujigyeongseong.api.domain.research_number.dto.Career;
+import com.yujigyeongseong.api.domain.research_number.dto.Noti;
 import com.yujigyeongseong.api.domain.research_number.dto.request.AcadRequest;
 import com.yujigyeongseong.api.domain.research_number.dto.request.CareerRequest;
+import com.yujigyeongseong.api.domain.research_number.dto.request.EvalNotiRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +34,11 @@ public class EvalCommitteeServiceImpl implements EvalCommitteeService {
     }
 
     @Override
+    public List<Noti> getAllTechNotiByMemberId(Long id) {
+        return evalCommitteeMapper.selectAllNotiByMemberId(id);
+    }
+
+    @Override
     public int setCareersByMemberId(Long id, List<CareerRequest> careers) {
         return evalCommitteeMapper.insertAllCareersByMemberId(id, careers);
     }
@@ -39,5 +46,10 @@ public class EvalCommitteeServiceImpl implements EvalCommitteeService {
     @Override
     public int setAcadAbilitiesByMemberId(Long id, List<AcadRequest> acadAbilities) {
         return evalCommitteeMapper.insertAllAcadAbilitiesByMemberId(id, acadAbilities);
+    }
+
+    @Override
+    public int setEvalNotiByMemberId(EvalNotiRequest evalNotiRequest) {
+        return evalCommitteeMapper.insertEvalNotiByMemberId(evalNotiRequest);
     }
 }

@@ -73,8 +73,8 @@
             <tbody>
             <tr>
                 <td><input id="dpy-task-title" class="form-control ctm-td" disabled readonly type="text"></td>
-                <td><input class="form-control ctm-td" disabled readonly type="text"></td>
-                <td><input class="form-control ctm-td" disabled readonly type="text"></td>
+                <td><input id="dpy-institution" class="form-control ctm-td" disabled readonly type="text"></td>
+                <td><input id="dpy-researcher" class="form-control ctm-td" disabled readonly type="text"></td>
                 <td><input id="dpy-rnd-task-no" class="form-control ctm-td" disabled readonly type="text"></td>
             </tr>
             </tbody>

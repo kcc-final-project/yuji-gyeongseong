@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ include file="../common/common-work-lounge-tap.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -26,102 +27,53 @@
         <span class="service-content">과제의 진행현황을 실시간 확인하고, 업무 내용을 공동 연구자들과 공유하실 수 있습니다.</span>
     </div>
     <div class="filters">
-        <button id = "all" class="filter-button active">전체</button>
-        <button id = "service" class="filter-button">서비스</button>
-        <button id = "committee" class="filter-button">평가위원</button>
-        <button id = "manager" class="filter-button">담당자</button></div>
+        <button id="all" class="filter-button active">전체</button>
+        <button id="service" class="filter-button">서비스</button>
+        <button id="committee" class="filter-button">평가위원</button>
+        <button id="manager" class="filter-button">담당자</button>
+    </div>
     <div class="alarms">
-        <div class="notification-card" data-category="service">
-            <div class="icon-container">
-                <span class="material-icons-outlined" style="font-size: 50px">info</span>
-            </div>
-            <div class="notification-content">
-                <p class="notification-title">[계획서 알림]</p>
-                <p class="notification-description">수행 중인 [2024년도 다부처 국가생명연구자원 선진화사업 신규과제 3차 공모 재공고]의 연구과제가 최종
-                    제출되었습니다.</p>
-            </div>
-            <div class="notification-timestamp">2024-10-10 14:05:55</div>
-        </div>
-        <div class="notification-card" data-category="committee">
-            <div class="icon-container">
-                <span class="material-icons-outlined" style="font-size: 50px">diversity_3</span>
-            </div>
-            <div class="notification-content">
-                <p class="notification-title">[평가위원회 알림]</p>
-                <p class="notification-description">[2024-RM-03-일반] 경수형 SMR 리스크 평가 규제기반기술 개발_평가위원회4의 의견공유가
-                    활성화 되었습니다. 의견공유 및 평가를 진행해 주세요.</p>
-            </div>
-            <div class="notification-timestamp">2024-10-10 14:05:55</div>
-            <div class="button-alarm">
-                <button class="reject-button">의견공유 페이지</button>
-            </div>
-        </div>
-        <div class="notification-card" data-category="service">
-            <div class="icon-container">
-                <span class="material-icons-outlined" style="font-size: 50px">forward_to_inbox</span>
-            </div>
-            <div class="notification-content" >
-                <p class="notification-title">[서비스 알림]</p>
-                <p class="notification-description">[2024-RM-03-일반] 경수형 SMR 리스크 평가 규제기반기술 개발_평가위원회4에 참여하여
-                    평가위원 제안을 수락하실지 여부를 선택해 주세요.</p>
-            </div>
-            <div class="notification-timestamp">2024-10-10 14:05:55</div>
-            <div class="button-alarm">
-                <button id="rejectButton" class="reject-button">거부</button>
-                <button id="approveButton" class="approve-button">승인</button>
-            </div>
-        </div>
-        <div class="notification-card" data-category="manager">
-            <div class="icon-container">
-                <span class="material-icons-outlined" style="font-size: 50px">person_outline</span>
-            </div>
-            <div class="notification-content">
-                <p class="notification-title">[담당자 알림]</p>
-                <p class="notification-description">[2024-RM-03-일반] 경수형 SMR 리스크 평가 규제기반기술 개발의 선정평가가 활성화 되었습니다. 선정평가를 진행해
-                    주세요.</p>
-            </div>
-            <div class="notification-timestamp">2024-10-10 14:05:55</div>
-            <div class="button-alarm">
-                <button class="reject-button">선정평가 페이지</button>
-            </div>
-        </div>
-        <div class="notification-card">
-            <div class="icon-container">
-                <span class="material-icons-outlined" style="font-size: 50px">info</span>
-            </div>
-            <div class="notification-content">
-                <p class="notification-title">[계획서 알림]</p>
-                <p class="notification-description">수행 중인 [2024년도 다부처 국가생명연구자원 선진화사업 신규과제 3차 공모 재공고]의 연구과제가 최종
-                    제출되었습니다.</p>
-            </div>
-            <div class="notification-timestamp">2024-10-10 14:05:55</div>
-        </div>
-        <div class="notification-card">
-            <div class="icon-container">
-                <span class="material-icons-outlined" style="font-size: 50px">info</span>
-            </div>
-            <div class="notification-content">
-                <p class="notification-title">[계획서 알림]</p>
-                <p class="notification-description">수행 중인 [2024년도 다부처 국가생명연구자원 선진화사업 신규과제 3차 공모 재공고]의 연구과제가 최종
-                    제출되었습니다.</p>
-            </div>
-            <div class="notification-timestamp">2024-10-10 14:05:55</div>
-        </div>
-        <div class="notification-card">
-            <div class="icon-container">
-                <span class="material-icons-outlined" style="font-size: 50px">info</span>
-            </div>
-            <div class="notification-content">
-                <p class="notification-title">[계획서 알림]</p>
-                <p class="notification-description">수행 중인 [2024년도 다부처 국가생명연구자원 선진화사업 신규과제 3차 공모 재공고]의 연구과제가 최종
-                    제출되었습니다.</p>
-            </div>
-            <div class="notification-timestamp">2024-10-10 14:05:55</div>
+        <div>
+            <c:forEach var="noti" items="${noti_list}">
+                <div class="notification-card" data-category="${noti.dataCategory}">
+                    <div class="icon-container">
+                        <span class="material-icons-outlined" style="font-size: 50px"></span>
+                    </div>
+                    <div class="notification-content">
+                        <p class="notification-title">[${noti.notiType} 알림]</p>
+                        <p class="notification-description">${noti.content}</p>
+                    </div>
+                    <div class="notification-timestamp"><fmt:formatDate value="${noti.createdAt}"
+                                                                        pattern="yyyy-MM-dd HH:mm:ss"/></div>
+
+                        <%--평가위원일 때 버튼 추가--%>
+                    <c:if test="${noti.dataCategory == 'committee'}">
+                        <c:if test="${noti.readState == '확인대기'}">
+
+                            <div id="action-${noti.notificationNo}">
+                                <button type="button" id="approve-${noti.notificationNo}" class="ctm-btn-normal"
+                                        style="width: 100px; display: inline-block;"
+                                        onclick="approveButton(${noti.notificationNo}, ${noti.memNo}, ${noti.notiContentNo})">
+                                    승인
+                                </button>
+                                <button type="button" id="reject-${noti.notificationNo}"
+                                        class="ctm-btn-normal delete-button"
+                                        style="margin-left: 20px; width: 100px; display: inline-block;"
+                                        onclick="approveButton(${noti.notificationNo}, ${noti.memNo}, ${noti.notiContentNo})">
+                                    거부
+                                </button>
+                            </div>
+                        </c:if>
+                        <c:if test="${noti.readState == '확인완료'}">
+                            <span class="confirmed">선택완료</span>
+                        </c:if>
+                    </c:if>
+
+                </div>
+            </c:forEach>
         </div>
     </div>
 </div>
-
-
 <script src="/resources/js/work-lounge/business-timeline.js"></script>
 </body>
 </html>

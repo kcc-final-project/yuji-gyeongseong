@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yujigyeongseong.api.domain.work_lounge.dao.SelectEvaluationMapper">
+
+    <select id="selectEvaluationList" resultType="SelectEvaluationDTO">
+        select ann.total_title        as totaltitle,
+               subann.sub_title       as subtitle,
+               ann.closed_at          as closedat,
+               evta.final_selected_at as finalselectedat,
+               evta.eval_status       as evalstatus
+        from announcement ann
+                 inner join sub_announcement subann on ann.ann_no = subann.ann_no
+                 inner join eval_committee evcom on subann.sub_ann_no = evcom.sub_ann_no
+                 inner join evaluation_member evmem on evmem.eval_committee_no = evcom.eval_committee_no
+                 inner join eval_task evta on evta.eval_committee_no = evcom.eval_committee_no
+    </select>
+
+</mapper>

@@ -57,8 +57,7 @@
         <div class="academic-list" id="academicList">
             <div class="list">
                 <div class="inline-wrap">
-                    <p>학력구분</p>
-                    <p class="warn">*</p>
+                    <label>학력구분<span class="warn">*</span></label>
                     <select id="degreeType1" name="degreeType" class="form-select" aria-label="Default select example">
                         <option value="학사">학사</option>
                         <option value="석사">석사</option>
@@ -70,8 +69,7 @@
                 </div>
 
                 <div class="inline-wrap">
-                    <p>취득국가</p>
-                    <p class="warn">*</p>
+                    <label>취득국가<span class="warn">*</span></label>
                     <select id="degreeCountry1" name="degreeCountry" class="form-select"
                             aria-label="Default select example">
                         <option value="대한민국">대한민국</option>
@@ -87,31 +85,24 @@
                 </div>
 
                 <div class="inline-wrap">
-                    <p>전공명</p>
-                    <p class="warn">*</p>
+                    <label>전공명<span class="warn">*</span></label>
                     <input type="text" id="majorName1" name="majorName" class="form-input" placeholder="전공명을(를) 입력하세요">
                 </div>
             </div>
             <div class="list">
 
                 <div class="inline-wrap">
-                    <p>취득연월</p>
-                    <p class="warn">*</p>
-
+                    <label>취득연월<span class="warn">*</span></label>
                     <div class="input-group">
-                        <input type="date" id="degreeDate1" name="degreeDate" class="form-input"
-                               style="margin-left: 10px">
+                        <input type="date" id="degreeDate1" name="degreeDate" class="form-input">
                     </div>
                 </div>
 
                 <div class="inline-wrap">
-                    <p>취득기관명</p>
-                    <p class="warn">*</p>
-
+                    <label>취득기관명<span class="warn">*</span></label>
                     <div class="input-group">
                         <input type="text" name="degreeInstitutionName1" id="degreeInstitutionName1"
-                               class="form-control"
-                               placeholder="취득기관명" readonly>
+                               class="form-control" placeholder="취득기관명" readonly>
                         <span class="input-group-text">
                     <i class="material-icons-outlined search-icon" data-bs-toggle="modal"
                        data-bs-target="#institutionSearchModal" data-index="1">search</i>
@@ -120,8 +111,7 @@
                 </div>
 
                 <div class="inline-wrap">
-                    <p>전공계열</p>
-                    <p class="warn">*</p>
+                    <label>전공계열<span class="warn">*</span></label>
                     <div class="major">
                         <select id="majorCategory1" name="majorCategory" class="form-select-two majorCategory"
                                 aria-label="Default select example" onchange="updateMajorSubcategory()">
@@ -130,6 +120,8 @@
                             <option value="인문사회계열">인문사회계열</option>
                             <option value="의약계열">의약계열</option>
                             <option value="예술체육계열">예술체육계열</option>
+                            <option value="비즈니스경영계열">비즈니스경영계열</option>
+                            <option value="정보기술계열">정보기술계열</option>
                         </select>
 
                         <select id="majorSubcategory1" name="majorSubcategory" class="form-select-two majorSubcategory"
@@ -142,10 +134,10 @@
     </div>
 
     <div class="career-info" style="margin-top: 50px">
-        <div class="title_warning">
-            <p class="title">경력정보</p>
-            <button id="addCareerInfoButton" class="ctm-btn-normal" style="width: 150px">경력정보추가</button>
-            <p class="warning">* 필수 항목</p>
+        <div class="title_career">
+            <label class="title">경력정보</label>
+            <button id="addCareerInfoButton" class="ctm-btn-normal" style="margin-left: 35px; width: 150px">경력정보추가
+            </button>
         </div>
 
         <hr>
@@ -154,29 +146,26 @@
             <div class="list">
 
                 <div class="inline-wrap">
-                    <p>근무기관명</p>
-                    <p class="warn">*</p>
+                    <label>근무기관명<span class="warn">*</span></label>
                     <div class="input-group">
                         <input type="text" name="workInstitutionName1" id="workInstitutionName1" class="form-control"
                                placeholder="근무기관명" readonly>
                         <span class="input-group-text">
-            <i class="material-icons-outlined search-icon" data-bs-toggle="modal"
-               data-bs-target="#workInstitutionSearchModal" data-index="1">search</i>
-                        </span>
+                        <i class="material-icons-outlined search-icon" data-bs-toggle="modal"
+                           data-bs-target="#workInstitutionSearchModal" data-index="1">search</i>
+                    </span>
                     </div>
                 </div>
 
                 <div class="inline-wrap">
-                    <p>근무부서</p>
-                    <p class="warn">*</p>
+                    <label>근무부서<span class="warn">*</span></label>
                     <input type="text" id="workDepartment1" name="workDepartment" class="form-input"
                            placeholder="근무부서을(를) 입력하세요">
                 </div>
             </div>
             <div class="list">
                 <div class="inline-wrap">
-                    <p>고용형태</p>
-                    <p class="warn">*</p>
+                    <label>고용형태<span class="warn">*</span></label>
                     <select id="employmentType1" name="employmentType" class="form-select"
                             aria-label="Default select example">
                         <option value="정규직">정규직</option>
@@ -187,19 +176,13 @@
                 </div>
 
                 <div class="inline-wrap">
-                    <p>근무기간</p>
-                    <p class="warn">*</p>
-
+                    <label>근무기간<span class="warn">*</span></label>
                     <div class="calen">
-
                         <div class="input-group input-group-small">
-                            <input type="date" id="workStartDate1" name="workStartDate"
-                                   class="form-control"
+                            <input type="date" id="workStartDate1" name="workStartDate" class="form-control"
                                    aria-label="Start Date">
                         </div>
-
                         <span style="margin: 0 10px;">~</span>
-
                         <div class="input-group input-group-small">
                             <input type="date" id="workEndDate1" name="workEndDate" class="form-control"
                                    aria-label="End Date">
@@ -262,9 +245,11 @@
                 </div>
                 <div class="modal-body">
 
-                    <div class="form-group mb-3">
-                        <label for="searchInput" style="width: 200px">기술분류명:</label>
-                        <input type="text" id="searchInput" class="form-control" placeholder="검색어를 입력하세요">
+                    <div class="form-group">
+                        <div class="search">
+                            <%--                            <label for="searchInput" style="width: 200px">기술분류명:</label>--%>
+                            <input type="text" id="searchInput" class="form-control" placeholder="검색어를 입력하세요">
+                        </div>
                     </div>
 
                     <!-- 트리 구조 영역 -->
@@ -299,7 +284,7 @@
 
 <div class="modal fade" id="institutionSearchModal" tabindex="-1" role="dialog"
      aria-labelledby="institutionSearchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="institutionSearchModalLabel">기관 조회 팝업</h5>
@@ -308,23 +293,18 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" id="instituteNameSearch" class="form-control" placeholder="취득기관명">
-                        </div>
-                        <div class="col-md-3">
-                            <button class="btn ctm-btn-normal searchBtn" id="searchInstitution"><i
-                                    class="material-icons-outlined">search</i></button>
-                        </div>
+                    <div class="search">
+                        <input type="text" id="instituteNameSearch" class="form-control" placeholder="취득기관명">
+                        <button class="btn ctm-btn-normal searchBtn" id="searchInstitution"><i
+                                class="material-icons-outlined">search</i></button>
                     </div>
                 </div>
 
                 <div class="institution-table-container">
-                    <table id="institutionTable" class="table table-bordered mt-3">
+                    <table id="institutionTable" class="table table-bordered">
                         <thead>
                         <tr>
                             <th>선택</th>
-                            <th>기관ID</th>
                             <th>기관명</th>
                             <th>기관분류</th>
                             <th>사업자번호</th>
@@ -354,14 +334,10 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input type="text" id="workInstitutionNameSearch" class="form-control" placeholder="근무기관명">
-                        </div>
-                        <div class="col-md-6">
-                            <button class="btn ctm-btn-normal searchBtn" id="searchWorkInstitution"><i
-                                    class="material-icons-outlined">search</i></button>
-                        </div>
+                    <div class="search">
+                        <input type="text" id="workInstitutionNameSearch" class="form-control" placeholder="근무기관명">
+                        <button class="btn ctm-btn-normal searchBtn" id="searchWorkInstitution"><i
+                                class="material-icons-outlined">search</i></button>
                     </div>
                 </div>
                 <div class="institution-table-container">
@@ -369,7 +345,6 @@
                         <thead>
                         <tr>
                             <th>선택</th>
-                            <th>기관ID</th>
                             <th>기관명</th>
                             <th>기관분류</th>
                             <th>사업자번호</th>

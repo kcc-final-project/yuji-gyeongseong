@@ -10,7 +10,7 @@ $(function () {
   startSessionTimer();
 });
 
-// 이벤트 핸들러
+// [컨트롤러] 이벤트 핸들러 등록
 function setupEventHandlers() {
   $(".extend-session").on("click", resetSessionTimer);
   $(".anchor-btn").on("click", scrollToTop);
@@ -18,7 +18,7 @@ function setupEventHandlers() {
   $(".ctm-btn-init__next").on("click", showNextConfirmation);
 }
 
-// '다음' 버튼 클릭 시 확인 창 표시 함수
+// [컨트롤러] '다음' 버튼 클릭 시, 유효성 검증 및 페이지 이동
 function showNextConfirmation() {
   Swal.fire({
     title: "저장",
@@ -31,21 +31,33 @@ function showNextConfirmation() {
     cancelButtonColor: "#2e406a",
   }).then(async (result) => {
     if (result.isConfirmed) {
+      const rndPlanNo = localStorage.getItem("rndPlanNo");
+
       // 기본정보 유효성 검사 후 페이지 이동
       if (currentStep === 1 && validateBasicFields()) {
-        // TODO: 저장 로직 처리
         await submitBasicData();
         currentStep += 1;
         updateProgressBar();
-        loadStepContent(currentStep);
+
+        await loadStepContent(currentStep);
+        await getRndPlanData();
+
+        // if (isTaskSummarySaved) {
+        //   await getTaskSummaryData(rndPlanNo);
+        // }
       }
+
       // 과제요약 유효성 검사 후 페이지 이동
       else if (currentStep === 2 && validateTaskSummaryFields()) {
-        // TODO: 저장 로직 처리
+        await submitTaskSummaryData();
+
         currentStep += 1;
         updateProgressBar();
-        loadStepContent(currentStep);
+
+        await loadStepContent(currentStep);
+        await getRndPlanData();
       }
+
       // 연구기관 유효성 검사 후 페이지 이동
       else if (currentStep === 3) {
         // TODO: 저장 로직 처리
@@ -53,6 +65,7 @@ function showNextConfirmation() {
         updateProgressBar();
         loadStepContent(currentStep);
       }
+
       // 연구개발비 유효성 검사 후 페이지 이동
       else if (currentStep === 4) {
         // TODO: 저장 로직 처리
@@ -60,6 +73,7 @@ function showNextConfirmation() {
         updateProgressBar();
         loadStepContent(currentStep);
       }
+
       // 첨부파일 유효성 검사 후 페이지 이동
       else if (currentStep === 4) {
         // TODO: 저장 로직 처리
@@ -67,6 +81,7 @@ function showNextConfirmation() {
         updateProgressBar();
         loadStepContent(currentStep);
       }
+
       // 필수 항목에 대한 경고창
       else {
         Swal.fire({
@@ -80,7 +95,7 @@ function showNextConfirmation() {
   });
 }
 
-// 세션 타이머 시작
+// [컨트롤러] 세션 타이머 시작
 function startSessionTimer() {
   updateTimerDisplay(remainingTime);
 
@@ -99,14 +114,14 @@ function startSessionTimer() {
   }, TIME_INTERVAL);
 }
 
-// 타이머 시간
+// [컨트롤러] 세션 타이머 시간 바인딩
 function updateTimerDisplay(time) {
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
   $(".remaining-time span:first").text(`${minutes}분 ${seconds}초`);
 }
 
-// 세션 연장 컨펌 알림
+// [컨트롤러] 세션 타이머 연장 알림
 function showAlertAboutSessionExtension() {
   Swal.fire({
     title: "남은 시간이 15분 남았습니다.",
@@ -125,7 +140,7 @@ function showAlertAboutSessionExtension() {
   });
 }
 
-// 세션 타이머 리셋
+// [컨트롤러] 세션 타이머 초기화
 function resetSessionTimer() {
   clearInterval(timer);
   remainingTime = sessionDuration;
@@ -134,7 +149,7 @@ function resetSessionTimer() {
   showToastAboutTimer();
 }
 
-// 세션 만료 알림
+// [컨트롤러] 세션 타이머 만료 알림
 function sessionExpired() {
   Swal.fire({
     title: "세션 만료",
@@ -148,12 +163,12 @@ function sessionExpired() {
   });
 }
 
-// 화면 최상단으로 스크롤 이동
+// [컨트롤러] 스크롤 애니메이션 적용 (최상단으로 스크롤링)
 function scrollToTop() {
   $("html, body").animate({ scrollTop: 0 }, 150, "linear");
 }
 
-// 세션 연장 성공 알림
+// [컨트롤러] 세션 타이머 연장 알림
 function showToastAboutTimer() {
   Swal.fire({
     toast: true,
@@ -172,7 +187,7 @@ function showToastAboutTimer() {
   });
 }
 
-// 초기화 컨펌 알림
+// [컨트롤러] 입력값 초기화 알림
 function showResetConfirmation() {
   Swal.fire({
     title: "초기화",
@@ -191,7 +206,7 @@ function showResetConfirmation() {
   });
 }
 
-// 모든 필드 초기화
+// [기본정보] 입력값 초기화
 function resetAllFields() {
   $("#dpy-task-title").val("");
 
@@ -221,12 +236,4 @@ function resetAllFields() {
       },
     });
   }
-}
-
-// 기술분류 모달창 데이터 초기화
-function clearTechFieldModal() {
-  const $treeInstance = $(".techFieldTree").jstree(true);
-  $treeInstance.uncheck_all();
-
-  $(".techFieldSection-body tbody").empty();
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yujigyeongseong.api.domain.research_number.dao.EvalComposeMapper">
+
+    <select id="selectSubAnnounceById" parameterType="long">
+        SELECT *
+        FROM sub_announcement
+        WHERE sub_ann_no = #{id}
+    </select>
+
+    <select id="selectOneEvalCommitteeById" parameterType="long">
+        SELECT *
+        FROM eval_committee
+        WHERE sub_ann_no = #{id} LIMIT 1
+    </select>
+
+    <select id="selectAllEvalCommitteeById" parameterType="long">
+        SELECT *
+        FROM eval_committee
+        WHERE sub_ann_no = #{id}
+    </select>
+
+    <select id="selectRndPlanCntById" parameterType="long">
+        SELECT COUNT(*)
+        FROM rnd_plan
+        where sub_ann_no = #{id}
+    </select>
+
+    <select id="selectEvaluationMembersById" parameterType="long">
+        SELECT *
+        FROM evaluation_member
+        where eval_committee_no = #{id}
+    </select>
+
+    <select id="selectOneMemberById" parameterType="long">
+        SELECT *
+        FROM member
+        where mem_no = #{id}
+    </select>
+
+    <select id="selectOneMemberDetailWithInstitution" parameterType="long">
+        SELECT m.mem_no, m.rsrch_no, m.name, i.name as institutionName, i.iar_type
+        FROM member m
+                 INNER JOIN institution i ON m.institution_no = i.institution_no
+        WHERE m.mem_no = #{id}
+    </select>
+
+    <update id="udpateEvaluationMemberByNotiContentNo">
+        UPDATE evaluation_member
+        SET recv_status     = #{evalMemberRequest.recvStatus},
+            recv_status_eng = #{evalMemberRequest.recvStatusEng}
+        WHERE mem_no = #{memberId}
+          AND eval_committee_no = #{notiContentNo}
+    </update>
+
+    <update id="updateNotiByNotificationNo">
+        UPDATE noti
+        SET read_state = '확인완료'
+        WHERE notification_no = #{id}
+    </update>
+
+</mapper>

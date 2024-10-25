@@ -1,8 +1,8 @@
 package com.yujigyeongseong.api.domain.research_number.controller;
 
-import com.yujigyeongseong.api.domain.research_number.dto.AcadAbility;
-import com.yujigyeongseong.api.domain.research_number.dto.Career;
+import com.yujigyeongseong.api.domain.research_number.dto.*;
 import com.yujigyeongseong.api.domain.research_number.service.EvalCommitteeService;
+import com.yujigyeongseong.api.domain.research_number.service.EvalComposeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,15 +18,11 @@ import java.util.List;
 public class ResearchNumberController {
 
     private final EvalCommitteeService evalCommitteeService;
+    private final EvalComposeService evalComposeService;
 
     @GetMapping
     public String researchNumber() {
         return "research-number/research-number-page";
-    }
-
-    @GetMapping("/test")
-    public String test() {
-        return "work-lounge/business-timeline";
     }
 
     @GetMapping("/eval_committee")
@@ -46,4 +42,33 @@ public class ResearchNumberController {
 
         return "research-number/eval-committee-register";
     }
+
+    @GetMapping("/business-timeline/{id}")
+    public String getNotis(@PathVariable Long id, Model model) {
+        List<Noti> notiList = evalCommitteeService.getAllTechNotiByMemberId(id);
+
+        model.addAttribute("noti_list", notiList);
+
+        return "work-lounge/business-timeline";
+    }
+
+    @GetMapping("/work-lounge/eval-compose/{id}")
+    public String getEvalCompose(@PathVariable Long id, Model model) {
+
+        SubAnnounce subAnnounce = evalComposeService.getSubAnnounceById(id);
+        EvalCommittee evalCommittee = evalComposeService.getOneEvalCommitteeById(id);
+        List<EvalCommittee> evalCommittees = evalComposeService.getAllEvalCommitteeById(id);
+        int rndPlanCnt = evalComposeService.getRndPlanCntById(id);
+        Long subAnnounceId = id;
+
+
+        model.addAttribute("subAnnounce", subAnnounce);
+        model.addAttribute("evalCommittee", evalCommittee);
+        model.addAttribute("committees", evalCommittees);
+        model.addAttribute("rndPlanCnt", rndPlanCnt);
+        model.addAttribute("subAnnounceId", subAnnounceId);
+
+        return "work-lounge/eval-committee-compose";
+    }
+
 }
