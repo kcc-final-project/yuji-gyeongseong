@@ -3,6 +3,7 @@
 }
 
 .title {
+    margin-top: 130px;
     height: 50px;
     width: 100%;
 }
@@ -145,4 +146,11 @@
     background-color: var(--main-bg-color);
     color: white;
     transition: .5s all;
+}
+
+.confirmed{
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #afafaf;
+    color: #2e406a;
 }
