@@ -108,7 +108,73 @@ create table institution
 alter table institution
     add constraint pk_institution
         primary key (institution_no);
+-- 교육기관 (20개)
+INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
+VALUES (NEXT VALUE FOR seq_institution, '서울대학교', '123-45-67890', '서울특별시 관악구 관악로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '연세대학교', '234-56-78901', '서울특별시 서대문구 연세로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '고려대학교', '345-67-89012', '서울특별시 성북구 안암로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '부산대학교', '456-78-90123', '부산광역시 금정구 부산대학로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '성균관대학교', '567-89-01234', '서울특별시 종로구 성균관로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '경희대학교', '678-90-12345', '서울특별시 동대문구 경희대로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '중앙대학교', '789-01-23456', '서울특별시 동작구 흑석로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '서강대학교', '890-12-34567', '서울특별시 마포구 서강로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '이화여자대학교', '901-23-45678', '서울특별시 서대문구 이화여대길', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '한국외국어대학교', '012-34-56789', '서울특별시 동대문구 이문로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '서울과학기술대학교', '123-45-67891', '서울특별시 노원구 공릉로', '대학(4년미만)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '충남대학교', '234-56-78912', '대전광역시 유성구 대학로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '전남대학교', '345-67-89023', '광주광역시 북구 용봉로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '제주대학교', '456-78-90134', '제주특별자치도 제주시 제주대학로', '대학(4년이상)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '서울예술대학교', '567-89-01245', '경기도 안산시 단원구 예술대학로', '대학(4년미만)', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '대전고등학교', '678-90-12356', '대전광역시 중구 문화로', '초중고교', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '부산여자중학교', '789-01-23467', '부산광역시 수영구 무학로', '초중고교', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '서울고등학교', '890-12-34578', '서울특별시 강남구 도산대로', '초중고교', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '부산외국어대학교', '901-23-45689', '부산광역시 금정구 부산외대길', '외국대학', '교육기관'),
+       (NEXT VALUE FOR seq_institution, '외국대학교', '012-34-56790', '서울특별시 중구 퇴계로', '외국대학', '교육기관');
 
+-- 산업체 (20개)
+INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
+VALUES (NEXT VALUE FOR seq_institution, '삼성전자', '111-11-11111', '서울특별시 강남구 테헤란로', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '현대자동차', '222-22-22222', '서울특별시 서초구 헌릉로', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, 'LG전자', '333-33-33333', '서울특별시 강서구 마곡동', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, 'SK하이닉스', '444-44-44444', '경기도 이천시 부발읍', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '포스코', '555-55-55555', '경상북도 포항시 남구', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '현대중공업', '666-66-66666', '울산광역시 동구 방어진순환도로', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, 'KT', '777-77-77777', '서울특별시 종로구 종로', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '한화그룹', '888-88-88888', '서울특별시 중구 청계천로', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '네이버', '999-99-99999', '경기도 성남시 분당구 불정로', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '카카오', '000-00-00000', '경기도 성남시 분당구 판교로', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '코오롱', '111-22-33333', '서울특별시 강서구 마곡동', '중견기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '한전KPS', '222-33-44444', '전라남도 나주시 빛가람동', '공기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '두산중공업', '333-44-55555', '경상남도 창원시 성산구', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '오뚜기', '444-55-66666', '서울특별시 용산구 한강대로', '중견기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '대상', '555-66-77777', '서울특별시 동작구 상도동', '중견기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '남양유업', '666-77-88888', '서울특별시 강남구 테헤란로', '중견기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '삼양사', '777-88-99999', '서울특별시 중구 충무로', '중견기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, 'LG화학', '888-99-00000', '서울특별시 영등포구 여의도동', '대기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '한미약품', '999-00-11111', '경기도 화성시 향남읍', '중견기업', '산업체'),
+       (NEXT VALUE FOR seq_institution, '대한항공', '000-11-22222', '서울특별시 강서구 방화동', '대기업', '산업체');
+-- 연구기관 (20개)
+INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
+VALUES (NEXT VALUE FOR seq_institution, '한국전자통신연구원', '222-33-44455', '대전광역시 유성구 가정북로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국생명공학연구원', '333-44-55566', '대전광역시 유성구 과학로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국항공우주연구원', '444-55-66677', '대전광역시 유성구 과학로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국원자력연구원', '555-66-77788', '대전광역시 유성구 대덕대로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국기계연구원', '666-77-88899', '대전광역시 유성구 가정로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국화학연구원', '777-88-99900', '대전광역시 유성구 대학로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국에너지기술연구원', '888-99-00011', '대전광역시 유성구 가정로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국표준과학연구원', '999-00-11122', '대전광역시 유성구 연구원로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국지질자원연구원', '000-11-22233', '대전광역시 유성구 과학로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국건설기술연구원', '111-22-33344', '경기도 고양시 일산서구 고봉로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국교통연구원', '222-33-44455', '세종특별자치시 시청대로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국해양과학기술원', '333-44-55566', '부산광역시 영도구 태종로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국천문연구원', '444-55-66677', '대전광역시 유성구 대덕대로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '한국전력연구원', '555-66-77788', '대전광역시 유성구 유성대로', '공기업', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '국방과학연구소', '666-77-88899', '대전광역시 유성구 자운로', '정부출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '서울시립과학기술연구원', '777-88-99900', '서울특별시 마포구 성산로', '지자체출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '경기도경제과학진흥원', '888-99-00011', '경기도 수원시 영통구 광교로', '지자체출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '부산테크노파크', '999-00-11122', '부산광역시 해운대구 센텀동로', '지자체출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '대구테크노파크', '000-11-22233', '대구광역시 동구 동대구로', '지자체출연연', '연구기관'),
+       (NEXT VALUE FOR seq_institution, '광주과학기술원', '111-22-33344', '광주광역시 북구 첨단과기로', '정부출연연', '연구기관');
 -- quarter_earing
 create sequence seq_quarter_earning START WITH 1 INCREMENT BY 1 NOCYCLE;
 
@@ -159,6 +225,12 @@ alter table member
     add constraint pk_member
         primary key (mem_no);
 
+
+INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
+                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
+VALUES (NEXT VALUE FOR seq_member, NULL, 'user01', 'password123', '홍길동', 'hong@example.com',
+             current_timestamp, 'M', '01012345678', '서울특별시 강남구 테헤란로',
+             '연구기관', '컴퓨터공학과', '연구원', '활성', current_timestamp, current_timestamp, NULL, 1);
 -- role
 create sequence seq_role START WITH 1 INCREMENT BY 1 NOCYCLE;
 
