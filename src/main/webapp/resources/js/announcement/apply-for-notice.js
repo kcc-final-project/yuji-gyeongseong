@@ -1,41 +1,31 @@
-$(function(){
-    $('.detail-btn').on('click',function(){
+$(function () {
+    $('.detail-btn').on('click', function () {
         let subAnnNo = $(this).data("announcement-no");
         $.ajax({
-            url: '/anno/detail/zoom-in/'+subAnnNo,
-            type:'GET',
-            success: function(response) {
+            url: '/anno/detail/zoom-in/' + subAnnNo,
+            type: 'GET',
+            success: function (response) {
                 console.log('Success:', response);
                 setModalData(response);
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error('Error:', error);
             }
         })
     })
-
-
-    $('.apply-btn').on('click', function() {
-        // Find the closest parent with the class 'card' and get its data-subAnnNo
+    $('.apply-btn').on('click', function () {
         let subAnnoNo = $(this).closest('.card').data('subannno');
         console.log(subAnnoNo);
-        $.ajax({
-            url: '/rnd-plans',
-            type: 'GET',
-            data: {subAnnNo: subAnnoNo},
-            success:function(){
-                alert("ok");
-            },
-            errors:function (){
-                alert("no");
-            }
-        })
-    });
 
+        if (subAnnoNo) {
+            window.location.href = '/rnd-plans/' + subAnnoNo;
+        } else {
+            alert("No subAnnoNo found");
+        }
+    });
 })
 
-
-function setModalData(data){
+function setModalData(data) {
     $('#subAnnUniNo').text(data.subAnnUniNo);
     $('#subTitle').text(data.subTitle);
     $('#specInstitution').text(data.specInstitution);
