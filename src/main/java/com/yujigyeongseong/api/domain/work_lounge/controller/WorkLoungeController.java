@@ -1,6 +1,7 @@
 package com.yujigyeongseong.api.domain.work_lounge.controller;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
+import com.yujigyeongseong.api.domain.work_lounge.dao.EvaluationTableMapper;
 import com.yujigyeongseong.api.domain.work_lounge.dto.*;
 import com.yujigyeongseong.api.domain.work_lounge.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,17 @@ public class WorkLoungeController {
     private final SelectEvaluationService selectEvaluationService;
     private final SharingOpinionService sharingOpinionService;
     private final BoardService boardService;
+    private final EvaluationTableListService evaluationTableListService;
 
     @Autowired
-    public WorkLoungeController(EvaluationPaperService evaluationPaperService, RegisterListService registerListService, EvaluationTaskListService evaluationTaskListService, SelectEvaluationService selectEvaluationService, SharingOpinionService sharingOpinionService, BoardService boardService) {
+    public WorkLoungeController(EvaluationPaperService evaluationPaperService, RegisterListService registerListService, EvaluationTaskListService evaluationTaskListService, SelectEvaluationService selectEvaluationService, SharingOpinionService sharingOpinionService, BoardService boardService, EvaluationTableListService evaluationTableListService) {
         this.evaluationPaperService = evaluationPaperService;
         this.registerListService = registerListService;
         this.evaluationTaskListService = evaluationTaskListService;
         this.selectEvaluationService = selectEvaluationService;
         this.sharingOpinionService = sharingOpinionService;
         this.boardService = boardService;
+        this.evaluationTableListService = evaluationTableListService;
     }
 
     @GetMapping
@@ -46,16 +49,19 @@ public class WorkLoungeController {
         return "work-lounge/business-timeline";
     }
 
+    // 저장,수정 기능
     @GetMapping("/evaluation-table")
     public String getWorkLoungeEvaluationTablePage() {
         return "work-lounge/evaluation-table";
     }
 
+    // 쿼리 수정
     @GetMapping("/evaluation-paper")
     public String getWorkLoungeEvaluationPaperPage() {
         return "work-lounge/evaluation-paper";
     }
 
+    // 새로 만들기
     @GetMapping("/sharing-opinion")
     public String getWorkLoungeSharingOpinionPage() {
         return "work-lounge/sharing-opinion";
@@ -76,6 +82,7 @@ public class WorkLoungeController {
         return "work-lounge/selection-evaluation";
     }
 
+    // 표두개 ajax
     @GetMapping("/selection-evaluation-detail")
     public String getWorkLoungeSelectionEvaluationDetailPage() {
         return "work-lounge/selection-evaluation-detail";
@@ -96,13 +103,15 @@ public class WorkLoungeController {
         return "work-lounge/eval-committee-compose";
     }
 
-    @GetMapping("/evaluation-paper/{rndPlanNo}/{memNo}")
+    @GetMapping("/evaluation-paper/{annNo}/{subAnnNo}/{rndPlanNo}")
     public String getEvaluationPapersAndContentList(
+            @PathVariable Integer annNo,
+            @PathVariable Integer subAnnNo,
             @PathVariable Integer rndPlanNo,
-            @PathVariable Integer memNo,
             Model model) {
 
-        List<EvaluationPaperDTO> paperList = evaluationPaperService.getEvaluationPapers(rndPlanNo, memNo);
+        List<EvaluationPaperDTO> paperList = evaluationPaperService.getEvaluationPapers(annNo, subAnnNo,rndPlanNo);
+        System.out.println(paperList);
 
         model.addAttribute("paperList", paperList);
 
@@ -254,6 +263,42 @@ public class WorkLoungeController {
         } else {
             return ResponseEntity.status(400).body("수정 중 오류가 발생했습니다.");
         }
+    }
+
+    /* 선정평가 상세 위 */
+//    @GetMapping("/selection-evaluation-detail/{subTitle}")
+//    public ModelAndView getSelectEvaluationDetail(@PathVariable String subTitle) {
+//        List<SelectEvaluationDTO> selectEvaluationDetail = selectEvaluationService.getselectEvaluation(subTitle);
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.addObject("selectEvaluationDetail", selectEvaluationDetail);
+//        modelAndView.setViewName("work-lounge/selection-evaluation-detail");
+//        return modelAndView;
+//    }
+
+    @GetMapping("/selection-evaluation-detail/{subAnnNo}")
+    public String getSelectEvaluationDetail(@PathVariable Integer subAnnNo, Model model) {
+        List<SelectEvaluationDTO> selectEvaluationDetail = selectEvaluationService.getselectEvaluation(subAnnNo);
+        System.out.println(selectEvaluationService.getselectEvaluation(subAnnNo));
+        model.addAttribute("selectEvaluationDetail", selectEvaluationDetail);
+        return "work-lounge/selection-evaluation-detail";
+    }
+
+    /* 계획서 삭제 */
+    @PostMapping("/delete")
+    public String deleteBoard(@RequestParam Integer rndPlanNo, RedirectAttributes rttr) {
+        if (registerListService.getDelete(rndPlanNo)) {
+            rttr.addFlashAttribute("result", "success");
+        }
+        return "work-lounge/register-list";
+    }
+
+    /*전자평가표 */
+    @GetMapping("/evaluation-tables")
+    public String getEvaluationTables(Model model) {
+        List<EvaluationTableDTO> evaluationTableList = evaluationTableListService.getAnnounceList();
+        System.out.println(evaluationTableList);
+        model.addAttribute("announceList", evaluationTableList);
+        return "work-lounge/evaluation-table";
     }
 
 }

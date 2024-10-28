@@ -9,7 +9,8 @@
                ann.ann_type     as anntype,
                ann.started_at   as startedat,
                ann.closed_at    as closedat,
-               ann.status       as status
+               ann.status       as status,
+               rnd.rnd_plan_no as rndplanno
         FROM announcement ann
                  inner join sub_announcement subann on ann.ann_no = subann.ann_no
                  inner join rnd_plan rnd on rnd.sub_ann_no = subann.sub_ann_no
@@ -23,11 +24,16 @@
                ann.started_at   as startedat,
                ann.closed_at    as closedat,
                rnd.submitted_at as submittedat,
-               rnd.plan_status  as planstatus
+               rnd.plan_status  as planstatus,
+               rnd.rnd_plan_no as rndplanno
         FROM announcement ann
                  inner join sub_announcement subann on ann.ann_no = subann.ann_no
                  inner join rnd_plan rnd on rnd.sub_ann_no = subann.sub_ann_no
         WHERE rnd.mem_no = #{memNo}
     </select>
+
+    <delete id="delete">
+        delete from rnd_plan where rnd_plan_no =#{rndPlanNo}
+    </delete>
 
 </mapper>

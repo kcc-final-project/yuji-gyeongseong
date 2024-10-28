@@ -10,6 +10,14 @@ alter table bucket
     add constraint pk_bucket
         primary key (bucket_no);
 
+INSERT INTO bucket (bucket_no) VALUES (NEXT VALUE FOR seq_bucket);
+INSERT INTO bucket (bucket_no) VALUES (NEXT VALUE FOR seq_bucket);
+INSERT INTO bucket (bucket_no) VALUES (NEXT VALUE FOR seq_bucket);
+INSERT INTO bucket (bucket_no) VALUES (NEXT VALUE FOR seq_bucket);
+INSERT INTO bucket (bucket_no) VALUES (NEXT VALUE FOR seq_bucket);
+
+
+
 -- file
 create sequence seq_bucketfile START WITH 1 INCREMENT BY 1 NOCYCLE;
 
@@ -27,40 +35,73 @@ create table bucketfile
     source           varchar2(255) not null,
     source_number    number(10,0) not null,
     bucket_no        number(10,0) not null,
-    constraint fk_bucketfile_bucket_no foreign key (bucket_no) references bucket (bucket_no)
+    constraint fk_bucketfile_bucket_no foreign key (bucket_no) references bucket (bucket_no) ON DELETE CASCADE
 );
 
 alter table bucketfile
     add constraint pk_bucketfile
         primary key (uuid);
 
+INSERT INTO bucketfile (uuid, upload_path, file_name, hasing_file_name, file_type, file_class, file_size, mandatory_status, created_at, source, source_number, bucket_no)
+VALUES (NEXT VALUE FOR seq_bucketfile, '/path/to/file1', 'file1.txt', 'hash1', 'text', 'classA', 1024, 'mandatory', CURRENT_TIMESTAMP, 'sourceA', 1, 1);
+
+INSERT INTO bucketfile (uuid, upload_path, file_name, hasing_file_name, file_type, file_class, file_size, mandatory_status, created_at, source, source_number, bucket_no)
+VALUES (NEXT VALUE FOR seq_bucketfile, '/path/to/file2', 'file2.txt', 'hash2', 'text', 'classA', 2048, 'optional', CURRENT_TIMESTAMP, 'sourceB', 2, 1);
+
+INSERT INTO bucketfile (uuid, upload_path, file_name, hasing_file_name, file_type, file_class, file_size, mandatory_status, created_at, source, source_number, bucket_no)
+VALUES (NEXT VALUE FOR seq_bucketfile, '/path/to/file3', 'file3.jpg', 'hash3', 'image', 'classB', 3072, 'mandatory', CURRENT_TIMESTAMP, 'sourceC', 3, 2);
+
+INSERT INTO bucketfile (uuid, upload_path, file_name, hasing_file_name, file_type, file_class, file_size, mandatory_status, created_at, source, source_number, bucket_no)
+VALUES (NEXT VALUE FOR seq_bucketfile, '/path/to/file4', 'file4.pdf', 'hash4', 'pdf', 'classC', 4096, 'optional', CURRENT_TIMESTAMP, 'sourceD', 4, 2);
+
+INSERT INTO bucketfile (uuid, upload_path, file_name, hasing_file_name, file_type, file_class, file_size, mandatory_status, created_at, source, source_number, bucket_no)
+VALUES (NEXT VALUE FOR seq_bucketfile, '/path/to/file5', 'file5.docx', 'hash5', 'doc', 'classD', 5120, 'mandatory', CURRENT_TIMESTAMP, 'sourceE', 5, 3);
+
+
 -- announcement
 create sequence seq_announcement START WITH 1 INCREMENT BY 1 NOCYCLE;
 
 create table announcement
 (
-    ann_no              number(10,0) not null,
-    total_ann_no        varchar2(100) not null,
-    total_title         varchar2(255) not null,
-    content             CLOB not null,
-    competent_ministry  varchar2(255) not null,
-    spec_institution    varchar2(100) not null,
+    ann_no             number(10,0) not null,
+    total_ann_no       varchar2(100) not null,
+    total_title        varchar2(255) not null,
+    content            CLOB not null,
+    competent_ministry varchar2(255) not null,
+    spec_institution   varchar2(100) not null,
     ann_tech_field_name varchar2(20) not null,
-    ann_type            varchar2(50) not null,
-    sub_ann_count       number(2,0) not null,
-    reception_type      varchar2(50) not null,
-    status              varchar2(20) not null,
-    started_at          timestamp default current_timestamp,
-    closed_at           timestamp default current_timestamp,
-    created_at          timestamp default current_timestamp,
-    updated_at          timestamp default current_timestamp,
-    bucket_no           number(10,0)  not null,
-    constraint fk_announcement_bucket_no foreign key (bucket_no) references bucket (bucket_no)
+    ann_type           varchar2(50) not null,
+    sub_ann_count      number(2,0) not null,
+    reception_type     varchar2(50) not null,
+    status             varchar2(20) not null,
+    started_at         timestamp default current_timestamp,
+    closed_at          timestamp default current_timestamp,
+    created_at         timestamp default current_timestamp,
+    updated_at         timestamp default current_timestamp,
+    bucket_no          number(10,0)  not null,
+    constraint fk_announcement_bucket_no foreign key (bucket_no) references bucket (bucket_no) ON DELETE CASCADE
 );
 
 alter table announcement
     add constraint pk_announcement
         primary key (ann_no);
+
+INSERT INTO announcement (ann_no, total_ann_no, total_title, content, competent_ministry, spec_institution, ann_tech_field_name, ann_type, sub_ann_count, reception_type, status, started_at, closed_at, created_at, updated_at, bucket_no)
+VALUES (NEXT VALUE FOR seq_announcement, 'ANN001', 'AnnouncementTitle1', 'Content for announcement 1', 'Ministry A', 'Institution A', 'Tech Field 1', 'TypeA', 1, 'Type 1', '접수중', '2024-10-28', '2024-10-30', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1);
+
+INSERT INTO announcement (ann_no, total_ann_no, total_title, content, competent_ministry, spec_institution, ann_tech_field_name, ann_type, sub_ann_count, reception_type, status, started_at, closed_at, created_at, updated_at, bucket_no)
+VALUES (NEXT VALUE FOR seq_announcement, 'ANN002', 'AnnouncementTitle2', 'Content for announcement 2', 'Ministry B', 'Institution B', 'Tech Field 2', 'TypeB', 2, 'Type 2', '접수예정', '2024-10-29', '2024-11-01', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1);
+
+INSERT INTO announcement (ann_no, total_ann_no, total_title, content, competent_ministry, spec_institution, ann_tech_field_name, ann_type, sub_ann_count, reception_type, status, started_at, closed_at, created_at, updated_at, bucket_no)
+VALUES (NEXT VALUE FOR seq_announcement, 'ANN003', 'AnnouncementTitle3', 'Content for announcement 3', 'Ministry C', 'Institution C', 'Tech Field 3', 'TypeC', 3, 'Type 3', '접수마감', '2024-10-30', '2024-10-29', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2);
+
+INSERT INTO announcement (ann_no, total_ann_no, total_title, content, competent_ministry, spec_institution, ann_tech_field_name, ann_type, sub_ann_count, reception_type, status, started_at, closed_at, created_at, updated_at, bucket_no)
+VALUES (NEXT VALUE FOR seq_announcement, 'ANN004', 'AnnouncementTitle4', 'Content for announcement 4', 'Ministry D', 'Institution D', 'Tech Field 4', 'TypeD', 4, 'Type 4', '접수예정', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2);
+
+INSERT INTO announcement (ann_no, total_ann_no, total_title, content, competent_ministry, spec_institution, ann_tech_field_name, ann_type, sub_ann_count, reception_type, status, started_at, closed_at, created_at, updated_at, bucket_no)
+VALUES (NEXT VALUE FOR seq_announcement, 'ANN005', 'AnnouncementTitle5', 'Content for announcement 5', 'Ministry E', 'Institution E', 'Tech Field 5', 'TypeE', 5, 'Type 5', '접수중', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 3);
+
+
 
 -- sub_announcement
 create sequence seq_sub_announcement START WITH 1 INCREMENT BY 1 NOCYCLE;
@@ -84,13 +125,29 @@ create table sub_announcement
     perf_owner          varchar2(50) not null,
     ann_no              number(10,0) not null,
     bucket_no           number(10,0) not null,
-    constraint fk_sub_announcement_ann_no foreign key (ann_no) references announcement (ann_no),
-    constraint fk_sub_announcement_bucket_no foreign key (bucket_no) references bucket (bucket_no)
+    constraint fk_sub_announcement_ann_no foreign key (ann_no) references announcement (ann_no) ON DELETE CASCADE,
+    constraint fk_sub_announcement_bucket_no foreign key (bucket_no) references bucket (bucket_no) ON DELETE CASCADE
 );
 
 alter table sub_announcement
     add constraint pk_sub_announcement
         primary key (sub_ann_no);
+
+INSERT INTO sub_announcement (sub_ann_no, sub_ann_uni_no, sub_title, plan_type, task_type, spec_institution_no, tech_field_name, mgr_name, mgr_tel, planning_year, total_subsidy, total_dev_month, one_year_subsidy, one_year_dev_month, perf_owner, ann_no, bucket_no)
+VALUES (NEXT VALUE FOR seq_sub_announcement, 'SUB001', 'SubAnnouncementTitle1', 'Plan A', 'Task A', 'Inst001', 'Tech Field A', 'Manager A', '1234567890', 2024, 100000, 12, 50000, 6, 'Owner A', 1, 1);
+
+INSERT INTO sub_announcement (sub_ann_no, sub_ann_uni_no, sub_title, plan_type, task_type, spec_institution_no, tech_field_name, mgr_name, mgr_tel, planning_year, total_subsidy, total_dev_month, one_year_subsidy, one_year_dev_month, perf_owner, ann_no, bucket_no)
+VALUES (NEXT VALUE FOR seq_sub_announcement, 'SUB002', 'SubAnnouncementTitle2', 'Plan B', 'Task B', 'Inst002', 'Tech Field B', 'Manager B', '0987654321', 2024, 200000, 12, 100000, 6, 'Owner B', 2, 1);
+
+INSERT INTO sub_announcement (sub_ann_no, sub_ann_uni_no, sub_title, plan_type, task_type, spec_institution_no, tech_field_name, mgr_name, mgr_tel, planning_year, total_subsidy, total_dev_month, one_year_subsidy, one_year_dev_month, perf_owner, ann_no, bucket_no)
+VALUES (NEXT VALUE FOR seq_sub_announcement, 'SUB003', 'SubAnnouncementTitle3', 'Plan C', 'Task C', 'Inst003', 'Tech Field C', 'Manager C', '1122334455', 2024, 300000, 12, 150000, 6, 'Owner C', 3, 2);
+
+INSERT INTO sub_announcement (sub_ann_no, sub_ann_uni_no, sub_title, plan_type, task_type, spec_institution_no, tech_field_name, mgr_name, mgr_tel, planning_year, total_subsidy, total_dev_month, one_year_subsidy, one_year_dev_month, perf_owner, ann_no, bucket_no)
+VALUES (NEXT VALUE FOR seq_sub_announcement, 'SUB004', 'SubAnnouncementTitle4', 'Plan D', 'Task D', 'Inst004', 'Tech Field D', 'Manager D', '5566778899', 2024, 400000, 12, 200000, 6, 'Owner D', 1, 2);
+
+INSERT INTO sub_announcement (sub_ann_no, sub_ann_uni_no, sub_title, plan_type, task_type, spec_institution_no, tech_field_name, mgr_name, mgr_tel, planning_year, total_subsidy, total_dev_month, one_year_subsidy, one_year_dev_month, perf_owner, ann_no, bucket_no)
+VALUES (NEXT VALUE FOR seq_sub_announcement, 'SUB005', 'SubAnnouncementTitle5', 'Plan E', 'Task E', 'Inst005', 'Tech Field E', 'Manager E', '9988776655', 2024, 500000, 12, 250000, 6, 'Owner E', 2, 3);
+
 
 -- institution
 create sequence seq_institution START WITH 1 INCREMENT BY 1 NOCYCLE;
@@ -109,6 +166,21 @@ alter table institution
     add constraint pk_institution
         primary key (institution_no);
 
+INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
+VALUES (NEXT VALUE FOR seq_institution, 'Institution A', 'BR001', '123 Main St', 'Private', 'TypeA');
+
+INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
+VALUES (NEXT VALUE FOR seq_institution, 'Institution B', 'BR002', '456 Elm St', 'Public', 'TypeB');
+
+INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
+VALUES (NEXT VALUE FOR seq_institution, 'Institution C', 'BR003', '789 Oak St', 'Private', 'TypeC');
+
+INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
+VALUES (NEXT VALUE FOR seq_institution, 'Institution D', 'BR004', '321 Pine St', 'Public', 'Type ');
+
+INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
+VALUES (NEXT VALUE FOR seq_institution, 'Institution E', 'BR005', '654 Cedar St', 'Private', 'TypeE');
+
 -- quarter_earing
 create sequence seq_quarter_earning START WITH 1 INCREMENT BY 1 NOCYCLE;
 
@@ -122,12 +194,28 @@ create table quarter_earning
     total_capital    number(10,0) not null,
     total_liabilitie number(10,0) not null,
     institution_no   number(10,0) not null,
-    constraint fk_quarter_institution_no foreign key (institution_no) references institution (institution_no)
+    constraint fk_quarter_institution_no foreign key (institution_no) references institution (institution_no) ON DELETE CASCADE
 );
 
 alter table quarter_earning
     add constraint pk_quarter_earning
         primary key (year_no, quarter, institution_no);
+
+INSERT INTO quarter_earning (year_no, quarter, business_profit, sales, total_asset, total_capital, total_liabilitie, institution_no)
+VALUES (2023, 1, 500000, 1000000, 2000000, 1500000, 500000, 1);
+
+INSERT INTO quarter_earning (year_no, quarter, business_profit, sales, total_asset, total_capital, total_liabilitie, institution_no)
+VALUES (2023, 2, 600000, 1200000, 2200000, 1600000, 600000, 2);
+
+INSERT INTO quarter_earning (year_no, quarter, business_profit, sales, total_asset, total_capital, total_liabilitie, institution_no)
+VALUES (2023, 3, 700000, 1400000, 2400000, 1700000, 700000, 1);
+
+INSERT INTO quarter_earning (year_no, quarter, business_profit, sales, total_asset, total_capital, total_liabilitie, institution_no)
+VALUES (2023, 4, 800000, 1600000, 2600000, 1800000, 800000, 3);
+
+INSERT INTO quarter_earning (year_no, quarter, business_profit, sales, total_asset, total_capital, total_liabilitie, institution_no)
+VALUES (2024, 1, 900000, 1800000, 2800000, 1900000, 900000, 2);
+
 
 -- member
 create sequence seq_member START WITH 1 INCREMENT BY 1 NOCYCLE;
@@ -152,12 +240,28 @@ create table member
     updated_at     timestamp default current_timestamp,
     deleted_at     timestamp default current_timestamp,
     institution_no number(10,0) null,
-    constraint fk_member_institution_no foreign key (institution_no) references institution (institution_no)
+    constraint fk_member_institution_no foreign key (institution_no) references institution (institution_no) ON DELETE CASCADE
 );
 
 alter table member
     add constraint pk_member
         primary key (mem_no);
+
+INSERT INTO member (mem_no, username, password, name, email, gender, tel, addr, affil_type, affil_dept, position, status, institution_no)
+VALUES (NEXT VALUE FOR seq_member, 'user1', 'pass1', 'John Doe', 'john@example.com', 'M', '1234567890', '123 Main St', 'TypeA', 'DeptA', 'Manager', 'Active', 1);
+
+INSERT INTO member (mem_no, username, password, name, email, gender, tel, addr, affil_type, affil_dept, position, status, institution_no)
+VALUES (NEXT VALUE FOR seq_member, 'user2', 'pass2', 'Jane Smith', 'jane@example.com', 'F', '0987654321', '456 Elm St', 'TypeB', 'DeptB', 'Staff', 'Active', 2);
+
+INSERT INTO member (mem_no, username, password, name, email, gender, tel, addr, affil_type, affil_dept, position, status, institution_no)
+VALUES (NEXT VALUE FOR seq_member, 'user3', 'pass3', 'Alice Johnson', 'alice@example.com', 'F', '2345678901', '789 Oak St', 'TypeA', 'DeptA', 'Intern', 'Inactive', 1);
+
+INSERT INTO member (mem_no, username, password, name, email, gender, tel, addr, affil_type, affil_dept, position, status, institution_no)
+VALUES (NEXT VALUE FOR seq_member, 'user4', 'pass4', 'Bob Brown', 'bob@example.com', 'M', '3456789012', '321 Pine St', 'TypeC', 'DeptC', 'Director', 'Active', 3);
+
+INSERT INTO member (mem_no, username, password, name, email, gender, tel, addr, affil_type, affil_dept, position, status, institution_no)
+VALUES (NEXT VALUE FOR seq_member, 'user5', 'pass5', 'Charlie Black', 'charlie@example.com', 'M', '4567890123', '654 Cedar St', 'TypeB', 'DeptB', 'Supervisor', 'Active', 2);
+
 
 -- role
 create sequence seq_role START WITH 1 INCREMENT BY 1 NOCYCLE;
@@ -172,6 +276,13 @@ alter table role
     add constraint pk_role
         primary key (role_no);
 
+INSERT INTO role (role_no, role_name) VALUES (NEXT VALUE FOR seq_role, 'Admin');
+INSERT INTO role (role_no, role_name) VALUES (NEXT VALUE FOR seq_role, 'User');
+INSERT INTO role (role_no, role_name) VALUES (NEXT VALUE FOR seq_role, 'Manager');
+INSERT INTO role (role_no, role_name) VALUES (NEXT VALUE FOR seq_role, 'Supervisor');
+INSERT INTO role (role_no, role_name) VALUES (NEXT VALUE FOR seq_role, 'Intern');
+
+
 -- mem_role
 create table mem_role
 (
@@ -182,6 +293,13 @@ create table mem_role
     constraint fk_mem_role_mem_no foreign key (mem_no) references member (mem_no),
     constraint fk_mem_role_role_no foreign key (role_no) references role (role_no)
 );
+
+INSERT INTO mem_role (mem_no, role_no, created_at) VALUES (1, 1, CURRENT_TIMESTAMP);
+INSERT INTO mem_role (mem_no, role_no, created_at) VALUES (2, 2, CURRENT_TIMESTAMP);
+INSERT INTO mem_role (mem_no, role_no, created_at) VALUES (3, 5, CURRENT_TIMESTAMP);
+INSERT INTO mem_role (mem_no, role_no, created_at) VALUES (4, 3, CURRENT_TIMESTAMP);
+INSERT INTO mem_role (mem_no, role_no, created_at) VALUES (5, 4, CURRENT_TIMESTAMP);
+
 
 -- career
 create sequence seq_career START WITH 1 INCREMENT BY 1 NOCYCLE;
@@ -197,12 +315,28 @@ create table career
     created_at  timestamp default current_timestamp,
     updated_at  timestamp default current_timestamp,
     mem_no      number(10,0) not null,
-    constraint fk_career_mem_no foreign key (mem_no) references member (mem_no)
+    constraint fk_career_mem_no foreign key (mem_no) references member (mem_no) ON DELETE CASCADE
 );
 
 alter table career
     add constraint pk_career
         primary key (career_no);
+
+INSERT INTO career (career_no, org_name, dept_name, career_type, started_at, ended_at, created_at, updated_at, mem_no)
+VALUES (NEXT VALUE FOR seq_career, 'Company A', 'Dept A', 'Full-time', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1);
+
+INSERT INTO career (career_no, org_name, dept_name, career_type, started_at, ended_at, created_at, updated_at, mem_no)
+VALUES (NEXT VALUE FOR seq_career, 'Company B', 'Dept B', 'Part-time', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2);
+
+INSERT INTO career (career_no, org_name, dept_name, career_type, started_at, ended_at, created_at, updated_at, mem_no)
+VALUES (NEXT VALUE FOR seq_career, 'Company C', 'Dept C', 'Internship', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 3);
+
+INSERT INTO career (career_no, org_name, dept_name, career_type, started_at, ended_at, created_at, updated_at, mem_no)
+VALUES (NEXT VALUE FOR seq_career, 'Company D', 'Dept D', 'Contract', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 4);
+
+INSERT INTO career (career_no, org_name, dept_name, career_type, started_at, ended_at, created_at, updated_at, mem_no)
+VALUES (NEXT VALUE FOR seq_career, 'Company E', 'Dept E', 'Full-time', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 5);
+
 
 -- acad_ability
 create sequence seq_acad_ability START WITH 1 INCREMENT BY 1 NOCYCLE;
@@ -220,12 +354,28 @@ create table acad_ability
     created_at        timestamp default current_timestamp,
     updated_at        timestamp default current_timestamp,
     mem_no            number(10,0) not null,
-    constraint fk_acad_ability_mem_no foreign key (mem_no) references member (mem_no)
+    constraint fk_acad_ability_mem_no foreign key (mem_no) references member (mem_no) ON DELETE CASCADE
 );
 
 alter table acad_ability
     add constraint pk_acad_ability
         primary key (acad_ability_no);
+
+INSERT INTO acad_ability (acad_ability_no, ability_type, org_name, acquired_country, major_affiliation, major_field, major_name, acquired_at, created_at, updated_at, mem_no)
+VALUES (NEXT VALUE FOR seq_acad_ability, 'Degree', 'University A', 'Country A', 'Affiliation A', 'Field A', 'Major A', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1);
+
+INSERT INTO acad_ability (acad_ability_no, ability_type, org_name, acquired_country, major_affiliation, major_field, major_name, acquired_at, created_at, updated_at, mem_no)
+VALUES (NEXT VALUE FOR seq_acad_ability, 'Certification', 'Institution B', 'Country B', 'Affiliation B', 'Field B', 'Major B', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2);
+
+INSERT INTO acad_ability (acad_ability_no, ability_type, org_name, acquired_country, major_affiliation, major_field, major_name, acquired_at, created_at, updated_at, mem_no)
+VALUES (NEXT VALUE FOR seq_acad_ability, 'Degree', 'University C', 'Country C', 'Affiliation C', 'Field C', 'Major C', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 3);
+
+INSERT INTO acad_ability (acad_ability_no, ability_type, org_name, acquired_country, major_affiliation, major_field, major_name, acquired_at, created_at, updated_at, mem_no)
+VALUES (NEXT VALUE FOR seq_acad_ability, 'Certification', 'Institution D', 'Country D', 'Affiliation D', 'Field D', 'Major D', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 4);
+
+INSERT INTO acad_ability (acad_ability_no, ability_type, org_name, acquired_country, major_affiliation, major_field, major_name, acquired_at, created_at, updated_at, mem_no)
+VALUES (NEXT VALUE FOR seq_acad_ability, 'Degree', 'University E', 'Country E', 'Affiliation E', 'Field E', 'Major E', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 5);
+
 
 -- tech_field
 create sequence seq_tech_field START WITH 1 INCREMENT BY 1 NOCYCLE;
@@ -247,564 +397,6 @@ ALTER TABLE tech_field
     ADD CONSTRAINT fk_tech_field_parent
         FOREIGN KEY (parent_tech_field_no)
             REFERENCES tech_field (tech_field_no);
-
--- mem_tech_field
-
-create table mem_tech_field
-(
-    mem_no        number(10,0) not null,
-    tech_field_no number(10,0) not null,
-    created_at    timestamp default current_timestamp,
-    updated_at    timestamp default current_timestamp,
-    constraint pk_mem_tech_field primary key (mem_no, tech_field_no),
-    constraint fk_mem_tech_field_mem_no foreign key (mem_no) references member (mem_no),
-    constraint fk_mem_tech_field_no foreign key (tech_field_no) references tech_field (tech_field_no)
-);
-
--- rnd_plan
-create sequence seq_rnd_plan START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table rnd_plan
-(
-    rnd_plan_no       number(10,0)   not null,
-    rnd_task_no       varchar2(50)  not null,
-    task_name         varchar2(255) not null,
-    rnd_institution   varchar2(50)  null,
-    curr_step         number(1,0)  not null,
-    plan_status       varchar2(20)  not null,
-    final_tgt_content clob null,
-    rnd_content       clob null,
-    perf_content      clob null,
-    submitted_at      timestamp null,
-    created_at        timestamp default current_timestamp,
-    updated_at        timestamp null,
-    sub_ann_no        number(10,0)   not null,
-    constraint fk_rnd_plan_sub_ann_no foreign key (sub_ann_no) references sub_announcement (sub_ann_no),
-    mem_no            number(10,0)   not null,
-    constraint fk_rnd_plan_mem_no foreign key (mem_no) references member (mem_no),
-    bucket_no         number(10,0)   null,
-    constraint fk_rnd_plan_bucket_no foreign key (bucket_no) references bucket (bucket_no)
-);
-
-alter table rnd_plan
-    add constraint pk_rnd_plan
-        primary key (rnd_plan_no);
-
--- researcher
-create sequence seq_researcher START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table researcher
-(
-    rsrch_no      number(10,0)   not null,
-    manpower_role varchar2(20) null,
-    part_type     varchar2(20) null,
-    rnd_plan_no   number(10,0)   not null,
-    mem_no        number(10,0)   not null,
-    constraint fk_researcher_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no),
-    constraint fk_researcher_mem_no foreign key (mem_no) references member (mem_no)
-);
-
-alter table researcher
-    add constraint pk_researcher
-        primary key (rsrch_no);
-
--- rsrch_join_period
-create sequence seq_rsrch_join_period START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table rsrch_join_period
-(
-    stage_no        number(10,0)   not null,
-    year_no         number(10,0) not null,
-    is_participated char(1) not null,
-    started_at      timestamp default current_timestamp,
-    ended_at        timestamp default current_timestamp,
-    mxnth           number(2,0) null,
-    rsrch_no        number(10,0) not null,
-    constraint fk_rsrch_join_period_rsrch_no foreign key (rsrch_no) references researcher (rsrch_no)
-);
-
-alter table rsrch_join_period
-    add constraint pk_rsrch_join_period
-        primary key (stage_no, year_no);
-
--- rnd_field
-create sequence seq_rnd_field START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table rnd_field
-(
-    rnd_field_no number(10,0)   not null,
-    name         varchar2(50) not null,
-    rank         number(1,0)  not null,
-    weight       number(3,0)  not null,
-    rnd_plan_no  number(10,0)   not null,
-    constraint fk_rnd_field_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no)
-);
-
-alter table rnd_field
-    add constraint pk_rnd_field
-        primary key (rnd_field_no);
-
--- rnd_period
-create sequence seq_rnd_period START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table rnd_period
-(
-    stage_no    number(10,0)   not null,
-    year_no     number(10,0)   not null,
-    started_at  timestamp default current_timestamp,
-    ended_at    timestamp default current_timestamp,
-    mxnth       int not null,
-    rnd_plan_no number(10,0)   not null,
-    constraint fk_rnd_period_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no)
-);
-
-alter table rnd_period
-    add constraint pk_rnd_period
-        primary key (stage_no, year_no);
-
--- stage_content
-create sequence seq_stage_content START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table stage_content
-(
-    stage_no        number(10,0)   not null,
-    stg_tgt_content clob not null,
-    rnd_content     clob not null,
-    rnd_plan_no     number(10,0)   not null,
-    constraint fk_stage_content_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no)
-);
-
-alter table stage_content
-    add constraint pk_stage_content
-        primary key (stage_no);
-
--- rnd_fee
-create sequence seq_rnd_fee START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table rnd_fee
-(
-    stage_no           number(10,0)   not null,
-    year_no            number(10,0)   not null,
-    goverment_fund     number(10,0)   not null,
-    rnd_charge         number(10,0)   not null,
-    labor_cost         number(10,0)   not null,
-    equip_cost         number(10,0)   not null,
-    rnd_cost           number(10,0)  not null,
-    research_cost      number(10,0)   not null,
-    research_allowance number(10,0)  not null,
-    rnd_plan_no        number(10,0)   not null,
-    constraint fk_rnd_fee_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no)
-);
-
-alter table rnd_fee
-    add constraint pk_rnd_fee
-        primary key (stage_no, year_no);
-
--- progress_history
-create sequence seq_progress_history START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table progress_history
-(
-    progress_history_no number(10,0)   not null,
-    proc_status         varchar2(20) not null,
-    processor           varchar2(20) not null,
-    note                varchar2(100) null,
-    rnd_plan_no         number(10,0)   not null,
-    constraint fk_progress_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no)
-);
-
-alter table progress_history
-    add constraint pk_progress_history
-        primary key (progress_history_no);
-
--- evaluation_table
-create sequence seq_evaluation_table START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table evaluation_table
-(
-    evaluation_table_no number(10,0) not null,
-    title               varchar2(255) not null,
-    description         varchar2(255) not null,
-    form_type           varchar2(100) not null,
-    created_at          timestamp default current_timestamp,
-    updated_at          timestamp default current_timestamp,
-    tech_field_no       number(10,0),
-    constraint fk_evaluation_tech_field_no foreign key (tech_field_no) references tech_field (tech_field_no)
-);
-
-alter table evaluation_table
-    add constraint pk_evaluation_table
-        primary key (evaluation_table_no);
-
--- question
-create sequence seq_question START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table question
-(
-    question_no number(10,0) not null,
-    type        varchar2(100) not null,
-    content     varchar2(255) not null,
-    created_at  timestamp default current_timestamp
-);
-
-alter table question
-    add constraint pk_question
-        primary key (question_no);
-
--- evaluation_question
-create sequence seq_evaluation_question START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table evaluation_question
-(
-    evaluation_table_no number(10,0) not null,
-    question_no         number(10,0) not null,
-    constraint pk_evaluation_question primary key (evaluation_table_no, question_no),
-    constraint fk_eval_qu_evaluation_table_no foreign key (evaluation_table_no) references evaluation_table (evaluation_table_no),
-    constraint fk_eval_qu_question_no foreign key (question_no) references question (question_no)
-);
-
--- annocement_question
-create sequence seq_annocement_evaluation START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table annocement_evaluation
-(
-    evaluation_table_no number(10,0) not null,
-    sub_ann_no          number(10,0) not null,
-    constraint pk_announcement_evaluation primary key (evaluation_table_no, sub_ann_no),
-    constraint fk_ann_que_evaluation_table_no foreign key (evaluation_table_no) references evaluation_table (evaluation_table_no),
-    constraint fk_ann_que_sub_ann_no foreign key (sub_ann_no) references sub_announcement (sub_ann_no)
-);
-
--- eval_committee
-create sequence seq_eval_committee START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table eval_committee
-(
-    eval_committee_no number(10,0) not null,
-    name              varchar2(20) not null,
-    people_count      number(2,0) not null,
-    eval_started_at   timestamp default current_timestamp,
-    eval_closed_at    timestamp default current_timestamp,
-    prog_status       varchar2(20) not null,
-    created_at        timestamp default current_timestamp,
-    updated_at        timestamp default current_timestamp,
-    sub_ann_no        number(10,0),
-    constraint fk_eval_committee_sub_ann_no foreign key (sub_ann_no) references sub_announcement (sub_ann_no)
-);
-
-alter table eval_committee
-    add constraint pk_eval_committee
-        primary key (eval_committee_no);
-
--- eval_task
-create sequence seq_eval_task START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table eval_task
-(
-    eval_committee_no number(10,0) not null,
-    rnd_plan_no       number(10,0) not null,
-    mem_no            number(10,0) not null,
-    total_score       number(3,0) not null,
-    eval_completed_at timestamp default current_timestamp,
-    final_selected_at timestamp default current_timestamp,
-    eval_status       varchar2(20) null,
-    constraint pk_eval_task primary key (eval_committee_no, rnd_plan_no, mem_no),
-    constraint fk_eval_task_committee_no foreign key (eval_committee_no) references eval_committee (eval_committee_no),
-    constraint fk_eval_task_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no),
-    constraint fk_eval_task_mem_no foreign key (mem_no) references member (mem_no)
-);
-
--- evaluation_member
-create sequence seq_evaluation_member START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table evaluation_member
-(
-    eval_committee_no number(10,0) not null,
-    mem_no            number(10,0) not null,
-    recv_start_at     timestamp default current_timestamp,
-    recv_close_at     timestamp default current_timestamp,
-    recv_status       varchar2(20) not null,
-    recv_status_eng   varchar2(20) not null,
-    constraint pk_eval_member primary key (eval_committee_no, mem_no),
-    constraint fk_eval_member_eval_no foreign key (eval_committee_no) references eval_committee (eval_committee_no),
-    constraint fk_eval_member_mem_no foreign key (mem_no) references member (mem_no)
-);
-
--- eval_score
-create sequence seq_eval_score START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table eval_score
-(
-    eval_score_no       number(10,0) not null,
-    score               number(10,0) not null,
-    eval_committee_no   number(10,0) not null,
-    rnd_plan_no         number(10,0) not null,
-    mem_no              number(10,0) not null,
-    evaluation_table_no number(10,0) not null,
-    question_no         number(10,0) not null,
-    constraint fk_eval_score_eval_no foreign key (eval_committee_no) references eval_committee (eval_committee_no),
-    constraint fk_eval_score_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no),
-    constraint fk_eval_score_mem_no foreign key (mem_no) references member (mem_no),
-    constraint fk_eval_score_evall_no foreign key (evaluation_table_no) references evaluation_table (evaluation_table_no),
-    constraint fk_eval_score_quest_no foreign key (question_no) references question (question_no)
-);
--- notification
-create sequence seq_noti START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table noti
-(
-    notification_no number(10,0) not null,
-    content         varchar2(100) not null,
-    created_at      timestamp default current_timestamp,
-    deleted_at      timestamp default null,
-    noti_content_no number(10,0) null,
-    noti_type       varchar2(25) null,
-    read_state      varchar2(25) not null,
-    data_category   varchar2(25) not null,
-    mem_no          number(10,0) not null,
-    constraint fk_noti_mno foreign key (mem_no) references member (mem_no)
-);
-
-alter table noti
-    add constraint pk_notification
-        primary key (notification_no);
-
--- opinion
-create sequence seq_opinion START WITH 1 INCREMENT BY 1 NOCYCLE;
-
-create table opinion
-(
-    opinion_no        number(10,0) not null,
-    depth             number(1,0) not null,
-    created_at        timestamp default current_timestamp,
-    deleted_at        timestamp default current_timestamp,
-    eval_committee_no number(10,0) null,
-    rnd_plan_no       number(10,0) not null,
-    mem_no            number(10,0) not null,
-    bucket_no         number(10,0) not null,
-    parent_opinion_no number(10,0) not null,
-    constraint fk_opinion_eval_committee_no foreign key (eval_committee_no) references eval_committee (eval_committee_no),
-    constraint fk_opinion_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no),
-    constraint fk_opinion_mem_no foreign key (mem_no) references member (mem_no),
-    constraint fk_opinion_bucket_no foreign key (bucket_no) references bucket (bucket_no)
-);
-
-alter table opinion
-    add constraint pk_opinion
-        primary key (opinion_no);
-
-ALTER TABLE opinion
-    ADD CONSTRAINT fk_opinion_no_parent
-        FOREIGN KEY (parent_opinion_no)
-            REFERENCES opinion (opinion_no);
-
--- 더미 예제
--- 교육기관 (20개)
-INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
-VALUES (NEXT VALUE FOR seq_institution, '서울대학교', '123-45-67890', '서울특별시 관악구 관악로', '대학(4년이상)', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '연세대학교', '234-56-78901', '서울특별시 서대문구 연세로', '대학(4년이상)', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '고려대학교', '345-67-89012', '서울특별시 성북구 안암로', '대학(4년이상)', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '부산대학교', '456-78-90123', '부산광역시 금정구 부산대학로', '대학(4년이상)', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '성균관대학교', '567-89-01234', '서울특별시 종로구 성균관로', '대학(4년이상)', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '경희대학교', '678-90-12345', '서울특별시 동대문구 경희대로', '대학(4년이상)', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '중앙대학교', '789-01-23456', '서울특별시 동작구 흑석로', '대학(4년이상)', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '서강대학교', '890-12-34567', '서울특별시 마포구 서강로', '대학(4년이상)', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '이화여자대학교', '901-23-45678', '서울특별시 서대문구 이화여대길', '대학(4년이상)', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '한국외국어대학교', '012-34-56789', '서울특별시 동대문구 이문로', '대학(4년이상)', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '서울과학기술대학교', '123-45-67891', '서울특별시 노원구 공릉로', '대학(4년미만)', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '충남대학교', '234-56-78912', '대전광역시 유성구 대학로', '대학(4년이상)', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '전남대학교', '345-67-89023', '광주광역시 북구 용봉로', '대학(4년이상)', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '제주대학교', '456-78-90134', '제주특별자치도 제주시 제주대학로', '대학(4년이상)', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '서울예술대학교', '567-89-01245', '경기도 안산시 단원구 예술대학로', '대학(4년미만)', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '대전고등학교', '678-90-12356', '대전광역시 중구 문화로', '초중고교', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '부산여자중학교', '789-01-23467', '부산광역시 수영구 무학로', '초중고교', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '서울고등학교', '890-12-34578', '서울특별시 강남구 도산대로', '초중고교', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '부산외국어대학교', '901-23-45689', '부산광역시 금정구 부산외대길', '외국대학', '교육기관'),
-       (NEXT VALUE FOR seq_institution, '외국대학교', '012-34-56790', '서울특별시 중구 퇴계로', '외국대학', '교육기관');
-
--- 산업체 (20개)
-INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
-VALUES (NEXT VALUE FOR seq_institution, '삼성전자', '111-11-11111', '서울특별시 강남구 테헤란로', '대기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, '현대자동차', '222-22-22222', '서울특별시 서초구 헌릉로', '대기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, 'LG전자', '333-33-33333', '서울특별시 강서구 마곡동', '대기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, 'SK하이닉스', '444-44-44444', '경기도 이천시 부발읍', '대기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, '포스코', '555-55-55555', '경상북도 포항시 남구', '대기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, '현대중공업', '666-66-66666', '울산광역시 동구 방어진순환도로', '대기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, 'KT', '777-77-77777', '서울특별시 종로구 종로', '대기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, '한화그룹', '888-88-88888', '서울특별시 중구 청계천로', '대기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, '네이버', '999-99-99999', '경기도 성남시 분당구 불정로', '대기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, '카카오', '000-00-00000', '경기도 성남시 분당구 판교로', '대기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, '코오롱', '111-22-33333', '서울특별시 강서구 마곡동', '중견기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, '한전KPS', '222-33-44444', '전라남도 나주시 빛가람동', '공기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, '두산중공업', '333-44-55555', '경상남도 창원시 성산구', '대기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, '오뚜기', '444-55-66666', '서울특별시 용산구 한강대로', '중견기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, '대상', '555-66-77777', '서울특별시 동작구 상도동', '중견기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, '남양유업', '666-77-88888', '서울특별시 강남구 테헤란로', '중견기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, '삼양사', '777-88-99999', '서울특별시 중구 충무로', '중견기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, 'LG화학', '888-99-00000', '서울특별시 영등포구 여의도동', '대기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, '한미약품', '999-00-11111', '경기도 화성시 향남읍', '중견기업', '산업체'),
-       (NEXT VALUE FOR seq_institution, '대한항공', '000-11-22222', '서울특별시 강서구 방화동', '대기업', '산업체');
--- 연구기관 (20개)
-INSERT INTO institution (institution_no, name, business_register_no, address, company_type, iar_type)
-VALUES (NEXT VALUE FOR seq_institution, '한국전자통신연구원', '222-33-44455', '대전광역시 유성구 가정북로', '정부출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '한국생명공학연구원', '333-44-55566', '대전광역시 유성구 과학로', '정부출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '한국항공우주연구원', '444-55-66677', '대전광역시 유성구 과학로', '정부출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '한국원자력연구원', '555-66-77788', '대전광역시 유성구 대덕대로', '정부출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '한국기계연구원', '666-77-88899', '대전광역시 유성구 가정로', '정부출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '한국화학연구원', '777-88-99900', '대전광역시 유성구 대학로', '정부출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '한국에너지기술연구원', '888-99-00011', '대전광역시 유성구 가정로', '정부출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '한국표준과학연구원', '999-00-11122', '대전광역시 유성구 연구원로', '정부출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '한국지질자원연구원', '000-11-22233', '대전광역시 유성구 과학로', '정부출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '한국건설기술연구원', '111-22-33344', '경기도 고양시 일산서구 고봉로', '정부출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '한국교통연구원', '222-33-44455', '세종특별자치시 시청대로', '정부출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '한국해양과학기술원', '333-44-55566', '부산광역시 영도구 태종로', '정부출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '한국천문연구원', '444-55-66677', '대전광역시 유성구 대덕대로', '정부출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '한국전력연구원', '555-66-77788', '대전광역시 유성구 유성대로', '공기업', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '국방과학연구소', '666-77-88899', '대전광역시 유성구 자운로', '정부출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '서울시립과학기술연구원', '777-88-99900', '서울특별시 마포구 성산로', '지자체출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '경기도경제과학진흥원', '888-99-00011', '경기도 수원시 영통구 광교로', '지자체출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '부산테크노파크', '999-00-11122', '부산광역시 해운대구 센텀동로', '지자체출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '대구테크노파크', '000-11-22233', '대구광역시 동구 동대구로', '지자체출연연', '연구기관'),
-       (NEXT VALUE FOR seq_institution, '광주과학기술원', '111-22-33344', '광주광역시 북구 첨단과기로', '정부출연연', '연구기관');
-
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '7584777809', 'user1', 'password123', '구동현', 'nojeongsu@live.com',
-             '1990-06-20', 'F', '063-759-1080', '서울특별시 시 테헤란로',
-             '등록기관', '개발2팀', '부장', '활성', current_timestamp, NULL, NULL, 1);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '9881902842', 'user2', 'password123', '김건우', 'bha@gimbag.com',
-             '1971-12-13', 'M', '018-497-2538', '서울특별시 시 테헤란로',
-             '등록기관', '개발3팀', '부장', '활성', current_timestamp, NULL, NULL, 2);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '9204174681', 'user3', 'password123', '박상철', 'coesangho@yuhanhoesa.com',
-             '1982-05-01', 'F', '02-9942-8928', '서울특별시 시 테헤란로',
-             '등록기관', '개발4팀', '부장', '활성', current_timestamp, NULL, NULL, 3);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '4570331970', 'user4', 'password123', '양경자', 'seongmini@gimii.kr',
-             '1964-02-08', 'M', '063-249-9587', '서울특별시 시 테헤란로',
-             '등록기관', '개발1팀', '부장', '활성', current_timestamp, NULL, NULL, 4);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '3035889783', 'user5', 'password123', '이지후', 'junho82@jusighoesa.kr',
-             '1984-09-27', 'F', '052-714-4961', '서울특별시 시 테헤란로',
-             '등록기관', '개발2팀', '부장', '활성', current_timestamp, NULL, NULL, 5);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '9122548285', 'user6', 'password123', '김춘자', 'hbag@nate.com',
-             '1983-11-12', 'M', '054-689-0399', '서울특별시 시 테헤란로',
-             '등록기관', '개발3팀', '부장', '활성', current_timestamp, NULL, NULL, 6);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '1008881602', 'user7', 'password123', '이채원', 'ujingim@yu.com',
-             '1993-02-10', 'F', '054-430-9690', '서울특별시 시 테헤란로',
-             '등록기관', '개발4팀', '부장', '활성', current_timestamp, NULL, NULL, 7);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '2255511508', 'user8', 'password123', '김종수', 'gwangsu93@yuhanhoesa.com',
-             '1984-04-17', 'M', '011-185-5728', '서울특별시 시 테헤란로',
-             '등록기관', '개발1팀', '부장', '활성', current_timestamp, NULL, NULL, 8);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '4650288307', 'user9', 'password123', '김은서', 'sanghunbag@ian.kr',
-             '1969-01-14', 'M', '010-6865-9427', '서울특별시 시 테헤란로',
-             '등록기관', '개발2팀', '부장', '활성', current_timestamp, NULL, NULL, 9);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '3091342272', 'user10', 'password123', '김서준', 'gyeongsu92@dreamwiz.com',
-             '1985-05-19', 'M', '070-3880-2836', '서울특별시 시 테헤란로',
-             '등록기관', '개발3팀', '부장', '활성', current_timestamp, NULL, NULL, 1);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '2919929465', 'user11', 'password123', '최예준', 'yeongil41@gimyang.org',
-             '1977-07-14', 'F', '070-5587-6560', '서울특별시 시 테헤란로',
-             '등록기관', '개발4팀', '부장', '활성', current_timestamp, NULL, NULL, 2);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '3998998578', 'user12', 'password123', '백민재', 'fyun@yuhanhoesa.net',
-             '1971-02-24', 'M', '055-586-7983', '서울특별시 시 테헤란로',
-             '등록기관', '개발1팀', '부장', '활성', current_timestamp, NULL, NULL, 3);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '8480336572', 'user13', 'password123', '이은주', 'iboram@gmail.com',
-             '1993-03-14', 'M', '017-527-7373', '서울특별시 시 테헤란로',
-             '등록기관', '개발2팀', '부장', '활성', current_timestamp, NULL, NULL, 4);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '6915415136', 'user14', 'password123', '박윤서', 'fsin@yuhanhoesa.net',
-             '1987-07-03', 'M', '051-324-6080', '서울특별시 시 테헤란로',
-             '등록기관', '개발3팀', '부장', '활성', current_timestamp, NULL, NULL, 5);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '1241199632', 'user15', 'password123', '박영진', 'fbag@gweongimi.com',
-             '1982-01-17', 'F', '054-714-8981', '서울특별시 시 테헤란로',
-             '등록기관', '개발4팀', '부장', '활성', current_timestamp, NULL, NULL, 6);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '4643753621', 'user16', 'password123', '김수진', 'gimjeongsun@hanmail.net',
-             '1973-08-31', 'M', '044-797-0145', '서울특별시 시 테헤란로',
-             '등록기관', '개발1팀', '부장', '활성', current_timestamp, NULL, NULL, 7);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '3717542569', 'user17', 'password123', '이춘자', 'hyeonjeong76@live.com',
-             '1963-12-30', 'F', '031-996-9203', '서울특별시 시 테헤란로',
-             '등록기관', '개발2팀', '부장', '활성', current_timestamp, NULL, NULL, 8);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '1013638003', 'user18', 'password123', '민준영', 'jeongsugca@ison.com',
-             '1985-05-28', 'F', '062-807-8030', '서울특별시 시 테헤란로',
-             '등록기관', '개발3팀', '부장', '활성', current_timestamp, NULL, NULL, 9);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '9808063692', 'user19', 'password123', '최정자', 'sunja44@gogim.org',
-             '1990-04-04', 'M', '02-9052-0626', '서울특별시 시 테헤란로',
-             '등록기관', '개발4팀', '부장', '활성', current_timestamp, NULL, NULL, 1);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '3417580121', 'user20', 'password123', '이현주', 'hongbyeongceol@nate.com',
-             '1989-11-01', 'F', '010-6093-4195', '서울특별시 시 테헤란로',
-             '등록기관', '개발1팀', '부장', '활성', current_timestamp, NULL, NULL, 4);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '8067335160', 'user21', 'password123', '김중수', 'ubaeg@naver.com',
-             '1986-07-31', 'M', '062-424-0670', '서울특별시 시 테헤란로',
-             '등록기관', '개발2팀', '부장', '활성', current_timestamp, NULL, NULL, 7);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '6337627951', 'user22', 'password123', '이성민', 'hyeonsuggim@hanmail.net',
-             '1991-03-08', 'F', '054-011-7096', '서울특별시 시 테헤란로',
-             '등록기관', '개발3팀', '부장', '활성', current_timestamp, NULL, NULL, 2);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '5936567531', 'user23', 'password123', '이도현', 'sugjacoe@naver.com',
-             '1978-08-04', 'F', '055-188-7089', '서울특별시 시 테헤란로',
-             '등록기관', '개발4팀', '부장', '활성', current_timestamp, NULL, NULL, 5);
-INSERT INTO member (mem_no, rsrch_no, username, password, name, email, birth, gender, tel, addr,
-                    affil_type, affil_dept, position, status, created_at, updated_at, deleted_at, institution_no)
-VALUES (NEXT VALUE FOR seq_member, '8067845336', 'user24', 'password123', '허서영', 'jinhojang@baeigang.net',
-             '1971-09-15', 'F', '011-928-4287', '서울특별시 시 테헤란로',
-             '등록기관', '개발1팀', '부장', '활성', current_timestamp, NULL, NULL, 8);
-
-INSERT INTO acad_ability (acad_ability_no, ability_type, org_name, acquired_country, major_affiliation,
-                          major_field, major_name, acquired_at, created_at, updated_at, mem_no)
-VALUES (NEXT VALUE FOR seq_acad_ability, '학사', '서울대학교', '대한민국', '공학계열',
-             '컴퓨터공학', '소프트웨어공학', current_timestamp, current_timestamp, current_timestamp, 1);
-
-INSERT INTO acad_ability (acad_ability_no, ability_type, org_name, acquired_country, major_affiliation,
-                          major_field, major_name, acquired_at, created_at, updated_at, mem_no)
-VALUES (NEXT VALUE FOR seq_acad_ability, '석사', '카이스트', '대한민국', '공학계열',
-             '전자공학', '반도체공학', current_timestamp, current_timestamp, current_timestamp, 1);
-
-INSERT INTO career (career_no, org_name, dept_name, career_type, started_at, ended_at, created_at, updated_at, mem_no)
-VALUES (NEXT VALUE FOR seq_career, '삼성전자', '개발팀', '정규직', current_timestamp, current_timestamp, current_timestamp,
-             current_timestamp, 1);
-
-INSERT INTO career (career_no, org_name, dept_name, career_type, started_at, ended_at, created_at, updated_at, mem_no)
-VALUES (NEXT VALUE FOR seq_career, 'LG화학', '연구소', '계약직', current_timestamp, current_timestamp, current_timestamp,
-             current_timestamp, 1);
 
 INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
 VALUES (1, '생명과학', 'LA', 'root', NULL);
@@ -907,172 +499,1125 @@ VALUES (49, '구조생물학', 'LA0606', 'child', 43);
 INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
 VALUES (50, '달리 분류되지 않는 생화학/ 구조 생물학', 'LA0699', 'child', 43);
 
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (51, '수학', 'NA', 'root', NULL);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (52, '기타 수학', 'NA99', 'parent', 51);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (53, '기하학', 'NA04', 'parent', 51);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (54, '대수학', 'NA01', 'parent', 51);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (55, '위상수학', 'NA03', 'parent', 51);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (56, '응용수학', 'NA05', 'parent', 51);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (57, '응용통계', 'NA09', 'parent', 51);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (58, '이산/정보수학', 'NA06', 'parent', 51);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (59, '통계 방법론·계산', 'NA08', 'parent', 51);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (60, '통계이론', 'NA07', 'parent', 51);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (61, '해석학', 'NA02', 'parent', 51);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (62, '확률/확률과정', 'NA10', 'parent', 51);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (63, '결합환', 'NA0106', 'child', 54);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (64, '경제/경영통계', 'NA0902', 'child', 57);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (65, '계산수학', 'NA0510', 'child', 56);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (66, '고전/일반기하', 'NA0401', 'child', 53);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (67, '고전/조화해석', 'NA0201', 'child', 61);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (68, '공업통계', 'NA0906', 'child', 57);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (69, '과학/공학의 수학적 방법론', 'NA0504', 'child', 56);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (70, '군/표현', 'NA0104', 'child', 54);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (71, '금융/보험통계', 'NA0903', 'child', 57);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (72, '금융수학', 'NA0505', 'child', 56);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (73, '기하위상수학/미분위상수학', 'NA0303', 'child', 55);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (74, '다변량통계', 'NA0803', 'child', 59);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (75, '달리 분류되지 않는 기하학', 'NA0499', 'child', 53);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (76, '달리 분류되지 않는 대수학', 'NA0199', 'child', 54);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (77, '달리 분류되지 않는 수학', 'NA9999', 'child', 52);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (78, '달리 분류되지 않는 위상수학', 'NA0399', 'child', 55);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (79, '달리 분류되지 않는 응용수학', 'NA0599', 'child', 56);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (80, '달리 분류되지 않는 응용통계', 'NA0999', 'child', 57);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (81, '달리 분류되지 않는 이산/정보수학', 'NA0699', 'child', 58);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (82, '달리 분류되지 않는 통계 방법론·계산', 'NA0899', 'child', 59);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (83, '달리 분류되지 않는 통계이론', 'NA0799', 'child', 60);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (84, '달리 분류되지 않는 해석학', 'NA0299', 'child', 61);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (85, '달리 분류되지 않는 확률/확률과정', 'NA1099', 'child', 62);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (86, '대수기하/가환환', 'NA0105', 'child', 54);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (87, '대수적위상수학', 'NA0302', 'child', 55);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (88, '대역해석학/다양체위의 해석학', 'NA0207', 'child', 61);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (89, '동력계/상미분방정식', 'NA0205', 'child', 61);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (90, '리군/위상군', 'NA0304', 'child', 55);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (91, '리대수/비결합환', 'NA0107', 'child', 54);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (92, '모수추론', 'NA0701', 'child', 60);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (93, '미분기하', 'NA0403', 'child', 53);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (94, '바이오수학', 'NA0506', 'child', 56);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (95, '베이지안추론', 'NA0703', 'child', 60);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (96, '변분론/비선형해석', 'NA0204', 'child', 61);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (97, '보험수학', 'NA0509', 'child', 56);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (98, '복소기하', 'NA0404', 'child', 53);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (99, '복소해석', 'NA0202', 'child', 61);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (100, '볼록기하/이산기하', 'NA0402', 'child', 53);
+
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (101, '물리학', 'NB', 'root', NULL);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (102, '광학·양자전자학', 'NB05', 'parent', 101);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (103, '기타 물리학', 'NB99', 'parent', 101);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (104, '복합물리', 'NB09', 'parent', 101);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (105, '원자/분자물리', 'NB07', 'parent', 101);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (106, '유체·플라즈마물리', 'NB04', 'parent', 101);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (107, '응집물질물리', 'NB06', 'parent', 101);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (108, '입자/장물리', 'NB01', 'parent', 101);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (109, '천체물리', 'NB08', 'parent', 101);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (110, '통계물리', 'NB02', 'parent', 101);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (111, '핵물리', 'NB03', 'parent', 101);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (112, 'X선 광학', 'NB0510', 'child', 102);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (113, '가속기/충돌 물리', 'NB0105', 'child', 108);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (114, '강입자 물리', 'NB0303', 'child', 111);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (115, '고에너지 중이온 반응', 'NB0304', 'child', 111);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (116, '고에너지천체', 'NB0806', 'child', 109);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (117, '광자학', 'NB0505', 'child', 102);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (118, '기하/파동 광학', 'NB0507', 'child', 102);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (119, '나노 광학', 'NB0509', 'child', 102);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (120, '나노구조/나노소자', 'NB0617', 'child', 107);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (121, '달리 분류되지 않는 광학·양자전자학', 'NB0599', 'child', 102);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (122, '달리 분류되지 않는 물리학', 'NB9999', 'child', 103);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (123, '달리 분류되지 않는 복합물리', 'NB0999', 'child', 104);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (124, '달리 분류되지 않는 원자/분자물리', 'NB0799', 'child', 105);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (125, '달리 분류되지 않는 유체·플라즈마물리', 'NB0499', 'child', 106);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (126, '달리 분류되지 않는 응집물질물리', 'NB0699', 'child', 107);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (127, '달리 분류되지 않는 입자/장물리', 'NB0199', 'child', 108);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (128, '달리 분류되지 않는 천체물리', 'NB0899', 'child', 109);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (129, '달리 분류되지 않는 통계물리', 'NB0299', 'child', 110);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (130, '달리 분류되지 않는 핵물리', 'NB0399', 'child', 111);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (131, '디스플레이 광학', 'NB0508', 'child', 102);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (132, '레이저광학', 'NB0503', 'child', 102);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (133, '무른물질/유기물질', 'NB0612', 'child', 107);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (134, '무질서계', 'NB0202', 'child', 110);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (135, '반도체', 'NB0607', 'child', 107);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (136, '복잡계', 'NB0204', 'child', 110);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (137, '분광학', 'NB0501', 'child', 102);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (138, '분자물리학', 'NB0702', 'child', 105);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (139, '비선형 동력학', 'NB0203', 'child', 110);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (140, '비선형광학', 'NB0504', 'child', 102);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (141, '생물물리', 'NB0901', 'child', 104);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (142, '양자광학', 'NB0502', 'child', 102);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (143, '양자정보', 'NB0703', 'child', 105);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (144, '원자물리학', 'NB0701', 'child', 105);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (145, '원자핵 데이터', 'NB0305', 'child', 111);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (146, '유전체/강유전체', 'NB0609', 'child', 107);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (147, '유체운동/수송론', 'NB0402', 'child', 106);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (148, '음향학', 'NB0905', 'child', 104);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (149, '응집물성 측정법', 'NB0614', 'child', 107);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (150, '응집물질 계산과학', 'NB0602', 'child', 107);
+
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (151, '화학', 'NC', 'root', NULL);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (152, '고분자화학', 'NC05', 'parent', 151);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (153, '광화학', 'NC07', 'parent', 151);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (154, '기타 화학', 'NC99', 'parent', 151);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (155, '무기화학', 'NC03', 'parent', 151);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (156, '물리화학', 'NC01', 'parent', 151);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (157, '분석화학', 'NC04', 'parent', 151);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (158, '생화학', 'NC06', 'parent', 151);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (159, '유기화학', 'NC02', 'parent', 151);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (160, '융합화학', 'NC10', 'parent', 151);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (161, '재료화학', 'NC09', 'parent', 151);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (162, '전기화학', 'NC08', 'parent', 151);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (163, '계산화학', 'NC1005', 'child', 160);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (164, '고분자 구조/물성', 'NC0502', 'child', 152);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (165, '고분자 물리화학', 'NC0503', 'child', 152);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (166, '고분자 합성', 'NC0501', 'child', 152);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (167, '고분자광화학', 'NC0704', 'child', 153);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (168, '고분자재료화학', 'NC0905', 'child', 161);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (169, '고체무기화학/결정학', 'NC0305', 'child', 155);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (170, '고체물리화학', 'NC0106', 'child', 156);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (171, '고효율 생리활성 검색', 'NC1007', 'child', 160);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (172, '광소재화학', 'NC0706', 'child', 153);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (173, '구조분석화학', 'NC0404', 'child', 157);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (174, '구조생화학', 'NC0605', 'child', 158);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (175, '기능성 고분자', 'NC0506', 'child', 152);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (176, '나노광화학', 'NC0907', 'child', 161);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (177, '나노재료화학', 'NC0901', 'child', 161);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (178, '단백질/효소분자 생화학', 'NC0602', 'child', 158);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (179, '단백질체학', 'NC0608', 'child', 158);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (180, '달리 분류되지 않는 고분자화학', 'NC0599', 'child', 152);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (181, '달리 분류되지 않는 광화학', 'NC0799', 'child', 153);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (182, '달리 분류되지 않는 무기화학', 'NC0399', 'child', 155);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (183, '달리 분류되지 않는 물리화학', 'NC0199', 'child', 156);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (184, '달리 분류되지 않는 분석화학', 'NC0499', 'child', 157);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (185, '달리 분류되지 않는 생화학', 'NC0699', 'child', 158);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (186, '달리 분류되지 않는 유기화학', 'NC0299', 'child', 159);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (187, '달리 분류되지 않는 융합화학', 'NC1099', 'child', 160);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (188, '달리 분류되지 않는 재료화학', 'NC0999', 'child', 161);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (189, '달리 분류되지 않는 전기화학', 'NC0899', 'child', 162);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (190, '달리 분류되지 않는 화학', 'NC9999', 'child', 154);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (191, '대사분자 생화학', 'NC0606', 'child', 158);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (192, '마이크로칩 화학분석', 'NC0409', 'child', 157);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (193, '무기광화학', 'NC0702', 'child', 153);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (194, '무기소재화학', 'NC0306', 'child', 155);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (195, '무기의약화학', 'NC0308', 'child', 155);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (196, '무기재료화학', 'NC0904', 'child', 161);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (197, '무기초분자화학', 'NC0302', 'child', 155);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (198, '물리광화학', 'NC0705', 'child', 153);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (199, '물리전기화학', 'NC0801', 'child', 162);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (200, '바이오재료화학', 'NC0906', 'child', 161);
+
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (201, '지구과학(지구/대기/해양/천문)', 'ND', 'root', NULL);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (202, '극지과학', 'ND11', 'parent', 201);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (203, '기상과학', 'ND05', 'parent', 201);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (204, '기타 지구과학', 'ND99', 'parent', 201);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (205, '기후과학', 'ND06', 'parent', 201);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (206, '대기과학', 'ND04', 'parent', 201);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (207, '우주과학', 'ND13', 'parent', 201);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (208, '자연재해 분석/예측', 'ND07', 'parent', 201);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (209, '지구물리학', 'ND02', 'parent', 201);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (210, '지구화학', 'ND03', 'parent', 201);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (211, '지질과학', 'ND01', 'parent', 201);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (212, '천문우주관측기술', 'ND14', 'parent', 201);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (213, '천문학', 'ND12', 'parent', 201);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (214, '해양과학', 'ND08', 'parent', 201);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (215, '해양생명', 'ND10', 'parent', 201);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (216, '해양자원', 'ND09', 'parent', 201);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (217, '가뭄재해발생 분석/예측', 'ND0710', 'child', 208);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (218, '고기후학', 'ND0605', 'child', 205);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (219, '고에너지복사 관측기술', 'ND1404', 'child', 212);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (220, '고에너지천문학', 'ND1207', 'child', 213);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (221, '고천문학/천문역법', 'ND1209', 'child', 213);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (222, '고층대기', 'ND0407', 'child', 206);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (223, '고해양학', 'ND0805', 'child', 214);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (224, '광물학', 'ND0101', 'child', 211);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (225, '광상/자원지질학', 'ND0103', 'child', 211);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (226, '광학천문기술', 'ND1401', 'child', 212);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (227, '구조지질학', 'ND0104', 'child', 211);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (228, '극지 광물자원 탐사', 'ND1105', 'child', 202);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (229, '극지 생물자원 탐사/수집/활용', 'ND1104', 'child', 202);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (230, '극지 생태계 모니터링', 'ND1106', 'child', 202);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (231, '극지 인프라구축 및 활용', 'ND1110', 'child', 202);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (232, '극지 저온생물학/적응생리', 'ND1109', 'child', 202);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (233, '극지 해양', 'ND1107', 'child', 202);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (234, '극지환경감시/극지 생지화학 순환', 'ND1103', 'child', 202);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (235, '기상관측/분석기술', 'ND0501', 'child', 203);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (236, '기상예보기술', 'ND0503', 'child', 203);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (237, '기상원격탐사기술', 'ND0502', 'child', 203);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (238, '기상재해 분석/예측', 'ND0701', 'child', 208);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (239, '기상조절', 'ND0504', 'child', 203);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (240, '기후모델링/예측기술', 'ND0603', 'child', 205);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (241, '기후변화영향평가/대응기술', 'ND0604', 'child', 205);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (242, '기후시스템 관측/분석기술', 'ND0601', 'child', 205);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (243, '기후역학', 'ND0602', 'child', 205);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (244, '농업기상', 'ND0506', 'child', 203);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (245, '달리 분류되지 않는 극지과학', 'ND1199', 'child', 202);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (246, '달리 분류되지 않는 기상과학', 'ND0599', 'child', 203);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (247, '달리 분류되지 않는 기후과학', 'ND0699', 'child', 205);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (248, '달리 분류되지 않는 대기과학', 'ND0499', 'child', 206);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (249, '달리 분류되지 않는 우주과학', 'ND1399', 'child', 207);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (250, '달리 분류되지 않는 자연재해 분석/예측', 'ND0799', 'child', 208);
+
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (251, '농림수산식품', 'LB', 'root', NULL);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (252, '기타 농림수산식품', 'LB99', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (253, '농림수산식품경영/정보 등', 'LB20', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (254, '농생물학', 'LB03', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (255, '농수축산물 품질·안전 관리', 'LB16', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (256, '농업·식품 기계·설비', 'LB08', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (257, '농업인프라 공학', 'LB09', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (258, '농업환경생태', 'LB05', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (259, '농화학', 'LB04', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (260, '동물자원과학', 'LB06', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (261, '산림자원학', 'LB10', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (262, '수산양식', 'LB13', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (263, '수산자원/어장환경', 'LB14', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (264, '수의과학', 'LB07', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (265, '식량작물과학', 'LB01', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (266, '식품과학', 'LB17', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (267, '식품영양과학', 'LB18', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (268, '식품조리/외식/식생활개선', 'LB19', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (269, '어업생산/이용가공', 'LB15', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (270, '원예특용작물과학', 'LB02', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (271, '임산공학', 'LB12', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (272, '조경학', 'LB11', 'parent', 251);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (273, '곤충 분류/동정/생태', 'LB0305', 'child', 254);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (274, '곤충 생리/병리/활용', 'LB0306', 'child', 254);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (275, '곤충 생명공학', 'LB0307', 'child', 254);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (276, '공예/사료/녹비작물', 'LB0107', 'child', 265);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (277, '급식/외식상품개발', 'LB1904', 'child', 268);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (278, '기능성식품', 'LB1801', 'child', 267);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (279, '농림수산식품 경영/경제', 'LB2001', 'child', 253);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (280, '농림수산식품 유통', 'LB2002', 'child', 253);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (281, '농림수산식품 정보', 'LB2003', 'child', 253);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (282, '농산물 위생/품질관리', 'LB1601', 'child', 255);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (283, '농어업/농어촌 정책', 'LB2006', 'child', 253);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (284, '농업 금융/보험', 'LB2004', 'child', 253);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (285, '농업 생태', 'LB0503', 'child', 258);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (286, '농업 시설', 'LB0901', 'child', 257);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (287, '농업 환경정화', 'LB0504', 'child', 258);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (288, '농업·식품 동력·에너지', 'LB0802', 'child', 256);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (289, '농업·식품 생산 기계', 'LB0801', 'child', 256);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (290, '농업·식품 생산 시설·환경', 'LB0805', 'child', 256);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (291, '농업·식품 생산 자동화·로봇', 'LB0804', 'child', 256);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (292, '농업기상', 'LB0505', 'child', 258);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (293, '농업미생물', 'LB0302', 'child', 254);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (294, '농업수자원/수문학', 'LB0903', 'child', 257);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (295, '농업자원 순환/활용', 'LB0507', 'child', 258);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (296, '농지 공학', 'LB0902', 'child', 257);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (297, '농촌 계획 공학', 'LB0905', 'child', 257);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (298, '농촌 사회/문화', 'LB2005', 'child', 253);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (299, '농촌 환경 공학', 'LB0904', 'child', 257);
+INSERT INTO tech_field (tech_field_no, name, code, type, parent_tech_field_no)
+VALUES (300, '농축산물 가공/품질 계측', 'LB0803', 'child', 256);
+
+
+-- mem_tech_field
+
+create table mem_tech_field
+(
+    mem_no        number(10,0) not null,
+    tech_field_no number(10,0) not null,
+    created_at    timestamp default current_timestamp,
+    updated_at    timestamp default current_timestamp,
+    constraint pk_mem_tech_field primary key (mem_no, tech_field_no),
+    constraint fk_mem_tech_field_mem_no foreign key (mem_no) references member (mem_no) ON DELETE CASCADE,
+    constraint fk_mem_tech_field_no foreign key (tech_field_no) references tech_field (tech_field_no) ON DELETE CASCADE
+);
 
 INSERT INTO mem_tech_field(mem_no, tech_field_no, created_at, updated_at)
-VALUES (1, 1, default, null);
+VALUES (1, 15, current_timestamp, current_timestamp);
 INSERT INTO mem_tech_field(mem_no, tech_field_no, created_at, updated_at)
-VALUES (1, 2, default, null);
+VALUES (1, 58, current_timestamp, current_timestamp);
 INSERT INTO mem_tech_field(mem_no, tech_field_no, created_at, updated_at)
-VALUES (1, 3, default, null);
+VALUES (1, 158, current_timestamp, current_timestamp);
 
-INSERT INTO bucket (BUCKET_NO)
-VALUES (NEXTVAL('seq_bucket'));
 
-INSERT INTO announcement(ANN_NO, TOTAL_ANN_NO, TOTAL_TITLE, CONTENT, COMPETENT_MINISTRY,
-                         SPEC_INSTITUTION, ann_tech_field_name, ANN_TYPE, SUB_ANN_COUNT, RECEPTION_TYPE,
-                         STATUS, STARTED_AT, CLOSED_AT, CREATED_AT, UPDATED_AT, BUCKET_NO)
-VALUES (NEXTVAL('seq_announcement'),
-        '중소벤처기업부 공고 제2024 -465호',
-        '2024년 제2차 전략기술 테마별 프로젝트(DCP) 기업 지원계획 공고',
-        '<p class="announcement-number">과학기술정보통신부 공고 제2024-0925호</p>
-         <h4>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</h4>
-         <p>과학기술정보통신부가 추진하는 『혁신형 소형모듈원자로 기술개발사업』의 신규과제를 아래와 같이 재공고하오니 관심있는 연구자분들의 많은 참여 바랍니다.</p>
-         <p class="announcement-date">2024년 9월 23일</p>
-         <div class="announcement-wrap">
-             <p class="Order department">&lt;주무부처&gt; 과학기술정보통신부 장관<span>우상임</span></p>
-             <p>
-             <p class="professional-organization">
-                 &lt;전문기관&gt; 과학기술정보통신부 기술개발사업단 단장<span>김한근</span></p>
-         </div>
-         <h5>가. 사업목적</h5>
-         <p>28년까지 경제성·안정성·유연성 측면에서 경쟁력을 갖춘 혁신형 소형모듈원자로(혁신형 SMR 또는 i-SMR)을 개발하고, 표준설계인가 취득 추진</p>
-         <h5>나. 사업내용</h5>
-         <p>(설계)<br>- 노심, 계통, 종합설계의 3개 설계분야로 구성되며 각 설계분야는 혁신기술 및 혁신제조 분야와 유기적으로 연계되어 혁신형 SMR의 표준설계 수행</p>',
-        '중소벤처기업부',
-        '중소기업기술정보진흥원',
-        '에너지/자원',
-        '지정공모',
-        4,
-        '신청용 연구개발계획서',
-        '접수중',
-        '2024-10-01',
-        '2024-11-02',
-        '2024-08-01',
-        NULL,
-        1);
+-- rnd_plan
+create sequence seq_rnd_plan START WITH 1 INCREMENT BY 1 NOCYCLE;
 
-INSERT INTO sub_announcement (SUB_ANN_NO, SUB_ANN_UNI_NO, SUB_TITLE, PLAN_TYPE, TASK_TYPE, SPEC_INSTITUTION_NO,
-                              TECH_FIELD_NAME,
-                              MGR_NAME, MGR_TEL, PLANNING_YEAR, TOTAL_SUBSIDY, TOTAL_DEV_MONTH, ONE_YEAR_SUBSIDY,
-                              ONE_YEAR_DEV_MONTH, perf_owner, ANN_NO, BUCKET_NO)
-VALUES (NEXTVAL('seq_sub_announcement'), 'RM-2024-01', '저탄소 연료생산을 위한 이산화탄소 전환기술 개발', '신청용 연구개발계획서', '(일반)연구개발과제',
-        '2024-DCP-01',
-        '에너지/자원 > 온실가스 처리 > CO2 전환기술', '이민수', '02-231-1202', '2024', 3600000, 36, 285000, 3, '연구기관귀속', '1', '1');
+create table rnd_plan
+(
+    rnd_plan_no       number(10,0)   not null,
+    rnd_task_no       varchar2(50)  not null,
+    task_name         varchar2(255) not null,
+    rnd_institution   varchar2(50)  null,
+    curr_step         number(1,0)  not null,
+    plan_status       varchar2(20)  not null,
+    final_tgt_content clob null,
+    rnd_content       clob null,
+    perf_content      clob null,
+    submitted_at      timestamp null,
+    created_at        timestamp default current_timestamp,
+    updated_at        timestamp null,
+    sub_ann_no        number(10,0)   not null,
+    constraint fk_rnd_plan_sub_ann_no foreign key (sub_ann_no) references sub_announcement (sub_ann_no) ON DELETE CASCADE,
+    mem_no            number(10,0)   not null,
+    constraint fk_rnd_plan_mem_no foreign key (mem_no) references member (mem_no) ON DELETE CASCADE,
+    bucket_no         number(10,0)   null,
+    constraint fk_rnd_plan_bucket_no foreign key (bucket_no) references bucket (bucket_no) ON DELETE CASCADE
+);
 
-INSERT INTO eval_committee (eval_committee_no, name, people_count, eval_started_at, eval_closed_at, prog_status,
-                            sub_ann_no)
-VALUES (NEXT VALUE FOR seq_eval_committee, '평가위원회-01', 6, TIMESTAMP '2024-10-21 12:01:09',
-             TIMESTAMP '2024-11-04 12:01:09', '평가대기중', 1);
-INSERT INTO eval_committee (eval_committee_no, name, people_count, eval_started_at, eval_closed_at, prog_status,
-                            sub_ann_no)
-VALUES (NEXT VALUE FOR seq_eval_committee, '평가위원회-02', 6, TIMESTAMP '2024-10-21 12:01:09',
-             TIMESTAMP '2024-11-04 12:01:09', '평가대기중', 1);
-INSERT INTO eval_committee (eval_committee_no, name, people_count, eval_started_at, eval_closed_at, prog_status,
-                            sub_ann_no)
-VALUES (NEXT VALUE FOR seq_eval_committee, '평가위원회-03', 6, TIMESTAMP '2024-10-21 12:01:09',
-             TIMESTAMP '2024-11-04 12:01:09', '평가대기중', 1);
-INSERT INTO eval_committee (eval_committee_no, name, people_count, eval_started_at, eval_closed_at, prog_status,
-                            sub_ann_no)
-VALUES (NEXT VALUE FOR seq_eval_committee, '평가위원회-04', 6, TIMESTAMP '2024-10-21 12:01:09',
-             TIMESTAMP '2024-11-04 12:01:09', '평가대기중', 1);
+alter table rnd_plan
+    add constraint pk_rnd_plan
+        primary key (rnd_plan_no);
 
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (1, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (1, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (1, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (1, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (1, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (2, 7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (2, 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (2, 9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (2, 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (2, 11, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (2, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (3, 13, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (3, 14, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (3, 15, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (3, 16, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (3, 17, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (3, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (4, 19, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (4, 20, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (4, 21, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (4, 22, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (4, 23, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
-INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng)
-VALUES (4, 24, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, '승인대기', 'stayed');
+INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content, rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
+VALUES (NEXT VALUE FOR seq_rnd_plan, 'T001', 'ResearchTask1', 'Institution A', 1, 'In Progress', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, 1);
 
-INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content,
-                      rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'RTN-0001', 'Task-1', 'Institution-1', 4, 'Active',
-             'Final target content for plan 0', 'Research and Development content for plan 0',
-             'Performance content for plan 0', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, NULL);
-INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content,
-                      rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'RTN-0002', 'Task-2', 'Institution-2', 1, 'Active',
-             'Final target content for plan 1', 'Research and Development content for plan 1',
-             'Performance content for plan 1', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, NULL);
-INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content,
-                      rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'RTN-0003', 'Task-3', NULL, 5, 'On Hold', 'Final target content for plan 2',
-             'Research and Development content for plan 2', 'Performance content for plan 2', CURRENT_TIMESTAMP,
-             CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, NULL);
-INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content,
-                      rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'RTN-0004', 'Task-4', 'Institution-1', 4, 'Active',
-             'Final target content for plan 3', 'Research and Development content for plan 3',
-             'Performance content for plan 3', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, NULL);
-INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content,
-                      rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'RTN-0005', 'Task-5', 'Institution-2', 4, 'Cancelled',
-             'Final target content for plan 4', 'Research and Development content for plan 4',
-             'Performance content for plan 4', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, NULL);
-INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content,
-                      rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'RTN-0006', 'Task-6', NULL, 1, 'Pending', 'Final target content for plan 5',
-             'Research and Development content for plan 5', 'Performance content for plan 5', CURRENT_TIMESTAMP,
-             CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, NULL);
-INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content,
-                      rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'RTN-0007', 'Task-7', 'Institution-1', 2, 'Active',
-             'Final target content for plan 6', 'Research and Development content for plan 6',
-             'Performance content for plan 6', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, NULL);
-INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content,
-                      rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'RTN-0008', 'Task-8', 'Institution-2', 5, 'Pending',
-             'Final target content for plan 7', 'Research and Development content for plan 7',
-             'Performance content for plan 7', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, NULL);
-INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content,
-                      rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'RTN-0009', 'Task-9', NULL, 5, 'Active', 'Final target content for plan 8',
-             'Research and Development content for plan 8', 'Performance content for plan 8', CURRENT_TIMESTAMP,
-             CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, NULL);
-INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content,
-                      rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'RTN-0010', 'Task-10', 'Institution-1', 4, 'Active',
-             'Final target content for plan 9', 'Research and Development content for plan 9',
-             'Performance content for plan 9', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, NULL);
+INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content, rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
+VALUES (NEXT VALUE FOR seq_rnd_plan, 'T002', 'ResearchTask2', 'Institution B', 2, 'Pending', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 2, 2);
 
+INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content, rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
+VALUES (NEXT VALUE FOR seq_rnd_plan, 'T003', 'ResearchTask3', 'Institution C', 1, 'Completed', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 3, 1);
+
+INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content, rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
+VALUES (NEXT VALUE FOR seq_rnd_plan, 'T004', 'Research Task 4', 'Institution D', 3, 'In Progress', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 4, 2);
+
+INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content, rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
+VALUES (NEXT VALUE FOR seq_rnd_plan, 'T005', 'Research Task 5', 'Institution E', 2, 'Pending', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 5, 1);
+
+-- researcher
+create sequence seq_researcher START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table researcher
+(
+    rsrch_no      number(10,0)   not null,
+    manpower_role varchar2(20) null,
+    part_type     varchar2(20) null,
+    rnd_plan_no   number(10,0)   not null,
+    mem_no        number(10,0)   not null,
+    constraint fk_researcher_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no) ON DELETE CASCADE,
+    constraint fk_researcher_mem_no foreign key (mem_no) references member (mem_no) ON DELETE CASCADE
+);
+
+alter table researcher
+    add constraint pk_researcher
+        primary key (rsrch_no);
+
+INSERT INTO researcher (rsrch_no, manpower_role, part_type, rnd_plan_no, mem_no)
+VALUES (NEXT VALUE FOR seq_researcher, 'Lead', 'Full-time', 1, 1);
+
+INSERT INTO researcher (rsrch_no, manpower_role, part_type, rnd_plan_no, mem_no)
+VALUES (NEXT VALUE FOR seq_researcher, 'Assistant', 'Part-time', 2, 2);
+
+INSERT INTO researcher (rsrch_no, manpower_role, part_type, rnd_plan_no, mem_no)
+VALUES (NEXT VALUE FOR seq_researcher, 'Researcher', 'Full-time', 3, 3);
+
+INSERT INTO researcher (rsrch_no, manpower_role, part_type, rnd_plan_no, mem_no)
+VALUES (NEXT VALUE FOR seq_researcher, 'Intern', 'Internship', 4, 4);
+
+INSERT INTO researcher (rsrch_no, manpower_role, part_type, rnd_plan_no, mem_no)
+VALUES (NEXT VALUE FOR seq_researcher, 'Technician', 'Contract', 5, 5);
+
+
+-- rsrch_join_period
+create sequence seq_rsrch_join_period START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table rsrch_join_period
+(
+    stage_no        number(10,0)   not null,
+    year_no         number(10,0) not null,
+    is_participated char(1) not null,
+    started_at      timestamp default current_timestamp,
+    ended_at        timestamp default current_timestamp,
+    mxnth           number(2,0) null,
+    rsrch_no        number(10,0) not null,
+    constraint fk_rsrch_join_period_rsrch_no foreign key (rsrch_no) references researcher (rsrch_no) ON DELETE CASCADE
+);
+
+alter table rsrch_join_period
+    add constraint pk_rsrch_join_period
+        primary key (stage_no, year_no);
+
+INSERT INTO rsrch_join_period (stage_no, year_no, is_participated, started_at, ended_at, mxnth, rsrch_no)
+VALUES (NEXT VALUE FOR seq_rsrch_join_period, 2023, 'Y', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1);
+
+INSERT INTO rsrch_join_period (stage_no, year_no, is_participated, started_at, ended_at, mxnth, rsrch_no)
+VALUES (NEXT VALUE FOR seq_rsrch_join_period, 2023, 'N', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2, 2);
+
+INSERT INTO rsrch_join_period (stage_no, year_no, is_participated, started_at, ended_at, mxnth, rsrch_no)
+VALUES (NEXT VALUE FOR seq_rsrch_join_period, 2023, 'Y', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 3, 3);
+
+INSERT INTO rsrch_join_period (stage_no, year_no, is_participated, started_at, ended_at, mxnth, rsrch_no)
+VALUES (NEXT VALUE FOR seq_rsrch_join_period, 2024, 'Y', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 4);
+
+INSERT INTO rsrch_join_period (stage_no, year_no, is_participated, started_at, ended_at, mxnth, rsrch_no)
+VALUES (NEXT VALUE FOR seq_rsrch_join_period, 2024, 'N', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2, 5);
+
+
+-- rnd_field
+create sequence seq_rnd_field START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table rnd_field
+(
+    rnd_field_no number(10,0)   not null,
+    name         varchar2(50) not null,
+    rank         number(1,0)  not null,
+    weight       number(3,0)  not null,
+    rnd_plan_no  number(10,0)   not null,
+    constraint fk_rnd_field_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no) ON DELETE CASCADE
+);
+
+alter table rnd_field
+    add constraint pk_rnd_field
+        primary key (rnd_field_no);
+
+INSERT INTO rnd_field (rnd_field_no, name, rank, weight, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_rnd_field, 'Field A', 1, 10, 1);
+
+INSERT INTO rnd_field (rnd_field_no, name, rank, weight, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_rnd_field, 'Field B', 2, 20, 2);
+
+INSERT INTO rnd_field (rnd_field_no, name, rank, weight, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_rnd_field, 'Field C', 1, 15, 3);
+
+INSERT INTO rnd_field (rnd_field_no, name, rank, weight, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_rnd_field, 'Field D', 3, 25, 4);
+
+INSERT INTO rnd_field (rnd_field_no, name, rank, weight, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_rnd_field, 'Field E', 2, 30, 5);
+
+
+-- rnd_period
+create sequence seq_rnd_period START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table rnd_period
+(
+    stage_no    number(10,0)   not null,
+    year_no     number(10,0)   not null,
+    started_at  timestamp default current_timestamp,
+    ended_at    timestamp default current_timestamp,
+    mxnth       int not null,
+    rnd_plan_no number(10,0)   not null,
+    constraint fk_rnd_period_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no) ON DELETE CASCADE
+);
+
+alter table rnd_period
+    add constraint pk_rnd_period
+        primary key (stage_no, year_no);
+
+INSERT INTO rnd_period (stage_no, year_no, started_at, ended_at, mxnth, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_rnd_period, 2023, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1);
+
+INSERT INTO rnd_period (stage_no, year_no, started_at, ended_at, mxnth, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_rnd_period, 2023, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2, 2);
+
+INSERT INTO rnd_period (stage_no, year_no, started_at, ended_at, mxnth, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_rnd_period, 2024, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 3);
+
+INSERT INTO rnd_period (stage_no, year_no, started_at, ended_at, mxnth, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_rnd_period, 2024, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 3, 4);
+
+INSERT INTO rnd_period (stage_no, year_no, started_at, ended_at, mxnth, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_rnd_period, 2024, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2, 5);
+
+
+
+-- stage_content
+create sequence seq_stage_content START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table stage_content
+(
+    stage_no        number(10,0)   not null,
+    stg_tgt_content clob not null,
+    rnd_content     clob not null,
+    rnd_plan_no     number(10,0)   not null,
+    constraint fk_stage_content_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no) ON DELETE CASCADE
+);
+
+alter table stage_content
+    add constraint pk_stage_content
+        primary key (stage_no);
+
+INSERT INTO stage_content (stage_no, stg_tgt_content, rnd_content, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_stage_content, 'Target content 1', 'R&D content 1', 1);
+
+INSERT INTO stage_content (stage_no, stg_tgt_content, rnd_content, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_stage_content, 'Target content 2', 'R&D content 2', 2);
+
+INSERT INTO stage_content (stage_no, stg_tgt_content, rnd_content, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_stage_content, 'Target content 3', 'R&D content 3', 3);
+
+INSERT INTO stage_content (stage_no, stg_tgt_content, rnd_content, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_stage_content, 'Target content 4', 'R&D content 4', 4);
+
+INSERT INTO stage_content (stage_no, stg_tgt_content, rnd_content, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_stage_content, 'Target content 5', 'R&D content 5', 5);
+
+
+-- rnd_fee
+create sequence seq_rnd_fee START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table rnd_fee
+(
+    stage_no           number(10,0)   not null,
+    year_no            number(10,0)   not null,
+    goverment_fund     number(10,0)   not null,
+    rnd_charge         number(10,0)   not null,
+    labor_cost         number(10,0)   not null,
+    equip_cost         number(10,0)   not null,
+    rnd_cost           number(10,0)  not null,
+    research_cost      number(10,0)   not null,
+    research_allowance number(10,0)  not null,
+    rnd_plan_no        number(10,0)   not null,
+    constraint fk_rnd_fee_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no) ON DELETE CASCADE
+);
+
+alter table rnd_fee
+    add constraint pk_rnd_fee
+        primary key (stage_no, year_no);
+
+INSERT INTO rnd_fee (stage_no, year_no, goverment_fund, rnd_charge, labor_cost, equip_cost, rnd_cost, research_cost, research_allowance, rnd_plan_no)
+VALUES (1, 2023, 100000, 50000, 30000, 20000, 180000, 70000, 5000, 1);
+
+INSERT INTO rnd_fee (stage_no, year_no, goverment_fund, rnd_charge, labor_cost, equip_cost, rnd_cost, research_cost, research_allowance, rnd_plan_no)
+VALUES (1, 2024, 150000, 60000, 40000, 25000, 220000, 80000, 7000, 2);
+
+INSERT INTO rnd_fee (stage_no, year_no, goverment_fund, rnd_charge, labor_cost, equip_cost, rnd_cost, research_cost, research_allowance, rnd_plan_no)
+VALUES (2, 2023, 120000, 55000, 35000, 30000, 190000, 75000, 6000, 3);
+
+INSERT INTO rnd_fee (stage_no, year_no, goverment_fund, rnd_charge, labor_cost, equip_cost, rnd_cost, research_cost, research_allowance, rnd_plan_no)
+VALUES (2, 2024, 130000, 65000, 38000, 28000, 200000, 76000, 8000, 4);
+
+INSERT INTO rnd_fee (stage_no, year_no, goverment_fund, rnd_charge, labor_cost, equip_cost, rnd_cost, research_cost, research_allowance, rnd_plan_no)
+VALUES (3, 2024, 140000, 70000, 42000, 32000, 210000, 78000, 9000, 5);
+
+
+-- progress_history
+create sequence seq_progress_history START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table progress_history
+(
+    progress_history_no number(10,0)   not null,
+    proc_status         varchar2(20) not null,
+    processor           varchar2(20) not null,
+    note                varchar2(100) null,
+    rnd_plan_no         number(10,0)   not null,
+    constraint fk_progress_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no) ON DELETE CASCADE
+);
+
+alter table progress_history
+    add constraint pk_progress_history
+        primary key (progress_history_no);
+
+INSERT INTO progress_history (progress_history_no, proc_status, processor, note, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_progress_history, 'In Progress', 'Processor A', 'Initial progress', 1);
+
+INSERT INTO progress_history (progress_history_no, proc_status, processor, note, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_progress_history, 'Completed', 'Processor B', 'Progress completed', 2);
+
+INSERT INTO progress_history (progress_history_no, proc_status, processor, note, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_progress_history, 'Pending', 'Processor C', 'Awaiting feedback', 3);
+
+INSERT INTO progress_history (progress_history_no, proc_status, processor, note, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_progress_history, 'In Review', 'Processor D', 'Under review', 4);
+
+INSERT INTO progress_history (progress_history_no, proc_status, processor, note, rnd_plan_no)
+VALUES (NEXT VALUE FOR seq_progress_history, 'Approved', 'Processor E', 'Approved progress', 5);
+
+
+-- evaluation_table
+create sequence seq_evaluation_table START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table evaluation_table
+(
+    evaluation_table_no number(10,0) not null,
+    title               varchar2(255) not null,
+    description         varchar2(255) not null,
+    form_type           varchar2(100) not null,
+    created_at          timestamp default current_timestamp,
+    updated_at          timestamp default current_timestamp,
+    tech_field_no       number(10,0),
+    constraint fk_evaluation_tech_field_no foreign key (tech_field_no) references tech_field (tech_field_no) ON DELETE CASCADE
+);
+
+alter table evaluation_table
+    add constraint pk_evaluation_table
+        primary key (evaluation_table_no);
+
+INSERT INTO evaluation_table (evaluation_table_no, title, description, form_type, created_at, updated_at, tech_field_no)
+VALUES (NEXT VALUE FOR seq_evaluation_table, 'Evaluation 1', 'Description for evaluation 1', 'FormTypeA', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1);
+
+INSERT INTO evaluation_table (evaluation_table_no, title, description, form_type, created_at, updated_at, tech_field_no)
+VALUES (NEXT VALUE FOR seq_evaluation_table, 'Evaluation 2', 'Description for evaluation 2', 'FormTypeB', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 2);
+
+INSERT INTO evaluation_table (evaluation_table_no, title, description, form_type, created_at, updated_at, tech_field_no)
+VALUES (NEXT VALUE FOR seq_evaluation_table, 'Evaluation 3', 'Description for evaluation 3', 'FormTypeC', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 3);
+
+INSERT INTO evaluation_table (evaluation_table_no, title, description, form_type, created_at, updated_at, tech_field_no)
+VALUES (NEXT VALUE FOR seq_evaluation_table, 'Evaluation 4', 'Description for evaluation 4', 'FormTypeD', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 4);
+
+INSERT INTO evaluation_table (evaluation_table_no, title, description, form_type, created_at, updated_at, tech_field_no)
+VALUES (NEXT VALUE FOR seq_evaluation_table, 'Evaluation 5', 'Description for evaluation 5', 'FormTypeE', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 5);
+
+
+-- question
+create sequence seq_question START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table question
+(
+    question_no number(10,0) not null,
+    type        varchar2(100) not null,
+    content     varchar2(255) not null,
+    created_at  timestamp default current_timestamp
+);
+
+alter table question
+    add constraint pk_question
+        primary key (question_no);
+
+INSERT INTO question (question_no, type, content, created_at)
+VALUES (NEXT VALUE FOR seq_question, 'TypeA', 'Question content 1', CURRENT_TIMESTAMP);
+
+INSERT INTO question (question_no, type, content, created_at)
+VALUES (NEXT VALUE FOR seq_question, 'common', 'Question content 2', CURRENT_TIMESTAMP);
+
+INSERT INTO question (question_no, type, content, created_at)
+VALUES (NEXT VALUE FOR seq_question, 'TypeC', 'Question content 3', CURRENT_TIMESTAMP);
+
+INSERT INTO question (question_no, type, content, created_at)
+VALUES (NEXT VALUE FOR seq_question, 'TypeD', 'Question content 4', CURRENT_TIMESTAMP);
+
+INSERT INTO question (question_no, type, content, created_at)
+VALUES (NEXT VALUE FOR seq_question, 'TypeE', 'Question content 5', CURRENT_TIMESTAMP);
+
+
+-- evaluation_question
+create sequence seq_evaluation_question START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table evaluation_question
+(
+    evaluation_table_no number(10,0) not null,
+    question_no         number(10,0) not null,
+    constraint pk_evaluation_question primary key (evaluation_table_no, question_no),
+    constraint fk_eval_qu_evaluation_table_no foreign key (evaluation_table_no) references evaluation_table (evaluation_table_no) ON DELETE CASCADE,
+    constraint fk_eval_qu_question_no foreign key (question_no) references question (question_no) ON DELETE CASCADE
+);
+
+INSERT INTO evaluation_question (evaluation_table_no, question_no)
+VALUES (1, 1);
+
+INSERT INTO evaluation_question (evaluation_table_no, question_no)
+VALUES (1, 2);
+
+INSERT INTO evaluation_question (evaluation_table_no, question_no)
+VALUES (2, 3);
+
+INSERT INTO evaluation_question (evaluation_table_no, question_no)
+VALUES (2, 4);
+
+INSERT INTO evaluation_question (evaluation_table_no, question_no)
+VALUES (3, 5);
+
+
+-- annocement_question
+create sequence seq_annocement_evaluation START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table annocement_evaluation
+(
+    evaluation_table_no number(10,0) not null,
+    sub_ann_no          number(10,0) not null,
+    constraint pk_announcement_evaluation primary key (evaluation_table_no, sub_ann_no),
+    constraint fk_ann_que_evaluation_table_no foreign key (evaluation_table_no) references evaluation_table (evaluation_table_no) ON DELETE CASCADE,
+    constraint fk_ann_que_sub_ann_no foreign key (sub_ann_no) references sub_announcement (sub_ann_no) ON DELETE CASCADE
+);
+
+
+
+
+-- eval_committee
+create sequence seq_eval_committee START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table eval_committee
+(
+    eval_committee_no number(10,0) not null,
+    name              varchar2(20) not null,
+    people_count      number(2,0) not null,
+    eval_started_at   timestamp default current_timestamp,
+    eval_closed_at    timestamp default current_timestamp,
+    prog_status       varchar2(20) not null,
+    created_at        timestamp default current_timestamp,
+    updated_at        timestamp default current_timestamp,
+    sub_ann_no        number(10,0),
+    constraint fk_eval_committee_sub_ann_no foreign key (sub_ann_no) references sub_announcement (sub_ann_no) ON DELETE CASCADE
+);
+
+alter table eval_committee
+    add constraint pk_eval_committee
+        primary key (eval_committee_no);
+
+INSERT INTO eval_committee (eval_committee_no, name, people_count, prog_status, sub_ann_no)
+VALUES (NEXT VALUE FOR seq_eval_committee, 'CommitteeA', 5, 'Active', 1);
+
+INSERT INTO eval_committee (eval_committee_no, name, people_count, prog_status, sub_ann_no)
+VALUES (NEXT VALUE FOR seq_eval_committee, 'CommitteeB', 3, 'Inactive', 2);
+
+INSERT INTO eval_committee (eval_committee_no, name, people_count, prog_status, sub_ann_no)
+VALUES (NEXT VALUE FOR seq_eval_committee, 'CommitteeC', 4, 'Active', 3);
+
+INSERT INTO eval_committee (eval_committee_no, name, people_count, prog_status, sub_ann_no)
+VALUES (NEXT VALUE FOR seq_eval_committee, 'CommitteeD', 6, 'Inactive', 4);
+
+INSERT INTO eval_committee (eval_committee_no, name, people_count, prog_status, sub_ann_no)
+VALUES (NEXT VALUE FOR seq_eval_committee, 'CommitteeE', 5, 'Active', 5);
+
+
+-- eval_task
+create sequence seq_eval_task START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table eval_task
+(
+    eval_committee_no number(10,0) not null,
+    rnd_plan_no       number(10,0) not null,
+    mem_no            number(10,0) not null,
+    total_score       number(3,0) not null,
+    eval_completed_at timestamp default current_timestamp,
+    final_selected_at timestamp default current_timestamp,
+    eval_status       varchar2(20) null,
+    sel_completed_at  timestamp default current_timestamp,
+    constraint pk_eval_task primary key (eval_committee_no, rnd_plan_no, mem_no),
+    constraint fk_eval_task_committee_no foreign key (eval_committee_no) references eval_committee (eval_committee_no) ON DELETE CASCADE,
+    constraint fk_eval_task_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no) ON DELETE CASCADE,
+    constraint fk_eval_task_mem_no foreign key (mem_no) references member (mem_no) ON DELETE CASCADE
+);
+
+INSERT INTO eval_task (eval_committee_no, rnd_plan_no, mem_no, total_score, eval_status)
+VALUES (1, 1, 1, 85, 'Completed');
+
+INSERT INTO eval_task (eval_committee_no, rnd_plan_no, mem_no, total_score, eval_status)
+VALUES (1, 2, 2, 90, 'In Progress');
+
+INSERT INTO eval_task (eval_committee_no, rnd_plan_no, mem_no, total_score, eval_status)
+VALUES (2, 3, 3, 75, 'Pending');
+
+INSERT INTO eval_task (eval_committee_no, rnd_plan_no, mem_no, total_score, eval_status)
+VALUES (3, 4, 4, 88, 'Completed');
+
+INSERT INTO eval_task (eval_committee_no, rnd_plan_no, mem_no, total_score, eval_status)
+VALUES (4, 5, 5, 92, 'Not Started');
+
+
+-- evaluation_member
+create sequence seq_evaluation_member START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table evaluation_member
+(
+    eval_committee_no number(10,0) not null,
+    mem_no            number(10,0) not null,
+    recv_start_at     timestamp default current_timestamp,
+    recv_close_at     timestamp default current_timestamp,
+    recv_status       varchar2(20) not null,
+    recv_status_eng       varchar2(20) not null,
+    constraint pk_eval_member primary key (eval_committee_no, mem_no) ,
+    constraint fk_eval_member_eval_no foreign key (eval_committee_no) references eval_committee (eval_committee_no) ON DELETE CASCADE,
+    constraint fk_eval_member_mem_no foreign key (mem_no) references member (mem_no) ON DELETE CASCADE
+);
+
+INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_status, recv_status_eng)
+VALUES (1, 1, 'Received', 'Received');
+
+INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_status, recv_status_eng)
+VALUES (1, 2, 'Pending', 'Pending');
+
+INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_status, recv_status_eng)
+VALUES (2, 3, 'Received', 'Received');
+
+INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_status, recv_status_eng)
+VALUES (3, 4, 'Closed', 'Closed');
+
+INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_status, recv_status_eng)
+VALUES (4, 5, 'Pending', 'Pending');
+
+
+-- eval_score
+create sequence seq_eval_score START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table eval_score
+(
+    eval_score_no       number(10,0) not null,
+    score               number(10,0) not null,
+    eval_committee_no   number(10,0) not null,
+    rnd_plan_no         number(10,0) not null,
+    mem_no              number(10,0) not null,
+    evaluation_table_no number(10,0) not null,
+    question_no         number(10,0) not null,
+    constraint fk_eval_score_eval_no foreign key (eval_committee_no) references eval_committee (eval_committee_no) ON DELETE CASCADE,
+    constraint fk_eval_score_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no) ON DELETE CASCADE,
+    constraint fk_eval_score_mem_no foreign key (mem_no) references member (mem_no) ON DELETE CASCADE,
+    constraint fk_eval_score_evall_no foreign key (evaluation_table_no) references evaluation_table (evaluation_table_no) ON DELETE CASCADE,
+    constraint fk_eval_score_quest_no foreign key (question_no) references question (question_no) ON DELETE CASCADE
+);
+
+INSERT INTO eval_score (eval_score_no, score, eval_committee_no, rnd_plan_no, mem_no, evaluation_table_no, question_no) VALUES (1, 85, 1, 1, 1, 1, 1);
+INSERT INTO eval_score (eval_score_no, score, eval_committee_no, rnd_plan_no, mem_no, evaluation_table_no, question_no) VALUES (2, 90, 1, 1, 2, 1, 1);
+INSERT INTO eval_score (eval_score_no, score, eval_committee_no, rnd_plan_no, mem_no, evaluation_table_no, question_no) VALUES (3, 78, 1, 2, 3, 1, 2);
+INSERT INTO eval_score (eval_score_no, score, eval_committee_no, rnd_plan_no, mem_no, evaluation_table_no, question_no) VALUES (4, 92, 2, 2, 1, 1, 2);
+INSERT INTO eval_score (eval_score_no, score, eval_committee_no, rnd_plan_no, mem_no, evaluation_table_no, question_no) VALUES (5, 88, 2, 1, 2, 1, 3);
+
+
+-- notification
+create sequence seq_noti START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table noti
+(
+    notification_no number(10,0) not null,
+    content         varchar2(100) not null,
+    created_at      timestamp default current_timestamp,
+    deleted_at      timestamp default null,
+    noti_content_no number(10,0) null,
+    noti_type       varchar2(25) null,
+    read_state   varchar2(25) not null,
+    data_category   varchar2(25) not null,
+    mem_no          number(10,0) not null,
+    constraint fk_noti_mno foreign key (mem_no) references member (mem_no)
+);
+
+alter table noti
+    add constraint pk_notification
+        primary key (notification_no);
+
+INSERT INTO noti (notification_no, content, created_at, deleted_at, noti_content_no, noti_type, read_state, data_category, mem_no) VALUES (1, 'Evaluation results are available.', current_timestamp, null, null, 'INFO', 'UNREAD', 'EVALUATION', 1);
+INSERT INTO noti (notification_no, content, created_at, deleted_at, noti_content_no, noti_type, read_state, data_category, mem_no) VALUES (2, 'New comments on your opinion.', current_timestamp, null, null, 'UPDATE', 'UNREAD', 'OPINION', 2);
+INSERT INTO noti (notification_no, content, created_at, deleted_at, noti_content_no, noti_type, read_state, data_category, mem_no) VALUES (3, 'You have a new message.', current_timestamp, null, null, 'MESSAGE', 'READ', 'MESSAGE', 3);
+INSERT INTO noti (notification_no, content, created_at, deleted_at, noti_content_no, noti_type, read_state, data_category, mem_no) VALUES (4, 'Upcoming deadlines for evaluations.', current_timestamp, null, null, 'REMINDER', 'UNREAD', 'EVALUATION', 1);
+INSERT INTO noti (notification_no, content, created_at, deleted_at, noti_content_no, noti_type, read_state, data_category, mem_no) VALUES (5, 'Your opinion has been approved.', current_timestamp, null, null, 'APPROVAL', 'READ', 'OPINION', 2);
+
+
+-- opinion
+-- opinion
+create sequence seq_opinion START WITH 1 INCREMENT BY 1 NOCYCLE;
+
+create table opinion
+(
+    opinion_no        number(10,0) not null,
+    mem_no            number(10,0) not null,
+    content           CLOB not null,
+    created_at        timestamp default current_timestamp,
+    readhit           number(10,0) not null,
+    ref               number(10,0) not null,
+    step              number(10,0) not null,
+    depth             number(1,0) not null,
+    del_info          number(10,0) not null,
+    deleted_at        timestamp default current_timestamp,
+    eval_committee_no number(10,0) null,
+    rnd_plan_no       number(10,0) not null,
+    bucket_no         number(10,0) not null,
+    constraint fk_opinion_eval_committee_no foreign key (eval_committee_no) references eval_committee (eval_committee_no) ON DELETE CASCADE,
+    constraint fk_opinion_rnd_plan_no foreign key (rnd_plan_no) references rnd_plan (rnd_plan_no) ON DELETE CASCADE,
+    constraint fk_opinion_mem_no foreign key (mem_no) references member (mem_no) ON DELETE CASCADE,
+    constraint fk_opinion_bucket_no foreign key (bucket_no) references bucket (bucket_no) ON DELETE CASCADE
+);
+
+alter table opinion
+    add constraint pk_opinion
+        primary key (opinion_no);
+
+INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at,
+                     eval_committee_no, rnd_plan_no, bucket_no)
+VALUES (NEXTVAL('seq_opinion'), 1, '첫 번째 의견', DEFAULT, 0, 1, 0, 0, 0, DEFAULT, 1, 1, 1);
+
+INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at,
+                     eval_committee_no, rnd_plan_no, bucket_no)
+VALUES (NEXTVAL('seq_opinion'), 1, '첫 번째에대한 의견', DEFAULT, 0, 1, 1, 1, 0, DEFAULT, 1, 1, 1);
+
+
+
+-- INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at, eval_committee_no, rnd_plan_no, bucket_no) VALUES (1, 1, 'I believe the evaluation process can be improved.', current_timestamp, 10, 0, 0, 0, 0, null, 1, 1, 1);
+-- INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at, eval_committee_no, rnd_plan_no, bucket_no) VALUES (2, 2, 'The new criteria are beneficial.', current_timestamp, 5, 0, 0, 0, 0, null, 1, 1, 1);
+-- INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at, eval_committee_no, rnd_plan_no, bucket_no) VALUES (3, 3, 'I have concerns about the transparency.', current_timestamp, 3, 0, 0, 0, 0, null, 1, 2, 1);
+-- INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at, eval_committee_no, rnd_plan_no, bucket_no) VALUES (4, 1, 'More stakeholder input is needed.', current_timestamp, 4, 0, 0, 0, 0, null, 2, 2, 2);
+-- INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at, eval_committee_no, rnd_plan_no, bucket_no) VALUES (5, 2, 'I support the current approach.', current_timestamp, 8, 0, 0, 0, 0, null, 2, 1, 2);

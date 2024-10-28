@@ -23,8 +23,8 @@ public class EvaluationPaperServiceImpl implements EvaluationPaperService {
     private EvaluationPaperMapper evaluationPaperMapper;
 
     @Override
-    public List<EvaluationPaperDTO> getEvaluationPapers(Integer rndPlanNo, Integer memNo) {
-        return evaluationPaperMapper.selectEvaluationPaperList(rndPlanNo, memNo);
+    public List<EvaluationPaperDTO> getEvaluationPapers(Integer annNo, Integer subAnnNo, Integer rndPlanNo) {
+        return evaluationPaperMapper.selectEvaluationPaperList(annNo, subAnnNo, rndPlanNo);
     }
 
     @Override
