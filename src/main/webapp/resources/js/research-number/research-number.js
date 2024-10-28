@@ -9,89 +9,75 @@ $(document).ready(function () {
         <p class="title">추가학력정보</p>
         <hr class="academic-separator" style="background-color: #939292 ">
         <div class="academic-list" id="academicList${academicInfoCount}">
-        <div class="academic-list" id="academicList${academicInfoCount}">
             <div class="list" id="list${academicInfoCount}">
                 <div class="inline-wrap">
-                    <p>학력구분</p>
-                    <p class="warn">*</p>
-                    <select id="degreeType${academicInfoCount}" name="degreeType" class="form-select" aria-label="Default select example">
-                        <option value="학사">학사</option>
-                        <option value="석사">석사</option>
-                        <option value="박사">박사</option>
-                        <option value="고등학교">고등학교</option>
-                        <option value="준석사">준석사</option>
-                        <option value="전문학사">전문학사</option>
-                    </select>
-                </div>
-
-                <div class="inline-wrap">
-                    <p>취득국가</p>
-                    <p class="warn">*</p>
-                    <select id="degreeCountry${academicInfoCount}" name="degreeCountry" class="form-select"
-                            aria-label="Default select example">
-                        <option value="대한민국">대한민국</option>
-                        <option value="미국">미국</option>
-                        <option value="일본">일본</option>
-                        <option value="중국">중국</option>
-                        <option value="독일">독일</option>
-                        <option value="프랑스">프랑스</option>
-                        <option value="영국">영국</option>
-                        <option value="인도">인도</option>
-                        <option value="호주">호주</option>
-                    </select>
-                </div>
-
-                <div class="inline-wrap">
-                    <p>전공명</p>
-                    <p class="warn">*</p>
-                    <input type="text" id="majorName${academicInfoCount}" name="majorName" class="form-input" placeholder="전공명을(를) 입력하세요">
-                </div>
+                <label>학력구분<span class="warn">*</span></label>
+                <select id="degreeType${academicInfoCount}" name="degreeType" class="form-select" aria-label="Default select example">
+                    <option value="학사">학사</option>
+                    <option value="석사">석사</option>
+                    <option value="박사">박사</option>
+                    <option value="고등학교">고등학교</option>
+                    <option value="준석사">준석사</option>
+                    <option value="전문학사">전문학사</option>
+                </select>
             </div>
+
+            <div class="inline-wrap">
+                <label>취득국가<span class="warn">*</span></label>
+                <select id="degreeCountry${academicInfoCount}" name="degreeCountry" class="form-select">
+                    <option value="대한민국">대한민국</option>
+                    <option value="미국">미국</option>
+                    <option value="일본">일본</option>
+                    <option value="중국">중국</option>
+                    <option value="독일">독일</option>
+                    <option value="프랑스">프랑스</option>
+                    <option value="영국">영국</option>
+                    <option value="인도">인도</option>
+                    <option value="호주">호주</option>
+                </select>
+            </div>
+
+            <div class="inline-wrap">
+                <label>전공명<span class="warn">*</span></label>
+                <input type="text" id="majorName${academicInfoCount}" name="majorName" class="form-input" placeholder="전공명을(를) 입력하세요">
+            </div>
+            </div>
+
             <div class="list" id="list${academicInfoCount}Additional">
-
                 <div class="inline-wrap">
-                    <p>취득연월</p>
-                    <p class="warn">*</p>
-
+                    <label>취득연월<span class="warn">*</span></label>
                     <div class="input-group">
-                        <input type="date" id="degreeDate${academicInfoCount}" name="degreeDate" class="form-input"
-                               style="margin-left: 10px">
+                        <input type="date" id="degreeDate${academicInfoCount}" name="degreeDate" class="form-input">
                     </div>
                 </div>
 
                 <div class="inline-wrap">
-                    <p>취득기관명</p>
-                    <p class="warn">*</p>
-
+                    <label>취득기관명<span class="warn">*</span></label>
                     <div class="input-group">
-                        <input type="text" name="degreeInstitutionName${academicInfoCount}" id="degreeInstitutionName${academicInfoCount}" class="form-control"
-                               placeholder="취득기관명">
+                        <input type="text" name="degreeInstitutionName${academicInfoCount}" id="degreeInstitutionName${academicInfoCount}" class="form-control" placeholder="취득기관명">
                         <span class="input-group-text">
-                    <i class="material-icons-outlined search-icon" data-bs-toggle="modal"
-                       data-bs-target="#institutionSearchModal"  data-index="${academicInfoCount}">search</i>
-                </span>
+                            <i class="material-icons-outlined search-icon" data-bs-toggle="modal" data-bs-target="#institutionSearchModal" data-index="${academicInfoCount}">search</i>
+                        </span>
                     </div>
                 </div>
 
                 <div class="inline-wrap">
-                    <p>전공계열</p>
-                    <p class="warn">*</p>
+                    <label>전공계열<span class="warn">*</span></label>
                     <div class="major">
-                        <select id="majorCategory${academicInfoCount}" name="majorCategory" class="form-select-two majorCategory"
-                                aria-label="Default select example" onchange="updateMajorSubcategory()">
+                        <select id="majorCategory${academicInfoCount}" name="majorCategory" class="form-select-two majorCategory" onchange="updateMajorSubcategory()">
                             <option value="공학계열">공학계열</option>
                             <option value="자연과학계열">자연과학계열</option>
                             <option value="인문사회계열">인문사회계열</option>
                             <option value="의약계열">의약계열</option>
                             <option value="예술체육계열">예술체육계열</option>
+                            <option value="비즈니스경영계열">비즈니스경영계열</option>
+                            <option value="정보기술계열">정보기술계열</option>
                         </select>
 
-                        <select id="majorSubcategory${academicInfoCount}" name="majorSubcategory" class="form-select-two majorSubcategory"
-                                aria-label="Default select example">
+                        <select id="majorSubcategory${academicInfoCount}" name="majorSubcategory" class="form-select-two majorSubcategory">
                         </select>
                     </div>
                 </div>
-            </div>
         </div>
     `;
 
@@ -108,8 +94,7 @@ $(document).ready(function () {
         <div class="career-list" id="careerList${careerInfoCount}">
             <div class="list" id="careerList${careerInfoCount}">
                 <div class="inline-wrap">
-                    <p>근무기관명</p>
-                    <p class="warn">*</p>
+                    <label>근무기관명<span class="warn">*</span></label>
                     <div class="input-group">
                         <input type="text" name="workInstitutionName${careerInfoCount}" id="workInstitutionName${careerInfoCount}" class="form-control"
                                placeholder="근무기관명">
@@ -120,15 +105,13 @@ $(document).ready(function () {
                 </div>
 
                 <div class="inline-wrap">
-                    <p>근무부서</p>
-                    <p class="warn">*</p>
+                    <label>근무부서<span class="warn">*</span></label>
                     <input type="text" id="workDepartment${careerInfoCount}" name="workDepartment" class="form-input" placeholder="근무부서를 입력하세요">
                 </div>
             </div>
             <div class="list" id="careerList${careerInfoCount}Additional">
                 <div class="inline-wrap">
-                    <p>고용형태</p>
-                    <p class="warn">*</p>
+                    <label>고용형태<span class="warn">*</span></label>
                     <select id="employmentType${careerInfoCount}" name="employmentType" class="form-select" aria-label="Default select example">
                         <option value="정규직">정규직</option>
                         <option value="계약직">계약직</option>
@@ -138,8 +121,7 @@ $(document).ready(function () {
                 </div>
 
                 <div class="inline-wrap">
-                    <p>근무기간</p>
-                    <p class="warn">*</p>
+                    <label>근무기간<span class="warn">*</span></label>
 
                     <div class="calen">
                         <div class="input-group input-group-small">
@@ -178,11 +160,11 @@ $(document).ready(function () {
   });
 
   $("#degreeInstitutionName")
-    .next(".input-group-text")
-    .find(".search-icon")
-    .click(function () {
-      $("#institutionSearchModal").modal("show");
-    });
+      .next(".input-group-text")
+      .find(".search-icon")
+      .click(function () {
+        $("#institutionSearchModal").modal("show");
+      });
 
   $("#searchInstitution").click(function () {
     var searchKeyword = $("#instituteNameSearch").val().toLowerCase();
@@ -193,23 +175,20 @@ $(document).ready(function () {
     var tbodyHtml = "";
     filteredInstitutions.forEach(function (institution) {
       tbodyHtml +=
-        "<tr>" +
-        '<td><input type="checkbox" class="select-institution" data-name="' +
-        institution.name +
-        '"></td>' +
-        "<td>" +
-        institution.id +
-        "</td>" +
-        "<td>" +
-        institution.name +
-        "</td>" +
-        "<td>" +
-        institution.category +
-        "</td>" +
-        "<td>" +
-        institution.registrationNumber +
-        "</td>" +
-        "</tr>";
+          "<tr>" +
+          '<td><input type="checkbox" class="select-institution" data-name="' +
+          institution.name +
+          '"></td>' +
+          "<td>" +
+          institution.name +
+          "</td>" +
+          "<td>" +
+          institution.category +
+          "</td>" +
+          "<td>" +
+          institution.registrationNumber +
+          "</td>" +
+          "</tr>";
     });
     $("#institutionTableBody").html(tbodyHtml);
   });
@@ -255,7 +234,6 @@ $(document).ready(function () {
       tbodyHtml += `
             <tr>
                 <td><input type="checkbox" class="select-institution" data-name="${institution.name}"></td>
-                <td>${institution.id}</td>
                 <td>${institution.name}</td>
                 <td>${institution.category}</td>
                 <td>${institution.registrationNumber}</td>
@@ -268,31 +246,28 @@ $(document).ready(function () {
   $("#searchWorkInstitution").click(function () {
     var searchKeyword = $("#workInstitutionNameSearch").val();
     var filteredWorkInstitutions = workInstitutions.filter(
-      function (institution) {
-        return institution.name.toLowerCase().includes(searchKeyword);
-      },
+        function (institution) {
+          return institution.name.toLowerCase().includes(searchKeyword);
+        },
     );
 
     var tbodyHtml = "";
     filteredWorkInstitutions.forEach(function (institution) {
       tbodyHtml +=
-        "<tr>" +
-        '<td><input type="checkbox" class="select-work-institution" data-name="' +
-        institution.name +
-        '"></td>' +
-        "<td>" +
-        institution.id +
-        "</td>" +
-        "<td>" +
-        institution.name +
-        "</td>" +
-        "<td>" +
-        institution.category +
-        "</td>" +
-        "<td>" +
-        institution.registrationNumber +
-        "</td>" +
-        "</tr>";
+          "<tr>" +
+          '<td><input type="checkbox" class="select-work-institution" data-name="' +
+          institution.name +
+          '"></td>' +
+          "<td>" +
+          institution.name +
+          "</td>" +
+          "<td>" +
+          institution.category +
+          "</td>" +
+          "<td>" +
+          institution.registrationNumber +
+          "</td>" +
+          "</tr>";
     });
     $("#workInstitutionTableBody").html(tbodyHtml);
   });
@@ -338,8 +313,7 @@ $(document).ready(function () {
     workInstitutions.forEach(function (institution) {
       tbodyHtml += `
             <tr>
-                <td><input type="checkbox" class="select-work-institution" data-name="${institution.name}"></td>
-                <td>${institution.id}</td>
+                <td><input type="checkbox" class="select-work-institution" data-name="${institution.name}" style="font-size: 80px"></td>
                 <td>${institution.name}</td>
                 <td>${institution.category}</td>
                 <td>${institution.registrationNumber}</td>
@@ -350,73 +324,136 @@ $(document).ready(function () {
   });
 
   $("#tree")
-    .fancytree({
-      extensions: ["table", "gridnav", "filter"],
-      checkbox: true,
-      table: {
-        checkboxColumnIdx: 0,
-        nodeColumnIdx: 1,
-      },
-      source: [
-        {
-          title: "생명과학",
-          key: "LA",
-          folder: true,
-          checkbox: false,
-          children: [
-            {
-              title: "분자세포생물학",
-              key: "LA01",
-              folder: true,
-              checkbox: false,
-              children: [
-                { title: "신호전달", key: "LA0101" },
-                { title: "세포구조/운동", key: "LA0102" },
-                { title: "세포변화/사멸", key: "LA0103" },
-                { title: "막 생물학", key: "LA0104" },
-                { title: "유전자 발현 조절", key: "LA0105" },
-                { title: "달리 분류되지 않은 분자세포 생물학", key: "LA0199" },
-              ],
-            },
-          ],
+      .fancytree({
+        extensions: ["table", "gridnav", "filter"],
+        checkbox: true,
+        table: {
+          checkboxColumnIdx: 0,
+          nodeColumnIdx: 1,
         },
-        {
-          title: "화학",
-          key: "CH",
-          folder: true,
-          checkbox: false,
-          children: [
-            {
-              title: "물리화학",
-              key: "CH01",
-              folder: true,
-              checkbox: false,
-              children: [
-                { title: "양자화학", key: "CH0101" },
-                { title: "화학 반응속도론", key: "CH0102" },
-                { title: "달리 분류되지 않은 물리화학", key: "CH0199" },
-              ],
-            },
-          ],
+        source: [
+          {
+            title: "물리학",
+            key: "PH",
+            folder: true,
+            checkbox: false,
+            children: [
+              {
+                title: "양자물리",
+                key: "PH01",
+                folder: true,
+                checkbox: false,
+                children: [
+                  { title: "양자역학", key: "PH0101" },
+                  { title: "양자장론", key: "PH0102" },
+                  { title: "양자중력", key: "PH0103" },
+                  { title: "양자컴퓨팅", key: "PH0104" },
+                  { title: "양자정보", key: "PH0105" },
+                  { title: "달리 분류되지 않은 양자물리", key: "PH0199" },
+                ],
+              },
+            ],
+          },
+          {
+            title: "지구과학",
+            key: "EA",
+            folder: true,
+            checkbox: false,
+            children: [
+              {
+                title: "대기과학",
+                key: "EA01",
+                folder: true,
+                checkbox: false,
+                children: [
+                  { title: "기후학", key: "EA0101" },
+                  { title: "대기화학", key: "EA0102" },
+                  { title: "대기역학", key: "EA0103" },
+                  { title: "달리 분류되지 않은 대기과학", key: "EA0199" },
+                ],
+              },
+            ],
+          },
+          {
+            title: "공학",
+            key: "EN",
+            folder: true,
+            checkbox: false,
+            children: [
+              {
+                title: "기계공학",
+                key: "EN01",
+                folder: true,
+                checkbox: false,
+                children: [
+                  { title: "로보틱스", key: "EN0101" },
+                  { title: "자동차 공학", key: "EN0102" },
+                  { title: "항공우주 공학", key: "EN0103" },
+                  { title: "달리 분류되지 않은 기계공학", key: "EN0199" },
+                ],
+              },
+            ],
+          },
+          {
+            title: "정보기술",
+            key: "IT",
+            folder: true,
+            checkbox: false,
+            children: [
+              {
+                title: "컴퓨터 과학",
+                key: "IT01",
+                folder: true,
+                checkbox: false,
+                children: [
+                  { title: "알고리즘", key: "IT0101" },
+                  { title: "데이터베이스", key: "IT0102" },
+                  { title: "인공지능", key: "IT0103" },
+                  { title: "사이버보안", key: "IT0104" },
+                  { title: "달리 분류되지 않은 컴퓨터 과학", key: "IT0199" },
+                ],
+              },
+            ],
+          },
+          {
+            title: "의학",
+            key: "MD",
+            folder: true,
+            checkbox: false,
+            children: [
+              {
+                title: "임상의학",
+                key: "MD01",
+                folder: true,
+                checkbox: false,
+                children: [
+                  { title: "내과", key: "MD0101" },
+                  { title: "외과", key: "MD0102" },
+                  { title: "소아과", key: "MD0103" },
+                  { title: "산부인과", key: "MD0104" },
+                  { title: "달리 분류되지 않은 임상의학", key: "MD0199" },
+                ],
+              },
+            ],
+          },
+        ],
+
+        filter: {
+          autoApply: true, // 입력할 때 자동으로 필터 적용
+          counter: true, // 일치하는 노드 개수를 카운트
+          fuzzy: false, // 퍼지 검색 여부
+          hideExpandedCounter: true,
+          highlight: true, // 검색어와 일치하는 부분을 강조 표시
         },
-      ],
 
-      filter: {
-        autoApply: true, // 입력할 때 자동으로 필터 적용
-        counter: true, // 일치하는 노드 개수를 카운트
-        fuzzy: false, // 퍼지 검색 여부
-        hideExpandedCounter: true,
-        highlight: true, // 검색어와 일치하는 부분을 강조 표시
-      },
-
-      renderColumns: function (event, data) {
-        var node = data.node,
-          $tdList = $(node.tr).find(">td");
-        $tdList.eq(2).text(node.key);
-      },
-    })
-    .fancytree("getTree")
-    .$container.addClass("fancytree-connectors");
+        renderColumns: function (event, data) {
+          var node = data.node,
+              $tdList = $(node.tr).find(">td");
+          $tdList.eq(2).text(node.key);
+        },
+      })
+      .fancytree("getTree")
+      .$container.addClass("fancytree-connectors");
 
   // 검색 기능 연결
   $("#searchInput").keyup(function () {
@@ -430,8 +467,8 @@ $(document).ready(function () {
     // 필터링된 노드를 모두 펼침
     tree.visit(function (node) {
       if (
-        node.match ||
-        (node.children && node.children.some((child) => child.match))
+          node.match ||
+          (node.children && node.children.some((child) => child.match))
       ) {
         node.setExpanded(true);
       }
@@ -499,9 +536,15 @@ $(document).ready(function () {
         acquiredAt: $(`#degreeDate${i}`).val().trim(),
       };
       // 입력 필드의 유효성 검사
-      if (!academicInfo.abilityType || !academicInfo.orgName || !academicInfo.acquiredCountry ||
-          !academicInfo.majorAffiliation || !academicInfo.majorField || !academicInfo.majorName ||
-          !academicInfo.acquiredAt) {
+      if (
+          !academicInfo.abilityType ||
+          !academicInfo.orgName ||
+          !academicInfo.acquiredCountry ||
+          !academicInfo.majorAffiliation ||
+          !academicInfo.majorField ||
+          !academicInfo.majorName ||
+          !academicInfo.acquiredAt
+      ) {
         alert("모든 학력 정보 필드를 채워주세요.");
         isValid = false;
         break;
@@ -520,8 +563,13 @@ $(document).ready(function () {
         endedAt: $(`#workEndDate${i}`).val().trim(),
       };
       // 입력 필드의 유효성 검사
-      if (!careerInfo.orgName || !careerInfo.deptName || !careerInfo.careerType ||
-          !careerInfo.startedAt || !careerInfo.endedAt) {
+      if (
+          !careerInfo.orgName ||
+          !careerInfo.deptName ||
+          !careerInfo.careerType ||
+          !careerInfo.startedAt ||
+          !careerInfo.endedAt
+      ) {
         alert("모든 경력 정보 필드를 채워주세요.");
         isValid = false;
         break;
@@ -538,7 +586,11 @@ $(document).ready(function () {
         techName: $(this).find("td").eq(3).text().trim(),
       };
       // 입력 필드의 유효성 검사
-      if (!technicalInfo.techGroupName || !technicalInfo.techCode || !technicalInfo.techName) {
+      if (
+          !technicalInfo.techGroupName ||
+          !technicalInfo.techCode ||
+          !technicalInfo.techName
+      ) {
         alert("모든 기술분야 정보 필드를 채워주세요.");
         isValid = false;
         return false; // each 루프 중단
@@ -556,11 +608,11 @@ $(document).ready(function () {
     // 로그인 회원의 번호
     let memberId = 1;
 
-    let EvalNotiRequest ={
+    let EvalNotiRequest = {
       content: "윤채원님의 연구자 번호가 발급되었습니다.",
       notiType: "연구자",
       dataCategory: "service",
-      memNo: memberId
+      memNo: memberId,
     };
 
     // ajax 예제
@@ -577,12 +629,11 @@ $(document).ready(function () {
           type: "POST",
           contentType: "application/json",
           data: JSON.stringify(EvalNotiRequest),
-          success: function(response) {
-          },
-          error:function (error){
-            alert("저장 알림 실패")
+          success: function (response) {},
+          error: function (error) {
+            alert("저장 알림 실패");
             console.log(error, "error");
-          }
+          },
         });
       },
       error: function (error) {
@@ -597,7 +648,7 @@ $(document).ready(function () {
 function updateMajorSubcategory() {
   const categoryElements = document.getElementsByClassName("majorCategory");
   const subcategoryElements =
-    document.getElementsByClassName("majorSubcategory");
+      document.getElementsByClassName("majorSubcategory");
 
   for (let i = 0; i < categoryElements.length; i++) {
     let categoryValue = categoryElements[i].value;
@@ -824,7 +875,7 @@ var majorMap = {
     "재료공학",
     "생명공학",
     "항공우주공학",
-    "로봇공학"
+    "로봇공학",
   ],
   자연과학계열: [
     "물리학",
@@ -836,7 +887,7 @@ var majorMap = {
     "해양학",
     "환경과학",
     "식물학",
-    "동물학"
+    "동물학",
   ],
   인문사회계열: [
     "철학",
@@ -848,7 +899,7 @@ var majorMap = {
     "문화학",
     "언어학",
     "문학",
-    "법학"
+    "법학",
   ],
   의약계열: [
     "의학",
@@ -860,7 +911,7 @@ var majorMap = {
     "병리학",
     "소아과학",
     "정신의학",
-    "피부과학"
+    "피부과학",
   ],
   예술체육계열: [
     "미술",
@@ -872,7 +923,7 @@ var majorMap = {
     "영화학",
     "건축",
     "사진학",
-    "조각"
+    "조각",
   ],
   비즈니스경영계열: [
     "경영학",
@@ -884,7 +935,7 @@ var majorMap = {
     "물류학",
     "경영정보시스템",
     "경영전략",
-    "조직행동"
+    "조직행동",
   ],
   정보기술계열: [
     "정보보안",
@@ -896,6 +947,6 @@ var majorMap = {
     "클라우드 컴퓨팅",
     "모바일 애플리케이션 개발",
     "게임 개발",
-    "빅데이터 분석"
-  ]
+    "빅데이터 분석",
+  ],
 };

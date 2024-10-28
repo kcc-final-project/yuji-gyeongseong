@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yujigyeongseong.api.domain.member.dao.CheckCertMapper">
+
+    <select id="checkCert" parameterType="SmsCertRequest" resultType="SmsCertRequest">
+        SELECT
+        name,
+        FORMATDATETIME(birth, 'yyyy-MM-dd'),
+        tel
+        FROM member
+        WHERE name = #{name}
+        and FORMATDATETIME(birth, 'yyyy-MM-dd') = #{birth}
+        AND tel = #{tel}
+    </select>
+</mapper>

@@ -14,112 +14,6 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-<script>
-
-    function pwCheck() {
-        if ($('#password').val() == $('#password-confirm').val()) {
-            $('#pwConfirm').text('비밀번호가 일치합니다.').css('color', 'green')
-        } else {
-            $('#pwConfirm').text('비밀번호가 일치하지 않습니다.').css('color', 'red')
-        }
-    }
-
-    $(function () {
-        $('#affiliation-type').on('change', function () {
-            if ($(this).val() === "프리랜서" || $(this).val() === "은퇴 고경력자") {
-                $('#organization').prop("disabled", true);
-                $('#department').prop("disabled", true);
-                $('#position').prop("disabled", true);
-                $('#institution-email').prop("disabled", true);
-                $('#mail-btn').prop("disabled", true);
-                $('#institution-email-certification').prop("disabled", true);
-            } else {
-                $('#organization').prop("disabled", false);
-                $('#department').prop("disabled", false);
-                $('#position').prop("disabled", false);
-                $('#institution-email').prop("disabled", false);
-                $('#mail-btn').prop("disabled", false);
-                $('#institution-email-certification').prop("disabled", false);
-            }
-        })
-
-        $('.modal-content-area').on('click', function () {
-            let title = $(this).find('.content-title').text();
-            let number = $(this).find('.content-number').text();
-            let location = $(this).find('.content-location').text();
-            let type = $(this).find('.content-type').text();
-
-            console.log(title);
-            console.log(number);
-            console.log(location);
-            console.log(type);
-            $('#exampleModal').modal('hide'); // Bootstrap의 모달 닫기 메서드
-            $('.modal-backdrop').remove(); // 오버레이 제거
-            $('#organization').val(title);
-        })
-
-        var index = 1;
-        $('.add-organ-btn').on('click', function () {
-            index++;
-
-            let organization = $('#organization').val();
-            let department = $('#department').val();
-            let position = $('#position').val();
-
-            if (organization === "") {
-                swal('실패', "소속기관은 필수 입력사항입니다.", 'error');
-            } else {
-
-                $('.table-body-area').append(
-                    '<tr>' +
-                    '<td class="add-organization-' + index + '">' + '</td>' +
-                    '<td class="add-department-' + index + '">' + '</td>' +
-                    '<td class="add-position-' + index + '">' + '</td>' +
-                    '</tr>'
-                );
-
-                $(".add-organization-" + index).text(organization);
-                $(".add-department-" + index).text(department);
-                $(".add-position-" + index).text(position);
-
-                $('#organization').val("");
-                $('#department').val("");
-                $('#position').val("");
-            }
-        });
-
-        let previousValue = $('#affiliation-type').val();
-        $('#affiliation-type').on('change', function () {
-            let currentValue = $(this).val();  // 현재 선택된 값
-            if (previousValue === "등록기관" && currentValue !== "등록기관") {
-
-                Swal.fire({
-                    title: '정말 바꾸시겠습니까?',
-                    text: "다른 항목으로 변경하면 입력된 값들이 초기화됩니다.",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#2E406A',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: '확인',
-                    cancelButtonText: '취소'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire(
-                            '변경 완료',
-                            '변경 되었습니다.',
-                            'success',
-                        )
-                    }
-                })
-            }
-            $('#organization').val("");
-            $('#department').val("");
-            $('#position').val("");
-            previousValue = currentValue;
-        });
-    })
-</script>
-
 <div class="common-main">
     <div class="container-area">
         <form>
@@ -140,23 +34,29 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="user-id" class="form-label">아이디 <span class="text-danger">*</span></label>
+                                <small class="success-id"></small>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="user-id" placeholder="ex) dream1752">
-                                    <button class="btn btn-outline-secondary" type="button">중복체크</button>
+
+                                    <input type="text" class="form-control" id="user-id" placeholder="ex) dream1752"
+                                           oninput="idCheck()">
+                                    <button class="btn btn-outline-secondary" id="duplication-btn" type="button">중복체크
+                                    </button>
                                 </div>
-                                <small class="text-muted">최대 16자 영문 숫자 조합으로 가능합니다.</small>
+                                <small class="text-muted">8자 이상 최대 16자 영문 숫자 조합으로 가능합니다.</small>
+
                             </div>
                             <div class="col-md-6">
                                 <label for="user-name" class="form-label">이름 <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="user-name" value="김상학" disabled>
+                                <input type="text" class="form-control" disabled id="user-name" value=${name}>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="password" class="form-label">비밀번호 <span class="text-danger">*</span></label>
+                                <small class="success-pw"></small>
                                 <input type="password" class="form-control" id="password" oninput="pwCheck()" value="">
-                                <small class="text-muted">9자 이상 영문 대소문자, 숫자, 특수문자 동일 조합</small>
+                                <small class="text-muted">9자 이상 16자 이하 영문 대소문자, 숫자, 특수문자 동일 조합</small>
                             </div>
                             <div class="col-md-6">
                                 <label for="password-confirm" class="form-label">비밀번호 확인 <span
@@ -171,7 +71,7 @@
                             <div class="col-md-6">
                                 <label for="birth-date" class="form-label">생년월일 <span
                                         class="text-danger">*</span></label>
-                                <input type="date" class="form-control" id="birth-date" value="1997-09-03" disabled>
+                                <input type="text" class="form-control" disabled id="birth-date" value=${birth} >
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">성별 <span class="text-danger">*</span></label>
@@ -193,18 +93,18 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">휴대전화번호 <span class="text-danger">*</span></label>
-                                <input type="tel" class="form-control" id="phone" value="010-2598-1748" disabled>
+                                <input type="tel" class="form-control" disabled id="phone" value=${tel} >
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label">이메일 <span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <input type="email" class="form-control" id="email"
                                            placeholder="example@naver.com">
-                                    <button class="btn btn-outline-secondary" type="button">인증코드 발송</button>
+                                    <button class="btn btn-outline-secondary" type="button" id="send-mail-btn">인증코드 발송</button>
                                 </div>
                                 <div class="d-flex align-items-center" style=" margin-top: 20px">
-                                    <input type="text" class="form-control text-center me-2" style="width: 300px;">
-                                    <button class="btn btn-outline-secondary" type="button">인증</button>
+                                    <input type="text" class="form-control text-center me-2" id="check-area" style="width: 300px;">
+                                    <button class="btn btn-outline-secondary" type="button" id="email-check">인증</button>
                                 </div>
                             </div>
                         </div>
@@ -238,8 +138,9 @@
                         <thead>
                         <tr>
                             <th>기관명</th>
-                            <th>부서명</th>
                             <th>소속부서</th>
+                            <th>직위</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody class="table-body-area">
@@ -291,16 +192,13 @@
                             </div>
                             <small class="text-success">※ 메일이 인증되었습니다.</small>
                         </div>
-
                         <button type="button" class="add-organ-btn">기관추가</button>
                     </div>
-
                 </div>
                 <hr>
-
                 <div class="final-btn-wrap">
                     <button class="cancel-btn">취소</button>
-                    <button type="submit" class="apply-btn">저장</button>
+                    <button type="button" class="apply-btn">저장</button>
                 </div>
             </div>
         </form>
@@ -322,6 +220,7 @@
                                 <p>기관유형</p>
                                 <select class="form-select" id="institution-type">
                                     <option value="" disabled="" selected="">선택</option>
+                                    <option value="">전체</option>
                                     <option value="대기업">대기업</option>
                                     <option value="중견기업">중견기업</option>
                                     <option value="중소기업">중소기업</option>
@@ -353,25 +252,8 @@
                                         <th scope="col">기관유형</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    <tr class="modal-content-area">
-                                        <td class="content-title">한전원자력연료(주)</td>
-                                        <td class="content-number">314-81-00849</td>
-                                        <td class="content-location">대전광역시 유성구</td>
-                                        <td class="content-type">대기업</td>
-                                    </tr>
-                                    <tr class="modal-content-area">
-                                        <td>한전원자력연료(주)</td>
-                                        <td>314-81-00849</td>
-                                        <td>대전광역시 유성구</td>
-                                        <td>대기업</td>
-                                    </tr>
-                                    <tr class="modal-content-area">
-                                        <td>한전원자력연료(주)</td>
-                                        <td>314-81-00849</td>
-                                        <td>대전광역시 유성구</td>
-                                        <td>대기업</td>
-                                    </tr>
+                                    <tbody class="content-wrap-area">
+
                                     </tbody>
                                 </table>
                             </div>
@@ -423,5 +305,6 @@
         }
     </script>
 </div>
+<script src="/resources/js/sign-in-sign-up/sign-up-3.js"></script>
 </body>
 </html>

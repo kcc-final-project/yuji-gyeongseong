@@ -11,6 +11,14 @@
     <link rel="stylesheet" href="/resources/css/sign-in-sign-up/sign-up-4.css"/>
 </head>
 <body>
+<script>
+    $(function(){
+        $('.login-btn').on('click',()=>{
+            window.location.href="/member/sign/in"
+        })
+    })
+
+</script>
 <div class="common-main">
     <div class="container-area">
         <div class="title-tab-area">
