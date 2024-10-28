@@ -16,4 +16,48 @@
                  inner join eval_task evta on evta.eval_committee_no = evcom.eval_committee_no
     </select>
 
+    <select id="selectEvaluation" resultType="SelectEvaluationDTO">
+        select DISTINCT sann.sub_ann_no                                    as subannno,
+                        et.eval_status                                     as evalstatus,
+                        sann.sub_title                                     as subtitle,
+                        et.final_selected_at - 3                           as start,
+                        et.final_selected_at                               as finalselectedat,
+                        rp.rnd_task_no                                     as rndtaskno,
+                        rp.task_name                                       as taskname,
+                        rp.rnd_institution                                 as rndinstitution,
+                        (SELECT name FROM member WHERE mem_no = rp.mem_no) AS rndname,
+                        et.total_score                                     as totalscore,
+                        rp.plan_status                                     as planstatus,
+                        ec.name                                            as name,
+                        et.sel_completed_at                                as selcompletedat
+        from announcement ann
+                 inner join sub_announcement sann on ann.ann_no = sann.ann_no
+                 inner join rnd_plan rp on rp.sub_ann_no = sann.sub_ann_no
+                 inner join member mem on mem.mem_no = rp.mem_no
+                 inner join eval_task et on et.rnd_plan_no = rp.rnd_plan_no
+                 inner join eval_score es on es.mem_no = et.mem_no
+                 inner join eval_committee ec on ec.sub_ann_no = sann.sub_ann_no
+        where sann.sub_ann_no = #{subAnnNo}
+    </select>
+
+    <select id="selectCommittee" parameterType="SelectEvaluationDTO">
+        SELECT mem.name       AS coname,
+               ins.name       AS insname,
+               rp.rnd_task_no AS corsname,
+               es.score       as score
+        FROM evaluation_member evmem
+                 INNER JOIN
+             member mem ON mem.mem_no = evmem.mem_no
+                 INNER JOIN
+             institution ins ON ins.institution_no = mem.institution_no
+                 INNER JOIN
+             eval_task et ON et.eval_committee_no = evmem.eval_committee_no
+                 INNER JOIN
+             eval_score es ON es.eval_committee_no = et.eval_committee_no AND es.mem_no = evmem.mem_no
+                 INNER JOIN
+             rnd_plan rp ON rp.rnd_plan_no = et.rnd_plan_no
+        WHERE rp.rnd_task_no = #{rndTaskNo}
+
+    </select>
+
 </mapper>

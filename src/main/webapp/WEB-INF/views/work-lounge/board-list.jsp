@@ -50,7 +50,7 @@
                 <tr class="blue">
                     <td class="text-center"><c:out value="${board.opinionNo}"/></td>
                     <td>
-                        <c:forEach begin="1" end="${board.depth}">&nbsp;</c:forEach>
+                        <c:forEach begin="1" end="${board.depth}">&nbsp&nbsp</c:forEach>
                         <c:if test="${board.depth ne 0}">
                             ㄴ
                         </c:if>

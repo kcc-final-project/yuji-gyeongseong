@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface EvaluationPaperMapper {
 
-    List<EvaluationPaperDTO> selectEvaluationPaperList(@Param("rndPlanNo") Integer rndPlanNo, @Param("memNo") Integer memNo);
+    List<EvaluationPaperDTO> selectEvaluationPaperList(@Param("annNo") Integer annNo, @Param("subAnnNo") Integer subAnnNo, @Param("rndPlanNo") Integer rndPlanNo);
 
     List<EvaluationPaperQuestionDTO> selectContentList(@Param("formType") String formType, @Param("type") String type);
 
