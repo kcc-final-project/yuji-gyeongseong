@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yujigyeongseong.api.domain.tech_field.dao.TechFieldMapper">
+
+    <select id="selectTechFieldsForRndPlanBasic">
+        SELECT tech_field_no AS id,
+               name AS text,
+               type AS type,
+               COALESCE(CAST(parent_tech_field_no AS VARCHAR2(20)), '#') AS parent
+        FROM tech_field
+    </select>
+
+</mapper>

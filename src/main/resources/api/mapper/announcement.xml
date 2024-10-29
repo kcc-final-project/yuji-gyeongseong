@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yujigyeongseong.api.domain.announcement.dao.AnnouncementMapper">
+
+    <resultMap id="SubAnnouncementRequestMap" type="SubAnnouncementRequest">
+        <id property="annNo" column="annNo"/>
+        <result property="totalAnnNo" column="totalAnnNo"/>
+        <result property="totalTitle" column="totalTitle"/>
+        <result property="content" column="content"/>
+        <result property="competentMinistry" column="competentMinistry"/>
+        <result property="specInstitution" column="specInstitution"/>
+        <result property="annTechFieldName" column="annTechFieldName"/>
+        <result property="annType" column="annType"/>
+        <result property="subAnnCount" column="subAnnCount"/>
+        <result property="receptionType" column="receptionType"/>
+        <result property="status" column="status"/>
+        <result property="startedAt" column="TO_CHAR(started_at, 'YYYY-MM-DD')"/>
+        <result property="closedAt" column="TO_CHAR(closed_at, 'YYYY-MM-DD')"/>
+        <result property="createdAt" column="TO_CHAR(created_at, 'YYYY-MM-DD')"/>
+        <result property="updatedAt" column="TO_CHAR(updated_at, 'YYYY-MM-DD')"/>
+        <result property="bucketNo" column="bucketNo"/>
+        <collection property="subAnnouncements" ofType="SubAnnouncement">
+            <result property="subAnnNo" column="subAnnNo"/>
+            <result property="subAnnUniNo" column="subAnnUniNo"/>
+            <result property="subTitle" column="subTitle"/>
+            <result property="planType" column="planType"/>
+            <result property="taskType" column="taskType"/>
+            <result property="specInstitutionNo" column="specInstitutionNo"/>
+            <result property="techFieldName" column="techFieldName"/>
+            <result property="mgrName" column="mgrName"/>
+            <result property="mgrTel" column="mgrTel"/>
+            <result property="planningYear" column="planningYear"/>
+            <result property="totalSubsidy" column="totalSubsidy"/>
+            <result property="totalDevMonth" column="totalDevMonth"/>
+            <result property="oneYearSubsidy" column="oneYearSubsidy"/>
+            <result property="oneYearDevMonth" column="oneYearDevMonth"/>
+            <result property="perfOwner" column="perfOwner"/>
+            <result property="annNo" column="s_annNo"/>
+            <result property="bucketNo" column="s_bucketNo"/>
+        </collection>
+    </resultMap>
+
+    <resultMap id="announcementByAnnNo" type="SubAnnouncementApply">
+        <id property="annNo" column="annNo"/>
+        <result property="totalTitle" column="totalTitle"/>
+        <result property="bucketNo" column="bucketNo"/>
+        <result property="annType" column="annType"/>
+        <collection property="subAnnouncements" ofType="SubAnnouncement">
+            <result property="subAnnNo" column="subAnnNo"/>
+            <result property="subAnnUniNo" column="subAnnUniNo"/>
+            <result property="subTitle" column="subTitle"/>
+            <result property="planType" column="planType"/>
+            <result property="taskType" column="taskType"/>
+            <result property="specInstitutionNo" column="specInstitutionNo"/>
+            <result property="techFieldName" column="techFieldName"/>
+            <result property="mgrName" column="mgrName"/>
+            <result property="mgrTel" column="mgrTel"/>
+            <result property="planningYear" column="planningYear"/>
+            <result property="totalSubsidy" column="totalSubsidy"/>
+            <result property="totalDevMonth" column="totalDevMonth"/>
+            <result property="oneYearSubsidy" column="oneYearSubsidy"/>
+            <result property="oneYearDevMonth" column="oneYearDevMonth"/>
+            <result property="perfOwner" column="perfOwner"/>
+            <result property="annNo" column="s_annNo"/>
+            <result property="bucketNo" column="s_bucketNo"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectAcceptionAnnouncementList" resultType="Announcement">
+        SELECT
+            ann_no AS annno,
+            total_ann_no AS totalannno,
+            total_title AS totaltitle,
+            competent_ministry AS competentministry,
+            spec_institution AS specinstitution,
+            ann_tech_field_name AS annTechFieldName,
+            ann_type AS anntype,
+            sub_ann_count AS subanncount,
+            reception_type AS receptiontype,
+            status AS status,
+            TO_CHAR(started_at, 'YYYY-MM-DD') AS startedat,
+            TO_CHAR(closed_at, 'YYYY-MM-DD') AS closedat,
+            TO_CHAR(created_at, 'YYYY-MM-DD') AS createdat,
+            TO_CHAR(updated_at, 'YYYY-MM-DD') AS updatedat,
+            bucket_no AS bucketno
+        FROM
+            announcement
+        WHERE
+            status = '접수중'
+        ORDER BY
+            created_at ASC
+    </select>
+
+    <select id="selectExpectedAnnouncementList" resultType="Announcement">
+        SELECT
+            ann_no AS annno,
+            total_ann_no AS totalannno,
+            total_title AS totaltitle,
+            competent_ministry AS competentministry,
+            spec_institution AS specinstitution,
+            ann_tech_field_name AS annTechFieldName,
+            ann_type AS anntype,
+            sub_ann_count AS subanncount,
+            reception_type AS receptiontype,
+            status AS status,
+            TO_CHAR(started_at, 'YYYY-MM-DD') AS startedat,
+            closed_at AS closedat,
+            created_at AS createdat,
+            updated_at AS updatedat,
+            bucket_no AS bucketno
+        FROM
+            announcement
+        WHERE
+            status = '접수예정'
+    </select>
+
+    <select id="selectDeadLineAnnouncementList" resultType="Announcement">
+        SELECT
+            ann_no AS annno,
+            total_ann_no AS totalannno,
+            total_title AS totaltitle,
+            competent_ministry AS competentministry,
+            spec_institution AS specinstitution,
+            ann_tech_field_name AS annTechFieldName,
+            ann_type AS anntype,
+            sub_ann_count AS subanncount,
+            reception_type AS receptiontype,
+            status AS status,
+            TO_CHAR(started_at, 'YYYY-MM-DD') AS startedat,
+            closed_at AS closedat,
+            created_at AS createdat,
+            updated_at AS updatedat,
+            bucket_no AS bucketno
+        FROM
+            announcement
+        WHERE
+            status = '접수마감'
+    </select>
+
+    <select id="selectAnnouncementByTotalAnnNo" resultMap="SubAnnouncementRequestMap" >
+        SELECT
+            a.ann_no AS annNo,
+            a.total_ann_no AS totalAnnNo,
+            a.total_title AS totalTitle,
+            a.content AS content,
+            a.competent_ministry AS competentMinistry,
+            a.spec_institution AS specInstitution,
+            a.ann_tech_field_name AS annTechFieldName,
+            a.ann_type AS annType,
+            a.sub_ann_count AS subAnnCount,
+            a.reception_type AS receptionType,
+            a.status AS status,
+            TO_CHAR(a.started_at, 'YYYY-MM-DD') AS startedAt,
+            TO_CHAR(a.closed_at, 'YYYY-MM-DD') AS closedAt,
+            TO_CHAR(a.created_at, 'YYYY-MM-DD') AS createdAt,
+            TO_CHAR(a.updated_at, 'YYYY-MM-DD') AS updatedAt,
+            a.bucket_no AS bucketNo,
+            sa.sub_ann_no AS subAnnNo,
+            sa.sub_ann_uni_no AS subAnnUniNo,
+            sa.sub_title AS subTitle,
+            sa.plan_type AS planType,
+            sa.task_type AS taskType,
+            sa.spec_institution_no AS specInstitutionNo,
+            sa.tech_field_name AS techFieldName,
+            sa.mgr_name AS mgrName,
+            sa.mgr_tel AS mgrTel,
+            sa.planning_year AS planningYear,
+            sa.total_subsidy AS totalSubsidy,
+            sa.total_dev_month AS totalDevMonth,
+            sa.one_year_subsidy AS oneYearSubsidy,
+            sa.one_year_dev_month AS oneYearDevMonth,
+            sa.perf_owner AS perfOwner,
+            sa.ann_no AS s_annNo,
+            sa.bucket_no AS s_bucketNo
+        FROM
+            announcement a
+                INNER JOIN sub_announcement sa ON a.ann_no = sa.ann_no
+        WHERE
+            a.total_ann_no = #{totalAnnNo}
+    </select>
+
+    <select id="selectSubAnnouncementBySubAnnNo" resultType="SubAnnouncementDetailRequest">
+        SELECT
+            sub_ann_no AS subAnnNo,
+            total_title AS totalTitle,
+            sub_ann_uni_no AS subAnnUniNo,
+            sub_title AS subTitle,
+            spec_institution AS specInstitution,
+            spec_institution_no AS specInstitutionNo,
+            tech_field_name AS techFieldName,
+            total_subsidy AS totalSubsidy,
+            total_dev_month AS totalDevMonth,
+            mgr_name AS mgrName,
+            mgr_tel AS mgrTel,
+            planning_year AS planningYear,
+            ann_type AS annType,
+            one_year_subsidy AS oneYearSubsidy,
+            one_year_dev_month AS oneYearDevMonth,
+            sa.ann_no AS annNo,
+            sa.bucket_no AS bucketNo
+        FROM announcement a INNER JOIN sub_announcement sa
+                                       on a.ann_no = sa.ann_no
+        WHERE sub_ann_no = #{subAnnNo}
+    </select>
+
+    <select id="selectSubAnnouncementByAnnNo" resultMap="announcementByAnnNo">
+        SELECT
+            a.ann_no AS annNo,
+            a.total_title AS totalTitle,
+            a.ann_type AS anntype,
+            sa.sub_ann_no AS subAnnNo,
+            sa.sub_ann_uni_no AS subAnnUniNo,
+            sa.sub_title AS subTitle,
+            sa.plan_type AS planType,
+            sa.task_type AS taskType,
+            sa.spec_institution_no AS specInstitutionNo,
+            sa.tech_field_name AS techFieldName,
+            sa.mgr_name AS mgrName,
+            sa.mgr_tel AS mgrTel,
+            sa.planning_year AS planningYear,
+            sa.total_subsidy AS totalSubsidy,
+            sa.total_dev_month AS totalDevMonth,
+            sa.one_year_subsidy AS oneYearSubsidy,
+            sa.one_year_dev_month AS oneYearDevMonth,
+            sa.perf_owner AS perfOwner,
+            sa.ann_no AS s_annNo,
+            sa.bucket_no AS s_bucketNo
+        FROM announcement a
+                 JOIN sub_announcement sa ON a.ann_no = sa.ann_no
+        WHERE a.ann_no = #{annNo}
+    </select>
+
+    <select id="searchAnnouncement" resultType="Announcement" parameterType="AnnouncementFilterRequest">
+        SELECT
+        ann_no AS annno,
+        total_ann_no AS totalannno,
+        total_title AS totaltitle,
+        competent_ministry AS competentministry,
+        spec_institution AS specinstitution,
+        ann_tech_field_name AS checkedGisul,
+        ann_type AS anntype,
+        sub_ann_count AS subanncount,
+        reception_type AS receptiontype,
+        status AS status,
+        TO_CHAR(started_at, 'YYYY-MM-DD') AS startedat,
+        closed_at AS closedat,
+        TO_CHAR(created_at, 'YYYY-MM-DD') AS createdat,
+        updated_at AS updatedat,
+        bucket_no AS bucketno
+        FROM announcement
+        WHERE 1 = 1
+        <if test="keyword != null and keyword != ''">
+            AND total_title LIKE '%' || #{keyword} || '%'
+        </if>
+        <if test="date != null and date != ''">
+            AND EXTRACT(YEAR FROM created_at) = #{date}
+        </if>
+        <if test="activeText != null and activeText != ''">
+            AND status = #{activeText}
+        </if>
+        <if test="checkedSogan != null and checkedSogan.size() > 0">
+            AND competent_ministry IN
+            <foreach item="competent_ministry" collection="checkedSogan" open="(" separator="," close=")">
+                #{competent_ministry}
+            </foreach>
+        </if>
+        <if test="checkedJunmun != null and checkedJunmun.size() > 0">
+            AND spec_institution IN
+            <foreach item="spec_institution" collection="checkedJunmun" open="(" separator="," close=")">
+                #{spec_institution}
+            </foreach>
+        </if>
+        <if test="checkedGisul != null and checkedGisul.size() > 0">
+            AND ann_tech_field_name IN
+            <foreach item="ann_tech_field_name" collection="checkedGisul" open="(" separator="," close=")">
+                #{ann_tech_field_name}
+            </foreach>
+        </if>
+        ORDER BY
+        <if test="latest == '최신순'">
+            created_at ASC
+        </if>
+        <if test="latest == '마감순'">
+            created_at DESC
+        </if>
+    </select>
+</mapper>
