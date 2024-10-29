@@ -1,11 +1,12 @@
 package com.yujigyeongseong.api.domain.member.dao;
 
-import com.yujigyeongseong.api.domain.member.DTO.Institution;
-import com.yujigyeongseong.api.domain.member.DTO.request.SelectInstitutionRequest;
+import com.yujigyeongseong.api.domain.member.dto.Institution;
+import com.yujigyeongseong.api.domain.member.dto.SignUpMember;
+import com.yujigyeongseong.api.domain.member.dto.auth.MemberLogin;
+import com.yujigyeongseong.api.domain.member.dto.request.SelectInstitutionRequest;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
-import java.util.Optional;
 
 @Mapper
 public interface MemberMapper {
@@ -14,4 +15,12 @@ public interface MemberMapper {
     List<Institution> selectAll();
 
     List<Institution> selectOrgan(SelectInstitutionRequest selectInstitutionRequest);
+
+    int insertMember(SignUpMember signUpMember);
+
+    MemberLogin findByUsername(String username);
+
+    int findByMemNo(String username);
+
+    int insertRole(int memNo);
 }
