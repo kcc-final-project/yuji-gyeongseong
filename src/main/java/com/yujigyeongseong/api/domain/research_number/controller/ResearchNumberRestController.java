@@ -12,16 +12,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequestMapping("/api/v1/research_number")
+@RequestMapping("/api/v1/research-number")
 @RestController
 @RequiredArgsConstructor
-public class EvalCommitteeRestController {
+public class ResearchNumberRestController {
 
     private final EvalCommitteeService evalCommitteeService;
     private final EvalComposeService evalComposeService;
 
     @PostMapping("/register/research/{memberId}")
-    public ResponseEntity<?> registerResearchInformation(@PathVariable Long memberId, @RequestBody SubmitResearchRequest submitRequest) {
+    public ResponseEntity<?> registerResearchInformation( @PathVariable Long memberId, @RequestBody SubmitResearchRequest submitRequest ) {
         try {
             evalCommitteeService.setCareersByMemberId(memberId, submitRequest.getCareerInfos());
             evalCommitteeService.setAcadAbilitiesByMemberId(memberId, submitRequest.getAcademicInfos());
@@ -53,6 +53,7 @@ public class EvalCommitteeRestController {
             MemberEvalRequest memberRequest = new MemberEvalRequest(member, em);
             membersDetails.add(memberRequest);
         }
+
         return ResponseEntity.ok(membersDetails);
     }
 
@@ -64,6 +65,7 @@ public class EvalCommitteeRestController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
+    // 워크라운지 컨트롤러 이동
     @PostMapping("/update/noti/{notificationNo}")
     public ResponseEntity<?> setNotiByNotificationNo(@PathVariable Long notificationNo) {
 
