@@ -27,4 +27,9 @@ public interface EvalComposeService {
     int setEvaluationMemberByNotiContentNo(Long memberId, Long notiContentNo, EvalMemberRequest evalMemberRequest);
 
     int setNotiByNotificationNo(Long notificationNo);
+
+    int setEvalCommitteesBySubAnnNo(Long subAnnNo, int rndPlanCnt);
+
+    int getEvalCommitteeCntById(Long SubAnnNo);
+
 }

@@ -1,5 +1,6 @@
 package com.yujigyeongseong.api.domain.research_number.controller;
 
+import com.yujigyeongseong.api.domain.research_number.dto.EvalCommittee;
 import com.yujigyeongseong.api.domain.research_number.dto.EvaluationMember;
 import com.yujigyeongseong.api.domain.research_number.dto.request.*;
 import com.yujigyeongseong.api.domain.research_number.service.EvalCommitteeService;
@@ -12,63 +13,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@RequestMapping("/api/v1/research_number")
+@RequestMapping("/api/v1/evaluation")
 @RestController
 @RequiredArgsConstructor
 public class EvalCommitteeRestController {
 
-    private final EvalCommitteeService evalCommitteeService;
     private final EvalComposeService evalComposeService;
 
-    @PostMapping("/register/research/{memberId}")
-    public ResponseEntity<?> registerResearchInformation(@PathVariable Long memberId, @RequestBody SubmitResearchRequest submitRequest) {
-        try {
-            evalCommitteeService.setCareersByMemberId(memberId, submitRequest.getCareerInfos());
-            evalCommitteeService.setAcadAbilitiesByMemberId(memberId, submitRequest.getAcademicInfos());
-//            evalCommitteeService.setTechFieldsByMemberId(memberId, submitRequest.getTechnicalInfos());
-            return ResponseEntity.ok("연구원 정보 저장 완료");
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("연구원 정보 저장 실패: " + e.getMessage());
-        }
-    }
+    @PostMapping("/register/eval-committee/{subAnnNo}")
+    public ResponseEntity<?> setEvalCommitteesBySubAnnNo(@PathVariable Long subAnnNo) {
 
-    @PostMapping("/register/eval/{memberId}")
-    public ResponseEntity<?> registerEvalInformation(@RequestBody EvalNotiRequest evalNotiRequest) {
-        try {
-            evalCommitteeService.setEvalNotiByMemberId(evalNotiRequest);
-            return ResponseEntity.ok("후보단 신청 완료");
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.badRequest().body("후보단 신청 실패: " + e.getMessage());
-        }
-    }
+        int rndPlanCnt = evalComposeService.getRndPlanCntById(subAnnNo);
 
-    @GetMapping("/researchers/{committeeId}")
-    public ResponseEntity<List<MemberEvalRequest>> getEvaluationMembersByCommittee(@PathVariable Long committeeId) {
-        List<EvaluationMember> evaluationMembers = evalComposeService.getEvaluationMembersByCommittee(committeeId);
+        // 평가위원회 구성
+        evalComposeService.setEvalCommitteesBySubAnnNo(subAnnNo, rndPlanCnt);
 
-        List<MemberEvalRequest> membersDetails = new ArrayList<>();
-        for (EvaluationMember em : evaluationMembers) {
-            MemberDetails member = evalComposeService.getOneMemberDetailWithInstitution(em.getMemNo());
-            MemberEvalRequest memberRequest = new MemberEvalRequest(member, em);
-            membersDetails.add(memberRequest);
-        }
-        return ResponseEntity.ok(membersDetails);
-    }
-
-    @PostMapping("/update/evalMember/{memberId}/{notiContentNo}")
-    public ResponseEntity<?> setEvaluationMemberByNotiContentNo(@RequestBody EvalMemberRequest evalMemberRequest, @PathVariable Long memberId, @PathVariable Long notiContentNo) {
-
-        evalComposeService.setEvaluationMemberByNotiContentNo(memberId, notiContentNo, evalMemberRequest);
+        // 평가위원회 구성원 구성
+        int evalCommitteeCnt = evalComposeService.getEvalCommitteeCntById(subAnnNo);
 
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    @PostMapping("/update/noti/{notificationNo}")
-    public ResponseEntity<?> setNotiByNotificationNo(@PathVariable Long notificationNo) {
+    @GetMapping("/committees/{subAnnNo}")
+    public ResponseEntity<?> getEvalCommitteesBySubAnnNo(@PathVariable Long subAnnNo) {
 
-        evalComposeService.setNotiByNotificationNo(notificationNo);
+        List<EvalCommittee> evalCommittee = evalComposeService.getAllEvalCommitteeById(subAnnNo);
 
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok(evalCommittee);
     }
 }

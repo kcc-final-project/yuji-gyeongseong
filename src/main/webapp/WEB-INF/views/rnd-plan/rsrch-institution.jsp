@@ -34,7 +34,7 @@
                         <input class="form-control ctm-td" value="주관연구개발기관" disabled readonly type="text">
                     </td>
                     <td>
-                        <input class="form-control ctm-td" value="강남대학교" disabled readonly type="text">
+                        <input class="form-control ctm-td" value="서울대학교" disabled readonly type="text">
                     </td>
                     <td>
                         <input class="form-control ctm-td" value="123-25-89675" disabled readonly type="text">
