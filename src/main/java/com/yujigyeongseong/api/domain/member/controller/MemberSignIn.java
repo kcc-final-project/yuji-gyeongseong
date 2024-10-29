@@ -1,5 +1,8 @@
 package com.yujigyeongseong.api.domain.member.controller;
 
+
+import com.yujigyeongseong.api.global.auth.PrincipalDetail;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,5 +34,4 @@ public class MemberSignIn {
     public String signUp4() {
         return "sign-in-sign-up/sign-up-4";
     }
-
 }

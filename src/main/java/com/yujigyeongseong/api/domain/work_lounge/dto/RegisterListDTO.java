@@ -36,4 +36,5 @@ public class RegisterListDTO {
     }
 
     private String planStatus;
+    private Integer rndPlanNo;
 }

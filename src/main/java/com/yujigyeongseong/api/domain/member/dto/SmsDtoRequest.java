@@ -1,4 +1,4 @@
-package com.yujigyeongseong.api.domain.member.DTO;
+package com.yujigyeongseong.api.domain.member.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;

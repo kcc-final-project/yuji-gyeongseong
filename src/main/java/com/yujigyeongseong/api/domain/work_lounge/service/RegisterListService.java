@@ -9,4 +9,6 @@ public interface RegisterListService {
     List<RegisterListDTO> getRegisterList(Integer memNo);
 
     List<RegisterListDTO> getCompleteList(int memNo);
+
+    public boolean getDelete(int rndPlanNo);
 }

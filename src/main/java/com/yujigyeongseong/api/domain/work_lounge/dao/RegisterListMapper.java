@@ -12,4 +12,6 @@ public interface RegisterListMapper {
     List<RegisterListDTO> selectRegisterList(@Param("memNo") Integer memNo);
 
     List<RegisterListDTO> selectCompleteList(int memNo);
+
+    public int delete(int rndPlanNo);
 }

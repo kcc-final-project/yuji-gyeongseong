@@ -15,10 +15,10 @@
         <result property="subAnnCount" column="subAnnCount"/>
         <result property="receptionType" column="receptionType"/>
         <result property="status" column="status"/>
-        <result property="startedAt" column="TO_CHAR(started_at, 'YYYY-MM-DD')"/>
-        <result property="closedAt" column="TO_CHAR(closed_at, 'YYYY-MM-DD')"/>
-        <result property="createdAt" column="TO_CHAR(created_at, 'YYYY-MM-DD')"/>
-        <result property="updatedAt" column="TO_CHAR(updated_at, 'YYYY-MM-DD')"/>
+        <result property="startedAt" column="startedAt"/>
+        <result property="closedAt" column="closedAt"/>
+        <result property="createdAt" column="createdAt"/>
+        <result property="updatedAt" column="updatedAt"/>
         <result property="bucketNo" column="bucketNo"/>
         <collection property="subAnnouncements" ofType="SubAnnouncement">
             <result property="subAnnNo" column="subAnnNo"/>
@@ -39,6 +39,7 @@
             <result property="annNo" column="s_annNo"/>
             <result property="bucketNo" column="s_bucketNo"/>
         </collection>
+
     </resultMap>
 
     <resultMap id="announcementByAnnNo" type="SubAnnouncementApply">

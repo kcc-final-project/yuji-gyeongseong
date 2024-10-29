@@ -54,9 +54,13 @@
                     <h4>이름</h4>
                     <input class="form-control form-control-lg" id="name" type="text" placeholder="홍길동">
                     <h4>생년월일</h4>
-                    <input class="form-control form-control-lg" id="birth" type="text" placeholder="2000.02.17">
+                    <input class="form-control form-control-lg" id="birth" type="text" placeholder="2000-02-17">
                     <h4>휴대폰번호</h4>
-                    <input class="form-control form-control-lg" id="tel" type="text" placeholder="010-1234-5678">
+                    <input class="form-control form-control-lg" id="tel" type="text" placeholder="-없이 숫자만 입력">
+
+
+
+
                     <h5 id="cert-title" style="display: none;">인증번호 입력</h5>
                     <div id="certNum-btn-area">
                         <input class="form-control form-control-lg" id="certNum" type="text">

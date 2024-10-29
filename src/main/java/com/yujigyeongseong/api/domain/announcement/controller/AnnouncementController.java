@@ -23,6 +23,7 @@ public class AnnouncementController {
 
     @GetMapping
     public String getAnnouncementList() {
+
         return "announcement/announcement-list";
     }
 
