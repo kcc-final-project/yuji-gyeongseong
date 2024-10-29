@@ -1,6 +1,6 @@
 package com.yujigyeongseong.api.domain.member.dao;
 
-import com.yujigyeongseong.api.domain.member.DTO.SmsCertRequest;
+import com.yujigyeongseong.api.domain.member.dto.SmsCertRequest;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Optional;
