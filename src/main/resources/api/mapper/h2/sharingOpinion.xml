@@ -29,4 +29,24 @@
         where rp.task_name = #{taskName}
     </select>
 
+
+    <!--    의견공유-->
+    <select id="selectBoardList" resultType="Board">
+        select opinion_no        as opinionno,
+               mem_no            as memno,
+               content           as content,
+               created_at        as createdat,
+               readhit           as readhit,
+               ref               as ref,
+               step              as step,
+               depth             as depth,
+               del_info          as delinfo,
+               deleted_at        as deletedat,
+               eval_committee_no as evalcommitteeno,
+               rnd_plan_no       as rndplanno,
+               bucket_no         as bucketno
+        from opinion
+        order by ref desc, step asc;
+    </select>
+
 </mapper>

@@ -23,8 +23,9 @@
             inner join evaluation_question eq on eq.question_no = es.question_no
             inner join evaluation_table evta on evta.evaluation_table_no = eq.evaluation_table_no
             inner join question qu on qu.question_no = eq.question_no
-        where rnd.rnd_plan_no = #{rndPlanNo}
-          and et.mem_no = #{memNo}
+            inner join sub_announcement sub on sub.ann_no = ann.ann_no
+        where ann.ann_no = #{annNo}
+          and sub.sub_ann_no = #{subAnnNo} and rnd.rnd_plan_no = #{rndPlanNo}
     </select>
 
     <resultMap id="questionList" type="EvaluationPaperQuestionDTO">

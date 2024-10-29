@@ -50,7 +50,8 @@
                             </button>
                         </td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-outline-danger">
+                            <button type="button" class="btn btn-sm btn-outline-danger"
+                                    onclick="deleteBoard(${register.rndPlanNo})">
                                 취소
                             </button>
                         </td>
@@ -93,7 +94,7 @@
                         <td><c:out value="${complete.submittedAt}"/></td>
                         <td><c:out value="${complete.planStatus}"/></td>
                         <td>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="deleteBoard(${complete.rndPlanNo})">
                                 취소
                             </button>
                         </td>
@@ -111,5 +112,27 @@
     </div>
 </div>
 <script src="/resources/js/work-lounge/register-list.js"></script>
+<script>
+    function deleteBoard(rndPlanNo) {
+        if (confirm("정말로 이 계획서를 삭제하시겠습니까?")) {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8082/work-lounge/delete",
+                data: { rndPlanNo: rndPlanNo },
+                success: function(response) {
+                    // Assuming the server returns a success response
+                    alert("삭제되었습니다.");
+                    // Optionally, remove the row from the table
+                    // $(this).closest('tr').remove(); // Commented out as you may want to manage this differently
+                    location.reload(); // Reload the page to reflect the changes
+                },
+                error: function() {
+                    alert("삭제 실패. 다시 시도해 주세요.");
+                }
+            });
+        }
+    }
+</script>
+
 </body>
 </html>

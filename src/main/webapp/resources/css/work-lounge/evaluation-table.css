@@ -1,13 +1,9 @@
-.delete-btn {
+.question .remove-question {
   display: none;
-  font-size: 12px;
-  background-color: white;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  padding: 2px 5px;
-  cursor: pointer;
-  background-color: red;
+}
+
+.question:hover .remove-question {
+  display: block;
 }
 
 .card:hover .delete-btn {
@@ -66,7 +62,14 @@
 }
 
 .btn-circle {
-  border-radius: 90%;
   background-color: #2f3f6a;
   color: #ffffff;
+  width: 25px; /* 버튼의 너비 조절 */
+  height: 25px; /* 버튼의 높이 조절 */
+  border-radius: 50%; /* 원형으로 만들기 */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px; /* 글자 크기 조절 */
+  padding: 0; /* 내부 여백 조절 */
 }

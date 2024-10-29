@@ -25,172 +25,89 @@
         <div style="max-height: 320px; overflow-y: auto">
 
             <table class="table table-bordered text-center table-hover">
-                <thead>
-                <tr class="domain" style="font-size: 15px">
-                    <td class="col-1">
-                        <h5>
-                            <span class="pt-1 pb-1 badge text-bg-secondary black"
-                                  style="background-color: #b9b9b9 !important;">
-                                선정평가대기
-                            </span>
-                        </h5>
-                    </td>
-                    <td class="col-5 align-middle" colspan="2">
-                        <div class="d-flex justify-content-center align-items-center">
-                            <span class="me-2 w-25">공모분야명</span>
-                            <input class="border d-inline-block form-control form-control-sm align-middle p-2 truncate-text"
-                                   style="border: 1px solid black; border-radius: 3px; background-color: #b9b9b9;"
-                                   value="[2024-RM-03-총괄] 경수형 SMR 사고해석 및 사고회로가나다라마바사" disabled readonly>
-                        </div>
-
-                    </td>
-                    <td class="col-4 align-middle" colspan="3">
-                        <div class="input-group w-100">
-                            <div class="d-flex justify-content-center align-items-center">
-                                <span class="w-25">최종선정기간</span>
-                                <div class="input-group w-75">
-
-                                    <input
-                                            type="text"
-                                            class="form-control date-input"
-                                            id="startDate"
-                                            placeholder="시작일"
-                                    />
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">~</span>
-                                    </div>
-                                    <input
-                                            type="text"
-                                            class="form-control date-input"
-                                            id="endDate"
-                                            placeholder="종료일"
-                                    />
-
-                                </div>
+            <c:if test="${not empty selectEvaluationDetail}">
+    <thead>
+        <tr class="domain" style="font-size: 15px">
+            <td class="col-1">
+                <h5>
+                    <span class="pt-1 pb-1 badge text-bg-secondary black"
+                          style="background-color: #b9b9b9 !important;">
+                        <c:out value="${selectEvaluationDetail[0].evalStatus}"/>
+                    </span>
+                </h5>
+            </td>
+            <td class="col-5 align-middle" colspan="2">
+                <div class="d-flex justify-content-center align-items-center">
+                    <span class="me-2 w-25">공모분야명</span>
+                    <input class="border d-inline-block form-control form-control-sm align-middle p-2 truncate-text"
+                           style="border: 1px solid black; width: 350px; border-radius: 3px; background-color: #b9b9b9;"
+                           value="${selectEvaluationDetail[0].subTitle}" disabled readonly>
+                </div>
+            </td>
+            <td class="col-4 align-middle" colspan="3">
+                <div class="input-group" style="width: 100%">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <span class="w-25 me-1">최종선정기간</span>
+                        <div class="input-group w-75">
+                            <input type="text" class="form-control date-input" id="startDate"
+                                   value="${selectEvaluationDetail[0].start}" disabled readonly/>
+                            <div class="input-group-append">
+                                <span class="input-group-text">~</span>
                             </div>
+                            <input type="text" class="form-control date-input" id="endDate"
+                                   value="${selectEvaluationDetail[0].finalSelectedAt}" disabled readonly/>
                         </div>
-                    </td>
-                    <td class="col-1 align-middle">
-                        <select id="committeeSelect" class="form-control">
-                            <option value="전체">전체</option>
-                            <option value="A">평가위원회 A</option>
-                            <option value="B">평가위원회 B</option>
-                        </select>
-                    </td>
-                </tr>
-                </thead>
-                <tbody id="plansTable" class="text-center">
-                <tr class="blue">
-                    <td class="align-middle text-center">
-                        <div class="form-check d-flex justify-content-center align-items-center">
-                            <input
-                                    class="form-check-input"
-                                    type="checkbox"
-                                    value=""
-                                    id="allcheck-input"
-                            />
+                    </div>
+                </div>
+            </td>
+            <td class="col-1 align-middle">
+                <select id="committeeSelect" class="form-control" style="width: 130px">
+                    <option value="ALL">전체</option>
+                    <option value="CommitteeA">평가위원회 A</option>
+                    <option value="CommitteeB">평가위원회 B</option>
+                </select>
+            </td>
+        </tr>
+        <tr class="blue">
+            <td class="align-middle text-center">
+                <div class="form-check d-flex justify-content-center align-items-center">
+                    <input class="form-check-input" type="checkbox" value="" id="allcheck-input"/>
+                </div>
+            </td>
+            <td>계획서번호</td>
+            <td>과제명</td>
+            <td>주관연구기관</td>
+            <td>연구책임자</td>
+            <td>평균점수</td>
+            <td>계획서상태</td>
+        </tr>
+    </thead>
+</c:if>
 
-                        </div>
-                    </td>
-                    <td>계획서번호</td>
-                    <td>과제명</td>
-                    <td>주관연구기관</td>
-                    <td>연구책임자</td>
-                    <td>평균점수</td>
-                    <td>계획서상태</td>
-                </tr>
-                <tr data-committee="A">
-                    <td class="align-middle text-center">
-                        <div class="form-check d-flex justify-content-center align-items-center">
-                            <input class="form-check-input plan-checkbox" type="checkbox" value="1"
-                                   data-plan="P2024051A"/>
-                        </div>
-                    </td>
+                <c:forEach items="${selectEvaluationDetail}" var="selectEvaluation" varStatus="status">
+                    <tbody id="plansTable" class="text-center">
+                    <tr data-committee="${selectEvaluation.name}">
+                        <td class="align-middle text-center">
+                            <div class="form-check d-flex justify-content-center align-items-center">
+                                <input
+                                        class="form-check-input plan-checkbox committee-member"
+                                        type="checkbox"
+                                        value="${selectEvaluation.subAnnNo}"
+                                        data-plan="${selectEvaluation.rndTaskNo}"
+                                />
+                            </div>
+                        </td>
 
-                    <td class="plan-number" data-plan="P2024051A">P2024051A</td>
-                    <td>[2024-RM-01-총괄] 섬유 연속 In-line 플라즈마(가)</td>
-                    <td>한국산업기술기획평가원</td>
-                    <td>홍길동</td>
-                    <td>100</td>
-                    <td><span class="badge text-bg-secondary">계획서완료</span></td>
-                </tr>
-                <tr data-committee="A">
-                    <td class="align-middle text-center">
-                        <div class="form-check d-flex justify-content-center align-items-center">
-                            <input
-                                    class="form-check-input plan-checkbox"
-                                    type="checkbox"
-                                    value="2"
-                                    data-plan="P2024051B"
-                            />
+                        <td class="committee-member" data-plan="${selectEvaluation.rndTaskNo}"> <c:out value="${selectEvaluation.rndTaskNo}"/></td>
+                        <td><c:out value="${selectEvaluation.taskName}"/></td>
+                        <td><c:out value="${selectEvaluation.rndInstitution}"/></td>
+                        <td><c:out value="${selectEvaluation.rndName}"/></td>
+                        <td><c:out value="${selectEvaluation.totalScore}"/></td>
+                        <td><span class="badge text-bg-secondary"><c:out value="${selectEvaluation.planStatus}"/></span></td>
+                    </tr>
 
-                        </div>
-                    </td>
-                    <td class="plan-number" data-plan="P2024051B">P2024051B</td>
-                    <td>[2024-RM-01-총괄] 섬유 연속 In-line 플라즈마(나)</td>
-                    <td>한국산업기술기획평가원</td>
-                    <td>박길동</td>
-                    <td>90</td>
-                    <td><span class="badge text-bg-secondary">계획서완료</span></td>
-                </tr>
-                <tr data-committee="A">
-                    <td class="align-middle text-center">
-                        <div class="form-check d-flex justify-content-center align-items-center">
-                            <input
-                                    class="form-check-input plan-checkbox"
-                                    type="checkbox"
-                                    value="3"
-                                    data-plan="P2024051C"
-                            />
-
-                        </div>
-                    </td>
-                    <td class="plan-number" data-plan="P2024051C">P2024051C</td>
-                    <td>[2024-RM-01-총괄] 섬유 연속 In-line 플라즈마(나)</td>
-                    <td>한국산업기술기획평가원</td>
-                    <td>고길동</td>
-                    <td>80</td>
-                    <td><span class="badge text-bg-secondary">계획서완료</span></td>
-                </tr>
-                <tr data-committee="B">
-                    <td class="align-middle text-center">
-                        <div class="form-check d-flex justify-content-center align-items-center">
-                            <input
-                                    class="form-check-input plan-checkbox"
-                                    type="checkbox"
-                                    value="4"
-                                    data-plan="P2024051D"
-                            />
-
-                        </div>
-                    </td>
-                    <td class="plan-number" data-plan="P2024051D">P2024051D</td>
-                    <td>[2024-RM-01-총괄] 섬유 연속 In-line 플라즈마(다)</td>
-                    <td>한국산업기술기획평가원</td>
-                    <td>신길동</td>
-                    <td>70</td>
-                    <td><span class="badge text-bg-secondary">계획서완료</span></td>
-                </tr>
-                <tr data-committee="B">
-                    <td class="align-middle text-center">
-                        <div class="form-check d-flex justify-content-center align-items-center">
-                            <input
-                                    class="form-check-input plan-checkbox"
-                                    type="checkbox"
-                                    value="5"
-                                    data-plan="P2024051E"
-                            />
-
-                        </div>
-                    </td>
-                    <td class="plan-number" data-plan="P2024051E">P2024051E</td>
-                    <td>[2024-RM-01-총괄] 섬유 연속 In-line 플라즈마(라)</td>
-                    <td>한국산업기술기획평가원</td>
-                    <td>개길동</td>
-                    <td>60</td>
-                    <td><span class="badge text-bg-secondary">계획서완료</span></td>
-                </tr>
-                </tbody>
+                    </tbody>
+                </c:forEach>
             </table>
         </div>
         <div class="col-12 d-flex justify-content-end text-align-center">
@@ -272,139 +189,34 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="/resources/js/work-lounge/selection-evaluation-detail.js"></script>
 <script>
-    var data = [
-        {
-            plan_number: "P2024051A",
-            committees: [
-                {name: "홍길동", institution: "KCC", researchernumber: "20241012", score: "60"},
-                {name: "신길동", institution: "KCC", researchernumber: "20241022", score: "70"},
-                {name: "박길동", institution: "KCC", researchernumber: "20241032", score: "80"},
-                {name: "개길동", institution: "KCC", researchernumber: "20251022", score: "50"},
-                {name: "구길동", institution: "KCC", researchernumber: "20251032", score: "100"},
-            ],
-            average_score: 100,
-            committee: "A",
-        },
-        {
-            plan_number: "P2024051B",
-            committees: [
-                {name: "산길동", institution: "기상청", researchernumber: "20241052", score: "30"},
-                {name: "오길동", institution: "기상청", researchernumber: "20241062", score: "40"},
-            ],
-            average_score: 90,
-            committee: "A",
-        },
-        {
-            plan_number: "P2024051C",
-            committees: [
-                {name: "Committee Member C1"},
-                {name: "Committee Member C2"},
-                {name: "Committee Member C3"},
-            ],
-            average_score: 80,
-            committee: "A",
-        },
-        {
-            plan_number: "P2024051D",
-            committees: [
-                {name: "Committee Member D1"},
-                {name: "Committee Member D2"},
-                {name: "Committee Member D3"},
-            ],
-            average_score: 70,
-            committee: "B",
-        },
-        {
-            plan_number: "P2024051E",
-            committees: [
-                {name: "Committee Member E1"},
-                {name: "Committee Member E2"},
-                {name: "Committee Member E3"},
-            ],
-            average_score: 60,
-            committee: "B",
-        },
-    ];
-
     $(document).ready(function () {
-        var initialPlanNumber = $(".plan-number").first().data("plan");
-        loadCommitteeList(initialPlanNumber);
-        loadBarChartForPlan(initialPlanNumber);
+        // Handle click on plan checkboxes (".plan-checkbox")
+        $(".plan-checkbox").click(function (e) {
+            e.stopPropagation(); // Prevent event bubbling
 
-        $("#allcheck-input").on("click", function () {
-            var isChecked = $(this).prop("checked");
+            // Deselect other checkboxes
+            $(".plan-checkbox").not(this).prop("checked", false);
 
-            $(".plan-checkbox").prop("checked", isChecked);
+            // Set clicked checkbox to checked
+            $(this).prop("checked", true);
+
+            // Selected plan processing (optional)
+            var committeeMember = $(this).data("plan");
+            console.log("Selected plan:", committeeMember);
         });
 
-        $(".plan-checkbox").on("click", function () {
-            var planNumber = $(this).data("plan");
-            loadCommitteeList(planNumber);
+        // Disable the "Select All" checkbox
+        $("#allcheck-input").prop("disabled", true);
 
-            const selectedPlans = $(".plan-checkbox:checked").map(function () {
-                return $(this).data("plan");
-            }).get();
 
-            const committeeScores = [];
-            selectedPlans.forEach(planNumber => {
-                const selectedPlan = data.find(plan => plan.plan_number === planNumber);
-                if (selectedPlan) {
-                    committeeScores.push(...selectedPlan.committees.map(member => ({
-                        name: member.name,
-                        score: member.score
-                    })));
-                }
-            });
+        // Count visible rows on document ready
+        const rowCount = $("#plansTable tr:visible").length;
+        $("#row-count").text(rowCount);
 
-            const existingBarChart = document.getElementById('barChart');
-            if (existingBarChart) {
-                existingBarChart.parentNode.removeChild(existingBarChart);
-            }
-
-            if (committeeScores.length > 0) {
-                createBarChart(committeeScores);
-            }
-        });
-
-        $(".plan-number").on("click", function () {
-            var planNumber = $(this).data("plan");
-
-            uncheckAllCheckboxes();
-
-            const checkbox = $(".plan-checkbox[data-plan='" + planNumber + "']");
-            checkbox.prop('checked', true);
-
-            loadCommitteeList(planNumber);
-            loadBarChartForPlan(planNumber);
-
-            const selectedPlans = $(".plan-checkbox:checked").map(function () {
-                return $(this).data("plan");
-            }).get();
-
-            const committeeScores = [];
-            selectedPlans.forEach(planNumber => {
-                const selectedPlan = data.find(plan => plan.plan_number === planNumber);
-                if (selectedPlan) {
-                    committeeScores.push(...selectedPlan.committees.map(member => ({
-                        name: member.name,
-                        score: member.score
-                    })));
-                }
-            });
-
-            const existingBarChart = document.getElementById('barChart');
-            if (existingBarChart) {
-                existingBarChart.parentNode.removeChild(existingBarChart);
-            }
-
-            if (committeeScores.length > 0) {
-                createBarChart(committeeScores);
-            }
-        });
-
+        // Update row count on filter changes
         $("#committeeSelect").on("change", function () {
-            var selectedCommittee = $(this).val();
-            if (selectedCommittee === "전체") {
+            const selectedCommittee = $(this).val();
+            if (selectedCommittee === "ALL") {
                 $("#plansTable tr").show();
             } else {
                 $("#plansTable tr").show();
@@ -415,173 +227,202 @@
                     .hide();
             }
             const filteredRowCount = $("#plansTable tr:visible").length;
-            document.getElementById("row-count").textContent = filteredRowCount;
+            $("#row-count").text(filteredRowCount);
         });
 
-        function uncheckAllCheckboxes() {
-            $('.plan-checkbox').prop('checked', false);
-        }
+        // Handle click on committee member checkboxes
+        $(".committee-member").click(function (e) {
+            e.preventDefault();
+            var committeeMember = $(this).data("plan");
 
-    });
-
-    function loadCommitteeList(planNumber) {
-        var selectedPlan = data.find((plan) => plan.plan_number === planNumber);
-        if (selectedPlan) {
-            var committeeCount = selectedPlan.committees.length;
-            var tableContent =
-                '<div class="d-flex align-items-center"><h4 class="mb-0">평가위원</h4><h5 class="mb-0 ms-2">[전체 ' + committeeCount + '명]</h5></div><table class="table table-bordered mt-3 text-center table-hover"><thead><tr class="domain"><td>성명</td><td>소속기관</td><td>국가연구자번호</td><td>평가점수</td><td>편차(%)</td></tr></thead><tbody>';
-            selectedPlan.committees.forEach(function (committee) {
-
-                const deviation = committee.score - selectedPlan.average_score;
-                const deviationPercentage = (deviation / selectedPlan.average_score) * 100;
-                tableContent +=
-                    "<tr><td>" +
-                    committee.name +
-                    "</td> <td>" +
-                    committee.institution +
-                    "</td>  <td>" +
-                    committee.researchernumber +
-                    "</td>  <td>" +
-                    committee.score +
-                    "</td><td style='color: red'>" +
-                    deviationPercentage.toFixed(1) +
-                    "</td></tr>";
+            // AJAX call to fetch evaluation details based on selected plan
+            $.ajax({
+                url: "/api/v1/work_lounge/selection-evaluation-detail/" + committeeMember,
+                method: "GET",
+                success: function (response) {
+                    // Assuming the response is an array of objects
+                    createTable(response);
+                    createBarChart(response);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error fetching data: ", error);
+                },
             });
-            tableContent += "</tbody></table>";
-            $("#committeeList").html(tableContent);
-        } else {
-            $("#committeeList").html(
-                "No data found for the selected plan number."
-            );
-        }
-    }
-
-    function loadBarChartForPlan(planNumber) {
-        const selectedPlan = data.find(plan => plan.plan_number === planNumber);
-        if (selectedPlan) {
-            const committeeScores = selectedPlan.committees.map(member => ({name: member.name, score: member.score}));
-
-            const existingBarChart = document.getElementById('barChart');
-            if (existingBarChart) {
-                existingBarChart.parentNode.removeChild(existingBarChart);
-            }
-
-            if (committeeScores.length > 0) {
-                createBarChart(committeeScores);
-            }
-        }
-    }
-
-    const tableBody = document.querySelector("tbody");
-    const rowCount = tableBody.rows.length;
-    document.getElementById("row-count").textContent = rowCount;
-
-    function uncheckAllCheckboxes() {
-        $('.plan-checkbox').prop('checked', false);
-    }
-
-    $(".plan-checkbox").on("click", function () {
-        uncheckAllCheckboxes();
-        $(this).prop('checked', true);
-
-        var planNumber = $(this).data("plan");
-        loadCommitteeList(planNumber);
-    });
-
-    const ctx = document.getElementById('deviationChart').getContext('2d');
-    const chart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: [],
-            datasets: [{
-                label: '연구계획서 점수 분석',
-                data: [],
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-
-    function updateDeviationChart(data) {
-
-        chart.data.labels.length = 0;
-        chart.data.datasets[0].data.length = 0;
-
-        const filteredData = data.filter(plan => {
-            const selectedCommittee = $("#committeeSelect").val();
-            return selectedCommittee === "전체" || plan.committee === selectedCommittee;
         });
 
-        filteredData.forEach(plan => {
-            chart.data.labels.push(plan.plan_number);
-            chart.data.datasets[0].data.push(plan.average_score);
-        });
+        // Automatically trigger click on the first checkbox to load data on page load
+        const firstCheckbox = $("#plansTable tr:first .committee-member");
+        if (firstCheckbox.length > 0) {
+            firstCheckbox.trigger("click");
+        }
 
-        chart.update();
-    }
+        function createTable(data) {
+            // Clear any existing table and count display
+            $("#committeeList").empty();
 
-    updateDeviationChart(data);
+            // Create a count display
+            var countDisplay = $("<div></div>").attr("id", "rowCount");
+            countDisplay.text("총 행의 수: " + data.length);
+            $("#committeeList").append(countDisplay);
 
-    $("#committeeSelect").on("change", function () {
-        updateDeviationChart(data);
-    });
+            // Create table headers
+            var table = $("<table></table>").addClass("evaluation-table");
+            var headerRow = $("<tr></tr>");
+            headerRow.append("<th>Co Name</th>");
+            headerRow.append("<th>Ins Name</th>");
+            headerRow.append("<th>CORS Name</th>");
+            headerRow.append("<th>Score</th>");
+            table.append(headerRow);
 
-    function createBarChart(committeeScores) {
-        const barChartCanvas = document.createElement('canvas');
-        barChartCanvas.id = 'barChart';
-        barChartCanvas.width = 52;
-        barChartCanvas.height = 27;
+            // Populate table with data
+            data.forEach(function (item) {
+                var row = $("<tr></tr>");
+                row.append("<td>" + item.coName + "</td>");
+                row.append("<td>" + item.insName + "</td>");
+                row.append("<td>" + item.corsName + "</td>");
+                row.append("<td>" + item.score + "</td>");
+                table.append(row);
+            });
 
-        const barChartContainer = document.querySelector('.col-5:nth-child(1)');
-        barChartContainer.appendChild(barChartCanvas);
+            // Append the table to the committeeList container
+            $("#committeeList").append(table);
+        }
 
-        const barChartCtx = barChartCanvas.getContext('2d');
+        function createBarChart(data) {
+            // Clear any existing chart
+            $("#barChartContainer").remove(); // Remove previous chart if it exists
 
-        const barChart = new Chart(barChartCtx, {
-            type: 'bar',
-            data: {
-                labels: committeeScores.map(member => member.name),
-                datasets: [{
-                    label: '평가점수',
-                    data: committeeScores.map(member => member.score),
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
+            // Create a new canvas for the chart
+            var canvas = $("<canvas></canvas>").attr("id", "barChart");
+            $("#committeeList").append(canvas);
+
+            // Prepare data for the chart
+            var labels = data.map(item => item.coName);
+            var scores = data.map(item => item.score);
+
+            // Create the chart
+            var ctx = document.getElementById("barChart").getContext("2d");
+            var barChart = new Chart(ctx, {
+                type: "bar",
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: "평가 점수",
+                        data: scores,
+                        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
                             beginAtZero: true
                         }
-                    }]
+                    }
                 }
+            });
+        }
+    });
+
+
+
+    const committeeSelect = document.getElementById('committeeSelect');
+    const deviationChart = document.getElementById('deviationChart').getContext('2d');
+
+    // Function to generate chart data based on selected committee
+    function generateChartData(selectedCommittee) {
+        const chartData = {
+            labels: [],
+            datasets: [],
+        };
+
+        const tableRows = document.querySelectorAll('#plansTable tr');
+        for (const row of tableRows) {
+            const committee = row.dataset.committee;
+            const rndTaskNo = row.querySelector('.committee-member[data-plan]').dataset.plan;
+            const totalScore = parseFloat(row.querySelector('td:nth-child(6)').textContent);
+
+            if (selectedCommittee === 'ALL' || committee === selectedCommittee) {
+                if (!chartData.labels.includes(rndTaskNo)) {
+                    chartData.labels.push(rndTaskNo);
+                }
+
+                // Initialize dataset for the selected committee
+                if (!chartData.datasets.find(d => d.label === selectedCommittee)) {
+                    chartData.datasets.push({
+                        label: selectedCommittee, // Set label to the selected committee
+                        data: [],
+                        borderColor: generateRandomColor(),
+                        backgroundColor: 'rgba(0, 0, 0, 0)',
+                        pointRadius: 5,
+                        pointHoverRadius: 7,
+                        pointBackgroundColor: generateRandomColor(),
+                        pointBorderColor: 'black',
+                        pointBorderWidth: 1,
+                    });
+                }
+
+                // Add score data to the dataset for the selected committee
+                const committeeDataset = chartData.datasets.find(d => d.label === selectedCommittee);
+                committeeDataset.data.push(totalScore);
             }
+        }
+
+        return chartData;
+    }
+
+    // Function to generate a random color
+    function generateRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    // Function to display the chart with a title
+    function displayChart(chartData, committeeName) {
+        // Clear the existing chart if it exists
+        if (deviationChart.chart) {
+            deviationChart.chart.destroy();
+        }
+
+        // Create the chart
+        deviationChart.chart = new Chart(deviationChart, {
+            type: 'line',
+            data: chartData,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    },
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: committeeName, // Set the title based on the selected committee
+                    },
+                },
+            },
         });
     }
+
+    // Event listener for committee selection change
+    committeeSelect.addEventListener('change', function() {
+        const selectedCommittee = this.value;
+        const chartData = generateChartData(selectedCommittee);
+        displayChart(chartData, selectedCommittee); // Pass the selected committee for the title
+    });
+
+    // Call the function to generate and display the initial chart on page load
+    window.addEventListener('DOMContentLoaded', function() {
+        const initialChartData = generateChartData('ALL');
+        displayChart(initialChartData, '전체'); // Initial title
+    });
+
 </script>
 </body>
 </html>
