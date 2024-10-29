@@ -12,6 +12,6 @@ public class EvalNotiRequest {
     private String content;
     private String notiType;
     private String dataCategory;
-    private String notiContentNo;
+    private Long notiContentNo;
     private Long memNo;
 }

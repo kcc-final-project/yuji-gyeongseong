@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yujigyeongseong.api.domain.research_number.dao.EvalComposeMapper">
+
+    <select id="selectSubAnnounceById" parameterType="long">
+        SELECT *
+        FROM sub_announcement
+        WHERE sub_ann_no = #{id}
+    </select>
+
+    <select id="selectOneEvalCommitteeById" parameterType="long">
+        SELECT *
+        FROM eval_committee
+        WHERE sub_ann_no = #{id}
+          AND ROWNUM = 1
+    </select>
+
+    <select id="selectAllEvalCommitteeById" parameterType="long">
+        SELECT *
+        FROM eval_committee
+        WHERE sub_ann_no = #{id}
+    </select>
+
+    <select id="selectRndPlanCntById" parameterType="long">
+        SELECT COUNT(*)
+        FROM rnd_plan
+        WHERE sub_ann_no = #{id}
+    </select>
+
+    <select id="selectEvaluationMembersById" parameterType="long">
+        SELECT *
+        FROM evaluation_member
+        WHERE eval_committee_no = #{id}
+    </select>
+
+    <select id="selectOneMemberById" parameterType="long">
+        SELECT *
+        FROM member
+        WHERE mem_no = #{id}
+    </select>
+
+    <select id="selectOneMemberDetailWithInstitution" parameterType="long">
+        SELECT m.mem_no, m.rsrch_no, m.name, i.name as institutionName, i.iar_type
+        FROM member m
+                 INNER JOIN institution i ON m.institution_no = i.institution_no
+        WHERE m.mem_no = #{id}
+    </select>
+
+    <update id="udpateEvaluationMemberByNotiContentNo">
+        UPDATE evaluation_member
+        SET recv_status     = #{evalMemberRequest.recvStatus},
+            recv_status_eng = #{evalMemberRequest.recvStatusEng}
+        WHERE mem_no = #{memberId}
+          AND eval_committee_no = #{notiContentNo}
+    </update>
+
+    <update id="updateNotiByNotificationNo">
+        UPDATE noti
+        SET read_state = '확인완료'
+        WHERE notification_no = #{id}
+    </update>
+
+    <insert id="insertEvalCommitteesBySubAnnNo" statementType="CALLABLE">
+        <![CDATA[
+        DECLARE
+        target_sub_ann_no NUMBER :=
+        #{subAnnNo}; -- 파라미터로 전달된 subAnnNo 사용
+        num_of_committees
+        NUMBER :=
+        #{rndPlanCnt}; -- 생성할 평가위원회 수를 파라미터로 전달
+        target_eval_committee_no
+        NUMBER;
+        BEGIN
+        FOR i IN 1..num_of_committees LOOP
+            -- 새로운 eval_committee를 생성하고 번호를 저장합니다.
+            target_eval_committee_no := seq_eval_committee.NEXTVAL;
+
+        INSERT INTO eval_committee (eval_committee_no, name, people_count, eval_started_at, eval_closed_at, prog_status,
+                                    sub_ann_no)
+        VALUES (target_eval_committee_no,
+                '평가위원회-' || i, -- 루프 인덱스 i를 사용하여 이름 생성
+                6,
+                TO_TIMESTAMP('2024-10-21 12:01:09', 'YYYY-MM-DD HH24:MI:SS'),
+                TO_TIMESTAMP('2024-11-04 12:01:09', 'YYYY-MM-DD HH24:MI:SS'),
+                '평가대기중',
+                target_sub_ann_no);
+
+        -- 각 iar_type별로 2명씩 멤버를 선택하여 evaluation_member에 추가합니다.
+        INSERT INTO evaluation_member (eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status,
+                                       recv_status_eng)
+        SELECT target_eval_committee_no,
+               mem_no,
+               CURRENT_TIMESTAMP,
+               CURRENT_TIMESTAMP,
+               '승인대기',
+               'stayed'
+        FROM (SELECT m.mem_no, i.iar_type, ROW_NUMBER() OVER (PARTITION BY i.iar_type ORDER BY m.mem_no) AS rn
+              FROM member m
+                       JOIN institution i ON m.institution_no = i.institution_no
+              WHERE i.iar_type IN ('교육기관', '산업체', '연구기관')
+                AND m.mem_no != 0 -- mem_no가 0이 아닌 것만 선택
+                AND m.mem_no NOT IN (SELECT em.mem_no
+                                     FROM evaluation_member em
+                                              JOIN eval_committee ec ON em.eval_committee_no = ec.eval_committee_no
+                                     WHERE ec.sub_ann_no = target_sub_ann_no))
+        WHERE rn <= 2; -- 각 iar_type별로 최대 2명 선택
+        END LOOP;
+        END;
+        ]]>
+</insert>
+
+
+    <select id="selectEvalCommitteeCntById" parameterType="long">
+        SELECT COUNT(*)
+        FROM eval_committee
+        WHERE sub_ann_no = #{subAnnNo}
+    </select>
+
+</mapper>
