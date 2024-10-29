@@ -1,16 +1,15 @@
 package com.yujigyeongseong.api.domain.announcement.dto.request;
 
 import com.yujigyeongseong.api.domain.announcement.dto.SubAnnouncement;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class SubAnnouncementRequest {
     private Long annNo;
     private String totalAnnNo;

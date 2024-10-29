@@ -37,32 +37,38 @@
     </select>
 
     <insert id="insertMember" parameterType="SignUpMember">
-        INSERT INTO member (mem_no, username, password, name, email, birth, gender, tel, addr, affil_type, affil_dept, position, status, created_at,institution_no)
-        VALUES (NEXT VALUE FOR seq_member, #{username}, #{password}, #{name}, #{email}, #{birth}, #{gender}, #{tel}, #{addr}, #{affilType}, #{affilDept}, #{position}, '활성', CURRENT_TIMESTAMP,#{institutionNo});
+        INSERT INTO member (mem_no, username, password, name, email, birth, gender, tel, addr, affil_type, affil_dept, position, status, created_at, institution_no)
+        VALUES (seq_member.NEXTVAL, #{username}, #{password}, #{name}, #{email}, #{birth}, #{gender}, #{tel}, #{addr}, #{affilType}, #{affilDept}, #{position}, '활성', CURRENT_TIMESTAMP, #{institutionNo})
     </insert>
 
     <resultMap id="MemberLoginResultMap" type="MemberLogin">
-        <id property="memNo" column="mem_no"/>
+        <id property="memNo" column="memNo"/>
+        <result property="name" column="name"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
-        <collection property="roles" ofType="MemRole" resultMap="MemRoleResultMap">
+        <collection property="roles" ofType="MemRole">
+            <id property="roleNo" column="roleNo"/>
+            <result property="roleName" column="roleName"/>
         </collection>
     </resultMap>
 
-    <resultMap id="MemRoleResultMap" type="MemRole">
-        <id property="memNo" column="mem_no"/>
-        <result property="role" column="role_name"/> <!-- role_name을 반환하도록 수정 -->
-        <result property="createdAt" column="created_at"/>
-    </resultMap>
-
     <select id="findByUsername" parameterType="String" resultMap="MemberLoginResultMap">
-        SELECT m.mem_no, m.username, m.password,
-               mr.mem_no, r.role_name, mr.created_at
+        SELECT m.mem_no as "memNo",m.name, m.username, m.password, r.role_name as "roleName", r.role_no as "roleNo"
         FROM member m
                  LEFT JOIN mem_role mr ON m.mem_no = mr.mem_no
                  LEFT JOIN role r ON mr.role_no = r.role_no
         WHERE m.username = #{username}
     </select>
 
+    <select id="findByMemNo" parameterType="String" resultType="int">
+        SELECT mem_no
+        FROM member
+        WHERE username = #{username}
+    </select>
+    
+    <insert id="insertRole" parameterType="int">
+        INSERT INTO mem_role
+        VALUES (#{memNo},1,CURRENT_TIMESTAMP)
+    </insert>
 
 </mapper>
