@@ -57,35 +57,52 @@
                 <img src="/resources/img/common/logo.svg" class="logo" alt="logo"/>
             </div>
             <div class="col-10 d-flex align-items-center h-100">
-                <!-- 로그인 X -->
-                <!-- <div class="row w-100">
-                <div class="col-10">
-                  <span class="common-header__item">사업공고</span>
-                </div>
-                <div class="col-2 h-100 d-flex justify-content-between">
-                  <span class="common-header__item common-header__item__pointer">로그인</span>
-                  <span class="common-header__item common-header__item__pointer">회원가입</span>
-                </div>
-              </div> -->
-
-                <!-- 로그인 O -->
-                <div class="row w-100">
-                    <div class="col-7">
-                        <span class="common-header__item common-header__item__pointer">사업공고</span>
-                    </div>
-                    <div class="col-5 h-100 d-flex justify-content-between">
+                <c:choose>
+                    <c:when test="${not empty sessionScope.username}">
+                        <!-- 로그인 O -->
+                        <div class="row w-100">
+                            <div class="col-7">
+                                <a href="/anno" style="color: inherit; text-decoration: none;">
+                                    <span class="common-header__item common-header__item__pointer">사업공고</span>
+                                </a>
+                            </div>
+                            <div class="col-5 h-100 d-flex justify-content-between">
                 <span
                         class="common-header__item tracking-widest"
-                        style="letter-spacing: 5px"
-                >황철원
+                        style="letter-spacing: 5px">${sessionScope.username}
                   <span style="letter-spacing: 0px; color: #ff8f27"
                   >(192347283)
-                  </span></span
-                >
-                        <span class="common-header__item common-header__item__pointer">워크라운지</span>
-                        <span class="common-header__item common-header__item__pointer">로그아웃</span>
-                    </div>
-                </div>
+                  </span>
+                  </span>
+                                <span class="common-header__item common-header__item__pointer">워크라운지</span>
+                                <a href="/member/logout" style="color: inherit; text-decoration: none;">
+                                    <span class="common-header__item common-header__item__pointer">로그아웃</span>
+                                </a>
+
+                            </div>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+
+                        <!-- 로그인 X -->
+                        <div class="row w-100">
+                            <div class="col-10">
+                                <a href="/anno" style="color: inherit; text-decoration: none;">
+                                    <span class="common-header__item">사업공고</span>
+                                </a>
+                            </div>
+                            <div class="col-2 h-100 d-flex justify-content-between">
+
+                                <a href="/member/sign/in" style="color: inherit; text-decoration: none;">
+                                    <span class="common-header__item common-header__item__pointer">로그인</span>
+                                </a>
+                                <a href="/member/sign/up1" style="color: inherit; text-decoration: none;">
+                                    <span class="common-header__item common-header__item__pointer">회원가입</span>
+                                </a>
+                            </div>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </div>
