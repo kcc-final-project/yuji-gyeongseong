@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@RequestMapping("/research_number")
 @Controller
 @RequiredArgsConstructor
 public class ResearchNumberController {
@@ -20,21 +19,17 @@ public class ResearchNumberController {
     private final EvalCommitteeService evalCommitteeService;
     private final EvalComposeService evalComposeService;
 
-    @GetMapping
+    @GetMapping("/research-number")
     public String researchNumber() {
         return "research-number/research-number-page";
     }
 
-    @GetMapping("/eval_committee")
-    public String evalCommittee() {
-        return "research-number/eval-committee-register";
-    }
+    @GetMapping("/eval-committee")
+    public String evalCommittee(Model model) {
 
-    @GetMapping("/eval-committee/{id}")
-    public String getResearchNumber(@PathVariable Long id, Model model) {
-        List<AcadAbility> academicList = evalCommitteeService.getAllAcadAbilitiesByMemberId(id);
-        List<Career> careerList = evalCommitteeService.getAllCareersByMemberId(id);
-        List<String> techNameList = evalCommitteeService.getAllTechFieldNameByMemberId(id);
+        List<AcadAbility> academicList = evalCommitteeService.getAllAcadAbilitiesByMemberId(1L);
+        List<Career> careerList = evalCommitteeService.getAllCareersByMemberId(1L);
+        List<String> techNameList = evalCommitteeService.getAllTechFieldNameByMemberId(1L);
 
         model.addAttribute("academic_list", academicList);
         model.addAttribute("career_list", careerList);
@@ -43,9 +38,9 @@ public class ResearchNumberController {
         return "research-number/eval-committee-register";
     }
 
-    @GetMapping("/business-timeline/{id}")
-    public String getNotis(@PathVariable Long id, Model model) {
-        List<Noti> notiList = evalCommitteeService.getAllTechNotiByMemberId(id);
+    @GetMapping("/business-timeline")
+    public String getNotis(Model model) {
+        List<Noti> notiList = evalCommitteeService.getAllTechNotiByMemberId(1L);
 
         model.addAttribute("noti_list", notiList);
 
@@ -60,7 +55,6 @@ public class ResearchNumberController {
         List<EvalCommittee> evalCommittees = evalComposeService.getAllEvalCommitteeById(id);
         int rndPlanCnt = evalComposeService.getRndPlanCntById(id);
         Long subAnnounceId = id;
-
 
         model.addAttribute("subAnnounce", subAnnounce);
         model.addAttribute("evalCommittee", evalCommittee);

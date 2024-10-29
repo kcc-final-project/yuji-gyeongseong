@@ -77,7 +77,7 @@ function approveButton(notificationNo, memNo, notiContentNo) {
   // 평가위원 승인/거부 상태 저장
   $.ajax({
     url:
-      "/api/v1/research_number/update/evalMember/" +
+      "/api/v1/research-number/update/evalMember/" +
       memNo +
       "/" +
       notiContentNo,
@@ -93,7 +93,7 @@ function approveButton(notificationNo, memNo, notiContentNo) {
 
   // 알림 읽음 상태 변경
   $.ajax({
-    url: "/api/v1/research_number/update/noti/" + notificationNo,
+    url: "/api/v1/research-number/update/noti/" + notificationNo,
     type: "POST",
     contentType: "application/json",
     success: function (response) {

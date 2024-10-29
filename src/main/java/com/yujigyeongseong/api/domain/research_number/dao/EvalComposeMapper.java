@@ -33,4 +33,8 @@ public interface EvalComposeMapper {
             @Param("evalMemberRequest") EvalMemberRequest evalMemberRequest);
 
     int updateNotiByNotificationNo(Long id);
+
+    int insertEvalCommitteesBySubAnnNo(Long subAnnNo, int rndPlanCnt);
+
+    int selectEvalCommitteeCntById(Long subAnnNo);
 }
