@@ -6,11 +6,11 @@ $(document).ready(function () {
   });
 
   // 테이블 평가위원 이름 눌렀을 시
-  $(".committee-table tbody tr").on("click", function () {
+  // 기존 이벤트 핸들러를 이벤트 위임 방식으로 변경
+  $(".committee-table tbody").on("click", "tr", function () {
     $(".committee-table tbody tr").removeClass("selected-row");
     $(this).addClass("selected-row");
 
-    // 연구원 정보 불러오기
     var committeeId = $(this).data("committee-id");
     loadResearcherInfo(committeeId);
   });
@@ -42,7 +42,7 @@ function sendNotificationToCommitteeMembers(
     title,
 ) {
   $.ajax({
-    url: `/api/v1/research_number/researchers/${committeeId}`,
+    url: `/api/v1/research-number/researchers/${committeeId}`,
     type: "GET",
     dataType: "json",
     success: function (data) {
@@ -76,7 +76,7 @@ function sendNotification(memberId, committeeId, startDate, endDate, title) {
   };
 
   $.ajax({
-    url: "/api/v1/research_number/register/eval/" + memberId,
+    url: "/api/v1/research-number/register/eval/" + memberId,
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify(EvalNotiRequest),
@@ -87,9 +87,11 @@ function sendNotification(memberId, committeeId, startDate, endDate, title) {
   });
 }
 
+// 해당 연구원 조회 함수
 function loadResearcherInfo(committeeId) {
+
   $.ajax({
-    url: `/api/v1/research_number/researchers/${committeeId}`,
+    url: `/api/v1/research-number/researchers/${committeeId}`,
     type: "GET",
     dataType: "json",
     success: function (data) {
@@ -128,6 +130,60 @@ function loadResearcherInfo(committeeId) {
     },
     error: function (error) {
       console.error("연구원 불러오기 실패 : :", error);
+    },
+  });
+}
+
+// 평가위원회 구성 함수
+function setEvalCommittee(subAnnNo) {
+  $.ajax({
+    url: `/api/v1/evaluation/register/eval-committee/${subAnnNo}`,
+    type: "POST",
+    dataType: "json",
+    success: function () {
+      updateCommitteeList(subAnnNo);
+    },
+    error: function (error) {
+      console.error("평가위원회 구성 실패 : ", error);
+    },
+  });
+}
+
+// 평가위원회 목록 갱신 함수
+function updateCommitteeList(subAnnNo) {
+
+  $.ajax({
+    url: `/api/v1/evaluation/committees/${subAnnNo}`,
+    type: "GET",
+    dataType: "json",
+    success: function (data) {
+
+      const tbody = $(".committee-table tbody");
+      tbody.empty();
+
+      data.forEach(function(committee) {
+
+        const formatDate = (dateStr) => {
+          return dateStr.slice(0, 10);
+        };
+
+        const row = `
+          <tr data-committee-id="${committee.evalCommitteeNo}"
+              data-start-date="${formatDate(committee.evalStartedAt)}"
+              data-end-date="${formatDate(committee.evalClosedAt)}"
+              data-title="${committee.name}">
+            <td><input type="checkbox" name="committee"  checked/></td>
+            <td class="subAnnounceName">${committee.name}</td>
+            <td>${formatDate(committee.evalStartedAt)}</td>
+            <td>${formatDate(committee.evalClosedAt)}</td>
+            <td><span class="status stayed">승인대기</span></td>
+          </tr>
+        `;
+        tbody.append(row); // 각 평가위원회를 테이블에 추가
+      });
+    },
+    error: function (error) {
+      console.error("평가위원회 목록 갱신 실패: ", error);
     },
   });
 }
