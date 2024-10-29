@@ -27,4 +27,29 @@ public class SelectEvaluationDTO {
     }
 
     private String evalStatus;
+    private String rndTaskNo;
+    private String taskName;
+    private String rndInstitution;
+    private String rndName;
+    private String totalScore;
+    private String planStatus;
+    private String name;
+    private String selCompletedAt;
+    private String start;
+    private Integer subAnnNo;
+
+    public void setSelCompletedAt(Timestamp selCompletedAt) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        this.selCompletedAt = selCompletedAt != null ? formatter.format(selCompletedAt) : null;
+    }
+    public void setStart(Timestamp start) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        this.start = start != null ? formatter.format(start) : null;
+    }
+
+    private String coName;
+    private String insName;
+    private String corsName;
+    private Integer score;
+
 }

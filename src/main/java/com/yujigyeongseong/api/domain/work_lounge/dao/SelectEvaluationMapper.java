@@ -9,4 +9,8 @@ import java.util.List;
 @Mapper
 public interface SelectEvaluationMapper {
     public List<SelectEvaluationDTO> selectEvaluationList();
+
+    public List<SelectEvaluationDTO> selectEvaluation(Integer subAnnNo);
+
+    public List<SelectEvaluationDTO> selectCommittee(String rndTaskNo);
 }

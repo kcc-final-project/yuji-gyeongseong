@@ -27,4 +27,9 @@ public class RegisterListServiceImpl implements RegisterListService {
     public List<RegisterListDTO> getCompleteList(int memNo) {
         return registerListMapper.selectCompleteList(memNo);
     }
+
+    @Override
+    public boolean getDelete(int rndPlanNo) {
+        return registerListMapper.delete(rndPlanNo) == 1;
+    }
 }

@@ -1,4 +1,4 @@
-package com.yujigyeongseong.api.domain.member.DTO.request;
+package com.yujigyeongseong.api.domain.member.dto.request;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +11,4 @@ public class SelectInstitutionRequest {
     private final String name;
     private final String businessRegisterNo;
     private final String companyType;
-
-
 }

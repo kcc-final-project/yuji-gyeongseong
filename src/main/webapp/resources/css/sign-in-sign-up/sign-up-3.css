@@ -2,6 +2,11 @@
     width: 100%;
 }
 
+.common-title{
+    font-weight: bold;
+    margin-bottom: 52px;
+}
+
 .title-tab-area {
     width: 100%;
     height: 17%;
@@ -138,7 +143,6 @@ small.text-success {
 }
 
 .organi-group {
-    border: 1px solid #D4D4D4;
     border-radius: 3px;
     position: relative;
     display: flex;
@@ -173,6 +177,7 @@ small.text-success {
     height: 50px;
     margin-left: 508px;
     font-weight: bold;
+    display: none;
 }
 
 .orga {
@@ -200,6 +205,10 @@ small.text-success {
     background-color: #2E406A;
     color: white;
     transition: .3s all;
+}
+
+#check-organ{
+    display: none;
 }
 
 .orga-btn:active {

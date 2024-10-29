@@ -47,22 +47,39 @@
                 <td>평가시작일자</td>
                 <td>평가종료일자</td>
             </tr>
-            <c:forEach items="${sharingOpinionList}" var="sharingOpinion" varStatus="status">
+            <%--            <c:forEach items="${sharingOpinionList}" var="sharingOpinion" varStatus="status">--%>
+            <%--                <tr class="blue">--%>
+            <%--                    <td class="text-center"><c:out value="${sharingOpinion.evalStatus}"/></td>--%>
+            <%--                    <td class="text-center"><c:out value="${sharingOpinion.taskName}"/></td>--%>
+            <%--                    <td class="text-center">--%>
+            <%--                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"--%>
+            <%--                             fill="#EA3323">--%>
+            <%--                            <path d="M360-460h40v-80h40q17 0 28.5-11.5T480-580v-40q0-17-11.5-28.5T440-660h-80v200Zm40-120v-40h40v40h-40Zm120 120h80q17 0 28.5-11.5T640-500v-120q0-17-11.5-28.5T600-660h-80v200Zm40-40v-120h40v120h-40Zm120 40h40v-80h40v-40h-40v-40h40v-40h-80v200ZM320-240q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z"/>--%>
+            <%--                        </svg>--%>
+            <%--                    </td>--%>
+            <%--                    <td class="text-center"><c:out value="${sharingOpinion.rndInstitution}"/></td>--%>
+            <%--                    <td class="text-center"><c:out value="${sharingOpinion.rndName}"/></td>--%>
+            <%--                    <td class="text-center"><c:out value="${sharingOpinion.evalStartedAt}"/></td>--%>
+            <%--                    <td class="text-center"><c:out value="${sharingOpinion.evalClosedAt}"/></td>--%>
+            <%--                </tr>--%>
+            <%--            </c:forEach>--%>
+            <c:if test="${not empty sharingOpinionList}">
                 <tr class="blue">
-                    <td class="text-center"><c:out value="${sharingOpinion.evalStatus}"/></td>
-                    <td class="text-center"><c:out value="${sharingOpinion.taskName}"/></td>
+                    <td class="text-center"><c:out value="${sharingOpinionList[0].evalStatus}"/></td>
+                    <td class="text-center"><c:out value="${sharingOpinionList[0].taskName}"/></td>
                     <td class="text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                              fill="#EA3323">
                             <path d="M360-460h40v-80h40q17 0 28.5-11.5T480-580v-40q0-17-11.5-28.5T440-660h-80v200Zm40-120v-40h40v40h-40Zm120 120h80q17 0 28.5-11.5T640-500v-120q0-17-11.5-28.5T600-660h-80v200Zm40-40v-120h40v120h-40Zm120 40h40v-80h40v-40h-40v-40h40v-40h-80v200ZM320-240q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z"/>
                         </svg>
                     </td>
-                    <td class="text-center"><c:out value="${sharingOpinion.rndInstitution}"/></td>
-                    <td class="text-center"><c:out value="${sharingOpinion.rndName}"/></td>
-                    <td class="text-center"><c:out value="${sharingOpinion.evalStartedAt}"/></td>
-                    <td class="text-center"><c:out value="${sharingOpinion.evalClosedAt}"/></td>
+                    <td class="text-center"><c:out value="${sharingOpinionList[0].rndInstitution}"/></td>
+                    <td class="text-center"><c:out value="${sharingOpinionList[0].rndName}"/></td>
+                    <td class="text-center"><c:out value="${sharingOpinionList[0].evalStartedAt}"/></td>
+                    <td class="text-center"><c:out value="${sharingOpinionList[0].evalClosedAt}"/></td>
                 </tr>
-            </c:forEach>
+            </c:if>
+
 
             <tr>
                 <td rowspan="7" colspan="6">

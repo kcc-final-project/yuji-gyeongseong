@@ -12,4 +12,7 @@ public interface SharingOpinionMapper {
     public List<SharingOpinionDTO> selectSharingOpinionList(String taskName);
 
     public List<SharingOpinionDTO> selectCommitteePersonList(String taskName);
+
+
+
 }

@@ -1,8 +1,8 @@
 package com.yujigyeongseong.api.domain.member.controller;
 
-import com.yujigyeongseong.api.domain.member.DTO.SmsCertRequest;
-import com.yujigyeongseong.api.domain.member.DTO.SmsDtoRequest;
-import com.yujigyeongseong.api.domain.member.DTO.UserSessionData;
+import com.yujigyeongseong.api.domain.member.dto.SmsCertRequest;
+import com.yujigyeongseong.api.domain.member.dto.SmsDtoRequest;
+import com.yujigyeongseong.api.domain.member.dto.UserSessionData;
 import com.yujigyeongseong.api.domain.member.service.SmsService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
