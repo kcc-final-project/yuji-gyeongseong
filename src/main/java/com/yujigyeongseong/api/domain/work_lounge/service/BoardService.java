@@ -9,7 +9,7 @@ public interface BoardService {
 
     public void insertBoard(Board board);
 
-    public Board getBoard(Integer opinionNo);
+    public Board selectBoardId(Integer opinionNo);
 
     public void updateBoard(Integer opinionNo);
 

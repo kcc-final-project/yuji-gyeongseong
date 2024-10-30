@@ -1056,13 +1056,13 @@ alter table rnd_plan
         primary key (rnd_plan_no);
 
 INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content, rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'T001', 'ResearchTask1', 'Institution A', 1, 'In Progress', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, 1);
+VALUES (NEXT VALUE FOR seq_rnd_plan, 'T001', 'ResearchTask1', 'Institution A', 1, '선정', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, 1);
 
 INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content, rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'T002', 'ResearchTask2', 'Institution B', 2, 'Pending', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 2, 2);
+VALUES (NEXT VALUE FOR seq_rnd_plan, 'T002', 'ResearchTask2', 'Institution B', 2, '작성중', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 2, 2);
 
 INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content, rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'T003', 'ResearchTask3', 'Institution C', 1, 'Completed', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 3, 1);
+VALUES (NEXT VALUE FOR seq_rnd_plan, 'T003', 'ResearchTask3', 'Institution C', 1, '제출완료', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 3, 1);
 
 INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content, rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
 VALUES (NEXT VALUE FOR seq_rnd_plan, 'T004', 'Research Task 4', 'Institution D', 3, 'In Progress', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 4, 2);
