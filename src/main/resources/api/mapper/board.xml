@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yujigyeongseong.api.domain.work_lounge.dao.BoardMapper">
+
+    <select id="selectBoardList" resultType="Board">
+        select opinion_no        as opinionno,
+               mem_no            as memno,
+               content           as content,
+               created_at        as createdat,
+               readhit           as readhit,
+               ref               as ref,
+               step              as step,
+               depth             as depth,
+               del_info          as delinfo,
+               deleted_at        as deletedat,
+               eval_committee_no as evalcommitteeno,
+               rnd_plan_no       as rndplanno,
+               bucket_no         as bucketno
+        from opinion
+        order by ref desc, step asc;
+    </select>
+
+    <insert id="insertBoardList" parameterType="Board">
+        INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at,
+                             eval_committee_no, rnd_plan_no, bucket_no)
+        VALUES (NEXTVAL('seq_opinion'), #{memNo}, #{content}, DEFAULT, 0, NEXTVAL('seq_opinion') - 1, 0, 0, 0, DEFAULT,
+                #{evalCommitteeNo}, #{rndPlanNo}, #{bucketNo});
+    </insert>
+
+    <select id="selectBoardId" resultType="Board" parameterType="int">
+        select op.opinion_no                                      as opinionno,
+               op.mem_no                                          as memno,
+               (SELECT name FROM member WHERE mem_no = op.mem_no) as memname,
+               op.created_at                                      as createdat,
+               op.content                                         as content,
+               op.readhit                                         as readhit,
+               op.ref                                             as ref,
+               op.step                                            as step,
+               op.depth                                           as depth,
+               op.del_info                                        as delInfo,
+               op.deleted_at                                      as deletedat,
+               op.eval_committee_no                               as evalcommitteeno,
+               op.rnd_plan_no                                     as rndplanno,
+               op.bucket_no                                       as bucketno
+        from opinion op
+                 inner join evaluation_member em on op.eval_committee_no = em.eval_committee_no
+                 inner join member mem on em.mem_no = mem.mem_no
+        where op.opinion_no = #{opinionNo}
+    </select>
+
+    <update id="updateBoard" parameterType="int">
+        update opinion
+        set readhit = readhit + 1
+        where opinion_no = #{opinionNo}
+    </update>
+
+    <update id="updateStep" parameterType="Board">
+        update opinion
+        set step = step + 1
+        where ref = #{ref}
+          and step > #{step}
+    </update>
+
+    <insert id="insertReplyList" parameterType="Board">
+        INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at,
+                             eval_committee_no, rnd_plan_no, bucket_no)
+        VALUES (NEXTVAL('seq_opinion'), #{memNo}, #{content}, DEFAULT, 0, #{ref}, #{step}, #{depth}, 0, DEFAULT,
+                #{evalCommitteeNo}, #{rndPlanNo}, #{bucketNo});
+    </insert>
+
+    <update id="deleteReplyList" parameterType="Board">
+        update opinion
+        set content  = #{content},
+            mem_no   = #{memNo},
+            del_info = -1
+        where opinion_no = #{opinionNo}
+    </update>
+
+    <update id="modifyBoard" parameterType="Board">
+        UPDATE opinion
+        SET content = #{content},
+            mem_no  = #{memNo}
+        WHERE opinion_no = #{opinionNo};
+    </update>
+
+</mapper>

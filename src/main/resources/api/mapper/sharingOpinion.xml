@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yujigyeongseong.api.domain.work_lounge.dao.SharingOpinionMapper">
+
+    <select id="selectSharingOpinionList" resultType="SharingOpinionDTO">
+        SELECT evta.eval_status                                     as evalstatus,
+               rndp.task_name                                       as taskname,
+               rndp.rnd_institution                                    rndinstitution,
+               (SELECT name FROM member WHERE mem_no = rndp.mem_no) AS rndname,
+               evcom.eval_started_at                                as evalstartedat,
+               evcom.eval_closed_at                                 as evalclosedat
+        FROM eval_committee evcom
+                 INNER JOIN evaluation_member evmem ON evcom.eval_committee_no = evmem.eval_committee_no
+                 INNER JOIN eval_task evta ON evta.eval_committee_no = evcom.eval_committee_no
+                 INNER JOIN rnd_plan rndp ON rndp.rnd_plan_no = evta.rnd_plan_no
+                 INNER JOIN member mem ON mem.mem_no = rndp.mem_no
+        where rndp.task_name = #{taskName}
+    </select>
+
+    <select id="selectCommitteePersonList" resultType="SharingOpinionDTO">
+        SELECT evcom.eval_committee_no                               as evalcommitteeno,
+               evcom.name                                            as name,
+               (SELECT name FROM member WHERE mem_no = evmem.mem_no) AS evmem
+        FROM eval_committee evcom
+                 INNER JOIN evaluation_member evmem ON evcom.eval_committee_no = evmem.eval_committee_no
+                 INNER JOIN member mem ON mem.mem_no = evmem.mem_no
+                 inner join rnd_plan rp on rp.mem_no = mem.mem_no
+        where rp.task_name = #{taskName}
+    </select>
+
+    <!--    의견공유-->
+    <select id="selectOpinionList" resultType="Opinion">
+        select opinion_no        as opinionno,
+               mem_no            as memno,
+               content           as content,
+               created_at        as createdat,
+               readhit           as readhit,
+               ref               as ref,
+               step              as step,
+               depth             as depth,
+               del_info          as delinfo,
+               deleted_at        as deletedat,
+               eval_committee_no as evalcommitteeno,
+               rnd_plan_no       as rndplanno,
+               bucket_no         as bucketno
+        from opinion
+        order by ref desc, step asc;
+    </select>
+
+    <select id="summaryId" resultType="Opinion">
+        select opinion_no        as opinionno,
+               mem_no            as memno,
+               content           as content,
+               created_at        as createdat,
+               readhit           as readhit,
+               ref               as ref,
+               step              as step,
+               depth             as depth,
+               del_info          as delinfo,
+               deleted_at        as deletedat,
+               eval_committee_no as evalcommitteeno,
+               rnd_plan_no       as rndplanno,
+               bucket_no         as bucketno
+        from opinion
+        where content = #{content}
+    </select>
+
+
+
+
+
+</mapper>
