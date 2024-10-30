@@ -5,6 +5,7 @@ import com.yujigyeongseong.api.domain.work_lounge.service.*;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,19 +17,22 @@ import java.util.List;
 
 @RequestMapping("/api/v1/work_lounge")
 @RestController
+@Slf4j
 public class WorkLoungeRestController {
 
     private final EvaluationTaskListService evaluationTaskListService;
     private final EvaluationPaperService evaluationPaperService;
     private final SelectEvaluationService selectEvaluationService;
     private final EvaluationTableListService evaluationTableListService;
+    private final SharingOpinionService sharingOpinionService;
 
     @Autowired
-    public WorkLoungeRestController(EvaluationTaskListService evaluationTaskListService, EvaluationPaperService evaluationPaperService, SelectEvaluationService selectEvaluationService, EvaluationTableListService evaluationTableListService) {
+    public WorkLoungeRestController(EvaluationTaskListService evaluationTaskListService, EvaluationPaperService evaluationPaperService, SelectEvaluationService selectEvaluationService, EvaluationTableListService evaluationTableListService, SharingOpinionService sharingOpinionService) {
         this.evaluationTaskListService = evaluationTaskListService;
         this.evaluationPaperService = evaluationPaperService;
         this.selectEvaluationService = selectEvaluationService;
         this.evaluationTableListService = evaluationTableListService;
+        this.sharingOpinionService = sharingOpinionService;
     }
 
     @GetMapping(value = "/getText", produces = "text/plain; charset=UTF-8")
@@ -54,20 +58,18 @@ public class WorkLoungeRestController {
     @ResponseBody
     public ResponseEntity<List<SelectEvaluationDTO>> getselectCommittee(@PathVariable String rndTaskNo) {
         List<SelectEvaluationDTO> committeeList = selectEvaluationService.getselectCommittee(rndTaskNo);
-        System.out.println(committeeList);
+
         return committeeList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(committeeList, HttpStatus.OK);
     }
 
-    /* 전자평가표 */
     @GetMapping("/evaluation-table/{subTitle}")
     @ResponseBody
     public ResponseEntity<List<FormDTO>> getSubannounceList(@PathVariable String subTitle) {
         List<FormDTO> subannounceList = evaluationTableListService.getSubannounceList(subTitle);
-        System.out.println(subannounceList);
+
         return subannounceList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(subannounceList, HttpStatus.OK);
     }
 
-    // 페이퍼
     @GetMapping("/evaluation-table/{name}/{formType}")
     @ResponseBody
     public ResponseEntity<List<PaperDTO>> getPaperList(@PathVariable String name, @PathVariable String formType) {
@@ -75,13 +77,31 @@ public class WorkLoungeRestController {
         return paperList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(paperList, HttpStatus.OK);
     }
 
-    // 질문 리스트
     @GetMapping("/evaluation-question/{name}")
     @ResponseBody
     public ResponseEntity<List<PaperDTO>> getquestionList(@PathVariable String name) {
         List<PaperDTO> questionList = evaluationTableListService.getquestionList(name);
-        System.out.println(questionList);
+
         return questionList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(questionList, HttpStatus.OK);
     }
+
+    @GetMapping("/opinion")
+    @ResponseBody
+    public ResponseEntity<List<Opinion>> getSelectSharingOpinionList() {
+        List<Opinion> opinionList = sharingOpinionService.getselectOpinionList();
+
+        return opinionList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(opinionList, HttpStatus.OK);
+    }
+
+    @GetMapping("/summary-id/{content}")
+    @ResponseBody
+    public ResponseEntity<Opinion> getSummaryId(@PathVariable("content") String content) {
+        Opinion summary = sharingOpinionService.summaryId(content);
+
+        return summary == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(summary, HttpStatus.OK);
+    }
+
+
+
 
 }
