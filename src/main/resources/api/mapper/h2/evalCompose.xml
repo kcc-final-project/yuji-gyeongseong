@@ -60,4 +60,22 @@
         WHERE notification_no = #{id}
     </update>
 
+    <insert id="insertEvalCommitteesBySubAnnNo">
+        INSERT INTO eval_committee (
+            eval_committee_no, name, people_count, eval_started_at, eval_closed_at, prog_status, sub_ann_no
+        )
+        VALUES (
+                   NEXT VALUE FOR seq_eval_committee,
+                        #{committeeName}, 6, CURRENT_TIMESTAMP(),
+                        DATEADD('DAY', 10, CURRENT_TIMESTAMP()), '평가대기중', #{subAnnNo}
+               );
+
+    </insert>
+
+    <select id="selectEvalCommitteeCntById" parameterType="long">
+        SELECT COUNT(*)
+        FROM eval_committee
+        where sub_ann_no = #{subAnnNo}
+    </select>
+
 </mapper>

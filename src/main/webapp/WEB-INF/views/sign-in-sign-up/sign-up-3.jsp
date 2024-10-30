@@ -47,7 +47,8 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="user-name" class="form-label">이름 <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" disabled id="user-name" value=${name}>
+                                <input type="text" class="form-control" disabled id="user-name" value="김상학">
+
                             </div>
                         </div>
 
@@ -55,15 +56,15 @@
                             <div class="col-md-6">
                                 <label for="password" class="form-label">비밀번호 <span class="text-danger">*</span></label>
                                 <small class="success-pw"></small>
-                                <input type="password" class="form-control" id="password" oninput="pwCheck()" value="">
+                                <input type="password" class="form-control" id="password" oninput="pwCheck()">
                                 <small class="text-muted">9자 이상 16자 이하 영문 대소문자, 숫자, 특수문자 동일 조합</small>
                             </div>
                             <div class="col-md-6">
                                 <label for="password-confirm" class="form-label">비밀번호 확인 <span
                                         class="text-danger">*</span></label>
-                                <input type="password" class="form-control" id="password-confirm" oninput="pwCheck()"
-                                       value="">
                                 <small id="pwConfirm"></small>
+                                <input type="password" class="form-control" id="password-confirm" oninput="pwCheck()">
+
                             </div>
                         </div>
 
@@ -71,7 +72,7 @@
                             <div class="col-md-6">
                                 <label for="birth-date" class="form-label">생년월일 <span
                                         class="text-danger">*</span></label>
-                                <input type="text" class="form-control" disabled id="birth-date" value=${birth} >
+                                <input type="text" class="form-control" disabled id="birth-date" value="2000-02-17">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">성별 <span class="text-danger">*</span></label>
@@ -93,10 +94,11 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">휴대전화번호 <span class="text-danger">*</span></label>
-                                <input type="tel" class="form-control" disabled id="phone" value=${tel} >
+                                <input type="tel" class="form-control" disabled id="phone" value="010-8978-6088">
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label">이메일 <span class="text-danger">*</span></label>
+                                <small id="success-email"></small>
                                 <div class="input-group">
                                     <input type="email" class="form-control" id="email"
                                            placeholder="example@naver.com">
@@ -114,8 +116,8 @@
                                 <label class="form-label">주소 <span class="text-danger">*</span></label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="sample5_address"
-                                           placeholder="주소검색 버튼을 통해 주소를 추가해보세요." value="주소 검색">
-                                    <button class="btn btn-outline-secondary" type="button"
+                                           placeholder="주소검색 버튼을 통해 주소를 추가해보세요." readonly value="">
+                                    <button class="btn btn-outline-secondary" id="address-btn" type="button"
                                             onclick="sample5_execDaumPostcode()">주소검색
                                     </button>
                                 </div>
@@ -162,9 +164,12 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="organization" class="form-label">소속기관</label>
+                            <div style="display: flex">
+                                <label for="organization" class="form-label">소속기관</label>
+                                <span class="text-danger" id="check-organ" style="margin-left: 6px">*</span>
+                            </div>
                             <div class="input-group organi-group">
-                                <input type="text" class="form-control" id="organization" readonly disabled>
+                                <input placeholder="소속기관 등록" type="text" class="form-control" id="organization" readonly disabled>
                                 <span class="material-icons search-icon" data-bs-toggle="modal"
                                       data-bs-target="#exampleModal">search</span>
 
@@ -286,7 +291,8 @@
                     var addr = data.address;
 
                     document.getElementById("sample5_address").value = addr;
-
+                    document.getElementById("sample5_address").style.border = '1px solid #dee2e6';
+                    document.getElementById("address-btn").style.border='1px solid #dee2e6';
                     geocoder.addressSearch(data.address, function (results, status) {
 
                         if (status === daum.maps.services.Status.OK) {

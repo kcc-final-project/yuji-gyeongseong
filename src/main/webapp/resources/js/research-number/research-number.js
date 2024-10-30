@@ -612,12 +612,13 @@ $(document).ready(function () {
       content: "윤채원님의 연구자 번호가 발급되었습니다.",
       notiType: "연구자",
       dataCategory: "service",
+      notiContentNo : 1,
       memNo: memberId,
     };
 
     // ajax 예제
     $.ajax({
-      url: "/api/v1/research_number/register/research/" + memberId,
+      url: "/api/v1/research-number/register/research/" + memberId,
       type: "POST",
       contentType: "application/json",
       data: JSON.stringify(SubmitResearchRequest),
@@ -625,7 +626,7 @@ $(document).ready(function () {
         alert("학력 정보 저장 완료");
 
         $.ajax({
-          url: "/api/v1/research_number/register/eval/" + memberId,
+          url: "/api/v1/research-number/register/eval/" + memberId,
           type: "POST",
           contentType: "application/json",
           data: JSON.stringify(EvalNotiRequest),

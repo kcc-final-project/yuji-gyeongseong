@@ -26,9 +26,20 @@
             const btn3Disagree = $('#agree-btn-3-no').prop('checked');
             if (!btn1 || !btn2) {
                 if (!btn1) {
-                    swal('실패', "이용약관에 동의 하지 않으면 회원 가입을 할 수 없습니다.", 'error');
+                    Swal.fire({
+                        icon: "warning",
+                        text: "필수 항목에 모두 동의해주시기 바랍니다.",
+                        confirmButtonText: "확인",
+                        confirmButtonColor: "#2e406a",
+                    });
                 } else {
-                    swal('실패', "개인정보 수집·이용 동의(필수)에 동의 하지 않으면 회원 가입을 할 수 없습니다.", 'error');
+                    Swal.fire({
+                        icon: "warning",
+                        text: "필수 항목에 모두 동의해주시기 바랍니다.",
+                        confirmButtonText: "확인",
+                        confirmButtonColor: "#2e406a",
+                    });
+
                 }
                 return;
             }

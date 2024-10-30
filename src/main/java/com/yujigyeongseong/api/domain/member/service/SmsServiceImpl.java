@@ -1,8 +1,8 @@
 package com.yujigyeongseong.api.domain.member.service;
 
 
-import com.yujigyeongseong.api.domain.member.DTO.SmsCertRequest;
-import com.yujigyeongseong.api.domain.member.DTO.SmsDtoRequest;
+import com.yujigyeongseong.api.domain.member.dto.SmsCertRequest;
+import com.yujigyeongseong.api.domain.member.dto.SmsDtoRequest;
 import com.yujigyeongseong.api.domain.member.config.SmsCertificationUtil;
 import com.yujigyeongseong.api.domain.member.dao.CheckCertMapper;
 import lombok.RequiredArgsConstructor;

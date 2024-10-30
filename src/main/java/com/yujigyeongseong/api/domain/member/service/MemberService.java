@@ -1,7 +1,8 @@
 package com.yujigyeongseong.api.domain.member.service;
 
-import com.yujigyeongseong.api.domain.member.DTO.Institution;
-import com.yujigyeongseong.api.domain.member.DTO.request.SelectInstitutionRequest;
+import com.yujigyeongseong.api.domain.member.dto.Institution;
+import com.yujigyeongseong.api.domain.member.dto.SignUpMember;
+import com.yujigyeongseong.api.domain.member.dto.request.SelectInstitutionRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface MemberService {
     List<Institution> selectAll();
 
     List<Institution> selectOrgan(SelectInstitutionRequest selectInstitutionRequest);
+
+    boolean insertMember(SignUpMember signUpMember);
 }

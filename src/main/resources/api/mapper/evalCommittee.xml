@@ -42,11 +42,11 @@
 
     <insert id="insertAllCareersByMemberId">
         INSERT INTO career (career_no, org_name, dept_name, career_type, started_at, ended_at, created_at,
-        updated_at,mem_no)
+        updated_at, mem_no)
         VALUES
         <foreach collection="careers" item="career" separator=",">
-            (NEXT VALUE FOR seq_career, #{career.orgName}, #{career.deptName}, #{career.careerType},
-            #{career.startedAt}, #{career.endedAt}, current_timestamp, null, #{id})
+            (seq_career.NEXTVAL, #{career.orgName}, #{career.deptName}, #{career.careerType},
+            #{career.startedAt}, #{career.endedAt}, SYSDATE, null, #{id})
         </foreach>
     </insert>
 
@@ -55,8 +55,8 @@
         major_field, major_name, acquired_at, created_at, updated_at, mem_no)
         VALUES
         <foreach collection="acadAbilities" item="acad" separator=",">
-            (NEXT VALUE FOR seq_acad_ability, #{acad.abilityType}, #{acad.orgName}, #{acad.acquiredCountry},
-            #{acad.majorAffiliation}, #{acad.majorField}, #{acad.majorName}, #{acad.acquiredAt}, current_timestamp,
+            (seq_acad_ability.NEXTVAL, #{acad.abilityType}, #{acad.orgName}, #{acad.acquiredCountry},
+            #{acad.majorAffiliation}, #{acad.majorField}, #{acad.majorName}, #{acad.acquiredAt}, SYSDATE,
             null, #{id})
         </foreach>
     </insert>
@@ -70,10 +70,9 @@
 
     <insert id="insertEvalNotiByMemberId" parameterType="EvalNotiRequest">
         INSERT INTO noti (notification_no, content, created_at, deleted_at, noti_content_no, noti_type, read_state,
-                          data_category,
-                          mem_no)
-        VALUES (NEXT VALUE FOR seq_noti, #{content}, default, null, #{notiContentNo}, #{notiType}, '확인대기',
-                     #{dataCategory}, #{memNo})
+                          data_category, mem_no)
+        VALUES (seq_noti.NEXTVAL, #{content}, SYSDATE, null, #{notiContentNo}, #{notiType}, '확인대기',
+                #{dataCategory}, #{memNo})
     </insert>
 
 </mapper>
