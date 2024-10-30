@@ -6,6 +6,11 @@
     cursor: pointer;
 }
 
+.line {
+    border-top: 1px solid #000;
+    margin: 20px 0;
+}
+
 .modify {
     margin-top: 50px
 }
@@ -49,12 +54,12 @@
 }
 
 .btn-back-orange {
-    background-color: #ff8f27;
+    background-color: #c8b5a1;
     color: #ffffff;
 }
 
 .btn-back-orange:hover {
-    border-color: #ff8f27;
+    border-color: #c8b5a1;
 }
 
 .btn-indigo {
@@ -71,3 +76,12 @@
     border-color: #2E406AFF;
 }
 
+
+.btn-back-beige {
+    background-color: #cfcfcf;
+    color: #ffffff;
+}
+
+.btn-back-beige :hover {
+    border-color: #cfcfcf;
+}
