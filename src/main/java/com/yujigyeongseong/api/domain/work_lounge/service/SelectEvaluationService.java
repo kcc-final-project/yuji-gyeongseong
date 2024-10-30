@@ -8,7 +8,7 @@ import java.util.List;
 public interface SelectEvaluationService {
     public List<SelectEvaluationDTO> getSelectEvaluationList();
 
-    public List<SelectEvaluationDTO> getselectEvaluation(Integer subAnnNo);
+    public List<SelectEvaluationDTO> getselectEvaluation(Long subAnnNo);
 
     public List<SelectEvaluationDTO> getselectCommittee(String rndTaskNo);
 }

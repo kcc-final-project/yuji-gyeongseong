@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yujigyeongseong.api.domain.work_lounge.dao.EvaluationTableMapper">
+
+    <resultMap id="subTitleMap" type="SubTitleDTO">
+        <id property="subAnnNo" column="sub_ann_no"/>
+        <result property="subTitle" column="sub_title"/>
+    </resultMap>
+
+    <resultMap id="EvaluationTableMap" type="EvaluationTableDTO">
+        <id property="totalTitle" column="total_title"/>
+        <result property="status" column="status"/>
+        <result property="startedAt" column="started_at"/>
+        <result property="closedAt" column="closed_at"/>
+        <collection property="subTitles" resultMap="subTitleMap"/>
+    </resultMap>
+
+    <select id="announceList" resultMap="EvaluationTableMap">
+        SELECT ann.total_title,
+               ann.status,
+               ann.started_at,
+               ann.closed_at,
+               sub.sub_ann_no,
+               sub.sub_title
+        FROM announcement ann
+                 INNER JOIN
+             sub_announcement sub ON ann.ann_no = sub.ann_no
+    </select>
+
+    <resultMap id="formTypeMap" type="FormTypeDTO">
+        <id property="evaluationTableNo" column="evaluation_table_no"/>
+        <result property="formType" column="form_type"/>
+    </resultMap>
+
+    <resultMap id="FormMap" type="FormDTO">
+        <id property="subTitle" column="sub_title"/>
+        <result property="taskType" column="task_type"/>
+        <result property="techFieldName" column="tech_field_name"/>
+        <collection property="formTypes" resultMap="formTypeMap"/>
+    </resultMap>
+
+    <select id="subannounceList" resultMap="FormMap">
+        select sub.sub_title,
+               sub.task_type,
+               sub.tech_field_name,
+               et.form_type,
+               et.evaluation_table_no
+        from annocement_evaluation ae
+                 inner join sub_announcement sub on ae.sub_ann_no = sub.sub_ann_no
+                 inner join evaluation_table et on et.evaluation_table_no = ae.evaluation_table_no
+        where sub.sub_title = #{subTitle}
+    </select>
+
+    <select id="paperList" resultType="PaperDTO">
+        SELECT et.evaluation_table_no AS evaluationtableno,
+               et.title               AS title,
+               et.description         AS description,
+               et.form_type           AS formtype,
+               tf.name                AS techfieldname,
+               qu.question_no         AS questionno,
+               qu.type                AS type,
+               qu.content             AS content
+        FROM evaluation_table et
+                 INNER JOIN
+             tech_field tf ON et.tech_field_no = tf.tech_field_no
+                 INNER JOIN
+             evaluation_question eq ON eq.evaluation_table_no = et.evaluation_table_no
+                 INNER JOIN
+             question qu ON qu.question_no = eq.question_no
+        WHERE tf.name = #{name}
+          and et.form_type = #{formType}
+    </select>
+
+    <select id="questionList" resultType="paperDTO">
+        SELECT qu.content as content
+        FROM question qu
+                 inner join evaluation_question eq on qu.question_no = eq.question_no
+                 inner join evaluation_table et on et.evaluation_table_no = eq.evaluation_table_no
+                 inner join tech_field tf on tf.tech_field_no = et.tech_field_no
+        WHERE tf.name = #{name}
+    </select>
+
+</mapper>

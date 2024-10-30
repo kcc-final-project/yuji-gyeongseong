@@ -33,8 +33,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Board getBoard(Integer opinionNo) {
-        return boardMapper.selectBoardById(opinionNo);
+    public Board selectBoardId(Integer opinionNo) {
+        return boardMapper.selectBoardId(opinionNo);
     }
 
     @Override

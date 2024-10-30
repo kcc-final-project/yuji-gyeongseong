@@ -13,22 +13,30 @@
 }
 
 .letter {
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.btn-back-indigo {
+    background-color: #2E406AFF;
+    color: #ffffff;
+}
+
+.btn-back-indigo:hover {
+    border-color: #2E406AFF;
 }
 
 .blue-font {
     color: #2F69FF !important;
 }
 
-.btn-orange {
-    border: 1px solid #ff8f27;
-    color: #ff8f27;
-}
-
 .btn-back-orange {
     background-color: #ff8f27;
-    color: white;
+    color: #ffffff;
+}
+
+.btn-back-orange:hover {
+    border-color: #ff8f27;
 }
 
 .btn.btn-outline-primary {
@@ -41,12 +49,4 @@
 
 .btn.btn-outline-secondary {
     font-size: 9px;
-}
-
-.btn.btn-back-orange {
-    font-size: 9px;
-}
-
-.btn-back-orange:hover {
-    border-color: #ff8f27;
 }
