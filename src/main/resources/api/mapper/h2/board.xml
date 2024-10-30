@@ -28,7 +28,7 @@
                 #{evalCommitteeNo}, #{rndPlanNo}, #{bucketNo});
     </insert>
 
-    <select id="selectBoardById" resultType="Board" parameterType="int">
+    <select id="selectBoardId" resultType="Board" parameterType="int">
         select op.opinion_no                                      as opinionno,
                op.mem_no                                          as memno,
                (SELECT name FROM member WHERE mem_no = op.mem_no) as memname,
@@ -38,7 +38,7 @@
                op.ref                                             as ref,
                op.step                                            as step,
                op.depth                                           as depth,
-               op.del_info,
+               op.del_info                                        as delInfo,
                op.deleted_at                                      as deletedat,
                op.eval_committee_no                               as evalcommitteeno,
                op.rnd_plan_no                                     as rndplanno,
