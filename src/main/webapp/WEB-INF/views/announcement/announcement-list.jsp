@@ -10,7 +10,7 @@
     <title>유지경성</title>
     <link rel="stylesheet" href="/resources/css/announcement/announcement.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">
-    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify@4.31.6/dist/tagify.min.js"></script>
 </head>
 <body>
 <div class="common-main">
