@@ -24,7 +24,7 @@ public class SelectEvaluationServiceImpl implements SelectEvaluationService {
     }
 
     @Override
-    public List<SelectEvaluationDTO> getselectEvaluation(Integer subAnnNo) {
+    public List<SelectEvaluationDTO> getselectEvaluation(Long subAnnNo) {
         return selectEvaluationMapper.selectEvaluation(subAnnNo);
     }
 

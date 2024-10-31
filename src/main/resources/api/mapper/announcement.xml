@@ -178,7 +178,7 @@
             announcement a
                 INNER JOIN sub_announcement sa ON a.ann_no = sa.ann_no
         WHERE
-            a.total_ann_no = #{totalAnnNo}
+            a.ann_no = #{AnnNo}
     </select>
 
     <select id="selectSubAnnouncementBySubAnnNo" resultType="SubAnnouncementDetailRequest">

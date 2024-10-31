@@ -37,8 +37,8 @@ public class AnnouncementListImpl implements AnnouncementListService {
     }
 
     @Override
-    public SubAnnouncementRequest getAnnouncementByTotalAnnNo(String totalAnnNo) {
-        return announcementMapper.selectAnnouncementByTotalAnnNo(totalAnnNo);
+    public SubAnnouncementRequest getAnnouncementByTotalAnnNo(int AnnNo) {
+        return announcementMapper.selectAnnouncementByTotalAnnNo(AnnNo);
     }
 
     @Override

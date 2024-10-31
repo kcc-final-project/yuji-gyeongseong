@@ -82,38 +82,9 @@
         <div class="col-8">
             <div class="col-9">
                 <table class="table table-bordered text-center committee-top">
-                    <%--                    <thead>--%>
-                    <%--                    <tr class="domain">--%>
-                    <%--                        <th>공고분야명</th>--%>
-                    <%--                        <th>공모분야</th>--%>
-                    <%--                        <th>기술분야</th>--%>
-                    <%--                        <th>서식구성</th>--%>
-                    <%--                    </tr>--%>
-                    <%--                    </thead>--%>
-                    <%--                    <tbody class="committee-top">--%>
-
-                    <%--                    <tr class="flex text-align-center justify-content-center">--%>
-                    <%--                        <td class="truncate-text1" data-full-text="2024년 글로벌혁신특구혁신사업육성(R&D)_가상실증인프라(재)zzzzzzzzzzzzzz">--%>
-                    <%--                            2024년--%>
-                    <%--                            글로벌혁신특구혁신사업육성(R&D)_가상실증인프라(재)zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz--%>
-                    <%--                        </td>--%>
-                    <%--                        <td>품목지정공모</td>--%>
-                    <%--                        <td>IT분야</td>--%>
-
-                    <%--                        <td>--%>
-                    <%--                            <div class="form-group" style="margin-bottom: 0px">--%>
-                    <%--                                <select class="form-control" id="formSelect" onchange="createTabs(this.value)">--%>
-                    <%--                                    <option value="1" selected>Form 1</option>--%>
-                    <%--                                    <option value="2">Form 2</option>--%>
-                    <%--                                    <option value="3">Form 3</option>--%>
-                    <%--                                </select>--%>
-                    <%--                            </div>--%>
-                    <%--                        </td>--%>
-                    <%--                    </tr>--%>
-                    <%--                    </tbody>--%>
                 </table>
             </div>
-            <div class="col-12" style="margin-top: 0;"> <!-- 간격 줄이기 -->
+            <div class="col-12" style="margin-top: 0;">
                 <div id="surveyContainer" class="survey-container col-12"></div>
             </div>
         </div>

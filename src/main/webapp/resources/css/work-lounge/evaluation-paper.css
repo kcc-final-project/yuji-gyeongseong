@@ -20,14 +20,16 @@
   color: var(--main-bg-color);
   transition: 0.3s all;
 }
+.blue {
+  background-color: #e5f5ff;
+}
 
 .score {
-  width: 18%;
-  background-color: #e4ebfd;
+  width: 20%;
   border: 1px solid #ccc;
   border-radius: 10px;
   float: right;
-  padding-right: 20px;
+  padding-right: 30px;
 }
 
 .domain {
@@ -43,4 +45,15 @@
 .line {
   border-top: 1px solid #000;
   margin: 20px 0;
+}
+
+.letter {
+  font-size: 14px;
+  font-weight: bolder;
+}
+
+.table-container {
+  overflow: hidden;
+  border-radius: 7px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

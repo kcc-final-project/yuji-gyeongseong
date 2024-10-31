@@ -17,7 +17,7 @@ public interface AnnouncementListService {
 
     List<Announcement> getDeadlineAnnouncementList();
 
-    SubAnnouncementRequest getAnnouncementByTotalAnnNo(String totalAnnNo);
+    SubAnnouncementRequest getAnnouncementByTotalAnnNo(int AnnNo);
 
     SubAnnouncementDetailRequest postDetailAnnouncement(Long subAnnoNo);
 

@@ -2,7 +2,7 @@ $(document).ready(function () {
   $(".truncate-text").each(function () {
     var $this = $(this);
     var text = $this.text();
-    var maxLength = 35;
+    var maxLength = 50;
     if (text.length > maxLength) {
       $this.data("full-text", text);
       $this.text(text.substring(0, maxLength) + "...");
@@ -15,7 +15,7 @@ $(document).ready(function () {
     if ($this.text().includes("...")) {
       $this.text(fullText);
     } else {
-      var maxLength = 35;
+      var maxLength = 60;
       $this.text(fullText.substring(0, maxLength) + "...");
     }
   });
@@ -25,7 +25,7 @@ $(document).ready(function () {
   $(".truncate-text1").each(function () {
     var $this = $(this);
     var text = $this.text();
-    var maxLength = 47;
+    var maxLength = 49;
     if (text.length > maxLength) {
       $this.data("full-text", text);
       $this.text(text.substring(0, maxLength) + "...");
@@ -38,7 +38,7 @@ $(document).ready(function () {
     if ($this.text().includes("...")) {
       $this.text(fullText);
     } else {
-      var maxLength = 47;
+      var maxLength = 49;
       $this.text(fullText.substring(0, maxLength) + "...");
     }
   });

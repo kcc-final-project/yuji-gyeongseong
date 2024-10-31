@@ -15,7 +15,7 @@ public interface BoardMapper {
 
     public void insertBoardList(Board board);
 
-    public Board selectBoardById(Integer opinionNo);
+    public Board selectBoardId(@Param("opinionNo") int opinionNo);
 
     public void updateBoard(Integer opinionNo);
 

@@ -19,7 +19,7 @@
         <table class="announcement-table">
             <tr>
                 <th>통합공고명</th>
-                <td>${announcement.annNo}</td>
+                <td>${announcement.totalTitle}</td>
                 <th>공고번호</th>
                 <td>${announcement.totalAnnNo}</td>
             </tr>

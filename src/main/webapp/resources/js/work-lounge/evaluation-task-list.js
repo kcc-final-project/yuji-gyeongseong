@@ -105,9 +105,9 @@ $(document).ready(function () {
             item.evalStatus +
             "</td>";
           tableHtml +=
-            '<td><button type="button" class="btn btn-back-orange" onclick="window.location.href=\'http://localhost:8082/work-lounge/evaluation-table\'">의견공유</button></td>';
+            '<td><button type="button" class="btn btn-sm btn-back-orange" onclick="window.location.href=\'http://localhost:8082/work-lounge/evaluation-table\'">의견공유</button></td>';
           tableHtml +=
-            '<td><button type="button" class="btn btn-back-orange" onclick="window.location.href=\'http://localhost:8082/work-lounge/evaluation-table\'">평가</button></td></tr>';
+            '<td><button type="button" class="btn btn-sm btn-back-indigo" onclick="window.location.href=\'http://localhost:8082/work-lounge/evaluation-table\'">평가</button></td></tr>';
         });
         tableHtml += "</tbody></table></div>";
 
