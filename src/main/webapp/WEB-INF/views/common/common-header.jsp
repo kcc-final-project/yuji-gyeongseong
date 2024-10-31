@@ -76,8 +76,10 @@
                   <span style="letter-spacing: 0px; color: #ff8f27"
                   >(192347283)
                   </span>
-                  </span>
+                  </span> <a href="/business-timeline" style="text-decoration: none; color: black">
                                 <span class="common-header__item common-header__item__pointer">워크라운지</span>
+                            </a>
+
                                 <a href="/member/logout" style="color: inherit; text-decoration: none;">
                                     <span class="common-header__item common-header__item__pointer">로그아웃</span>
                                 </a>

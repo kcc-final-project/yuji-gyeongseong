@@ -54,8 +54,15 @@ $(function () {
     });
 
     $('.work-lounge').click(function () {
-        console.log()
-        window.location.href = '/work-lounge/business-timeline';
+        window.location.href = '/business-timeline';
+    })
+
+    $('.researcher-number').click(function(){
+        window.location.href = '/research-number'
+    })
+
+    $('.evaluation-committee').click(function(){
+        window.location.href='/eval-committee'
     })
 
 })

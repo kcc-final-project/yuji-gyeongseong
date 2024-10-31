@@ -190,8 +190,6 @@ $(function () {
                 'checkedGisul' :checkedGisul
             },
             success:function(data){
-                console.log("성공");
-                console.log(data);
                 renderAnnouncements(data);
             },
             error:function(){
