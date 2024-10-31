@@ -263,8 +263,10 @@ function validateWeightSum() {
   // 유효성 검사 결과에 따라 에러 메시지 표시
   if (!valid || totalWeight !== 100) {
     $("#weight-sum-error").show();
+    $("#weight-sum-correct").hide();
   } else {
     $("#weight-sum-error").hide();
+    $("#weight-sum-correct").show();
   }
 }
 

@@ -1,12 +1,16 @@
 package com.yujigyeongseong.api.domain.rnd_plan.service;
 
+import com.yujigyeongseong.api.domain.research_number.dto.Member;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.BasicInfo;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.response.MemberResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.RndPlanResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateBasicInfoRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateTaskSummaryRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.UpdateBasicInfoRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.TaskSummaryResponse;
+
+import java.util.List;
 
 public interface RndPlanService {
 
@@ -31,4 +35,5 @@ public interface RndPlanService {
     // 과제요약 데이터 조회 API
     TaskSummaryResponse getTaskSummaryDataByRndPlanNo(final Long rndPlanNo);
 
+    List<MemberResponse> getAllMember();
 }

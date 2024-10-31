@@ -4,9 +4,11 @@ import com.yujigyeongseong.api.domain.research_number.dto.EvaluationMember;
 import com.yujigyeongseong.api.domain.research_number.dto.request.*;
 import com.yujigyeongseong.api.domain.research_number.service.EvalCommitteeService;
 import com.yujigyeongseong.api.domain.research_number.service.EvalComposeService;
+import com.yujigyeongseong.api.global.auth.PrincipalDetail;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -21,11 +23,20 @@ public class ResearchNumberRestController {
     private final EvalComposeService evalComposeService;
 
     @PostMapping("/register/research/{memberId}")
-    public ResponseEntity<?> registerResearchInformation( @PathVariable Long memberId, @RequestBody SubmitResearchRequest submitRequest ) {
+    public ResponseEntity<?> registerResearchInformation(@PathVariable Long memberId, @RequestBody SubmitResearchRequest submitRequest) {
+
+        // 세션 연결
+        Long id = 25L;
+
+
         try {
-            evalCommitteeService.setCareersByMemberId(memberId, submitRequest.getCareerInfos());
-            evalCommitteeService.setAcadAbilitiesByMemberId(memberId, submitRequest.getAcademicInfos());
+            evalCommitteeService.setCareersByMemberId(id, submitRequest.getCareerInfos());
+            evalCommitteeService.setAcadAbilitiesByMemberId(id, submitRequest.getAcademicInfos());
 //            evalCommitteeService.setTechFieldsByMemberId(memberId, submitRequest.getTechnicalInfos());
+
+            // 연구원 번호 저장
+            evalCommitteeService.setRsrcNoByMemberId(id);
+
             return ResponseEntity.ok("연구원 정보 저장 완료");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("연구원 정보 저장 실패: " + e.getMessage());
@@ -36,6 +47,7 @@ public class ResearchNumberRestController {
     public ResponseEntity<?> registerEvalInformation(@RequestBody EvalNotiRequest evalNotiRequest) {
         try {
             evalCommitteeService.setEvalNotiByMemberId(evalNotiRequest);
+
             return ResponseEntity.ok("후보단 신청 완료");
         } catch (Exception e) {
             e.printStackTrace();

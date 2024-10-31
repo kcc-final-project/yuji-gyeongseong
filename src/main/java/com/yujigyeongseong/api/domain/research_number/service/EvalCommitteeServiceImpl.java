@@ -46,6 +46,12 @@ public class EvalCommitteeServiceImpl implements EvalCommitteeService {
     @Override
     public int setAcadAbilitiesByMemberId(Long id, List<AcadRequest> acadAbilities) {
         return evalCommitteeMapper.insertAllAcadAbilitiesByMemberId(id, acadAbilities);
+
+    }
+
+    @Override
+    public int setRsrcNoByMemberId(Long id) {
+        return evalCommitteeMapper.insertRsrcNoByMemberId(id);
     }
 
     @Override

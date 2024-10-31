@@ -1,6 +1,11 @@
 package com.yujigyeongseong.api.domain.rnd_plan.controller;
 
+import com.yujigyeongseong.api.domain.research_number.dto.Member;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.BasicInfo;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.RndPeriod;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.response.MemberResponse;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.response.TaskSummaryResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.service.RndPlanService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -9,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @RequestMapping("/rnd-plans")
 @Controller
@@ -42,7 +49,18 @@ public class RndPlanController {
 
     // 연구기관 페이지 조회 API
     @GetMapping("/rsrch-institution")
-    public String getRndPlanRsrchInstitutionPage() {
+    public String getRndPlanRsrchInstitutionPage(@RequestParam(required = false) Long subAnnNo,
+                                                 final Model model) {
+
+        BasicInfoResponse basicInfoResponse = rndPlanService.getBasicInfoDataByRndPlanNo(subAnnNo);
+        List<MemberResponse> memberList = rndPlanService.getAllMember();
+        TaskSummaryResponse taskSummaryResponse = rndPlanService.getTaskSummaryDataByRndPlanNo(subAnnNo);
+
+
+        model.addAttribute("rndPlanRsrch", basicInfoResponse);
+        model.addAttribute("memberList", memberList);
+        model.addAttribute("taskSummaryResponse", taskSummaryResponse);
+
         return "rnd-plan/rsrch-institution";
     }
 

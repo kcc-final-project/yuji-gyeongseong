@@ -22,5 +22,7 @@ public interface EvalCommitteeService {
 
     int setAcadAbilitiesByMemberId(Long id, List<AcadRequest> acadAbilities);
 
+    int setRsrcNoByMemberId(Long id);
+
     int setEvalNotiByMemberId(EvalNotiRequest evalNotiRequest);
 }

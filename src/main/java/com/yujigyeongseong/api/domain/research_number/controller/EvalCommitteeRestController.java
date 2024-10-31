@@ -41,4 +41,13 @@ public class EvalCommitteeRestController {
 
         return ResponseEntity.ok(evalCommittee);
     }
+
+/*    @GetMapping("/check-committee/{subAnnNo}")
+    public ResponseEntity<?> getCheckEvalCommitteesBySubAnnNo(@PathVariable Long subAnnNo) {
+
+        List<EvalCommittee> evalCommittee = evalComposeService.getAllEvalCommitteeById(subAnnNo);
+
+        return ResponseEntity.ok(evalCommittee);
+    }*/
+
 }

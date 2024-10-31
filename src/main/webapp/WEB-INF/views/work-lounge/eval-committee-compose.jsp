@@ -58,7 +58,10 @@
             <div class="setting-text">연구기관 비율</div>
             <input id="professionalInstituteRate" class="small" type="text" value="33%" readonly>
             <button class="ctm-btn-normal" id="composeButton" onclick="setEvalCommittee(${subAnnounce.subAnnNo})"
-                    style="background-color: #FF8F27FF; width: 150px; margin-left: 650px">구성하기
+                    style="background-color: #FF8F27FF; width: 150px; margin-left: 650px;">구성하기
+            </button>
+            <button class="ctm-btn-normal" id="recomposeButton" onclick="resetEvalCommittee(${subAnnounce.subAnnNo})"
+                    style="background-color: #FF8F27FF; width: 150px; margin-left: 650px; display: none">재구성하기
             </button>
         </div>
     </div>

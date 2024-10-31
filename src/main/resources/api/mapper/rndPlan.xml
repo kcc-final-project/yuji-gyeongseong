@@ -3,7 +3,7 @@
 
 <mapper namespace="com.yujigyeongseong.api.domain.rnd_plan.dao.RndPlanMapper">
 
-    <!-- 기본정보 페이지 데이터 조회 쿼리   -->
+    <!-- 기본정보 페이지 데이터 조회 쿼리 -->
     <select id="selectBasicInfoBySubAnnNo">
         SELECT total_title,
                ann_type,
@@ -26,17 +26,24 @@
         SELECT rp.sub_ann_no,
                rp.task_name,
                rp.rnd_task_no,
-               m.name AS researcher_name,
                i.name AS institution_name
+        FROM rnd_plan rp
+                 LEFT JOIN member m
+                           ON m.mem_no = rp.mem_no
+                 LEFT JOIN institution i
+                           ON i.institution_no = m.institution_no
+        WHERE rp.sub_ann_no = #{subAnnNo}
+
+    </select>
+
+    <select id='selectRndPlanInstitutionBySubAnnNo'>
+        SELECT rp.sub_ann_no,
+               rp.task_name,
+               rp.rnd_task_no
         FROM rnd_plan rp
                  LEFT JOIN researcher r
                            ON r.rnd_plan_no = rp.rnd_plan_no
                                AND r.manpower_role = '연구책임자'
-                 LEFT JOIN member m
-                           ON m.mem_no = r.mem_no
-                 LEFT JOIN institution i
-                           ON i.institution_no = m.institution_no
-        WHERE rp.sub_ann_no = #{subAnnNo}
     </select>
 
     <!-- 연구개발계획서 시퀀스 최대값 가져오기 -->
@@ -45,7 +52,7 @@
         FROM DUAL
     </select>
 
-    <!-- 기본정보 데이터 등록 쿼리  -->
+    <!-- 기본정보 데이터 등록 쿼리 -->
     <insert id="insertBasicInfo">
         INSERT INTO rnd_plan(rnd_plan_no,
                              rnd_task_no,
@@ -67,15 +74,15 @@
 
     <!-- 연구분야 데이터 등록 쿼리 -->
     <insert id="insertRndFields">
-        INSERT INTO rnd_field (
-        rnd_field_no,
-        rnd_plan_no,
-        name,
-        weight,
-        rank
-        ) VALUES
-        <foreach collection="rndFields" item="rndField" separator=",">
-            (
+        INSERT ALL
+        <foreach collection="rndFields" item="rndField">
+            INTO rnd_field (
+            rnd_field_no,
+            rnd_plan_no,
+            name,
+            weight,
+            rank
+            ) VALUES (
             seq_rnd_field.NEXTVAL,
             #{rndField.rndPlanNo},
             #{rndField.name},
@@ -83,11 +90,12 @@
             #{rndField.rank}
             )
         </foreach>
+        SELECT * FROM DUAL
     </insert>
 
     <!-- 기본정보 데이터 조회 쿼리__과제명/계획서번호 -->
-    <select id="selectTaskNameAndTaskNoByRndPlanNo">
-        SELECT task_name, rnd_task_no
+    <select id="selectTaskNameAndTaskNoAndMemNoByRndPlanNo">
+        SELECT task_name, rnd_task_no, mem_no
         FROM rnd_plan
         WHERE rnd_plan_no = #{rndPlanNo}
     </select>
@@ -97,6 +105,20 @@
         SELECT name, weight, rank
         FROM rnd_field
         WHERE rnd_plan_no = #{rndPlanNo}
+    </select>
+
+    <!-- 기본정보 데이터 조회 쿼리__연구분야 -->
+    <select id="selectMemberByRndMemberNo">
+        SELECT *
+        FROM member
+        WHERE mem_no = #{memNo}
+    </select>
+
+    <!-- 기본정보 데이터 조회 쿼리__연구분야 -->
+    <select id="selectInstitutionByRndMemberNo">
+        SELECT *
+        FROM institution
+        WHERE institution_no = #{institutionNo}
     </select>
 
     <!-- 연구분야 데이터 삭제 쿼리 -->
@@ -131,8 +153,8 @@
     <update id="insertTaskSummaryByRndPlanNo">
         UPDATE rnd_plan
         SET final_tgt_content = #{finalTgtContent},
-            perf_content = #{perfContent},
-            rnd_content = #{rndContent}
+            perf_content      = #{perfContent},
+            rnd_content       = #{rndContent}
         WHERE rnd_plan_no = #{rndPlanNo}
     </update>
 
@@ -145,16 +167,16 @@
 
     <!-- 연구개발기간 데이터 등록 쿼리 -->
     <insert id="insertRndPeriods">
-        INSERT INTO rnd_period (
-        stage_no,
-        year_no,
-        started_at,
-        ended_at,
-        mxnth,
-        rnd_plan_no
-        ) VALUES
-        <foreach collection="rndPeriods" item="rndPeriod" separator=",">
-            (
+        INSERT ALL
+        <foreach collection="rndPeriods" item="rndPeriod">
+            INTO rnd_period (
+            stage_no,
+            year_no,
+            started_at,
+            ended_at,
+            mxnth,
+            rnd_plan_no
+            ) VALUES (
             #{rndPeriod.stageNo},
             #{rndPeriod.yearNo},
             #{rndPeriod.startedAt},
@@ -163,6 +185,7 @@
             #{rndPeriod.rndPlanNo}
             )
         </foreach>
+        SELECT * FROM DUAL
     </insert>
 
     <!-- 연구개발기간 데이터 삭제 쿼리 -->
@@ -174,20 +197,21 @@
 
     <!-- 단계별 내용 데이터 등록 쿼리 -->
     <insert id="insertStageContents">
-        INSERT INTO stage_content (
-        stage_no,
-        stg_tgt_content,
-        rnd_content,
-        rnd_plan_no
-        ) VALUES
-        <foreach collection="stageContents" item="stageContent" separator=",">
-            (
+        INSERT ALL
+        <foreach collection="stageContents" item="stageContent">
+            INTO stage_content (
+            stage_no,
+            stg_tgt_content,
+            rnd_content,
+            rnd_plan_no
+            ) VALUES (
             #{stageContent.stageNo},
             #{stageContent.stgTgtContent},
             #{stageContent.rndContent},
             #{stageContent.rndPlanNo}
             )
         </foreach>
+        SELECT * FROM DUAL
     </insert>
 
     <!-- 과제요약 데이터 조회 쿼리 -->
@@ -219,6 +243,19 @@
                rnd_content
         FROM stage_content
         WHERE rnd_plan_no = #{rndPlanNo}
+    </select>
+
+    <select id="selectAllMembers">
+        SELECT m.name       AS name,
+               m.rsrch_no   AS rsrch_no,
+               i.name       as institution_name,
+               m.affil_dept AS affil_dept,
+               m.position AS position,
+    TO_CHAR(m.birth, 'YYYY-MM-DD') AS birth
+        FROM member m
+            LEFT JOIN institution i
+        ON i.institution_no = m.institution_no
+        WHERE m.mem_no != 0
     </select>
 
 </mapper>
