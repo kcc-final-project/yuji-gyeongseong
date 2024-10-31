@@ -56,6 +56,7 @@ public class ResearchNumberController {
         int rndPlanCnt = evalComposeService.getRndPlanCntById(id);
         Long subAnnounceId = id;
 
+        model.addAttribute("subAnnNo", id);
         model.addAttribute("subAnnounce", subAnnounce);
         model.addAttribute("evalCommittee", evalCommittee);
         model.addAttribute("committees", evalCommittees);
