@@ -23,6 +23,10 @@
     width: 3% !important;
 }
 
+.ctm-w4p {
+    width: 4% !important;
+}
+
 .ctm-w5p {
     width: 5% !important;
 }
@@ -410,6 +414,11 @@
 .invalid-message {
     display: none;
     color: var(--red-color);
+}
+
+.valid-message {
+    display: none;
+    color: green;
 }
 
 .highlight {

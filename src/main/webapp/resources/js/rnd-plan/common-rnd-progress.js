@@ -144,10 +144,11 @@ function applyTechFieldsData({ rndFields }) {
 }
 
 // [기본정보] 과제명 및 연구과제번호 JSON 데이터 바인딩
-function applyTaskNameAndTaskNo({ taskName, rndTaskNo }) {
+function applyTaskNameAndTaskNo({ taskName, rndTaskNo, institution }) {
   $("#ipt-task-title").val(taskName);
   $("#dpy-task-title").val(taskName);
   $("#dpy-rnd-task-no").val(rndTaskNo);
+  $("#dpy-institution").val(institution.name);
 }
 
 // [과제정보] AJAX 과제정보 데이터 가져오기
@@ -173,13 +174,11 @@ function applyRndPlan({
   taskName,
   rndTaskNo,
   researcherName,
-  institutionName,
 }) {
   $("#ipt-task-title").val(taskName);
   $("#dpy-task-title").val(taskName);
   $("#dpy-rnd-task-no").val(rndTaskNo);
   $("#dpy-researcher").val(researcherName);
-  $("#dpy-institution").val(institutionName);
 }
 
 // [과제요약] AJAX 과제요약 데이터 가져오기
