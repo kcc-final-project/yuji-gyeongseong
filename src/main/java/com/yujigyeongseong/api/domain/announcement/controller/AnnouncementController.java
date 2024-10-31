@@ -27,9 +27,9 @@ public class AnnouncementController {
         return "announcement/announcement-list";
     }
 
-    @GetMapping("/detail/{totalAnnNo}")
-    public String getDetailedNotice(@PathVariable String totalAnnNo, Model model) {
-        SubAnnouncementRequest announcement = announcementListService.getAnnouncementByTotalAnnNo(totalAnnNo);
+    @GetMapping("/detail/{AnnNo}")
+    public String getDetailedNotice(@PathVariable int AnnNo, Model model) {
+        SubAnnouncementRequest announcement = announcementListService.getAnnouncementByTotalAnnNo(AnnNo);
         model.addAttribute("announcement", announcement);
 
         return "announcement/detailed-notice";

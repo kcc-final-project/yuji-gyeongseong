@@ -53,8 +53,11 @@
         <div
                 class="row row-cols-2 justify-content-between align-items-center w-100"
         >
-            <div class="col-2 d-flex align-items-center ps-5 h-100">
-                <img src="/resources/img/common/logo.svg" class="logo" alt="logo"/>
+            <div class="col-2 d-flex align-items-center ps-5 h-100" style="cursor: pointer">
+                <a href="/" style="color: inherit; text-decoration: none;">
+                    <img src="/resources/img/common/logo.svg" class="logo" alt="logo"/>
+                </a>
+
             </div>
             <div class="col-10 d-flex align-items-center h-100">
                 <c:choose>

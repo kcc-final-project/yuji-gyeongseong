@@ -8,7 +8,7 @@ html {
 }
 
 .tabs-container {
-    background-color: #000000;
+    background-color: #23304f;
     padding: 10px 0;
     margin-top: 90px;
     position: fixed;
@@ -27,6 +27,7 @@ html {
     font-weight: bold;
     padding-left: 40px;
     padding-right: 50px;
+    margin-top: 6px;
 }
 
 .work-logo-small {
@@ -39,16 +40,23 @@ html {
     font-size: 16px;
     text-align: center;
     padding: 10px 30px;
-    border: none;
+    text-decoration: none;
 }
 
 .nav-link.active {
     color: #ffffff;
     font-weight: bold;
-    border-bottom: 3px solid #ffffff;
+    height: 45px;
+    transform: scale(0.95);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .nav-link:hover {
-    color: #ff7b00;
     cursor: pointer;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    transition: .3s;
+    z-index: 2;
 }
+

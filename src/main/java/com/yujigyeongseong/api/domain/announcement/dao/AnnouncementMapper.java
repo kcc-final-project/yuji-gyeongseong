@@ -19,7 +19,7 @@ public interface AnnouncementMapper {
 
     List<Announcement> selectDeadLineAnnouncementList();
 
-    SubAnnouncementRequest selectAnnouncementByTotalAnnNo(String totalAnnNo);
+    SubAnnouncementRequest selectAnnouncementByTotalAnnNo(int AnnNo);
 
     SubAnnouncementDetailRequest selectSubAnnouncementBySubAnnNo(Long subAnnoNo);
 
