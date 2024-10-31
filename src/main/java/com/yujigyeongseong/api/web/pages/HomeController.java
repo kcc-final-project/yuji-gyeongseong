@@ -11,9 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("/")
-    public String getHomePage(@AuthenticationPrincipal PrincipalDetail principal, HttpSession session) {
+    public String getHomePage(@AuthenticationPrincipal PrincipalDetail principal, HttpSession session, Model model) {
+
         if (principal != null) {
             session.setAttribute("username", principal.getName());
+            session.setAttribute("userAuth", principal.getAuthorities());
+            session.setAttribute("id",principal.getId());
         }
         return "main/index";
     }

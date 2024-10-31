@@ -38,8 +38,6 @@ public class MemberServiceImpl implements MemberService {
         if (result == 1) {
             String username = signUpMember.getUsername();
             int memNo = memberMapper.findByMemNo(username);
-            System.out.println("memNo" + memNo);
-
             if (memNo > 0) {
                 int insertNum = memberMapper.insertRole(memNo);
 
