@@ -44,10 +44,10 @@ public class ResearchNumberRestController {
     }
 
     @PostMapping("/register/eval/{memberId}")
-    public ResponseEntity<?> registerEvalInformation(@RequestBody EvalNotiRequest evalNotiRequest) {
+    public ResponseEntity<?> registerEvalInformation(@RequestBody EvalNotiRequest evalNotiRequest, @AuthenticationPrincipal PrincipalDetail principalDetail) {
         try {
+            evalNotiRequest.setMemNo(principalDetail.getId());
             evalCommitteeService.setEvalNotiByMemberId(evalNotiRequest);
-
             return ResponseEntity.ok("후보단 신청 완료");
         } catch (Exception e) {
             e.printStackTrace();
