@@ -1,14 +1,18 @@
 package com.yujigyeongseong.api.domain.rnd_plan.dao;
 
+import com.yujigyeongseong.api.domain.member.dto.Institution;
+import com.yujigyeongseong.api.domain.research_number.dto.Member;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.*;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateBasicInfoRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateTaskSummaryRequest;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.response.MemberResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.RndPlanResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.TaskSummaryResponse;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,10 +35,16 @@ public interface RndPlanMapper {
     int insertRndFields(@Param("rndFields") final List<RndField> rndFields);
 
     // 기본정보 데이터 '조회' 쿼리__'과제명/계획서번호'
-    Optional<BasicInfoResponse> selectTaskNameAndTaskNoByRndPlanNo(final Long rndPlanNo);
+    Optional<BasicInfoResponse> selectTaskNameAndTaskNoAndMemNoByRndPlanNo(final Long rndPlanNo);
 
     // 기본정보 데이터 '조회' 쿼리__'연구분야'
     List<RndField> selectRndFieldsByRndPlanNo(final Long rndPlanNo);
+
+    // 기본정보 데이터 '조회' 쿼리__ '작성자 정보'
+    Optional<Member> selectMemberByRndMemberNo(final Long memNo);
+
+    // 기본정보 데이터 '조회' 쿼리__ '작성자의 기업 정보'
+    Optional<Institution> selectInstitutionByRndMemberNo(final Long institutionNo);
 
     // '연구분야' 데이터 '삭제' 쿼리
     int deleteRndFieldsByRndPlanNo(final Long rndPlanNo);
@@ -73,4 +83,5 @@ public interface RndPlanMapper {
     // '단계별 내용' 데이터 '조회' 쿼리
     List<StageContent> selectStageContentsByRndPlanNo(final Long rndPlanNo);
 
+    List<MemberResponse> selectAllMembers();
 }
