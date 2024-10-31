@@ -174,20 +174,20 @@
     }
 </style>
 <body>
-<img class="main-image" src="/resources/img/main/main.jpg">
+<img class="main-image" src="/resources/img/main/main.ico">
 
 <div class="common-main">
     <div class="main-contents-area">
         <div class="main-contents-teb">
             <div class="common-tab work-lounge">
-                <img src="resources/img/main/work.jpg" class="common-image">
+                <img src="/resources/img/main/work.ico" class="common-image">
                 <a class="common-link-wrap">
                     <h5 class="link-title">워크라운지 ></h5>
                     <p class="link-coment">다양한 업무 메뉴얼을 확인하실 수 있습니다.</p>
                 </a>
             </div>
             <div class="common-tab researcher-number">
-                <img src="resources/img/main/work.jpg" class="common-image">
+                <img src="/resources/img/main/number.ico" class="common-image">
                 <a class="common-link-wrap">
                     <%--                    <h5 class="link-title">국가연구자번호 ></h5>--%>
                     <h5 class="link-title">국가연구자번호 ></h5>
@@ -195,7 +195,7 @@
                 </a>
             </div>
             <div class="common-tab evaluation-committee">
-                <img src="resources/img/main/work.jpg" class="common-image">
+                <img src="/resources/img/main/eval.ico" class="common-image">
                 <a class="common-link-wrap">
                     <h5 class="link-title">평가위원 신청 ></h5>
                     <p class="link-coment">전문가 여러분을 평가위원으로 모시고자 합니다.</p>
