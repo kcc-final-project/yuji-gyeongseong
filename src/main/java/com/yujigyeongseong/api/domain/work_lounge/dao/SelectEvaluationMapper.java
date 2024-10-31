@@ -10,7 +10,7 @@ import java.util.List;
 public interface SelectEvaluationMapper {
     public List<SelectEvaluationDTO> selectEvaluationList();
 
-    public List<SelectEvaluationDTO> selectEvaluation(Integer subAnnNo);
+    public List<SelectEvaluationDTO> selectEvaluation(Long subAnnNo);
 
     public List<SelectEvaluationDTO> selectCommittee(String rndTaskNo);
 }

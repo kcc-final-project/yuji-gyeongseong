@@ -1,10 +1,8 @@
 package com.yujigyeongseong.api.domain.work_lounge.service;
 
 import com.yujigyeongseong.api.domain.work_lounge.dao.EvaluationPaperMapper;
+import com.yujigyeongseong.api.domain.work_lounge.dto.*;
 import com.yujigyeongseong.api.domain.work_lounge.dto.EvaluationPaperQuestionDTO;
-import com.yujigyeongseong.api.domain.work_lounge.dto.EvaluationPaperDTO;
-import com.yujigyeongseong.api.domain.work_lounge.dto.EvaluationPaperQuestionDTO;
-import com.yujigyeongseong.api.domain.work_lounge.dto.Question;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +21,28 @@ public class EvaluationPaperServiceImpl implements EvaluationPaperService {
     private EvaluationPaperMapper evaluationPaperMapper;
 
     @Override
-    public List<EvaluationPaperDTO> getEvaluationPapers(Integer annNo, Integer subAnnNo, Integer rndPlanNo) {
-        return evaluationPaperMapper.selectEvaluationPaperList(annNo, subAnnNo, rndPlanNo);
+    public List<EvaluationPaperDTO> getEvaluationPapers(int rndPlanNo) {
+        return evaluationPaperMapper.selectEvaluationPaperList(rndPlanNo);
     }
 
     @Override
     public List<EvaluationPaperQuestionDTO> getContentLists(String formType, String type) {
         return evaluationPaperMapper.selectContentList(formType, type);
     }
+
+    @Override
+    public void insertScoreList(EvaluationScoreDTO evaluationScoreDTO) {
+        evaluationScoreDTO.setEvalCommitteeNo(1);
+        evaluationScoreDTO.setRndPlanNo(3);
+        evaluationScoreDTO.setMemNo(1);
+        evaluationScoreDTO.setEvaluationTableNo(1);
+        evaluationPaperMapper.insertScoreList(evaluationScoreDTO);
+    }
+
+
+
+
+
 
     @Override
     public void register(Question question) {

@@ -31,8 +31,8 @@
             <table class="table table-bordered mt-2 align-middle">
                 <thead>
                 <tr>
-                    <td class="ctm-th ctm-w3p">순번</td>
-                    <td class="ctm-th ctm-w10p">문서유형</td>
+                    <td class="ctm-th ctm-w1p"></td>
+                    <td class="ctm-th ctm-w15p">문서유형</td>
                     <td class="ctm-th ctm-w5p">필수여부</td>
                     <td class="ctm-th ctm-w15p">파일명</td>
                     <td class="ctm-th ctm-w5p">크기</td>
@@ -52,16 +52,12 @@
                         <input class="form-control form-control-sm ctm-td" value="선택" readonly disabled type="text"/>
                     </td>
                     <td>
-                        <div class="ctm-th__with-btn ctm-td">
-                            <span>20240924_연구원 구성 및 상세</span>
-                            <div class="ctm-th__btn openTechFieldModal" data-bs-toggle="modal"
-                                 data-bs-target="#techFieldModal">
-                                <span class="material-icons ctm-icon">close</span>
-                            </div>
-                        </div>
+                        <input type="file" class="form-control uploadFile" multiple
+                               accept=".jpg,.jpeg,.png,.pdf">
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="5.6" readonly disabled type="text"/>
+                        <input class="form-control form-control-sm ctm-td fileSize" value="" readonly disabled
+                               type="text"/>
                     </td>
                     <td>
                         <div class="ctm-td">
@@ -69,7 +65,7 @@
                         </div>
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="2024-09-24 10:45" readonly disabled
+                        <input class="form-control form-control-sm ctm-td fileDate" value="" readonly disabled
                                type="text"/>
                     </td>
                     <td>
@@ -78,28 +74,24 @@
                             <button class="ctm-btn ctm-btn-normal ctm-w40p">저장</button>
                         </div>
                     </td>
+                </tr>
 
-                </tr>
                 <tr>
-                    <td class="ctm-th__sub">2</td>
+                    <td class="ctm-th__sub">1</td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="연구 데이터 관리 계획서" readonly disabled
+                        <input class="form-control form-control-sm ctm-td" value="가점 및 감점 사항 확인서" readonly disabled
                                type="text"/>
                     </td>
                     <td>
                         <input class="form-control form-control-sm ctm-td" value="선택" readonly disabled type="text"/>
                     </td>
                     <td>
-                        <div class="ctm-th__with-btn ctm-td">
-                            <span>20240924_연구원 구성 및 상세</span>
-                            <div class="ctm-th__btn openTechFieldModal" data-bs-toggle="modal"
-                                 data-bs-target="#techFieldModal">
-                                <span class="material-icons ctm-icon">close</span>
-                            </div>
-                        </div>
+                        <input type="file" class="form-control uploadFile" multiple
+                               accept=".jpg,.jpeg,.png,.pdf">
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="5.6" readonly disabled type="text"/>
+                        <input class="form-control form-control-sm ctm-td fileSize" value="" readonly disabled
+                               type="text"/>
                     </td>
                     <td>
                         <div class="ctm-td">
@@ -107,7 +99,7 @@
                         </div>
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="2024-09-24 10:45" readonly disabled
+                        <input class="form-control form-control-sm ctm-td fileDate" value="" readonly disabled
                                type="text"/>
                     </td>
                     <td>
@@ -116,28 +108,24 @@
                             <button class="ctm-btn ctm-btn-normal ctm-w40p">저장</button>
                         </div>
                     </td>
+                </tr>
 
-                </tr>
                 <tr>
-                    <td class="ctm-th__sub">3</td>
+                    <td class="ctm-th__sub">1</td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="연구 데이터 관리 계획서" readonly disabled
+                        <input class="form-control form-control-sm ctm-td" value="신청자격 적정성 확인서" readonly disabled
                                type="text"/>
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="선택" readonly disabled type="text"/>
+                        <input class="form-control form-control-sm ctm-td" value="필수" readonly disabled type="text"/>
                     </td>
                     <td>
-                        <div class="ctm-th__with-btn ctm-td">
-                            <span>20240924_연구원 구성 및 상세</span>
-                            <div class="ctm-th__btn openTechFieldModal" data-bs-toggle="modal"
-                                 data-bs-target="#techFieldModal">
-                                <span class="material-icons ctm-icon">close</span>
-                            </div>
-                        </div>
+                        <input type="file" class="form-control uploadFile" multiple
+                               accept=".jpg,.jpeg,.png,.pdf">
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="5.6" readonly disabled type="text"/>
+                        <input class="form-control form-control-sm ctm-td fileSize" value="" readonly disabled
+                               type="text"/>
                     </td>
                     <td>
                         <div class="ctm-td">
@@ -145,7 +133,7 @@
                         </div>
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="2024-09-24 10:45" readonly disabled
+                        <input class="form-control form-control-sm ctm-td fileDate" value="" readonly disabled
                                type="text"/>
                     </td>
                     <td>
@@ -154,28 +142,24 @@
                             <button class="ctm-btn ctm-btn-normal ctm-w40p">저장</button>
                         </div>
                     </td>
+                </tr>
 
-                </tr>
                 <tr>
-                    <td class="ctm-th__sub">4</td>
+                    <td class="ctm-th__sub">1</td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="연구 데이터 관리 계획서" readonly disabled
+                        <input class="form-control form-control-sm ctm-td" value="과제접수 사전 체크리스트" readonly disabled
                                type="text"/>
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="선택" readonly disabled type="text"/>
+                        <input class="form-control form-control-sm ctm-td" value="필수" readonly disabled type="text"/>
                     </td>
                     <td>
-                        <div class="ctm-th__with-btn ctm-td">
-                            <span>20240924_연구원 구성 및 상세</span>
-                            <div class="ctm-th__btn openTechFieldModal" data-bs-toggle="modal"
-                                 data-bs-target="#techFieldModal">
-                                <span class="material-icons ctm-icon">close</span>
-                            </div>
-                        </div>
+                        <input type="file" class="form-control uploadFile" multiple
+                               accept=".jpg,.jpeg,.png,.pdf">
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="5.6" readonly disabled type="text"/>
+                        <input class="form-control form-control-sm ctm-td fileSize" value="" readonly disabled
+                               type="text"/>
                     </td>
                     <td>
                         <div class="ctm-td">
@@ -183,7 +167,7 @@
                         </div>
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="2024-09-24 10:45" readonly disabled
+                        <input class="form-control form-control-sm ctm-td fileDate" value="" readonly disabled
                                type="text"/>
                     </td>
                     <td>
@@ -192,28 +176,25 @@
                             <button class="ctm-btn ctm-btn-normal ctm-w40p">저장</button>
                         </div>
                     </td>
+                </tr>
 
-                </tr>
                 <tr>
-                    <td class="ctm-th__sub">5</td>
+                    <td class="ctm-th__sub">1</td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="연구 데이터 관리 계획서" readonly disabled
+                        <input class="form-control form-control-sm ctm-td" value="과제접수용 연구개발계획서PART1 요약" readonly
+                               disabled
                                type="text"/>
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="선택" readonly disabled type="text"/>
+                        <input class="form-control form-control-sm ctm-td" value="필수" readonly disabled type="text"/>
                     </td>
                     <td>
-                        <div class="ctm-th__with-btn ctm-td">
-                            <span>20240924_연구원 구성 및 상세</span>
-                            <div class="ctm-th__btn openTechFieldModal" data-bs-toggle="modal"
-                                 data-bs-target="#techFieldModal">
-                                <span class="material-icons ctm-icon">close</span>
-                            </div>
-                        </div>
+                        <input type="file" class="form-control uploadFile" multiple
+                               accept=".jpg,.jpeg,.png,.pdf">
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="5.6" readonly disabled type="text"/>
+                        <input class="form-control form-control-sm ctm-td fileSize" value="" readonly disabled
+                               type="text"/>
                     </td>
                     <td>
                         <div class="ctm-td">
@@ -221,7 +202,7 @@
                         </div>
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="2024-09-24 10:45" readonly disabled
+                        <input class="form-control form-control-sm ctm-td fileDate" value="" readonly disabled
                                type="text"/>
                     </td>
                     <td>
@@ -230,22 +211,25 @@
                             <button class="ctm-btn ctm-btn-normal ctm-w40p">저장</button>
                         </div>
                     </td>
+                </tr>
 
-                </tr>
                 <tr>
-                    <td class="ctm-th__sub">6</td>
+                    <td class="ctm-th__sub">1</td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="연구 데이터 관리 계획서" readonly disabled
+                        <input class="form-control form-control-sm ctm-td" value="과제접수용 연구개발계획서PART2 본문" readonly
+                               disabled
                                type="text"/>
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="선택" readonly disabled type="text"/>
+                        <input class="form-control form-control-sm ctm-td" value="필수" readonly disabled type="text"/>
                     </td>
                     <td>
-                        <input type="file" name="uploadFile" class="form-control-sm" multiple accept=".jpg,.jpeg,.png,.pdf">
+                        <input type="file" class="form-control uploadFile" multiple
+                               accept=".jpg,.jpeg,.png,.pdf">
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="5.6" readonly disabled type="text"/>
+                        <input class="form-control form-control-sm ctm-td fileSize" value="" readonly disabled
+                               type="text"/>
                     </td>
                     <td>
                         <div class="ctm-td">
@@ -253,7 +237,7 @@
                         </div>
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="2024-09-24 10:45" readonly disabled
+                        <input class="form-control form-control-sm ctm-td fileDate" value="" readonly disabled
                                type="text"/>
                     </td>
                     <td>
@@ -263,19 +247,42 @@
                         </div>
                     </td>
                 </tr>
+
                 <tr>
-                    <td class="ctm-th__sub">7</td>
+                    <td class="ctm-th__sub">1</td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="연구 데이터 관리 계획서" readonly disabled
+                        <input class="form-control form-control-sm ctm-td" value="과제접수용 연구개발계획서PART3 본문" readonly
+                               disabled
                                type="text"/>
                     </td>
                     <td>
-                        <input class="form-control form-control-sm ctm-td" value="선택" readonly disabled type="text"/>
+                        <input class="form-control form-control-sm ctm-td" value="필수" readonly disabled type="text"/>
                     </td>
                     <td>
-                        <input type="file" name="uploadFile" class="form-control" multiple>
+                        <input type="file" class="form-control uploadFile" multiple
+                               accept=".jpg,.jpeg,.png,.pdf">
+                    </td>
+                    <td>
+                        <input class="form-control form-control-sm ctm-td fileSize" value="" readonly disabled
+                               type="text"/>
+                    </td>
+                    <td>
+                        <div class="ctm-td">
+                            <span class="material-icons pdf" style="color: #D67575">picture_as_pdf</span>
+                        </div>
+                    </td>
+                    <td>
+                        <input class="form-control form-control-sm ctm-td fileDate" value="" readonly disabled
+                               type="text"/>
+                    </td>
+                    <td>
+                        <div class="ctm-td" style="display: flex; justify-content: space-around">
+                            <button class="ctm-btn ctm-btn-normal ctm-w40p">수정</button>
+                            <button class="ctm-btn ctm-btn-normal ctm-w40p">저장</button>
+                        </div>
                     </td>
                 </tr>
+
                 </tbody>
             </table>
         </div>
@@ -284,7 +291,6 @@
             <h5 class="fz14" style="margin-left: 10px">각종 증명서 PDF 파일은 PDF 인쇄를 통해 재생성후 첨부하셔야 합니다. PDF 변환이 실패하는 경우에도 PDF
                 인쇄를 통해 재생성 후 첨부하시기 바랍니다.</h5>
         </div>
-
     </div>
 
     <%-- 기관 실적 및 --%>
@@ -331,7 +337,6 @@
         </div>
 
     </div>
-
     <%-- 연구자 연구업적 --%>
     <div class="techField-info mt-5">
 
@@ -380,5 +385,6 @@
         </div>
 
     </div>
-
 </div>
+
+<script src="/resources/js/rnd-plan/additional-file.js"></script>

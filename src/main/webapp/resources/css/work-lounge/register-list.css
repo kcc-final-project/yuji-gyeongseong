@@ -1,3 +1,7 @@
+.truncate-text {
+    cursor: pointer;
+}
+
 .line {
     border-top: 1px solid #000;
     margin: 20px 0;
@@ -13,8 +17,30 @@
 }
 
 .letter {
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.btn-back-indigo {
+    background-color: #2E406AFF;
+    color: #ffffff;
+}
+
+.btn-back-indigo:hover {
+    border-color: #2E406AFF;
+}
+
+.btn-back-red {
+    background-color: #ff003d;
+    color: #ffffff;
+}
+
+.btn-back-red:hover {
+    border-color: #ff0000;
+}
+
+.cc {
+    color: #d67575 !important;
 }
 
 .blue-font {
@@ -22,13 +48,12 @@
 }
 
 .btn-orange {
-    border: 1px solid #ff8f27;
-    color: #ff8f27;
+    background-color: #ff8f27;
+    color: #ffffff;
 }
 
-.btn-back-orange {
-    background-color: #ff8f27;
-    color: white;
+.btn-orange:hover {
+    border-color: #ff8f27;
 }
 
 .btn.btn-outline-primary {

@@ -9,8 +9,8 @@
     <title>평가위원회 목록</title>
     <link rel="stylesheet" href="/resources/css/work-lounge/evaluation-task-list.css"/>
 </head>
-<body>
-<div class="common-main" style="margin-top: 50px">
+<body class="mt-5">
+<div class="common-main" style="margin-top: 70px">
     <div class="container">
         <div class="d-flex align-items-center my-3">
             <h4 class="me-5"><b>평가위원회 목록</b></h4>
@@ -36,13 +36,13 @@
                     <input type="text" id="filterValue" class="form-control" placeholder="검색 내용 입력"/>
                 </div>
                 <div>
-                    <button class="btn btn-primary" onclick="filterTable()">검색</button>
+                    <button class="btn btn-back-indigo" onclick="filterTable()">검색</button>
                 </div>
             </div>
         </div>
 
-        <div style="max-height: 700px; overflow-y: auto">
-            <table id="myTable" class="table table-bordered text-center table-hover mt-3">
+        <div style="max-height: 250px; overflow-y: auto">
+            <table class="table table-bordered text-center table-hover mt-3">
                 <thead>
                 <tr class="domain">
                     <th>평가위원회명</th>
@@ -69,6 +69,7 @@
                 </tbody>
             </table>
         </div>
+        <div id="myTable"></div>
         <%--       이자리에 나옴--%>
     </div>
 </div>

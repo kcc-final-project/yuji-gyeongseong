@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yujigyeongseong.api.domain.work_lounge.dao.EvaluationTaskListMapper">
+
+    <select id="selectEvaluationCommitteeList" resultType="EvaluationTaskListDTO">
+        select evcom.eval_committee_no as evalCommitteeno,
+               evcom.name              as name,
+               subann.sub_title        as subtitle,
+               evcom.eval_started_at   as evalstartedat,
+               evcom.eval_closed_at    as evalclosedat,
+               evta.eval_status        as evalstatus
+        from sub_announcement subann
+                 inner join eval_committee evcom on subann.sub_ann_no = evcom.sub_ann_no
+                 inner join evaluation_member evmem on evmem.eval_committee_no = evcom.eval_committee_no
+                 inner join eval_task evta on evta.eval_committee_no = evcom.eval_committee_no
+    </select>
+
+    <resultMap id="taskList" type="EvaluationTaskListsDTO">
+        <result column="task_name" property="taskName"/>
+        <result column="rnd_institution" property="rndInstitution"/>
+        <result column="name" property="name"/>
+        <result column="eval_completed_at" property="evalCompletedAt"/>
+        <result column="eval_status" property="evalStatus"/>
+    </resultMap>
+
+    <select id="selectEvaluationTaskList" resultMap="taskList">
+        select rp.task_name, rp.rnd_institution, mem.name, evta.eval_completed_at, evta.eval_status
+        from sub_announcement subann
+                 inner join eval_committee evcom on subann.sub_ann_no = evcom.sub_ann_no
+                 inner join evaluation_member evmem on evmem.eval_committee_no = evcom.eval_committee_no
+                 inner join eval_task evta on evta.eval_committee_no = evcom.eval_committee_no
+                 inner join rnd_plan rp on rp.rnd_plan_no = evta.rnd_plan_no
+                 inner join member mem on mem.mem_no = rp.mem_no
+        where evcom.name = #{name}
+    </select>
+
+</mapper>

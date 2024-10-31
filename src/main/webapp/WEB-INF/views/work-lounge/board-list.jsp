@@ -35,6 +35,7 @@
 </div>
 
 <div class="common-main">
+    ${boardList}
     <hr/>
     <div class="mt-4">
         <table class="table table-bordered">
@@ -55,7 +56,7 @@
                             ㄴ
                         </c:if>
                         <c:if test="${ board.delInfo ne -1 }">
-                            <a href="board_detail/${board.opinionNo}"><c:out value="${board.content}"/></a>
+                            <a href="/work-lounge/board_detail/${board.opinionNo}"><c:out value="${board.content}"/></a>
                         </c:if>
 
                         <c:if test="${ board.delInfo eq -1 }">

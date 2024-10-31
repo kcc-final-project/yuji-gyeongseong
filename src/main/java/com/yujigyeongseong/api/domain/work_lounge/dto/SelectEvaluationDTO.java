@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 public class SelectEvaluationDTO {
     private String totalTitle;
     private String subTitle;
+    private String progStatus;
     private String closedAt;
     private String finalSelectedAt;
 

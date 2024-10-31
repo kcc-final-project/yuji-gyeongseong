@@ -11,12 +11,16 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class Opinion {
     private Integer opinionNo;
-    private Integer depth;
+    private Integer memNo;
+    private String content;
     private Timestamp createdAt;
+    private Integer readhit;
+    private Integer ref;
+    private Integer step;
+    private Integer depth;
+    private Integer delInfo;
     private Timestamp deletedAt;
-    private Integer parentOpinionNo;
     private Integer evalCommitteeNo;
     private Integer rndPlanNo;
-    private Integer memNo;
-    private Integer BucketNo;
+    private Integer bucketNo;
 }

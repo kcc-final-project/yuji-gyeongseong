@@ -10,12 +10,12 @@
     <title>Insert title here</title>
     <link rel="stylesheet" href="/resources/css/work-lounge/register-list.css"/>
 </head>
-<body>
+<body class="mt-4">
 <div class="common-main">
     <div class="container">
         <div class="d-flex align-items-center my-3">
             <h4><b>작성중인 계획서</b></h4>
-            <div class="text-muted mb-0 ms-3 blue-font" style="font-size: 20px">
+            <div class="text-muted mb-0 ms-3 cc" style="font-size: 20px;">
                 접수 기한이 종료 되었을 경우(접수종료일시) 계획서 수정이 불가능합니다.
             </div>
         </div>
@@ -36,34 +36,36 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${registerList}" var="register" varStatus="status">
-                    <tr class="letter">
-                        <td><c:out value="${register.totalTitle}"/></td>
-                        <td><c:out value="${register.subTitle}"/></td>
-                        <td><c:out value="${register.annType}"/></td>
-                        <td><c:out value="${register.startedAt}"/></td>
-                        <td><c:out value="${register.closedAt}"/></td>
-                        <td><c:out value="${register.status}"/></td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-outline-primary"
-                                    onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">
-                                수정
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-outline-danger"
-                                    onclick="deleteBoard(${register.rndPlanNo})">
-                                취소
-                            </button>
-                        </td>
-                    </tr>
+                    <c:if test="${register.status eq '접수중'}">
+                        <tr class="letter">
+                            <td class="truncate-text"><c:out value="${register.totalTitle}"/></td>
+                            <td class="truncate-text"><c:out value="${register.subTitle}"/></td>
+                            <td><c:out value="${register.annType}"/></td>
+                            <td><c:out value="${register.startedAt}"/></td>
+                            <td><c:out value="${register.closedAt}"/></td>
+                            <td><c:out value="${register.status}"/></td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-back-indigo"
+                                        onclick="window.location.href='http://localhost:8082/rnd-plans/${register.rndPlanNo}'">
+                                    수정
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-back-red"
+                                        onclick="deleteBoard(${register.rndPlanNo})">
+                                    취소
+                                </button>
+                            </td>
+                        </tr>
+                    </c:if>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
 
-        <div class="d-flex align-items-center my-3 mt-5">
+        <div class="d-flex align-items-center my-3 mt-4">
             <h4><b>완료된 계획서</b></h4>
-            <div class="text-muted mb-0 ms-3 blue-font" style="font-size: 20px">
+            <div class="text-muted mb-0 ms-3 cc" style="font-size: 20px;">
                 접수 기한이 종료 되었을 경우(접수종료일시) 제출 취소가 불가능합니다.
             </div>
         </div>
@@ -85,26 +87,29 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${completeList}" var="complete" varStatus="status">
-                    <tr class="letter">
-                        <td><c:out value="${complete.totalTitle}"/></td>
-                        <td><c:out value="${complete.subTitle}"/></td>
-                        <td><c:out value="${complete.annType}"/></td>
-                        <td><c:out value="${complete.startedAt}"/></td>
-                        <td><c:out value="${complete.closedAt}"/></td>
-                        <td><c:out value="${complete.submittedAt}"/></td>
-                        <td><c:out value="${complete.planStatus}"/></td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="deleteBoard(${complete.rndPlanNo})">
-                                취소
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-sm btn-back-orange"
-                                    onclick="window.location.href='http://localhost:8082/work-lounge/{annNo}'">
-                                의견공유
-                            </button>
-                        </td>
-                    </tr>
+<%--                    <c:if test="${not complete.planStatus eq '접수중'}">--%>
+                        <tr class="letter">
+                            <td class="truncate-text1"><c:out value="${complete.totalTitle}"/></td>
+                            <td class="truncate-text1"><c:out value="${complete.subTitle}"/></td>
+                            <td><c:out value="${complete.annType}"/></td>
+                            <td><c:out value="${complete.startedAt}"/></td>
+                            <td><c:out value="${complete.closedAt}"/></td>
+                            <td><c:out value="${complete.submittedAt}"/></td>
+                            <td><c:out value="${complete.planStatus}"/></td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-back-red"
+                                        onclick="deleteBoard(${complete.rndPlanNo})">
+                                    취소
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-orange"
+                                        onclick="window.location.href='http://localhost:8082/work-lounge/sharing-opinion/${complete.rndPlanNo}'">
+                                    의견공유
+                                </button>
+                            </td>
+                        </tr>
+<%--                    </c:if>--%>
                 </c:forEach>
                 </tbody>
             </table>
@@ -118,15 +123,15 @@
             $.ajax({
                 type: "POST",
                 url: "http://localhost:8082/work-lounge/delete",
-                data: { rndPlanNo: rndPlanNo },
-                success: function(response) {
+                data: {rndPlanNo: rndPlanNo},
+                success: function (response) {
                     // Assuming the server returns a success response
                     alert("삭제되었습니다.");
                     // Optionally, remove the row from the table
                     // $(this).closest('tr').remove(); // Commented out as you may want to manage this differently
                     location.reload(); // Reload the page to reflect the changes
                 },
-                error: function() {
+                error: function () {
                     alert("삭제 실패. 다시 시도해 주세요.");
                 }
             });
