@@ -3,7 +3,9 @@ package com.yujigyeongseong.api.domain.research_number.controller;
 import com.yujigyeongseong.api.domain.research_number.dto.*;
 import com.yujigyeongseong.api.domain.research_number.service.EvalCommitteeService;
 import com.yujigyeongseong.api.domain.research_number.service.EvalComposeService;
+import com.yujigyeongseong.api.global.auth.PrincipalDetail;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,11 +27,11 @@ public class ResearchNumberController {
     }
 
     @GetMapping("/eval-committee")
-    public String evalCommittee(Model model) {
+    public String evalCommittee(Model model,  @AuthenticationPrincipal PrincipalDetail principalDetail) {
 
-        List<AcadAbility> academicList = evalCommitteeService.getAllAcadAbilitiesByMemberId(1L);
-        List<Career> careerList = evalCommitteeService.getAllCareersByMemberId(1L);
-        List<String> techNameList = evalCommitteeService.getAllTechFieldNameByMemberId(1L);
+        List<AcadAbility> academicList = evalCommitteeService.getAllAcadAbilitiesByMemberId(principalDetail.getId());
+        List<Career> careerList = evalCommitteeService.getAllCareersByMemberId(principalDetail.getId());
+        List<String> techNameList = evalCommitteeService.getAllTechFieldNameByMemberId(principalDetail.getId());
 
         model.addAttribute("academic_list", academicList);
         model.addAttribute("career_list", careerList);
@@ -39,8 +41,9 @@ public class ResearchNumberController {
     }
 
     @GetMapping("/business-timeline")
-    public String getNotis(Model model) {
-        List<Noti> notiList = evalCommitteeService.getAllTechNotiByMemberId(1L);
+    public String getNotis(Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+
+        List<Noti> notiList = evalCommitteeService.getAllTechNotiByMemberId(principalDetail.getId());
 
         model.addAttribute("noti_list", notiList);
 
