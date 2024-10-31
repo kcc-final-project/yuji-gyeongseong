@@ -2,6 +2,7 @@ $(function () {
     $('.uploadFile').on("change", function() {
         var file = this.files[0];
         if (file) {
+            var name = file.name;
             var size = file.size; // 바이트 단위 크기
             var sizeInKB = (size / 1024).toFixed(2) + ' KB';
 
@@ -14,6 +15,7 @@ $(function () {
 
             $(this).closest('tr').find('.fileSize').val(sizeInKB);
             $(this).closest('tr').find('.fileDate').val(dateString);
+            $(this).closest('tr').find('.filename').val(name);
         }
     });
 });

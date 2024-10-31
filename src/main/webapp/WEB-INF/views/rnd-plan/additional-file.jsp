@@ -33,12 +33,11 @@
                 <tr>
                     <td class="ctm-th ctm-w1p"></td>
                     <td class="ctm-th ctm-w15p">문서유형</td>
-                    <td class="ctm-th ctm-w5p">필수여부</td>
+                    <td class="ctm-th ctm-w4p">필수여부</td>
                     <td class="ctm-th ctm-w15p">파일명</td>
                     <td class="ctm-th ctm-w5p">크기</td>
                     <td class="ctm-th ctm-w3p">PDF</td>
-                    <td class="ctm-th ctm-w10p">등록일자</td>
-                    <td class="ctm-th ctm-w7p"></td>
+                    <td class="ctm-th ctm-w7p">등록일자</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -68,16 +67,10 @@
                         <input class="form-control form-control-sm ctm-td fileDate" value="" readonly disabled
                                type="text"/>
                     </td>
-                    <td>
-                        <div class="ctm-td" style="display: flex; justify-content: space-around">
-                            <button class="ctm-btn ctm-btn-normal ctm-w40p">수정</button>
-                            <button class="ctm-btn ctm-btn-normal ctm-w40p">저장</button>
-                        </div>
-                    </td>
                 </tr>
 
                 <tr>
-                    <td class="ctm-th__sub">1</td>
+                    <td class="ctm-th__sub">2</td>
                     <td>
                         <input class="form-control form-control-sm ctm-td" value="가점 및 감점 사항 확인서" readonly disabled
                                type="text"/>
@@ -102,16 +95,10 @@
                         <input class="form-control form-control-sm ctm-td fileDate" value="" readonly disabled
                                type="text"/>
                     </td>
-                    <td>
-                        <div class="ctm-td" style="display: flex; justify-content: space-around">
-                            <button class="ctm-btn ctm-btn-normal ctm-w40p">수정</button>
-                            <button class="ctm-btn ctm-btn-normal ctm-w40p">저장</button>
-                        </div>
-                    </td>
                 </tr>
 
                 <tr>
-                    <td class="ctm-th__sub">1</td>
+                    <td class="ctm-th__sub">3</td>
                     <td>
                         <input class="form-control form-control-sm ctm-td" value="신청자격 적정성 확인서" readonly disabled
                                type="text"/>
@@ -136,16 +123,10 @@
                         <input class="form-control form-control-sm ctm-td fileDate" value="" readonly disabled
                                type="text"/>
                     </td>
-                    <td>
-                        <div class="ctm-td" style="display: flex; justify-content: space-around">
-                            <button class="ctm-btn ctm-btn-normal ctm-w40p">수정</button>
-                            <button class="ctm-btn ctm-btn-normal ctm-w40p">저장</button>
-                        </div>
-                    </td>
                 </tr>
 
                 <tr>
-                    <td class="ctm-th__sub">1</td>
+                    <td class="ctm-th__sub">4</td>
                     <td>
                         <input class="form-control form-control-sm ctm-td" value="과제접수 사전 체크리스트" readonly disabled
                                type="text"/>
@@ -170,16 +151,10 @@
                         <input class="form-control form-control-sm ctm-td fileDate" value="" readonly disabled
                                type="text"/>
                     </td>
-                    <td>
-                        <div class="ctm-td" style="display: flex; justify-content: space-around">
-                            <button class="ctm-btn ctm-btn-normal ctm-w40p">수정</button>
-                            <button class="ctm-btn ctm-btn-normal ctm-w40p">저장</button>
-                        </div>
-                    </td>
                 </tr>
 
                 <tr>
-                    <td class="ctm-th__sub">1</td>
+                    <td class="ctm-th__sub">5</td>
                     <td>
                         <input class="form-control form-control-sm ctm-td" value="과제접수용 연구개발계획서PART1 요약" readonly
                                disabled
@@ -205,16 +180,10 @@
                         <input class="form-control form-control-sm ctm-td fileDate" value="" readonly disabled
                                type="text"/>
                     </td>
-                    <td>
-                        <div class="ctm-td" style="display: flex; justify-content: space-around">
-                            <button class="ctm-btn ctm-btn-normal ctm-w40p">수정</button>
-                            <button class="ctm-btn ctm-btn-normal ctm-w40p">저장</button>
-                        </div>
-                    </td>
                 </tr>
 
                 <tr>
-                    <td class="ctm-th__sub">1</td>
+                    <td class="ctm-th__sub">6</td>
                     <td>
                         <input class="form-control form-control-sm ctm-td" value="과제접수용 연구개발계획서PART2 본문" readonly
                                disabled
@@ -240,16 +209,10 @@
                         <input class="form-control form-control-sm ctm-td fileDate" value="" readonly disabled
                                type="text"/>
                     </td>
-                    <td>
-                        <div class="ctm-td" style="display: flex; justify-content: space-around">
-                            <button class="ctm-btn ctm-btn-normal ctm-w40p">수정</button>
-                            <button class="ctm-btn ctm-btn-normal ctm-w40p">저장</button>
-                        </div>
-                    </td>
                 </tr>
 
                 <tr>
-                    <td class="ctm-th__sub">1</td>
+                    <td class="ctm-th__sub">7</td>
                     <td>
                         <input class="form-control form-control-sm ctm-td" value="과제접수용 연구개발계획서PART3 본문" readonly
                                disabled
@@ -274,12 +237,6 @@
                     <td>
                         <input class="form-control form-control-sm ctm-td fileDate" value="" readonly disabled
                                type="text"/>
-                    </td>
-                    <td>
-                        <div class="ctm-td" style="display: flex; justify-content: space-around">
-                            <button class="ctm-btn ctm-btn-normal ctm-w40p">수정</button>
-                            <button class="ctm-btn ctm-btn-normal ctm-w40p">저장</button>
-                        </div>
                     </td>
                 </tr>
 
@@ -323,10 +280,11 @@
                         <input class="form-control ctm-td" value="주관연구개발기관" disabled readonly type="text">
                     </td>
                     <td class="ctm-td">
-                        <button class="ctm-btn ctm-btn-normal">첨부</button>
+                        <input type="file" class="form-control uploadFile" multiple
+                               accept=".jpg,.jpeg,.png,.pdf">
                     </td>
                     <td>
-                        <input class="form-control ctm-td" value="작성안료" disabled readonly type="text">
+                        <input class="form-control ctm-td" value="작성완료" disabled readonly type="text">
                     </td>
                     <td>
                         <input class="form-control ctm-td" value="50점" disabled readonly type="text">
@@ -374,10 +332,11 @@
                         <input class="form-control ctm-td" value="연구책임자" disabled readonly type="text">
                     </td>
                     <td>
-                        <button class="ctm-btn ctm-btn-normal">첨부</button>
+                        <input type="file" class="form-control uploadFile" multiple
+                               accept=".jpg,.jpeg,.png,.pdf">
                     </td>
                     <td>
-                        <input class="form-control ctm-td" value="[별지 제4호서식] 연구개발 최종보고서" disabled readonly type="text">
+                        <input class="form-control ctm-td filename" value="" disabled readonly type="text">
                     </td>
                 </tr>
                 </tbody>
