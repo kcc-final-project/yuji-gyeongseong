@@ -16,6 +16,7 @@
 <body style="height: auto; padding-top: 90px;">
 
 <div class="tabs-container">
+
     <div class="container">
         <ul class="nav nav-tabs">
             <div class="work-logo">
@@ -24,13 +25,13 @@
 
             <c:if test="${fn:contains(userRole, 'USER') or fn:contains(userRole, 'RESE') or fn:contains(userRole, 'DIRE') or fn:contains(userRole, 'EVAL')}">
                 <li class="nav-item">
-                    <a class="nav-link" data-path="#" id="tab-timeline">업무타임라인</a>
+                    <a class="nav-link" data-path="/business-timeline" id="tab-timeline">업무타임라인</a>
                 </li>
             </c:if>
 
             <c:if test="${fn:contains(userRole, 'USER') or fn:contains(userRole, 'RESE') or fn:contains(userRole, 'DIRE') or fn:contains(userRole, 'EVAL')}">
                 <li class="nav-item">
-                    <a class="nav-link" data-path="/member/sign/up3" id="tab-personal-info">개인정보</a>
+                    <a class="nav-link" data-path="/member/edit-personal-info" id="tab-personal-info">개인정보</a>
                 </li>
             </c:if>
 
@@ -70,8 +71,17 @@
 
 <script>
     $(function () {
-        $('#tab-timeline').addClass('active');
+        // 현재 URL의 경로를 가져옴
+        const currentPath = window.location.pathname;
 
+        // 현재 경로와 일치하는 data-path 속성을 가진 탭을 활성화
+        $('.nav-link').each(function () {
+            if ($(this).data('path') === currentPath) {
+                $(this).addClass('active');
+            }
+        });
+
+        // 클릭 시에도 해당 탭을 활성화하고 경로로 이동
         $('.nav-link').click(function (event) {
             event.preventDefault();
             const nextPath = $(this).data('path');
@@ -82,7 +92,6 @@
             window.location.href = nextPath;
         });
     });
-
 </script>
 </body>
 </html>

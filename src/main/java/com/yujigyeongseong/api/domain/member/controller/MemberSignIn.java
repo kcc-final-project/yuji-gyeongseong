@@ -34,4 +34,9 @@ public class MemberSignIn {
     public String signUp4() {
         return "sign-in-sign-up/sign-up-4";
     }
+
+    @GetMapping("/edit-personal-info")
+    public String editPersonalInfo() {
+        return "sign-in-sign-up/edit-personal-info";
+    }
 }
