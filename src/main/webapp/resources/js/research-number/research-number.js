@@ -38,8 +38,8 @@ $(document).ready(function () {
             </div>
 
             <div class="inline-wrap">
-                <label>전공명<span class="warn">*</span></label>
-                <input type="text" id="majorName${academicInfoCount}" name="majorName" class="form-input" placeholder="전공명을(를) 입력하세요">
+                <label>전공명<span class="warn">*</span></label>-
+                    <input class="form-control input" type="text" id="majorName${academicInfoCount}" name="majorName" placeholder="전공명을(를) 입력하세요">
             </div>
             </div>
 
@@ -106,7 +106,8 @@ $(document).ready(function () {
 
                 <div class="inline-wrap">
                     <label>근무부서<span class="warn">*</span></label>
-                    <input type="text" id="workDepartment${careerInfoCount}" name="workDepartment" class="form-input" placeholder="근무부서를 입력하세요">
+                    <input class="form-control input" type="text" id="workDepartment${careerInfoCount}" name="workDepartment"
+                           placeholder="근무부서을(를) 입력하세요">
                 </div>
             </div>
             <div class="list" id="careerList${careerInfoCount}Additional">
@@ -174,37 +175,30 @@ $(document).ready(function () {
 
     var tbodyHtml = "";
     filteredInstitutions.forEach(function (institution) {
-      tbodyHtml +=
-          "<tr>" +
-          '<td><input type="checkbox" class="select-institution" data-name="' +
-          institution.name +
-          '"></td>' +
-          "<td>" +
-          institution.name +
-          "</td>" +
-          "<td>" +
-          institution.category +
-          "</td>" +
-          "<td>" +
-          institution.registrationNumber +
-          "</td>" +
-          "</tr>";
+      tbodyHtml += `
+            <tr>
+                <td><input type="checkbox" class="select-institution" data-name="${institution.name}"></td>
+                <td>${institution.name}</td>
+                <td>${institution.category}</td>
+                <td>${institution.registrationNumber}</td>
+            </tr>
+        `;
     });
     $("#institutionTableBody").html(tbodyHtml);
   });
 
   // 검색 아이콘 클릭 이벤트: 모달을 열고 현재 입력 필드의 인덱스를 모달에 저장
   $(document).on("click", ".search-icon", function () {
-    var index = $(this).data("index"); // 클릭된 아이콘에서 인덱스 추출
-    $("#institutionSearchModal").data("target-index", index); // 모달에 인덱스 설정
+    var index = $(this).data("index");
+    $("#institutionSearchModal").data("target-index", index);
   });
 
   // 기관 선택 체크박스 변경 이벤트: 선택된 기관을 해당 인덱스의 입력 필드에 설정
   $(document).on("change", ".select-institution", function () {
     if (this.checked) {
       var institutionName = $(this).data("name");
-      var targetIndex = $("#institutionSearchModal").data("target-index"); // 모달에서 설정된 인덱스 사용
-      $(`#degreeInstitutionName${targetIndex}`).val(institutionName); // 올바른 입력 필드에 값 설정
+      var targetIndex = $("#institutionSearchModal").data("target-index");
+      $(`#degreeInstitutionName${targetIndex}`).val(institutionName);
     }
   });
 
@@ -215,7 +209,7 @@ $(document).ready(function () {
   // 모달이 닫힐 때 선택값을 초기화하는 함수
   $("#institutionSearchModal").on("hidden.bs.modal", function () {
     $(".select-institution").prop("checked", false);
-    $("#institutionSearchModal").removeData("target-index"); // 인덱스 데이터 제거
+    $("#institutionSearchModal").removeData("target-index");
     $("#instituteNameSearch").val("");
   });
 
@@ -253,21 +247,14 @@ $(document).ready(function () {
 
     var tbodyHtml = "";
     filteredWorkInstitutions.forEach(function (institution) {
-      tbodyHtml +=
-          "<tr>" +
-          '<td><input type="checkbox" class="select-work-institution" data-name="' +
-          institution.name +
-          '"></td>' +
-          "<td>" +
-          institution.name +
-          "</td>" +
-          "<td>" +
-          institution.category +
-          "</td>" +
-          "<td>" +
-          institution.registrationNumber +
-          "</td>" +
-          "</tr>";
+      tbodyHtml += `
+            <tr>
+                <td><input type="checkbox" class="select-work-institution" data-name="${institution.name}"></td>
+                <td>${institution.name}</td>
+                <td>${institution.category}</td>
+                <td>${institution.registrationNumber}</td>
+            </tr>
+        `;
     });
     $("#workInstitutionTableBody").html(tbodyHtml);
   });
@@ -313,7 +300,7 @@ $(document).ready(function () {
     workInstitutions.forEach(function (institution) {
       tbodyHtml += `
             <tr>
-                <td><input type="checkbox" class="select-work-institution" data-name="${institution.name}" style="font-size: 80px"></td>
+                <td><input type="checkbox" class="select-work-institution" data-name="${institution.name}"></td>+
                 <td>${institution.name}</td>
                 <td>${institution.category}</td>
                 <td>${institution.registrationNumber}</td>
@@ -508,6 +495,8 @@ $(document).ready(function () {
       $("#technicalInfoTableBody .rowCheckbox:checked").each(function () {
         $(this).closest("tr").remove();
       });
+
+      $("#selectAllCheckbox").prop("checked", false);
     });
 
     // 선택된 항목이 있다면 테이블에 추가하고 모달을 닫음
@@ -668,201 +657,51 @@ function updateMajorSubcategory() {
 $(document).ready(function () {
   window.onload = updateMajorSubcategory;
 });
-
 var institutions = [
-  {
-    id: 1,
-    name: "서울대학교",
-    category: "대학교",
-    registrationNumber: "1000000001",
-  },
-  {
-    id: 2,
-    name: "연세대학교",
-    category: "대학교",
-    registrationNumber: "1000000002",
-  },
-  {
-    id: 3,
-    name: "고려대학교",
-    category: "대학교",
-    registrationNumber: "1000000003",
-  },
-  {
-    id: 4,
-    name: "성균관대학교",
-    category: "대학교",
-    registrationNumber: "1000000004",
-  },
-  {
-    id: 5,
-    name: "kcc대학교",
-    category: "대학교",
-    registrationNumber: "1000000005",
-  },
-  {
-    id: 6,
-    name: "한양대학교",
-    category: "대학교",
-    registrationNumber: "1000000006",
-  },
-  {
-    id: 7,
-    name: "중앙대학교",
-    category: "대학교",
-    registrationNumber: "1000000007",
-  },
-  {
-    id: 8,
-    name: "경희대학교",
-    category: "대학교",
-    registrationNumber: "1000000008",
-  },
-  {
-    id: 9,
-    name: "서강대학교",
-    category: "대학교",
-    registrationNumber: "1000000009",
-  },
-  {
-    id: 10,
-    name: "한국외국어대학교",
-    category: "대학교",
-    registrationNumber: "1000000010",
-  },
-  {
-    id: 11,
-    name: "이화여자대학교",
-    category: "대학교",
-    registrationNumber: "1000000011",
-  },
-  {
-    id: 12,
-    name: "동국대학교",
-    category: "대학교",
-    registrationNumber: "1000000012",
-  },
-  {
-    id: 13,
-    name: "홍익대학교",
-    category: "대학교",
-    registrationNumber: "1000000013",
-  },
-  {
-    id: 14,
-    name: "국민대학교",
-    category: "대학교",
-    registrationNumber: "1000000014",
-  },
-  {
-    id: 15,
-    name: "숭실대학교",
-    category: "대학교",
-    registrationNumber: "1000000015",
-  },
-  {
-    id: 16,
-    name: "서울시립대학교",
-    category: "대학교",
-    registrationNumber: "1000000016",
-  },
-  {
-    id: 17,
-    name: "서울과학기술대학교",
-    category: "대학교",
-    registrationNumber: "1000000017",
-  },
-  {
-    id: 18,
-    name: "가톨릭대학교",
-    category: "대학교",
-    registrationNumber: "1000000018",
-  },
-  {
-    id: 19,
-    name: "세종대학교",
-    category: "대학교",
-    registrationNumber: "1000000019",
-  },
-  {
-    id: 20,
-    name: "상명대학교",
-    category: "대학교",
-    registrationNumber: "1000000020",
-  },
+  { id: 1, name: "서울대학교", category: "대학교", registrationNumber: "104-82-12345" },
+  { id: 2, name: "연세대학교", category: "대학교", registrationNumber: "105-83-23456" },
+  { id: 3, name: "고려대학교", category: "대학교", registrationNumber: "106-84-34567" },
+  { id: 4, name: "성균관대학교", category: "대학교", registrationNumber: "107-85-45678" },
+  { id: 5, name: "kcc대학교", category: "대학교", registrationNumber: "108-86-56789" },
+  { id: 6, name: "한양대학교", category: "대학교", registrationNumber: "109-87-67890" },
+  { id: 7, name: "중앙대학교", category: "대학교", registrationNumber: "110-88-78901" },
+  { id: 8, name: "경희대학교", category: "대학교", registrationNumber: "111-89-89012" },
+  { id: 9, name: "서강대학교", category: "대학교", registrationNumber: "112-90-90123" },
+  { id: 10, name: "한국외국어대학교", category: "대학교", registrationNumber: "113-91-01234" },
+  { id: 11, name: "이화여자대학교", category: "대학교", registrationNumber: "114-92-12345" },
+  { id: 12, name: "동국대학교", category: "대학교", registrationNumber: "115-93-23456" },
+  { id: 13, name: "홍익대학교", category: "대학교", registrationNumber: "116-94-34567" },
+  { id: 14, name: "국민대학교", category: "대학교", registrationNumber: "117-95-45678" },
+  { id: 15, name: "숭실대학교", category: "대학교", registrationNumber: "118-96-56789" },
+  { id: 16, name: "서울시립대학교", category: "대학교", registrationNumber: "119-97-67890" },
+  { id: 17, name: "서울과학기술대학교", category: "대학교", registrationNumber: "120-98-78901" },
+  { id: 18, name: "가톨릭대학교", category: "대학교", registrationNumber: "121-99-89012" },
+  { id: 19, name: "세종대학교", category: "대학교", registrationNumber: "122-81-90123" },
+  { id: 20, name: "상명대학교", category: "대학교", registrationNumber: "123-82-01234" },
 ];
 
+
 var workInstitutions = [
-  {
-    id: 1,
-    name: "kcc정보통신",
-    category: "기업",
-    registrationNumber: "1000000001",
-  },
-  { id: 2, name: "삼성", category: "기업", registrationNumber: "1000000002" },
-  { id: 3, name: "LG", category: "기업", registrationNumber: "1000000003" },
-  {
-    id: 4,
-    name: "SK텔레콤",
-    category: "기업",
-    registrationNumber: "1000000004",
-  },
-  {
-    id: 5,
-    name: "현대자동차",
-    category: "기업",
-    registrationNumber: "1000000005",
-  },
-  { id: 6, name: "롯데", category: "기업", registrationNumber: "1000000006" },
-  { id: 7, name: "한화", category: "기업", registrationNumber: "1000000007" },
-  {
-    id: 8,
-    name: "GS칼텍스",
-    category: "기업",
-    registrationNumber: "1000000008",
-  },
-  { id: 9, name: "포스코", category: "기업", registrationNumber: "1000000009" },
-  { id: 10, name: "KT", category: "기업", registrationNumber: "1000000010" },
-  { id: 11, name: "CJ", category: "기업", registrationNumber: "1000000011" },
-  {
-    id: 12,
-    name: "네이버",
-    category: "기업",
-    registrationNumber: "1000000012",
-  },
-  {
-    id: 13,
-    name: "카카오",
-    category: "기업",
-    registrationNumber: "1000000013",
-  },
-  {
-    id: 14,
-    name: "신세계",
-    category: "기업",
-    registrationNumber: "1000000014",
-  },
-  { id: 15, name: "두산", category: "기업", registrationNumber: "1000000015" },
-  { id: 16, name: "한진", category: "기업", registrationNumber: "1000000016" },
-  {
-    id: 17,
-    name: "한국전력",
-    category: "기업",
-    registrationNumber: "1000000017",
-  },
-  {
-    id: 18,
-    name: "한국가스공사",
-    category: "기업",
-    registrationNumber: "1000000018",
-  },
-  {
-    id: 19,
-    name: "LS그룹",
-    category: "기업",
-    registrationNumber: "1000000019",
-  },
-  { id: 20, name: "다음", category: "기업", registrationNumber: "1000000020" },
+  { id: 1, name: "kcc정보통신", category: "기업", registrationNumber: "106-85-12345" },
+  { id: 2, name: "삼성", category: "기업", registrationNumber: "107-86-23456" },
+  { id: 3, name: "LG", category: "기업", registrationNumber: "108-87-34567" },
+  { id: 4, name: "SK텔레콤", category: "기업", registrationNumber: "109-88-45678" },
+  { id: 5, name: "현대자동차", category: "기업", registrationNumber: "110-89-56789" },
+  { id: 6, name: "롯데", category: "기업", registrationNumber: "111-90-67890" },
+  { id: 7, name: "한화", category: "기업", registrationNumber: "112-91-78901" },
+  { id: 8, name: "GS칼텍스", category: "기업", registrationNumber: "113-92-89012" },
+  { id: 9, name: "포스코", category: "기업", registrationNumber: "114-93-90123" },
+  { id: 10, name: "KT", category: "기업", registrationNumber: "115-94-01234" },
+  { id: 11, name: "CJ", category: "기업", registrationNumber: "116-95-12345" },
+  { id: 12, name: "네이버", category: "기업", registrationNumber: "117-96-23456" },
+  { id: 13, name: "카카오", category: "기업", registrationNumber: "118-97-34567" },
+  { id: 14, name: "신세계", category: "기업", registrationNumber: "119-98-45678" },
+  { id: 15, name: "두산", category: "기업", registrationNumber: "120-99-56789" },
+  { id: 16, name: "한진", category: "기업", registrationNumber: "121-81-67890" },
+  { id: 17, name: "한국전력", category: "기업", registrationNumber: "122-82-78901" },
+  { id: 18, name: "한국가스공사", category: "기업", registrationNumber: "123-83-89012" },
+  { id: 19, name: "LS그룹", category: "기업", registrationNumber: "124-84-90123" },
+  { id: 20, name: "다음", category: "기업", registrationNumber: "125-85-01234" },
 ];
 
 var majorMap = {

@@ -86,7 +86,8 @@
 
                 <div class="inline-wrap">
                     <label>전공명<span class="warn">*</span></label>
-                    <input type="text" id="majorName1" name="majorName" class="form-input" placeholder="전공명을(를) 입력하세요">
+                    <input class="form-control input" type="text" id="majorName1" name="majorName"
+                           placeholder="전공명을(를) 입력하세요">
                 </div>
             </div>
             <div class="list">
@@ -135,7 +136,7 @@
 
     <div class="career-info" style="margin-top: 50px">
         <div class="title_career">
-            <label class="title">경력정보</label>
+            <p class="title">경력정보</p>
             <button id="addCareerInfoButton" class="ctm-btn-normal" style="margin-left: 35px; width: 150px">경력정보추가
             </button>
         </div>
@@ -159,7 +160,7 @@
 
                 <div class="inline-wrap">
                     <label>근무부서<span class="warn">*</span></label>
-                    <input type="text" id="workDepartment1" name="workDepartment" class="form-input"
+                    <input class="form-control input" type="text" id="workDepartment1" name="workDepartment"
                            placeholder="근무부서을(를) 입력하세요">
                 </div>
             </div>
@@ -284,7 +285,7 @@
 
 <div class="modal fade" id="institutionSearchModal" tabindex="-1" role="dialog"
      aria-labelledby="institutionSearchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="institutionSearchModalLabel">기관 조회 팝업</h5>
@@ -301,7 +302,7 @@
                 </div>
 
                 <div class="institution-table-container">
-                    <table id="institutionTable" class="table table-bordered">
+                    <table id="institutionTable" class="table table-bordered table-hover">
                         <thead>
                         <tr>
                             <th>선택</th>
