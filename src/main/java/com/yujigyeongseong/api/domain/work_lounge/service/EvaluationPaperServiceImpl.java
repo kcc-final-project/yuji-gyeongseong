@@ -40,25 +40,6 @@ public class EvaluationPaperServiceImpl implements EvaluationPaperService {
         evaluationPaperMapper.insertScoreList(evaluationScoreDTO);
     }
 
-
-
-
-
-
-    @Override
-    public void insertScoreList(EvaluationScoreDTO evaluationScoreDTO) {
-        evaluationScoreDTO.setEvalCommitteeNo(1);
-        evaluationScoreDTO.setRndPlanNo(3);
-        evaluationScoreDTO.setMemNo(1);
-        evaluationScoreDTO.setEvaluationTableNo(1);
-        evaluationPaperMapper.insertScoreList(evaluationScoreDTO);
-    }
-
-
-
-
-
-
     @Override
     public void register(Question question) {
         evaluationPaperMapper.insertQuestion(question);
