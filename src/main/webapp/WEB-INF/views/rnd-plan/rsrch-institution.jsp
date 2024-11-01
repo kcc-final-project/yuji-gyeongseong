@@ -76,7 +76,7 @@
             </div>
         </div>
         <div class="body-section">
-            <table class="table table-bordered mt-2 table-hover align-middle">
+            <table class="table table-bordered mt-2 table-hover align-middle research-composition-table">
                 <thead>
                 <tr>
                     <td class="ctm-th ctm-w5p" rowspan="2"></td>
@@ -286,7 +286,7 @@
             </div>
         </div>
         <div class="body-section">
-            <table class="table table-bordered mt-2 table-hover align-middle">
+            <table class="table table-bordered mt-2 table-hover align-middle research-participation-table">
                 <thead>
                 <tr>
                     <td class="ctm-th ctm-w10p align-middle" rowspan="2">연구자명</td>
