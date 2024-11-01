@@ -8,13 +8,17 @@ import com.yujigyeongseong.api.domain.work_lounge.dto.SharingOpinionDTO;
 import java.util.List;
 
 public interface SharingOpinionService {
-    public List<SharingOpinionDTO> getSelectSharingOpinionList(String taskName);
+    public List<SharingOpinionDTO> getSelectSharingOpinionList(int rndPlanNo);
+
+    public List<SharingOpinionDTO> evalPeople(int rndPlanNo);
 
     public List<SharingOpinionDTO> getSelectCommitteePersonList(String taskName);
 
     public List<Opinion> getselectOpinionList();
 
-    public Opinion summaryId(String content);
+    public Opinion summaryId(int opinionNo);
+
+    public int insertOpinionReplyList(Opinion opinion);
 
 
 

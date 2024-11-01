@@ -31,7 +31,7 @@
                 </tr>
                 <tr class="letter">
                     <th class="table-active domain">연구개발계획서번호</th>
-                    <td>[RM - ${paperList[0].rndPlanNo} ]</td>
+                    <td>[RM-2024-NO${paperList[0].rndPlanNo}]</td>
                     <th class="table-active domain">평가일</th>
                     <td>${paperList[0].evalCompletedAt}</td>
                 </tr>
@@ -106,14 +106,14 @@
                                 <!-- 여기 나옴. -->
                                 </tbody>
                             </table>
-                            <h3 class="text-end mt-2 shadow-sm  scor p-1">
-                                총 점수 : <span id="result1">0</span>점
-                            </h3>
+                            <p class="text-end mt-2 shadow-sm p-1">
+                                총 합계 : <span id="result1">0</span>점
+                            </p>
                             <br>
                             <div class="d-flex mt-5">
                                 <div class="col-4"></div>
                                 <button
-                                        class="btn btn-primary save-button ctm-btn-normal"
+                                        class="btn save-button ctm-btn-white"
                                         onclick="saveSurvey()"
                                 >
                                     취소
@@ -142,9 +142,9 @@
                                 </tbody>
                             </table>
 
-                            <h3 class="text-end mt-2 shadow-sm  scor p-1">
-                                총 점수 : <span id="result2">0</span>점
-                            </h3>
+                            <p class="text-end mt-2 shadow-sm p-1">
+                                총 합계 : <span id="result2">0</span>점
+                            </p>
                             <br>
                             <div class="d-flex mt-5">
                                 <div class="col-4"></div>
@@ -177,34 +177,34 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="/resources/js/work-lounge/evaluation-paper.js"></script>
 <script>
-    function saveScores() {//점수 저장용도
-        // 점수 가져오기
+    function saveScores() {
+
         const totalScore1 = parseInt(localStorage.getItem('totalScore_common')) || 0;
         const totalScore2 = parseInt(localStorage.getItem('totalScore_specific')) || 0;
 
-        // 점수 합산
+
         const totalScore = totalScore1 + totalScore2;
 
-        // 점수 객체 생성
+
         const scoreData = {
             totalScore: totalScore  // 합산된 점수
-            // evalCommitteeNo: 1,      // 필요한 경우 추가 데이터
+            // evalCommitteeNo: 1,
             // rndPlanNo: 3,
             // memNo: 1,
             // evaluationTableNo: 1
         };
 
-        // AJAX 요청으로 서버에 점수 전송
         $.ajax({
-            url: "/work-lounge/score", // 서버 URL
+            url: "/work-lounge/score",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(scoreData),
+
             success: function(response) {
                 console.log("점수가 성공적으로 저장되었습니다.", response);
-                // 필요한 경우 사용자에게 알림 추가
+
                 alert("점수가 성공적으로 저장되었습니다.");
-                // 필요시 리다이렉션
+
                 window.location.href = "/work-lounge/evaluation-task-lists";
             },
             error: function(xhr, status, error) {

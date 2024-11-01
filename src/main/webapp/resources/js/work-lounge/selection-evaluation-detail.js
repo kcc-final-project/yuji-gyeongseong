@@ -19,28 +19,3 @@ $(document).ready(function () {
     }
   });
 });
-
-$(document).ready(function () {
-  $("#startDate, #endDate").datepicker({
-    format: "yyyy-mm-dd",
-    autoclose: true,
-  });
-
-  function fetchData(startDate, endDate) {
-    $.ajax({
-      url: "fetch_data.php",
-      type: "GET",
-      data: { start_date: startDate, end_date: endDate },
-      dataType: "json",
-      success: function (data) {},
-    });
-  }
-
-  $("#startDate, #endDate").on("change", function () {
-    var startDate = $("#startDate").val();
-    var endDate = $("#endDate").val();
-    if (startDate && endDate) {
-      fetchData(startDate, endDate);
-    }
-  });
-});

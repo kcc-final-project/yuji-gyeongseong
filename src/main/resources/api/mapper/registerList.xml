@@ -10,6 +10,7 @@
                ann.started_at   as startedat,
                ann.closed_at    as closedat,
                ann.status       as status,
+               rnd.plan_status  as planstatus,
                rnd.rnd_plan_no as rndplanno
         FROM announcement ann
                  inner join sub_announcement subann on ann.ann_no = subann.ann_no

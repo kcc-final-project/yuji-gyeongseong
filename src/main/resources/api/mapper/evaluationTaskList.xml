@@ -4,7 +4,7 @@
 <mapper namespace="com.yujigyeongseong.api.domain.work_lounge.dao.EvaluationTaskListMapper">
 
     <select id="selectEvaluationCommitteeList" resultType="EvaluationTaskListDTO">
-        select evcom.eval_committee_no as evalCommitteeno,
+        select distinct evcom.eval_committee_no as evalCommitteeno,
                evcom.name              as name,
                subann.sub_title        as subtitle,
                evcom.eval_started_at   as evalstartedat,
@@ -25,7 +25,7 @@
     </resultMap>
 
     <select id="selectEvaluationTaskList" resultMap="taskList">
-        select rp.task_name, rp.rnd_institution, mem.name, evta.eval_completed_at, evta.eval_status
+        select distinct rp.task_name, rp.rnd_institution, mem.name, evta.eval_completed_at, evta.eval_status
         from sub_announcement subann
                  inner join eval_committee evcom on subann.sub_ann_no = evcom.sub_ann_no
                  inner join evaluation_member evmem on evmem.eval_committee_no = evcom.eval_committee_no

@@ -11,46 +11,40 @@ import java.text.SimpleDateFormat;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SelectEvaluationDTO {
-    private String totalTitle;
+    private Long subAnnNo;
+    private String evalStatus;
     private String subTitle;
-    private String progStatus;
-    private String closedAt;
-    private String finalSelectedAt;
+    private String startDate;
 
-    public void setClosedAt(Timestamp closedAt) {
+    public void setStartDate(Timestamp startDate) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        this.closedAt = closedAt != null ? formatter.format(closedAt) : null;
+        this.startDate = startDate != null ? formatter.format(startDate) : null;
     }
+
+    private String finalSelectedAt;
 
     public void setFinalSelectedAt(Timestamp finalSelectedAt) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         this.finalSelectedAt = finalSelectedAt != null ? formatter.format(finalSelectedAt) : null;
     }
 
-    private String evalStatus;
     private String rndTaskNo;
     private String taskName;
     private String rndInstitution;
-    private String rndName;
-    private String totalScore;
+    private String roundName;
+    private int totalScore;
     private String planStatus;
-    private String name;
+    private String committeeName;
     private String selCompletedAt;
-    private String start;
-    private Integer subAnnNo;
 
     public void setSelCompletedAt(Timestamp selCompletedAt) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         this.selCompletedAt = selCompletedAt != null ? formatter.format(selCompletedAt) : null;
     }
-    public void setStart(Timestamp start) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        this.start = start != null ? formatter.format(start) : null;
-    }
 
     private String coName;
     private String insName;
     private String corsName;
-    private Integer score;
+    private int score;
 
 }

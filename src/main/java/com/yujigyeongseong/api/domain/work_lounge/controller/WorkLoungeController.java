@@ -54,16 +54,19 @@ public class WorkLoungeController {
         return "work-lounge/business-timeline";
     }
 
+    // 저장,수정 기능
     @GetMapping("/evaluation-table")
     public String getWorkLoungeEvaluationTablePage() {
         return "work-lounge/evaluation-table";
     }
 
+    // 저장 기능 (세모)
     @GetMapping("/evaluation-paper")
     public String getWorkLoungeEvaluationPaperPage() {
         return "work-lounge/evaluation-paper";
     }
 
+    // 새로 만들기
     @GetMapping("/sharing-opinion")
     public String getWorkLoungeSharingOpinionPage() {
         return "work-lounge/sharing-opinion";
@@ -84,6 +87,7 @@ public class WorkLoungeController {
         return "work-lounge/selection-evaluation";
     }
 
+    // 표두개 ajax
     @GetMapping("/selection-evaluation-detail")
     public String getWorkLoungeSelectionEvaluationDetailPage() {
         return "work-lounge/selection-evaluation-detail";
@@ -116,6 +120,7 @@ public class WorkLoungeController {
         return "work-lounge/evaluation-paper";
     }
 
+    // memNo가 자동으로 가져오기전까지 사용하는 용도
     @GetMapping("/register-list/{memNo}")
     public String getRegisterAndCompleteList(@PathVariable("memNo") Integer memNo, Model model) {
         List<RegisterListDTO> registerList = registerListService.getRegisterList(memNo);
@@ -152,18 +157,17 @@ public class WorkLoungeController {
 
     @GetMapping("/eval-list")
     public ModelAndView getSelectEvaluationList() {
-        List<SelectEvaluationDTO> selectEvaluationList = selectEvaluationService.getSelectEvaluationList();
+        List<SelectNotiDTO> selectEvaluationList = selectEvaluationService.getSelectEvaluationList();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("selectEvaluationList", selectEvaluationList);
         modelAndView.setViewName("work-lounge/selection-evaluation");
         return modelAndView;
     }
 
-    @GetMapping("/sharing-opinion/{taskName}")
-    public String getRegisterAndCompleteList(@PathVariable("taskName") String taskName, Model model) {
-        List<SharingOpinionDTO> sharingOpinionList = sharingOpinionService.getSelectSharingOpinionList(taskName);
-        List<SharingOpinionDTO> committeePersonList = sharingOpinionService.getSelectCommitteePersonList(taskName);
-
+    @GetMapping("/sharing-opinion/{rndPlanNo}")
+    public String getRegisterAndCompleteList(@PathVariable("rndPlanNo") int rndPlanNo, Model model) {
+        List<SharingOpinionDTO> sharingOpinionList = sharingOpinionService.getSelectSharingOpinionList(rndPlanNo);
+        List<SharingOpinionDTO> committeePersonList = sharingOpinionService.evalPeople(rndPlanNo);
         model.addAttribute("sharingOpinionList", sharingOpinionList);
         model.addAttribute("committeePersonList", committeePersonList);
 
@@ -193,7 +197,7 @@ public class WorkLoungeController {
     }
 
     @GetMapping("/board_detail/{opinionNo}")
-    public String getBoardDetail(@PathVariable("opinionNo") Integer opinionNo, Model model) {
+    public String getBoardDetail(@PathVariable("opinionNo") int opinionNo, Model model) {
         log.info("opinionNo: " + opinionNo);
         Board board = boardService.selectBoardId(opinionNo);
         log.info("board: " + board);
@@ -235,7 +239,7 @@ public class WorkLoungeController {
     }
 
     @PutMapping("/board_delete/{opinionNo}")
-    public ModelAndView BoardDelete(@PathVariable Integer opinionNo) {
+    public ModelAndView BoardDelete(@PathVariable int opinionNo) {
         ModelAndView mav = new ModelAndView();
 
         try {
@@ -260,7 +264,7 @@ public class WorkLoungeController {
 
 
     @RequestMapping("/board_modify")
-    public String BoardModify(@RequestParam Integer opinionNo, Model model) {
+    public String BoardModify(@RequestParam int opinionNo, Model model) {
         Board board = boardService.selectBoardId(opinionNo);
         model.addAttribute("board", board);
         return "/work-lounge/board_modify";
@@ -268,7 +272,7 @@ public class WorkLoungeController {
 
 
     @PutMapping("/board_modify/{opinionNo}")
-    public ResponseEntity<String> modifyBoard(@PathVariable Integer opinionNo, @RequestBody Board board) {
+    public ResponseEntity<String> modifyBoard(@PathVariable int opinionNo, @RequestBody Board board) {
 
         board.setOpinionNo(opinionNo);
         boolean isModified = boardService.modifyBoard(board);
@@ -283,11 +287,11 @@ public class WorkLoungeController {
     @GetMapping("/eval-list/evaluation-select/{subAnnNo}")
     public String getSelectEvaluationDetail(@PathVariable Long subAnnNo, Model model) {
         List<SelectEvaluationDTO> selectEvaluationDetail = selectEvaluationService.getselectEvaluation(subAnnNo);
-
         model.addAttribute("selectEvaluationDetail", selectEvaluationDetail);
         return "work-lounge/selection-evaluation-detail";
     }
 
+    /* 계획서 삭제 */
     @PostMapping("/delete")
     public String deleteBoard(@RequestParam Integer rndPlanNo, RedirectAttributes rttr) {
         if (registerListService.getDelete(rndPlanNo)) {
@@ -296,14 +300,15 @@ public class WorkLoungeController {
         return "work-lounge/register-list";
     }
 
+    /*전자평가표 */
     @GetMapping("/evaluation-tables")
     public String getEvaluationTables(Model model) {
         List<EvaluationTableDTO> evaluationTableList = evaluationTableListService.getAnnounceList();
-
         model.addAttribute("announceList", evaluationTableList);
         return "work-lounge/evaluation-table";
     }
 
+    /* 평가점수 저장용도 */
     @PostMapping("/score")
     public String insertScore(EvaluationScoreDTO evaluationScoreDTO, RedirectAttributes rttr) {
         evaluationPaperService.insertScoreList(evaluationScoreDTO);

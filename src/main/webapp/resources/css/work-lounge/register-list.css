@@ -2,12 +2,16 @@
     cursor: pointer;
 }
 
+.truncate-text1 {
+    cursor: pointer;
+}
+
 .line {
     border-top: 1px solid #000;
     margin: 20px 0;
 }
 
-.domain > th {
+.domain > td {
     background-color: #2E406AFF;
     color: white;
 }
@@ -18,7 +22,7 @@
 
 .letter {
     font-size: 14px;
-    font-weight: bolder;
+    font-weight: normal;
 }
 
 .btn-back-indigo {
@@ -30,14 +34,85 @@
     border-color: #2E406AFF;
 }
 
-.btn-back-red {
-    background-color: #ff003d;
-    color: #ffffff;
+.ctm-btn-blue {
+    background-color: #ffffff;
+    width: 60px;
+    height: 38px;
+    color: var(--main-bg-color);
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--main-bg-color);
+    transition: 0.3s all;
 }
 
-.btn-back-red:hover {
-    border-color: #ff0000;
+.ctm-btn-blue:hover {
+    background-color: var(--main-bg-color);
+    border: 2px solid transparent;
+    color: white;
 }
+
+.ctm-btn-red {
+    background-color: #ffffff;
+    width: 60px;
+    height: 38px;
+    color: #d67575;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #d67575;
+    transition: 0.3s all;
+}
+
+.ctm-btn-red:hover {
+    background-color: #d67575 !important;
+    border: 2px solid transparent;
+    color: white;
+}
+
+.ctm-btn-orange {
+    background-color: #ff8f27;
+    width: 90px;
+    height: 38px;
+    color: #ffffff;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ff8f27;
+    transition: 0.3s all;
+}
+
+.ctm-btn-orange:hover {
+    background-color: #ff8f27 !important;
+    border: 2px solid transparent;
+    color: white;
+}
+
+.ctm-btn-orange:active {
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+    background-color: #ff8f27 !important;
+}
+
+.ctm-btn-gray:disabled {
+    background-color: #ffffff;
+    color: #cfcfcf;
+    border: 2px solid #cfcfcf;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.ctm-btn-orange:disabled {
+    background-color: #fff3f3;
+    color: #cfcfcf;
+    border: 2px solid #ff8f27;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
 
 .cc {
     color: #d67575 !important;
@@ -45,15 +120,6 @@
 
 .blue-font {
     color: #2F69FF !important;
-}
-
-.btn-orange {
-    background-color: #ff8f27;
-    color: #ffffff;
-}
-
-.btn-orange:hover {
-    border-color: #ff8f27;
 }
 
 .btn.btn-outline-primary {
