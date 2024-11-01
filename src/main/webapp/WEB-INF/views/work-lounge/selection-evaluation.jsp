@@ -110,7 +110,7 @@
                                         <button type="button" class="btn ctm-btn-orange
                                                 <c:if test='${noti.progStatus != "구성대기"}'>ctm-btn-gray</c:if>"
                                                 style="margin-left: 29px;"
-                                                onclick="window.location.href='http://localhost:8082/work-lounge/eval-list/eval-compose/1'"
+                                                onclick="window.location.href='http://localhost:8082/work-lounge/eval-list/eval-compose/${noti.subAnnNo}'"
                                                 <c:if test='${noti.progStatus != "구성대기"}'>disabled</c:if>>
                                             위원구성
                                         </button>

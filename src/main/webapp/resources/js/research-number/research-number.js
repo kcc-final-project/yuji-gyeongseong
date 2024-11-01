@@ -619,7 +619,9 @@ $(document).ready(function () {
           type: "POST",
           contentType: "application/json",
           data: JSON.stringify(EvalNotiRequest),
-          success: function (response) {},
+          success: function (response) {
+            window.location.href='/';
+          },
           error: function (error) {
             alert("저장 알림 실패");
             console.log(error, "error");

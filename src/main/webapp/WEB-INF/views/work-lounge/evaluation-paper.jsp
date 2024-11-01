@@ -26,35 +26,35 @@
             <tbody>
             <c:if test="${not empty paperList}">
                 <tr>
-                    <th class="table-active domain">사업명</th>
-                    <th colspan="3">${paperList[0].totalTitle}</th>
+                    <td class="table-active domain">사업명</td>
+                    <td colspan="3">${paperList[0].totalTitle}</td>
                 </tr>
                 <tr class="letter">
-                    <th class="table-active domain">연구개발계획서번호</th>
+                    <td class="table-active domain">연구개발계획서번호</td>
                     <td>[RM-2024-NO${paperList[0].rndPlanNo}]</td>
-                    <th class="table-active domain">평가일</th>
+                    <td class="table-active domain">평가일</td>
                     <td>${paperList[0].evalCompletedAt}</td>
                 </tr>
                 <tr class="letter">
-                    <th class="table-active domain">연구개발과제명</th>
+                    <td class="table-active domain">연구개발과제명</td>
                     <td colspan="3">${paperList[0].taskName}</td>
                 </tr>
                 <tr class="letter">
-                    <th class="table-active domain">주관연구개발기관</th>
+                    <td class="table-active domain">주관연구개발기관</td>
                     <td>${paperList[0].rndInstitution}</td>
-                    <th class="table-active domain">연구책임자</th>
+                    <td class="table-active domain">연구책임자</td>
                     <td>${paperList[0].name}</td>
                 </tr>
                 <tr class="letter">
-                    <th class="table-active domain">평가위원</th>
+                    <td class="table-active domain">평가위원</td>
                     <td>${paperList[0].etname}</td>
-                    <th class="table-active domain">소속</th>
+                    <td class="table-active domain">소속</td>
                     <td>${paperList[0].affilType}</td>
                 </tr>
                 <tr class="letter">
-                    <th class="table-active domain">부서</th>
+                    <td class="table-active domain">부서</td>
                     <td>${paperList[0].affilDept}</td>
-                    <th class="table-active domain">직위</th>
+                    <td class="table-active domain">직위</td>
                     <td>${paperList[0].position}</td>
                 </tr>
             </c:if>
@@ -63,34 +63,37 @@
                 <td colspan="4">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <c:forEach var="paper" items="${paperList}">
-                            <li class="nav-item">
-                                <a
-                                        class="nav-link active evpaper"
-                                        id="common-tab"
-                                        data-toggle="tab"
-                                        href="#common"
-                                        role="tab"
-                                        aria-controls="common"
-                                        aria-selected="true"
-                                        data-id="공통"
-                                        data-form-id="${paper.formType}"
-                                >공통 평가지</a
-                                >
-                            </li>
-                            <li class="nav-item">
-                                <a
-                                        class="nav-link evpaper"
-                                        id="skill-tab"
-                                        data-toggle="tab"
-                                        href="#skill"
-                                        role="tab"
-                                        aria-controls="skill"
-                                        aria-selected="false"
-                                        data-id="${paper.type}"
-                                        data-form-id="${paper.formType}"
-                                >기술분야 평가지 (${paper.type})</a
-                                >
-                            </li>
+                        <li class="nav-item">
+                            <a
+                                    class="nav-link active evpaper"
+                                    id="common-tab"
+                                    data-toggle="tab"
+                                    href="#common"
+                                    role="tab"
+                                    aria-controls="common"
+                                    aria-selected="true"
+                                    data-id="공통"
+                                    data-form-id="${paper.formType}"
+                            >공통 평가지</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                    class="nav-link evpaper"
+                                    id="skill-tab"
+                                    data-toggle="tab"
+                                    href="#skill"
+                                    role="tab"
+                                    aria-controls="skill"
+                                    aria-selected="false"
+                                    data-id="${paper.type}"
+                                    data-form-id="${paper.formType}"
+                                    style="color: black"
+                                <%--                                >기술분야 평가지 (${paper.type})</a--%>
+                                <%--&lt;%&ndash;                                >&ndash;%&gt; 잠시 바꿈--%>
+                            >기술분야 평가지 (생명과학)</a
+                            >
+                        </li>
 
                     </ul>
 
@@ -176,45 +179,45 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="/resources/js/work-lounge/evaluation-paper.js"></script>
-<script>
-    function saveScores() {
+    <script>
+        function saveScores() {
 
-        const totalScore1 = parseInt(localStorage.getItem('totalScore_common')) || 0;
-        const totalScore2 = parseInt(localStorage.getItem('totalScore_specific')) || 0;
-
-
-        const totalScore = totalScore1 + totalScore2;
+            const totalScore1 = parseInt(localStorage.getItem('totalScore_common')) || 0;
+            const totalScore2 = parseInt(localStorage.getItem('totalScore_specific')) || 0;
 
 
-        const scoreData = {
-            totalScore: totalScore  // 합산된 점수
-            // evalCommitteeNo: 1,
-            // rndPlanNo: 3,
-            // memNo: 1,
-            // evaluationTableNo: 1
-        };
+            const totalScore = totalScore1 + totalScore2;
 
-        $.ajax({
-            url: "/work-lounge/score",
-            type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify(scoreData),
 
-            success: function(response) {
-                console.log("점수가 성공적으로 저장되었습니다.", response);
+            const scoreData = {
+                totalScore: totalScore  // 합산된 점수
+                // evalCommitteeNo: 1,
+                // rndPlanNo: 3,
+                // memNo: 1,
+                // evaluationTableNo: 1
+            };
 
-                alert("점수가 성공적으로 저장되었습니다.");
+            $.ajax({
+                url: "/work-lounge/score",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(scoreData),
 
-                window.location.href = "/work-lounge/evaluation-task-lists";
-            },
-            error: function(xhr, status, error) {
-                console.error("점수 저장 오류:", status, error);
-                alert("점수 저장에 실패했습니다. 다시 시도해주세요.");
-            }
-        });
-    }
+                success: function (response) {
+                    console.log("점수가 성공적으로 저장되었습니다.", response);
 
-</script>
+                    alert("점수가 성공적으로 저장되었습니다.");
+
+                    window.location.href = "/work-lounge/evaluation-task-lists";
+                },
+                error: function (xhr, status, error) {
+                    console.error("점수 저장 오류:", status, error);
+                    alert("점수 저장에 실패했습니다. 다시 시도해주세요.");
+                }
+            });
+        }
+
+    </script>
 
 </div>
 </body>

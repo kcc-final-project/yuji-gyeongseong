@@ -182,12 +182,12 @@
             </tr>
             <tr>
                 <td colspan="6">
-                    <div class="d-flex align-items-center">
-                        <p class="ms-2"><b>[익명의 평가위원1]</b>에 대한 답글작성</p>
-                        <div class="col-1"></div>
-                        <div class="col-6"></div>
-                        <button class="btn ctm-btn-bigger file_btn ms-2 mb-1" id="newButton">첨부파일</button>
-                    </div>
+<%--                    <div class="d-flex align-items-center">--%>
+<%--                        <p class="ms-2"><b>[익명의 평가위원1]</b>에 대한 답글작성</p>--%>
+<%--                        <div class="col-1"></div>--%>
+<%--                        <div class="col-6"></div>--%>
+<%--                        <button class="btn ctm-btn-bigger file_btn ms-2 mb-1" id="newButton">첨부파일</button>--%>
+<%--                    </div>--%>
 
                     <div class="d-flex mb-1" id="contentWrapper">
                         <div class="w-100 p-2 bg-light border rounded text_area_div" id="textareaDiv">

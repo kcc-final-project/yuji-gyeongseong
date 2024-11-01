@@ -76,6 +76,11 @@
   font-weight: normal;
 }
 
+.letter2 {
+  font-size: 12px !important;
+  font-weight: normal;
+}
+
 .table-container {
   overflow: hidden;
   border-radius: 7px;

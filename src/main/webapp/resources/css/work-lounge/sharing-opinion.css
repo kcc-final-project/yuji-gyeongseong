@@ -128,7 +128,7 @@
 
 .letter {
     font-size: 14px;
-    font-weight: bolder;
+    font-weight: normal;
 }
 
 .letter1 {
@@ -145,7 +145,7 @@
 .opinion-card {
     background: #f8f9fa;
     border: 1px solid #dee2e6;
-    padding: 1rem;
+    padding: 0.5rem;
     border-radius: 0.25rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }

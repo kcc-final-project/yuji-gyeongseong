@@ -43,26 +43,26 @@
 
             <c:if test="${fn:contains(userRole, 'USER') or fn:contains(userRole, 'RESE') or fn:contains(userRole, 'DIRE') or fn:contains(userRole, 'EVAL')}">
                 <li class="nav-item">
-                    <a class="nav-link" data-path="#" id="tab-submission-list">접수목록</a>
+                    <a class="nav-link" data-path="/work-lounge/register-list" id="tab-submission-list">접수목록</a>
                 </li>
             </c:if>
 
             <c:if test="${fn:contains(userRole, 'EVAL') or fn:contains(userRole, 'MGR')}">
                 <li class="nav-item">
-                    <a class="nav-link" data-path="#" id="tab-evaluation-task">평가 과제 목록</a>
+                    <a class="nav-link" data-path="/work-lounge/evaluation-task-lists" id="tab-evaluation-task">평가 과제 목록</a>
                 </li>
             </c:if>
 
             <c:if test="${fn:contains(userRole, 'MGR')}">
                 <li class="nav-item">
-                    <a class="nav-link" data-path="/work-lounge/eval-list/eval-compose/" id="tab-selection-evaluation">선정
+                    <a class="nav-link" data-path="/work-lounge/eval-list" id="tab-selection-evaluation">선정
                         평가</a>
                 </li>
             </c:if>
 
             <c:if test="${fn:contains(userRole, 'MGR')}">
                 <li class="nav-item">
-                    <a class="nav-link" data-path="#" id="tab-selection-evaluation-form">전자 평가표</a>
+                    <a class="nav-link" data-path="/work-lounge/evaluation-tables" id="tab-selection-evaluation-form">전자 평가표</a>
                 </li>
             </c:if>
         </ul>

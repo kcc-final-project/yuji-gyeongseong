@@ -83,7 +83,7 @@ function loadData(url, paperType) {
       data.forEach(function (item, index) {
         html += `
           <tr>
-              <td colspan="5" class="table-active blue" style="color: #582f2f !important;">
+              <td colspan="5" class="table-active blue" class="letter2" style="color: black !important; font-size: 14px;">
                   ${index + 1}. ${item.content}
               </td>
           </tr>
