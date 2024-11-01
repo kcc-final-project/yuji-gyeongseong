@@ -25,12 +25,10 @@ public class ResearchNumberRestController {
     private final EvalComposeService evalComposeService;
 
     @PostMapping("/register/research/{memberId}")
-    public ResponseEntity<?> registerResearchInformation(@PathVariable Long memberId, @RequestBody SubmitResearchRequest submitRequest) {
+    public ResponseEntity<?> registerResearchInformation(@AuthenticationPrincipal PrincipalDetail principalDetail,  @RequestBody SubmitResearchRequest submitRequest) {
 
         // 세션 연결
-        Long id = 25L;
-
-        log.info("djslkfjdlsk");
+        Long id = principalDetail.getId();
 
         try {
             evalCommitteeService.setCareersByMemberId(id, submitRequest.getCareerInfos());
@@ -47,7 +45,19 @@ public class ResearchNumberRestController {
     }
 
     @PostMapping("/register/eval/{memberId}")
-    public ResponseEntity<?> registerEvalInformation(@RequestBody EvalNotiRequest evalNotiRequest) {
+    public ResponseEntity<?> registerEvalInformation(@AuthenticationPrincipal PrincipalDetail principalDetail, @RequestBody EvalNotiRequest evalNotiRequest) {
+        try {
+            evalNotiRequest.setMemNo(principalDetail.getId());
+            evalCommitteeService.setEvalNotiByMemberId(evalNotiRequest);
+            return ResponseEntity.ok("후보단 신청 완료");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("후보단 신청 실패: " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/register/noti/{memberId}")
+    public ResponseEntity<?> registerEvalNotiInformation(@RequestBody EvalNotiRequest evalNotiRequest) {
         try {
             evalCommitteeService.setEvalNotiByMemberId(evalNotiRequest);
             return ResponseEntity.ok("후보단 신청 완료");
