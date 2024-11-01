@@ -11,7 +11,6 @@
 </head>
 <script>
 
-
 </script>
 <style>
     .body {
@@ -114,6 +113,7 @@
     .link-coment {
         width: 250px;
         color: black;
+        font-size: 14px;
     }
 
     .anno-contents-body {
@@ -149,14 +149,14 @@
     .common-span-style {
         font-weight: 400;
         color: #0f0f1e;
-        font-size: 17px;
+        font-size: 14px;
         margin-right: 8px;
     }
 
     .spec-style {
         color: #757575;
         font-style: normal;
-        font-size: 15px;
+        font-size: 13px;
     }
 
     .total-title {

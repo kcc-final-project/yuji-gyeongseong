@@ -47,7 +47,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="user-name" class="form-label">이름 <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" disabled id="user-name" value="김상학">
+                                <input type="text" class="form-control" disabled id="user-name">
 
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                             <div class="col-md-6">
                                 <label for="birth-date" class="form-label">생년월일 <span
                                         class="text-danger">*</span></label>
-                                <input type="text" class="form-control" disabled id="birth-date" value="2000-02-17">
+                                <input type="text" class="form-control" disabled id="birth-date">
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">성별 <span class="text-danger">*</span></label>
@@ -94,7 +94,7 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">휴대전화번호 <span class="text-danger">*</span></label>
-                                <input type="tel" class="form-control" disabled id="phone" value="010-8978-6088">
+                                <input type="tel" class="form-control" disabled id="phone">
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label">이메일 <span class="text-danger">*</span></label>

@@ -10,9 +10,10 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class MemberLogin {
-    private  Long memNo;
+    private Long memNo;
+    private Long rsrchNo;
     private String name;
-    private  String username;
-    private  String password;
-    private  List<MemRole> roles;
+    private String username;
+    private String password;
+    private List<MemRole> roles;
 }

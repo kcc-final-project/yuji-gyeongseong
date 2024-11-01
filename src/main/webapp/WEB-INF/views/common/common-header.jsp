@@ -69,12 +69,15 @@
                                     <span class="common-header__item common-header__item__pointer">사업공고</span>
                                 </a>
                             </div>
-                            <div class="col-5 h-100 d-flex justify-content-between">
+                            <div style="width: 420px; display: flex; justify-content: flex-end; gap: 25px;">
                 <span
                         class="common-header__item tracking-widest"
-                        style="letter-spacing: 5px">${sessionScope.username}
-                  <span style="letter-spacing: 0px; color: #ff8f27"
-                  >(192347283)
+                        >${sessionScope.username}
+                  <span style=" color: #ff8f27;"
+                          <c:if test="${not empty sessionScope.rsrchNo}">
+                              >${sessionScope.rsrchNo}
+                          </c:if>
+
                   </span>
                   </span> <a href="/business-timeline" style="text-decoration: none; color: black">
                                 <span class="common-header__item common-header__item__pointer">워크라운지</span>

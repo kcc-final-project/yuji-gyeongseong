@@ -19,6 +19,12 @@ public class SecurityConfig {
             "/",
     };
 
+    private static final String[] NOT_LOGIN_LIST = {
+            "/business-timeline",
+            "/research-number",
+            "/eval-committee",
+    };
+
     private static final String[] USER_LIST = {
             "/research-number",
             "work-lounge/register-list/**",
@@ -60,7 +66,7 @@ public class SecurityConfig {
                 request -> request
 
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-                        .requestMatchers("/business-timeline").hasAnyRole("USER","RESE","DIRE","MGR","EVAL")
+                        .requestMatchers(NOT_LOGIN_LIST).hasAnyRole("USER","RESE","DIRE","MGR","EVAL")
 //                        .requestMatchers(PERMIT_LIST).permitAll()
 //                        .requestMatchers(USER_LIST).hasRole("USER")
 //                        .requestMatchers(EVAL_LIST).hasRole("EVAL")

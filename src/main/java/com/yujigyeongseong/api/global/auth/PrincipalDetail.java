@@ -66,4 +66,8 @@ public class PrincipalDetail implements UserDetails {
     public Long getId(){
         return user.getMemNo();
     }
+
+    public Long getRsrchNo(){
+        return user.getRsrchNo();
+    }
 }
