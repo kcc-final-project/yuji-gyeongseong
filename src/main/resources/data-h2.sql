@@ -1364,13 +1364,13 @@ INSERT INTO question (question_no, type, content, created_at)
 VALUES (NEXT VALUE FOR seq_question, 'TypeA', 'Question content 1', CURRENT_TIMESTAMP);
 
 INSERT INTO question (question_no, type, content, created_at)
-VALUES (NEXT VALUE FOR seq_question, 'common', 'Question content 2', CURRENT_TIMESTAMP);
+VALUES (NEXT VALUE FOR seq_question, 'TypeA', 'Question content 2', CURRENT_TIMESTAMP);
 
 INSERT INTO question (question_no, type, content, created_at)
-VALUES (NEXT VALUE FOR seq_question, 'TypeC', 'Question content 3', CURRENT_TIMESTAMP);
+VALUES (NEXT VALUE FOR seq_question, 'common', 'Question content 3', CURRENT_TIMESTAMP);
 
 INSERT INTO question (question_no, type, content, created_at)
-VALUES (NEXT VALUE FOR seq_question, 'TypeD', 'Question content 4', CURRENT_TIMESTAMP);
+VALUES (NEXT VALUE FOR seq_question, 'common', 'Question content 4', CURRENT_TIMESTAMP);
 
 INSERT INTO question (question_no, type, content, created_at)
 VALUES (NEXT VALUE FOR seq_question, 'TypeE', 'Question content 5', CURRENT_TIMESTAMP);
@@ -1615,7 +1615,10 @@ INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step
 VALUES (NEXTVAL('seq_opinion'), 1, '첫 번째에대한 의견', DEFAULT, 0, 1, 1, 1, 0, DEFAULT, 1, 1, 1);
 
 
-
+insert into ANNOCEMENT_EVALUATION(evaluation_table_no, sub_ann_no)
+values (1,1);
+insert into ANNOCEMENT_EVALUATION(evaluation_table_no, sub_ann_no)
+values (2,2);
 -- INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at, eval_committee_no, rnd_plan_no, bucket_no) VALUES (1, 1, 'I believe the evaluation process can be improved.', current_timestamp, 10, 0, 0, 0, 0, null, 1, 1, 1);
 -- INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at, eval_committee_no, rnd_plan_no, bucket_no) VALUES (2, 2, 'The new criteria are beneficial.', current_timestamp, 5, 0, 0, 0, 0, null, 1, 1, 1);
 -- INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at, eval_committee_no, rnd_plan_no, bucket_no) VALUES (3, 3, 'I have concerns about the transparency.', current_timestamp, 3, 0, 0, 0, 0, null, 1, 2, 1);

@@ -78,9 +78,9 @@ $(document).ready(function () {
           ']</b><p class="ms-1 mt-1">조회결과</p></h5>';
 
         headerHtml +=
-          '<h5 class="text-muted mb-2 ms-auto mt-1">총 ' +
+          '<h5 class="text-muted mb-2 ms-auto mt-1 letter">[총 ' +
           rowCount +
-          "건</h5></div>";
+          "건]</h5></div>";
         headerHtml += '<div class="line"></div>';
         var tableHtml =
           headerHtml + '<div style="max-height: 300px; overflow-y: auto">';
@@ -89,7 +89,7 @@ $(document).ready(function () {
           committeeName +
           '">';
         tableHtml +=
-          '<thead><tr class="domain"><th>과제명</th><th>주관연구기관</th><th>연구책임자</th><th>평가완료일자</th><th>평가상태</th><th>의견공유</th><th>평가</th></tr></thead>';
+          '<thead><tr class="domain"><td>과제명</td><td>주관연구기관</td><td>연구책임자</td><td>평가완료일자</td><td>평가상태</td><td>의견공유</td><td>평가</td></tr></thead>';
         tableHtml += "<tbody>";
         response.forEach(function (item) {
           tableHtml +=

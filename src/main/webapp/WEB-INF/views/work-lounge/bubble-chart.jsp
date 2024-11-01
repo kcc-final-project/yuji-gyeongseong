@@ -8,40 +8,75 @@
     <title>월별 연구 현황 버블 차트</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        #chart-container {
-            width: 80%;
-            margin: 0 auto;
-        }
-
         .info {
             display: none;
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .info:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-body {
+            padding: 15px;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #007bff; /* Bootstrap primary color */
+        }
+
+        .card-text {
+            font-size: 1rem;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .institution-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .business-number,
+        .type,
+        .location,
+        .category {
+            color: #555;
         }
     </style>
 </head>
-<body class="mt-5">
+<body class="mt-3" style="height: auto">
 
-<div class="d-flex align-items-center">
-    <div class="form-group col-md-2 ms-1">
-        <label for="year">년도:</label>
-        <select id="year" class="form-control-sm">
-            <option value="2022">2022</option>
-            <option value="2023">2023</option>
-        </select>
+<div class="d-flex align-items-center justify-content-end">
+    <div class="d-flex justify-content-end mb-3">
+        <div class="form-group col-md-2 me-3">
+<%--            <label for="year">년도:</label>--%>
+            <select id="year" class="form-select form-select-sm">
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+            </select>
+        </div>
+        <div class="form-group col-md-2 me-3">
+<%--            <label for="institution">기관:</label>--%>
+            <select id="institution" class="form-select form-select-sm" onchange="updateChart()">
+                <option value="all">전체</option>
+                <option value="A기관">A기관</option>
+                <option value="B기관">B기관</option>
+            </select>
+        </div>
     </div>
-    <div class="form-group col-md-2 ms-4">
-        <label for="institution">기관:</label>
-        <select id="institution" class="form-control-sm" onchange="updateChart()">
-            <option value="all">전체</option>
-            <option value="A기관">A기관</option>
-            <option value="B기관">B기관</option>
-        </select>
-    </div>
+
 </div>
 
 <canvas id="myChart"></canvas>
 
 <template id="institution-template">
-    <div class="info card mb-3">
+    <div class="info card mb-1">
         <div class="card-body d-flex">
             <div class="col-5">
                 <h4 class="card-title ms-5">기관 정보</h4>
@@ -89,7 +124,7 @@
                     data: yearData[institution].map((value, index) => ({
                         x: index + 1,
                         y: value,
-                        r: value / 2,
+                        r: value / 5,
                     })),
                     backgroundColor: getRandomColor(),
                 });
@@ -101,7 +136,7 @@
                 data: yearData[selectedInstitution].map((value, index) => ({
                     x: index + 1,
                     y: value,
-                    r: value / 2,
+                    r: value / 5,
                 })),
                 backgroundColor: getRandomColor(),
             });

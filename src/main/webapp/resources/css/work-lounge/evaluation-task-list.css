@@ -3,7 +3,7 @@
     margin: 20px 0;
 }
 
-.domain > th {
+.domain > td {
     background-color: #2E406AFF;
     color: white;
 }
@@ -14,7 +14,7 @@
 
 .letter {
     font-size: 14px;
-    font-weight: bolder;
+    font-weight: normal;
 }
 
 .btn-back-indigo {
@@ -49,4 +49,19 @@
 
 .btn.btn-outline-secondary {
     font-size: 9px;
+}
+
+.arrow {
+    margin-left: 5px;
+    font-size: 0.8em;
+}
+
+.up::after {
+    content: '▲';
+    color: green;
+}
+
+.down::after {
+    content: '▼';
+    color: red;
 }

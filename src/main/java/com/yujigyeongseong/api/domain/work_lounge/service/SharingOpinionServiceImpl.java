@@ -20,8 +20,13 @@ public class SharingOpinionServiceImpl implements SharingOpinionService {
     private SharingOpinionMapper sharingOpinionMapper;
 
     @Override
-    public List<SharingOpinionDTO> getSelectSharingOpinionList(String taskName) {
-        return sharingOpinionMapper.selectSharingOpinionList(taskName);
+    public List<SharingOpinionDTO> getSelectSharingOpinionList(int rndPlanNo) {
+        return sharingOpinionMapper.selectSharingOpinionList(rndPlanNo);
+    }
+
+    @Override
+    public List<SharingOpinionDTO> evalPeople(int rndPlanNo) {
+        return sharingOpinionMapper.evalPeople(rndPlanNo);
     }
 
     @Override
@@ -37,8 +42,16 @@ public class SharingOpinionServiceImpl implements SharingOpinionService {
     }
 
     @Override
-    public Opinion summaryId(String content) {
-        return sharingOpinionMapper.summaryId(content);
+    public Opinion summaryId(int opinionNo) {
+        return sharingOpinionMapper.summaryId(opinionNo);
+    }
+
+    @Override
+    public int insertOpinionReplyList(Opinion opinion) {
+        opinion.setEvalCommitteeNo(1);
+        opinion.setRndPlanNo(1);
+        opinion.setBucketNo(1);
+        return sharingOpinionMapper.insertOpinionReplyList(opinion);
     }
 
 

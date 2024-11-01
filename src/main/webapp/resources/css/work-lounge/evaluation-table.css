@@ -10,7 +10,7 @@
   display: block;
 }
 
-.domain > th {
+.domain > td {
   background-color: #2e406aff;
   color: white;
 }
@@ -27,9 +27,9 @@
   margin: 0;
 }
 
-.letter {
-  font-size: 12px;
-  font-weight: bold;
+.letter1 {
+  font-size: 14px;
+  font-weight: normal;
 }
 
 .line {
@@ -73,3 +73,128 @@
   font-size: 12px; /* 글자 크기 조절 */
   padding: 0; /* 내부 여백 조절 */
 }
+
+.letter {
+  font-size: 20px !important;
+  font-weight: normal !important;
+}
+
+.rounded-table {
+  border-radius: 5px; /* 원하는 둥글기 설정 */
+  overflow: hidden; /* 테두리 안의 내용이 둥글게 보이도록 함 */
+}
+
+.nav-link.custom-nav-link {
+  background-color: #2e406a; /* 원하는 배경색 */
+  color: white; /* 글자색 */
+}
+
+
+.btn-back-indigo {
+  background-color: #2E406AFF;
+  color: #ffffff;
+}
+
+.btn-back-indigo:hover {
+  border-color: #2E406AFF;
+}
+
+
+.ctm-btn-blue {
+  background-color: #2E406AFF !important; /* 기본 상태의 배경색 */
+  width: 170px;
+  height: 38px;
+  color: #ffffff !important; /* 텍스트 색상 */
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid transparent; /* 기본 상태의 테두리 색상 설정 */
+  transition: 0.3s all; /* 부드러운 전환 효과 */
+}
+
+.ctm-btn-blue:hover {
+  width: 170px;
+  background-color: #ffffff !important; /* 호버 상태의 배경색 */
+  border: 2px solid #2E406AFF !important; /* 호버 상태에서 테두리 색상 설정 */
+  color: #2E406AFF !important; /* 호버 상태에서 텍스트 색상 */
+}
+
+.ctm-btn-orange {
+  background-color: #ff8f27 !important; /* 기본 상태의 배경색 */
+  width: 100px;
+  height: 38px;
+  color: #ffffff !important; /* 텍스트 색상 */
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid transparent;
+  transition: 0.3s all;
+}
+
+.ctm-btn-orange:hover {
+  background-color: #ffffff !important;
+  border: 2px solid #ff8f27 !important;
+  color: #ff8f27 !important;
+}
+
+.ctm-btn-white {
+  background-color: #ffffff !important;
+  width: 100px;
+  height: 38px;
+  color: #ff8f27 !important;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #ff8f27 !important;
+  transition: 0.3s all;
+}
+
+.ctm-btn-white:hover {
+  background-color: #ff8f27 !important;
+  border: 2px solid transparent;
+  color: #ffffff !important;
+}
+
+.ctm-btn-orange1 {
+  background-color: #ff8f27 !important;
+  width: 65px;
+  height: 38px;
+  color: #ffffff !important;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid transparent;
+  transition: 0.3s all;
+}
+
+.ctm-btn-orange1:hover {
+  background-color: #ffffff !important;
+  border: 2px solid #ff8f27 !important;
+  color: #ff8f27 !important;
+}
+
+.ctm-btn-white1 {
+  background-color: #ffffff !important;
+  width: 65px;
+  height: 38px;
+  color: #ff8f27 !important;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #ff8f27 !important;
+  transition: 0.3s all;
+}
+
+.ctm-btn-white1:hover {
+  background-color: #ff8f27 !important;
+  border: 2px solid transparent;
+  color: #ffffff !important;
+}
+
+
+

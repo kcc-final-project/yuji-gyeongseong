@@ -30,6 +30,7 @@ public class EvaluationPaperServiceImpl implements EvaluationPaperService {
         return evaluationPaperMapper.selectContentList(formType, type);
     }
 
+    /*점수 저장 */
     @Override
     public void insertScoreList(EvaluationScoreDTO evaluationScoreDTO) {
         evaluationScoreDTO.setEvalCommitteeNo(1);
@@ -38,11 +39,6 @@ public class EvaluationPaperServiceImpl implements EvaluationPaperService {
         evaluationScoreDTO.setEvaluationTableNo(1);
         evaluationPaperMapper.insertScoreList(evaluationScoreDTO);
     }
-
-
-
-
-
 
     @Override
     public void register(Question question) {

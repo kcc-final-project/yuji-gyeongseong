@@ -14,32 +14,30 @@
         }
     </style>
 </head>
-<body class="mt-5">
-<div class="d-flex align-items-center">
-    <div class="form-group col-md-2 ms-1">
-        <label for="year">년도:</label>
-        <select id="year" class="form-control-sm">
+<body class="mt-3" style="height: auto">
+<div class="d-flex justify-content-center align-items-center mb-1">
+    <div class="form-group col-md-2 me-3">
+        <select id="year" class="form-select form-select-sm">
             <option value="2022">2022</option>
             <option value="2023">2023</option>
         </select>
     </div>
-    <div class="form-group col-md-2 ms-4">
-        <label for="institution1">기관A:</label>
-        <select id="institution1" class="form-control-sm">
+    <div class="form-group col-md-2 me-3 mb-4 d-flex flex-column align-items-center">
+        <label for="institution1" style="font-size: 14px;">기관A</label>
+        <select id="institution1" class="form-select form-select-sm">
             <option value="A">기상청</option>
             <option value="B">한국수자원공사</option>
         </select>
     </div>
-    <div class="form-group col-md-2 ms-4">
-        <label for="institution2">기관B:</label>
-        <select id="institution2" class="form-control-sm">
+    <div class="form-group col-md-2 me-3 mb-4 d-flex flex-column align-items-center">
+        <label for="institution2" style="font-size: 14px;">기관B</label>
+        <select id="institution2" class="form-select form-select-sm">
             <option value="A">기상청</option>
             <option value="B">한국수자원공사</option>
         </select>
     </div>
-    <div class="form-group col-md-2 ms-4">
-        <label for="quarter">분기:</label>
-        <select id="quarter" class="form-control-sm">
+    <div class="form-group col-md-2 me-3">
+        <select id="quarter" class="form-select form-select-sm">
             <option value="Q1">1분기</option>
             <option value="Q2">2분기</option>
             <option value="Q3">3분기</option>
@@ -48,8 +46,10 @@
     </div>
 </div>
 
+
+
 <div class="d-flex justify-content-end align-items-center">
-    <p class="me-4">[단위: 천]</p>
+    <p class="me-2">[단위: 천]</p>
 </div>
 
 <canvas id="radarChart"></canvas>

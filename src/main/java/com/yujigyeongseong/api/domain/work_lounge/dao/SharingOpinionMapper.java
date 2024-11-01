@@ -11,13 +11,17 @@ import java.util.List;
 @Mapper
 public interface SharingOpinionMapper {
 
-    public List<SharingOpinionDTO> selectSharingOpinionList(String taskName);
+    public List<SharingOpinionDTO> selectSharingOpinionList(int rndPlanNo);
+
+    public List<SharingOpinionDTO> evalPeople(int rndPlanNo);
 
     public List<SharingOpinionDTO> selectCommitteePersonList(String taskName);
 
 
     public List<Opinion> selectOpinionList();
 
-    public Opinion summaryId(String content);
+    public Opinion summaryId(int opinionNo);
+
+    public int insertOpinionReplyList(Opinion opinion);
 
 }

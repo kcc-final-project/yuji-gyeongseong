@@ -3,13 +3,28 @@
 
 <mapper namespace="com.yujigyeongseong.api.domain.work_lounge.dao.SelectEvaluationMapper">
 
-    <select id="selectEvaluationList" resultType="SelectEvaluationDTO">
-        select distinct ann.total_title        as totaltitle,
-                        subann.sub_title       as subtitle,
-                        ann.closed_at          as closedat,
-                        evta.final_selected_at as finalselectedat,
-                        evta.eval_status       as evalstatus,
-                        evcom.prog_status      as progstatus
+    <resultMap id="notiMap" type="NotiDTO">
+        <id property="subAnnNo" column="sub_ann_no"/>
+        <result property="subTitle" column="sub_title"/>
+        <result property="closedAt" column="closed_at"/>
+        <result property="finalSelectedAt" column="final_selected_at"/>
+        <result property="progStatus" column="prog_status"/>
+    </resultMap>
+
+    <resultMap id="SelectEvaluationMap" type="SelectNotiDTO">
+        <id property="totalTitle" column="total_title"/>
+        <result property="evalStatus" column="eval_status"/>
+        <collection property="notiTypes" resultMap="notiMap"/>
+    </resultMap>
+
+    <select id="selectEvaluationList" resultMap="SelectEvaluationMap">
+        select ann.total_title,
+               evta.eval_status,
+               subann.sub_title,
+               ann.closed_at,
+               evta.final_selected_at,
+               evcom.prog_status,
+               subann.sub_ann_no
         from announcement ann
                  inner join sub_announcement subann on ann.ann_no = subann.ann_no
                  inner join eval_committee evcom on subann.sub_ann_no = evcom.sub_ann_no
@@ -17,28 +32,29 @@
                  inner join eval_task evta on evta.eval_committee_no = evcom.eval_committee_no
     </select>
 
+    <!-- 선정평가 상세 -->
     <select id="selectEvaluation" resultType="SelectEvaluationDTO">
-        select DISTINCT sann.sub_ann_no                                    as subannno,
-                        et.eval_status                                     as evalstatus,
-                        sann.sub_title                                     as subtitle,
-                        et.final_selected_at - 3                           as start,
-                        et.final_selected_at                               as finalselectedat,
-                        rp.rnd_task_no                                     as rndtaskno,
-                        rp.task_name                                       as taskname,
-                        rp.rnd_institution                                 as rndinstitution,
-                        (SELECT name FROM member WHERE mem_no = rp.mem_no) AS rndname,
-                        et.total_score                                     as totalscore,
-                        rp.plan_status                                     as planstatus,
-                        ec.name                                            as name,
-                        et.sel_completed_at                                as selcompletedat
-        from announcement ann
-                 inner join sub_announcement sann on ann.ann_no = sann.ann_no
-                 inner join rnd_plan rp on rp.sub_ann_no = sann.sub_ann_no
-                 inner join member mem on mem.mem_no = rp.mem_no
-                 inner join eval_task et on et.rnd_plan_no = rp.rnd_plan_no
-                 inner join eval_score es on es.mem_no = et.mem_no
-                 inner join eval_committee ec on ec.sub_ann_no = sann.sub_ann_no
-        where sann.sub_ann_no = #{subAnnNo}
+        SELECT DISTINCT sann.sub_ann_no                                    AS subannno,
+                        et.eval_status                                     AS evalstatus,
+                        sann.sub_title                                     AS subtitle,
+                        et.final_selected_at - INTERVAL '3' DAY            AS startdate,
+                        et.final_selected_at                               AS finalselectedat,
+                        rp.rnd_task_no                                     AS rndtaskno,
+                        rp.task_name                                       AS taskname,
+                        rp.rnd_institution                                 AS rndinstitution,
+                        (SELECT name FROM member WHERE mem_no = rp.mem_no) AS roundname,
+                        et.total_score                                     AS totalscore,
+                        rp.plan_status                                     AS planstatus,
+                        ec.name                                            AS committeename,
+                        et.sel_completed_at                                AS selcompletedat
+        FROM announcement ann
+                 INNER JOIN sub_announcement sann ON ann.ann_no = sann.ann_no
+                 INNER JOIN rnd_plan rp ON rp.sub_ann_no = sann.sub_ann_no
+                 INNER JOIN member mem ON mem.mem_no = rp.mem_no
+                 INNER JOIN eval_task et ON et.rnd_plan_no = rp.rnd_plan_no
+                 INNER JOIN evaluation_member em on em.eval_committee_no = et.eval_committee_no
+                 INNER JOIN eval_committee ec ON ec.sub_ann_no = sann.sub_ann_no
+        WHERE sann.sub_ann_no = #{subAnnNo}
     </select>
 
     <select id="selectCommittee" parameterType="SelectEvaluationDTO">

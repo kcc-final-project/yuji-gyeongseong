@@ -20,6 +20,30 @@
   color: var(--main-bg-color);
   transition: 0.3s all;
 }
+
+
+.ctm-btn-white {
+  background-color: #ffffff;
+  width: 120px;
+  height: 38px;
+  color: var(--main-bg-color);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--main-bg-color);
+  transition: 0.3s all;
+}
+
+.ctm-btn-white:hover {
+  background-color: var(--main-bg-color);
+  border: 2px solid transparent;
+  color: white;
+}
+
+
+
+
 .blue {
   background-color: #e5f5ff;
 }
@@ -49,7 +73,7 @@
 
 .letter {
   font-size: 14px;
-  font-weight: bolder;
+  font-weight: normal;
 }
 
 .table-container {

@@ -58,18 +58,20 @@ public class WorkLoungeRestController {
     @ResponseBody
     public ResponseEntity<List<SelectEvaluationDTO>> getselectCommittee(@PathVariable String rndTaskNo) {
         List<SelectEvaluationDTO> committeeList = selectEvaluationService.getselectCommittee(rndTaskNo);
-
+        System.out.println(committeeList);
         return committeeList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(committeeList, HttpStatus.OK);
     }
 
+    /* 전자평가표 */
     @GetMapping("/evaluation-table/{subTitle}")
     @ResponseBody
     public ResponseEntity<List<FormDTO>> getSubannounceList(@PathVariable String subTitle) {
         List<FormDTO> subannounceList = evaluationTableListService.getSubannounceList(subTitle);
-
+        System.out.println(subannounceList);
         return subannounceList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(subannounceList, HttpStatus.OK);
     }
 
+    // 페이퍼
     @GetMapping("/evaluation-table/{name}/{formType}")
     @ResponseBody
     public ResponseEntity<List<PaperDTO>> getPaperList(@PathVariable String name, @PathVariable String formType) {
@@ -77,30 +79,63 @@ public class WorkLoungeRestController {
         return paperList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(paperList, HttpStatus.OK);
     }
 
+    // 질문 리스트
     @GetMapping("/evaluation-question/{name}")
     @ResponseBody
     public ResponseEntity<List<PaperDTO>> getquestionList(@PathVariable String name) {
         List<PaperDTO> questionList = evaluationTableListService.getquestionList(name);
-
+        System.out.println(questionList);
         return questionList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(questionList, HttpStatus.OK);
     }
 
+    // 의견공유
     @GetMapping("/opinion")
     @ResponseBody
     public ResponseEntity<List<Opinion>> getSelectSharingOpinionList() {
         List<Opinion> opinionList = sharingOpinionService.getselectOpinionList();
-
+        System.out.println(opinionList);
         return opinionList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(opinionList, HttpStatus.OK);
     }
 
-    @GetMapping("/summary-id/{content}")
+    //의견 상세
+    @GetMapping("/summary-id/{opinionNo}")
     @ResponseBody
-    public ResponseEntity<Opinion> getSummaryId(@PathVariable("content") String content) {
-        Opinion summary = sharingOpinionService.summaryId(content);
-
+    public ResponseEntity<Opinion> getSummaryId(@PathVariable("opinionNo") int opinionNo) {
+        Opinion summary = sharingOpinionService.summaryId(opinionNo);
+        System.out.println(summary);
         return summary == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(summary, HttpStatus.OK);
     }
 
+    // 댓글 작성
+    // 댓글 작성 요청을 처리하는 메서드
+    @PostMapping("/summary-id/{opinionNo}")
+    public ResponseEntity<String> insertOpinionReplyList(@PathVariable("opinionNo") int opinionNo,
+                                                         @RequestParam("content") String content) {
+        try {
+            Opinion opinion = new Opinion();
+            opinion.setOpinionNo(opinionNo);
+            opinion.setContent(content);
+
+            opinion.setRef(opinion.getRef());
+            opinion.setStep(opinion.getStep() + 1);
+            opinion.setDepth(opinion.getDepth() + 1);
+
+            opinion.setEvalCommitteeNo(1);
+            opinion.setRndPlanNo(1);
+            opinion.setBucketNo(1);
+
+            int result = sharingOpinionService.insertOpinionReplyList(opinion);
+
+            if (result > 0) {
+                return ResponseEntity.ok("댓글 작성 성공");
+            } else {
+                return ResponseEntity.status(500).body("댓글 작성 실패");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("서버 에러 발생");
+        }
+    }
 
 
 

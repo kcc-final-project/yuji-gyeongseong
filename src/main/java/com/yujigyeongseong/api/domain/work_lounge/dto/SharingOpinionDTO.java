@@ -28,7 +28,9 @@ public class SharingOpinionDTO {
         this.evalClosedAt = evalClosedAt != null ? formatter.format(evalClosedAt) : null;
     }
 
-    private Integer evalCommitteeNo;
+    private int evalCommitteeNo;
     private String evMem;
     private String name;
+    private String evalName;
+    private String evalPeople;
 }

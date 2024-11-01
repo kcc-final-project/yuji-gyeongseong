@@ -49,7 +49,8 @@ $(".evpaper").click(function (e) {
 
   var paperType = $(this).data("id");
   var paperName = $(this).data("form-id");
-
+  console.log(paperName);
+  console.log(paperType);
   var url =
       "/api/v1/work_lounge/evaluation-paper/" + paperName + "/" + paperType;
 
@@ -82,9 +83,9 @@ function loadData(url, paperType) {
       data.forEach(function (item, index) {
         html += `
           <tr>
-              <th colspan="5" class="table-active blue">
+              <td colspan="5" class="table-active blue" style="color: #582f2f !important;">
                   ${index + 1}. ${item.content}
-              </th>
+              </td>
           </tr>
           <tr>
               <td class="d-flex justify-content-between letter">
