@@ -5,18 +5,29 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Opinion {
-    private Integer opinionNo;
-    private Integer depth;
-    private Timestamp createdAt;
+    private int opinionNo;
+    private int memNo;
+    private String content;
+    private String createdAt;
+
+    public void setCreatedAt(Timestamp createdAt) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        this.createdAt = createdAt != null ? formatter.format(createdAt) : null;
+    }
+
+    private int readhit;
+    private int ref;
+    private int step;
+    private int depth;
+    private int delInfo;
     private Timestamp deletedAt;
-    private Integer parentOpinionNo;
-    private Integer evalCommitteeNo;
-    private Integer rndPlanNo;
-    private Integer memNo;
-    private Integer BucketNo;
+    private int evalCommitteeNo;
+    private int rndPlanNo;
+    private int bucketNo;
 }

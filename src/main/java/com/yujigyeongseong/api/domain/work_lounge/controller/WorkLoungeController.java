@@ -4,7 +4,9 @@ import ch.qos.logback.core.net.SyslogOutputStream;
 import com.yujigyeongseong.api.domain.work_lounge.dao.EvaluationTableMapper;
 import com.yujigyeongseong.api.domain.work_lounge.dto.*;
 import com.yujigyeongseong.api.domain.work_lounge.service.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,11 +15,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
 @RequestMapping("/work-lounge")
 @Controller
+@ComponentScan("controllers")
+@Slf4j
 public class WorkLoungeController {
 
     private final EvaluationPaperService evaluationPaperService;
@@ -55,7 +60,7 @@ public class WorkLoungeController {
         return "work-lounge/evaluation-table";
     }
 
-    // 쿼리 수정
+    // 저장 기능 (세모)
     @GetMapping("/evaluation-paper")
     public String getWorkLoungeEvaluationPaperPage() {
         return "work-lounge/evaluation-paper";
@@ -103,21 +108,19 @@ public class WorkLoungeController {
         return "work-lounge/eval-committee-compose";
     }
 
-    @GetMapping("/evaluation-paper/{annNo}/{subAnnNo}/{rndPlanNo}")
+    @GetMapping("/evaluation-paper/{rndPlanNo}")
     public String getEvaluationPapersAndContentList(
-            @PathVariable Integer annNo,
-            @PathVariable Integer subAnnNo,
-            @PathVariable Integer rndPlanNo,
+            @PathVariable int rndPlanNo,
             Model model) {
 
-        List<EvaluationPaperDTO> paperList = evaluationPaperService.getEvaluationPapers(annNo, subAnnNo,rndPlanNo);
-        System.out.println(paperList);
+        List<EvaluationPaperDTO> paperList = evaluationPaperService.getEvaluationPapers(rndPlanNo);
 
         model.addAttribute("paperList", paperList);
 
         return "work-lounge/evaluation-paper";
     }
 
+    // memNo가 자동으로 가져오기전까지 사용하는 용도
     @GetMapping("/register-list/{memNo}")
     public String getRegisterAndCompleteList(@PathVariable("memNo") Integer memNo, Model model) {
         List<RegisterListDTO> registerList = registerListService.getRegisterList(memNo);
@@ -129,6 +132,20 @@ public class WorkLoungeController {
         return "work-lounge/register-list";
     }
 
+    //위 사항은 memNo가 넘어올때 사용하는 용도로 만들어 놓은 것이다.
+//    @GetMapping("/register-list")
+//    public String getRegisterAndCompleteList(@AuthenticationPrincipal Principal principal, Model model) {
+//        String name = principalDetail.getName();
+//        Long userId = principalDetail.getMemberId();
+//        List<RegisterListDTO> registerList = registerListService.getRegisterList(userId);
+//        List<RegisterListDTO> completeList = registerListService.getCompleteList(userId);
+//
+//        model.addAttribute("registerList", registerList);
+//        model.addAttribute("completeList", completeList);
+//
+//        return "work-lounge/register-list";
+//    }
+
     @GetMapping("/evaluation-task-lists")
     public ModelAndView getEvaluationTaskList() {
         List<EvaluationTaskListDTO> committeeList = evaluationTaskListService.getEvaluationCommitteeList();
@@ -138,20 +155,19 @@ public class WorkLoungeController {
         return modelAndView;
     }
 
-    @GetMapping("/selection-evaluations")
+    @GetMapping("/eval-list")
     public ModelAndView getSelectEvaluationList() {
-        List<SelectEvaluationDTO> selectEvaluationList = selectEvaluationService.getSelectEvaluationList();
+        List<SelectNotiDTO> selectEvaluationList = selectEvaluationService.getSelectEvaluationList();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("selectEvaluationList", selectEvaluationList);
         modelAndView.setViewName("work-lounge/selection-evaluation");
         return modelAndView;
     }
 
-    @GetMapping("/sharing-opinion/{taskName}")
-    public String getRegisterAndCompleteList(@PathVariable("taskName") String taskName, Model model) {
-        List<SharingOpinionDTO> sharingOpinionList = sharingOpinionService.getSelectSharingOpinionList(taskName);
-        List<SharingOpinionDTO> committeePersonList = sharingOpinionService.getSelectCommitteePersonList(taskName);
-
+    @GetMapping("/sharing-opinion/{rndPlanNo}")
+    public String getRegisterAndCompleteList(@PathVariable("rndPlanNo") int rndPlanNo, Model model) {
+        List<SharingOpinionDTO> sharingOpinionList = sharingOpinionService.getSelectSharingOpinionList(rndPlanNo);
+        List<SharingOpinionDTO> committeePersonList = sharingOpinionService.evalPeople(rndPlanNo);
         model.addAttribute("sharingOpinionList", sharingOpinionList);
         model.addAttribute("committeePersonList", committeePersonList);
 
@@ -181,8 +197,11 @@ public class WorkLoungeController {
     }
 
     @GetMapping("/board_detail/{opinionNo}")
-    public String getBoardDetail(@PathVariable("opinionNo") Integer opinionNo, Model model) {
-        Board board = boardService.getBoard(opinionNo);
+    public String getBoardDetail(@PathVariable("opinionNo") int opinionNo, Model model) {
+        log.info("opinionNo: " + opinionNo);
+        Board board = boardService.selectBoardId(opinionNo);
+        log.info("board: " + board);
+        log.info("@@@@@@@@@@@@@@@@@@@@@@");
         if (board == null) {
             return "redirect:/work-lounge/board-list";
         }
@@ -202,7 +221,7 @@ public class WorkLoungeController {
     @RequestMapping("/board_replycomplete")
     public String getBoardReplys(Board board) {
 
-        Board baseBoard = boardService.getBoard(board.getOpinionNo());
+        Board baseBoard = boardService.selectBoardId(board.getOpinionNo());
 
         if (baseBoard == null) {
             return "redirect:/work-lounge/board-list";
@@ -220,11 +239,11 @@ public class WorkLoungeController {
     }
 
     @PutMapping("/board_delete/{opinionNo}")
-    public ModelAndView BoardDelete(@PathVariable Integer opinionNo) {
+    public ModelAndView BoardDelete(@PathVariable int opinionNo) {
         ModelAndView mav = new ModelAndView();
 
         try {
-            Board board = boardService.getBoard(opinionNo);
+            Board board = boardService.selectBoardId(opinionNo);
             if (board == null) {
                 mav.setViewName("redirect:/work-lounge/board-list");
                 return mav;
@@ -245,15 +264,15 @@ public class WorkLoungeController {
 
 
     @RequestMapping("/board_modify")
-    public String BoardModify(@RequestParam Integer opinionNo, Model model) {
-        Board board = boardService.getBoard(opinionNo);
+    public String BoardModify(@RequestParam int opinionNo, Model model) {
+        Board board = boardService.selectBoardId(opinionNo);
         model.addAttribute("board", board);
         return "/work-lounge/board_modify";
     }
 
 
     @PutMapping("/board_modify/{opinionNo}")
-    public ResponseEntity<String> modifyBoard(@PathVariable Integer opinionNo, @RequestBody Board board) {
+    public ResponseEntity<String> modifyBoard(@PathVariable int opinionNo, @RequestBody Board board) {
 
         board.setOpinionNo(opinionNo);
         boolean isModified = boardService.modifyBoard(board);
@@ -265,20 +284,9 @@ public class WorkLoungeController {
         }
     }
 
-    /* 선정평가 상세 위 */
-//    @GetMapping("/selection-evaluation-detail/{subTitle}")
-//    public ModelAndView getSelectEvaluationDetail(@PathVariable String subTitle) {
-//        List<SelectEvaluationDTO> selectEvaluationDetail = selectEvaluationService.getselectEvaluation(subTitle);
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.addObject("selectEvaluationDetail", selectEvaluationDetail);
-//        modelAndView.setViewName("work-lounge/selection-evaluation-detail");
-//        return modelAndView;
-//    }
-
-    @GetMapping("/selection-evaluation-detail/{subAnnNo}")
-    public String getSelectEvaluationDetail(@PathVariable Integer subAnnNo, Model model) {
+    @GetMapping("/eval-list/evaluation-select/{subAnnNo}")
+    public String getSelectEvaluationDetail(@PathVariable Long subAnnNo, Model model) {
         List<SelectEvaluationDTO> selectEvaluationDetail = selectEvaluationService.getselectEvaluation(subAnnNo);
-        System.out.println(selectEvaluationService.getselectEvaluation(subAnnNo));
         model.addAttribute("selectEvaluationDetail", selectEvaluationDetail);
         return "work-lounge/selection-evaluation-detail";
     }
@@ -296,9 +304,18 @@ public class WorkLoungeController {
     @GetMapping("/evaluation-tables")
     public String getEvaluationTables(Model model) {
         List<EvaluationTableDTO> evaluationTableList = evaluationTableListService.getAnnounceList();
-        System.out.println(evaluationTableList);
         model.addAttribute("announceList", evaluationTableList);
         return "work-lounge/evaluation-table";
+    }
+
+    /* 평가점수 저장용도 */
+    @PostMapping("/score")
+    public String insertScore(EvaluationScoreDTO evaluationScoreDTO, RedirectAttributes rttr) {
+        evaluationPaperService.insertScoreList(evaluationScoreDTO);
+
+        rttr.addFlashAttribute("score", evaluationScoreDTO.getEvalScoreNo());
+
+        return "redirect:/work-lounge/evaluation-task-lists";
     }
 
 }

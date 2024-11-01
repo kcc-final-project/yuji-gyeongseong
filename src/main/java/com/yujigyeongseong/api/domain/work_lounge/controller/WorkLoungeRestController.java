@@ -5,6 +5,7 @@ import com.yujigyeongseong.api.domain.work_lounge.service.*;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,19 +17,22 @@ import java.util.List;
 
 @RequestMapping("/api/v1/work_lounge")
 @RestController
+@Slf4j
 public class WorkLoungeRestController {
 
     private final EvaluationTaskListService evaluationTaskListService;
     private final EvaluationPaperService evaluationPaperService;
     private final SelectEvaluationService selectEvaluationService;
     private final EvaluationTableListService evaluationTableListService;
+    private final SharingOpinionService sharingOpinionService;
 
     @Autowired
-    public WorkLoungeRestController(EvaluationTaskListService evaluationTaskListService, EvaluationPaperService evaluationPaperService, SelectEvaluationService selectEvaluationService, EvaluationTableListService evaluationTableListService) {
+    public WorkLoungeRestController(EvaluationTaskListService evaluationTaskListService, EvaluationPaperService evaluationPaperService, SelectEvaluationService selectEvaluationService, EvaluationTableListService evaluationTableListService, SharingOpinionService sharingOpinionService) {
         this.evaluationTaskListService = evaluationTaskListService;
         this.evaluationPaperService = evaluationPaperService;
         this.selectEvaluationService = selectEvaluationService;
         this.evaluationTableListService = evaluationTableListService;
+        this.sharingOpinionService = sharingOpinionService;
     }
 
     @GetMapping(value = "/getText", produces = "text/plain; charset=UTF-8")
@@ -83,5 +87,56 @@ public class WorkLoungeRestController {
         System.out.println(questionList);
         return questionList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(questionList, HttpStatus.OK);
     }
+
+    // 의견공유
+    @GetMapping("/opinion")
+    @ResponseBody
+    public ResponseEntity<List<Opinion>> getSelectSharingOpinionList() {
+        List<Opinion> opinionList = sharingOpinionService.getselectOpinionList();
+        System.out.println(opinionList);
+        return opinionList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(opinionList, HttpStatus.OK);
+    }
+
+    //의견 상세
+    @GetMapping("/summary-id/{opinionNo}")
+    @ResponseBody
+    public ResponseEntity<Opinion> getSummaryId(@PathVariable("opinionNo") int opinionNo) {
+        Opinion summary = sharingOpinionService.summaryId(opinionNo);
+        System.out.println(summary);
+        return summary == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(summary, HttpStatus.OK);
+    }
+
+    // 댓글 작성
+    // 댓글 작성 요청을 처리하는 메서드
+    @PostMapping("/summary-id/{opinionNo}")
+    public ResponseEntity<String> insertOpinionReplyList(@PathVariable("opinionNo") int opinionNo,
+                                                         @RequestParam("content") String content) {
+        try {
+            Opinion opinion = new Opinion();
+            opinion.setOpinionNo(opinionNo);
+            opinion.setContent(content);
+
+            opinion.setRef(opinion.getRef());
+            opinion.setStep(opinion.getStep() + 1);
+            opinion.setDepth(opinion.getDepth() + 1);
+
+            opinion.setEvalCommitteeNo(1);
+            opinion.setRndPlanNo(1);
+            opinion.setBucketNo(1);
+
+            int result = sharingOpinionService.insertOpinionReplyList(opinion);
+
+            if (result > 0) {
+                return ResponseEntity.ok("댓글 작성 성공");
+            } else {
+                return ResponseEntity.status(500).body("댓글 작성 실패");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("서버 에러 발생");
+        }
+    }
+
+
 
 }

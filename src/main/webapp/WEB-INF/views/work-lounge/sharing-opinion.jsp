@@ -47,24 +47,8 @@
                 <td>평가시작일자</td>
                 <td>평가종료일자</td>
             </tr>
-            <%--            <c:forEach items="${sharingOpinionList}" var="sharingOpinion" varStatus="status">--%>
-            <%--                <tr class="blue">--%>
-            <%--                    <td class="text-center"><c:out value="${sharingOpinion.evalStatus}"/></td>--%>
-            <%--                    <td class="text-center"><c:out value="${sharingOpinion.taskName}"/></td>--%>
-            <%--                    <td class="text-center">--%>
-            <%--                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"--%>
-            <%--                             fill="#EA3323">--%>
-            <%--                            <path d="M360-460h40v-80h40q17 0 28.5-11.5T480-580v-40q0-17-11.5-28.5T440-660h-80v200Zm40-120v-40h40v40h-40Zm120 120h80q17 0 28.5-11.5T640-500v-120q0-17-11.5-28.5T600-660h-80v200Zm40-40v-120h40v120h-40Zm120 40h40v-80h40v-40h-40v-40h40v-40h-80v200ZM320-240q-33 0-56.5-23.5T240-320v-480q0-33 23.5-56.5T320-880h480q33 0 56.5 23.5T880-800v480q0 33-23.5 56.5T800-240H320Zm0-80h480v-480H320v480ZM160-80q-33 0-56.5-23.5T80-160v-560h80v560h560v80H160Zm160-720v480-480Z"/>--%>
-            <%--                        </svg>--%>
-            <%--                    </td>--%>
-            <%--                    <td class="text-center"><c:out value="${sharingOpinion.rndInstitution}"/></td>--%>
-            <%--                    <td class="text-center"><c:out value="${sharingOpinion.rndName}"/></td>--%>
-            <%--                    <td class="text-center"><c:out value="${sharingOpinion.evalStartedAt}"/></td>--%>
-            <%--                    <td class="text-center"><c:out value="${sharingOpinion.evalClosedAt}"/></td>--%>
-            <%--                </tr>--%>
-            <%--            </c:forEach>--%>
             <c:if test="${not empty sharingOpinionList}">
-                <tr class="blue">
+                <tr class="blue letter">
                     <td class="text-center"><c:out value="${sharingOpinionList[0].evalStatus}"/></td>
                     <td class="text-center"><c:out value="${sharingOpinionList[0].taskName}"/></td>
                     <td class="text-center">
@@ -92,48 +76,56 @@
                             <strong>담당자 알림:</strong> 이는 모든 사용자에게 중요한 알림입니다. 입장시 한번씩 확인 부탁드립니다.
                         </div>
 
-
+                        <!-- 의견 -->
                         <div style="max-height: 400px; overflow-y: auto;">
-                            <div class="card mb-2" style="max-height: 400px; overflow-y: auto;">
-                                <div class="card-body d-flex flex-column justify-content-between"
-                                     style="padding: 15px;">
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <strong>익명의 평가위원1:</strong>
-                                        </div>
-                                        <span>2023-11-23 14:32</span>
-                                    </div>
-                                    <br>
-                                    <p class="card-text my-0" style="font-size: large">여기 게시글 내용이 나옵니다.</p>
-                                    <div class="d-flex justify-content-end">
-                                        <button class="btn ctm-btn-bigger" type="button" onclick="toggleComments(this)">
-                                            댓글보기
-                                        </button>
-                                    </div>
-                                </div>
 
-                                <div class="comments-section card mx-2 my-2" style="display: none;">
-                                    <div class="card card-body mx-2 mt-2 mb-2 gray">
-                                        <div class="mb-3">
-                                            <p>
-                                                <strong>익명의 평가위원1:</strong> <span
-                                                    style="float: right;">2023-11-23 14:32</span>
-                                            </p>
-                                            <p>추가자료_제출본.pdf
-                                                <button class="btn ctm-btn-back mb-3" style="float: right;">삭제</button>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="card card-body mx-2 mt-2 mb-2 gray">
-                                        <div class="mb-3">
-                                            <p>
-                                                <strong>익명의 평가위원2:</strong> 두 번째 댓글 내용이 여기에 나옵니다.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                            <div id="textArea" style="max-height: 400px; overflow-y: auto;"></div>
+
+
                         </div>
+                        <%--                        <div style="max-height: 400px; overflow-y: auto;">--%>
+                        <%--                            <div class="card mb-2" style="max-height: 400px; overflow-y: auto;">--%>
+                        <%--                                <div class="card-body d-flex flex-column justify-content-between"--%>
+                        <%--                                     style="padding: 15px;">--%>
+                        <%--                                     <div id="textArea"></div>--%>
+                        <%--                                    <div class="d-flex justify-content-between">--%>
+                        <%--                                        <div>--%>
+                        <%--                                            <strong>익명의 평가위원1:</strong>--%>
+                        <%--                                        </div>--%>
+                        <%--                                        <span>2023-11-23 14:32</span>--%>
+                        <%--                                    </div>--%>
+                        <%--                                    <br>--%>
+                        <%--                                    <p class="card-text my-0" style="font-size: large">여기 게시글 내용이 나옵니다.</p>--%>
+                        <%--                                    <div class="d-flex justify-content-end">--%>
+                        <%--                                        <button class="btn ctm-btn-bigger" type="button" onclick="toggleComments(this)">--%>
+                        <%--                                            댓글보기--%>
+                        <%--                                        </button>--%>
+                        <%--                                    </div>--%>
+                        <%--                                </div>--%>
+
+                        <%--                                <div class="comments-section card mx-2 my-2" style="display: none;">--%>
+                        <%--                                    <div class="card card-body mx-2 mt-2 mb-2 gray">--%>
+                        <%--                                        <div class="mb-3">--%>
+                        <%--                                            <p>--%>
+                        <%--                                                <strong>익명의 평가위원1:</strong> <span--%>
+                        <%--                                                    style="float: right;">2023-11-23 14:32</span>--%>
+                        <%--                                            </p>--%>
+                        <%--                                            <p>추가자료_제출본.pdf--%>
+                        <%--                                                <button class="btn ctm-btn-back mb-3" style="float: right;">삭제</button>--%>
+                        <%--                                            </p>--%>
+                        <%--                                        </div>--%>
+                        <%--                                    </div>--%>
+                        <%--                                    <div class="card card-body mx-2 mt-2 mb-2 gray">--%>
+                        <%--                                        <div class="mb-3">--%>
+                        <%--                                            <p>--%>
+                        <%--                                                <strong>익명의 평가위원2:</strong> 두 번째 댓글 내용이 여기에 나옵니다.--%>
+                        <%--                                            </p>--%>
+                        <%--                                        </div>--%>
+                        <%--                                    </div>--%>
+                        <%--                                </div>--%>
+                        <%--                            </div>--%>
+                        <%--                        </div>--%>
 
                         <script>
                             function toggleComments(button) {
@@ -157,13 +149,13 @@
                     <div style="max-height: 400px; overflow-y: auto;">
                         <c:forEach items="${committeePersonList}" var="committeePerson" varStatus="status">
                             <div>
-                                <h5><c:out value="${committeePerson.evMem}"/>
+                                <p class="letter1"><c:out value="${committeePerson.evalPeople}"/>
                                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
                                          width="24px" fill="#327b3e">
                                         <path d="m424-296 282-282-56-56-226 226-114-114-56 56 170 170Zm56 216q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Zm0-320Z"/>
                                     </svg>
 
-                                </h5>
+                                </p>
                                 <hr>
                             </div>
                         </c:forEach>
@@ -182,9 +174,10 @@
             <tr>
 
             </tr>
-            <tr>
+            <tr style="height: 25px; text-align: center; justify-items: center">
                 <c:forEach items="${committeePersonList}" var="committeePerson" varStatus="status">
-                    <td class="text-center bluee pb-1" colspan="2"><c:out value="${committeePerson.name}"/></td>
+                    <td class="text-center bluee pb-1 letter1" colspan="2"><c:out
+                            value="${committeePerson.evalName}"/></td>
                 </c:forEach>
             </tr>
             <tr>
@@ -235,13 +228,108 @@
 
             </tbody>
         </table>
-        <div class="d-flex justify-content-center">
-            <button class="btn ctm-btn-back mb-3"
-                    onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">뒤로
-            </button>
+
+    </div>
+
+    <!-- 댓글 작성 모달 구조 -->
+    <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="commentModalLabel">댓글 작성</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="commentForm">
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">작성자:</label>
+                            <input type="text" class="form-control" id="recipient-name" disabled>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">댓글 내용:</label>
+                            <textarea class="form-control" id="message-text" placeholder="댓글을 입력하세요"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn ml-2 ctm-btn-normal submit_btn" id="submitComment">작성</button>
+                </div>
+            </div>
         </div>
     </div>
+
+
     <script src="/resources/js/work-lounge/sharing-opinion.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                url: 'http://localhost:8082/api/v1/work_lounge/opinion',
+                method: 'GET',
+                success: function (data) {
+
+                    var opinions = '<div class="mt-4"><div class="opinions-container">';
+                    $.each(data, function (index, item) {
+                        opinions += '<div class="opinion-card ' + (item.depth > 0 ? 'nested' : '') + '">' +
+                            '<div class="opinion-content">' +
+                            (item.depth > 0 ? '&nbsp;&nbsp;' + 'ㄴ' : '') +
+                            item.content +
+                            '</div>' +
+                            '<div class="opinion-meta text-center">' +
+                            '<span>작성자: ' + item.memNo + '</span>' +
+                            '<span>작성일: ' + (item.delInfo !== -1 ? item.createdAt.split(' ')[0] : 'unknown') + '</span>' +
+                            '<span>조회수: ' + item.readhit + '</span>' +
+                            '<button type="button" class="btn ml-2 ctm-btn-normal submit_btn" data-bs-toggle="modal" data-bs-target="#commentModal" data-id="' + item.opinionNo + '">' +
+                            '댓글 작성' +
+                            '</button>' +
+                            '</div>' +
+                            '</div>';
+                    });
+
+                    opinions += '</div></div>';
+                    $('#textArea').html(opinions);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error('Error fetching data:', textStatus, errorThrown);
+                    $('#textArea').html('<p>Failed to load data.</p>');
+                }
+            });
+
+            $(document).on('click', '.submit_btn', function () {
+                var opinionId = $(this).data('id');
+                var writerName = $(this).siblings('span').first().text().replace('작성자: ', '');
+                $('#recipient-name').val(writerName);
+
+                $('#submitComment').off('click').on('click', function () {
+                    var comment = $('#message-text').val();
+                    var summaryUrl = 'http://localhost:8082/api/v1/work_lounge/summary-id/' + opinionId;
+
+                    $.ajax({
+                        url: summaryUrl,
+                        method: 'POST',
+                        data: { content: comment },
+                        success: function (response) {
+
+                            $('#commentModal').modal('hide');
+                            $('#message-text').val('');
+
+                            location.reload();
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.error('Error posting comment:', textStatus, errorThrown);
+                        }
+                    });
+                });
+            });
+        });
+
+
+
+    </script>
+
+
 </div>
 </body>
+
 </html>
