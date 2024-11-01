@@ -57,8 +57,11 @@
             <input id="educationInstituteRate" class="small" type="text" value="33%" readonly>
             <div class="setting-text">연구기관 비율</div>
             <input id="professionalInstituteRate" class="small" type="text" value="33%" readonly>
-            <button class="ctm-btn-normal" id="composeButton"
-                    style="background-color: #FF8F27FF; width: 150px; margin-left: 650px">구성하기
+            <button class="ctm-btn-normal" id="composeButton" onclick="setEvalCommittee(${subAnnounce.subAnnNo})"
+                    style="background-color: #FF8F27FF; width: 150px; margin-left: 650px;">구성하기
+            </button>
+            <button class="ctm-btn-normal" id="recomposeButton" onclick="resetEvalCommittee(${subAnnounce.subAnnNo})"
+                    style="background-color: #FF8F27FF; width: 150px; margin-left: 650px; display: none">재구성하기
             </button>
         </div>
     </div>
@@ -74,11 +77,11 @@
                 <table class="committee-table">
                     <thead>
                     <tr>
-                        <th style="width: 7%; font-size: small">전자알림</th>
-                        <th style="width: 38%;">평가위원회</th>
-                        <th style="width: 18%;">수신시작일</th>
-                        <th style="width: 18%;">수신종료일</th>
-                        <th style="width: 25%;">수신 상태</th>
+                        <th style="width: 7.8%; font-size: small">전자<br>알림</th>
+                        <th style="width: 23.8%;">평가위원회</th>
+                        <th style="width: 20%;">수신시작일</th>
+                        <th style="width: 20%;">수신종료일</th>
+                        <th style="width: 20.5%;">수신 상태</th>
                     </tr>
                     </thead>
                 </table>
@@ -86,7 +89,7 @@
                     <table class="committee-table">
                         <tbody>
 
-                        <c:forEach var="committee" items="${committees}">
+<%--                        <c:forEach var="committee" items="${committees}">
                             <tr data-committee-id="${committee.evalCommitteeNo}"
                                 data-start-date="<fmt:formatDate value='${evalCommittee.evalStartedAt}' pattern='yyyy-MM-dd'/>"
                                 data-end-date="<fmt:formatDate value='${evalCommittee.evalClosedAt}' pattern='yyyy-MM-dd'/>"
@@ -99,7 +102,7 @@
                                 <td><fmt:formatDate value='${evalCommittee.evalClosedAt}' pattern='yyyy-MM-dd'/></td>
                                 <td><span class="status stayed">승인대기</span></td>
                             </tr>
-                        </c:forEach>
+                        </c:forEach>--%>
 
                         </tbody>
                     </table>

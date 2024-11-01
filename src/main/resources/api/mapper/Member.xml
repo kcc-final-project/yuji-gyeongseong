@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yujigyeongseong.api.domain.member.dao.MemberMapper">
+    <select id="countByUsername" parameterType="String" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM
+            member
+        WHERE
+            username = #{id}
+    </select>
+
+    <select id="selectAll" resultType="Institution">
+        SELECT
+            *
+        FROM
+            institution
+    </select>
+
+    <select id="selectOrgan" resultType="Institution" parameterType="SelectInstitutionRequest">
+        SELECT
+        *
+        FROM
+        institution
+        WHERE
+        1=1
+        <if test="name != null and name != ''">
+            AND name LIKE '%' || #{name} || '%'
+        </if>
+        <if test="businessRegisterNo != null and businessRegisterNo != ''">
+            AND business_register_no LIKE '%' || #{businessRegisterNo} || '%'
+        </if>
+        <if test="companyType != null and companyType != ''">
+            AND company_type = #{companyType}
+        </if>
+    </select>
+
+    <insert id="insertMember" parameterType="SignUpMember">
+        INSERT INTO member (mem_no, username, password, name, email, birth, gender, tel, addr, affil_type, affil_dept, position, status, created_at, institution_no)
+        VALUES (seq_member.NEXTVAL, #{username}, #{password}, #{name}, #{email}, #{birth}, #{gender}, #{tel}, #{addr}, #{affilType}, #{affilDept}, #{position}, '활성', CURRENT_TIMESTAMP, #{institutionNo})
+    </insert>
+
+    <resultMap id="MemberLoginResultMap" type="MemberLogin">
+        <id property="memNo" column="memNo"/>
+        <result property="name" column="name"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <collection property="roles" ofType="MemRole">
+            <id property="roleNo" column="roleNo"/>
+            <result property="roleName" column="roleName"/>
+        </collection>
+    </resultMap>
+
+    <select id="findByUsername" parameterType="String" resultMap="MemberLoginResultMap">
+        SELECT m.mem_no as "memNo",m.name, m.username, m.password, r.role_name as "roleName", r.role_no as "roleNo"
+        FROM member m
+                 LEFT JOIN mem_role mr ON m.mem_no = mr.mem_no
+                 LEFT JOIN role r ON mr.role_no = r.role_no
+        WHERE m.username = #{username}
+    </select>
+
+    <select id="findByMemNo" parameterType="String" resultType="int">
+        SELECT mem_no
+        FROM member
+        WHERE username = #{username}
+    </select>
+    
+    <insert id="insertRole" parameterType="int">
+        INSERT INTO mem_role
+        VALUES (#{memNo},1,CURRENT_TIMESTAMP)
+    </insert>
+
+</mapper>

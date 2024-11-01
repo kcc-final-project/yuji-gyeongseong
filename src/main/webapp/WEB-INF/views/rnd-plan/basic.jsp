@@ -217,6 +217,9 @@
                                     <div id="weight-sum-error" class="invalid-message">
                                         가중치의 합계는 100이어야 합니다.
                                     </div>
+                                    <div id="weight-sum-correct" class="valid-message">
+                                        올바른 가중치를 입력하셨습니다.
+                                    </div>
                                 </div>
                             </div>
                         </div>

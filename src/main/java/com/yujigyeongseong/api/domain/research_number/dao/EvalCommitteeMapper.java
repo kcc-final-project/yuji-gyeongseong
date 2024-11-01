@@ -24,5 +24,7 @@ public interface EvalCommitteeMapper {
 
     int insertAllAcadAbilitiesByMemberId(Long id, List<AcadRequest> acadAbilities);
 
+    int insertRsrcNoByMemberId(Long id);
+
     int insertEvalNotiByMemberId(EvalNotiRequest evalNotiRequest);
 }

@@ -31,19 +31,24 @@
                 <tbody>
                 <tr>
                     <td>
-                        <input class="form-control ctm-td" value="주관연구개발기관" disabled readonly type="text">
+                        <input class="form-control ctm-td" id="rnd-institution-iarType"
+                               value="${rndPlanRsrch.institution.iarType}" disabled readonly type="text">
                     </td>
                     <td>
-                        <input class="form-control ctm-td" value="강남대학교" disabled readonly type="text">
+                        <input class="form-control ctm-td" id="rnd-institution-name"
+                               value="${rndPlanRsrch.institution.name}" disabled readonly type="text">
                     </td>
                     <td>
-                        <input class="form-control ctm-td" value="123-25-89675" disabled readonly type="text">
+                        <input class="form-control ctm-td" id="rnd-institution-regNo"
+                               value="${rndPlanRsrch.institution.businessRegisterNo}" disabled readonly type="text">
                     </td>
                     <td>
-                        <input class="form-control ctm-td" value="대학(4년이상)" disabled readonly type="text">
+                        <input class="form-control ctm-td" id="rnd-institution-cpType"
+                               value="${rndPlanRsrch.institution.companyType}" disabled readonly type="text">
                     </td>
                     <td>
-                        <input class="form-control ctm-td" value="경기도 광주시" disabled readonly type="text">
+                        <input class="form-control ctm-td" id="rnd-institution-address"
+                               value="${rndPlanRsrch.institution.address}" disabled readonly type="text">
                     </td>
                 </tr>
                 </tbody>
@@ -93,7 +98,7 @@
                 <tbody>
                 <tr>
                     <td>
-                        <input class="form-check-input ctm-td-btn-center ctm-rdo-btn" type="radio"
+                        <input class="form-check-input ctm-td-btn-center ctm-rdo-btn" type="radio" checked
                                name="flexRadioDefault"
                                id="flexRadioDefault1">
                     </td>
@@ -111,7 +116,7 @@
                             <option value="3">학생</option>
                         </select>
                     </td>
-                    <td class="text-center">황철원</td>
+                    <td class="text-center">${rndPlanRsrch.member.name}</td>
                     <td>
                         <input class="form-check-input ctm-td-btn-center" type="checkbox" value="" checked/>
                     </td>
@@ -127,46 +132,8 @@
                     <td>
                         <input class="form-check-input ctm-td-btn-center" type="checkbox" value="" checked/>
                     </td>
-                    <td class="text-center">학부연구생</td>
-                    <td class="text-center">192347283</td>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="form-check-input ctm-td-btn-center ctm-rdo-btn" type="radio"
-                               name="flexRadioDefault"/>
-                    </td>
-                    <td>
-                        <select class="form-select form-select-sm">
-                            <option selected value="1">연구책임자</option>
-                            <option value="2">참여연구자</option>
-                            <option value="3">연구지원인력</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select class="form-select form-select-sm">
-                            <option selected value="1">내부연구원</option>
-                            <option value="2">외부연구원</option>
-                            <option value="3">학생</option>
-                        </select>
-                    </td>
-                    <td class="text-center">김상학</td>
-                    <td>
-                        <input class="form-check-input ctm-td-btn-center" type="checkbox" value="" checked/>
-                    </td>
-                    <td>
-                        <input class="form-check-input ctm-td-btn-center" type="checkbox" value="" checked/>
-                    </td>
-                    <td>
-                        <input class="form-check-input ctm-td-btn-center" type="checkbox" value="" checked/>
-                    </td>
-                    <td>
-                        <input class="form-check-input ctm-td-btn-center" type="checkbox" value="" checked/>
-                    </td>
-                    <td>
-                        <input class="form-check-input ctm-td-btn-center" type="checkbox" value="" checked/>
-                    </td>
-                    <td class="text-center">학생</td>
-                    <td class="text-center">125647231</td>
+                    <td class="text-center">${rndPlanRsrch.member.position}</td>
+                    <td class="text-center">${rndPlanRsrch.member.rsrchNo}</td>
                 </tr>
                 </tbody>
             </table>
@@ -218,7 +185,7 @@
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <td class="ctm-th ctm-tb-w58">
+                                        <td class="ctm-th ctm-tb-w58 select">
                                             <input id="select-all" class="form-check-input ctm-td-btn-center"
                                                    type="checkbox"
                                                    value=""/>
@@ -227,92 +194,30 @@
                                         <td class="ctm-th ctm-tb-w176">연구자번호</td>
                                         <td class="ctm-th ctm-tb-w234">소속기관</td>
                                         <td class="ctm-th ctm-tb-w176">부서</td>
-                                        <td class="ctm-th ctm-tb-w117">직위</td>
-                                        <td class="ctm-th ctm-tb-w190">생년월일</td>
+                                        <td class="ctm-th ctm-tb-w190">직위</td>
+                                        <td class="ctm-th ctm-tb-w117">생년월일</td>
                                     </tr>
                                     </thead>
                                 </table>
                                 <div class="ctm-tb-scroll2">
                                     <table class="table table-sm table-bordered table-striped table-hover">
                                         <tbody>
-                                        <tr>
-                                            <td class="text-center ctm-w5p">
-                                                <input class="form-check-input ctm-td-btn-center"
-                                                       type="checkbox"
-                                                       value=""/>
-                                            </td>
-                                            <td class="text-center ctm-w10p">황철원</td>
-                                            <td class="text-center ctm-w15p">28484721</td>
-                                            <td class="text-center ctm-w20p">kcc 정보통신</td>
-                                            <td class="text-center ctm-w15p">개발 1팀</td>
-                                            <td class="text-center ctm-w10p">대리</td>
-                                            <td class="text-center ctm-w15p">1997-09-03</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center ctm-w5p">
-                                                <input class="form-check-input ctm-td-btn-center"
-                                                       type="checkbox"
-                                                       value=""/>
-                                            </td>
-                                            <td class="text-center ctm-w10p">황철원</td>
-                                            <td class="text-center ctm-w15p">28484721</td>
-                                            <td class="text-center ctm-w20p">kcc 정보통신</td>
-                                            <td class="text-center ctm-w15p">개발 1팀</td>
-                                            <td class="text-center ctm-w10p">대리</td>
-                                            <td class="text-center ctm-w15p">1997-09-03</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center ctm-w5p">
-                                                <input class="form-check-input ctm-td-btn-center"
-                                                       type="checkbox"
-                                                       value=""/>
-                                            </td>
-                                            <td class="text-center ctm-w10p">황철원</td>
-                                            <td class="text-center ctm-w15p">28484721</td>
-                                            <td class="text-center ctm-w20p">kcc 정보통신</td>
-                                            <td class="text-center ctm-w15p">개발 1팀</td>
-                                            <td class="text-center ctm-w10p">대리</td>
-                                            <td class="text-center ctm-w15p">1997-09-03</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center ctm-w5p">
-                                                <input class="form-check-input ctm-td-btn-center"
-                                                       type="checkbox"
-                                                       value=""/>
-                                            </td>
-                                            <td class="text-center ctm-w10p">황철원</td>
-                                            <td class="text-center ctm-w15p">28484721</td>
-                                            <td class="text-center ctm-w20p">kcc 정보통신</td>
-                                            <td class="text-center ctm-w15p">개발 1팀</td>
-                                            <td class="text-center ctm-w10p">대리</td>
-                                            <td class="text-center ctm-w15p">1997-09-03</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center ctm-w5p">
-                                                <input class="form-check-input ctm-td-btn-center"
-                                                       type="checkbox"
-                                                       value=""/>
-                                            </td>
-                                            <td class="text-center ctm-w10p">황철원</td>
-                                            <td class="text-center ctm-w15p">28484721</td>
-                                            <td class="text-center ctm-w20p">kcc 정보통신</td>
-                                            <td class="text-center ctm-w15p">개발 1팀</td>
-                                            <td class="text-center ctm-w10p">대리</td>
-                                            <td class="text-center ctm-w15p">1997-09-03</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-center ctm-w5p">
-                                                <input class="form-check-input ctm-td-btn-center"
-                                                       type="checkbox"
-                                                       value=""/>
-                                            </td>
-                                            <td class="text-center ctm-w10p">황철원</td>
-                                            <td class="text-center ctm-w15p">28484721</td>
-                                            <td class="text-center ctm-w20p">kcc 정보통신</td>
-                                            <td class="text-center ctm-w15p">개발 1팀</td>
-                                            <td class="text-center ctm-w10p">대리</td>
-                                            <td class="text-center ctm-w15p">1997-09-03</td>
-                                        </tr>
+
+                                        <c:forEach var="member" items="${memberList}">
+                                            <tr>
+                                                <td class="text-center ctm-w5p">
+                                                    <input class="form-check-input ctm-td-btn-center row-checkbox"
+                                                           type="checkbox"
+                                                           value=""/>
+                                                </td>
+                                                <td class="text-center ctm-w10p">${member.name}</td>
+                                                <td class="text-center ctm-w15p">${member.rsrch_no}</td>
+                                                <td class="text-center ctm-w20p">${member.institution_name}</td>
+                                                <td class="text-center ctm-w15p">${member.affil_dept}</td>
+                                                <td class="text-center ctm-w15p">${member.position}</td>
+                                                <td class="text-center ctm-w10p">${member.birth}</td>
+                                            </tr>
+                                        </c:forEach>
                                         </tbody>
                                     </table>
                                 </div>
@@ -321,10 +226,10 @@
 
                         <div class="ctm-w100p ctm-f-center gap-3 mt-3 my-3">
                             <div class="ctm-arrow-btn__row ctm-f-center" id="btn-add-selected">
-                                <span class="material-icons">keyboard_arrow_up</span>
+                                <span class="material-icons">keyboard_arrow_down</span>
                             </div>
                             <div class="ctm-arrow-btn__row ctm-f-center" id="btn-remove-selected">
-                                <span class="material-icons">keyboard_arrow_down</span>
+                                <span class="material-icons">keyboard_arrow_up</span>
                             </div>
                         </div>
 
@@ -347,27 +252,14 @@
                                         <td class="ctm-th ctm-tb-w176">연구자번호</td>
                                         <td class="ctm-th ctm-tb-w234">소속기관</td>
                                         <td class="ctm-th ctm-tb-w176">부서</td>
-                                        <td class="ctm-th ctm-tb-w117">직위</td>
-                                        <td class="ctm-th ctm-tb-w190">생년월일</td>
+                                        <td class="ctm-th ctm-tb-w190">직위</td>
+                                        <td class="ctm-th ctm-tb-w117">생년월일</td>
                                     </tr>
                                     </thead>
                                 </table>
                                 <div class="ctm-tb-scroll2">
                                     <table class="table table-sm table-bordered table-hover">
                                         <tbody>
-                                        <tr>
-                                            <td class="text-center ctm-w5p">
-                                                <input class="form-check-input ctm-td-btn-center"
-                                                       type="checkbox"
-                                                       value=""/>
-                                            </td>
-                                            <td class="text-center ctm-w10p">황철원</td>
-                                            <td class="text-center ctm-w15p">28484721</td>
-                                            <td class="text-center ctm-w20p">kcc 정보통신</td>
-                                            <td class="text-center ctm-w15p">개발 1팀</td>
-                                            <td class="text-center ctm-w10p">대리</td>
-                                            <td class="text-center ctm-w15p">1997-09-03</td>
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -414,7 +306,7 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td class="text-center">황철원</td>
+                    <td class="text-center">${rndPlanRsrch.member.name}</td>
                     <td class="text-center">1-1</td>
                     <td>
                         <input class="form-check-input ctm-td-btn-center" type="checkbox" value="" checked/>
@@ -441,14 +333,14 @@
                         <input class="form-control form-control-sm" value="" readonly disabled type="text"/>
                     </td>
                     <td>
-                        <input type="date" class="form-control form-control-sm text-center" value="2024-10-08">
+                        <input type="date" class="form-control form-control-sm text-center" value=${taskSummaryResponse.rndPeriods[1].startedAt}>
                     </td>
                     <td>
-                        <input type="date" class="form-control form-control-sm text-center" value="2024-10-08">
+                        <input type="date" class="form-control form-control-sm text-center" value="${taskSummaryResponse.rndPeriods[1].endedAt}">
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-center">황철원</td>
+                    <td class="text-center">${rndPlanRsrch.member.name}</td>
                     <td class="text-center">1-2</td>
                     <td>
                         <input class="form-check-input ctm-td-btn-center" type="checkbox" value="" checked/>
@@ -475,14 +367,14 @@
                         <input class="form-control form-control-sm" value="" readonly disabled type="text"/>
                     </td>
                     <td>
-                        <input type="date" class="form-control form-control-sm text-center" value="2024-10-08">
+                        <input type="date" class="form-control form-control-sm text-center" value=${taskSummaryResponse.rndPeriods[1].startedAt}>
                     </td>
                     <td>
-                        <input type="date" class="form-control form-control-sm text-center" value="2024-10-08">
+                        <input type="date" class="form-control form-control-sm text-center" value="${taskSummaryResponse.rndPeriods[1].endedAt}">
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-center">황철원</td>
+                    <td class="text-center">${rndPlanRsrch.member.name}</td>
                     <td class="text-center">2-1</td>
                     <td>
                         <input class="form-check-input ctm-td-btn-center" type="checkbox" value="" checked/>
@@ -509,14 +401,14 @@
                         <input class="form-control form-control-sm" value="" readonly disabled type="text"/>
                     </td>
                     <td>
-                        <input type="date" class="form-control form-control-sm text-center" value="2024-10-08">
+                        <input type="date" class="form-control form-control-sm text-center" value=${taskSummaryResponse.rndPeriods[2].startedAt}>
                     </td>
                     <td>
-                        <input type="date" class="form-control form-control-sm text-center" value="2024-10-08">
+                        <input type="date" class="form-control form-control-sm text-center" value="${taskSummaryResponse.rndPeriods[2].endedAt}">
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-center">황철원</td>
+                    <td class="text-center">${rndPlanRsrch.member.name}</td>
                     <td class="text-center">2-2</td>
                     <td>
                         <input class="form-check-input ctm-td-btn-center" type="checkbox" value="" checked/>
@@ -543,14 +435,14 @@
                         <input class="form-control form-control-sm" value="" readonly disabled type="text"/>
                     </td>
                     <td>
-                        <input type="date" class="form-control form-control-sm text-center" value="2024-10-08">
+                        <input type="date" class="form-control form-control-sm text-center" value=${taskSummaryResponse.rndPeriods[3].startedAt}>
                     </td>
                     <td>
-                        <input type="date" class="form-control form-control-sm text-center" value="2024-10-08">
+                        <input type="date" class="form-control form-control-sm text-center" value="${taskSummaryResponse.rndPeriods[3].endedAt}">
                     </td>
                 </tr>
                 <tr>
-                    <td class="text-center">황철원</td>
+                    <td class="text-center">${rndPlanRsrch.member.name}</td>
                     <td class="text-center">3-1</td>
                     <td>
                         <input class="form-check-input ctm-td-btn-center" type="checkbox" value="" checked/>
@@ -577,10 +469,10 @@
                         <input class="form-control form-control-sm" value="" readonly disabled type="text"/>
                     </td>
                     <td>
-                        <input type="date" class="form-control form-control-sm text-center" value="2024-10-08">
+                        <input type="date" class="form-control form-control-sm text-center" value=${taskSummaryResponse.rndPeriods[4].startedAt}>
                     </td>
                     <td>
-                        <input type="date" class="form-control form-control-sm text-center" value="2024-10-08">
+                        <input type="date" class="form-control form-control-sm text-center" value="${taskSummaryResponse.rndPeriods[4].endedAt}">
                     </td>
                 </tr>
                 </tbody>
@@ -588,3 +480,5 @@
         </div>
     </div>
 </div>
+
+<script src="/resources/js/rnd-plan/rsrch-institution.js"></script>

@@ -16,7 +16,4 @@ public class RndPlanResponse {
     private final String rndTaskNo; // 연구개발 과제번호
 
     private final String researcherName; // 연구책임자명
-
-    private final String institutionName; // 연구개발기관
-
 }

@@ -17,12 +17,13 @@ $("#registerButton").on("click", function () {
       content: "평가위원 후보 등록이 되었습니다.",
       notiType: "평가위원",
       dataCategory: "service",
+      notiContentNo : 1,
       memNo: memberId
     };
 
     if (result.isConfirmed) {
       $.ajax({
-        url: "/api/v1/research_number/register/eval/" + memberId,
+        url: "/api/v1/research-number/register/eval/" + memberId,
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(EvalNotiRequest),

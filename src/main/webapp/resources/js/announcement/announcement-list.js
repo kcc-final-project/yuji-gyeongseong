@@ -60,7 +60,7 @@ $(function () {
                     <p class="total_title">${announcementRequest.totalTitle}</p>
                 </div>
                 <div class="anno-bottom-wrap">
-                    <p class="total_ann_no">공고번호: ${announcementRequest.totalAnnNo}</p>
+                    <p class="total_ann_no" data-annNo = ${announcementRequest.annNo}>공고번호: ${announcementRequest.totalAnnNo}</p>
                     <p class="ann_type">공모유형: ${announcementRequest.annType}</p>
                     <p class="created_at">공고일자: ${announcementRequest.createdAt}</p>
                     <button class="view-details-btn">상세보기</button>
@@ -72,9 +72,9 @@ $(function () {
     }
     $(document).on('click', '.view-details-btn', function() {
         // 클릭한 버튼의 부모 요소에서 공고번호 찾기
-        const totalAnnNo = $(this).closest('.anno-bottom-wrap').find('.total_ann_no').text().replace('공고번호: ', '').trim();
-
-        window.location.href = `/anno/detail/${totalAnnNo}`;
+        const AnnNo = $(this).closest('.anno-bottom-wrap').find('.total_ann_no').attr('data-annNo');
+        console.log(AnnNo);
+        window.location.href = `/anno/detail/${AnnNo}`;
     });
 
 
@@ -190,8 +190,6 @@ $(function () {
                 'checkedGisul' :checkedGisul
             },
             success:function(data){
-                console.log("성공");
-                console.log(data);
                 renderAnnouncements(data);
             },
             error:function(){

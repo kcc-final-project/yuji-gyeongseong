@@ -2,11 +2,13 @@ package com.yujigyeongseong.api.domain.research_number.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 import java.sql.Timestamp;
 
 @RequiredArgsConstructor
 @Getter
+@ToString
 public class Member {
     private final Long memNo;
     private final Long rsrchNo;

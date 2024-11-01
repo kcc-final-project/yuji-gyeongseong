@@ -1,4 +1,4 @@
-package com.yujigyeongseong.api.domain.member.DTO;
+package com.yujigyeongseong.api.domain.member.dto;
 
 import lombok.*;
 
@@ -13,4 +13,3 @@ public class Institution {
     private final String companyType;
     private final String iarType;
 }
-

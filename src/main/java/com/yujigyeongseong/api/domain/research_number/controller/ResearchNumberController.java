@@ -3,7 +3,9 @@ package com.yujigyeongseong.api.domain.research_number.controller;
 import com.yujigyeongseong.api.domain.research_number.dto.*;
 import com.yujigyeongseong.api.domain.research_number.service.EvalCommitteeService;
 import com.yujigyeongseong.api.domain.research_number.service.EvalComposeService;
+import com.yujigyeongseong.api.global.auth.PrincipalDetail;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-@RequestMapping("/research_number")
 @Controller
 @RequiredArgsConstructor
 public class ResearchNumberController {
@@ -20,21 +21,17 @@ public class ResearchNumberController {
     private final EvalCommitteeService evalCommitteeService;
     private final EvalComposeService evalComposeService;
 
-    @GetMapping
+    @GetMapping("/research-number")
     public String researchNumber() {
         return "research-number/research-number-page";
     }
 
-    @GetMapping("/eval_committee")
-    public String evalCommittee() {
-        return "research-number/eval-committee-register";
-    }
+    @GetMapping("/eval-committee")
+    public String evalCommittee(Model model,  @AuthenticationPrincipal PrincipalDetail principalDetail) {
 
-    @GetMapping("/eval-committee/{id}")
-    public String getResearchNumber(@PathVariable Long id, Model model) {
-        List<AcadAbility> academicList = evalCommitteeService.getAllAcadAbilitiesByMemberId(id);
-        List<Career> careerList = evalCommitteeService.getAllCareersByMemberId(id);
-        List<String> techNameList = evalCommitteeService.getAllTechFieldNameByMemberId(id);
+        List<AcadAbility> academicList = evalCommitteeService.getAllAcadAbilitiesByMemberId(principalDetail.getId());
+        List<Career> careerList = evalCommitteeService.getAllCareersByMemberId(principalDetail.getId());
+        List<String> techNameList = evalCommitteeService.getAllTechFieldNameByMemberId(principalDetail.getId());
 
         model.addAttribute("academic_list", academicList);
         model.addAttribute("career_list", careerList);
@@ -43,9 +40,10 @@ public class ResearchNumberController {
         return "research-number/eval-committee-register";
     }
 
-    @GetMapping("/business-timeline/{id}")
-    public String getNotis(@PathVariable Long id, Model model) {
-        List<Noti> notiList = evalCommitteeService.getAllTechNotiByMemberId(id);
+    @GetMapping("/business-timeline")
+    public String getNotis(Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+
+        List<Noti> notiList = evalCommitteeService.getAllTechNotiByMemberId(principalDetail.getId());
 
         model.addAttribute("noti_list", notiList);
 
@@ -61,7 +59,7 @@ public class ResearchNumberController {
         int rndPlanCnt = evalComposeService.getRndPlanCntById(id);
         Long subAnnounceId = id;
 
-
+        model.addAttribute("subAnnNo", id);
         model.addAttribute("subAnnounce", subAnnounce);
         model.addAttribute("evalCommittee", evalCommittee);
         model.addAttribute("committees", evalCommittees);

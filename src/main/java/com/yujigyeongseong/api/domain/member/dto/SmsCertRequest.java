@@ -1,4 +1,4 @@
-package com.yujigyeongseong.api.domain.member.DTO;
+package com.yujigyeongseong.api.domain.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

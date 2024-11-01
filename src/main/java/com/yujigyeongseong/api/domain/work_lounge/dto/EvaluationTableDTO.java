@@ -15,7 +15,7 @@ public class EvaluationTableDTO {
     private String status;
     private String startedAt;
     private String closedAt;
-    private List<SubTitleDTO> subTitles; // List 형태로 변경
+    private List<SubTitleDTO> subTitles;
 
     public void setStartedAt(Timestamp startedAt) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
