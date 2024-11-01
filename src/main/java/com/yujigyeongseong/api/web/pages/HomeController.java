@@ -17,6 +17,7 @@ public class HomeController {
             session.setAttribute("username", principal.getName());
             session.setAttribute("userAuth", principal.getAuthorities());
             session.setAttribute("id",principal.getId());
+            session.setAttribute("rsrchNo",principal.getRsrchNo());
         }
         return "main/index";
     }

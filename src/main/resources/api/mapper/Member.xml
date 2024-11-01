@@ -43,6 +43,7 @@
 
     <resultMap id="MemberLoginResultMap" type="MemberLogin">
         <id property="memNo" column="memNo"/>
+        <result property="rsrchNo" column="rsrchNo"/>
         <result property="name" column="name"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
@@ -53,7 +54,7 @@
     </resultMap>
 
     <select id="findByUsername" parameterType="String" resultMap="MemberLoginResultMap">
-        SELECT m.mem_no as "memNo",m.name, m.username, m.password, r.role_name as "roleName", r.role_no as "roleNo"
+        SELECT m.mem_no as "memNo", m.rsrch_no as "rsrchNo", m.name, m.username, m.password, r.role_name as "roleName", r.role_no as "roleNo"
         FROM member m
                  LEFT JOIN mem_role mr ON m.mem_no = mr.mem_no
                  LEFT JOIN role r ON mr.role_no = r.role_no
