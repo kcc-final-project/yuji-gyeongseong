@@ -4,11 +4,13 @@ import ch.qos.logback.core.net.SyslogOutputStream;
 import com.yujigyeongseong.api.domain.work_lounge.dao.EvaluationTableMapper;
 import com.yujigyeongseong.api.domain.work_lounge.dto.*;
 import com.yujigyeongseong.api.domain.work_lounge.service.*;
+import com.yujigyeongseong.api.global.auth.PrincipalDetail;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -72,10 +74,10 @@ public class WorkLoungeController {
         return "work-lounge/sharing-opinion";
     }
 
-    @GetMapping("/register-list")
-    public String getWorkLoungeRegisterListPage() {
-        return "work-lounge/register-list";
-    }
+//    @GetMapping("/register-list")
+//    public String getWorkLoungeRegisterListPage() {
+//        return "work-lounge/register-list";
+//    }
 
     @GetMapping("/evaluation-task-list")
     public String getWorkLoungeEvaluationTaskListPage() {
@@ -121,30 +123,30 @@ public class WorkLoungeController {
     }
 
     // memNo가 자동으로 가져오기전까지 사용하는 용도
-    @GetMapping("/register-list/{memNo}")
-    public String getRegisterAndCompleteList(@PathVariable("memNo") Integer memNo, Model model) {
-        List<RegisterListDTO> registerList = registerListService.getRegisterList(memNo);
-        List<RegisterListDTO> completeList = registerListService.getCompleteList(memNo);
-
-        model.addAttribute("registerList", registerList);
-        model.addAttribute("completeList", completeList);
-
-        return "work-lounge/register-list";
-    }
-
-    //위 사항은 memNo가 넘어올때 사용하는 용도로 만들어 놓은 것이다.
-//    @GetMapping("/register-list")
-//    public String getRegisterAndCompleteList(@AuthenticationPrincipal Principal principal, Model model) {
-//        String name = principalDetail.getName();
-//        Long userId = principalDetail.getMemberId();
-//        List<RegisterListDTO> registerList = registerListService.getRegisterList(userId);
-//        List<RegisterListDTO> completeList = registerListService.getCompleteList(userId);
+//    @GetMapping("/register-list/{memNo}")
+//    public String getRegisterAndCompleteList(@PathVariable("memNo") Integer memNo, Model model) {
+//        List<RegisterListDTO> registerList = registerListService.getRegisterList(memNo);
+//        List<RegisterListDTO> completeList = registerListService.getCompleteList(memNo);
 //
 //        model.addAttribute("registerList", registerList);
 //        model.addAttribute("completeList", completeList);
 //
 //        return "work-lounge/register-list";
 //    }
+
+    //    위 사항은 memNo가 넘어올때 사용하는 용도로 만들어 놓은 것이다.
+    @GetMapping("/register-list")
+    public String getRegisterAndCompleteList(@AuthenticationPrincipal PrincipalDetail principal, Model model) {
+        String name = principal.getName();
+        Integer userId = Math.toIntExact(principal.getId());
+        List<RegisterListDTO> registerList = registerListService.getRegisterList(userId);
+        List<RegisterListDTO> completeList = registerListService.getCompleteList(userId);
+
+        model.addAttribute("registerList", registerList);
+        model.addAttribute("completeList", completeList);
+
+        return "work-lounge/register-list";
+    }
 
     @GetMapping("/evaluation-task-lists")
     public ModelAndView getEvaluationTaskList() {

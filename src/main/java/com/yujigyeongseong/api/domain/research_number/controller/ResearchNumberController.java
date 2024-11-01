@@ -50,7 +50,7 @@ public class ResearchNumberController {
         return "work-lounge/business-timeline";
     }
 
-    @GetMapping("/work-lounge/eval-compose/{id}")
+    @GetMapping("/work-lounge/eval-list/eval-compose/{id}")
     public String getEvalCompose(@PathVariable Long id, Model model) {
 
         SubAnnounce subAnnounce = evalComposeService.getSubAnnounceById(id);

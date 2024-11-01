@@ -73,9 +73,9 @@ $(document).ready(function () {
           '<div id="evaluation-header" class="d-flex align-items-center my-3 mt-5">';
         headerHtml += "<h4><b>평가과제목록</b></h4>";
         headerHtml +=
-          '<h5 class="d-flex text-muted mb-0 ms-3 mt-2"><b>[' +
+          '<p class="d-flex text-muted mb-1 ms-3 mt-2" style="font-size: 13px"><b>[' +
           committeeName +
-          ']</b><p class="ms-1 mt-1">조회결과</p></h5>';
+          ']</b><p class="ms-1 mt-4" style="font-size: 12px">조회결과</p></p>';
 
         headerHtml +=
           '<h5 class="text-muted mb-2 ms-auto mt-1 letter">[총 ' +

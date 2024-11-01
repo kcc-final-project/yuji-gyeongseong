@@ -33,6 +33,8 @@
 .btn-back-orange {
     background-color: #ff8f27;
     color: #ffffff;
+    /*width: 80px;*/
+    /*height: 30px;*/
 }
 
 .btn-back-orange:hover {

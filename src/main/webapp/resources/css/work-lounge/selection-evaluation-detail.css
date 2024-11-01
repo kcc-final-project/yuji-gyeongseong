@@ -144,17 +144,17 @@
   position: relative;
 }
 
-.custom-divider:before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 20px;
-  background-color: #fff;
-  border: 2px solid var(--main-bg-color);
-  border-radius: 50%;
-}
+/*.custom-divider:before {*/
+/*  content: '';*/
+/*  position: absolute;*/
+/*  left: 50%;*/
+/*  transform: translateX(-50%);*/
+/*  width: 20px;*/
+/*  height: 20px;*/
+/*  background-color: #fff;*/
+/*  border: 2px solid var(--main-bg-color);*/
+/*  border-radius: 50%;*/
+/*}*/
 
 .custom-divider2 {
   height: 2px;
@@ -164,16 +164,20 @@
   position: relative;
 }
 
-.custom-divider2:before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: -18px;
-  transform: translate(-50%, 0);
-  width: 20px;
-  height: 20px;
-  background-color: #fff;
-  border: 2px solid var(--main-bg-color);
-  border-radius: 50%;
+/*.custom-divider2:before {*/
+/*  content: '';*/
+/*  position: absolute;*/
+/*  left: 50%;*/
+/*  top: -18px;*/
+/*  transform: translate(-50%, 0);*/
+/*  width: 20px;*/
+/*  height: 20px;*/
+/*  background-color: #fff;*/
+/*  border: 2px solid var(--main-bg-color);*/
+/*  border-radius: 50%;*/
+/*}*/
+
+.committee-font{
+  font-size: 14px;
 }
 

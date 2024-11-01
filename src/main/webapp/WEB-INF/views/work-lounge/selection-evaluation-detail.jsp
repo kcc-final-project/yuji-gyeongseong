@@ -31,7 +31,7 @@
                         <td class="col-1">
                             <h5>
                     <span class="pt-1 pb-1 badge text-bg-secondary black"
-                          style="background-color: #b9b9b9 !important;">
+                          style="background-color: #ffffff !important;">
                         <c:out value="${selectEvaluationDetail[0].evalStatus}"/>
                     </span>
                             </h5>
@@ -40,7 +40,7 @@
                             <div class="d-flex justify-content-center align-items-center">
                                 <span class="me-2 w-25">공모분야명</span>
                                 <input class="border d-inline-block form-control form-control-sm align-middle p-2 truncate-text"
-                                       style="border: 1px solid black; width: 350px; border-radius: 3px; background-color: #b9b9b9;"
+                                       style="border: 1px solid black; width: 350px; border-radius: 5px; background-color: #b9b9b9;"
                                        value="${selectEvaluationDetail[0].subTitle}" disabled readonly>
                             </div>
                         </td>
@@ -51,9 +51,9 @@
                                     <div class="input-group w-75">
                                         <input type="text" class="form-control date-input" id="startDate"
                                                value="${selectEvaluationDetail[0].startDate}" disabled readonly/>
-                                        <div class="input-group-append">
+<%--                                        <div class="input-group-append">--%>
                                             <span class="input-group-text">~</span>
-                                        </div>
+<%--                                        </div>--%>
                                         <input type="text" class="form-control date-input" id="endDate"
                                                value="${selectEvaluationDetail[0].finalSelectedAt}" disabled readonly/>
                                     </div>
@@ -89,7 +89,7 @@
 
                 <tbody id="plansTable" class="text-center">
     <c:forEach items="${selectEvaluationDetail}" var="selectEvaluation" varStatus="status">
-        <tr data-committee="${selectEvaluation.committeeName}">
+        <tr class="committee-font" data-committee="${selectEvaluation.committeeName}">
             <td class="align-middle text-center">
                 <div class="form-check d-flex justify-content-center align-items-center">
                     <input

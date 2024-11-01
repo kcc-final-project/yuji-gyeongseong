@@ -70,7 +70,7 @@
                 <c:forEach items="${committeeList}" var="committee">
                     <tr class="letter">
                         <td>
-                            <a class="committee-link" data-id="${committee.name}">
+                            <a class="committee-link" data-id="${committee.name}" style="text-decoration: none; color: black" >
                                 <c:out value="${committee.name}"/>
                             </a>
                         </td>
