@@ -1,8 +1,8 @@
 const radios1 = document.querySelectorAll(
-  'input[name="score1"], input[name="score2"], input[name="score3"], input[name="score4"], input[name="score5"], input[name="score6"], input[name="score7"], input[name="score8"], input[name="score9"], input[name="score10"]',
+    'input[name="score1"], input[name="score2"], input[name="score3"], input[name="score4"], input[name="score5"], input[name="score6"], input[name="score7"], input[name="score8"], input[name="score9"], input[name="score10"]',
 );
 const radios2 = document.querySelectorAll(
-  'input[name="score11"], input[name="score12"], input[name="score13"], input[name="score14"], input[name="score15"], input[name="score16"], input[name="score17"], input[name="score18"], input[name="score19"], input[name="score20"]',
+    'input[name="score11"], input[name="score12"], input[name="score13"], input[name="score14"], input[name="score15"], input[name="score16"], input[name="score17"], input[name="score18"], input[name="score19"], input[name="score20"]',
 );
 const resultElement1 = document.getElementById("result1");
 const resultElement2 = document.getElementById("result2");
@@ -40,7 +40,7 @@ radios2.forEach((radio) => {
 var isRequestInProgress = false;
 var loadedPapers = {};
 var totalScores = {};
-var defaultUrl = "/api/v1/work_lounge/evaluation-paper/TypeA/common";
+var defaultUrl = "/api/v1/work_lounge/evaluation-paper/서식1/공통";
 
 loadData(defaultUrl, "default");
 
@@ -49,8 +49,10 @@ $(".evpaper").click(function (e) {
 
   var paperType = $(this).data("id");
   var paperName = $(this).data("form-id");
+  console.log(paperName);
+  console.log(paperType);
   var url =
-    "/api/v1/work_lounge/evaluation-paper/" + paperName + "/" + paperType;
+      "/api/v1/work_lounge/evaluation-paper/" + paperName + "/" + paperType;
 
   if (isRequestInProgress || loadedPapers[paperType]) return;
 
@@ -81,13 +83,13 @@ function loadData(url, paperType) {
       data.forEach(function (item, index) {
         html += `
           <tr>
-              <th colspan="5" class="table-active">
+              <td colspan="5" class="table-active blue" style="color: #582f2f !important;">
                   ${index + 1}. ${item.content}
-              </th>
+              </td>
           </tr>
           <tr>
-              <td class="d-flex justify-content-between">
-                  ${createRadioButton(`score${index + 1}`, `excellent${index + 1}`, 10, "매우 우수함(10점")}
+              <td class="d-flex justify-content-between letter">
+                  ${createRadioButton(`score${index + 1}`, `excellent${index + 1}`, 10, "매우 우수함(10점)")}
                   ${createRadioButton(`score${index + 1}`, `superiority${index + 1}`, 8, "우수함(8점)")}
                   ${createRadioButton(`score${index + 1}`, `normal${index + 1}`, 6, "보통(6점)")}
                   ${createRadioButton(`score${index + 1}`, `improvement${index + 1}`, 4, "개선 필요(4점)")}

@@ -20,37 +20,38 @@
          style="width: 100%; height: 10%; display: flex; justify-content: center; align-items: center;">
         <h2>평가보고서</h2>
     </div>
-    <div class="container">
-        <table class="table table-bordered">
+    <div class="col-2"></div>
+    <div class="container col-8">
+        <table class="table table-bordered shadow table-container">
             <tbody>
             <c:if test="${not empty paperList}">
                 <tr>
                     <th class="table-active domain">사업명</th>
                     <th colspan="3">${paperList[0].totalTitle}</th>
                 </tr>
-                <tr>
+                <tr class="letter">
                     <th class="table-active domain">연구개발계획서번호</th>
-                    <td>${paperList[0].rndPlanNo}</td>
+                    <td>[RM-2024-NO${paperList[0].rndPlanNo}]</td>
                     <th class="table-active domain">평가일</th>
                     <td>${paperList[0].evalCompletedAt}</td>
                 </tr>
-                <tr>
+                <tr class="letter">
                     <th class="table-active domain">연구개발과제명</th>
                     <td colspan="3">${paperList[0].taskName}</td>
                 </tr>
-                <tr>
+                <tr class="letter">
                     <th class="table-active domain">주관연구개발기관</th>
                     <td>${paperList[0].rndInstitution}</td>
                     <th class="table-active domain">연구책임자</th>
-                    <td>${paperList[0].rndMem}</td>
+                    <td>${paperList[0].name}</td>
                 </tr>
-                <tr>
+                <tr class="letter">
                     <th class="table-active domain">평가위원</th>
-                    <td>${paperList[0].etMem}</td>
+                    <td>${paperList[0].etname}</td>
                     <th class="table-active domain">소속</th>
                     <td>${paperList[0].affilType}</td>
                 </tr>
-                <tr>
+                <tr class="letter">
                     <th class="table-active domain">부서</th>
                     <td>${paperList[0].affilDept}</td>
                     <th class="table-active domain">직위</th>
@@ -71,7 +72,7 @@
                                         role="tab"
                                         aria-controls="common"
                                         aria-selected="true"
-                                        data-id="common"
+                                        data-id="공통"
                                         data-form-id="${paper.formType}"
                                 >공통 평가지</a
                                 >
@@ -92,6 +93,7 @@
                             </li>
 
                     </ul>
+
                     <div class="tab-content" id="myTabContent">
                         <div
                                 class="tab-pane fade show active"
@@ -104,14 +106,14 @@
                                 <!-- 여기 나옴. -->
                                 </tbody>
                             </table>
-                            <h3 class="text-end mt-2 shadow-sm score">
-                                총 점수 : <span id="result1">0</span>점
-                            </h3>
+                            <p class="text-end mt-2 shadow-sm p-1">
+                                총 합계 : <span id="result1">0</span>점
+                            </p>
                             <br>
                             <div class="d-flex mt-5">
                                 <div class="col-4"></div>
                                 <button
-                                        class="btn btn-primary save-button ctm-btn-normal"
+                                        class="btn save-button ctm-btn-white"
                                         onclick="saveSurvey()"
                                 >
                                     취소
@@ -139,10 +141,10 @@
                                 <!-- 여기 나옴. -->
                                 </tbody>
                             </table>
-                            </c:forEach>
-                            <h3 class="text-end mt-2 shadow-sm score">
-                                총 점수 : <span id="result2">0</span>점
-                            </h3>
+
+                            <p class="text-end mt-2 shadow-sm p-1">
+                                총 합계 : <span id="result2">0</span>점
+                            </p>
                             <br>
                             <div class="d-flex mt-5">
                                 <div class="col-4"></div>
@@ -155,7 +157,7 @@
                                 <div class="col-1"></div>
                                 <button
                                         class="btn btn-primary edit-button ctm-btn-normal"
-                                        onclick="enableEditing()"
+                                        onclick="saveScores()"
                                 >
                                     완료
                                 </button>
@@ -164,15 +166,55 @@
                         </div>
 
                     </div>
+                    </c:forEach>
                 </td>
             </tbody>
         </table>
     </div>
+    <div class="col-2"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="/resources/js/work-lounge/evaluation-paper.js"></script>
+<script>
+    function saveScores() {
 
+        const totalScore1 = parseInt(localStorage.getItem('totalScore_common')) || 0;
+        const totalScore2 = parseInt(localStorage.getItem('totalScore_specific')) || 0;
+
+
+        const totalScore = totalScore1 + totalScore2;
+
+
+        const scoreData = {
+            totalScore: totalScore  // 합산된 점수
+            // evalCommitteeNo: 1,
+            // rndPlanNo: 3,
+            // memNo: 1,
+            // evaluationTableNo: 1
+        };
+
+        $.ajax({
+            url: "/work-lounge/score",
+            type: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(scoreData),
+
+            success: function(response) {
+                console.log("점수가 성공적으로 저장되었습니다.", response);
+
+                alert("점수가 성공적으로 저장되었습니다.");
+
+                window.location.href = "/work-lounge/evaluation-task-lists";
+            },
+            error: function(xhr, status, error) {
+                console.error("점수 저장 오류:", status, error);
+                alert("점수 저장에 실패했습니다. 다시 시도해주세요.");
+            }
+        });
+    }
+
+</script>
 
 </div>
 </body>

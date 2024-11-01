@@ -1056,13 +1056,13 @@ alter table rnd_plan
         primary key (rnd_plan_no);
 
 INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content, rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'T001', 'ResearchTask1', 'Institution A', 1, 'In Progress', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, 1);
+VALUES (NEXT VALUE FOR seq_rnd_plan, 'T001', 'ResearchTask1', 'Institution A', 1, '선정', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 1, 1);
 
 INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content, rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'T002', 'ResearchTask2', 'Institution B', 2, 'Pending', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 2, 2);
+VALUES (NEXT VALUE FOR seq_rnd_plan, 'T002', 'ResearchTask2', 'Institution B', 2, '작성중', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 2, 2);
 
 INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content, rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
-VALUES (NEXT VALUE FOR seq_rnd_plan, 'T003', 'ResearchTask3', 'Institution C', 1, 'Completed', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 3, 1);
+VALUES (NEXT VALUE FOR seq_rnd_plan, 'T003', 'ResearchTask3', 'Institution C', 1, '제출완료', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 3, 1);
 
 INSERT INTO rnd_plan (rnd_plan_no, rnd_task_no, task_name, rnd_institution, curr_step, plan_status, final_tgt_content, rnd_content, perf_content, submitted_at, created_at, updated_at, sub_ann_no, mem_no, bucket_no)
 VALUES (NEXT VALUE FOR seq_rnd_plan, 'T004', 'Research Task 4', 'Institution D', 3, 'In Progress', NULL, NULL, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 1, 4, 2);
@@ -1364,13 +1364,13 @@ INSERT INTO question (question_no, type, content, created_at)
 VALUES (NEXT VALUE FOR seq_question, 'TypeA', 'Question content 1', CURRENT_TIMESTAMP);
 
 INSERT INTO question (question_no, type, content, created_at)
-VALUES (NEXT VALUE FOR seq_question, 'common', 'Question content 2', CURRENT_TIMESTAMP);
+VALUES (NEXT VALUE FOR seq_question, 'TypeA', 'Question content 2', CURRENT_TIMESTAMP);
 
 INSERT INTO question (question_no, type, content, created_at)
-VALUES (NEXT VALUE FOR seq_question, 'TypeC', 'Question content 3', CURRENT_TIMESTAMP);
+VALUES (NEXT VALUE FOR seq_question, 'common', 'Question content 3', CURRENT_TIMESTAMP);
 
 INSERT INTO question (question_no, type, content, created_at)
-VALUES (NEXT VALUE FOR seq_question, 'TypeD', 'Question content 4', CURRENT_TIMESTAMP);
+VALUES (NEXT VALUE FOR seq_question, 'common', 'Question content 4', CURRENT_TIMESTAMP);
 
 INSERT INTO question (question_no, type, content, created_at)
 VALUES (NEXT VALUE FOR seq_question, 'TypeE', 'Question content 5', CURRENT_TIMESTAMP);
@@ -1615,7 +1615,10 @@ INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step
 VALUES (NEXTVAL('seq_opinion'), 1, '첫 번째에대한 의견', DEFAULT, 0, 1, 1, 1, 0, DEFAULT, 1, 1, 1);
 
 
-
+insert into ANNOCEMENT_EVALUATION(evaluation_table_no, sub_ann_no)
+values (1,1);
+insert into ANNOCEMENT_EVALUATION(evaluation_table_no, sub_ann_no)
+values (2,2);
 -- INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at, eval_committee_no, rnd_plan_no, bucket_no) VALUES (1, 1, 'I believe the evaluation process can be improved.', current_timestamp, 10, 0, 0, 0, 0, null, 1, 1, 1);
 -- INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at, eval_committee_no, rnd_plan_no, bucket_no) VALUES (2, 2, 'The new criteria are beneficial.', current_timestamp, 5, 0, 0, 0, 0, null, 1, 1, 1);
 -- INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at, eval_committee_no, rnd_plan_no, bucket_no) VALUES (3, 3, 'I have concerns about the transparency.', current_timestamp, 3, 0, 0, 0, 0, null, 1, 2, 1);
