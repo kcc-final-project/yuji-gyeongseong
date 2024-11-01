@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yujigyeongseong.api.domain.work_lounge.dao.RegisterListMapper">
+
+    <select id="selectRegisterList" resultType="RegisterListDTO">
+        SELECT ann.total_title  as totaltitle,
+               subann.sub_title as subtitle,
+               ann.ann_type     as anntype,
+               ann.started_at   as startedat,
+               ann.closed_at    as closedat,
+               ann.status       as status,
+               rnd.plan_status  as planstatus,
+               rnd.rnd_plan_no as rndplanno
+        FROM announcement ann
+                 inner join sub_announcement subann on ann.ann_no = subann.ann_no
+                 inner join rnd_plan rnd on rnd.sub_ann_no = subann.sub_ann_no
+        WHERE rnd.mem_no = #{memNo}
+    </select>
+
+    <select id="selectCompleteList" resultType="RegisterListDTO">
+        SELECT ann.total_title  as totaltitle,
+               subann.sub_title as subtitle,
+               ann.ann_type     as anntype,
+               ann.started_at   as startedat,
+               ann.closed_at    as closedat,
+               rnd.submitted_at as submittedat,
+               rnd.plan_status  as planstatus,
+               rnd.rnd_plan_no as rndplanno
+        FROM announcement ann
+                 inner join sub_announcement subann on ann.ann_no = subann.ann_no
+                 inner join rnd_plan rnd on rnd.sub_ann_no = subann.sub_ann_no
+        WHERE rnd.mem_no = #{memNo}
+    </select>
+
+    <delete id="delete">
+        delete from rnd_plan where rnd_plan_no =#{rndPlanNo}
+    </delete>
+
+</mapper>

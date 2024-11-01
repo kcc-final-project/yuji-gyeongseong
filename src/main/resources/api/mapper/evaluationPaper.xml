@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yujigyeongseong.api.domain.work_lounge.dao.EvaluationPaperMapper">
+
+    <select id="selectEvaluationPaperList" resultType="EvaluationPaperDTO">
+        SELECT distinct ann.total_title                                          AS totaltitle,
+        rp.rnd_task_no                                           as rndtaskno,
+        et.eval_completed_at                                     as evalcompletedat,
+        rp.task_name                                             as taskname,
+        rp.rnd_institution                                       as rndinstitution,
+        (select name from member where mem_no = rp.mem_no)       as name,
+        (select name from member where mem_no = et.mem_no)       as etname,
+        (select affil_type from member where mem_no = et.mem_no) as affiltype,
+        (select affil_dept from member where mem_no = et.mem_no) as affildept,
+        (select position from member where mem_no = et.mem_no) as position, rp.rnd_plan_no as rndplanno,
+        evt.form_type as formtype, qu.type as type
+        FROM announcement ann
+        INNER JOIN sub_announcement sa
+        on ann.ann_no = sa.ann_no
+        inner join rnd_plan rp on rp.sub_ann_no = sa.sub_ann_no
+        inner join eval_task et on et.rnd_plan_no = rp.rnd_plan_no
+        inner join announcement_evaluation ae on ae.sub_ann_no = sa.sub_ann_no
+        inner join evaluation_table evt on evt.evaluation_table_no = ae.evaluation_table_no
+        inner join evaluation_question eq on eq.evaluation_table_no = evt.evaluation_table_no
+        inner join question qu on qu.question_no = eq.question_no
+
+        where rp.rnd_plan_no = #{rndPlanNo} and qu.type NOT IN ('공통')
+    </select>
+
+    <resultMap id="questionList" type="EvaluationPaperQuestionDTO">
+        <result column="title" property="title"/>
+        <result column="description" property="description"/>
+        <result column="form_type" property="formType"/>
+        <result column="question_no" property="questionNo"/>
+        <result column="type" property="type"/>
+        <result column="content" property="content"/>
+    </resultMap>
+
+    <select id="selectContentList" resultMap="questionList">
+        select evta.title, evta.description, evta.form_type, qu.question_no, qu.type, qu.content
+        from evaluation_table evta
+                 inner join evaluation_question evqe on evta.evaluation_table_no = evqe.evaluation_table_no
+                 inner join question qu on qu.question_no = evqe.question_no
+        WHERE evta.form_type = #{formType}
+          and qu.type = #{type}
+    </select>
+
+    <insert id="insertScoreList" parameterType="EvaluationScoreDTO">
+        insert into eval_score (eval_score_no, score, eval_committee_no, rnd_plan_no,mem_no,evaluation_table_no)
+        values (seq_eval_score.NEXTVAL, #{score}, #{evalCommitteeNo}, #{rndPlanNo}, #{memNo}, #{evaluationTableNo})
+    </insert>
+
+</mapper>
