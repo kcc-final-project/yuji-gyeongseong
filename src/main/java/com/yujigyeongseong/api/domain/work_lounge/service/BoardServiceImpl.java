@@ -33,12 +33,12 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public Board getBoard(Integer opinionNo) {
-        return boardMapper.selectBoardById(opinionNo);
+    public Board selectBoardId(int opinionNo) {
+        return boardMapper.selectBoardId(opinionNo);
     }
 
     @Override
-    public void updateBoard(Integer opinionNo) {
+    public void updateBoard(int opinionNo) {
         boardMapper.updateBoard(opinionNo);
     }
 

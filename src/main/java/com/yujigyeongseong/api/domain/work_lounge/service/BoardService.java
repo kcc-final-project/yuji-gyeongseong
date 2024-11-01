@@ -9,9 +9,9 @@ public interface BoardService {
 
     public void insertBoard(Board board);
 
-    public Board getBoard(Integer opinionNo);
+    public Board selectBoardId(int opinionNo);
 
-    public void updateBoard(Integer opinionNo);
+    public void updateBoard(int opinionNo);
 
     public void updateStep(Board board);
 
