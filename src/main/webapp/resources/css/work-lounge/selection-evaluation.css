@@ -6,6 +6,11 @@
     cursor: pointer;
 }
 
+.line {
+    border-top: 1px solid #000;
+    margin: 20px 0;
+}
+
 .modify {
     margin-top: 50px
 }
@@ -49,12 +54,12 @@
 }
 
 .btn-back-orange {
-    background-color: #ff8f27;
+    background-color: #c8b5a1;
     color: #ffffff;
 }
 
 .btn-back-orange:hover {
-    border-color: #ff8f27;
+    border-color: #c8b5a1;
 }
 
 .btn-indigo {
@@ -71,3 +76,63 @@
     border-color: #2E406AFF;
 }
 
+
+.btn-back-beige {
+    background-color: #cfcfcf;
+    color: #ffffff;
+}
+
+.btn-back-beige :hover {
+    border-color: #cfcfcf;
+}
+
+.ctm-btn-orange {
+    background-color: #ff8f27;
+    width: 100px;
+    height: 38px;
+    color: #ffffff;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ff8f27;
+    transition: 0.3s all;
+    font-size: 14px;
+}
+
+.ctm-btn-orange:hover {
+    background-color: #ff8f27 !important;
+    border: 2px solid transparent;
+    color: white;
+    font-size: 14px;
+}
+
+
+.ctm-btn-orange1 {
+    background-color: #ff8f27;
+    width: 100px;
+    height: 38px;
+    color: #ffffff;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ff8f27;
+    transition: 0.3s all;
+    font-size: 14px;
+}
+
+.ctm-btn-orange1:hover {
+    background-color: #ff8f27 !important;
+    border: 2px solid transparent;
+    color: white;
+    font-size: 14px;
+}
+
+.ctm-btn-gray:disabled {
+    background-color: #cfcfcf;
+    color: #686767;
+    border: 2px solid #cfcfcf;
+    cursor: not-allowed;
+    opacity: 0.6;
+}

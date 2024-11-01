@@ -3,7 +3,7 @@
     margin: 20px 0;
 }
 
-.domain > th {
+.domain > td {
     background-color: #2E406AFF;
     color: white;
 }
@@ -13,22 +13,30 @@
 }
 
 .letter {
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.btn-back-indigo {
+    background-color: #2E406AFF;
+    color: #ffffff;
+}
+
+.btn-back-indigo:hover {
+    border-color: #2E406AFF;
 }
 
 .blue-font {
     color: #2F69FF !important;
 }
 
-.btn-orange {
-    border: 1px solid #ff8f27;
-    color: #ff8f27;
-}
-
 .btn-back-orange {
     background-color: #ff8f27;
-    color: white;
+    color: #ffffff;
+}
+
+.btn-back-orange:hover {
+    border-color: #ff8f27;
 }
 
 .btn.btn-outline-primary {
@@ -43,10 +51,17 @@
     font-size: 9px;
 }
 
-.btn.btn-back-orange {
-    font-size: 9px;
+.arrow {
+    margin-left: 5px;
+    font-size: 0.8em;
 }
 
-.btn-back-orange:hover {
-    border-color: #ff8f27;
+.up::after {
+    content: '▲';
+    color: green;
+}
+
+.down::after {
+    content: '▼';
+    color: red;
 }

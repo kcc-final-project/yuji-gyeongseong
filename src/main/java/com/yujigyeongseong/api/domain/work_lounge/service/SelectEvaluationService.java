@@ -2,13 +2,14 @@ package com.yujigyeongseong.api.domain.work_lounge.service;
 
 import com.yujigyeongseong.api.domain.work_lounge.dto.EvaluationTaskListDTO;
 import com.yujigyeongseong.api.domain.work_lounge.dto.SelectEvaluationDTO;
+import com.yujigyeongseong.api.domain.work_lounge.dto.SelectNotiDTO;
 
 import java.util.List;
 
 public interface SelectEvaluationService {
-    public List<SelectEvaluationDTO> getSelectEvaluationList();
+    public List<SelectNotiDTO> getSelectEvaluationList();
 
-    public List<SelectEvaluationDTO> getselectEvaluation(Integer subAnnNo);
+    public List<SelectEvaluationDTO> getselectEvaluation(Long subAnnNo);
 
     public List<SelectEvaluationDTO> getselectCommittee(String rndTaskNo);
 }
