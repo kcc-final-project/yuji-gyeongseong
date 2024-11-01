@@ -1,5 +1,9 @@
+.common-main{
+    width: 1300px;
+}
+
 .eval_title {
-    height: 180px;
+    height: 150px;
     width: 100%;
     align-content: center;
 }
@@ -20,6 +24,7 @@
     height: 500px;
     gap: 20px;
     padding: 20px;
+    width: 1300px;
 }
 
 .academic, .career, .technic {
@@ -49,7 +54,7 @@
 }
 
 .career-name, .technic-name {
-    margin-left: 280px;
+    margin-left: 330px;
 }
 
 hr {
@@ -167,4 +172,12 @@ label{
 .icon-with-tooltip:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
+}
+
+.material-icons-outlined{
+    font-size: 25px;
+    color: #3fa918;
+    position: absolute;
+    top: 15px;
+    left: 5px;
 }

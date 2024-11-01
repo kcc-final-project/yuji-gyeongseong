@@ -22,17 +22,17 @@
     <div class="title">
         <p class="academic-name">학력정보</p>
         <div class="icon-with-tooltip">
-            <span class="material-icons-outlined" style="font-size: 25px; color: #3fa918">info</span>
+            <span class="material-icons-outlined">info</span>
             <span class="tooltip-text">연구원 등록할 때 입력한 <br>"학력정보" 입니다. <br>올바른 정보인지 확인해주세요.</span>
         </div>
         <p class="career-name">경력정보</p>
         <div class="icon-with-tooltip">
-            <span class="material-icons-outlined" style="font-size: 25px; color: #3fa918">info</span>
+            <span class="material-icons-outlined" >info</span>
             <span class="tooltip-text">연구원 등록할 때 입력한 <br>"경력정보" 입니다. <br>올바른 정보인지 확인해주세요.</span>
         </div>
         <p class="technic-name">기술분야정보</p>
         <div class="icon-with-tooltip">
-            <span class="material-icons-outlined" style="font-size: 25px; color: #3fa918">info</span>
+            <span class="material-icons-outlined" >info</span>
             <span class="tooltip-text">연구원 등록할 때 입력한 <br>"기술분야정보" 입니다. <br>올바른 정보인지 확인해주세요.</span>
         </div>
     </div>

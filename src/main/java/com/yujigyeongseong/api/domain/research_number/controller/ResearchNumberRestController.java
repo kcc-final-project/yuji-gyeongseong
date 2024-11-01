@@ -6,6 +6,7 @@ import com.yujigyeongseong.api.domain.research_number.service.EvalCommitteeServi
 import com.yujigyeongseong.api.domain.research_number.service.EvalComposeService;
 import com.yujigyeongseong.api.global.auth.PrincipalDetail;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,17 +18,17 @@ import java.util.List;
 @RequestMapping("/api/v1/research-number")
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class ResearchNumberRestController {
 
     private final EvalCommitteeService evalCommitteeService;
     private final EvalComposeService evalComposeService;
 
     @PostMapping("/register/research/{memberId}")
-    public ResponseEntity<?> registerResearchInformation(@PathVariable Long memberId, @RequestBody SubmitResearchRequest submitRequest) {
+    public ResponseEntity<?> registerResearchInformation(@AuthenticationPrincipal PrincipalDetail principalDetail,  @RequestBody SubmitResearchRequest submitRequest) {
 
         // 세션 연결
-        Long id = 25L;
-
+        Long id = principalDetail.getId();
 
         try {
             evalCommitteeService.setCareersByMemberId(id, submitRequest.getCareerInfos());
@@ -44,9 +45,20 @@ public class ResearchNumberRestController {
     }
 
     @PostMapping("/register/eval/{memberId}")
-    public ResponseEntity<?> registerEvalInformation(@RequestBody EvalNotiRequest evalNotiRequest, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+    public ResponseEntity<?> registerEvalInformation(@AuthenticationPrincipal PrincipalDetail principalDetail, @RequestBody EvalNotiRequest evalNotiRequest) {
         try {
             evalNotiRequest.setMemNo(principalDetail.getId());
+            evalCommitteeService.setEvalNotiByMemberId(evalNotiRequest);
+            return ResponseEntity.ok("후보단 신청 완료");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("후보단 신청 실패: " + e.getMessage());
+        }
+    }
+
+    @PostMapping("/register/noti/{memberId}")
+    public ResponseEntity<?> registerEvalNotiInformation(@RequestBody EvalNotiRequest evalNotiRequest) {
+        try {
             evalCommitteeService.setEvalNotiByMemberId(evalNotiRequest);
             return ResponseEntity.ok("후보단 신청 완료");
         } catch (Exception e) {

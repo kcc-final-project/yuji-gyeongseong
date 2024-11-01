@@ -118,7 +118,7 @@ function sendNotification(memberId, committeeId, startDate, endDate, title) {
   };
 
   $.ajax({
-    url: "/api/v1/research-number/register/eval/" + memberId,
+    url: "/api/v1/research-number/register/noti/" + memberId,
     type: "POST",
     contentType: "application/json",
     data: JSON.stringify(EvalNotiRequest),

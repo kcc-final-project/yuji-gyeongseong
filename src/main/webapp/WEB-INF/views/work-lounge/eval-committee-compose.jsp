@@ -86,7 +86,7 @@
                     </thead>
                 </table>
                 <div class="table-body-container">
-                    <table class="committee-table">
+                    <table class="committee-table table table-hover">
                         <tbody>
 
 <%--                        <c:forEach var="committee" items="${committees}">
@@ -134,16 +134,16 @@
         </div>
     </div>
 
-</div>
 
-<div class="committee-btn">
-    <button id="cancelButton" class="ctm-btn-normal delete-button" style="width: 100px; ">
-        취소
-    </button>
-    <button id="sendButton" class="ctm-btn-normal add-button" style="width: 200px; background-color: #FF8F27FF">
-        전자알림 전송
-    </button>
-</div>
+    <div class="committee-btn">
+        <button id="cancelButton" class="ctm-btn-normal delete-button" style="width: 100px; ">
+            취소
+        </button>
+        <button id="sendButton" class="ctm-btn-normal add-button" style="width: 200px; background-color: #FF8F27FF">
+            전자알림 전송
+        </button>
+    </div>
+
 </div>
 
 <script src="/resources/js/work-lounge/eval-committee-compose.js"></script>

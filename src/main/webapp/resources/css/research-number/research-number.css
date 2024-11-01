@@ -95,9 +95,12 @@ hr {
     outline: none;
 }
 
+#institutionTable:hover{
+    cursor: pointer;
+}
+
 .calen {
     display: flex;
-    /*margin-left: 40px;*/
 }
 
 .form-select-two {
@@ -107,6 +110,10 @@ hr {
     border-radius: 5px;
     padding: 5px;
     box-sizing: border-box;
+}
+
+.form-select-two:hover {
+    cursor: pointer;
 }
 
 .major {
@@ -264,7 +271,7 @@ hr {
 }
 
 .modal-dialog {
-    max-width: 1500px;
+    max-width: 1000px;
 }
 
 .modal-dialog-centered {
@@ -344,6 +351,11 @@ hr {
     border-radius: 5px;
 }
 
+#institutionTableBody input, #workInstitutionTableBody input{
+    width: 20px;
+    height: 20px;
+}
+
 .institution-table-container {
     height: 500px;
     overflow-y: auto;
@@ -363,4 +375,8 @@ label {
 .search {
     display: flex;
     justify-content: center;
+}
+
+.input{
+    width: 100% !important;
 }

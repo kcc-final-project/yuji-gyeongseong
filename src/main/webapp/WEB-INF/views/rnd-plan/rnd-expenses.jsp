@@ -50,7 +50,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="text-center ctm-th__sub" rowspan="2">1단계</td>
+                        <td class="text-center ctm-th" rowspan="2">1단계</td>
                         <td class="text-center">1년차</td>
                         <td class="text-center">주관연구기관</td>
                         <td class="text-center">서울대학교</td>
@@ -121,7 +121,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center ctm-th__sub" rowspan="2">2단계</td>
+                        <td class="text-center ctm-th" rowspan="2">2단계</td>
                         <td class="text-center">1년차</td>
                         <td class="text-center">주관연구기관</td>
                         <td class="text-center">서울대학교</td>
@@ -192,7 +192,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="text-center ctm-th__sub">3단계</td>
+                        <td class="text-center ctm-th">3단계</td>
                         <td class="text-center">1년차</td>
                         <td class="text-center">주관연구기관</td>
                         <td class="text-center">서울대학교</td>

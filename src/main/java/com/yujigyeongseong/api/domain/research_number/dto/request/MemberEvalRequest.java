@@ -5,8 +5,10 @@ import com.yujigyeongseong.api.domain.research_number.dto.Member;
 import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 
 @Data
+@ToString
 public class MemberEvalRequest {
     private MemberDetails member;
     private EvaluationMember evaluationMember;
