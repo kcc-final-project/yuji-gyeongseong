@@ -36,8 +36,8 @@ public class Board {
         this.deletedAt = deletedAt != null ? formatter.format(deletedAt) : null;
     }
 
-    private Integer evalCommitteeNo;
-    private Integer rndPlanNo;
-    private Integer bucketNo;
+    private int evalCommitteeNo;
+    private int rndPlanNo;
+    private int bucketNo;
 
 }
