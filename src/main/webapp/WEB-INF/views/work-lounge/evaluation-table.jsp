@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ include file="../common/common-noheader.jsp" %>
+<%@ include file="../common/common-work-lounge-tap.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,12 +30,12 @@
         }
     </style>
 </head>
-<body>
-<div class="main-container" style="width: 100%; height: 756px;">
-    <div class="marin-header"
-         style="width: 100%; height: 10%; display: flex; justify-content: center; align-items: center;">
-        <h2>전자평가표</h2>
-    </div>
+<body class="mt-5" >
+<div class="main-container" style="width: 100%; height: 756px; margin-top: 50px; margin-left: 20px">
+<%--    <div class="marin-header"--%>
+<%--         style="width: 100%; height: 10%; display: flex; justify-content: center; align-items: center;">--%>
+<%--        <h2>전자평가표</h2>--%>
+<%--    </div>--%>
     <div class="d-flex justify-content-center ps-1">
         <div class="card col-4 scroll-container shadow-lg">
             <div class="mt-2 d-flex justify-content-center align-center mt-1">
@@ -82,38 +82,10 @@
         <div class="col-8">
             <div class="col-9">
                 <table class="table table-bordered text-center committee-top rounded-table shadow-sm">
-                    <%--                    <thead>--%>
-                    <%--                    <tr class="domain">--%>
-                    <%--                        <th>공고분야명</th>--%>
-                    <%--                        <th>공모분야</th>--%>
-                    <%--                        <th>기술분야</th>--%>
-                    <%--                        <th>서식구성</th>--%>
-                    <%--                    </tr>--%>
-                    <%--                    </thead>--%>
-                    <%--                    <tbody class="committee-top">--%>
 
-                    <%--                    <tr class="flex text-align-center justify-content-center">--%>
-                    <%--                        <td class="truncate-text1" data-full-text="2024년 글로벌혁신특구혁신사업육성(R&D)_가상실증인프라(재)zzzzzzzzzzzzzz">--%>
-                    <%--                            2024년--%>
-                    <%--                            글로벌혁신특구혁신사업육성(R&D)_가상실증인프라(재)zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz--%>
-                    <%--                        </td>--%>
-                    <%--                        <td>품목지정공모</td>--%>
-                    <%--                        <td>IT분야</td>--%>
-
-                    <%--                        <td>--%>
-                    <%--                            <div class="form-group" style="margin-bottom: 0px">--%>
-                    <%--                                <select class="form-control" id="formSelect" onchange="createTabs(this.value)">--%>
-                    <%--                                    <option value="1" selected>Form 1</option>--%>
-                    <%--                                    <option value="2">Form 2</option>--%>
-                    <%--                                    <option value="3">Form 3</option>--%>
-                    <%--                                </select>--%>
-                    <%--                            </div>--%>
-                    <%--                        </td>--%>
-                    <%--                    </tr>--%>
-                    <%--                    </tbody>--%>
                 </table>
             </div>
-            <div class="col-12" style="margin-top: 0;"> <!-- 간격 줄이기 -->
+            <div class="col-12" style="margin-top: 0;">
                 <div id="surveyContainer" class="survey-container col-12"></div>
             </div>
         </div>
@@ -646,7 +618,6 @@
 
         $(document).off('click', '.btn-circle.quest').on('click', '.btn-circle.quest', function() {
             var questionText = $(this).prev('span').text();
-            console.log(questionText);
 
             var newDivContent =
                 '<div class="form-floating mt-2 p-2 question">' +

@@ -33,5 +33,6 @@ public class EvaluationPaperDTO {
     private String position;
     private String type;
     private String formType;
+    private String tfName;
 
 }
