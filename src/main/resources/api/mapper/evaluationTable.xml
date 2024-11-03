@@ -46,7 +46,7 @@
                sub.tech_field_name,
                et.form_type,
                et.evaluation_table_no
-        from annocement_evaluation ae
+        from announcement_evaluation ae
                  inner join sub_announcement sub on ae.sub_ann_no = sub.sub_ann_no
                  inner join evaluation_table et on et.evaluation_table_no = ae.evaluation_table_no
         where sub.sub_title = #{subTitle}

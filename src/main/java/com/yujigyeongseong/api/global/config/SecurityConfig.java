@@ -95,6 +95,8 @@ public class SecurityConfig {
                 .logoutSuccessUrl("/member/sign/in")
                 .invalidateHttpSession(true));
 
+        http.headers(headers -> headers.disable()); // 헤더 비활성화 수정(iframe)
+
         return http.build();
     }
 }

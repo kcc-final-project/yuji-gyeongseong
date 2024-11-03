@@ -20,20 +20,17 @@ public class SelectEvaluationServiceImpl implements SelectEvaluationService {
     private SelectEvaluationMapper selectEvaluationMapper;
 
     @Override
-    public List<SelectNotiDTO> getSelectEvaluationList() {
-        return selectEvaluationMapper.selectEvaluationList();
+    public List<SelectNotiDTO> getSelectEvaluationList(int memNo) {
+        return selectEvaluationMapper.selectEvaluationList(memNo);
     }
 
     @Override
     public List<SelectEvaluationDTO> getselectEvaluation(Long subAnnNo) {
-        System.out.println(subAnnNo);
-        System.out.println(selectEvaluationMapper.selectEvaluation(subAnnNo));
         return selectEvaluationMapper.selectEvaluation(subAnnNo);
     }
 
     @Override
     public List<SelectEvaluationDTO> getselectCommittee(String rndTaskNo) {
-        System.out.println(rndTaskNo);
         return selectEvaluationMapper.selectCommittee(rndTaskNo);
     }
 

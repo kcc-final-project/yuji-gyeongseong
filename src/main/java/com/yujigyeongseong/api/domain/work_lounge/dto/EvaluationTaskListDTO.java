@@ -16,6 +16,7 @@ public class EvaluationTaskListDTO {
     private String subTitle;
     private String evalStartedAt;
     private String evalClosedAt;
+    private int memNo;
 
     public void setEvalStartedAt(Timestamp evalStartedAt) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

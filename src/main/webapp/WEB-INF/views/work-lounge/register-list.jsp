@@ -89,29 +89,27 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${completeList}" var="complete" varStatus="status">
-<%--                    <c:if test="${not complete.planStatus eq '접수중'}">--%>
-                        <tr class="letter" style="text-align: center;justify-content: center;">
-                            <td class="truncate-text1 pt-3"><c:out value="${complete.totalTitle}"/></td>
-                            <td class="truncate-text1 pt-3"><c:out value="${complete.subTitle}"/></td>
-                            <td class="pt-3"><c:out value="${complete.annType}"/></td>
-                            <td class="pt-3"><c:out value="${complete.startedAt}"/></td>
-                            <td class="pt-3"><c:out value="${complete.closedAt}"/></td>
-                            <td class="pt-3"><c:out value="${complete.submittedAt}"/></td>
-                            <td class="pt-3"><c:out value="${complete.planStatus}"/></td>
-                            <td>
-                                <button type="button" class="btn btn-sm ctm-btn-red btn-edit" style="margin: auto"
-                                        onclick="deleteBoard(${complete.rndPlanNo})">
-                                    취소
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-sm ctm-btn-orange btn-opinion" style="margin: auto"
-                                        onclick="window.location.href='http://localhost:8082/work-lounge/sharing-opinion/${complete.rndPlanNo}'">
-                                    의견공유
-                                </button>
-                            </td>
-                        </tr>
-<%--                    </c:if>--%>
+                    <tr class="letter" style="text-align: center;justify-content: center;">
+                        <td class="truncate-text1 pt-3"><c:out value="${complete.totalTitle}"/></td>
+                        <td class="truncate-text1 pt-3"><c:out value="${complete.subTitle}"/></td>
+                        <td class="pt-3"><c:out value="${complete.annType}"/></td>
+                        <td class="pt-3"><c:out value="${complete.startedAt}"/></td>
+                        <td class="pt-3"><c:out value="${complete.closedAt}"/></td>
+                        <td class="pt-3"><c:out value="${complete.submittedAt}"/></td>
+                        <td class="pt-3"><c:out value="${complete.planStatus}"/></td>
+                        <td>
+                            <button type="button" class="btn btn-sm ctm-btn-red btn-edit" style="margin: auto"
+                                    onclick="deleteBoard(${complete.rndPlanNo})">
+                                취소
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-sm ctm-btn-orange btn-opinion" style="margin: auto"
+                                    onclick="window.open('http://localhost:8082/work-lounge/sharing-opinion/${complete.rndPlanNo}','_blank','width=1150, height=800, top=15, left=15, scrollbars=yes')">
+                                의견공유
+                            </button>
+                        </td>
+                    </tr>
                 </c:forEach>
                 </tbody>
             </table>

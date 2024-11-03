@@ -68,7 +68,6 @@ public class WorkLoungeController {
         return "work-lounge/evaluation-paper";
     }
 
-    // 새로 만들기
     @GetMapping("/sharing-opinion")
     public String getWorkLoungeSharingOpinionPage() {
         return "work-lounge/sharing-opinion";
@@ -134,7 +133,6 @@ public class WorkLoungeController {
 //        return "work-lounge/register-list";
 //    }
 
-    //    위 사항은 memNo가 넘어올때 사용하는 용도로 만들어 놓은 것이다.
     @GetMapping("/register-list")
     public String getRegisterAndCompleteList(@AuthenticationPrincipal PrincipalDetail principal, Model model) {
         String name = principal.getName();
@@ -149,8 +147,10 @@ public class WorkLoungeController {
     }
 
     @GetMapping("/evaluation-task-lists")
-    public ModelAndView getEvaluationTaskList() {
-        List<EvaluationTaskListDTO> committeeList = evaluationTaskListService.getEvaluationCommitteeList();
+    public ModelAndView getEvaluationTaskList(@AuthenticationPrincipal PrincipalDetail principal) {
+        String name = principal.getName();
+        Integer userId = Math.toIntExact(principal.getId());
+        List<EvaluationTaskListDTO> committeeList = evaluationTaskListService.getEvaluationCommitteeList(userId);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("committeeList", committeeList);
         modelAndView.setViewName("work-lounge/evaluation-task-list");
@@ -158,8 +158,10 @@ public class WorkLoungeController {
     }
 
     @GetMapping("/eval-list")
-    public ModelAndView getSelectEvaluationList() {
-        List<SelectNotiDTO> selectEvaluationList = selectEvaluationService.getSelectEvaluationList();
+    public ModelAndView getSelectEvaluationList(@AuthenticationPrincipal PrincipalDetail principal) {
+        String name = principal.getName();
+        Integer userId = Math.toIntExact(principal.getId());
+        List<SelectNotiDTO> selectEvaluationList = selectEvaluationService.getSelectEvaluationList(userId);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("selectEvaluationList", selectEvaluationList);
         modelAndView.setViewName("work-lounge/selection-evaluation");

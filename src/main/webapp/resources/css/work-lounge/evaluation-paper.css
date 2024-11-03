@@ -1,3 +1,7 @@
+.nav-link {
+  color: #000000;
+}
+
 .nav-tabs .nav-link.active {
   background-color: var(--main-bg-color);
   color: white;

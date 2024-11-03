@@ -46,12 +46,22 @@ public class SharingOpinionServiceImpl implements SharingOpinionService {
         return sharingOpinionMapper.summaryId(opinionNo);
     }
 
+    // 게시글
     @Override
     public int insertOpinionReplyList(Opinion opinion) {
         opinion.setEvalCommitteeNo(1);
         opinion.setRndPlanNo(1);
         opinion.setBucketNo(1);
         return sharingOpinionMapper.insertOpinionReplyList(opinion);
+    }
+
+    // 댓글
+    @Override
+    public int insertOpinionList(Opinion opinion) {
+        opinion.setEvalCommitteeNo(1);
+        opinion.setRndPlanNo(1);
+        opinion.setBucketNo(1);
+        return sharingOpinionMapper.insertOpinionList(opinion);
     }
 
 

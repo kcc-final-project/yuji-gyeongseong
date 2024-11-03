@@ -24,4 +24,6 @@ public interface SharingOpinionMapper {
 
     public int insertOpinionReplyList(Opinion opinion);
 
+    public int insertOpinionList(Opinion opinion);
+
 }

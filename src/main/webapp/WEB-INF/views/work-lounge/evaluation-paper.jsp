@@ -16,12 +16,12 @@
 </head>
 <body>
 <div class="main-container" style="width: 100%;height: 756px;">
-    <div class="marin-header"
-         style="width: 100%; height: 10%; display: flex; justify-content: center; align-items: center;">
-        <h2>평가보고서</h2>
-    </div>
-    <div class="col-2"></div>
-    <div class="container col-8">
+    <%--    <div class="marin-header"--%>
+    <%--         style="width: 100%; height: 10%; display: flex; justify-content: center; align-items: center;">--%>
+    <%--        <h2>평가보고서</h2>--%>
+    <%--    </div>--%>
+    <%--    <div class="col-2"></div>--%>
+    <div class="container col-8 mt-2 mb-2">
         <table class="table table-bordered shadow table-container">
             <tbody>
             <c:if test="${not empty paperList}">
@@ -61,8 +61,9 @@
 
             <tr>
                 <td colspan="4">
+                <c:forEach var="paper" items="${paperList}">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <c:forEach var="paper" items="${paperList}">
+
                         <li class="nav-item">
                             <a
                                     class="nav-link active evpaper"
@@ -88,11 +89,7 @@
                                     aria-selected="false"
                                     data-id="${paper.type}"
                                     data-form-id="${paper.formType}"
-                                    style="color: black"
-                                <%--                                >기술분야 평가지 (${paper.type})</a--%>
-                                <%--&lt;%&ndash;                                >&ndash;%&gt; 잠시 바꿈--%>
-                            >기술분야 평가지 (생명과학)</a
-                            >
+                            >기술분야 평가지 (${paper.tfName})</a>
                         </li>
 
                     </ul>
@@ -113,22 +110,22 @@
                                 총 합계 : <span id="result1">0</span>점
                             </p>
                             <br>
-                            <div class="d-flex mt-5">
-                                <div class="col-4"></div>
-                                <button
-                                        class="btn save-button ctm-btn-white"
-                                        onclick="saveSurvey()"
-                                >
-                                    취소
-                                </button>
-                                <div class="col-1"></div>
-                                <button
-                                        class="btn btn-primary edit-button ctm-btn-normal"
-                                        onclick="enableEditing()"
-                                >
-                                    완료
-                                </button>
-                            </div>
+                                <%--                            <div class="d-flex mt-5">--%>
+                                <%--                                <div class="col-4"></div>--%>
+                                <%--                                <button--%>
+                                <%--                                        class="btn save-button ctm-btn-white"--%>
+                                <%--                                        onclick="saveSurvey()"--%>
+                                <%--                                >--%>
+                                <%--                                    취소--%>
+                                <%--                                </button>--%>
+                                <%--                                <div class="col-1"></div>--%>
+                                <%--                                <button--%>
+                                <%--                                        class="btn btn-primary edit-button ctm-btn-normal"--%>
+                                <%--                                        onclick="enableEditing()"--%>
+                                <%--                                >--%>
+                                <%--                                    완료--%>
+                                <%--                                </button>--%>
+                                <%--                            </div>--%>
                             <br>
                         </div>
 
@@ -149,18 +146,18 @@
                                 총 합계 : <span id="result2">0</span>점
                             </p>
                             <br>
-                            <div class="d-flex mt-5">
+                            <div class="d-flex mt-3 me-5">
                                 <div class="col-4"></div>
                                 <button
-                                        class="btn btn-primary save-button ctm-btn-normal"
-                                        onclick="saveSurvey()"
+                                        class="btn btn-primary save-button ctm-btn-white"
+                                        onclick="window.close();"
                                 >
                                     취소
                                 </button>
                                 <div class="col-1"></div>
                                 <button
                                         class="btn btn-primary edit-button ctm-btn-normal"
-                                        onclick="saveScores()"
+                                        onclick="saveScores();"
                                 >
                                     완료
                                 </button>
@@ -208,7 +205,7 @@
 
                     alert("점수가 성공적으로 저장되었습니다.");
 
-                    window.location.href = "/work-lounge/evaluation-task-lists";
+                    window.close();
                 },
                 error: function (xhr, status, error) {
                     console.error("점수 저장 오류:", status, error);

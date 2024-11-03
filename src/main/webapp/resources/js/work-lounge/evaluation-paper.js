@@ -10,31 +10,31 @@ let totalScore1 = 0;
 let totalScore2 = 0;
 
 radios1.forEach((radio) => {
-  radio.addEventListener("change", () => {
-    totalScore1 = 0;
+    radio.addEventListener("change", () => {
+        totalScore1 = 0;
 
-    radios1.forEach((radio) => {
-      if (radio.checked) {
-        totalScore1 += parseInt(radio.value);
-      }
+        radios1.forEach((radio) => {
+            if (radio.checked) {
+                totalScore1 += parseInt(radio.value);
+            }
+        });
+
+        resultElement1.textContent = totalScore1;
     });
-
-    resultElement1.textContent = totalScore1;
-  });
 });
 
 radios2.forEach((radio) => {
-  radio.addEventListener("change", () => {
-    totalScore2 = 0;
+    radio.addEventListener("change", () => {
+        totalScore2 = 0;
 
-    radios2.forEach((radio) => {
-      if (radio.checked) {
-        totalScore2 += parseInt(radio.value);
-      }
+        radios2.forEach((radio) => {
+            if (radio.checked) {
+                totalScore2 += parseInt(radio.value);
+            }
+        });
+
+        resultElement2.textContent = totalScore2;
     });
-
-    resultElement2.textContent = totalScore2;
-  });
 });
 
 var isRequestInProgress = false;
@@ -45,43 +45,41 @@ var defaultUrl = "/api/v1/work_lounge/evaluation-paper/서식1/공통";
 loadData(defaultUrl, "default");
 
 $(".evpaper").click(function (e) {
-  e.preventDefault();
+    e.preventDefault();
 
-  var paperType = $(this).data("id");
-  var paperName = $(this).data("form-id");
-  console.log(paperName);
-  console.log(paperType);
-  var url =
-      "/api/v1/work_lounge/evaluation-paper/" + paperName + "/" + paperType;
+    var paperType = $(this).data("id");
+    var paperName = $(this).data("form-id");
+    var url =
+        "/api/v1/work_lounge/evaluation-paper/" + paperName + "/" + paperType;
 
-  if (isRequestInProgress || loadedPapers[paperType]) return;
+    if (isRequestInProgress || loadedPapers[paperType]) return;
 
-  isRequestInProgress = true;
+    isRequestInProgress = true;
 
-  if (!totalScores[url]) {
-    totalScores[url] = 0;
-    $("#" + paperType + " .result").text(totalScores[url]);
-  }
+    if (!totalScores[url]) {
+        totalScores[url] = 0;
+        $("#" + paperType + " .result").text(totalScores[url]);
+    }
 
-  $("input[type='radio']").prop("checked", false);
+    $("input[type='radio']").prop("checked", false);
 
-  loadData(url, paperType);
+    loadData(url, paperType);
 });
 
 $(document).ready(function () {
-  loadData(defaultUrl, "common");
+    loadData(defaultUrl, "common");
 });
 
 function loadData(url, paperType) {
-  $.ajax({
-    url: url,
-    type: "GET",
-    dataType: "json",
-    success: function (data) {
-      let html = ``;
+    $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            let html = ``;
 
-      data.forEach(function (item, index) {
-        html += `
+            data.forEach(function (item, index) {
+                html += `
           <tr>
               <td colspan="5" class="table-active blue" class="letter2" style="color: black !important; font-size: 14px;">
                   ${index + 1}. ${item.content}
@@ -97,47 +95,47 @@ function loadData(url, paperType) {
               </td>
           </tr>
         `;
-      });
+            });
 
-      if (paperType === "common") {
-        $(".common tbody").empty().append(html);
-      } else {
-        $(`.data-table.${paperType} tbody`).empty().append(html);
-      }
+            if (paperType === "common") {
+                $(".common tbody").empty().append(html);
+            } else {
+                $(`.data-table.${paperType} tbody`).empty().append(html);
+            }
 
-      $("input[type='radio']").change(function () {
-        updateTotalScore(paperType);
-      });
-    },
-    error: function (xhr, status, error) {
-      console.error("AJAX 요청 오류:", status, error);
-    },
-    complete: function () {
-      isRequestInProgress = false;
-      loadedPapers[paperType] = true;
-    },
-  });
+            $("input[type='radio']").change(function () {
+                updateTotalScore(paperType);
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error("AJAX 요청 오류:", status, error);
+        },
+        complete: function () {
+            isRequestInProgress = false;
+            loadedPapers[paperType] = true;
+        },
+    });
 }
 
 function updateTotalScore(paperType) {
-  let totalScore = 0;
+    let totalScore = 0;
 
-  $(`input[type='radio']:checked`).each(function () {
-    totalScore += parseInt($(this).val());
-  });
+    $(`input[type='radio']:checked`).each(function () {
+        totalScore += parseInt($(this).val());
+    });
 
-  if (paperType === "common") {
-    $("#result1").text(totalScore);
-    localStorage.setItem(`totalScore_${paperType}`, totalScore);
-  } else {
-    $("#result2").text(totalScore);
+    if (paperType === "common") {
+        $("#result1").text(totalScore);
+        localStorage.setItem(`totalScore_${paperType}`, totalScore);
+    } else {
+        $("#result2").text(totalScore);
 
-    localStorage.setItem(`totalScore_${paperType}`, totalScore);
-  }
+        localStorage.setItem(`totalScore_${paperType}`, totalScore);
+    }
 }
 
 function createRadioButton(name, id, value, label) {
-  return `
+    return `
       <div class="form-check">
           <input class="form-check-input" type="radio" name="${name}" id="${id}" value="${value}" />
           <label class="form-check-label" for="${id}">${label}</label>

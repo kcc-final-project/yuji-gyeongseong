@@ -3,6 +3,7 @@
 
 <mapper namespace="com.yujigyeongseong.api.domain.work_lounge.dao.RegisterListMapper">
 
+    <!-- 작성중인 계획서 -->
     <select id="selectRegisterList" resultType="RegisterListDTO">
         SELECT ann.total_title  as totaltitle,
                subann.sub_title as subtitle,
@@ -15,7 +16,7 @@
         FROM announcement ann
                  inner join sub_announcement subann on ann.ann_no = subann.ann_no
                  inner join rnd_plan rnd on rnd.sub_ann_no = subann.sub_ann_no
-        WHERE rnd.mem_no = #{memNo}
+        WHERE rnd.mem_no = #{memNo} and  ann.status = '접수중'
     </select>
 
     <select id="selectCompleteList" resultType="RegisterListDTO">
@@ -24,13 +25,14 @@
                ann.ann_type     as anntype,
                ann.started_at   as startedat,
                ann.closed_at    as closedat,
+               ann.status       as status,
                rnd.submitted_at as submittedat,
                rnd.plan_status  as planstatus,
                rnd.rnd_plan_no as rndplanno
         FROM announcement ann
                  inner join sub_announcement subann on ann.ann_no = subann.ann_no
                  inner join rnd_plan rnd on rnd.sub_ann_no = subann.sub_ann_no
-        WHERE rnd.mem_no = #{memNo}
+        WHERE rnd.mem_no = #{memNo} and ann.status = '접수마감'
     </select>
 
     <delete id="delete">
