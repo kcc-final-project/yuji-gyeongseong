@@ -19,9 +19,8 @@
     />
 </head>
 <body>
-<div class="common-main" style="margin-top: 50px;">
-    <h2 class="text-center">선정평가</h2>
-    <div class="container pt-3">
+<div class="common-main" style="margin-top: 10px;">
+    <div class="container">
         <div style="max-height: 320px; overflow-y: auto">
 
             <table class="table table-bordered text-center table-hover">
@@ -51,9 +50,7 @@
                                     <div class="input-group w-75">
                                         <input type="text" class="form-control date-input" id="startDate"
                                                value="${selectEvaluationDetail[0].startDate}" disabled readonly/>
-<%--                                        <div class="input-group-append">--%>
-                                            <span class="input-group-text">~</span>
-<%--                                        </div>--%>
+                                        <span class="input-group-text">~</span>
                                         <input type="text" class="form-control date-input" id="endDate"
                                                value="${selectEvaluationDetail[0].finalSelectedAt}" disabled readonly/>
                                     </div>
@@ -63,11 +60,11 @@
                         <td class="col-1 align-middle">
                             <select id="committeeSelect" class="form-control" style="width: 130px">
                                 <option value="ALL">전체</option>
-                                <option value="평가위원회-01">평가위원회 A</option>
-                                <option value="평가위원회-02">평가위원회 B</option>
-                                <option value="평가위원회-03">평가위원회 C</option>
-                                <option value="평가위원회-04">평가위원회 D</option>
-                                <option value="평가위원회-05">평가위원회 E</option>
+                                <option value="평가위원회-01">평가위원회-01</option>
+                                <option value="평가위원회-02">평가위원회-02</option>
+                                <option value="평가위원회-03">평가위원회-03</option>
+                                <option value="평가위원회-04">평가위원회-04</option>
+                                <option value="평가위원회-05">평가위원회-05</option>
                             </select>
                         </td>
                     </tr>
@@ -88,29 +85,30 @@
                 </c:if>
 
                 <tbody id="plansTable" class="text-center">
-    <c:forEach items="${selectEvaluationDetail}" var="selectEvaluation" varStatus="status">
-        <tr class="committee-font" data-committee="${selectEvaluation.committeeName}">
-            <td class="align-middle text-center">
-                <div class="form-check d-flex justify-content-center align-items-center">
-                    <input
-                        class="form-check-input plan-checkbox committee-member"
-                        type="checkbox"
-                        value="${selectEvaluation.subAnnNo}"
-                        data-plan="${selectEvaluation.rndTaskNo}"
-                    />
-                </div>
-            </td>
-            <td class="committee-member" data-plan="${selectEvaluation.rndTaskNo}">
-                <c:out value="${selectEvaluation.rndTaskNo}"/>
-            </td>
-            <td><c:out value="${selectEvaluation.taskName}"/></td>
-            <td><c:out value="${selectEvaluation.rndInstitution}"/></td>
-            <td><c:out value="${selectEvaluation.roundName}"/></td>
-            <td><c:out value="${selectEvaluation.totalScore}"/></td>
-            <td><span class="badge text-bg-secondary"><c:out value="${selectEvaluation.planStatus}"/></span></td>
-        </tr>
-    </c:forEach>
-</tbody>
+                <c:forEach items="${selectEvaluationDetail}" var="selectEvaluation" varStatus="status">
+                    <tr class="committee-font" data-committee="${selectEvaluation.committeeName}">
+                        <td class="align-middle text-center">
+                            <div class="form-check d-flex justify-content-center align-items-center">
+                                <input
+                                        class="form-check-input plan-checkbox committee-member"
+                                        type="checkbox"
+                                        value="${selectEvaluation.subAnnNo}"
+                                        data-plan="${selectEvaluation.rndTaskNo}"
+                                />
+                            </div>
+                        </td>
+                        <td class="committee-member" data-plan="${selectEvaluation.rndTaskNo}">
+                            <c:out value="${selectEvaluation.rndTaskNo}"/>
+                        </td>
+                        <td><c:out value="${selectEvaluation.taskName}"/></td>
+                        <td><c:out value="${selectEvaluation.rndInstitution}"/></td>
+                        <td><c:out value="${selectEvaluation.roundName}"/></td>
+                        <td><c:out value="${selectEvaluation.totalScore}"/></td>
+                        <td><span class="badge text-bg-secondary"><c:out value="${selectEvaluation.planStatus}"/></span>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
 
             </table>
         </div>
@@ -125,7 +123,7 @@
                 </div>
 
             </div>
-            <div class="col-7 mt-0">
+            <div class="col-7 mt-2">
                 <select class="form-select" aria-label="Default select example" id="chartSelector"
                         onchange="showChart(this.value)">
                     <option value="deviation">[연구계획서 점수 분석]</option>
@@ -165,7 +163,7 @@
         <div class="d-flex">
             <button
                     class="btn ctm-btn-mirror"
-                    onclick="window.location.href='http://localhost:8082/work-lounge/selection-evaluation'">
+                    onclick="window.open('http://localhost:8082/rnd-plans/8','_blank','width=700, height=600, top=50, left=50, scrollbars=yes')">
                 계획서 상세 조회
             </button>
             <button
@@ -176,13 +174,8 @@
         </div>
         <div class="d-flex mb-2">
             <button
-                    class="me-3 btn ctm-btn-orangemirror"
-                    onclick="window.location.href='http://localhost:8082/work-lounge/selection-evaluation'">
-                뒤로
-            </button>
-            <button
                     class="btn ctm-btn-orange"
-                    onclick="window.location.href='http://localhost:8082/work-lounge/selection-evaluation'">
+                    onclick="window.close();">
                 최종완료
             </button>
         </div>

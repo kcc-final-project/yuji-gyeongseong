@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface SelectEvaluationMapper {
-    public List<SelectNotiDTO> selectEvaluationList();
+    public List<SelectNotiDTO> selectEvaluationList(int memNo);
 
     public List<SelectEvaluationDTO> selectEvaluation(Long subAnnNo);
 

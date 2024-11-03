@@ -28,6 +28,7 @@ public class SelectEvaluationDTO {
         this.finalSelectedAt = finalSelectedAt != null ? formatter.format(finalSelectedAt) : null;
     }
 
+    private int rndPlanNo;
     private String rndTaskNo;
     private String taskName;
     private String rndInstitution;
