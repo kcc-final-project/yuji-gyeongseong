@@ -19,12 +19,12 @@ public class EvaluationTaskListServiceImpl implements EvaluationTaskListService 
     private EvaluationTaskListMapper evaluationTaskListMapper;
 
     @Override
-    public List<EvaluationTaskListDTO> getEvaluationCommitteeList() {
-        return evaluationTaskListMapper.selectEvaluationCommitteeList();
+    public List<EvaluationTaskListDTO> getEvaluationCommitteeList(int memNo) {
+        return evaluationTaskListMapper.selectEvaluationCommitteeList(memNo);
     }
 
     @Override
-    public List<EvaluationTaskListsDTO> getEvaluationTaskList(String name) {
-        return evaluationTaskListMapper.selectEvaluationTaskList(name);
+    public List<EvaluationTaskListsDTO> getEvaluationTaskList(String name, int memNo) {
+        return evaluationTaskListMapper.selectEvaluationTaskList(name, memNo);
     }
 }

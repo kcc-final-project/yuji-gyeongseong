@@ -7,7 +7,7 @@ import com.yujigyeongseong.api.domain.work_lounge.dto.EvaluationTaskListsDTO;
 import java.util.List;
 
 public interface EvaluationTaskListService {
-    public List<EvaluationTaskListDTO> getEvaluationCommitteeList();
+    public List<EvaluationTaskListDTO> getEvaluationCommitteeList(int memNo);
 
-    public List<EvaluationTaskListsDTO> getEvaluationTaskList(String name);
+    public List<EvaluationTaskListsDTO> getEvaluationTaskList(String name, int memNo);
 }

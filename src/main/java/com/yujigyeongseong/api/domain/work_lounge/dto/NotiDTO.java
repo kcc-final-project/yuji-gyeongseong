@@ -29,4 +29,5 @@ public class NotiDTO {
     }
 
     private String progStatus;
+    private String status;
 }
