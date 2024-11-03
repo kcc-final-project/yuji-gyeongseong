@@ -34,25 +34,25 @@ $(function () {
     $(uploadResultArr).each(function (i, obj) {
       if (!obj.image) {
         var fileCallPath = encodeURIComponent(
-          obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName,
+            obj.uploadPath + "/" + obj.uuid + "_" + obj.fileName,
         );
 
         var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
 
         str +=
-          "<li><div><a href='/download?fileName=" +
-          fileCallPath +
-          "'>" +
-          "<img src='/resources/img/attach.png'>" +
-          obj.fileName +
-          "</a>" +
-          "<span data-file='" +
-          fileCallPath +
-          "' data-type='file'> x </span>" +
-          "<div></li>";
+            "<li><div><a href='/download?fileName=" +
+            fileCallPath +
+            "'>" +
+            "<img src='/resources/img/attach.png'>" +
+            obj.fileName +
+            "</a>" +
+            "<span data-file='" +
+            fileCallPath +
+            "' data-type='file'> x </span>" +
+            "<div></li>";
       } else {
         var fileCallPath = encodeURIComponent(
-          obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName,
+            obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName,
         );
 
         var originPath = obj.uploadPath + "\\" + obj.uuid + "_" + obj.fileName;
@@ -60,16 +60,16 @@ $(function () {
         originPath = originPath.replace(new RegExp(/\\/g), "/");
 
         str +=
-          "<li><a href=\"javascript:showImage('" +
-          originPath +
-          "')\">" +
-          "<img src='display?fileName=" +
-          fileCallPath +
-          "'></a>" +
-          "<span data-file='" +
-          fileCallPath +
-          "' data-type='image'> x </span>" +
-          "<li>";
+            "<li><a href=\"javascript:showImage('" +
+            originPath +
+            "')\">" +
+            "<img src='display?fileName=" +
+            fileCallPath +
+            "'></a>" +
+            "<span data-file='" +
+            fileCallPath +
+            "' data-type='image'> x </span>" +
+            "<li>";
       }
     });
 
@@ -81,8 +81,8 @@ function showImage(fileCallPath) {
   $(".bigPictureWrapper").css("display", "flex").show();
 
   $(".bigPicture")
-    .html("<img src='/display?fileName=" + fileCallPath + "'>")
-    .animate({ width: "100%", height: "100%" }, 1000);
+      .html("<img src='/display?fileName=" + fileCallPath + "'>")
+      .animate({ width: "100%", height: "100%" }, 1000);
 }
 
 $(".bigPictureWrapper").on("click", function (e) {
@@ -138,27 +138,6 @@ $(".file_btn").click(function () {
   }
 });
 
-$(".submit_btn").click(function () {
-  let content = $(this).parents("td").find(".content_area").val();
-
-  var formData = new FormData();
-  formData.append("content", content);
-
-  $.ajax({
-    url: "/savePost",
-    method: "POST",
-    data: formData,
-    processData: false,
-    contentType: false,
-    success: function (response) {
-      alert("게시물이 성공적으로 저장되었습니다!");
-    },
-    error: function (error) {
-      alert("게시물을 저장하는 동안 오류가 발생했습니다.");
-    },
-  });
-});
-
 $(document).ready(function () {
   $("#commentsSection").collapse("hide");
   $("#commentsSection1").collapse("hide");
@@ -167,9 +146,9 @@ $(document).ready(function () {
     var clickedButtonId = $(this).attr("id");
 
     $('.btn[data-toggle="collapse"]')
-      .not("#" + clickedButtonId)
-      .each(function () {
-        $($(this).data("target")).collapse("hide");
-      });
+        .not("#" + clickedButtonId)
+        .each(function () {
+          $($(this).data("target")).collapse("hide");
+        });
   });
 });

@@ -2,6 +2,7 @@ package com.yujigyeongseong.api.domain.work_lounge.controller;
 
 import com.yujigyeongseong.api.domain.work_lounge.dto.*;
 import com.yujigyeongseong.api.domain.work_lounge.service.*;
+import com.yujigyeongseong.api.global.auth.PrincipalDetail;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -42,8 +44,9 @@ public class WorkLoungeRestController {
 
     @GetMapping("/evaluation-task-list/{name}")
     @ResponseBody
-    public ResponseEntity<List<EvaluationTaskListsDTO>> getEvaluationTaskList(@PathVariable String name) {
-        List<EvaluationTaskListsDTO> taskList = evaluationTaskListService.getEvaluationTaskList(name);
+    public ResponseEntity<List<EvaluationTaskListsDTO>> getEvaluationTaskList(@PathVariable String name, @AuthenticationPrincipal PrincipalDetail principal) {
+        Integer userId = Math.toIntExact(principal.getId());
+        List<EvaluationTaskListsDTO> taskList = evaluationTaskListService.getEvaluationTaskList(name, userId);
         return taskList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(taskList, HttpStatus.OK);
     }
 
@@ -58,7 +61,6 @@ public class WorkLoungeRestController {
     @ResponseBody
     public ResponseEntity<List<SelectEvaluationDTO>> getselectCommittee(@PathVariable String rndTaskNo) {
         List<SelectEvaluationDTO> committeeList = selectEvaluationService.getselectCommittee(rndTaskNo);
-        System.out.println(committeeList);
         return committeeList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(committeeList, HttpStatus.OK);
     }
 
@@ -67,7 +69,6 @@ public class WorkLoungeRestController {
     @ResponseBody
     public ResponseEntity<List<FormDTO>> getSubannounceList(@PathVariable String subTitle) {
         List<FormDTO> subannounceList = evaluationTableListService.getSubannounceList(subTitle);
-        System.out.println(subannounceList);
         return subannounceList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(subannounceList, HttpStatus.OK);
     }
 
@@ -84,7 +85,6 @@ public class WorkLoungeRestController {
     @ResponseBody
     public ResponseEntity<List<PaperDTO>> getquestionList(@PathVariable String name) {
         List<PaperDTO> questionList = evaluationTableListService.getquestionList(name);
-        System.out.println(questionList);
         return questionList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(questionList, HttpStatus.OK);
     }
 
@@ -93,7 +93,6 @@ public class WorkLoungeRestController {
     @ResponseBody
     public ResponseEntity<List<Opinion>> getSelectSharingOpinionList() {
         List<Opinion> opinionList = sharingOpinionService.getselectOpinionList();
-        System.out.println(opinionList);
         return opinionList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(opinionList, HttpStatus.OK);
     }
 
@@ -102,15 +101,45 @@ public class WorkLoungeRestController {
     @ResponseBody
     public ResponseEntity<Opinion> getSummaryId(@PathVariable("opinionNo") int opinionNo) {
         Opinion summary = sharingOpinionService.summaryId(opinionNo);
-        System.out.println(summary);
         return summary == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(summary, HttpStatus.OK);
     }
 
-    // 댓글 작성
-    // 댓글 작성 요청을 처리하는 메서드
+    // 게시글 작성
+    // 게시글 작성 요청을 처리하는 메서드
     @PostMapping("/summary-id/{opinionNo}")
     public ResponseEntity<String> insertOpinionReplyList(@PathVariable("opinionNo") int opinionNo,
                                                          @RequestParam("content") String content) {
+        try {
+            Opinion opinion = new Opinion();
+            opinion.setOpinionNo(opinionNo);
+            opinion.setContent(content);
+
+//            opinion.setRef(opinion.getOpinionNo());
+            opinion.setStep(opinion.getStep());
+            opinion.setDepth(opinion.getDepth());
+
+            opinion.setEvalCommitteeNo(1);
+            opinion.setRndPlanNo(1);
+            opinion.setBucketNo(1);
+
+            int result = sharingOpinionService.insertOpinionReplyList(opinion);
+
+            if (result > 0) {
+                return ResponseEntity.ok("댓글 작성 성공");
+            } else {
+                return ResponseEntity.status(500).body("댓글 작성 실패");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("서버 에러 발생");
+        }
+    }
+
+
+    //댓글 작성
+    @PostMapping("/post/{opinionNo}")
+    public ResponseEntity<String> insertOpinionList(@PathVariable("opinionNo") int opinionNo,
+                                                    @RequestParam("content") String content) {
         try {
             Opinion opinion = new Opinion();
             opinion.setOpinionNo(opinionNo);
@@ -136,7 +165,6 @@ public class WorkLoungeRestController {
             return ResponseEntity.status(500).body("서버 에러 발생");
         }
     }
-
 
 
 }
