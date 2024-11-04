@@ -5,6 +5,7 @@ import com.yujigyeongseong.api.domain.research_number.dto.EvaluationMember;
 import com.yujigyeongseong.api.domain.research_number.dto.Member;
 import com.yujigyeongseong.api.domain.research_number.dto.SubAnnounce;
 import com.yujigyeongseong.api.domain.research_number.dto.request.EvalMemberRequest;
+import com.yujigyeongseong.api.domain.research_number.dto.request.EvalPercentRequest;
 import com.yujigyeongseong.api.domain.research_number.dto.request.MemberDetails;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public interface EvalComposeService {
 
     int setNotiByNotificationNo(Long notificationNo);
 
-    int setEvalCommitteesBySubAnnNo(Long subAnnNo, int rndPlanCnt);
+    int setEvalCommitteesBySubAnnNo(Long subAnnNo, int rndPlanCnt, EvalPercentRequest request);
 
     int getEvalCommitteeCntById(Long SubAnnNo);
 

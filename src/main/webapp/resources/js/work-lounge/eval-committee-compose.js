@@ -125,9 +125,9 @@ function sendNotificationToCommitteeMembers(
 
 // URL에서 subAnnNo 추출
 function getSubAnnNoFromUrl() {
-  const path = window.location.pathname; // 현재 페이지의 경로
-  const segments = path.split("/"); // 경로를 '/'로 분할
-  return segments[segments.length - 1]; // 마지막 세그먼트가 공모분야 번호
+  const path = window.location.pathname;
+  const segments = path.split("/");
+  return segments[segments.length - 1];
 }
 
 // 각 연구원 알림 함수
@@ -264,7 +264,7 @@ function loadResearcherInfo(committeeId) {
           }
 
           const card = `
-            <div class="card ${institutionClass}">
+            <div class="card ">
                 <div class="card-row">
                     <span class="card-label">기관명</span>
                     <span class="card-value">${member.institutionName}</span>
@@ -280,7 +280,7 @@ function loadResearcherInfo(committeeId) {
                         <span class="status ${evaluationMember.recvStatusEng}">${evaluationMember.recvStatus}</span>
                     </div>
                     <span class="card-label">소속기관</span>
-                    <span class="card-value">${type}</span>
+                    <span class="card-value ${institutionClass}">${type}</span>
                 </div>
             </div>
           `;

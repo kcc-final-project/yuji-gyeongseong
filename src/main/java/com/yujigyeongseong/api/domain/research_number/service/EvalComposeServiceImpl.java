@@ -3,6 +3,7 @@ package com.yujigyeongseong.api.domain.research_number.service;
 import com.yujigyeongseong.api.domain.research_number.dao.EvalComposeMapper;
 import com.yujigyeongseong.api.domain.research_number.dto.*;
 import com.yujigyeongseong.api.domain.research_number.dto.request.EvalMemberRequest;
+import com.yujigyeongseong.api.domain.research_number.dto.request.EvalPercentRequest;
 import com.yujigyeongseong.api.domain.research_number.dto.request.MemberDetails;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.ExecutorType;
@@ -66,7 +67,7 @@ public class EvalComposeServiceImpl implements EvalComposeService {
     }
 
     @Override
-    public int setEvalCommitteesBySubAnnNo(Long subAnnNo, int rndPlanCnt) {
+    public int setEvalCommitteesBySubAnnNo(Long subAnnNo, int rndPlanCnt, EvalPercentRequest request) {
         SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
         try {
 //            for (int i = 0; i < rndPlanCnt; i++) {
@@ -74,7 +75,13 @@ public class EvalComposeServiceImpl implements EvalComposeService {
 //                evalComposeMapper.insertEvalCommitteesBySubAnnNo(subAnnNo, committeeName);
 //            }
 
-            evalComposeMapper.insertEvalCommitteesBySubAnnNo(subAnnNo, rndPlanCnt);
+            evalComposeMapper.insertEvalCommitteesBySubAnnNo(
+                    subAnnNo,
+                    rndPlanCnt,
+                    request.getResearchInstituteRate(),
+                    request.getEducationInstituteRate(),
+                    request.getProfessionalInstituteRate()
+            );
 
             session.flushStatements();  // 쌓인 배치 실행
             session.commit();  // 성공시 커밋
