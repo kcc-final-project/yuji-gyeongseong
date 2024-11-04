@@ -26,4 +26,9 @@ public interface AnnouncementMapper {
     SubAnnouncementApply selectSubAnnouncementByAnnNo(String annNo);
 
     List<Announcement> searchAnnouncement(AnnouncementFilterRequest announcementFilterRequest);
+
+    String selectTechName(String annNo);
+
+    List<Announcement> selectTechAnno(String techName);
+
 }
