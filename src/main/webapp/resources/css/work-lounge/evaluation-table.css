@@ -198,3 +198,26 @@
 
 
 
+.status {
+  padding: 3px 5px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.status.not-approved {
+  color: #ff4d4d;
+  border: 1px solid #ff4d4d;
+  background-color: #ffffff;
+}
+
+.status.approved {
+  color: #28a745;
+  border: 1px solid #28a745;
+  background-color: #ffffff;
+}
+
+.status.stayed {
+  color: #AAAAAA;
+  border: 1px solid #AAAAAA;
+  background-color: #ffffff;
+}

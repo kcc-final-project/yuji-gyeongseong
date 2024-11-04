@@ -77,6 +77,7 @@ public class WorkLoungeRestController {
     @ResponseBody
     public ResponseEntity<List<PaperDTO>> getPaperList(@PathVariable String name, @PathVariable String formType) {
         List<PaperDTO> paperList = evaluationTableListService.getPaperList(name, formType);
+        System.out.println(paperList);
         return paperList == null ? new ResponseEntity<>(null, HttpStatus.NOT_FOUND) : new ResponseEntity<>(paperList, HttpStatus.OK);
     }
 
@@ -112,6 +113,7 @@ public class WorkLoungeRestController {
         try {
             Opinion opinion = new Opinion();
             opinion.setOpinionNo(opinionNo);
+            opinion.setMemNo(opinion.getMemNo());
             opinion.setContent(content);
 
 //            opinion.setRef(opinion.getOpinionNo());
@@ -143,6 +145,7 @@ public class WorkLoungeRestController {
         try {
             Opinion opinion = new Opinion();
             opinion.setOpinionNo(opinionNo);
+            opinion.setMemNo(opinion.getMemNo());
             opinion.setContent(content);
 
             opinion.setRef(opinion.getRef());
@@ -154,6 +157,7 @@ public class WorkLoungeRestController {
             opinion.setBucketNo(1);
 
             int result = sharingOpinionService.insertOpinionReplyList(opinion);
+            System.out.println(result);
 
             if (result > 0) {
                 return ResponseEntity.ok("댓글 작성 성공");

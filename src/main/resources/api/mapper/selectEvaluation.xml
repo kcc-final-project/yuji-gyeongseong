@@ -81,4 +81,11 @@
 
     </select>
 
+    <!-- 신청 버튼용도 -->
+    <update id="planstatus" parameterType="int">
+        UPDATE rnd_plan SET PLAN_STATUS = '선정평가완료' where RND_PLAN_NO = #{rndPlanNo};
+    </update>
+
+
+
 </mapper>

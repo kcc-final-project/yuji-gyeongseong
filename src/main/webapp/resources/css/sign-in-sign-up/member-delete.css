@@ -233,7 +233,7 @@ small.text-success {
 
 .form-area {
     width: 100%;
-    height: 550px;
+    height: 350px;
     padding: 20px;
 }
 
@@ -458,4 +458,78 @@ small.text-success {
 
 .modal-content-area {
     cursor: pointer;
+}
+
+.check-btn{
+    width: 126px;
+    height: 36px;
+    background-color: #2E406A;;
+    color: white;
+    border-radius: 8px;
+    margin-top: 9px;
+    font-size: 14px;
+    border: 1px solid #6c757d;
+    font-weight: bold;
+}
+
+.check-btn:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid #6c757d;
+    transition: 0.3s;
+
+}
+
+.check-btn:active{
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn{
+    width: 18%;
+    border: 1px solid #2E406A;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: bold;
+    background-color: #2E406A;
+    color: white;
+    margin-left: 489px;
+}
+
+.back-btn:hover{
+    background-color: white;
+    border: 1px solid #2E406A;
+    color: black;
+    transition: 0.3s;
+}
+
+.back-btn:active{
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#final-del-btn{
+    width: 18%;
+    border: 1px solid #2E406A;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: bold;
+    background-color: #e50e26;
+    color: white;
+    margin-left: 489px;
+    display: none;
+}
+
+#final-del-btn:hover{
+    background-color: white;
+    border: 1px solid #2E406A;
+    color: black;
+    transition: 0.3s;
+}
+
+#final-del-btn:active{
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }

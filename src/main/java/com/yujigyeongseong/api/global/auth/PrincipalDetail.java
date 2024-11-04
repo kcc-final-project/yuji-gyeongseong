@@ -59,15 +59,55 @@ public class PrincipalDetail implements UserDetails {
         return true;
     }
 
-    public String getName(){
+    public String getName() {
         return user.getName();
     }
 
-    public Long getId(){
+    public Long getId() {
         return user.getMemNo();
     }
 
-    public Long getRsrchNo(){
+    public Long getMemNo(){
+        return user.getMemNo();
+    }
+
+    public Long getRsrchNo() {
         return user.getRsrchNo();
+    }
+
+    public String getEmail() {
+        return user.getEmail();
+    }
+
+    public String getBirth() {
+        return user.getBirth();
+    }
+
+    public String getGender() {
+        return user.getGender();
+    }
+
+    public String getTel() {
+        return user.getTel();
+    }
+
+    public String getAddr() {
+        return user.getAddr();
+    }
+
+    public String getAffilType() {
+        return user.getAffilType();
+    }
+
+    public String getAffilDept() {
+        return user.getAffilDept();
+    }
+
+    public String getPosition() {
+        return user.getPosition();
+    }
+
+    public String getInstitutionName(){
+        return user.getInstitutionName();
     }
 }

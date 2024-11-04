@@ -16,4 +16,8 @@ public interface MemberService {
     List<Institution> selectOrgan(SelectInstitutionRequest selectInstitutionRequest);
 
     boolean insertMember(SignUpMember signUpMember);
+
+    boolean updateMember(SignUpMember signUpMember);
+
+    boolean deleteMemberById(Long memNo);
 }

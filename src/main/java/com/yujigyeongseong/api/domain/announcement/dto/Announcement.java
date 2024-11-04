@@ -10,6 +10,7 @@ import java.sql.SQLException;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class Announcement{
     private Long annNo;
     private String totalAnnNo;

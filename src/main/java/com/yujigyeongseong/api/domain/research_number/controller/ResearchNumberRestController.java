@@ -5,6 +5,7 @@ import com.yujigyeongseong.api.domain.research_number.dto.request.*;
 import com.yujigyeongseong.api.domain.research_number.service.EvalCommitteeService;
 import com.yujigyeongseong.api.domain.research_number.service.EvalComposeService;
 import com.yujigyeongseong.api.global.auth.PrincipalDetail;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -25,10 +26,13 @@ public class ResearchNumberRestController {
     private final EvalComposeService evalComposeService;
 
     @PostMapping("/register/research/{memberId}")
-    public ResponseEntity<?> registerResearchInformation(@AuthenticationPrincipal PrincipalDetail principalDetail,  @RequestBody SubmitResearchRequest submitRequest) {
+    public ResponseEntity<?> registerResearchInformation(@AuthenticationPrincipal PrincipalDetail principalDetail, @RequestBody SubmitResearchRequest submitRequest, HttpSession session) {
 
         // 세션 연결
         Long id = principalDetail.getId();
+
+        String rsrcNo = "572834" + id;
+        session.setAttribute("rsrcNo",rsrcNo);
 
         try {
             evalCommitteeService.setCareersByMemberId(id, submitRequest.getCareerInfos());
