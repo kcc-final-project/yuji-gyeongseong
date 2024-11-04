@@ -14,6 +14,7 @@
                  inner join eval_committee evcom on subann.sub_ann_no = evcom.sub_ann_no
                  inner join evaluation_member evmem on evmem.eval_committee_no = evcom.eval_committee_no
                  inner join eval_task evta on evta.eval_committee_no = evcom.eval_committee_no
+        where evmem.mem_no = #{memNo}
     </select>
 
     <resultMap id="taskList" type="EvaluationTaskListsDTO">
@@ -22,17 +23,19 @@
         <result column="name" property="name"/>
         <result column="eval_completed_at" property="evalCompletedAt"/>
         <result column="eval_status" property="evalStatus"/>
+        <result column="rnd_plan_no" property="rndPlanNo" />
+        <result column="mem_no" property="memNo" />
     </resultMap>
 
     <select id="selectEvaluationTaskList" resultMap="taskList">
-        select distinct rp.task_name, rp.rnd_institution, mem.name, evta.eval_completed_at, evta.eval_status
+        select distinct rp.task_name, rp.rnd_institution, mem.name, evta.eval_completed_at, evta.eval_status, rp.rnd_plan_no, evmem.mem_no
         from sub_announcement subann
                  inner join eval_committee evcom on subann.sub_ann_no = evcom.sub_ann_no
                  inner join evaluation_member evmem on evmem.eval_committee_no = evcom.eval_committee_no
                  inner join eval_task evta on evta.eval_committee_no = evcom.eval_committee_no
                  inner join rnd_plan rp on rp.rnd_plan_no = evta.rnd_plan_no
                  inner join member mem on mem.mem_no = rp.mem_no
-        where evcom.name = #{name}
+        where evcom.name = #{name} and evmem.mem_no = #{memNo}
     </select>
 
 </mapper>

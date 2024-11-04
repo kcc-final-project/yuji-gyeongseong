@@ -60,8 +60,12 @@ function showNextConfirmation() {
 
       // 연구기관 유효성 검사 후 페이지 이동
       else if (currentStep === 3) {
+
         // TODO: 저장 로직 처리
         currentStep += 1;
+
+        await submitRsrchInstitutionData();
+
         updateProgressBar();
         loadStepContent(currentStep);
       }
@@ -69,7 +73,11 @@ function showNextConfirmation() {
       // 연구개발비 유효성 검사 후 페이지 이동
       else if (currentStep === 4) {
         // TODO: 저장 로직 처리
+
         currentStep += 1;
+
+        await submitRndExpensesData();
+
         updateProgressBar();
         loadStepContent(currentStep);
       }

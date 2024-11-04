@@ -105,9 +105,9 @@ $(document).ready(function () {
             item.evalStatus +
             "</td>";
           tableHtml +=
-            '<td><button type="button" class="btn btn-sm btn-back-orange" onclick="window.location.href=\'http://localhost:8082/work-lounge/evaluation-table\'">의견공유</button></td>';
+              '<td><button type="button" class="btn btn-sm btn-back-orange" onclick="window.open(\'http://localhost:8082/work-lounge/sharing-opinion/' + item.rndPlanNo + '\', \'mywindow\', \'width=1150, height=800,top=15, left=15, scrollbard=yes\')">의견공유</button></td>';
           tableHtml +=
-            '<td><button type="button" class="btn btn-sm btn-back-indigo" onclick="window.location.href=\'http://localhost:8082/work-lounge/evaluation-table\'">평가</button></td></tr>';
+            '<td><button type="button" class="btn btn-sm btn-back-indigo" onclick="window.open(\'http://localhost:8082/work-lounge/evaluation-paper/' + item.rndPlanNo + '\', \'mywindow\', \'width=1000, height=725,top=1, left=1, scrollbard=yes\')">평가</button></td></tr>';
         });
         tableHtml += "</tbody></table></div>";
 

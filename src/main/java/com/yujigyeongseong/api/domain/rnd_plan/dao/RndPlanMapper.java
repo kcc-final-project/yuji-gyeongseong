@@ -3,8 +3,7 @@ package com.yujigyeongseong.api.domain.rnd_plan.dao;
 import com.yujigyeongseong.api.domain.member.dto.Institution;
 import com.yujigyeongseong.api.domain.research_number.dto.Member;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.*;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateBasicInfoRequest;
-import com.yujigyeongseong.api.domain.rnd_plan.dto.request.CreateTaskSummaryRequest;
+import com.yujigyeongseong.api.domain.rnd_plan.dto.request.*;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.MemberResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.RndPlanResponse;
@@ -83,5 +82,15 @@ public interface RndPlanMapper {
     // '단계별 내용' 데이터 '조회' 쿼리
     List<StageContent> selectStageContentsByRndPlanNo(final Long rndPlanNo);
 
+    // 연구원 전체 조회 쿼리
     List<MemberResponse> selectAllMembers();
+
+    // '연구기관' 연구원 데이터 '등록'쿼리
+    int insertResearcher(@Param("rndPlanNo") Long rndPlanNo, @Param("research") ResearchRequest research);
+
+    // '연구기관' 연구원 기간별 참여정보 '등록'쿼리
+    int insertResearchJoinPeriod(@Param("period") ResearchJoinPeriodRequest period);
+
+    int insertRndFees(@Param("rndFees") List<RndFee> rndFees);
+
 }

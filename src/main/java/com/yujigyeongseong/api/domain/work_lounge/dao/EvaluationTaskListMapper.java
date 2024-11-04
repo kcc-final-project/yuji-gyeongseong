@@ -10,8 +10,8 @@ import java.util.List;
 
 @Mapper
 public interface EvaluationTaskListMapper {
-    public List<EvaluationTaskListDTO> selectEvaluationCommitteeList();
+    public List<EvaluationTaskListDTO> selectEvaluationCommitteeList(int memNo);
 
-    public List<EvaluationTaskListsDTO> selectEvaluationTaskList(String name);
+    public List<EvaluationTaskListsDTO> selectEvaluationTaskList(String name, int memNo);
 
 }

@@ -15,6 +15,7 @@ public class SharingOpinionDTO {
     private String taskName;
     private String rndInstitution;
     private String rndName;
+    private int rndPlanNo;
     private String evalStartedAt;
     private String evalClosedAt;
 

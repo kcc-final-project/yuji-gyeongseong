@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 public class Opinion {
     private int opinionNo;
     private int memNo;
+    private String memName;
     private String content;
     private String createdAt;
 

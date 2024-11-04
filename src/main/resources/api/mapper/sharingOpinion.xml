@@ -6,6 +6,7 @@
     <!--  의견공유용 도메인-->
     <select id="selectSharingOpinionList" resultType="SharingOpinionDTO">
         select et.eval_status as evalstatus, rp.task_name as taskname, rp.rnd_institution as rndinstitution,   (SELECT name FROM member WHERE mem_no = rp.mem_no) AS rndname,ec.eval_started_at as evalstartedat, ec.eval_closed_at as evalclosedat
+        ,rp.rnd_plan_no
         from eval_task et inner join rnd_plan rp on et.rnd_plan_no = rp.rnd_plan_no
                           inner join evaluation_member emem on emem.mem_no = et.mem_no
                           inner join eval_committee ec on ec.eval_committee_no = emem.eval_committee_no
@@ -23,21 +24,21 @@
 
     <!--    의견공유-->
     <select id="selectOpinionList" resultType="Opinion">
-        select opinion_no        as opinionno,
-               mem_no            as memno,
-               content           as content,
-               created_at        as createdat,
-               readhit           as readhit,
-               ref               as ref,
-               step              as step,
-               depth             as depth,
-               del_info          as delinfo,
-               deleted_at        as deletedat,
-               eval_committee_no as evalcommitteeno,
-               rnd_plan_no       as rndplanno,
-               bucket_no         as bucketno
-        from opinion
-        order by ref desc, step asc
+        select op.opinion_no        as opinionno,
+               (SELECT name FROM member WHERE mem_no = op.mem_no) AS memname,
+               op.content           as content,
+               op.created_at        as createdat,
+               op.readhit           as readhit,
+               op.ref               as ref,
+               op.step              as step,
+               op.depth             as depth,
+               op.del_info          as delinfo,
+               op.deleted_at        as deletedat,
+               op.eval_committee_no as evalcommitteeno,
+               op.rnd_plan_no       as rndplanno,
+               op.bucket_no         as bucketno
+        from opinion op inner join member mem on mem.mem_no = op.mem_no
+        order by ref asc, step asc
     </select>
 
     <select id="summaryId" resultType="Opinion">
@@ -58,7 +59,16 @@
         where opinion_no = #{opinionNo}
     </select>
 
+    <!-- 게시글-->
     <insert id="insertOpinionReplyList" parameterType="Opinion">
+        INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at,
+                             eval_committee_no, rnd_plan_no, bucket_no)
+        values (seq_opinion.nextval, #{memNo}, #{content}, DEFAULT, 0, seq_opinion.currval, #{step}, #{depth}, 0, DEFAULT,
+                #{evalCommitteeNo}, #{rndPlanNo}, #{bucketNo})
+    </insert>
+
+    <!-- 댓글 -->
+    <insert id="insertOpinionList" parameterType="Opinion">
         INSERT INTO opinion (opinion_no, mem_no, content, created_at, readhit, ref, step, depth, del_info, deleted_at,
                              eval_committee_no, rnd_plan_no, bucket_no)
         values (seq_opinion.nextval, #{memNo}, #{content}, DEFAULT, 0, #{ref}, #{step}, #{depth}, 0, DEFAULT,

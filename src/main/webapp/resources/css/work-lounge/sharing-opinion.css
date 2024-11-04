@@ -133,7 +133,7 @@
 
 .letter1 {
     font-size: 20px;
-    font-weight: bolder;
+    font-weight: normal;
 }
 
 .opinions-container {
@@ -165,4 +165,12 @@
     justify-content: space-between;
     font-size: 0.9rem;
     color: #6c757d;
+}
+
+.custom-divider {
+    height: 2px;
+    background-color: var(--main-bg-color);
+    margin: 10px 0;
+    border-radius: 5px;
+    position: relative;
 }

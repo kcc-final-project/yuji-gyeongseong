@@ -15,6 +15,8 @@ public class EvaluationTaskListsDTO {
     private String rndInstitution;
     private String name;
     private String evalCompletedAt;
+    private int rndPlanNo;
+    private int memNo;
 
     public void setEvalCompletedAt(Timestamp evalCompletedAt) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

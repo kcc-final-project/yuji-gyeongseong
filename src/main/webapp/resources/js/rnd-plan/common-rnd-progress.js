@@ -72,6 +72,10 @@ async function changeStep(stepNumber) {
     if (currentStep === 2 && rndPlanNo) {
       await getTaskSummaryData(rndPlanNo);
     }
+
+/*    if (currentStep === 3 && rndPlanNo) {
+      // await getRsrchInstitutionData(rndPlanNo);
+    }*/
   }
 }
 
@@ -170,11 +174,7 @@ async function getRndPlanData() {
 }
 
 // [과제정보] 과제정보 JSON 데이터 바인딩
-function applyRndPlan({
-  taskName,
-  rndTaskNo,
-  researcherName,
-}) {
+function applyRndPlan({ taskName, rndTaskNo, researcherName }) {
   $("#ipt-task-title").val(taskName);
   $("#dpy-task-title").val(taskName);
   $("#dpy-rnd-task-no").val(rndTaskNo);
@@ -235,6 +235,32 @@ function applyRndPeriodData(rndPeriods) {
       };
     } else {
       stageDataMap[stageNumber].years.push(years);
+    }
+  }
+
+  // [연구기관] AJAX 연구기관 데이터 가져오기
+  async function getRsrchInstitutionData(rndPlanNo) {
+    if (!rndPlanNo) {
+      return;
+    }
+
+    const $spinnerContainer = $(".spinner-container");
+    $spinnerContainer.show();
+
+    try {
+      const { data } = await $.ajax({
+        url: `/api/v1/rnd-plans/rsrch-institution/${rndPlanNo}`,
+        type: "GET",
+        dataType: "json",
+      });
+
+      applyRsrchInstitutionData(data);
+    } catch (err) {
+      console.log(
+        "[getRsrchInstitutionData()] " + err.statusText + " - " + err.status,
+      );
+    } finally {
+      $spinnerContainer.hide();
     }
   }
 

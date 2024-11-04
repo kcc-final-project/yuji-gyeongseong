@@ -258,4 +258,76 @@
         WHERE m.mem_no != 0
     </select>
 
+    <!-- 연구원 데이터 저장 -->
+    <insert id="insertResearcher">
+        <selectKey keyProperty="research.rsrchNo" resultType="long" order="BEFORE">
+            SELECT seq_researcher.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO researcher (
+        rsrch_no,
+        manpower_role,
+        part_type,
+        rnd_plan_no
+        ) VALUES (
+        #{research.rsrchNo},
+        #{research.manpowerRole},
+        #{research.partType},
+        #{rndPlanNo}
+        )
+    </insert>
+
+    <!-- 연구원 참여 기간 데이터 저장 -->
+    <insert id="insertResearchJoinPeriod">
+        INSERT INTO rsrch_join_period (
+            stage_no,
+            year_no,
+            is_participated,
+            started_at,
+            ended_at,
+            final_degree,
+            major,
+            acquire_year,
+            rsrch_no
+        ) VALUES (
+                     #{period.stageNo},
+                     #{period.yearNo},
+                     #{period.isParticipated},
+                     #{period.startedAt},
+                     #{period.endedAt},
+                     #{period.finalDegree},
+                     #{period.major},
+                     #{period.acquireYear},
+                     #{period.rsrchNo}
+                 )
+    </insert>
+
+    <insert id="insertRndFees" parameterType="java.util.List">
+        INSERT ALL
+        <foreach collection="rndFees" item="fee" separator="">
+            INTO rnd_fee (
+            stage_no,
+            year_no,
+            goverment_fund,
+            rnd_charge,
+            labor_cost,
+            equip_cost,
+            rnd_cost,
+            rsrch_allowance,
+            rnd_plan_no
+            )
+            VALUES (
+            #{fee.stageNo},
+            #{fee.yearNo},
+            #{fee.govermentFund},
+            #{fee.rndCharge},
+            #{fee.laborCost},
+            #{fee.equipCost},
+            #{fee.rndCost},
+            #{fee.rsrchAllowance},
+            #{fee.rndPlanNo}
+            )
+        </foreach>
+        SELECT * FROM dual
+    </insert>
+
 </mapper>
