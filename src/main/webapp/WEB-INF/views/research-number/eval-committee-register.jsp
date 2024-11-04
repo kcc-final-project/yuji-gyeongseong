@@ -15,11 +15,45 @@
 </head>
 <body style="height: auto;">
 <div class="common-main">
-    <div class="eval_title">
+    <div class="eval_title"  style="display: none">
         <p>후보단 등록</p>
     </div>
 
-    <div class="title">
+    <div class="agree-explain container mt-5">
+        <div class="card shadow-lg">
+            <div class="card-header  text-white" style="background-color: #2e406a">
+                <h3 class="mb-0">후보단 등록에 대한 설명</h3>
+            </div>
+            <div class="card-body">
+                <p class="card-text">
+                    범부처 협업이란 중소기업청, 산업통상자원부, 교육부 등 중앙부처가 서로 협력하여 중소기업 및 중소기업 대표 기업을 육성하는 연구개발 관리를 수행한다는 뜻으로 도시락 및 교육 산업의 질을 높이기 위하여 연구개발과제 선정 기관은 공모전을 시행하고 연구개발과제를 평가하고 결과물을 제공하기 위하여 범부처 협업의 핵심으로써의 역할을 시 조사 사용을 다룬 결과이며 드리오니 확인 후 수정하여 주시기 바랍니다.
+                </p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <strong>범부처산업 연구개발과제 중 어려움과 같이 고정적인 평가를 수행하기 어려운 관계라고 판단되는 경우</strong>, 범부처단 부서에서 공고된 안내에 따라 조심히 바랍니다.
+                    </li>
+                    <li class="list-group-item">범부처산업과제의 참여연구원의 경우</li>
+                    <li class="list-group-item">범부처산업과제의 연구자와 직종과 거리가 이것저것 있었던 사람</li>
+                    <li class="list-group-item">서로 다른 두 부서의 연구개발과제에 평가가 동시에 진행될 때 범부처산업과제의 연구자가 그 서로 다른 연구개발과제를 평가하는 관계가 되는 경우의 연구개발과제의 연구자</li>
+                    <li class="list-group-item">
+                        <strong>범부처 대형 연구개발과제의 연구자</strong>이자 각종 기관에 소속된 사람. 다른 부문의 어느 하나에 해당하는 경우에 한하며, 하부(해당 부분에 해당 기관이 없는 경우), 부서 등 최하위 부서 부서에 갈 소속된 사람으로 한정하여 제
+                        <ol>
+                            <li>고등교육법, 제2조 각 호에 준 ※ 대학, 상업대학, 교육대학, 전문대학, 방송대학. 통신대학. 방송통신대학 및 사이버대학, 기술대학, 감축학교</li>
+                            <li>정보통신업계구기능의 설립, 운영 및 운영에 관한 법률</li>
+                            <li>과학기술분야 정부연구업계기능의 설립, 운영 및 운영에 관한 법률</li>
+                            <li>토적업구기관 운영법, 제3조제1항부터 제3항까지 및 제3조2항에 따른 업구기관 ※ 한국과학기술원, 국제과학기술원, 대구경북과학기술원, 육군과학기술원</li>
+                        </ol>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer text-right">
+                <button id="explain-button" class="btn ctm-btn-normal">동의하기</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="title" style="display: none">
         <p class="academic-name">학력정보</p>
         <div class="icon-with-tooltip">
             <span class="material-icons-outlined">info</span>
@@ -37,7 +71,7 @@
         </div>
     </div>
 
-    <div class="informs">
+    <div class="informs" style="display: none">
         <!-- 학력 정보 출력 -->
         <div class="academic">
             <div id="academic_details">
@@ -124,11 +158,13 @@
                 </c:forEach>
             </div>
         </div>
-    </div>
+    </div >
 
-    <div class="info-buttons">
+    <div class="info-buttons" style="display: none">
+
         <button type="button" class="ctm-btn-cancel btnwid">취소</button>
         <button id="registerButton" type="button" class="ctm-btn-normal btnwid">신청</button>
+
     </div>
 </div>
 <script src="/resources/js/research-number/eval-committee-register.js"></script>

@@ -320,21 +320,21 @@ $(document).ready(function () {
         },
         source: [
           {
-            title: "물리학",
+            title: "유전",
             key: "PH",
             folder: true,
             checkbox: false,
             children: [
               {
-                title: "양자물리",
+                title: "유전학유전체학",
                 key: "PH01",
                 folder: true,
                 checkbox: false,
                 children: [
-                  { title: "양자역학", key: "PH0101" },
-                  { title: "양자장론", key: "PH0102" },
-                  { title: "양자중력", key: "PH0103" },
-                  { title: "양자컴퓨팅", key: "PH0104" },
+                  { title: "분자유전학", key: "PH0101" },
+                  { title: "세포유전학", key: "PH0102" },
+                  { title: "집단유전학", key: "PH0103" },
+                  { title: "유전체학", key: "PH0104" },
                   { title: "양자정보", key: "PH0105" },
                   { title: "달리 분류되지 않은 양자물리", key: "PH0199" },
                 ],
