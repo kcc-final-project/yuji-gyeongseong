@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class SignUpMember {
-    private Long mem_no;
+    private Long memNo;
     private String username;
     private String password;
     private String name;

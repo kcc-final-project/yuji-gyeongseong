@@ -4,6 +4,7 @@ package com.yujigyeongseong.api.domain.member.controller;
 import com.yujigyeongseong.api.global.auth.PrincipalDetail;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -36,7 +37,16 @@ public class MemberSignIn {
     }
 
     @GetMapping("/edit-personal-info")
-    public String editPersonalInfo() {
+    public String editPersonalInfo(@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
+
+        model.addAttribute("principal",principalDetail);
+
         return "sign-in-sign-up/edit-personal-info";
+    }
+
+    @GetMapping("/delete")
+    public String delete(@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
+        model.addAttribute("principal",principalDetail);
+        return "sign-in-sign-up/member-delete";
     }
 }
