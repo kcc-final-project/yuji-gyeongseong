@@ -1,7 +1,9 @@
 package com.yujigyeongseong.api.domain.announcement.controller;
 
+import com.yujigyeongseong.api.domain.announcement.dao.AnnouncementMapper;
 import com.yujigyeongseong.api.domain.announcement.dto.Announcement;
 import com.yujigyeongseong.api.domain.announcement.dto.SubAnnouncement;
+import com.yujigyeongseong.api.domain.announcement.dto.SubAnnouncementApply;
 import com.yujigyeongseong.api.domain.announcement.dto.request.AnnouncementFilterRequest;
 import com.yujigyeongseong.api.domain.announcement.dto.request.SubAnnouncementDetailRequest;
 import com.yujigyeongseong.api.domain.announcement.service.AnnouncementListService;
@@ -14,10 +16,12 @@ import java.util.List;
 @RequestMapping("/anno")
 public class AnnouncementRestController {
     private final AnnouncementListService announcementListService;
+    private final AnnouncementMapper announcementMapper;
 
     @Autowired
-    public AnnouncementRestController(AnnouncementListService announcementListService) {
+    public AnnouncementRestController(AnnouncementListService announcementListService, AnnouncementMapper announcementMapper) {
         this.announcementListService = announcementListService;
+        this.announcementMapper = announcementMapper;
     }
 
     @GetMapping("/accepting")
@@ -68,5 +72,11 @@ public class AnnouncementRestController {
         List<Announcement> anno;
         anno = announcementListService.searchAnnouncement(announcementFilterRequest);
         return anno;
+    }
+
+    @GetMapping("/tech")
+    public SubAnnouncementApply gettechAnno(@RequestParam String annNo){
+        SubAnnouncementApply subAnno = announcementMapper.selectSubAnnouncementByAnnNo(annNo);
+        return subAnno;
     }
 }

@@ -15,5 +15,15 @@ public class MemberLogin {
     private String name;
     private String username;
     private String password;
+    private String email;
+    private String birth;
+    private String gender;
+    private String tel;
+    private String addr;
+    private String affilType;
+    private String affilDept;
+    private String position;
+    private String institutionName;
+
     private List<MemRole> roles;
 }
