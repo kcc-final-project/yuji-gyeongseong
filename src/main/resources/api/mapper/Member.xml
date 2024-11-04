@@ -47,6 +47,15 @@
         <result property="name" column="name"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
+        <result property="email" column="email"/>
+        <result property="birth" column="birth"/>
+        <result property="gender" column="gender"/>
+        <result property="tel" column="tel"/>
+        <result property="addr" column="addr"/>
+        <result property="affilType" column="affil_type"/>
+        <result property="affilDept" column="affil_dept"/>
+        <result property="position" column="position"/>
+        <result property="institutionName" column="institution_name"/>
         <collection property="roles" ofType="MemRole">
             <id property="roleNo" column="roleNo"/>
             <result property="roleName" column="roleName"/>
@@ -54,10 +63,11 @@
     </resultMap>
 
     <select id="findByUsername" parameterType="String" resultMap="MemberLoginResultMap">
-        SELECT m.mem_no as "memNo", m.rsrch_no as "rsrchNo", m.name, m.username, m.password, r.role_name as "roleName", r.role_no as "roleNo"
+        SELECT m.mem_no as "memNo", m.rsrch_no as "rsrchNo", m.name, m.username, m.password,m.email,TO_CHAR(m.birth, 'yyyy-MM-dd') AS birth,m.gender,m.tel,m.addr,m.affil_type,m.affil_dept,m.position,i.name as "institution_name",r.role_name as "roleName", r.role_no as "roleNo"
         FROM member m
                  LEFT JOIN mem_role mr ON m.mem_no = mr.mem_no
                  LEFT JOIN role r ON mr.role_no = r.role_no
+                 LEFT JOIN institution i on m.institution_no = i.institution_no
         WHERE m.username = #{username}
     </select>
 
@@ -72,4 +82,48 @@
         VALUES (#{memNo},1,CURRENT_TIMESTAMP)
     </insert>
 
+
+    <update id="updateMember" parameterType="SignUpMember">
+        UPDATE member
+        <set>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="birth != null">
+                birth = #{birth},
+            </if>
+            <if test="gender != null">
+                gender = #{gender},
+            </if>
+            <if test="tel != null">
+                tel = #{tel},
+            </if>
+            <if test="addr != null">
+                addr = #{addr},
+            </if>
+            <if test="affilType != null">
+                affil_type = #{affilType},
+            </if>
+            <if test="affilDept != null">
+                affil_dept = #{affilDept},
+            </if>
+            <if test="position != null">
+                position = #{position},
+            </if>
+            <if test="institutionNo != null">
+                institution_no = #{institutionNo},
+            </if>
+        </set>
+        WHERE mem_no = #{memNo}
+    </update>
+    <delete id="deleteMemberById" parameterType="Long">
+        DELETE FROM member
+        where mem_no = #{memno}
+    </delete>
 </mapper>
