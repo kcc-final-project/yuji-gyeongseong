@@ -8,7 +8,7 @@
     border-top-right-radius: 10px;
     height: 6%;
     margin-bottom: 20px;
-    margin-top: 166px;
+    margin-top: 100px;
 }
 
 .section-title {
@@ -27,13 +27,50 @@ hr {
     opacity: unset;
 }
 
+.technology-field-area{
+    width: 100%;
+    height: 22%;
+}
+
+.anno-title{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 589px;
+}
+
+.details-btn{
+    background-color: #2E406A;
+    color: white;
+    border: 1px solid #6c757d;
+    border-radius: 7px;
+}
+
+.details-btn:active{
+    transform: scale(0.85);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.details-btn:hover{
+    background-color: white;
+    color: black;
+    border: 1px solid #6c757d;
+    transition: 0.3s;
+
+}
+
 .card-container {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: space-between;
-    max-width: 1200px;
+    /*max-width: 1200px;*/
     margin: 0 auto;
+    margin-top: 15px;
+}
+
+.text-align{
+    text-align: center;
 }
 
 .card {
@@ -43,7 +80,8 @@ hr {
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 12px;
+    /*margin-top: 12px;*/
+    height: 219px;
 }
 
 .card-name {
@@ -56,7 +94,8 @@ hr {
     color: #2F69FF;
     font-size: 1.1em;
     font-weight: bold;
-    margin-bottom: 41px;
+    /*margin-bottom: 41px;*/
+    margin-bottom: 8px;
 }
 
 .card-info {
@@ -76,7 +115,7 @@ hr {
 
 .category-contents {
     font-weight: bold;
-    margin-left: 30px;
+    margin-left: 38px;
 }
 
 .buttons {

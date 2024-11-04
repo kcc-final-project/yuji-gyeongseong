@@ -52,4 +52,19 @@ public class MemberServiceImpl implements MemberService {
 
     }
 
+    @Override
+    public boolean updateMember(SignUpMember signUpMember) {
+        int rowsAffected = memberMapper.updateMember(signUpMember);
+
+        // 영향을 받은 행의 수가 1 이상이면 true, 아니면 false 반환
+        return rowsAffected > 0;
+    }
+
+    @Override
+    public boolean deleteMemberById(Long memNo) {
+        int rowsAffected = memberMapper.deleteMemberById(memNo);
+        return rowsAffected > 0; // 삭제된 행이 1개 이상이면 true 반환
+    }
+
+
 }

@@ -12,17 +12,50 @@
     <title>Insert title here</title>
 </head>
 <body>
+<h1></h1>
 <div class="common-main">
     <div class="header">
-        <h4>공고명: ${applyAnnouncement.totalTitle}</h4>
+        <h5 class="title">공고명: ${applyAnnouncement.totalTitle}</h5>
     </div>
-    <div class="section-title">
-        <h2>공모분야</h2>
+    <%--    <div class="section-title">--%>
+    <%--        <h2>공모분야</h2>--%>
+    <%--    </div>--%>
+
+    <div class="technology-field-area">
+<table class="table table-bordered table-hover" style="width: 99%;">
+    <thead style="display: table; width: 100%; table-layout: fixed;">
+        <tr>
+            <th scope="col" style="width: 47%; background-color: #2E406A; color: white;">통합공고명</th>
+            <th scope="col" style="width: 20%; background-color: #2E406A; color: white;">기술분야</th>
+            <th scope="col" style="width: 20%; background-color: #2E406A; color: white;">소관부처</th>
+            <th scope="col" style="width: 10%; background-color: #2E406A; color: white;">상세보기</th>
+        </tr>
+    </thead>
+    <tbody class="technology-anno-list" style="
+        display: block;
+        height: 162px; /* 원하는 높이 지정 */
+        overflow-y: auto;
+        width: 100%;
+        table-layout: fixed;
+    ">
+        <c:forEach var="item" items="${announcement}">
+            <tr style="display: table; width: 100%; table-layout: fixed;">
+                <td class="anno-title" data-annNo="${item.annNo}">${item.totalTitle}</td>
+                <td class="text-align" style="width: 251px">${item.annTechFieldName}</td>
+                <td class="text-align" style="width: 252px">${item.competentMinistry}</td>
+                <td class="text-align">
+                    <button class="details-btn">상세보기</button>
+                </td>
+            </tr>
+        </c:forEach>
+    </tbody>
+</table>
+
     </div>
-    <hr>
+
     <div class="card-container">
-        <c:forEach var="data" items="${applyAnnouncement.subAnnouncements}" varStatus="index" >
-            <div class="card" data-subAnnNo = ${data.subAnnNo}>
+        <c:forEach var="data" items="${applyAnnouncement.subAnnouncements}" varStatus="index">
+            <div class="card" data-subAnnNo= ${data.subAnnNo}>
                 <h3 class="card-name">공모분야명</h3>
                 <h5 class="card-title">${data.subTitle}</h5>
                 <div class="card-info">
@@ -38,16 +71,19 @@
                     <button class="detail-btn"
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModal"
-                            data-announcement-no="${data.subAnnNo}">상세보기</button>
+                            data-announcement-no="${data.subAnnNo}">상세보기
+                    </button>
                     <button class="apply-btn">접수하기</button>
                 </div>
             </div>
         </c:forEach>
     </div>
+
+
+
     <div class="footer-buttons">
         <button class="back-btn" onclick="window.history.back()">뒤로</button>
         <button class="list-btn" onclick="window.location.href='/anno'">목록</button>
-
     </div>
 </div>
 <div class="modal fade" id="exampleModal">
@@ -176,9 +212,9 @@
         </div>
     </div>
 </div>
-
-
-
+<script>
+    const isLoggedIn = <%= session.getAttribute("principalDetailId") != null %>;
+</script>
 <script src="/resources/js/announcement/apply-for-notice.js"></script>
 </body>
 </html>

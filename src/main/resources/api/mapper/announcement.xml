@@ -286,4 +286,18 @@
             created_at DESC
         </if>
     </select>
+
+    <select id="selectTechName" parameterType="String" resultType="String">
+        SELECT ann_tech_field_name as annTechFieldName
+        from announcement
+        where ann_no = #{annNo}
+    </select>
+
+    <select id="selectTechAnno" parameterType="String" resultType="Announcement">
+        SELECT ann_no as annNo, total_title as totalTitle, ann_tech_field_name as annTechFieldName, competent_ministry as competentMinistry
+        FROM Announcement
+        WHERE ann_tech_field_name = #{techName}
+        AND status = '접수중'
+    </select>
+
 </mapper>

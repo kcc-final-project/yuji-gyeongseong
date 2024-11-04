@@ -86,7 +86,7 @@ public class SecurityConfig {
 
                 .loginProcessingUrl("/login")
 
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/",true)
 
                 .failureUrl("/member/login/fail"));
 

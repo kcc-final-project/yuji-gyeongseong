@@ -16,9 +16,17 @@ public class HomeController {
         if (principal != null) {
             session.setAttribute("username", principal.getName());
             session.setAttribute("userAuth", principal.getAuthorities());
-            session.setAttribute("id",principal.getId());
-            session.setAttribute("rsrchNo",principal.getRsrchNo());
+            session.setAttribute("id", principal.getId());
+
+            Object rsrcNo = session.getAttribute("rsrcNo");
+            if (rsrcNo == null) {
+                rsrcNo = principal.getRsrchNo();
+            }
+            session.setAttribute("rsrchNo", rsrcNo);
         }
+
         return "main/index";
     }
+
+
 }

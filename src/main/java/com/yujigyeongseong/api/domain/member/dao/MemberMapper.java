@@ -23,4 +23,8 @@ public interface MemberMapper {
     int findByMemNo(String username);
 
     int insertRole(int memNo);
+
+    int updateMember(SignUpMember signUpMember);
+
+    int deleteMemberById(Long memNo);
 }
