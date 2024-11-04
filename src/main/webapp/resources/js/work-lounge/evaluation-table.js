@@ -54,16 +54,16 @@ function updateDivClasses() {
         const text = div.textContent.trim();
         switch (text) {
             case "접수중":
-                div.className = "div-class badge text-bg-success";
+                div.className = "div-class status approved";
                 break;
             case "접수마감":
-                div.className = "div-class badge text-bg-danger";
+                div.className = "div-class status not-approved";
                 break;
             case "몰루":
                 div.className = "div-class badge text-bg-warning";
                 break;
             case "접수예정":
-                div.className = "div-class badge text-bg-primary";
+                div.className = "div-class status stayed";
                 break;
             default:
                 break;

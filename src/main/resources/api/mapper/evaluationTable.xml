@@ -26,6 +26,7 @@
         FROM announcement ann
                  INNER JOIN
              sub_announcement sub ON ann.ann_no = sub.ann_no
+--         where ann.status not in '접수마감'
     </select>
 
     <resultMap id="formTypeMap" type="FormTypeDTO">

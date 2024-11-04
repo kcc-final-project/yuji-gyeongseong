@@ -11,9 +11,9 @@ import java.util.List;
 @Mapper
 public interface SharingOpinionMapper {
 
-    public List<SharingOpinionDTO> selectSharingOpinionList(int rndPlanNo);
+    public List<SharingOpinionDTO> selectSharingOpinionList(int rndPlanNo, int memNo);
 
-    public List<SharingOpinionDTO> evalPeople(int rndPlanNo);
+    public List<SharingOpinionDTO> evalPeople(int rndPlanNo, int memNo);
 
     public List<SharingOpinionDTO> selectCommitteePersonList(String taskName);
 

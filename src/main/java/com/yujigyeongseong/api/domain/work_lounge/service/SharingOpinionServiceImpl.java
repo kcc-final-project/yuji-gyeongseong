@@ -20,13 +20,13 @@ public class SharingOpinionServiceImpl implements SharingOpinionService {
     private SharingOpinionMapper sharingOpinionMapper;
 
     @Override
-    public List<SharingOpinionDTO> getSelectSharingOpinionList(int rndPlanNo) {
-        return sharingOpinionMapper.selectSharingOpinionList(rndPlanNo);
+    public List<SharingOpinionDTO> getSelectSharingOpinionList(int rndPlanNo, int memNo) {
+        return sharingOpinionMapper.selectSharingOpinionList(rndPlanNo, memNo);
     }
 
     @Override
-    public List<SharingOpinionDTO> evalPeople(int rndPlanNo) {
-        return sharingOpinionMapper.evalPeople(rndPlanNo);
+    public List<SharingOpinionDTO> evalPeople(int rndPlanNo, int memNo) {
+        return sharingOpinionMapper.evalPeople(rndPlanNo, memNo);
     }
 
     @Override

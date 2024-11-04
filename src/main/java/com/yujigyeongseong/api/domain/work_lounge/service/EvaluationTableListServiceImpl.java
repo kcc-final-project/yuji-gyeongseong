@@ -31,6 +31,9 @@ public class EvaluationTableListServiceImpl implements EvaluationTableListServic
 
     @Override
     public List<PaperDTO> getPaperList(String name, String formType) {
+        System.out.println("name = " + name);
+        System.out.println("formType = " + formType);
+        System.out.println(evaluationTableMapper.paperList(name, formType));
         return evaluationTableMapper.paperList(name, formType);
     }
 

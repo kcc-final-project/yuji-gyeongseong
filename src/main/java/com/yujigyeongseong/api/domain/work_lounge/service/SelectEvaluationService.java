@@ -12,4 +12,6 @@ public interface SelectEvaluationService {
     public List<SelectEvaluationDTO> getselectEvaluation(Long subAnnNo);
 
     public List<SelectEvaluationDTO> getselectCommittee(String rndTaskNo);
+
+    public int getSelectEvaluationCount(int rndPlanNo);
 }

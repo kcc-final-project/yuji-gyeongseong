@@ -34,4 +34,9 @@ public class SelectEvaluationServiceImpl implements SelectEvaluationService {
         return selectEvaluationMapper.selectCommittee(rndTaskNo);
     }
 
+    @Override
+    public int getSelectEvaluationCount(int rndPlanNo) {
+        return selectEvaluationMapper.planstatus(rndPlanNo);
+    }
+
 }
