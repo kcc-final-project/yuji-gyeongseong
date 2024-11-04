@@ -31,10 +31,14 @@
                    readonly/>
             <div class="setting-text" style="margin-left: 150px">평가기간</div>
             <input id="evaluationStartDate" class="sedium"
-                   value="<fmt:formatDate value='${evalCommittee.evalStartedAt}' pattern='yyyy-MM-dd' />" readonly/>
+<%--                   value="<fmt:formatDate value='${evalCommittee.evalStartedAt}' pattern='yyyy-MM-dd' />" --%>
+                   value = "2024-10-21"
+                   readonly/>
             <span style="color: white">~</span>
             <input id="evaluationEndDate" class="sedium"
-                   value="<fmt:formatDate value='${evalCommittee.evalClosedAt}' pattern='yyyy-MM-dd' />" readonly/>
+<%--                   value="<fmt:formatDate value='${evalCommittee.evalClosedAt}' pattern='yyyy-MM-dd' />" --%>
+                   value = "2024-10-30  "
+                   readonly/>
         </div>
         <hr>
         <div class="setting-two">

@@ -30,7 +30,7 @@ public class EvalCommitteeRestController {
         int rndPlanCnt = evalComposeService.getRndPlanCntById(subAnnNo);
 
         // 평가위원회 구성
-        evalComposeService.setEvalCommitteesBySubAnnNo(subAnnNo, rndPlanCnt);
+        evalComposeService.setEvalCommitteesBySubAnnNo(subAnnNo, rndPlanCnt ,request);
 
         // 평가위원회 구성원 구성
         int evalCommitteeCnt = evalComposeService.getEvalCommitteeCntById(subAnnNo);

@@ -5,6 +5,7 @@ import com.yujigyeongseong.api.domain.research_number.dto.EvaluationMember;
 import com.yujigyeongseong.api.domain.research_number.dto.Member;
 import com.yujigyeongseong.api.domain.research_number.dto.SubAnnounce;
 import com.yujigyeongseong.api.domain.research_number.dto.request.EvalMemberRequest;
+import com.yujigyeongseong.api.domain.research_number.dto.request.EvalPercentRequest;
 import com.yujigyeongseong.api.domain.research_number.dto.request.MemberDetails;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -34,7 +35,13 @@ public interface EvalComposeMapper {
 
     int updateNotiByNotificationNo(Long id);
 
-    int insertEvalCommitteesBySubAnnNo(Long subAnnNo, int rndPlanCnt);
+    int insertEvalCommitteesBySubAnnNo(
+            @Param("subAnnNo") Long subAnnNo,
+            @Param("rndPlanCnt") int rndPlanCnt,
+            @Param("researchInstituteRate") Integer researchInstituteRate,
+            @Param("educationInstituteRate") Integer educationInstituteRate,
+            @Param("professionalInstituteRate") Integer professionalInstituteRate
+    );
 
     int selectEvalCommitteeCntById(Long subAnnNo);
 }
