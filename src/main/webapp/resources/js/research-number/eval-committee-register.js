@@ -1,3 +1,21 @@
+
+$(document).ready(function() {
+
+  $("#explain-button").on("click", function(){
+    Swal.fire({
+      title: '동의하셨습니다!',
+      icon: 'success',
+      confirmButtonText: '확인'
+    });
+
+    $(".agree-explain").hide()
+    $(".informs").show()
+    $(".info-buttons").show()
+    $(".eval_title").show()
+    $(".title").show()
+  })
+});
+
 $("#registerButton").on("click", function () {
   Swal.fire({
     title: "후보단 등록을 하시겠습니까?",
@@ -34,6 +52,10 @@ $("#registerButton").on("click", function () {
             icon: "success",
             confirmButtonColor: "#2e406a",
           });
+
+          setTimeout(function(){
+            window.location.href = "/";
+          }, 2000);
         },
         error:function (error){
           alert("후보단 등록 실패")
