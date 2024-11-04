@@ -38,4 +38,8 @@ public class CreateBasicInfoRequest {
         this.rndTaskNo = rndTaskNo;
     }
 
+    public void assignMemNo(final Long memNo) {
+        this.memNo = memNo;
+    }
+
 }
