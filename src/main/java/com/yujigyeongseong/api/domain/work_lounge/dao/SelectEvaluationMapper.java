@@ -14,4 +14,6 @@ public interface SelectEvaluationMapper {
     public List<SelectEvaluationDTO> selectEvaluation(Long subAnnNo);
 
     public List<SelectEvaluationDTO> selectCommittee(String rndTaskNo);
+
+    public int planstatus(int rndPlanNo);
 }

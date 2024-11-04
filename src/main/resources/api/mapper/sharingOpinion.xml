@@ -10,7 +10,7 @@
         from eval_task et inner join rnd_plan rp on et.rnd_plan_no = rp.rnd_plan_no
                           inner join evaluation_member emem on emem.mem_no = et.mem_no
                           inner join eval_committee ec on ec.eval_committee_no = emem.eval_committee_no
-        where rp.rnd_plan_no = #{rndPlanNo}
+        where rp.rnd_plan_no = #{rndPlanNo} and emem.mem_no = #{memNo}
     </select>
 
     <!-- 의견공유에 뜨는 사람 목록 -->
@@ -19,7 +19,7 @@
         from eval_task et inner join rnd_plan rp on et.rnd_plan_no = rp.rnd_plan_no
                           inner join evaluation_member emem on emem.mem_no = et.mem_no
                           inner join eval_committee ec on ec.eval_committee_no = emem.eval_committee_no
-        where rp.rnd_plan_no = #{rndPlanNo}
+        where rp.rnd_plan_no = #{rndPlanNo} and emem.mem_no = #{memNo}
     </select>
 
     <!--    의견공유-->

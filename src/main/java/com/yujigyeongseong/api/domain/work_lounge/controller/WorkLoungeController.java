@@ -169,9 +169,11 @@ public class WorkLoungeController {
     }
 
     @GetMapping("/sharing-opinion/{rndPlanNo}")
-    public String getRegisterAndCompleteList(@PathVariable("rndPlanNo") int rndPlanNo, Model model) {
-        List<SharingOpinionDTO> sharingOpinionList = sharingOpinionService.getSelectSharingOpinionList(rndPlanNo);
-        List<SharingOpinionDTO> committeePersonList = sharingOpinionService.evalPeople(rndPlanNo);
+    public String getRegisterAndCompleteList(@PathVariable("rndPlanNo") int rndPlanNo, @AuthenticationPrincipal PrincipalDetail principal, Model model) {
+        String name = principal.getName();
+        Integer userId = Math.toIntExact(principal.getId());
+        List<SharingOpinionDTO> sharingOpinionList = sharingOpinionService.getSelectSharingOpinionList(rndPlanNo, userId);
+        List<SharingOpinionDTO> committeePersonList = sharingOpinionService.evalPeople(rndPlanNo, userId);
         model.addAttribute("sharingOpinionList", sharingOpinionList);
         model.addAttribute("committeePersonList", committeePersonList);
 
