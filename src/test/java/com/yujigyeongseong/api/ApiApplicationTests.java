@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @Slf4j
 class ApiApplicationTests {
 
+
 	@Autowired
 	private BoardMapper boardMapper;
 

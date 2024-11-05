@@ -13,6 +13,17 @@
             rel="stylesheet"
             href="/resources/css/work-lounge/evaluation-paper.css"
     />
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .custom-swal-popup {
+            width: 600px;
+        }
+    </style>
+
 </head>
 <body>
 <div class="main-container" style="width: 100%;height: 756px;">
@@ -203,13 +214,27 @@
                 success: function (response) {
                     console.log("점수가 성공적으로 저장되었습니다.", response);
 
-                    alert("점수가 성공적으로 저장되었습니다.");
-
-                    window.close();
+                    Swal.fire({
+                        icon: 'success',
+                        title: '점수가 성공적으로 저장되었습니다.',
+                        text: '점수가 저장되었습니다.',
+                        confirmButtonText: '확인',
+                        customClass: {
+                            popup: 'custom-swal-popup'
+                        }
+                    }).then(() => {
+                        window.close();
+                    });
                 },
                 error: function (xhr, status, error) {
                     console.error("점수 저장 오류:", status, error);
-                    alert("점수 저장에 실패했습니다. 다시 시도해주세요.");
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: '점수 저장에 실패했습니다.',
+                        text: '다시 시도해주세요.',
+                        confirmButtonText: '확인'
+                    });
                 }
             });
         }

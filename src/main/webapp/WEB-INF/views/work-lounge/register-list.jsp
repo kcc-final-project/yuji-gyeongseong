@@ -9,6 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert title here</title>
     <link rel="stylesheet" href="/resources/css/work-lounge/register-list.css"/>
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="mt-4">
 <div class="common-main">
@@ -118,23 +123,65 @@
 </div>
 <script src="/resources/js/work-lounge/register-list.js"></script>
 <script>
+    // function deleteBoard(rndPlanNo) {
+    //     if (confirm("정말로 이 계획서를 삭제하시겠습니까?")) {
+    //         $.ajax({
+    //             type: "POST",
+    //             url: "http://localhost:8082/work-lounge/delete",
+    //             data: {rndPlanNo: rndPlanNo},
+    //             success: function (response) {
+    //
+    //                 alert("삭제되었습니다.");
+    //
+    //                 location.reload();
+    //             },
+    //             error: function () {
+    //                 alert("삭제 실패. 다시 시도해 주세요.");
+    //             }
+    //         });
+    //     }
+    // }
+
     function deleteBoard(rndPlanNo) {
-        if (confirm("정말로 이 계획서를 삭제하시겠습니까?")) {
-            $.ajax({
-                type: "POST",
-                url: "http://localhost:8082/work-lounge/delete",
-                data: {rndPlanNo: rndPlanNo},
-                success: function (response) {
+        Swal.fire({
+            title: '정말로 이 계획서를 삭제하시겠습니까?',
+            text: '삭제한 데이터는 복구할 수 없습니다.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: '삭제',
+            cancelButtonText: '취소',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
 
-                    alert("삭제되었습니다.");
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8082/work-lounge/delete",
+                    data: { rndPlanNo: rndPlanNo },
+                    success: function (response) {
 
-                    location.reload();
-                },
-                error: function () {
-                    alert("삭제 실패. 다시 시도해 주세요.");
-                }
-            });
-        }
+                        Swal.fire({
+                            icon: 'success',
+                            title: '삭제되었습니다.',
+                            text: '계획서가 성공적으로 삭제되었습니다.',
+                            confirmButtonText: '확인'
+                        }).then(() => {
+                            location.reload();
+                        });
+                    },
+                    error: function () {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: '삭제 실패',
+                            text: '삭제에 실패했습니다. 다시 시도해 주세요.',
+                            confirmButtonText: '확인'
+                        });
+                    }
+                });
+            }
+        });
+
     }
 </script>
 

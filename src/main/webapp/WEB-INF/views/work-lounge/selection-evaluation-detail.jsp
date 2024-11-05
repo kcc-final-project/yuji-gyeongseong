@@ -17,6 +17,11 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css"
     />
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <div class="common-main" style="margin-top: 10px;">
@@ -94,8 +99,23 @@
                                         type="checkbox"
                                         value="${selectEvaluation.subAnnNo}"
                                         data-plan="${selectEvaluation.rndTaskNo}"
+                                        data-id="${selectEvaluation.rndPlanNo}"
                                 />
                             </div>
+<%--                            <div class="form-check d-flex justify-content-center align-items-center">--%>
+<%--                                <input--%>
+<%--                                        class="form-check-input plan-checkbox committee-member"--%>
+<%--                                        type="checkbox"--%>
+<%--                                        value="${selectEvaluation.subAnnNo}"--%>
+<%--                                        data-plan="${selectEvaluation.rndTaskNo}"--%>
+<%--                                        data-id="${selectEvaluation.rndPlanNo}"--%>
+<%--                                        id="checkbox-${selectEvaluation.subAnnNo}"--%>
+<%--                                />--%>
+<%--                                <label class="form-check-label" for="checkbox-${selectEvaluation.subAnnNo}">--%>
+<%--                                    <!-- 라벨을 클릭하면 체크박스가 체크됩니다 -->--%>
+<%--                                        ${selectEvaluation.taskName} <!-- 예시로 과제명 표시 -->--%>
+<%--                                </label>--%>
+<%--                            </div>--%>
                         </td>
                         <td class="committee-member" data-plan="${selectEvaluation.rndTaskNo}">
                             <c:out value="${selectEvaluation.rndTaskNo}"/>
@@ -168,7 +188,8 @@
             </button>
             <button
                     class="ms-3 btn ctm-btn-normal"
-                    onclick="window.location.href='http://localhost:8082/work-lounge/selection-evaluation'">
+                    onclick="submitEvaluation()">
+                <%--                    onclick="window.location.href='http://localhost:8082/work-lounge/selection-evaluation'">--%>
                 신청
             </button>
         </div>
@@ -437,6 +458,44 @@
         const initialChartData = generateChartData('ALL');
         displayChart(initialChartData, '전체');
     });
+
+    // 선정 버튼용 ajax
+    function submitEvaluation() {
+        // 체크된 행의 체크박스를 찾기
+        const selectedCheckbox = document.querySelector(".plan-checkbox:checked");
+
+        if (selectedCheckbox) {
+            const rndPlanNo = selectedCheckbox.getAttribute("data-id");
+            console.log(rndPlanNo)
+
+            // AJAX 요청
+            $.ajax({
+                url: `/api/v1/work_lounge/eval-list/` + rndPlanNo,
+                method: "POST", // POST 요청으로 변경
+                success: function (response) {
+                    console.log(response)
+                    // 성공적인 응답 처리
+                    console.log("Evaluation submitted successfully:", response);
+                    // 추가 로직 (예: 알림, 페이지 전환 등)
+
+                    location.reload(true);
+                },
+                error: function (xhr, status, error) {
+                    // 오류 처리
+                    console.error("Error submitting evaluation:", error);
+                }
+            });
+        } else {
+            // alert("먼저 평가 항목을 선택해주세요.");
+            Swal.fire({
+                icon: 'warning',  // 경고 아이콘
+                title: '알림',
+                text: '먼저 평가 항목을 선택해주세요.',
+                confirmButtonText: '확인'
+            });
+        }
+    }
+
 
 </script>
 </body>
