@@ -3,7 +3,7 @@ $(function () {
 
     function loadAnnouncements() {
         $.ajax({
-            url: '/anno/accepting',
+            url: '/anno/topAcception',
             method: 'GET',
             success: function (data) {
                 renderAnnouncements(data);

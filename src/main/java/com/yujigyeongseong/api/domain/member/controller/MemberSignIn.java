@@ -36,6 +36,11 @@ public class MemberSignIn {
         return "sign-in-sign-up/sign-up-4";
     }
 
+    @GetMapping("/login/fail")
+    public String loginFail() {
+        return "sign-in-sign-up/sign-in";
+    }
+
     @GetMapping("/edit-personal-info")
     public String editPersonalInfo(@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
 

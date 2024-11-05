@@ -87,12 +87,6 @@ public class MemberRestController {
         }
     }
 
-
-    @GetMapping("/login/fail")
-    public String loginFail() {
-        return "로그인 실페";
-    }
-
     @PostMapping("/check/password")
     public ResponseEntity<String> checkPassword(@AuthenticationPrincipal PrincipalDetail principalDetail, @RequestBody Map<String, String> request) {
         String rawPassword = request.get("password");
