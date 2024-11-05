@@ -82,4 +82,40 @@
         WHERE tf.name = #{name}
     </select>
 
+    <!-- evaluation table insert -->
+
+    <!-- EVALUATION_TABLE에 데이터 삽입 및 키 반환 -->
+    <insert id="insertEvaluationTable" parameterType="EvaluationTable">
+        <!-- 새롭게 생성된 EVALUATION_TABLE_NO 값을 리턴 받기 위해 selectKey 사용 -->
+        <selectKey keyProperty="evaluationTableNo" resultType="int" order="BEFORE">
+            SELECT SEQ_EVALUATION_TABLE.NEXTVAL FROM DUAL
+        </selectKey>
+
+        INSERT INTO EVALUATION_TABLE (EVALUATION_TABLE_NO, TITLE, DESCRIPTION, FORM_TYPE, TECH_FIELD_NO)
+        VALUES (#{evaluationTableNo}, #{title}, #{description}, #{formType}, #{techFieldNo})
+    </insert>
+
+    <!-- QUESTION 테이블에 여러 질문 삽입 -->
+    <insert id="insertQuestions" parameterType="list">
+        INSERT ALL
+        <foreach collection="questions" item="question">
+            INTO QUESTION (QUESTION_NO, TYPE, CONTENT, TECH_FIELD_NO)
+            VALUES (SEQ_QUESTION.NEXTVAL, #{question.type}, #{question.content}, #{question.techFieldNo})
+        </foreach>
+        SELECT 1 FROM DUAL
+    </insert>
+
+    <!-- EVALUATION_QUESTION 테이블에 EVALUATION_TABLE과 QUESTION 연결 -->
+    <insert id="insertEvaluationQuestions" parameterType="map">
+        INSERT ALL
+        <foreach collection="questionNos" item="questionNo">
+            INTO EVALUATION_QUESTION (EVALUATION_TABLE_NO, QUESTION_NO)
+            VALUES (#{evaluationTableNo}, #{questionNo})
+        </foreach>
+        SELECT 1 FROM DUAL
+    </insert>
+
+
+
+
 </mapper>

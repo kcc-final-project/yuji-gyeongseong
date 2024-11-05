@@ -170,5 +170,53 @@ public class WorkLoungeRestController {
         }
     }
 
+    // 선정 버튼
+    @PostMapping("/eval-list/{rndPlanNo}")
+    public ResponseEntity<?> evalList(@PathVariable("rndPlanNo") int rndPlanNo) {
+        int evaluationCount = selectEvaluationService.getSelectEvaluationCount(rndPlanNo);
+
+        if (evaluationCount <= 0) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(evaluationCount);
+        }
+    }
+
+
+    //저장용도
+    // 새로운 평가 설문지 생성
+    @PostMapping("/newForm")
+    public ResponseEntity<String> createEvaluationForm(@RequestBody EvaluationFormRequest request) {
+        try {
+            // 필수 값 검증 - 질문이 없을 경우 예외 처리
+            if (request.getQuestions() == null || request.getQuestions().isEmpty()) {
+                throw new IllegalArgumentException("At least one question must be provided.");
+            }
+
+            // EvaluationTable 객체 생성 및 필드 설정
+            EvaluationTable evaluationTable = new EvaluationTable();
+            evaluationTable.setTitle(request.getTitle());
+            evaluationTable.setDescription(request.getDescription());
+            evaluationTable.setFormType(request.getFormType());
+            evaluationTable.setTechFieldNo(request.getTechFieldNo());
+
+            // 질문 리스트 설정
+            List<Question> questions = request.getQuestions();
+
+            // 서비스 메서드 호출하여 평가 설문지 생성
+            evaluationTableListService.createEvaluationForm(evaluationTable, questions);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body("Evaluation form created successfully.");
+        } catch (IllegalArgumentException e) {
+            // 클라이언트 오류 (잘못된 요청)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Invalid input: " + e.getMessage());
+        } catch (Exception e) {
+            // 서버 오류 (예기치 않은 오류)
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Failed to create evaluation form: " + e.getMessage());
+        }
+    }
+
 
 }
