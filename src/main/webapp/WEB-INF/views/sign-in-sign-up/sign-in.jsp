@@ -13,6 +13,9 @@
 <body>
 <div class="common-main">
     <div class="login-area shadow-sm">
+            <a href="/" style="color: inherit; text-decoration: none;">
+                <img src="/resources/img/common/logo.svg" style="margin-top: 30px; width: 112px" class="logo" alt="logo"/>
+            </a>
         <h3 class="container-title">로그인</h3>
         <p class="container-p">로그인하시면 서비스를 이용하실 수 있습니다.</p>
         <hr>
@@ -26,7 +29,11 @@
             <div class="checkbox-group">
                 <label><input type="checkbox" name="save-id"> 아이디 저장</label>
             </div>
-            <p class="error-message">아이디 또는 비밀번호를 잘못 입력하셨습니다.</p>
+            <c:if test="${param.error != null}">
+                <div>
+                    <p class="error-message">아이디 또는 비밀번호를 잘못 입력하셨습니다.</p>
+                </div>
+            </c:if>
             <button type="submit" class="login-btn">로그인</button>
         </form>
 

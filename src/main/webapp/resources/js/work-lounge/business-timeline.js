@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  connectWebSocket();
+
   $("#approveButton").on("click", function () {
     Swal.fire({
       title: "평가위원 제안을 수락하시겠습니까 ?",

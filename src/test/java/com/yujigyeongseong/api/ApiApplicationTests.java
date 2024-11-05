@@ -12,4 +12,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ApiApplicationTests {
 
 
+	@Autowired
+	private BoardMapper boardMapper;
+
+	@Test
+	void contextLoads() {
+/*		log.info("result= {} ",boardMapper.selectBoardId(1));
+		Assertions.assertNotNull(boardMapper.selectBoardId(1));*/
+	}
+
 }

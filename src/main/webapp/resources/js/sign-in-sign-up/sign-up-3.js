@@ -65,6 +65,8 @@ $(function () {
             $('.search-icon').css('pointer-events', 'none');
             $('#check-organ').css('display', 'none');
             $('.add-organ-btn').css('display', 'none');
+            $('#email').css('display','none');
+
         }
     });
 
@@ -79,6 +81,11 @@ $(function () {
             $('.search-icon').css('pointer-events', 'auto');
             $('#check-organ').css('display', 'block');
             $('.add-organ-btn').css('display', 'block');
+            $('#email').prop('disabled',false);
+            $('#send-mail-btn').prop('disabled', false);
+            $('#check-area').prop('disabled',false);
+            $('#email-check').prop('disabled',false);
+            $('.mail-danger').css('display','block');
 
             // 조건 2: 등록기관에서 다른 값으로 변경할 시 알림 및 필드 비활성화
         } else if (previousValue === "등록기관" && (currentValue === "프리랜서" || currentValue === "은퇴 고경력자")) {
@@ -94,13 +101,14 @@ $(function () {
             }).then((result) => {
                 if (result.isConfirmed) {
                     // 필드 비활성화 및 숨김 처리
-                    $('#organization, #department, #position, #institution-email, #mail-btn, #institution-email-certification').prop("disabled", true);
+                    $('#organization, #department,#email,#send-mail-btn,#check-area, #email-check,#position, #institution-email, #mail-btn, #institution-email-certification').prop("disabled", true);
                     $('.search-icon').css('pointer-events', 'none');
                     $('#check-organ').css('display', 'none');
                     $('.add-organ-btn').css('display', 'none');
+                    $('.mail-danger').css('display','none');
 
                     // 필드 초기화
-                    $('#organization, #department, #position, #institution-email').val("");
+                    $('#organization, #email,#send-mail-btn,#check-area, #email-check,#department, #position, #institution-email').val("");
 
                     $('.common-table-row').remove();
 

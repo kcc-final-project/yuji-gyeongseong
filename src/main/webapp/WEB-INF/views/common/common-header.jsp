@@ -7,6 +7,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>유지경성</title>
+
     <!-- Bootstrap5 -->
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -46,6 +47,19 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
     <!-- Jstree Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
+
+    <!-- WebSocket 클라이언트 라이브러리 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+
+    <!-- Animate.css 추가 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <%--    알림용 js--%>
+    <script src="/resources/js/research-number/notification.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert2 -->
+
+
 </head>
 <body>
 <div class="common-header">
@@ -73,7 +87,7 @@
                 <span
                         class="common-header__item tracking-widest"
                         >${sessionScope.username}
-                  <span style=" color: #ff8f27;"
+                  <span class="rsrchNo" style=" color: #ff8f27;"
                           <c:if test="${not empty sessionScope.rsrchNo}">
                               >${sessionScope.rsrchNo}
                           </c:if>

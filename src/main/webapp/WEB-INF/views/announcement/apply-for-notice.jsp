@@ -14,9 +14,7 @@
 <body>
 <h1></h1>
 <div class="common-main">
-    <div class="header">
-        <h5 class="title">공고명: ${applyAnnouncement.totalTitle}</h5>
-    </div>
+
     <%--    <div class="section-title">--%>
     <%--        <h2>공모분야</h2>--%>
     <%--    </div>--%>
@@ -33,7 +31,7 @@
     </thead>
     <tbody class="technology-anno-list" style="
         display: block;
-        height: 162px; /* 원하는 높이 지정 */
+        height: 179px;
         overflow-y: auto;
         width: 100%;
         table-layout: fixed;
@@ -52,7 +50,9 @@
 </table>
 
     </div>
-
+        <div class="header">
+            <h5 class="title">공고명: ${applyAnnouncement.totalTitle}</h5>
+        </div>
     <div class="card-container">
         <c:forEach var="data" items="${applyAnnouncement.subAnnouncements}" varStatus="index">
             <div class="card" data-subAnnNo= ${data.subAnnNo}>

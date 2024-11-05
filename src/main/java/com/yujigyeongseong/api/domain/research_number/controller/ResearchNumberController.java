@@ -69,4 +69,8 @@ public class ResearchNumberController {
         return "work-lounge/eval-committee-compose";
     }
 
+    @GetMapping("/socket-test")
+    public String socketTest(){
+        return "research-number/socket-test";
+    }
 }

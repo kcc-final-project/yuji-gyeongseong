@@ -515,9 +515,12 @@
         </div>
     </div>
     <div class="go-to-top fixed-box">
-        <button class="go-to-btn ">
-            <span class="material-icons arrow ">arrow_circle_up</span>
-        </button>
+<%--        <button class="go-to-btn">--%>
+<%--            <span class="material-icons">keyboard_double_arrow_up</span>--%>
+<%--        </button>--%>
+        <div class="anchor-btn go-to-btn" data-target="#best">
+            <span class="material-icons">keyboard_double_arrow_up</span>
+        </div>
     </div>
 </div>
 <script src="/resources/js/announcement/announcement-list.js"></script>
