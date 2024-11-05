@@ -22,18 +22,21 @@ public class AnnouncementListImpl implements AnnouncementListService {
     }
 
     @Override
-    public List<Announcement> getAcceptingAnnouncementList() {
-        return announcementMapper.selectAcceptionAnnouncementList();
+    public List<Announcement> getAcceptingAnnouncementList(int page, int size ) {
+        int offset = page * size;
+        return announcementMapper.selectAcceptionAnnouncementList(offset,size);
     }
 
     @Override
-    public List<Announcement> getExpectedAnnouncementList() {
-        return announcementMapper.selectExpectedAnnouncementList();
+    public List<Announcement> getExpectedAnnouncementList(int page, int size) {
+        int offset = page * size;
+        return announcementMapper.selectExpectedAnnouncementList(offset,size);
     }
 
     @Override
-    public List<Announcement> getDeadlineAnnouncementList() {
-        return announcementMapper.selectDeadLineAnnouncementList();
+    public List<Announcement> getDeadlineAnnouncementList(int page, int size) {
+        int offer = page * size;
+        return announcementMapper.selectDeadLineAnnouncementList(offer,size);
     }
 
     @Override
@@ -55,4 +58,11 @@ public class AnnouncementListImpl implements AnnouncementListService {
     public List<Announcement> searchAnnouncement(AnnouncementFilterRequest announcementFilterRequest) {
         return announcementMapper.searchAnnouncement(announcementFilterRequest);
     }
+
+    @Override
+    public List<Announcement> selectAcceptionAnnouncementList1() {
+        return announcementMapper.selectAcceptionAnnouncementList1();
+    }
+
+
 }

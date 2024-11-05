@@ -89,7 +89,7 @@ public class SecurityConfig {
 
                 .defaultSuccessUrl("/",true)
 
-                .failureUrl("/member/login/fail"));
+                .failureUrl("/member/login/fail?error=true").permitAll());
 
         http.logout(logout -> logout
                 .logoutUrl("/member/logout")

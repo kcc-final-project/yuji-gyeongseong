@@ -7,6 +7,8 @@ import com.yujigyeongseong.api.domain.announcement.dto.SubAnnouncementApply;
 import com.yujigyeongseong.api.domain.announcement.dto.request.AnnouncementFilterRequest;
 import com.yujigyeongseong.api.domain.announcement.dto.request.SubAnnouncementDetailRequest;
 import com.yujigyeongseong.api.domain.announcement.service.AnnouncementListService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/anno")
 public class AnnouncementRestController {
+    private static final Logger log = LoggerFactory.getLogger(AnnouncementRestController.class);
     private final AnnouncementListService announcementListService;
     private final AnnouncementMapper announcementMapper;
 
@@ -25,23 +28,32 @@ public class AnnouncementRestController {
     }
 
     @GetMapping("/accepting")
-    public List<Announcement> getAcceptingAnnouncementList() {
+    public List<Announcement> getAcceptingAnnouncementList(@RequestParam int page, @RequestParam int size) {
         List<Announcement> anno;
-        anno = announcementListService.getAcceptingAnnouncementList();
+        anno = announcementListService.getAcceptingAnnouncementList(page,size);
+
+        return anno;
+    }
+
+    @GetMapping("/topAcception")
+    public List<Announcement> selectAcceptionAnnouncementList1(){
+        List<Announcement> anno;
+        anno = announcementListService.selectAcceptionAnnouncementList1();
+
         return anno;
     }
 
     @GetMapping("/expected")
-    public List<Announcement> getExpectedAnnouncementList() {
+    public List<Announcement> getExpectedAnnouncementList(@RequestParam int page, @RequestParam int size) {
         List<Announcement> anno;
-        anno = announcementListService.getExpectedAnnouncementList();
+        anno = announcementListService.getExpectedAnnouncementList(page,size);
         return anno;
     }
 
     @GetMapping("/deadline")
-    public List<Announcement> getDeadlineAnnouncementList() {
+    public List<Announcement> getDeadlineAnnouncementList(@RequestParam int page, @RequestParam int size) {
         List<Announcement> anno;
-        anno = announcementListService.getDeadlineAnnouncementList();
+        anno = announcementListService.getDeadlineAnnouncementList(page,size);
         return anno;
     }
 
@@ -71,6 +83,7 @@ public class AnnouncementRestController {
         announcementFilterRequest.setCheckedGisul(checkedGisul);
         List<Announcement> anno;
         anno = announcementListService.searchAnnouncement(announcementFilterRequest);
+
         return anno;
     }
 

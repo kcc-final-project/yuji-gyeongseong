@@ -7,17 +7,20 @@ import com.yujigyeongseong.api.domain.announcement.dto.request.AnnouncementFilte
 import com.yujigyeongseong.api.domain.announcement.dto.request.SubAnnouncementDetailRequest;
 import com.yujigyeongseong.api.domain.announcement.dto.request.SubAnnouncementRequest;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 @Mapper
 public interface AnnouncementMapper {
 
-    List<Announcement> selectAcceptionAnnouncementList();
+    List<Announcement> selectAcceptionAnnouncementList(@Param("offset") int offset,@Param("size") int size);
 
-    List<Announcement> selectExpectedAnnouncementList();
+    List<Announcement> selectExpectedAnnouncementList(@Param("offset") int offset,@Param("size") int size);
 
-    List<Announcement> selectDeadLineAnnouncementList();
+    List<Announcement> selectDeadLineAnnouncementList(@Param("offset") int offset,@Param("size") int size);
+
+    List<Announcement> selectAcceptionAnnouncementList1();
 
     SubAnnouncementRequest selectAnnouncementByTotalAnnNo(int AnnNo);
 

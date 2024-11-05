@@ -11,11 +11,11 @@ import java.util.List;
 
 @Service
 public interface AnnouncementListService {
-    List<Announcement> getAcceptingAnnouncementList();
+    List<Announcement> getAcceptingAnnouncementList(int page, int size);
 
-    List<Announcement> getExpectedAnnouncementList();
+    List<Announcement> getExpectedAnnouncementList(int page, int size);
 
-    List<Announcement> getDeadlineAnnouncementList();
+    List<Announcement> getDeadlineAnnouncementList(int page, int size);
 
     SubAnnouncementRequest getAnnouncementByTotalAnnNo(int AnnNo);
 
@@ -24,4 +24,6 @@ public interface AnnouncementListService {
     SubAnnouncementApply getApplyNotice(String annNo);
 
     List<Announcement> searchAnnouncement(AnnouncementFilterRequest announcementFilterRequest);
+
+    List<Announcement> selectAcceptionAnnouncementList1();
 }

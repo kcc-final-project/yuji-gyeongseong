@@ -79,7 +79,7 @@
                 <span
                         class="common-header__item tracking-widest"
                         >${sessionScope.username}
-                  <span style=" color: #ff8f27;"
+                  <span class="rsrchNo" style=" color: #ff8f27;"
                           <c:if test="${not empty sessionScope.rsrchNo}">
                               >${sessionScope.rsrchNo}
                           </c:if>

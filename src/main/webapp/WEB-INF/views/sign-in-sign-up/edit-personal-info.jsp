@@ -98,7 +98,7 @@
                 <input type="tel" class="form-control"  id="phone" value="${principal.tel}" disabled>
               </div>
               <div class="col-md-6">
-                <label for="email" class="form-label">이메일 <span class="text-danger">*</span></label>
+                <label for="email" class="form-label">기관 웹메일 <span class="text-danger">*</span></label>
                 <small id="success-email"></small>
                 <div class="input-group">
                   <input type="email" class="form-control" id="email" value="${principal.email}"
