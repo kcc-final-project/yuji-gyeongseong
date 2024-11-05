@@ -7,6 +7,7 @@ import com.yujigyeongseong.api.domain.research_number.dto.request.AcadRequest;
 import com.yujigyeongseong.api.domain.research_number.dto.request.CareerRequest;
 import com.yujigyeongseong.api.domain.research_number.dto.request.EvalNotiRequest;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -20,9 +21,12 @@ public interface EvalCommitteeMapper {
 
     List<Noti> selectAllNotiByMemberId(Long Id);
 
-    int insertAllCareersByMemberId(Long id, List<CareerRequest> careers);
+//    int insertAllCareersByMemberId(@Param("id") Long id, @Param("careers") List<CareerRequest> careers);
+    int insertCareer(Long id, CareerRequest career);
 
-    int insertAllAcadAbilitiesByMemberId(Long id, List<AcadRequest> acadAbilities);
+    int insertAllAcadAbilitiesByMemberId(@Param("id") Long id, @Param("acadAbilities") List<AcadRequest> acadAbilities);
+
+    int insertAcadAbility(Long id, AcadRequest acad);
 
     int insertRsrcNoByMemberId(Long id);
 

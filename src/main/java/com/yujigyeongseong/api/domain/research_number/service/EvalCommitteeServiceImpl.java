@@ -44,12 +44,23 @@ public class EvalCommitteeServiceImpl implements EvalCommitteeService {
 
     @Override
     public int setCareersByMemberId(Long id, List<CareerRequest> careers) {
-        return evalCommitteeMapper.insertAllCareersByMemberId(id, careers);
+        int insertCount = 0;
+
+        for (CareerRequest careerRequest : careers) {
+            evalCommitteeMapper.insertCareer(id, careerRequest);
+        }
+        return insertCount;
     }
 
     @Override
     public int setAcadAbilitiesByMemberId(Long id, List<AcadRequest> acadAbilities) {
-        return evalCommitteeMapper.insertAllAcadAbilitiesByMemberId(id, acadAbilities);
+
+        int insertCount = 0;
+
+        for (AcadRequest acadRequest : acadAbilities) {
+            evalCommitteeMapper.insertAcadAbility(id, acadRequest);
+        }
+        return insertCount;
 
     }
 
@@ -63,7 +74,7 @@ public class EvalCommitteeServiceImpl implements EvalCommitteeService {
 
         int result = evalCommitteeMapper.insertEvalNotiByMemberId(evalNotiRequest);
 
-        if(result > 0){
+        if (result > 0) {
             NotiReponse noti = NotiReponse.builder()
                     .memNo(evalNotiRequest.getMemNo())
                     .content(evalNotiRequest.getContent())
