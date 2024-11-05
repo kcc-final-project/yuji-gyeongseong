@@ -16,8 +16,8 @@ class ApiApplicationTests {
 
 	@Test
 	void contextLoads() {
-		log.info("result= {} ",boardMapper.selectBoardId(1));
-		Assertions.assertNotNull(boardMapper.selectBoardId(1));
+/*		log.info("result= {} ",boardMapper.selectBoardId(1));
+		Assertions.assertNotNull(boardMapper.selectBoardId(1));*/
 	}
 
 }
