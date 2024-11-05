@@ -69,6 +69,47 @@
     </resultMap>
 
     <select id="selectAcceptionAnnouncementList" resultType="Announcement">
+        SELECT ann_no AS annno,
+        total_ann_no AS totalannno,
+        total_title AS totaltitle,
+        competent_ministry AS competentministry,
+        spec_institution AS specinstitution,
+        ann_tech_field_name AS annTechFieldName,
+        ann_type AS anntype,
+        sub_ann_count AS subanncount,
+        reception_type AS receptiontype,
+        status AS status,
+        TO_CHAR(started_at, 'YYYY-MM-DD') AS startedat,
+        TO_CHAR(closed_at, 'YYYY-MM-DD') AS closedat,
+        TO_CHAR(created_at, 'YYYY-MM-DD') AS createdat,
+        TO_CHAR(updated_at, 'YYYY-MM-DD') AS updatedat,
+        ROWNUM AS rnum
+        FROM (
+        SELECT
+        ann_no,
+        total_ann_no,
+        total_title,
+        competent_ministry,
+        spec_institution,
+        ann_tech_field_name,
+        ann_type,
+        sub_ann_count,
+        reception_type,
+        status,
+        started_at,
+        closed_at,
+        created_at,
+        updated_at,
+        ROWNUM AS rnum
+        FROM announcement
+        WHERE status = '접수중'
+        ORDER BY created_at ASC
+        )
+        WHERE rnum > #{offset} AND rnum &lt;= #{offset} + #{size}
+    </select>
+
+
+    <select id="selectAcceptionAnnouncementList1" resultType="Announcement">
         SELECT
             ann_no AS annno,
             total_ann_no AS totalannno,
@@ -93,50 +134,85 @@
             created_at ASC
     </select>
 
+
     <select id="selectExpectedAnnouncementList" resultType="Announcement">
-        SELECT
-            ann_no AS annno,
-            total_ann_no AS totalannno,
-            total_title AS totaltitle,
-            competent_ministry AS competentministry,
-            spec_institution AS specinstitution,
-            ann_tech_field_name AS annTechFieldName,
-            ann_type AS anntype,
-            sub_ann_count AS subanncount,
-            reception_type AS receptiontype,
-            status AS status,
-            TO_CHAR(started_at, 'YYYY-MM-DD') AS startedat,
-            closed_at AS closedat,
-            created_at AS createdat,
-            updated_at AS updatedat,
-            bucket_no AS bucketno
-        FROM
-            announcement
-        WHERE
-            status = '접수예정'
+        SELECT ann_no AS annno,
+               total_ann_no AS totalannno,
+               total_title AS totaltitle,
+               competent_ministry AS competentministry,
+               spec_institution AS specinstitution,
+               ann_tech_field_name AS annTechFieldName,
+               ann_type AS anntype,
+               sub_ann_count AS subanncount,
+               reception_type AS receptiontype,
+               status AS status,
+               TO_CHAR(started_at, 'YYYY-MM-DD') AS startedat,
+               TO_CHAR(closed_at, 'YYYY-MM-DD') AS closedat,
+               TO_CHAR(created_at, 'YYYY-MM-DD') AS createdat,
+               TO_CHAR(updated_at, 'YYYY-MM-DD') AS updatedat,
+               ROWNUM AS rnum
+        FROM (
+                 SELECT
+                     ann_no,
+                     total_ann_no,
+                     total_title,
+                     competent_ministry,
+                     spec_institution,
+                     ann_tech_field_name,
+                     ann_type,
+                     sub_ann_count,
+                     reception_type,
+                     status,
+                     started_at,
+                     closed_at,
+                     created_at,
+                     updated_at,
+                     ROWNUM AS rnum
+                 FROM announcement
+                 WHERE status = '접수예정'
+                 ORDER BY created_at ASC
+             )
+        WHERE rnum > #{offset} AND rnum &lt;= #{offset} + #{size}
     </select>
 
     <select id="selectDeadLineAnnouncementList" resultType="Announcement">
-        SELECT
-            ann_no AS annno,
-            total_ann_no AS totalannno,
-            total_title AS totaltitle,
-            competent_ministry AS competentministry,
-            spec_institution AS specinstitution,
-            ann_tech_field_name AS annTechFieldName,
-            ann_type AS anntype,
-            sub_ann_count AS subanncount,
-            reception_type AS receptiontype,
-            status AS status,
-            TO_CHAR(started_at, 'YYYY-MM-DD') AS startedat,
-            closed_at AS closedat,
-            created_at AS createdat,
-            updated_at AS updatedat,
-            bucket_no AS bucketno
-        FROM
-            announcement
-        WHERE
-            status = '접수마감'
+        SELECT ann_no AS annno,
+               total_ann_no AS totalannno,
+               total_title AS totaltitle,
+               competent_ministry AS competentministry,
+               spec_institution AS specinstitution,
+               ann_tech_field_name AS annTechFieldName,
+               ann_type AS anntype,
+               sub_ann_count AS subanncount,
+               reception_type AS receptiontype,
+               status AS status,
+               TO_CHAR(started_at, 'YYYY-MM-DD') AS startedat,
+               TO_CHAR(closed_at, 'YYYY-MM-DD') AS closedat,
+               TO_CHAR(created_at, 'YYYY-MM-DD') AS createdat,
+               TO_CHAR(updated_at, 'YYYY-MM-DD') AS updatedat,
+               ROWNUM AS rnum
+        FROM (
+                 SELECT
+                     ann_no,
+                     total_ann_no,
+                     total_title,
+                     competent_ministry,
+                     spec_institution,
+                     ann_tech_field_name,
+                     ann_type,
+                     sub_ann_count,
+                     reception_type,
+                     status,
+                     started_at,
+                     closed_at,
+                     created_at,
+                     updated_at,
+                     ROWNUM AS rnum
+                 FROM announcement
+                 WHERE status = '접수마감'
+                 ORDER BY created_at ASC
+             )
+        WHERE rnum > #{offset} AND rnum &lt;= #{offset} + #{size}
     </select>
 
     <select id="selectAnnouncementByTotalAnnNo" resultMap="SubAnnouncementRequestMap" >

@@ -18,14 +18,23 @@ $(function () {
 
     $(document).on('click', '.apply-btn', function () {
         let subAnnoNo = $(this).closest('.card').data('subannno');
-        console.log('subAnnoNo:', subAnnoNo);
 
         if (isLoggedIn) {
-            if (subAnnoNo) {
+            const researcherNumber = $('.rsrchNo').text().trim();
+
+            if(researcherNumber!== ""){
                 window.location.href = '/rnd-plans/' + subAnnoNo;
-            } else {
-                alert("오류 발생: subAnnoNo를 찾을 수 없습니다.");
+            }else{
+                Swal.fire({
+                    icon: "warning",
+                    text: "국가연구자 번호 발급이 완료된 후 신청이 가능합니다.",
+                    confirmButtonText: "확인",
+                    confirmButtonColor: "#2e406a",
+                });
             }
+
+
+
         } else {
             Swal.fire({
                 icon: "warning",
