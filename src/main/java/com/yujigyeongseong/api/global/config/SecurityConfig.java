@@ -68,6 +68,7 @@ public class SecurityConfig {
                         .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
                         .requestMatchers(NOT_LOGIN_LIST).hasAnyRole("USER","RESE","DIRE","MGR","EVAL")
 //                        .requestMatchers(PERMIT_LIST).permitAll()
+                        .requestMatchers("/ws/**" , "/socket-test").permitAll()
 //                        .requestMatchers(USER_LIST).hasRole("USER")
 //                        .requestMatchers(EVAL_LIST).hasRole("EVAL")
 //                        .requestMatchers(MANAGER_LIST).hasRole("MGR")

@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  connectWebSocket();
+
   $("#approveButton").on("click", function () {
     Swal.fire({
       title: "평가위원 제안을 수락하시겠습니까 ?",
@@ -111,4 +113,35 @@ function approveButton(notificationNo, memNo, notiContentNo) {
   document
     .getElementById(`action-${notificationNo}`)
     .parentNode.appendChild(selectedText);
+}
+
+
+// WebSocket 연결 및 알림 수신 함수
+function connectWebSocket() {
+  var socket = new SockJS('/ws');
+  var stompClient = Stomp.over(socket);
+
+  stompClient.connect({}, function (frame) {
+    console.log('Connected: ' + frame);
+
+    // 사용자별 큐에 구독
+    stompClient.subscribe('/user/' + 'yun9869' + '/topic/notifications', function (message) {
+      var noti = JSON.parse(message.body);
+      displayNotification(noti);
+    });
+  }, function (error) {
+    console.error('WebSocket 연결 실패:', error);
+  });
+}
+
+// 알림 표시 함수
+function displayNotification(noti) {
+  console.log('웹소캣됐당')
+  Swal.fire({
+    title: `[${noti.notiType} 알림]`,
+    html: noti.content, // HTML 형식의 콘텐츠
+    icon: 'info',
+    confirmButtonColor: "#2e406a",
+    confirmButtonText: "확인"
+  });
 }
