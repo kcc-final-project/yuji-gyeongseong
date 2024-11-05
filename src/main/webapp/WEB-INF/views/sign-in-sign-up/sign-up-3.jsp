@@ -47,7 +47,8 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="user-name" class="form-label">이름 <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="user-name" value="${sessionScope.name}" disabled>
+                                <input type="text" class="form-control" id="user-name" value="${sessionScope.name}"
+                                       disabled>
 
                             </div>
                         </div>
@@ -72,7 +73,8 @@
                             <div class="col-md-6">
                                 <label for="birth-date" class="form-label">생년월일 <span
                                         class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="birth-date" value="${sessionScope.birth}" disabled>
+                                <input type="text" class="form-control" id="birth-date" value="${sessionScope.birth}"
+                                       disabled>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">성별 <span class="text-danger">*</span></label>
@@ -96,19 +98,19 @@
                                 <label for="phone" class="form-label">휴대전화번호 <span class="text-danger">*</span></label>
                                 <input type="tel" class="form-control" id="phone" value="${sessionScope.tel}" disabled>
                             </div>
-                            <div class="col-md-6">
-                                <label for="email" class="form-label">이메일 <span class="text-danger">*</span></label>
-                                <small id="success-email"></small>
-                                <div class="input-group">
-                                    <input type="email" class="form-control" id="email"
-                                           placeholder="example@naver.com">
-                                    <button class="btn btn-outline-secondary" type="button" id="send-mail-btn">인증코드 발송</button>
-                                </div>
-                                <div class="d-flex align-items-center" style=" margin-top: 20px">
-                                    <input type="text" class="form-control text-center me-2" id="check-area" style="width: 300px;">
-                                    <button class="btn btn-outline-secondary" type="button" id="email-check">인증</button>
-                                </div>
-                            </div>
+                            <%--                            <div class="col-md-6">--%>
+                            <%--                                <label for="email" class="form-label">이메일 <span class="text-danger">*</span></label>--%>
+                            <%--                                <small id="success-email"></small>--%>
+                            <%--                                <div class="input-group">--%>
+                            <%--                                    <input type="email" class="form-control" id="email"--%>
+                            <%--                                           placeholder="example@naver.com">--%>
+                            <%--                                    <button class="btn btn-outline-secondary" type="button" id="send-mail-btn">인증코드 발송</button>--%>
+                            <%--                                </div>--%>
+                            <%--                                <div class="d-flex align-items-center" style=" margin-top: 20px">--%>
+                            <%--                                    <input type="text" class="form-control text-center me-2" id="check-area" style="width: 300px;">--%>
+                            <%--                                    <button class="btn btn-outline-secondary" type="button" id="email-check">인증</button>--%>
+                            <%--                                </div>--%>
+                            <%--                            </div>--%>
                         </div>
 
                         <div class="row mb-3">
@@ -128,7 +130,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="detailed-address" class="form-label">&nbsp;</label>
-                                <div id="map" style="width:570px;height:250px;display:none"></div>
+                                <div id="map" style="width:570px;height:250px;display:none; top: -121px;"></div>
                             </div>
                         </div>
                     </div>
@@ -169,7 +171,8 @@
                                 <span class="text-danger" id="check-organ" style="margin-left: 6px">*</span>
                             </div>
                             <div class="input-group organi-group">
-                                <input placeholder="소속기관 등록" type="text" class="form-control" id="organization" readonly disabled>
+                                <input placeholder="소속기관 등록" type="text" class="form-control" id="organization" readonly
+                                       disabled>
                                 <span class="material-icons search-icon" data-bs-toggle="modal"
                                       data-bs-target="#exampleModal">search</span>
 
@@ -187,15 +190,30 @@
                         </div>
                     </div>
                     <div class="row mb-3">
+                        <%--                        <div class="col-md-6">--%>
+                        <%--                            <label for="institution-email" class="form-label">기관 웹 메일</label>--%>
+                        <%--                            <div class="input-group">--%>
+                        <%--                                <input type="email" class="form-control" id="institution-email"--%>
+                        <%--                                       value="" placeholder="ex) dream1752@inu.ac.kr" disabled>--%>
+                        <%--                                <button class="btn btn-outline-secondary" type="button" id="mail-btn" disabled>메일 발송--%>
+                        <%--                                </button>--%>
+                        <%--                            </div>--%>
+                        <%--                            <small class="text-success">※ 메일이 인증되었습니다.</small>--%>
+                        <%--                        </div>--%>
                         <div class="col-md-6">
-                            <label for="institution-email" class="form-label">기관 웹 메일</label>
+                                <label for="email" class="form-label" style="display: flex;">기관 웹메일 <span class="text-danger mail-danger" style="display: none; margin-left: 4px;">*</span></label>
+                            <small id="success-email"></small>
                             <div class="input-group">
-                                <input type="email" class="form-control" id="institution-email"
-                                       value="" placeholder="ex) dream1752@inu.ac.kr" disabled>
-                                <button class="btn btn-outline-secondary" type="button" id="mail-btn" disabled>메일 발송
+                                <input type="email" class="form-control" id="email" disabled
+                                       placeholder="example@naver.com">
+                                <button class="btn btn-outline-secondary" type="button" id="send-mail-btn" disabled>인증코드 발송
                                 </button>
                             </div>
-                            <small class="text-success">※ 메일이 인증되었습니다.</small>
+                            <div class="d-flex align-items-center" style=" margin-top: 20px">
+                                <input type="text" class="form-control text-center me-2" id="check-area" disabled
+                                       style="width: 300px;">
+                                <button class="btn btn-outline-secondary" type="button" id="email-check" disabled>인증</button>
+                            </div>
                         </div>
                         <button type="button" class="add-organ-btn">기관추가</button>
                     </div>
@@ -292,7 +310,7 @@
 
                     document.getElementById("sample5_address").value = addr;
                     document.getElementById("sample5_address").style.border = '1px solid #dee2e6';
-                    document.getElementById("address-btn").style.border='1px solid #dee2e6';
+                    document.getElementById("address-btn").style.border = '1px solid #dee2e6';
                     geocoder.addressSearch(data.address, function (results, status) {
 
                         if (status === daum.maps.services.Status.OK) {
