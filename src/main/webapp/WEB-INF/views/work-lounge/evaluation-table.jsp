@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>전자평가표</title>
     <link rel="stylesheet" href="/resources/css/work-lounge/evaluation-table.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+<%--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>--%>
     <style>
         .d-flex {
             display: flex;
@@ -30,14 +30,14 @@
         }
     </style>
 </head>
-<body class="mt-5" >
+<body class="mt-5">
 <div class="main-container" style="width: 100%; height: 756px; margin-top: 50px; margin-left: 20px">
-<%--    <div class="marin-header"--%>
-<%--         style="width: 100%; height: 10%; display: flex; justify-content: center; align-items: center;">--%>
-<%--        <h2>전자평가표</h2>--%>
-<%--    </div>--%>
+    <%--    <div class="marin-header"--%>
+    <%--         style="width: 100%; height: 10%; display: flex; justify-content: center; align-items: center;">--%>
+    <%--        <h2>전자평가표</h2>--%>
+    <%--    </div>--%>
     <div class="d-flex justify-content-center ps-1">
-        <div class="card col-4 scroll-container shadow-lg">
+        <div class="card col-4 scroll-container shadow-lg p-2" style="width: 405px">
             <div class="mt-2 d-flex justify-content-center align-center mt-1">
                 <select class="form-select" aria-label="상태 선택">
                     <option value="all">전체</option>
@@ -55,7 +55,7 @@
                     <div class="card mb-3" style="background-color: white;" data-publish-date="${announce.startedAt}"
                          data-deadline-date="${announce.closedAt}">
                         <div class="card-body d-flex flex-column shadow">
-                            <h5 class="card-title truncate-text letter" >
+                            <h5 class="card-title truncate-text letter">
                                 <c:out value="${announce.totalTitle}"/>
                             </h5>
                             <p class="card-text">
@@ -79,7 +79,7 @@
                 </c:forEach>
             </div>
         </div>
-        <div class="col-8">
+        <div class="col-8" style="margin-left: 30px">
             <div class="col-9">
                 <table class="table table-bordered text-center committee-top rounded-table shadow-sm">
 
@@ -168,7 +168,7 @@
                     <tbody>
                 `);
 
-                    $.each(data, function(index, item) {
+                    $.each(data, function (index, item) {
                         const $row = $('<tr class="letter1">');
 
                         $row.append('<td>' + item.subTitle + '</td>');
@@ -191,17 +191,22 @@
                             const selectedOption = $(this).find('option:selected');
                             const subtitle = selectedOption.data('subtitle');
                             const field = $row.find('td.paper').data('field');
+                            const lastPart = field.split('>').pop().trim();
+                            console.log(field);
+                            console.log(subtitle);
+                            console.log(lastPart);
 
                             if (selectedOption.val() === "0") {
 
-                                createDefaultTab(subtitle, field);
+                                createDefaultTab(subtitle, lastPart);
                             } else {
                                 $.ajax({
-                                    url: 'http://localhost:8082/api/v1/work_lounge/evaluation-table/생명과학/FormTypeA',
-                                    // url: 'http://localhost:8082/api/v1/work_lounge/evaluation-table/'+ field + '/' + subtitle,
+                                    // url: 'http://localhost:8082/api/v1/work_lounge/evaluation-table/단백질 구조와 기능/' + subtitle,
+                                    url: 'http://localhost:8082/api/v1/work_lounge/evaluation-table/' + lastPart + '/' + subtitle,
                                     type: 'GET',
                                     dataType: 'json',
                                     success: function (data) {
+                                        // console.log(url)
 
 
                                         var tabsContainer = $('<ul class="nav nav-tabs me-4"></ul>');
@@ -216,12 +221,11 @@
                                                     navLink: $('<a class="nav-link custom-nav-link letter1" href="#tab-' + type + '" data-toggle="tab"></a>').text(type),
                                                     content: $('<div class="tab-pane fade card mt-1 me-4" id="tab-' + type + '"></div>')
                                                         .html(
-                                                            '<div class="container text-right">' +
+                                                            '<div class="container text-end">' +
                                                             '<button type="button" class="btn btn-secondary ml-2 mt-2 mb-2 modify letter1"> 수정</button>' +
-                                                            '<button type="button" class="btn btn-secondary ml-2 mt-2 mb-2 save letter1"> 저장</button>' +
+                                                            '<button type="button" class="btn btn-secondary ms-2 ml-2 mt-2 mb-2 save letter1"> 저장</button>' +
                                                             '</div>' +
                                                             '<div class="question">' +
-                                                            '<div class="form-floating p-2">' +
                                                             '<div class="form-floating p-2">' +
                                                             '<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea">' + item.title + '</textarea>' +
                                                             '<label for="floatingTextarea">제목</label>' +
@@ -240,23 +244,23 @@
                                                             '<div class="form-floating mb-3 d-flex justify-content-center">' +
                                                             '<div class="form-check form-check-inline me-4">' +
                                                             '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio1">' +
-                                                            '<label class="form-check-label letter1" for="floatingRadio1">Option 1</label>' +
+                                                            '<label class="form-check-label letter1" for="floatingRadio1">매우 우수함(10점)</label>' +
                                                             '</div>' +
                                                             '<div class="form-check form-check-inline me-4">' +
                                                             '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio2">' +
-                                                            '<label class="form-check-label letter1" for="floatingRadio2">Option 2</label>' +
+                                                            '<label class="form-check-label letter1" for="floatingRadio2">우수함(8점)</label>' +
                                                             '</div>' +
                                                             '<div class="form-check form-check-inline me-4">' +
                                                             '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio3">' +
-                                                            '<label class="form-check-label letter1" for="floatingRadio3">Option 3</label>' +
+                                                            '<label class="form-check-label letter1" for="floatingRadio3">보통(6점)</label>' +
                                                             '</div>' +
                                                             '<div class="form-check form-check-inline me-4">' +
                                                             '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio4">' +
-                                                            '<label class="form-check-label letter1" for="floatingRadio4">Option 4</label>' +
+                                                            '<label class="form-check-label letter1" for="floatingRadio4">개선 필요(4점)</label>' +
                                                             '</div>' +
                                                             '<div class="form-check form-check-inline me-4">' +
                                                             '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio5">' +
-                                                            '<label class="form-check-label letter1" for="floatingRadio5">Option 5</label>' +
+                                                            '<label class="form-check-label letter1" for="floatingRadio5">미달(2점)</label>' +
                                                             '</div>' +
                                                             '</div>' +
                                                             '</div>'
@@ -267,10 +271,10 @@
                                                     $(this).closest('.question').remove();
                                                 });
 
-
                                                 types[type].navItem.append(types[type].navLink);
                                                 tabsContainer.append(types[type].navItem);
                                                 tabContentContainer.append(types[type].content);
+
                                             } else {
                                                 types[type].content.append(
                                                     '<form class="form-floating mt-2 p-2 question">' +
@@ -279,44 +283,46 @@
                                                     '<div class="form-floating mb-3 d-flex justify-content-center">' +
                                                     '<div class="form-check form-check-inline me-4">' +
                                                     '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio1">' +
-                                                    '<label class="form-check-label letter1" for="floatingRadio1">Option 1</label>' +
+                                                    '<label class="form-check-label letter1" for="floatingRadio1">매우 우수함(10점)</label>' +
                                                     '</div>' +
                                                     '<div class="form-check form-check-inline me-4">' +
                                                     '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio2">' +
-                                                    '<label class="form-check-label letter1" for="floatingRadio2">Option 2</label>' +
+                                                    '<label class="form-check-label letter1" for="floatingRadio2">우수함(8점)</label>' +
                                                     '</div>' +
                                                     '<div class="form-check form-check-inline me-4">' +
                                                     '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio3">' +
-                                                    '<label class="form-check-label letter1" for="floatingRadio3">Option 3</label>' +
+                                                    '<label class="form-check-label letter1" for="floatingRadio3">보통(6점)</label>' +
                                                     '</div>' +
                                                     '<div class="form-check form-check-inline me-4">' +
                                                     '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio4">' +
-                                                    '<label class="form-check-label letter1" for="floatingRadio4">Option 4</label>' +
+                                                    '<label class="form-check-label letter1" for="floatingRadio4">개선 필요(4점)</label>' +
                                                     '</div>' +
                                                     '<div class="form-check form-check-inline me-4">' +
                                                     '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio5">' +
-                                                    '<label class="form-check-label letter1" for="floatingRadio5">Option 5</label>' +
+                                                    '<label class="form-check-label letter1" for="floatingRadio5">미달(2점)</label>' +
                                                     '</div>' +
                                                     '</div>' +
                                                     '<button type="button" class="btn btn-danger btn-sm remove-question letter1">삭제</button>' +
                                                     '</form>'
                                                 );
-
-                                                types[type].content.append(`
-                                                <div id="targetArea"></div>
-                                                    <div class="d-flex justify-content-center align-items-center">
-                                                        <button type="button" class="btn btn-blue rounded-circle" style="background-color: #2e406aff; color: white;" disabled>+</button>
-                                                    </div>
-                                            `);
                                             }
 
                                             if (index === 0) {
                                                 types[type].navLink.addClass('active');
                                                 types[type].content.addClass('show active');
                                             }
-
-
                                         });
+
+                                        // 반복문이 끝난 후 추가할 내용
+                                        $.each(types, function (type, value) {
+                                            value.content.append(`
+                                                <div id="targetArea"></div>
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <button type="button" class="btn btn-blue rounded-circle" style="background-color: #2e406aff; color: white;" disabled>+</button>
+                                                </div>
+                                            `);
+                                        });
+
 
                                         var tabsWrapper = $('<div class="tabs-wrapper" style="width: 75%; float: left; max-height: 490px; overflow-y: auto;"></div>');
                                         tabsWrapper.append(tabsContainer);
@@ -327,8 +333,8 @@
 
                                         $(document).ready(function () {
                                             $.ajax({
-                                                url: 'http://localhost:8082/api/v1/work_lounge/evaluation-question/생명과학',
-                                                // url: 'http://localhost:8082/api/v1/work_lounge/evaluation-question/' + field,
+                                                // url: 'http://localhost:8082/api/v1/work_lounge/evaluation-question/생명과학',
+                                                url: 'http://localhost:8082/api/v1/work_lounge/evaluation-question/' + lastPart,
                                                 method: 'GET',
                                                 success: function (data) {
 
@@ -372,7 +378,6 @@
                             }
 
 
-
                         });
 
                         $row.append($('<td>').append($select));
@@ -390,7 +395,7 @@
         });
     });
 
-    $(document).on('click', '.btn-circle.quest', function() {
+    $(document).on('click', '.btn-circle.quest', function () {
         var questionText = $(this).prev('span').text();
 
         var newDivContent =
@@ -400,23 +405,23 @@
             '<div class="form-floating mb-3 d-flex justify-content-center">' +
             '<div class="form-check form-check-inline me-4">' +
             '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio1">' +
-            '<label class="form-check-label letter1" for="floatingRadio1">Option 1</label>' +
+            '<label class="form-check-label letter1" for="floatingRadio1">매우 우수함(10점)</label>' +
             '</div>' +
             '<div class="form-check form-check-inline me-4">' +
             '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio2">' +
-            '<label class="form-check-label letter1" for="floatingRadio2">Option 2</label>' +
+            '<label class="form-check-label letter1" for="floatingRadio2">우수함(8점)</label>' +
             '</div>' +
             '<div class="form-check form-check-inline me-4">' +
             '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio3">' +
-            '<label class="form-check-label letter1" for="floatingRadio3">Option 3</label>' +
+            '<label class="form-check-label letter1" for="floatingRadio3">보통(6점)</label>' +
             '</div>' +
             '<div class="form-check form-check-inline me-4">' +
             '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio4">' +
-            '<label class="form-check-label letter1" for="floatingRadio4">Option 4</label>' +
+            '<label class="form-check-label letter1" for="floatingRadio4">개선 필요(4점)</label>' +
             '</div>' +
             '<div class="form-check form-check-inline me-4">' +
             '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio5">' +
-            '<label class="form-check-label letter1" for="floatingRadio5">Option 5</label>' +
+            '<label class="form-check-label letter1" for="floatingRadio5">미달(2점)</label>' +
             '</div>' +
             '</div>' +
             '<button type="button" class="btn btn-danger btn-sm remove-question letter1">삭제</button>' +
@@ -425,13 +430,13 @@
         $('#targetArea').append(newDivContent);
     });
 
-    $(document).on('click', '.remove-question', function() {
+    $(document).on('click', '.remove-question', function () {
         $(this).closest('.question').remove();
     });
 
 
-    $(document).ready(function() {
-        $(document).on('click', '.btn-blue.rounded-circle', function() {
+    $(document).ready(function () {
+        $(document).on('click', '.btn-blue.rounded-circle', function () {
             var newDivContent =
                 '<div class="form-floating mt-2 p-2 question">' +
                 '<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>' +
@@ -439,23 +444,23 @@
                 '<div class="form-floating mb-3 d-flex justify-content-center">' +
                 '<div class="form-check form-check-inline me-4">' +
                 '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio1">' +
-                '<label class="form-check-label letter1" for="floatingRadio1">Option 1</label>' +
+                '<label class="form-check-label letter1" for="floatingRadio1">매우 우수함(10점)</label>' +
                 '</div>' +
                 '<div class="form-check form-check-inline me-4">' +
                 '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio2">' +
-                '<label class="form-check-label letter1" for="floatingRadio2">Option 2</label>' +
+                '<label class="form-check-label letter1" for="floatingRadio2">우수함(8점)</label>' +
                 '</div>' +
                 '<div class="form-check form-check-inline me-4">' +
                 '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio3">' +
-                '<label class="form-check-label letter1" for="floatingRadio3">Option 3</label>' +
+                '<label class="form-check-label letter1" for="floatingRadio3">보통(6점)</label>' +
                 '</div>' +
                 '<div class="form-check form-check-inline me-4">' +
                 '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio4">' +
-                '<label class="form-check-label letter1" for="floatingRadio4">Option 4</label>' +
+                '<label class="form-check-label letter1" for="floatingRadio4">개선 필요(4점)</label>' +
                 '</div>' +
                 '<div class="form-check form-check-inline me-4">' +
                 '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio5">' +
-                '<label class="form-check-label letter1" for="floatingRadio5">Option 5</label>' +
+                '<label class="form-check-label letter1" for="floatingRadio5">미달(2점)</label>' +
                 '</div>' +
                 '</div>' +
                 '<button type="button" class="btn btn-danger btn-sm remove-question letter1">삭제</button>' +
@@ -463,25 +468,25 @@
             $('#targetArea').append(newDivContent);
         });
 
-        $(document).on('click', '.remove-question', function() {
+        $(document).on('click', '.remove-question', function () {
             $(this).closest('.question').remove();
         });
 
     });
 
-    $(document).ready(function() {
-        $(document).on('click', '.btn.btn-secondary.modify', function() {
-            $('.btn-blue.rounded-circle, .btn-circle.quest').prop('disabled', function(_, val) {
+    $(document).ready(function () {
+        $(document).on('click', '.btn.btn-secondary.modify', function () {
+            $('.btn-blue.rounded-circle, .btn-circle.quest').prop('disabled', function (_, val) {
                 return !val;
             });
 
-            $('.question').each(function() {
+            $('.question').each(function () {
                 $(this).find('textarea').prop('disabled', false);
                 $(this).find('label').attr('for', 'floatingTextarea');
             });
         });
 
-        $(document).on('click', '.btn.btn-secondary.save', function() {
+        $(document).on('click', '.btn.btn-secondary.save', function () {
             $('.btn-blue.rounded-circle, .btn-circle.quest').prop('disabled', true);
 
             $('.question').each(function () {
@@ -493,29 +498,31 @@
 
     });
 
-    function createDefaultTab(subtitle, field) {
-        let tech = field.replace(/\s+/g, '');
+    function createDefaultTab(subtitle, lastPart) {
+        // let tech = field.replace(/\s+/g, '');
+        let tech = lastPart;
+        let tech1 = lastPart.replace(/\s+/g, '');
         let rule = subtitle;
 
         const mainContainer = $('<div class="d-flex"></div>');
 
-        const tabContentContainer = $('<div class="col-9 scroll-container1"></div>');
+        const tabContentContainer = $('<div class="col-9 scroll-container1 me-4"></div>');
         const tabsContainer = $('<ul class="nav nav-tabs me-4"></ul>');
         const contentContainer = $('<div class="tab-content card"></div>');
 
         const defaultTab = $('<li class="nav-item"></li>');
-        const defaultNavLink = $('<a class="nav-link active letter1" href="#tab-default" data-toggle="tab">기본 탭</a>');
+        const defaultNavLink = $('<a class="nav-link active letter1" href="#tab-default" data-toggle="tab">' + tech1 + '</a>');
         const defaultContent = $('<div class="tab-pane fade show active" id="tab-default"></div>').html(
             '<div class="container">' +
             '<div class="d-flex justify-content-start align-items-center">' +
-            '<button type="button" style="margin-right: 17px" class="btn mt-2 mb-2 new-button letter1 ctm-btn-blue" onclick="window.open(\'http://localhost:8082/work-lounge/evaluation-tables/' + tech + '/' + rule +'\', \'_blank\', \'width=700, height=600, top=50, left=50, scrollbars=yes\')">미리보기</button>' +
-            '<div class="ml-4 col-5">' +
+            '<button type="button" style="margin-right: 17px" class="btn mt-2 mb-2 new-button letter1 ctm-btn-blue" onclick="window.open(\'http://localhost:8082/work-lounge/evaluation-tables/' + tech1 + '/' + rule + '\', \'_blank\', \'width=700, height=600, top=50, left=50, scrollbars=yes\')">미리보기</button>' +
+            '<div class="col-7" style="margin-right: 33px">' +
             '</div>' +
-            '<button type="button" class="btn btn-secondary ml-2 mt-2 mb-2 modify letter1">수정</button>' +
-            '<button type="button" class="btn btn-secondary ml-2 mt-2 mb-2 save letter1">저장</button>' +
+            '<button type="button" class="btn btn-secondary ms-1 ml-2 mt-2 mb-2 modify letter1">수정</button>' +
+            '<button type="button" class="ms-2 btn btn-secondary ml-2 mt-2 mb-2 save letter1">저장</button>' +
             '</div>' +
             '</div>' +
-        '<div class="question">' +
+            '<div class="question">' +
             '<div class="form-floating mt-2 p-2">' +
             '<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea">기본 제목</textarea>' +
             '<label for="floatingTextarea">제목</label>' +
@@ -526,7 +533,7 @@
             '</div>' +
             '</div>' +
             '<div id="targetArea">' +
-            '</div>'+
+            '</div>' +
             '<div class="text-center my-3">' +
             '<button type="button" class="btn btn-blue rounded-circle" style="background-color: #2e406aff; color: white;">+</button>' +
             '</div>'
@@ -535,6 +542,7 @@
         defaultTab.append(defaultNavLink);
         tabsContainer.append(defaultTab);
         contentContainer.append(defaultContent);
+
 
         tabContentContainer.append(tabsContainer);
         tabContentContainer.append(contentContainer);
@@ -548,8 +556,8 @@
         $('#surveyContainer').append(mainContainer);
 
         $.ajax({
-            url: 'http://localhost:8082/api/v1/work_lounge/evaluation-question/생명과학',
-            // url: 'http://localhost:8082/api/v1/work_lounge/evaluation-question/' + field,
+            // url: 'http://localhost:8082/api/v1/work_lounge/evaluation-question/생명과학',
+            url: 'http://localhost:8082/api/v1/work_lounge/evaluation-question/' + lastPart,
             method: 'GET',
             success: function (data) {
 
@@ -583,7 +591,7 @@
             }
         });
 
-        $(document).off('click', '.btn-blue.rounded-circle').on('click', '.btn-blue.rounded-circle', function() {
+        $(document).off('click', '.btn-blue.rounded-circle').on('click', '.btn-blue.rounded-circle', function () {
             var newDivContent =
                 '<div class="form-floating mt-0 p-1 question">' +
                 '<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>' +
@@ -591,23 +599,23 @@
                 '<div class="form-floating mb-3 d-flex justify-content-center">' +
                 '<div class="form-check form-check-inline me-4">' +
                 '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio1">' +
-                '<label class="form-check-label letter1" for="floatingRadio1">Option 1</label>' +
+                '<label class="form-check-label letter1" for="floatingRadio1">매우 우수함(10점)</label>' +
                 '</div>' +
                 '<div class="form-check form-check-inline me-4">' +
                 '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio2">' +
-                '<label class="form-check-label letter1" for="floatingRadio2">Option 2</label>' +
+                '<label class="form-check-label letter1" for="floatingRadio2">우수함(8점)</label>' +
                 '</div>' +
                 '<div class="form-check form-check-inline me-4">' +
                 '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio3">' +
-                '<label class="form-check-label letter1" for="floatingRadio3">Option 3</label>' +
+                '<label class="form-check-label letter1" for="floatingRadio3">보통(6점)</label>' +
                 '</div>' +
                 '<div class="form-check form-check-inline me-4">' +
                 '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio4">' +
-                '<label class="form-check-label letter1" for="floatingRadio4">Option 4</label>' +
+                '<label class="form-check-label letter1" for="floatingRadio4">개선 필요(4점)</label>' +
                 '</div>' +
                 '<div class="form-check form-check-inline me-4">' +
                 '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio5">' +
-                '<label class="form-check-label letter1" for="floatingRadio5">Option 5</label>' +
+                '<label class="form-check-label letter1" for="floatingRadio5">미달(2점)</label>' +
                 '</div>' +
                 '</div>' +
                 '<button type="button" class="btn btn-danger btn-sm remove-question letter1">삭제</button>' +
@@ -616,7 +624,7 @@
             $(this).closest('.tab-pane').find('.question:last').after(newDivContent);
         });
 
-        $(document).off('click', '.btn-circle.quest').on('click', '.btn-circle.quest', function() {
+        $(document).off('click', '.btn-circle.quest').on('click', '.btn-circle.quest', function () {
             var questionText = $(this).prev('span').text();
 
             var newDivContent =
@@ -626,23 +634,23 @@
                 '<div class="form-floating mb-3 d-flex justify-content-center">' +
                 '<div class="form-check form-check-inline me-4">' +
                 '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio1">' +
-                '<label class="form-check-label" for="floatingRadio1 letter1">Option 1</label>' +
+                '<label class="form-check-label letter1" for="floatingRadio1 letter1">매우 우수함(10점)</label>' +
                 '</div>' +
                 '<div class="form-check form-check-inline me-4">' +
                 '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio2">' +
-                '<label class="form-check-label" for="floatingRadio2 letter1">Option 2</label>' +
+                '<label class="form-check-label letter1" for="floatingRadio2 letter1">우수함(8점)</label>' +
                 '</div>' +
                 '<div class="form-check form-check-inline me-4">' +
                 '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio3">' +
-                '<label class="form-check-label" for="floatingRadio3 letter1">Option 3</label>' +
+                '<label class="form-check-label letter1" for="floatingRadio3 letter1">보통(6점)</label>' +
                 '</div>' +
                 '<div class="form-check form-check-inline me-4">' +
                 '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio4">' +
-                '<label class="form-check-label" for="floatingRadio4 letter1">Option 4</label>' +
+                '<label class="form-check-label letter1" for="floatingRadio4 letter1">개선 필요(4점)</label>' +
                 '</div>' +
                 '<div class="form-check form-check-inline me-4">' +
                 '<input class="form-check-input" type="radio" name="floatingRadioOptions" id="floatingRadio5">' +
-                '<label class="form-check-label" for="floatingRadio5 letter1">Option 5</label>' +
+                '<label class="form-check-label letter1" for="floatingRadio5 letter1">미달(2점)</label>' +
                 '</div>' +
                 '</div>' +
                 '<button type="button" class="btn btn-danger btn-sm remove-question letter1">삭제</button>' +
@@ -651,10 +659,6 @@
             $('#targetArea').append(newDivContent);
         });
     }
-
-
-
-
 
 
 </script>

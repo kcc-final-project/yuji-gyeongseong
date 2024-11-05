@@ -6,10 +6,12 @@ import com.yujigyeongseong.api.domain.rnd_plan.dto.response.RndPlanResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.BasicInfoResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.dto.response.TaskSummaryResponse;
 import com.yujigyeongseong.api.domain.rnd_plan.service.RndPlanService;
+import com.yujigyeongseong.api.global.auth.PrincipalDetail;
 import com.yujigyeongseong.api.global.dto.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -32,7 +34,9 @@ public class RndPlanRestController {
 
     // 기본정보 데이터 등록 API
     @PostMapping("/basic")
-    public ResponseEntity<?> saveRndPlanBasic(@RequestBody final CreateBasicInfoRequest request) {
+    public ResponseEntity<?> saveRndPlanBasic(@AuthenticationPrincipal PrincipalDetail detail,@RequestBody final CreateBasicInfoRequest request) {
+
+        request.assignMemNo(detail.getId());
         Long rndPlanNo = rndPlanService.registerBasicInfo(request);
         return ApiResponse.success(CREATED, rndPlanNo);
     }

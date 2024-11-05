@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>유지경성</title>
     <link rel="stylesheet" href="/resources/css/work-lounge/eval-committee-compose.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Material Icons CSS -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
@@ -30,10 +31,14 @@
                    readonly/>
             <div class="setting-text" style="margin-left: 150px">평가기간</div>
             <input id="evaluationStartDate" class="sedium"
-                   value="<fmt:formatDate value='${evalCommittee.evalStartedAt}' pattern='yyyy-MM-dd' />" readonly/>
+<%--                   value="<fmt:formatDate value='${evalCommittee.evalStartedAt}' pattern='yyyy-MM-dd' />" --%>
+                   value = "2024-10-21"
+                   readonly/>
             <span style="color: white">~</span>
             <input id="evaluationEndDate" class="sedium"
-                   value="<fmt:formatDate value='${evalCommittee.evalClosedAt}' pattern='yyyy-MM-dd' />" readonly/>
+<%--                   value="<fmt:formatDate value='${evalCommittee.evalClosedAt}' pattern='yyyy-MM-dd' />" --%>
+                   value = "2024-10-30  "
+                   readonly/>
         </div>
         <hr>
         <div class="setting-two">
@@ -51,12 +56,22 @@
         </div>
         <hr>
         <div class="setting-three">
-            <div class="setting-text">산업체 비율</div>
-            <input id="researchInstituteRate" class="small" type="text" value="33%" readonly>
+
             <div class="setting-text">교육기관 비율</div>
-            <input id="educationInstituteRate" class="small" type="text" value="33%" readonly>
+            <div class="ratio-input ">
+                <input id="educationInstituteRate" class="small" type="number" min="0" max="100" step="1" value="33" style="border-left: 5px solid #28a745;  background-color: #e7ffe7;"/>
+            </div>
+
+            <div class="setting-text">산업체 비율</div>
+            <div class="ratio-input">
+                <input id="researchInstituteRate" class="small" type="number" min="0" max="100" step="1" value="33" style="border-left: 5px solid #007bff;  background-color: #e7f1ff;"/>
+            </div>
+
             <div class="setting-text">연구기관 비율</div>
-            <input id="professionalInstituteRate" class="small" type="text" value="33%" readonly>
+            <div class="ratio-input">
+                <input id="professionalInstituteRate" class="small" type="number" min="0" max="100" step="1" value="34" style="border-left: 5px solid #fd7e14;  background-color: #fff4e5;" />
+            </div>
+
             <button class="ctm-btn-normal" id="composeButton" onclick="setEvalCommittee(${subAnnounce.subAnnNo})"
                     style="background-color: #FF8F27FF; width: 150px; margin-left: 650px;">구성하기
             </button>
@@ -64,6 +79,7 @@
                     style="background-color: #FF8F27FF; width: 150px; margin-left: 650px; display: none">재구성하기
             </button>
         </div>
+
     </div>
 
     <div class="committee-standby" id="committee-standby">
