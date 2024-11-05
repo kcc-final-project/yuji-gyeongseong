@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 
 public class NotiReponse {
-    private Long memNo;
+    private String memName;
     private String content;
     private String notiType;
     private String dataCategory;
