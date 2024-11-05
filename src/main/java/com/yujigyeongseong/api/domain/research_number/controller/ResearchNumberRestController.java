@@ -61,7 +61,7 @@ public class ResearchNumberRestController {
     }
 
     @PostMapping("/register/noti/{memberId}")
-    public ResponseEntity<?> registerEvalNotiInformation(@RequestBody EvalNotiRequest evalNotiRequest) {
+    public ResponseEntity<?> registerEvalNotiInformation( @RequestBody EvalNotiRequest evalNotiRequest) {
         try {
             evalCommitteeService.setEvalNotiByMemberId(evalNotiRequest);
             return ResponseEntity.ok("후보단 신청 완료");
