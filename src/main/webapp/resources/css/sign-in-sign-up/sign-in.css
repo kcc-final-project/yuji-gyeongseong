@@ -16,7 +16,7 @@
 
 .container-title {
     font-weight: bold;
-    margin-top: 57px;
+    margin-top: 46px;
 }
 
 .container-p {
@@ -72,6 +72,7 @@ hr {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.1s ease;
     width: 67%;
+    margin-top: 52px;
 }
 
 .auto-login {
