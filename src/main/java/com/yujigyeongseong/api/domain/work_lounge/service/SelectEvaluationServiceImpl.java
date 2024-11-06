@@ -36,6 +36,7 @@ public class SelectEvaluationServiceImpl implements SelectEvaluationService {
 
     @Override
     public int getSelectEvaluationCount(int rndPlanNo) {
+        System.out.println(selectEvaluationMapper.planstatus(rndPlanNo));
         return selectEvaluationMapper.planstatus(rndPlanNo);
     }
 

@@ -67,3 +67,51 @@
     content: '▼';
     color: red;
 }
+
+
+
+/*.committee-link {*/
+/*    color: #007bff;*/
+/*    cursor: pointer;*/
+/*    text-decoration: none;*/
+/*    background: linear-gradient(to right, #007bff, #00d2ff); !* 그라데이션 배경 *!*/
+/*    padding: 0 5px;*/
+/*    transition: background 0.3s ease;*/
+/*}*/
+
+/*.committee-link:hover {*/
+/*    color: white; !* 호버 시 글자 색상 변경 *!*/
+/*    background: linear-gradient(to right, #00d2ff, #007bff); !* 호버 시 배경 그라데이션 반전 *!*/
+/*}*/
+
+/*.committee-link {*/
+/*    color: #007bff;*/
+/*    cursor: pointer;*/
+/*    text-decoration: none;*/
+/*    letter-spacing: 1px;  !* 글자 간격 조정 *!*/
+/*    transition: letter-spacing 0.3s ease, color 0.3s ease;*/
+/*}*/
+
+/*.committee-link:hover {*/
+/*    color: #0056b3;  !* 호버 시 색상 변경 *!*/
+/*    letter-spacing: 2px;  !* 호버 시 글자 간격을 더 벌림 *!*/
+/*}*/
+
+.committee-link {
+    color: transparent !important;
+    cursor: pointer;
+    background-image: linear-gradient(to right, #ff7e5f, #feb47b) !important; /* 그라데이션 색상 */
+    background-clip: text !important; /* 텍스트에 그라데이션을 클리핑 */
+    -webkit-background-clip: text !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+    transition: background-image 0.3s ease !important;
+}
+
+.committee-link:hover {
+    background-image: linear-gradient(to right, #6a11cb, #2575fc) !important; /* 호버 시 그라데이션 변경 */
+}
+
+.committee-link:active {
+    color: #2E406AFF !important;               /* 클릭 시 색상 변경 (더 어두운 파란색) */
+}

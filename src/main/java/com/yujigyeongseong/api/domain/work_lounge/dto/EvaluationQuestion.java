@@ -9,10 +9,8 @@ import java.sql.Timestamp;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Question {
+public class EvaluationQuestion {
+    private Long evaluationTableNo;
     private Long questionNo;
-    private String type;
-    private String content;
-    private Timestamp createAt;
-    private Long techFieldNo;
+
 }

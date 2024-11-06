@@ -17,6 +17,12 @@
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
             rel="stylesheet"
     />
+
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <div class="common-header">
@@ -284,7 +290,14 @@
 
                 // 내용이 비어있는지 확인
                 if (!content.trim()) {
-                    alert('내용을 입력해주세요.');
+                    // alert('내용을 입력해주세요.');
+                    Swal.fire({
+                        icon: 'info',  // 정보 아이콘
+                        title: '알림',
+                        text: '내용을 입력해주세요.',
+                        confirmButtonText: '확인'
+                    });
+
                     return;
                 }
 

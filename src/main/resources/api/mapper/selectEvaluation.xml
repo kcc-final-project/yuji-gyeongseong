@@ -61,6 +61,7 @@
         WHERE sann.sub_ann_no = #{subAnnNo}
     </select>
 
+    <!-- 선정평가 평가위원회 목록 -->
     <select id="selectCommittee" parameterType="SelectEvaluationDTO">
         SELECT mem.name       AS coname,
                ins.name       AS insname,
@@ -82,9 +83,11 @@
     </select>
 
     <!-- 신청 버튼용도 -->
-    <update id="planstatus" parameterType="int">
-        UPDATE rnd_plan SET PLAN_STATUS = '선정평가완료' where RND_PLAN_NO = #{rndPlanNo};
+    <update id="planstatus"  parameterType="int">
+        UPDATE rnd_plan SET PLAN_STATUS = '선정평가완료' where RND_PLAN_NO = #{rndPlanNo}
     </update>
+
+
 
 
 
