@@ -1,5 +1,5 @@
 .common-main {
-    width: 1600px;
+    width: 1400px;
     margin: auto;
     margin-top: 20px;
 }
@@ -23,7 +23,7 @@ hr {
 }
 
 .committee-setting {
-    height: 180px;
+    height: 200px;
     align-content: center;
     justify-content: center;
     background-color: #2e406a;
@@ -61,6 +61,11 @@ hr {
     display: flex;
 }
 
+.setting-one{
+    margin-top: 10px;
+}
+
+
 .committee-setting input {
     border-radius: 5px;
     border: none;
@@ -93,12 +98,12 @@ hr {
 
 .committee {
     height: 100%;
-    width: 55%;
+    width: 50%;
 }
 
 .committee-card {
     height: 100%;
-    width: 45%;
+    width: 50%;
     border: 1px solid #666565;
     display: flex;
     flex-wrap: wrap;
@@ -162,7 +167,7 @@ hr {
 }
 
 .card {
-    flex: 0 0 48%;
+    /*flex: 0 0 48%;*/
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-top: 10px;
     padding: 15px;
