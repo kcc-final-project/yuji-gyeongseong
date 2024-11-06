@@ -247,8 +247,7 @@
                                             <span class="material-icons pdf">picture_as_pdf</span>
                                         </td>
                                         <td>
-                                            <a href="https://kcc-bucket.s3.ap-northeast-2.amazonaws.com/kcc_yugi/%EA%B6%8C%ED%95%9C%EB%B3%84+%EC%9B%8C%ED%81%AC%EB%9D%BC%EC%9A%B4%EC%A7%80+%ED%83%AD.txt"
-                                               download="권한별_워크라우지_택.txt">
+                                            <a href="/files/download?filePath=https%3A%2F%2Fkcc-bucket.s3.ap-northeast-2.amazonaws.com%2Fkcc_yugi%2F%EA%B6%8C%ED%95%9C%EB%B3%84%20%EC%9B%8C%ED%81%AC%EB%9D%BC%EC%9A%B4%EC%A7%80%20%ED%83%AD.txt">
                                                 <span class="material-icons">download</span>
                                             </a>
                                         </td>
