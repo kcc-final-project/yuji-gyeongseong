@@ -103,6 +103,7 @@ hr {
     overflow: auto;
     padding: 30px;
     display: block;
+    border: 1px solid #dddddd;
 }
 
 .announcement-number {
@@ -325,6 +326,7 @@ th {
     padding: 12px 16px;
     text-align: center;
     border: 1px solid #ddd;
+    font-weight: normal;
 }
 
 td {
