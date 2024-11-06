@@ -20,7 +20,8 @@
         <h3 class="mb-4" style="font-weight: bold;">회원탈퇴</h3>
         <hr>
         <div class="span-area">
-            <span style="margin-right: 17px">※ 회원 탈퇴 시 모든 데이터가 삭제되며, 복구할 수 없습니다. 신중하게 결정해 주세요. </span>
+            <span style="margin-right: 17px; color: #df7272">※ 회원 탈퇴 시 모든 데이터가 삭제되며, 복구할 수 없습니다. 신중하게 결정해 주세요. </span><br>
+            <span style="margin-right: 17px; color: #df7272">※ 신청한 과제가 있는 경우 회원 탈퇴가 불가능합니다. </span>
         </div>
         <div class="form-area">
             <div class="row mb-3">
