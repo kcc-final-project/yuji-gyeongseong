@@ -32,8 +32,7 @@
                            ON m.mem_no = rp.mem_no
                  LEFT JOIN institution i
                            ON i.institution_no = m.institution_no
-        WHERE rp.sub_ann_no = #{subAnnNo}
-
+        WHERE rp.rnd_plan_no = #{subAnnNo}
     </select>
 
     <select id='selectRndPlanInstitutionBySubAnnNo'>
