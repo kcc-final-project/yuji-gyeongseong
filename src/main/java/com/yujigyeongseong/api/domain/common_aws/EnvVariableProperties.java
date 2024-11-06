@@ -8,9 +8,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Getter
 @Setter
 public class EnvVariableProperties {
-    private String accessKey;
-    private String secretKey;
-    private String region;
+    private String accessKey = "sdf";
+    private String secretKey = "sdf";
+    private String region = "sdf";
     private S3 s3;
 
     private final String KCC_BUCKET = "https://kcc-bucket.";
