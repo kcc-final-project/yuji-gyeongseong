@@ -188,7 +188,9 @@
                             <label for="position" class="form-label">직위</label>
                             <input type="text" class="form-control" id="position" disabled>
                         </div>
+
                     </div>
+
                     <div class="row mb-3">
                         <%--                        <div class="col-md-6">--%>
                         <%--                            <label for="institution-email" class="form-label">기관 웹 메일</label>--%>
@@ -209,13 +211,15 @@
                                 <button class="btn btn-outline-secondary" type="button" id="send-mail-btn" disabled>인증코드 발송
                                 </button>
                             </div>
-                            <div class="d-flex align-items-center" style=" margin-top: 20px">
-                                <input type="text" class="form-control text-center me-2" id="check-area" disabled
-                                       style="width: 300px;">
-                                <button class="btn btn-outline-secondary" type="button" id="email-check" disabled>인증</button>
-                            </div>
                         </div>
-                        <button type="button" class="add-organ-btn">기관추가</button>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center" style=" margin-top: 32px">
+                                    <input type="text" class="form-control me-2" id="check-area" disabled
+                                           style="width: 181px;">
+                                    <button class="btn btn-outline-secondary" type="button" id="email-check" disabled>인증</button>
+                                </div>
+                            </div>
+                        <button type="button" class="add-organ-btn" style="margin-top: 40px">기관추가</button>
                     </div>
                 </div>
                 <hr>
