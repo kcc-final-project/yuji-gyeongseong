@@ -18,7 +18,7 @@
     }
 
     .main-image {
-        width: 1693px;
+        width: 100%;
         height: 625px;
 
     }
@@ -41,7 +41,9 @@
         display: flex;
         justify-content: space-evenly;
         padding: 7px;
+        border-radius: 12px;
     }
+
 
     .common-tab {
         width: 33%;
@@ -49,6 +51,7 @@
         padding: 35px;
         position: relative;
         background-color: white;
+        border-radius: 13px;
     }
 
     .common-image {
@@ -129,7 +132,7 @@
     .anno-content-area {
         width: 33.3%;
         height: 33.3%;
-        border: 1px solid #44465C;
+        border: 1px solid #DDDDDD;
         box-sizing: border-box;
         padding: 1.8rem 1.3rem 1.3rem;
         cursor: pointer;
