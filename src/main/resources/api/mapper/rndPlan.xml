@@ -72,24 +72,17 @@
     </insert>
 
     <!-- 연구분야 데이터 등록 쿼리 -->
-    <insert id="insertRndFields">
-        INSERT ALL
-        <foreach collection="rndFields" item="rndField">
-            INTO rnd_field (
-            rnd_field_no,
-            rnd_plan_no,
-            name,
-            weight,
-            rank
-            ) VALUES (
-            seq_rnd_field.NEXTVAL,
-            #{rndField.rndPlanNo},
-            #{rndField.name},
-            #{rndField.weight},
-            #{rndField.rank}
-            )
-        </foreach>
-        SELECT * FROM DUAL
+    <insert id="insertRndField">
+        INSERT INTO rnd_field (rnd_field_no,
+                               rnd_plan_no,
+                               name,
+                               weight,
+                               rank)
+        VALUES (seq_rnd_field.NEXTVAL,
+                #{rndPlanNo},
+                #{name},
+                #{weight},
+                #{rank})
     </insert>
 
     <!-- 기본정보 데이터 조회 쿼리__과제명/계획서번호 -->
@@ -165,10 +158,8 @@
     </delete>
 
     <!-- 연구개발기간 데이터 등록 쿼리 -->
-    <insert id="insertRndPeriods">
-        INSERT ALL
-        <foreach collection="rndPeriods" item="rndPeriod">
-            INTO rnd_period (
+    <insert id="insertRndPeriod">
+        INSERT INTO rnd_period (
             stage_no,
             year_no,
             started_at,
@@ -176,15 +167,13 @@
             mxnth,
             rnd_plan_no
             ) VALUES (
-            #{rndPeriod.stageNo},
-            #{rndPeriod.yearNo},
-            #{rndPeriod.startedAt},
-            #{rndPeriod.endedAt},
-            #{rndPeriod.mxnth},
-            #{rndPeriod.rndPlanNo}
-            )
-        </foreach>
-        SELECT * FROM DUAL
+        #{stageNo},
+        #{yearNo},
+        #{startedAt},
+        #{endedAt},
+        #{mxnth},
+        #{rndPlanNo}
+        )
     </insert>
 
     <!-- 연구개발기간 데이터 삭제 쿼리 -->
@@ -195,22 +184,18 @@
     </delete>
 
     <!-- 단계별 내용 데이터 등록 쿼리 -->
-    <insert id="insertStageContents">
-        INSERT ALL
-        <foreach collection="stageContents" item="stageContent">
-            INTO stage_content (
+    <insert id="insertStageContent">
+            INSERT INTO stage_content (
             stage_no,
             stg_tgt_content,
             rnd_content,
             rnd_plan_no
             ) VALUES (
-            #{stageContent.stageNo},
-            #{stageContent.stgTgtContent},
-            #{stageContent.rndContent},
-            #{stageContent.rndPlanNo}
+            #{stageNo},
+            #{stgTgtContent},
+            #{rndContent},
+            #{rndPlanNo}
             )
-        </foreach>
-        SELECT * FROM DUAL
     </insert>
 
     <!-- 과제요약 데이터 조회 쿼리 -->
@@ -288,15 +273,15 @@
             acquire_year,
             rsrch_no
         ) VALUES (
-                     #{period.stageNo},
-                     #{period.yearNo},
-                     #{period.isParticipated},
-                     #{period.startedAt},
-                     #{period.endedAt},
-                     #{period.finalDegree},
-                     #{period.major},
-                     #{period.acquireYear},
-                     #{period.rsrchNo}
+                             #{period.stageNo},
+                             #{period.yearNo},
+                             #{period.isParticipated},
+                             #{period.startedAt},
+                             #{period.endedAt},
+                             #{period.finalDegree},
+                             #{period.major},
+                             #{period.acquireYear},
+                             #{period.rsrchNo}
                  )
     </insert>
 
