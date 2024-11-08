@@ -31,7 +31,7 @@ public interface RndPlanMapper {
     int insertBasicInfo(final CreateBasicInfoRequest request);
 
     // '연구분야' 데이터 '등록' 쿼리
-    int insertRndFields(@Param("rndFields") final List<RndField> rndFields);
+    int insertRndField(RndField rndField);
 
     // 기본정보 데이터 '조회' 쿼리__'과제명/계획서번호'
     Optional<BasicInfoResponse> selectTaskNameAndTaskNoAndMemNoByRndPlanNo(final Long rndPlanNo);
@@ -65,13 +65,13 @@ public interface RndPlanMapper {
     int deleteRndPeriodsByRndPlanNo(final Long rndPlanNo);
 
     // '연구개발기간' 데이터 '등록' 쿼리
-    int insertRndPeriods(@Param("rndPeriods") final List<RndPeriod> rndPeriods);
+    int insertRndPeriod(RndPeriod rndPeriod);
 
     // '단계별 내용' 데이터 '삭제' 쿼리
     int deleteStageContentsByRndPlanNo(final Long rndPlanNo);
 
     // '단계별 내용' 데이터 '등록' 쿼리
-    int insertStageContents(@Param("stageContents") final List<StageContent> stageContents);
+    int insertStageContent(StageContent stageContent);
 
     // '과제요약' 데이터 '조회' 쿼리
     Optional<TaskSummaryResponse> selectTaskSummaryByRndPlanNo(final Long rndPlanNo);
