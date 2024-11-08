@@ -14,7 +14,7 @@
 <div class="common-main">
     <div class="login-area shadow-sm">
             <a href="/" style="color: inherit; text-decoration: none;">
-                <img src="/resources/img/common/logo.svg" style="margin-top: 30px; width: 112px" class="logo" alt="logo"/>
+                <img src="/resources/img/common/logo.svg" style="margin-top: 62px; width: 112px" class="logo" alt="logo"/>
             </a>
         <h3 class="container-title">로그인</h3>
         <p class="container-p">로그인하시면 서비스를 이용하실 수 있습니다.</p>
@@ -41,6 +41,12 @@
             <span>회원이 아니신가요?</span>
             <a href="/member/sign/up1" class="signup-link">회원가입</a>
         </div>
+<%--        <img src="/resources/img/main/signFavicon.ico" style="--%>
+<%--    width: 34px;--%>
+<%--    /* text-align: end; */--%>
+<%--    margin-left: 421px;--%>
+<%--    margin-top: 98px;--%>
+<%--">--%>
     </div>
 </div>
 </body>
