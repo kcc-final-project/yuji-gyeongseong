@@ -40,12 +40,19 @@
     background-color: #e4ebfd !important;
 }
 
+/*.arrow.down::before {*/
+/*    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="%235f6368"><path d="M400-280v-400l200 200-200 200Z"/></svg>');*/
+/*}*/
+
 .arrow.down::before {
-    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="%235f6368"><path d="M400-280v-400l200 200-200 200Z"/></svg>');
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30" fill="%235f6368"><path d="M400-280v-400l200 200-200 200Z"/></svg>');
 }
 
+/*.arrow.up::before {*/
+/*    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="%235f6368"><path d="M480-360 280-560h400L480-360Z"/></svg>');*/
+/*}*/
 .arrow.up::before {
-    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="%235f6368"><path d="M480-360 280-560h400L480-360Z"/></svg>');
+    content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="%235f6368"><path d="M480-360 280-560h400L480-360Z"/></svg>');
 }
 
 .btn-orange {
@@ -135,4 +142,52 @@
     border: 2px solid #cfcfcf;
     cursor: not-allowed;
     opacity: 0.6;
+}
+
+.status {
+    padding: 3px 5px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.status.red {
+    color: #d67576 !important;
+    border: 1px solid #d67576 !important;
+    background-color: #ffffff !important;
+}
+
+.status.yellow {
+    color: #FFC107 !important;
+    border: 1px solid #FFC107 !important;
+    background-color: #ffffff !important;
+}
+
+.status.blue {
+    color: #007BFF !important;
+    border: 1px solid #007BFF !important;
+    background-color: #ffffff !important;
+}
+
+.status.green {
+    color: #4CAF50 !important;
+    border: 1px solid #4CAF50 !important;
+    background-color: #ffffff !important;
+}
+
+.status.purple {
+    color: #673AB7 !important;
+    border: 1px solid #673AB7 !important;
+    background-color: #ffffff !important;
+}
+
+.status.orange {
+    color: #FF9800 !important;
+    border: 1px solid #FF9800 !important;
+    background-color: #ffffff !important;
+}
+
+.status.gray {
+    color: #6C757D ;
+    border: 1px solid #6C757D ;
+    background-color: #ffffff;
 }
