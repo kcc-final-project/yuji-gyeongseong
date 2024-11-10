@@ -32,7 +32,8 @@
                  inner join eval_committee evcom on subann.sub_ann_no = evcom.sub_ann_no
                  inner join evaluation_member evmem on evmem.eval_committee_no = evcom.eval_committee_no
                  inner join eval_task evta on evta.eval_committee_no = evcom.eval_committee_no
-        where ann.status = '접수마감' and evmem.mem_no = #{memNo}
+        where ann.status = '접수마감'
+          and evmem.mem_no = #{memNo}
     </select>
 
     <!-- 선정평가 상세 -->
@@ -50,7 +51,7 @@
                         rp.plan_status                                     AS planstatus,
                         ec.name                                            AS committeename,
                         et.sel_completed_at                                AS selcompletedat,
-                        rp.rnd_plan_no as rndPlanNo
+                        rp.rnd_plan_no                                     as rndPlanNo
         FROM announcement ann
                  INNER JOIN sub_announcement sann ON ann.ann_no = sann.ann_no
                  INNER JOIN rnd_plan rp ON rp.sub_ann_no = sann.sub_ann_no
@@ -82,12 +83,57 @@
 
     </select>
 
-    <!-- 신청 버튼용도 -->
-    <update id="planstatus"  parameterType="int">
-        UPDATE rnd_plan SET PLAN_STATUS = '선정평가완료' where RND_PLAN_NO = #{rndPlanNo}
+    <!-- 계획서 상탱 업데이트 용도 -->
+    <update id="updatePlanStatus" parameterType="map">
+        UPDATE rnd_plan
+        SET PLAN_STATUS = #{planStatus}
+        WHERE RND_PLAN_NO = #{rndPlanNo}
     </update>
 
+    <!-- 평가위원회 진행상태 업데이트 용도 선정확정용  -->
+    <update id="updateProgStatus" parameterType="Long">
+        update eval_committee
+        set prog_status = '선정평가완료'
+        where sub_ann_no = #{subAnnNo}
+    </update>
 
+    <!-- 미평가_평가완료 -->
+
+
+
+
+    <!--    <update id="pd" parameterType="List">-->
+    <!--        update 테이블 set content = #{option}-->
+    <!--            where-->
+    <!--                id명 IN-->
+    <!--            <foreach collection="해당리스트" item="items" open="(" close=")" separator=",">-->
+    <!--                #{items.id}-->
+    <!--        public void meth(List<객체> ㅇㅇㅇ)-->
+    <!--            </foreach>-->
+
+
+    <!--    </update>-->
+
+
+<!--    <update id="updatePlanStatusBatch" parameterType="list">-->
+<!--        <foreach collection="list" item="item" open="" close="" separator="">-->
+<!--            UPDATE rnd_plan-->
+<!--            SET plan_status = #{item.planStatus}-->
+<!--            WHERE sub_ann_no = #{item.subAnnNo}-->
+<!--            AND rnd_plan_no = #{item.rndPlanNo}-->
+<!--        </foreach>-->
+<!--    </update>-->
+
+    <!-- 여러 행의 상태를 '선정' 또는 '탈락'으로 업데이트 -->
+<!--    <update id="updatePlanStatus" parameterType="map">-->
+<!--        UPDATE rnd_plan rp-->
+<!--        SET rp.plan_status = CASE-->
+<!--                                 WHEN rp.plan_status = '제출완료' AND rp.rnd_plan_no = #{rndPlanNo} THEN '선정'-->
+<!--                                 WHEN rp.plan_status = '제출완료' AND rp.rnd_plan_no != #{rndPlanNo} THEN '탈락'-->
+<!--            END-->
+<!--        WHERE rp.sub_ann_no = #{subAnnNo}-->
+<!--          AND rp.plan_status = '제출완료';-->
+<!--    </update>-->
 
 
 

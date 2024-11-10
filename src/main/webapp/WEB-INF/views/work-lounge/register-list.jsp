@@ -20,9 +20,9 @@
     <div class="container">
         <div class="d-flex align-items-center my-3">
             <h4><b>작성중인 계획서</b></h4>
-            <div class="text-muted mb-0 ms-3 mt-1 cc" style="font-size: 13px;">
+            <span class="text-muted mb-0 ms-3 mt-1 cc">
                 접수 기한이 종료 되었을 경우(접수종료일시) 계획서 수정이 불가능합니다.
-            </div>
+            </span>
         </div>
         <div class="line"></div>
         <div style="max-height: 300px; overflow-y: auto">
@@ -72,9 +72,9 @@
 
         <div class="d-flex align-items-center my-3 mt-4">
             <h4><b>완료된 계획서</b></h4>
-            <div class="text-muted mb-0 ms-3 mt-1 cc" style="font-size: 13px;">
+            <span class="text-muted mb-0 ms-3 mt-1 cc">
                 접수 기한이 종료 되었을 경우(접수종료일시) 제출 취소가 불가능합니다.
-            </div>
+            </span>
         </div>
         <div class="line"></div>
         <div style="max-height: 300px; overflow-y: auto">
@@ -87,6 +87,7 @@
                     <td>접수시작일시</td>
                     <td>접수종료일시</td>
                     <td>접수일자</td>
+                    <td>접수상태</td>
                     <td>계획서상태</td>
                     <td>제출취소</td>
                     <td>의견공유</td>
@@ -101,6 +102,7 @@
                         <td class="pt-3"><c:out value="${complete.startedAt}"/></td>
                         <td class="pt-3"><c:out value="${complete.closedAt}"/></td>
                         <td class="pt-3"><c:out value="${complete.submittedAt}"/></td>
+                        <td class="pt-3"><c:out value="${complete.status}"/></td>
                         <td class="pt-3"><c:out value="${complete.planStatus}"/></td>
                         <td>
                             <button type="button" class="btn btn-sm ctm-btn-red btn-edit" style="margin: auto"
@@ -110,7 +112,7 @@
                         </td>
                         <td>
                             <button type="button" class="btn btn-sm ctm-btn-orange btn-opinion" style="margin: auto"
-                                    onclick="window.open('http://localhost:8082/work-lounge/sharing-opinion/${complete.rndPlanNo}','_blank','width=1150, height=800, top=15, left=15, scrollbars=yes')">
+                                    onclick="window.open('http://localhost:8082/work-lounge/sharing-opinion/${complete.rndPlanNo}','_blank','width=1150, height=800,top=25, left=140, scrollbars=no')">
                                 의견공유
                             </button>
                         </td>
