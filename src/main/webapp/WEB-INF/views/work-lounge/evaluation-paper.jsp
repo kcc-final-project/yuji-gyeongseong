@@ -32,7 +32,7 @@
     <%--        <h2>평가보고서</h2>--%>
     <%--    </div>--%>
     <%--    <div class="col-2"></div>--%>
-    <div class="container col-8 mt-2 mb-2">
+    <div class="container col-11 mt-2 mb-2">
         <table class="table table-bordered shadow table-container">
             <tbody>
             <c:if test="${not empty paperList}">
@@ -78,6 +78,7 @@
                         <li class="nav-item">
                             <a
                                     class="nav-link active evpaper"
+                                    style = "border-radius: 0.375rem 0.375rem 0 0; border-top: 1px solid #2f3f6a; border-left: 1px solid #2f3f6a; border-right: 1px solid #2f3f6a;"
                                     id="common-tab"
                                     data-toggle="tab"
                                     href="#common"
@@ -92,6 +93,7 @@
                         <li class="nav-item">
                             <a
                                     class="nav-link evpaper"
+                                    style = "border-radius: 0.375rem 0.375rem 0 0; border-top: 1px solid #2f3f6a; border-left: 1px solid #2f3f6a; border-right: 1px solid #2f3f6a;"
                                     id="skill-tab"
                                     data-toggle="tab"
                                     href="#skill"
@@ -120,7 +122,7 @@
                             <p class="text-end mt-2 shadow-sm p-1">
                                 총 합계 : <span id="result1">0</span>점
                             </p>
-                            <br>
+<%--                            <br>--%>
                                 <%--                            <div class="d-flex mt-5">--%>
                                 <%--                                <div class="col-4"></div>--%>
                                 <%--                                <button--%>
@@ -157,7 +159,7 @@
                                 총 합계 : <span id="result2">0</span>점
                             </p>
                             <br>
-                            <div class="d-flex mt-3 me-5">
+                            <div class="d-flex mt-2 me-4">
                                 <div class="col-4"></div>
                                 <button
                                         class="btn btn-primary save-button ctm-btn-white"
@@ -182,7 +184,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col-2"></div>
+<%--    <div class="col-2"></div>--%>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

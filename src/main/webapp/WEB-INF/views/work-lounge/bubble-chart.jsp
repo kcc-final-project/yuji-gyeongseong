@@ -65,7 +65,7 @@
 <%--            <label for="institution">기관:</label>--%>
             <select id="institution" class="form-select form-select-sm" onchange="updateChart()">
                 <option value="all">전체</option>
-                <option value="A기관">A기관</option>
+                <option value="KCC정보">KCC정보</option>
                 <option value="B기관">B기관</option>
             </select>
         </div>
@@ -95,11 +95,11 @@
 <script>
     const data = {
         2022: {
-            A기관: [10, 15, 20, 25, 30, 28, 22, 18, 15, 12],
+            KCC정보: [10, 15, 20, 25, 30, 28, 22, 18, 15, 12],
             B기관: [5, 8, 12, 15, 18, 20, 19, 16, 13, 10],
         },
         2023: {
-            A기관: [12, 18, 22, 25, 32, 30, 25, 20, 18, 15],
+            KCC정보: [12, 18, 22, 25, 32, 30, 25, 20, 18, 15],
             B기관: [8, 12, 15, 18, 22, 25, 23, 20, 17, 14],
         },
     };
@@ -216,7 +216,7 @@
 
     const institutions = [
         {
-            name: 'A기관',
+            name: 'KCC정보',
             businessNumber: '123-45-67890',
             type: '연구소',
             location: '서울',

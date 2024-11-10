@@ -23,7 +23,7 @@
     <!-- SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
+<body style="height: auto;">
 <div class="common-main" style="margin-top: 10px;">
     <div class="container">
         <div style="max-height: 320px; overflow-y: auto">
@@ -32,37 +32,38 @@
                 <c:if test="${not empty selectEvaluationDetail}">
                     <thead>
                     <tr class="domain" style="font-size: 15px">
-                        <td class="col-1">
-                            <h5>
-                    <span class="pt-1 pb-1 badge text-bg-secondary black"
-                          style="background-color: #ffffff !important;">
-                        <c:out value="${selectEvaluationDetail[0].evalStatus}"/>
-                    </span>
-                            </h5>
-                        </td>
-                        <td class="col-5 align-middle" colspan="2">
+<%--                        <td class="col-1">--%>
+<%--                            <h5>--%>
+<%--                                <span class="pt-1 pb-1 badge text-bg-secondary black" style="background-color: #ffffff !important;">--%>
+<%--                                    <c:out value="${selectEvaluationDetail[0].evalStatus}"/>--%>
+<%--                                </span>--%>
+<%--                            </h5>--%>
+<%--                        </td>--%>
+                        <td class="col-5 align-middle" colspan="3">
                             <div class="d-flex justify-content-center align-items-center">
                                 <span class="me-2 w-25">공모분야명</span>
                                 <input class="border d-inline-block form-control form-control-sm align-middle p-2 truncate-text"
-                                       style="border: 1px solid black; width: 350px; border-radius: 5px; background-color: #b9b9b9;"
+                                       style="border: 1px solid black; width: 350px; border-radius: 5px; text-align: center"
                                        value="${selectEvaluationDetail[0].subTitle}" disabled readonly>
                             </div>
                         </td>
-                        <td class="col-4 align-middle" colspan="3">
+                        <td class="col-5 align-middle" colspan="3">
                             <div class="input-group" style="width: 100%">
                                 <div class="d-flex justify-content-center align-items-center">
                                     <span class="w-25 me-1">최종선정기간</span>
                                     <div class="input-group w-75">
-                                        <input type="text" class="form-control date-input" id="startDate"
+                                        <input type="text" class="form-control date-input" style="text-align: center"
+                                               id="startDate"
                                                value="${selectEvaluationDetail[0].startDate}" disabled readonly/>
                                         <span class="input-group-text">~</span>
-                                        <input type="text" class="form-control date-input" id="endDate"
+                                        <input type="text" class="form-control date-input" style="text-align: center"
+                                               id="endDate"
                                                value="${selectEvaluationDetail[0].finalSelectedAt}" disabled readonly/>
                                     </div>
                                 </div>
                             </div>
                         </td>
-                        <td class="col-1 align-middle">
+                        <td class="col-1 align-middle" style="padding-left: 13px">
                             <select id="committeeSelect" class="form-control" style="width: 130px">
                                 <option value="ALL">전체</option>
                                 <option value="평가위원회-01">평가위원회-01</option>
@@ -102,32 +103,35 @@
                                         data-id="${selectEvaluation.rndPlanNo}"
                                 />
                             </div>
-<%--                            <div class="form-check d-flex justify-content-center align-items-center">--%>
-<%--                                <input--%>
-<%--                                        class="form-check-input plan-checkbox committee-member"--%>
-<%--                                        type="checkbox"--%>
-<%--                                        value="${selectEvaluation.subAnnNo}"--%>
-<%--                                        data-plan="${selectEvaluation.rndTaskNo}"--%>
-<%--                                        data-id="${selectEvaluation.rndPlanNo}"--%>
-<%--                                        id="checkbox-${selectEvaluation.subAnnNo}"--%>
-<%--                                />--%>
-<%--                                <label class="form-check-label" for="checkbox-${selectEvaluation.subAnnNo}">--%>
-<%--                                    <!-- 라벨을 클릭하면 체크박스가 체크됩니다 -->--%>
-<%--                                        ${selectEvaluation.taskName} <!-- 예시로 과제명 표시 -->--%>
-<%--                                </label>--%>
-<%--                            </div>--%>
                         </td>
-                        <td class="committee-member" data-plan="${selectEvaluation.rndTaskNo}">
+                        <td class="committee-member" style="padding-top: 17px"
+                            data-plan="${selectEvaluation.rndTaskNo}">
                             <c:out value="${selectEvaluation.rndTaskNo}"/>
                         </td>
-                        <td><c:out value="${selectEvaluation.taskName}"/></td>
-                        <td><c:out value="${selectEvaluation.rndInstitution}"/></td>
-                        <td><c:out value="${selectEvaluation.roundName}"/></td>
-                        <td><c:out value="${selectEvaluation.totalScore}"/></td>
-                        <td><span class="badge text-bg-secondary"><c:out value="${selectEvaluation.planStatus}"/></span>
+                        <td style="padding-top: 17px"><c:out value="${selectEvaluation.taskName}"/></td>
+                        <td style="padding-top: 17px"><c:out value="${selectEvaluation.rndInstitution}"/></td>
+                        <td style="padding-top: 17px"><c:out value="${selectEvaluation.roundName}"/></td>
+                        <td style="padding-top: 17px"><c:out value="${selectEvaluation.totalScore}"/></td>
+                        <td>
+                            <form>
+                                <div class="form-group">
+                                    <select style="padding-left: 2.18rem !important;" class="form-select"
+                                            aria-label="계획서 상태 선택"
+                                            data-rndPlanNo="${selectEvaluation.rndPlanNo}"
+                                            onchange="updatePlanStatus(this)">
+                                        <option selected disabled
+                                                style="background-color: #2f3f6a; font-weight: bold; color: white;">
+                                            <c:out value="${selectEvaluation.planStatus}"/></option>
+                                            <%--                        <option selected disabled>심사 결과를 선택하세요</option>--%>
+                                        <option value="선정">선정</option>
+                                        <option value="탈락">탈락</option>
+                                    </select>
+                                </div>
+                            </form>
                         </td>
                     </tr>
                 </c:forEach>
+
                 </tbody>
 
             </table>
@@ -135,15 +139,15 @@
         <div class="col-12 d-flex justify-content-end text-align-center letter">
             <p>[총 <span id="row-count"></span>건]</p>
         </div>
-        <div class="custom-divider mb-4"></div>
+        <div class="custom-divider mb-3"></div>
         <div class="row">
-            <div class="col-5 p-2" style="max-height: 600px; overflow-y: auto">
-                <div class="d-flex align-items-center">
-                    <div id="committeeList"></div>
+            <div class="ms-3 col-5 p-2 card me-1" style="max-height: 650px; overflow-y: auto">
+                <div class="d-flex align-items-center p-3">
+                    <div id="committeeList" style="width: 100%"></div>
                 </div>
 
             </div>
-            <div class="col-7 mt-2">
+            <div class="card p-3" style="width: 55.9%">
                 <select class="form-select" aria-label="Default select example" id="chartSelector"
                         onchange="showChart(this.value)">
                     <option value="deviation">[연구계획서 점수 분석]</option>
@@ -152,7 +156,7 @@
                 </select>
 
                 <div id="deviation" class="chart-container">
-                    <canvas id="deviationChart" class="mt-3 card p-2 shadow" width="400" height="300"></canvas>
+                    <canvas id="deviationChart" class="mt-3 card p-2 shadow" width="680" height="540"></canvas>
                 </div>
 
                 <div id="radar" class="mt-3 chart-container card p-2 shadow">
@@ -178,7 +182,7 @@
             </div>
         </div>
     </div>
-    <div class="custom-divider2 mt-4"></div>
+    <div class="custom-divider2 mt-3"></div>
     <div id="button-area" class="d-flex justify-content-between mt-2">
         <div class="d-flex">
             <button
@@ -186,19 +190,20 @@
                     onclick="window.open('http://localhost:8082/rnd-plans/8','_blank','width=700, height=600, top=50, left=50, scrollbars=yes')">
                 계획서 상세 조회
             </button>
-            <button
-                    class="ms-3 btn ctm-btn-normal"
-                    onclick="submitEvaluation()">
-                <%--                    onclick="window.location.href='http://localhost:8082/work-lounge/selection-evaluation'">--%>
-                신청
-            </button>
+<%--            <button--%>
+<%--                    class="ms-3 btn ctm-btn-normal"--%>
+<%--                    onclick="submitEvaluation()">--%>
+<%--                &lt;%&ndash;                    onclick="window.location.href='http://localhost:8082/work-lounge/selection-evaluation'">&ndash;%&gt;--%>
+<%--                신청--%>
+<%--            </button>--%>
         </div>
         <div class="d-flex mb-2">
-            <button
-                    class="btn ctm-btn-orange"
-                    onclick="window.close();">
-                최종완료
+            <c:if test="${not empty selectEvaluationDetail}">
+<%--            <button data-id="${selectEvaluationDetail[0].subAnnNo}" id="finalSubmitBtn" class="btn ctm-btn-orange" disabled onclick="closeWindow()">--%>
+            <button data-id="${selectEvaluationDetail[0].subAnnNo}" id="finalSubmitBtn" class="btn ctm-btn-orange" disabled onclick="submitFinalEvaluation()">
+                선정확정
             </button>
+            </c:if>
         </div>
     </div>
 </div>
@@ -283,7 +288,7 @@
             var headerRow = $("<tr class='domain'></tr>");
             headerRow.append("<td>성명</td>");
             headerRow.append("<td>소속기관</td>");
-            headerRow.append("<td>국가연구자번호</td>");
+            // headerRow.append("<td>국가연구자번호</td>");
             headerRow.append("<td>평가점수</td>");
             headerRow.append("<td>편차(%)</td>");
             thead.append(headerRow);
@@ -299,7 +304,7 @@
                 var row = $("<tr></tr>");
                 row.append("<td>" + item.coName + "</td>");
                 row.append("<td>" + item.insName + "</td>");
-                row.append("<td>" + item.corsName + "</td>");
+                // row.append("<td>" + item.corsName + "</td>");
                 row.append("<td>" + item.score + "</td>");
 
                 const deviation = item.score - averageScore;
@@ -344,7 +349,7 @@
                     datasets: [{
                         label: "평가 점수",
                         data: scores,
-                        backgroundColor: 'rgba(0, 0, 0, 0)',
+                        backgroundColor: borderColors,
                         borderColor: borderColors,
                         borderWidth: 1
                     }]
@@ -460,42 +465,147 @@
     });
 
     // 선정 버튼용 ajax
-    function submitEvaluation() {
-        // 체크된 행의 체크박스를 찾기
-        const selectedCheckbox = document.querySelector(".plan-checkbox:checked");
+    // function submitEvaluation() {
+    //     // 체크된 행의 체크박스를 찾기
+    //     const selectedCheckbox = document.querySelector(".plan-checkbox:checked");
+    //
+    //     if (selectedCheckbox) {
+    //         const rndPlanNo = selectedCheckbox.getAttribute("data-id");
+    //         console.log(rndPlanNo)
+    //
+    //         // AJAX 요청
+    //         $.ajax({
+    //             url: `/api/v1/work_lounge/eval-list/` + rndPlanNo,
+    //             method: "POST", // POST 요청으로 변경
+    //             success: function (response) {
+    //                 console.log(response)
+    //                 // 성공적인 응답 처리
+    //                 console.log("Evaluation submitted successfully:", response);
+    //                 // 추가 로직 (예: 알림, 페이지 전환 등)
+    //
+    //                 location.reload(true);
+    //             },
+    //             error: function (xhr, status, error) {
+    //                 // 오류 처리
+    //                 console.error("Error submitting evaluation:", error);
+    //             }
+    //         });
+    //     } else {
+    //         // alert("먼저 평가 항목을 선택해주세요.");
+    //         Swal.fire({
+    //             icon: 'warning',  // 경고 아이콘
+    //             title: '알림',
+    //             text: '먼저 평가 항목을 선택해주세요.',
+    //             confirmButtonText: '확인'
+    //         });
+    //     }
+    // }
 
-        if (selectedCheckbox) {
-            const rndPlanNo = selectedCheckbox.getAttribute("data-id");
-            console.log(rndPlanNo)
 
-            // AJAX 요청
-            $.ajax({
-                url: `/api/v1/work_lounge/eval-list/` + rndPlanNo,
-                method: "POST", // POST 요청으로 변경
-                success: function (response) {
-                    console.log(response)
-                    // 성공적인 응답 처리
-                    console.log("Evaluation submitted successfully:", response);
-                    // 추가 로직 (예: 알림, 페이지 전환 등)
+    function updatePlanStatus(selectElement) {
+        const planStatus = selectElement.value;
+        const rndPlanNo = selectElement.getAttribute("data-rndPlanNo");
 
-                    location.reload(true);
+        // AJAX 요청 보내기
+        fetch(`/api/v1/work_lounge/update-plan-status/` + rndPlanNo,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
                 },
-                error: function (xhr, status, error) {
-                    // 오류 처리
-                    console.error("Error submitting evaluation:", error);
+                body: JSON.stringify({
+                    planStatus: planStatus
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log("DB 업데이트 성공");
+                    location.reload();
+                } else {
+                    console.error("DB 업데이트 실패");
                 }
+            })
+            .catch(error => {
+                console.error("AJAX 요청 실패:", error);
             });
+
+    }
+
+
+    // 최종 완료 용도
+    /*
+    설명:
+        1. updatePlanStatus() 함수:
+
+        이 함수는 select 요소의 값이 변경될 때마다 호출됩니다.
+        select 요소들에 대해 하나라도 "제출완료" 값이 있으면 isSubmissionComplete 변수를 true로 설정하고, 버튼을 비활성화합니다.
+        "제출완료"가 없다면 버튼을 활성화합니다.
+        2. window.onload:
+
+        페이지가 처음 로드될 때, updatePlanStatus() 함수가 호출되어 select 요소들의 초기 상태를 확인하고 버튼의 상태를 결정합니다.
+        동작 원리:
+        페이지 로드 시: select 요소들의 값을 모두 확인하여 "제출완료" 값이 있으면 버튼을 비활성화하고, 없으면 버튼을 활성화합니다.
+        select 값 변경 시: 사용자가 select 값을 변경하면, 다시 모든 select 요소를 확인하여 버튼의 활성화 여부를 결정합니다.
+        예상되는 동작:
+        만약 여러 행이 있더라도, 각 행의 select 요소 중 하나라도 "제출완료" 값을 가지면 버튼은 비활성화되고, 모든 행의 select 값이 "제출완료"가 아니면 버튼이 활성화됩니다.
+     */
+    // 모든 select 요소를 확인하여 제출완료가 하나라도 있으면 버튼을 비활성화
+    function updateSelection() {
+        var selects = document.querySelectorAll('.form-select');  // 모든 select 요소
+        var submitButton = document.getElementById('finalSubmitBtn');
+        var isSubmissionComplete = false;
+
+        // 각 select의 값을 확인하여 "제출완료"가 하나라도 있으면 비활성화
+        selects.forEach(function (select) {
+            if (select.value === "제출완료") {
+                isSubmissionComplete = true;
+            }
+        });
+
+        // 제출완료가 하나라도 있으면 버튼 비활성화
+        if (isSubmissionComplete) {
+            submitButton.disabled = true;
         } else {
-            // alert("먼저 평가 항목을 선택해주세요.");
-            Swal.fire({
-                icon: 'warning',  // 경고 아이콘
-                title: '알림',
-                text: '먼저 평가 항목을 선택해주세요.',
-                confirmButtonText: '확인'
-            });
+            submitButton.disabled = false;
         }
     }
 
+    // 페이지 로드 시 초기 상태 체크
+    window.onload = function () {
+        updateSelection();  // 페이지 로드 시 한 번 상태를 확인
+    }
+
+    // 버튼 클릭 시 window.close() 실행
+    function closeWindow() {
+        window.close();  // 현재 브라우저 창을 닫음
+    }
+
+
+
+    /*선정확정용 */
+    function submitFinalEvaluation() {
+        const subAnnNo = document.getElementById("finalSubmitBtn").getAttribute("data-id");
+
+        $.ajax({
+            url: `/api/v1/work_lounge/prog-status/` + subAnnNo,
+            method: "POST", // POST 요청으로 변경
+            success: function (response) {
+                console.log(response)
+                // 성공적인 응답 처리
+                console.log("Evaluation submitted successfully:", response);
+                // 추가 로직 (예: 알림, 페이지 전환 등)
+
+                // location.reload(true); // 현재 페이지 새로 고침
+                window.opener.location.reload(); // 부모 창 새로 고침
+                window.close();
+            },
+            error: function (xhr, status, error) {
+                // 오류 처리
+                console.error("Error submitting evaluation:", error);
+            }
+        });
+
+    }
 
 </script>
 </body>
