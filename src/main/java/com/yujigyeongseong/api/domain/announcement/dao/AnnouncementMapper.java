@@ -1,5 +1,6 @@
 package com.yujigyeongseong.api.domain.announcement.dao;
 
+import com.yujigyeongseong.api.domain.announcement.dto.AnnocementFile;
 import com.yujigyeongseong.api.domain.announcement.dto.Announcement;
 import com.yujigyeongseong.api.domain.announcement.dto.SubAnnouncement;
 import com.yujigyeongseong.api.domain.announcement.dto.SubAnnouncementApply;
@@ -33,5 +34,10 @@ public interface AnnouncementMapper {
     String selectTechName(String annNo);
 
     List<Announcement> selectTechAnno(String techName);
+
+    List<AnnocementFile> selectAnnoFile(int annNo);
+
+    List<AnnocementFile> selectFileDetailSubAnno(Long subAnnNo);
+
 
 }

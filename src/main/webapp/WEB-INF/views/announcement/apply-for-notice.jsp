@@ -154,7 +154,7 @@
                                     <th></th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="file-body">
                                 <tr>
                                     <td class="index-number">1</td>
                                     <td>초소형 관성센서를 위한 탄소나노튜브 기반 고감도 감지부 제조기술.pdf</td>

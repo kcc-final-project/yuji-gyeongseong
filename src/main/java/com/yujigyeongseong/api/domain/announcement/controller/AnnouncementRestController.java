@@ -1,6 +1,7 @@
 package com.yujigyeongseong.api.domain.announcement.controller;
 
 import com.yujigyeongseong.api.domain.announcement.dao.AnnouncementMapper;
+import com.yujigyeongseong.api.domain.announcement.dto.AnnocementFile;
 import com.yujigyeongseong.api.domain.announcement.dto.Announcement;
 import com.yujigyeongseong.api.domain.announcement.dto.SubAnnouncement;
 import com.yujigyeongseong.api.domain.announcement.dto.SubAnnouncementApply;
@@ -60,7 +61,14 @@ public class AnnouncementRestController {
     @GetMapping("/detail/zoom-in/{subAnnNo}")
     public SubAnnouncementDetailRequest postDetailAnnouncement(@PathVariable("subAnnNo") Long subAnnNo) {
         SubAnnouncementDetailRequest sub = announcementListService.postDetailAnnouncement(subAnnNo);
+
         return sub;
+    }
+
+    @GetMapping("/detail/file/{subAnnNo}")
+    public List<AnnocementFile> postDetailAnnouncementFile(@PathVariable("subAnnNo") Long subAnnNo) {
+        List<AnnocementFile> files = announcementMapper.selectFileDetailSubAnno(subAnnNo);
+        return files;
     }
 
     @GetMapping("/search")

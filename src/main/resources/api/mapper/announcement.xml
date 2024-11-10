@@ -376,4 +376,43 @@
         AND status = '접수중'
     </select>
 
+    <select id="selectAnnoFile" parameterType="int" resultType="AnnocementFile">
+        select
+            uuid as file_no,               -- 파일번호
+            upload_path as uploadPath,      -- 경로
+            file_name as fileName,          -- 원본 파일명
+            hasing_file_name as hashFileName, -- 파일명
+            file_type as fileType,          -- 파일유형
+            file_class as fileClass,        -- 구분
+            file_size as fileSize,          -- 크기
+            mandatory_status as mandatoryStatus, -- 필수여부
+            TO_CHAR(created_at, 'YYYY-MM-DD HH24:MI:SS') as createdAt, -- 생성일자
+            source as source,               -- 출처
+            source_number as sourceNumber,  -- 출처번호
+            bucket_no as bucketNo           -- 버킷번호
+        from
+            bucketfile
+        where
+            source = '공고'
+          and bucket_no = #{annNo}
+    </select>
+
+    <select id="selectFileDetailSubAnno" parameterType="Long" resultType="AnnocementFile">
+        select
+            uuid as file_no,               -- 파일번호
+            upload_path as uploadPath,      -- 경로
+            file_name as fileName,          -- 원본 파일명
+            hasing_file_name as hashFileName, -- 파일명
+            file_type as fileType,          -- 파일유형
+            file_class as fileClass,        -- 구분
+            file_size as fileSize,          -- 크기
+            mandatory_status as mandatoryStatus, -- 필수여부
+            TO_CHAR(created_at, 'YYYY-MM-DD HH24:MI:SS') as createdAt, -- 생성일자
+            source as source,               -- 출처
+            source_number as sourceNumber,  -- 출처번호
+            bucket_no as bucketNo           -- 버킷번호
+        from bucketfile where source ='공모분야' and source_number = #{subAnnNo}
+    </select>
+
+
 </mapper>
