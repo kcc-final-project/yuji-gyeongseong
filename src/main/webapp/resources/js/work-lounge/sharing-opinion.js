@@ -138,6 +138,8 @@ $(".file_btn").click(function () {
   }
 });
 
+
+
 $(document).ready(function () {
   $("#commentsSection").collapse("hide");
   $("#commentsSection1").collapse("hide");
@@ -152,3 +154,5 @@ $(document).ready(function () {
         });
   });
 });
+
+
