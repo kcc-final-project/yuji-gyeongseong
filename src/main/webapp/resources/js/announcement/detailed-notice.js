@@ -27,13 +27,52 @@ $(function () {
             url: '/anno/detail/zoom-in/'+subAnnNo,
             type: 'GET',
             success: function(response) {
-                console.log('Success:', response);
                 setModalData(response);
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
             }
         });
+
+
+        $.ajax({
+            url: '/anno/detail/file/' + subAnnNo,
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                console.log("response:", response);
+
+                const tableBody = $('.file-body'); // 정확한 선택자인지 확인하세요.
+                tableBody.empty();
+
+                response.forEach((file, index) => {
+                    console.log("file:", file);
+
+                    const row = `
+                <tr>
+                    <td class="index-number" style="text-align: center">${index + 1}</td>
+                    <td>${file.fileName || '파일 이름 없음'}</td>
+                    <td style="text-align: center">공모 관련 문서</td>
+                    <td style="text-align: center">
+                        <span class="material-icons pdf">picture_as_pdf</span>
+                    </td>
+                    <td style="text-align: center" >
+                        <a style="color: black" href="/files/download?filePath=${file.uploadPath || '#'}">
+                            <span class="material-icons">download</span>
+                        </a>
+                    </td>
+                </tr>
+            `;
+                    tableBody.append(row);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+
+
+
     });
 
     $('#apply-btn').on('click', function() {
