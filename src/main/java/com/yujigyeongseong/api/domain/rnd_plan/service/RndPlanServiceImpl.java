@@ -173,15 +173,16 @@ public class RndPlanServiceImpl implements RndPlanService {
 
         for (ResearchRequest researchRequest : request.getRsrchMembersData()) {
             // 연구원 데이터 삽입 (rsrchNo 자동 생성 및 설정)
-            rndPlanMapper.insertResearcher(request.getRndPlanNo(), researchRequest);
+
+            Long memberNo = rndPlanMapper.selectMemberNoByMemberName(researchRequest.getName());
+
+            rndPlanMapper.insertResearcher(request.getRndPlanNo(), researchRequest, memberNo);
             Long generatedRsrchNo = researchRequest.getRsrchNo();
-            log.info("Inserted researcher with rsrchNo={} for name={}", generatedRsrchNo, researchRequest.getName());
 
             // 참여 기간 삽입
             for (Map.Entry<String, ResearchJoinPeriodRequest> periodEntry : researchRequest.getParticipationData().entrySet()) {
                 ResearchJoinPeriodRequest joinPeriodRequest = periodEntry.getValue();
                 joinPeriodRequest.setRsrchNo(generatedRsrchNo); // 수정된 부분
-                log.info("Inserting join period with rsrchNo={} for period={}", joinPeriodRequest.getRsrchNo(), periodEntry.getKey());
                 rndPlanMapper.insertResearchJoinPeriod(joinPeriodRequest);
             }
         }
@@ -211,6 +212,11 @@ public class RndPlanServiceImpl implements RndPlanService {
         }
 
         return currStep;
+    }
+
+    @Override
+    public String selectResearcherName(Long rndPlanNo) {
+        return rndPlanMapper.selectResearcherName(rndPlanNo);
     }
 
 }

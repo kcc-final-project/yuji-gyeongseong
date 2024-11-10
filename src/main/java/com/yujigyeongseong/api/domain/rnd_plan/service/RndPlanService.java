@@ -42,4 +42,6 @@ public interface RndPlanService {
     // 연구개발비 데이터 등록 API
     int registerRndExpenses(CreateRndExpensesRequest request);
 
+    String selectResearcherName(Long rndPlanNo);
+
 }

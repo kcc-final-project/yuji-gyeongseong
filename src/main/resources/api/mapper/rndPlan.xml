@@ -23,16 +23,20 @@
 
     <!-- 과제정보 데이터 조회 쿼리 -->
     <select id="selectRndPlanBySubAnnNo">
-        SELECT rp.sub_ann_no,
-               rp.task_name,
-               rp.rnd_task_no,
-               i.name AS institution_name
-        FROM rnd_plan rp
-                 LEFT JOIN member m
-                           ON m.mem_no = rp.mem_no
-                 LEFT JOIN institution i
-                           ON i.institution_no = m.institution_no
-        WHERE rp.rnd_plan_no = #{subAnnNo}
+        SELECT
+            rp.sub_ann_no,
+            rp.task_name,
+            rp.rnd_task_no,
+            m_chief.name AS researcher_name
+        FROM
+            rnd_plan rp
+                LEFT JOIN member m ON m.mem_no = rp.mem_no
+                LEFT JOIN institution i ON i.institution_no = m.institution_no
+                LEFT JOIN researcher rs ON rs.rnd_plan_no = rp.rnd_plan_no
+                AND rs.manpower_role = '연구책임자'
+                LEFT JOIN member m_chief ON m_chief.mem_no = rs.mem_no
+        WHERE
+            rp.rnd_plan_no = #{subAnnNo}
     </select>
 
     <select id='selectRndPlanInstitutionBySubAnnNo'>
@@ -44,6 +48,15 @@
                            ON r.rnd_plan_no = rp.rnd_plan_no
                                AND r.manpower_role = '연구책임자'
     </select>
+
+    <select id = 'selectResearcherName'>
+        SELECT m.name
+        FROM member m
+                 JOIN researcher rs ON m.mem_no = rs.mem_no
+        WHERE rs.rnd_plan_no = #{rndPlanNo}
+          and manpower_role = '연구책임자'
+    </select>
+
 
     <!-- 연구개발계획서 시퀀스 최대값 가져오기 -->
     <select id="selectRndPlanSequence">
@@ -251,12 +264,14 @@
         rsrch_no,
         manpower_role,
         part_type,
-        rnd_plan_no
+        rnd_plan_no,
+        mem_no
         ) VALUES (
         #{research.rsrchNo},
         #{research.manpowerRole},
         #{research.partType},
-        #{rndPlanNo}
+        #{rndPlanNo},
+        #{memNo}
         )
     </insert>
 
@@ -313,5 +328,12 @@
         </foreach>
         SELECT * FROM dual
     </insert>
+
+    <select id="selectMemberNoByMemberName">
+        SELECT mem_no
+        FROM member
+        WHERE name = #{name}
+        AND ROWNUM = 1
+    </select>
 
 </mapper>
