@@ -29,14 +29,14 @@
             <div class="setting-text">공모분야명</div>
             <input id="projectName" type="text" value="[${subAnnounce.subAnnUniNo}] ${subAnnounce.subTitle}"
                    readonly/>
-            <div class="setting-text" style="margin-left: 150px">평가기간</div>
+            <div class="setting-text" style="margin-left: 10px">평가기간</div>
             <input id="evaluationStartDate" class="sedium"
-<%--                   value="<fmt:formatDate value='${evalCommittee.evalStartedAt}' pattern='yyyy-MM-dd' />" --%>
+            <%--                   value="<fmt:formatDate value='${evalCommittee.evalStartedAt}' pattern='yyyy-MM-dd' />" --%>
                    value = "2024-10-21"
                    readonly/>
             <span style="color: white">~</span>
             <input id="evaluationEndDate" class="sedium"
-<%--                   value="<fmt:formatDate value='${evalCommittee.evalClosedAt}' pattern='yyyy-MM-dd' />" --%>
+            <%--                   value="<fmt:formatDate value='${evalCommittee.evalClosedAt}' pattern='yyyy-MM-dd' />" --%>
                    value = "2024-10-30  "
                    readonly/>
         </div>
@@ -47,7 +47,7 @@
             <div class="setting-text">인원 설정</div>
             <input id="personnelSetting" class="small" type="text" value="6" readonly/>
 
-            <div class="setting-text" style="margin-left: 500px">수신기한 설정</div>
+            <div class="setting-text" style="margin-left: 310px">수신기한 설정</div>
             <input id="receptionStartDate" class="medium" type="date" value="2024-10-15"/>
             <span style="color: white">~</span>
             <input id="receptionEndDate" class="medium" type="date" value="2024-10-15"/>
@@ -73,10 +73,10 @@
             </div>
 
             <button class="ctm-btn-normal" id="composeButton" onclick="setEvalCommittee(${subAnnounce.subAnnNo})"
-                    style="background-color: #FF8F27FF; width: 150px; margin-left: 650px;">구성하기
+                    style="background-color: #FF8F27FF; width: 10px; margin-left: 480px;">구성하기
             </button>
             <button class="ctm-btn-normal" id="recomposeButton" onclick="resetEvalCommittee(${subAnnounce.subAnnNo})"
-                    style="background-color: #FF8F27FF; width: 150px; margin-left: 650px; display: none">재구성하기
+                    style="background-color: #FF8F27FF; width: 150px; margin-left: 480px; display: none">재구성하기
             </button>
         </div>
 
@@ -104,21 +104,6 @@
                 <div class="table-body-container">
                     <table class="committee-table table table-hover">
                         <tbody>
-
-<%--                        <c:forEach var="committee" items="${committees}">
-                            <tr data-committee-id="${committee.evalCommitteeNo}"
-                                data-start-date="<fmt:formatDate value='${evalCommittee.evalStartedAt}' pattern='yyyy-MM-dd'/>"
-                                data-end-date="<fmt:formatDate value='${evalCommittee.evalClosedAt}' pattern='yyyy-MM-dd'/>"
-                                data-title="[${subAnnounce.subAnnUniNo}] ${committee.name}">
-                                <td><input type="checkbox" name="committee" checked/></td>
-                                <td class="subAnnounceName"
-                                    data-sub-announce-name="[${subAnnounce.subAnnUniNo}] ${committee.name}">
-                                    [${subAnnounce.subAnnUniNo}] ${committee.name}</td>
-                                <td><fmt:formatDate value='${evalCommittee.evalStartedAt}' pattern='yyyy-MM-dd'/></td>
-                                <td><fmt:formatDate value='${evalCommittee.evalClosedAt}' pattern='yyyy-MM-dd'/></td>
-                                <td><span class="status stayed">승인대기</span></td>
-                            </tr>
-                        </c:forEach>--%>
 
                         </tbody>
                     </table>

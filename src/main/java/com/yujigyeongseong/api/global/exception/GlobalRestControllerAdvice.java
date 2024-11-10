@@ -1,3 +1,4 @@
+/*
 package com.yujigyeongseong.api.global.exception;
 
 import com.yujigyeongseong.api.global.dto.response.ApiResponse;
@@ -57,3 +58,4 @@ public class GlobalRestControllerAdvice {
     }
 
 }
+*/

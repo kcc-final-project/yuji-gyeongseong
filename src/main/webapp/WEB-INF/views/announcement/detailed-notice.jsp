@@ -56,25 +56,25 @@
         </div>
         <div class="announcement-details">
             ${announcement.content}
-<%--            <p class="announcement-number">과학기술정보통신부 공고 제2024-0925호</p>--%>
-<%--            <h4>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</h4>--%>
-<%--            <p>과학기술정보통신부가 추진하는 『혁신형 소형모듈원자로 기술개발사업』의 신규과제를 아래와 같이 재공고하오니 관심있는 연구자분들의 많은 참여 바랍니다.</p>--%>
+            <%--            <p class="announcement-number">과학기술정보통신부 공고 제2024-0925호</p>--%>
+            <%--            <h4>2024년도 혁신형 소형모듈원자로 기술개발사업 신규과제 재공고</h4>--%>
+            <%--            <p>과학기술정보통신부가 추진하는 『혁신형 소형모듈원자로 기술개발사업』의 신규과제를 아래와 같이 재공고하오니 관심있는 연구자분들의 많은 참여 바랍니다.</p>--%>
 
-<%--            <p class="announcement-date">2024년 9월 23일</p>--%>
-<%--            <div class="announcement-wrap">--%>
-<%--                <p class="Order department">&lt;주무부처&gt; 과학기술정보통신부 장관<span>우상임</span>--%>
-<%--                <p>--%>
-<%--                <p class="professional-organization">--%>
-<%--                    &lt;전문기관&gt; 과학기술정보통신부 기술개발사업단 단장<span>김한근</span></p>--%>
+            <%--            <p class="announcement-date">2024년 9월 23일</p>--%>
+            <%--            <div class="announcement-wrap">--%>
+            <%--                <p class="Order department">&lt;주무부처&gt; 과학기술정보통신부 장관<span>우상임</span>--%>
+            <%--                <p>--%>
+            <%--                <p class="professional-organization">--%>
+            <%--                    &lt;전문기관&gt; 과학기술정보통신부 기술개발사업단 단장<span>김한근</span></p>--%>
 
-<%--            </div>--%>
+            <%--            </div>--%>
 
 
-<%--            <h5>가. 사업목적</h5>--%>
-<%--            <p>28년까지 경제성·안정성·유연성 측면에서 경쟁력을 갖춘 혁신형 소형모듈원자로(혁신형 SMR 또는 i-SMR)을 개발하고, 표준설계인가 취득 추진</p>--%>
+            <%--            <h5>가. 사업목적</h5>--%>
+            <%--            <p>28년까지 경제성·안정성·유연성 측면에서 경쟁력을 갖춘 혁신형 소형모듈원자로(혁신형 SMR 또는 i-SMR)을 개발하고, 표준설계인가 취득 추진</p>--%>
 
-<%--            <h5>나. 사업내용</h5>--%>
-<%--            <p>(설계)<br>- 노심, 계통, 종합설계의 3개 설계분야로 구성되며 각 설계분야는 혁신기술 및 혁신제조 분야와 유기적으로 연계되어 혁신형 SMR의 표준설계 수행</p>--%>
+            <%--            <h5>나. 사업내용</h5>--%>
+            <%--            <p>(설계)<br>- 노심, 계통, 종합설계의 3개 설계분야로 구성되며 각 설계분야는 혁신기술 및 혁신제조 분야와 유기적으로 연계되어 혁신형 SMR의 표준설계 수행</p>--%>
         </div>
         <div class="public-notice-field">
             <table class="table shadow-sm notice-field-contents table-hover">
@@ -129,7 +129,14 @@
                     <td>과제 제안요구서(RFP)</td>
                     <td>718.3</td>
                     <td><span class="material-icons pdf">picture_as_pdf</span></td>
-                    <td><span class="material-icons download-icon">download</span></td>
+                    <td>
+      <span
+              class="material-icons download-icon"
+              style="cursor: pointer; color: blue; text-decoration: underline;"
+      >
+        download
+      </span>
+                    </td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
@@ -240,7 +247,9 @@
                                             <span class="material-icons pdf">picture_as_pdf</span>
                                         </td>
                                         <td>
-                                            <span class="material-icons download-icon">download</span>
+                                            <a href="/files/download?filePath=https%3A%2F%2Fkcc-bucket.s3.ap-northeast-2.amazonaws.com%2Fkcc_yugi%2F%EA%B6%8C%ED%95%9C%EB%B3%84%20%EC%9B%8C%ED%81%AC%EB%9D%BC%EC%9A%B4%EC%A7%80%20%ED%83%AD.txt">
+                                                <span class="material-icons">download</span>
+                                            </a>
                                         </td>
                                     </tr>
                                     <tr>

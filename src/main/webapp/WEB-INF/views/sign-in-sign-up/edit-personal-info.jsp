@@ -24,6 +24,7 @@
           <hr>
           <div class="span-area">
             <span style="margin-right: 17px">※ 이름, 생년월일, 휴대전화번호 변경 시 본인 확인이 필요합니다. </span>
+
             <button class="common-style-span-btn tel-btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2">휴대폰 본인인증</button>
           </div>
           <div class="form-area">

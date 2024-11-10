@@ -42,6 +42,8 @@ $(function () {
     });
 
 
+
+
     function setModalData(data){
         $('#subAnnUniNo').text(data.subAnnUniNo);
         $('#subTitle').text(data.subTitle);

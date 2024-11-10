@@ -166,7 +166,7 @@ function sessionExpired() {
     confirmButtonText: "확인",
     confirmButtonColor: "#2e406a",
     willClose: () => {
-      window.location.href = "/research_number"; // TODO: 로그인 URL로 수정
+      window.location.href = "/member/sign/in"; // TODO: 로그인 URL로 수정
     },
   });
 }
