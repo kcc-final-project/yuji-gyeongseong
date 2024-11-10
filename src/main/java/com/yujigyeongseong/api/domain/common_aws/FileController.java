@@ -2,17 +2,15 @@ package com.yujigyeongseong.api.domain.common_aws;
 
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ContentDisposition;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/files")
@@ -47,5 +45,34 @@ public class FileController {
             e.printStackTrace();
             return ResponseEntity.status(500).body(null);
         }
+    }
+
+    @PostMapping("/upload")
+    public ResponseEntity<?> uploadFiles(@RequestParam("files") MultipartFile[] files) {
+        if(files == null || files.length == 0){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("파일이 선택되지 않았습니다.");
+        }
+
+        List<String> uploadedFileUrls = new ArrayList<>();
+
+        for(MultipartFile file : files){
+            if(file.isEmpty()){
+                continue; // 빈 파일은 건너뜀
+            }
+
+            // 파일명 생성 (예: UUID 사용)
+            String fileName = UUID.randomUUID().toString();
+
+            try {
+                String fileUrl = awsS3Utils.saveFile(file, fileName);
+                uploadedFileUrls.add(fileUrl);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                        .body("파일 업로드 중 오류가 발생했습니다.");
+            }
+        }
+
+        return ResponseEntity.ok(uploadedFileUrls);
     }
 }

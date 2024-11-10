@@ -1,5 +1,6 @@
 package com.yujigyeongseong.api.domain.announcement.service;
 
+import com.yujigyeongseong.api.domain.announcement.dto.AnnocementFile;
 import com.yujigyeongseong.api.domain.announcement.dto.Announcement;
 import com.yujigyeongseong.api.domain.announcement.dto.SubAnnouncementApply;
 import com.yujigyeongseong.api.domain.announcement.dto.request.AnnouncementFilterRequest;
@@ -26,4 +27,5 @@ public interface AnnouncementListService {
     List<Announcement> searchAnnouncement(AnnouncementFilterRequest announcementFilterRequest);
 
     List<Announcement> selectAcceptionAnnouncementList1();
+
 }

@@ -204,13 +204,14 @@
                         <%--                        </div>--%>
                         <div class="col-md-6">
                                 <label for="email" class="form-label" style="display: flex;">기관 웹메일 <span class="text-danger mail-danger" style="display: none; margin-left: 4px;">*</span></label>
-                            <small id="success-email"></small>
                             <div class="input-group">
                                 <input type="email" class="form-control" id="email" disabled
                                        placeholder="example@naver.com">
                                 <button class="btn btn-outline-secondary" type="button" id="send-mail-btn" disabled>인증코드 발송
                                 </button>
                             </div>
+                            <small id="success-email"></small>
+
                         </div>
                             <div class="col-md-6">
                                 <div class="d-flex align-items-center" style=" margin-top: 32px">

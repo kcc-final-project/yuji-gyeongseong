@@ -21,7 +21,7 @@ public class AwsS3Utils {
         metadata.setContentType(multipartFile.getContentType());
         String ext = multipartFile.getOriginalFilename().substring(multipartFile.getOriginalFilename().lastIndexOf(".") + 1);
 
-        amazonS3.putObject(properties.getS3().getBucket() + "/kcc_pms", fileName + "." + ext, multipartFile.getInputStream(), metadata);
+        amazonS3.putObject(properties.getS3().getBucket() + "/kcc_yugi", fileName + "." + ext, multipartFile.getInputStream(), metadata);
         return properties.getS3().getFakeUrl()  + fileName + "." + ext;
     }
 

@@ -64,20 +64,22 @@
                     <td class="sortable" onclick="sortTable('start')">평가시작일자<span id="startArrow" class="arrow"></span></td>
                     <td class="sortable" onclick="sortTable('end')">평가종료일자<span id="endArrow" class="arrow"></span></td>
                     <td>평가상태</td>
+                    <td>연구 과제 리스트</td>
                 </tr>
                 </thead>
                 <tbody id="tableBody">
                 <c:forEach items="${committeeList}" var="committee">
                     <tr class="letter">
-                        <td>
+                        <td style="padding-top: 13px !important">
                             <a class="committee-link" data-id="${committee.name}" style="text-decoration: none; color: black" >
                                 <c:out value="${committee.name}"/>
                             </a>
                         </td>
-                        <td><c:out value="${committee.subTitle}"/></td>
-                        <td><c:out value="${committee.evalStartedAt}"/></td>
-                        <td><c:out value="${committee.evalClosedAt}"/></td>
-                        <td><c:out value="${committee.evalStatus}"/></td>
+                        <td style="padding-top: 13px !important"><c:out value="${committee.subTitle}"/></td>
+                        <td style="padding-top: 13px !important"><c:out value="${committee.evalStartedAt}"/></td>
+                        <td style="padding-top: 13px !important"><c:out value="${committee.evalClosedAt}"/></td>
+                        <td style="padding-top: 13px !important"><c:out value="${committee.evalStatus}"/></td>
+                        <td style="padding-top: 13px !important"><button type="button" data-id="${committee.name}" class="btn btn-sm btn-back-indigo committee-link">연구과제 상세 보기</button></td>
                     </tr>
                 </c:forEach>
                 </tbody>

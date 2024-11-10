@@ -123,45 +123,46 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>초소형 관성센서를 위한 탄소나노튜브 기반 고감도 감지부 제조기술.pdf</td>
-                    <td>과제 제안요구서(RFP)</td>
-                    <td>718.3</td>
-                    <td><span class="material-icons pdf">picture_as_pdf</span></td>
-                    <td>
-      <span
-              class="material-icons download-icon"
-              style="cursor: pointer; color: blue; text-decoration: underline;"
-      >
-        download
-      </span>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>초소형 관성센서를 위한 탄소나노튜브 기반 고감도 감지부 제조기술.pdf</td>
-                    <td>과제 제안요구서(RFP)</td>
-                    <td>718.3</td>
-                    <td><span class="material-icons pdf">picture_as_pdf</span></td>
-                    <td><span class="material-icons download-icon">download</span></td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>초소형 관성센서를 위한 탄소나노튜브 기반 고감도 감지부 제조기술.pdf</td>
-                    <td>과제 제안요구서(RFP)</td>
-                    <td>718.3</td>
-                    <td><span class="material-icons pdf">picture_as_pdf</span></td>
-                    <td><span class="material-icons download-icon">download</span></td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>초소형 관성센서를 위한 탄소나노튜브 기반 고감도 감지부 제조기술.pdf</td>
-                    <td>과제 제안요구서(RFP)</td>
-                    <td>718.3</td>
-                    <td><span class="material-icons pdf">picture_as_pdf</span></td>
-                    <td><span class="material-icons download-icon">download</span></td>
-                </tr>
+                <c:forEach var="annocementFile" items="${annocementFile}">
+                    <tr>
+                        <th scope="row">${annocementFile.sourceNumber}</th>
+                        <td style="text-align: left">${annocementFile.fileName}</td>
+                        <td>공고 관련 문서</td>
+                        <td>${annocementFile.fileSize}</td>
+                        <td><span class="material-icons pdf">picture_as_pdf</span></td>
+                        <td>
+                            <a href="/files/download?filePath=${annocementFile.uploadPath}" style="color: black">
+                                <span class="material-icons download-icon">download</span>
+                            </a>
+                        </td>
+                    </tr>
+                </c:forEach>
+
+
+                <%--                <tr>--%>
+                <%--                    <th scope="row">2</th>--%>
+                <%--                    <td>초소형 관성센서를 위한 탄소나노튜브 기반 고감도 감지부 제조기술.pdf</td>--%>
+                <%--                    <td>과제 제안요구서(RFP)</td>--%>
+                <%--                    <td>718.3</td>--%>
+                <%--                    <td><span class="material-icons pdf">picture_as_pdf</span></td>--%>
+                <%--                    <td><span class="material-icons download-icon">download</span></td>--%>
+                <%--                </tr>--%>
+                <%--                <tr>--%>
+                <%--                    <th scope="row">3</th>--%>
+                <%--                    <td>초소형 관성센서를 위한 탄소나노튜브 기반 고감도 감지부 제조기술.pdf</td>--%>
+                <%--                    <td>과제 제안요구서(RFP)</td>--%>
+                <%--                    <td>718.3</td>--%>
+                <%--                    <td><span class="material-icons pdf">picture_as_pdf</span></td>--%>
+                <%--                    <td><span class="material-icons download-icon">download</span></td>--%>
+                <%--                </tr>--%>
+                <%--                <tr>--%>
+                <%--                    <th scope="row">4</th>--%>
+                <%--                    <td>초소형 관성센서를 위한 탄소나노튜브 기반 고감도 감지부 제조기술.pdf</td>--%>
+                <%--                    <td>과제 제안요구서(RFP)</td>--%>
+                <%--                    <td>718.3</td>--%>
+                <%--                    <td><span class="material-icons pdf">picture_as_pdf</span></td>--%>
+                <%--                    <td><span class="material-icons download-icon">download</span></td>--%>
+                <%--                </tr>--%>
                 </tbody>
             </table>
         </div>
@@ -238,7 +239,7 @@
                                         <th></th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="file-body">
                                     <tr>
                                         <td class="index-number">1</td>
                                         <td>초소형 관성센서를 위한 탄소나노튜브 기반 고감도 감지부 제조기술.pdf</td>
@@ -247,7 +248,7 @@
                                             <span class="material-icons pdf">picture_as_pdf</span>
                                         </td>
                                         <td>
-                                            <a href="/files/download?filePath=https%3A%2F%2Fkcc-bucket.s3.ap-northeast-2.amazonaws.com%2Fkcc_yugi%2F%EA%B6%8C%ED%95%9C%EB%B3%84%20%EC%9B%8C%ED%81%AC%EB%9D%BC%EC%9A%B4%EC%A7%80%20%ED%83%AD.txt">
+                                            <a href="/files/download?filePath=https://kcc-bucket.s3.ap-northeast-2.amazonaws.com/kcc_yugi/%EB%B6%99%EC%9E%842.+2024%EB%85%84+%EC%A0%9C2%EC%B0%A8+%EC%A0%84%EB%9E%B5%EA%B8%B0%EC%88%A0+%ED%85%8C%EB%A7%88%EB%B3%84+%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8(DCP)+RFP.hwp">
                                                 <span class="material-icons">download</span>
                                             </a>
                                         </td>

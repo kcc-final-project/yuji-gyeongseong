@@ -1,6 +1,7 @@
 package com.yujigyeongseong.api.domain.announcement.controller;
 
 import com.yujigyeongseong.api.domain.announcement.dao.AnnouncementMapper;
+import com.yujigyeongseong.api.domain.announcement.dto.AnnocementFile;
 import com.yujigyeongseong.api.domain.announcement.dto.Announcement;
 import com.yujigyeongseong.api.domain.announcement.dto.SubAnnouncementApply;
 import com.yujigyeongseong.api.domain.announcement.dto.request.SubAnnouncementRequest;
@@ -41,6 +42,8 @@ public class AnnouncementController {
         SubAnnouncementRequest announcement = announcementListService.getAnnouncementByTotalAnnNo(AnnNo);
         model.addAttribute("announcement", announcement);
 
+        List<AnnocementFile> annocementFile = announcementMapper.selectAnnoFile(AnnNo);
+        model.addAttribute("annocementFile", annocementFile);
         return "announcement/detailed-notice";
     }
 
