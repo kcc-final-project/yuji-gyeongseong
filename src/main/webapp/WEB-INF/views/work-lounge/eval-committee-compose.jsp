@@ -73,7 +73,7 @@
             </div>
 
             <button class="ctm-btn-normal" id="composeButton" onclick="setEvalCommittee(${subAnnounce.subAnnNo})"
-                    style="background-color: #FF8F27FF; width: 10px; margin-left: 480px;">구성하기
+                    style="background-color: #FF8F27FF; width: 150px; margin-left: 480px;">구성하기
             </button>
             <button class="ctm-btn-normal" id="recomposeButton" onclick="resetEvalCommittee(${subAnnounce.subAnnNo})"
                     style="background-color: #FF8F27FF; width: 150px; margin-left: 480px; display: none">재구성하기

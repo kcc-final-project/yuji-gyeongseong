@@ -86,11 +86,17 @@ public interface RndPlanMapper {
     List<MemberResponse> selectAllMembers();
 
     // '연구기관' 연구원 데이터 '등록'쿼리
-    int insertResearcher(@Param("rndPlanNo") Long rndPlanNo, @Param("research") ResearchRequest research);
+    int insertResearcher(@Param("rndPlanNo") Long rndPlanNo, @Param("research") ResearchRequest research, @Param("memNo") Long memNo);
 
     // '연구기관' 연구원 기간별 참여정보 '등록'쿼리
     int insertResearchJoinPeriod(@Param("period") ResearchJoinPeriodRequest period);
 
+    // 연구원 번호 조회 쿼리
+    Long selectMemberNoByMemberName(String name);
+
+    // '연구개발비' 개발비 데이터 '등록'쿼리
     int insertRndFees(@Param("rndFees") List<RndFee> rndFees);
+
+    String selectResearcherName(Long rndPlanNo);
 
 }

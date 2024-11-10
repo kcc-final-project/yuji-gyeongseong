@@ -29,6 +29,7 @@ public class RndPlanRestController {
     @GetMapping("/{rndPlanNo}")
     public ResponseEntity<?> getRndPlan(@PathVariable Long rndPlanNo) {
         RndPlanResponse rndPlanResponse = rndPlanService.getRndPlanDataBySubAnnNo(rndPlanNo);
+
         return ApiResponse.success(OK, rndPlanResponse);
     }
 
