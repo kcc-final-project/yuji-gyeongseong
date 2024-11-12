@@ -22,7 +22,6 @@ public class FileController {
     @GetMapping("/download")
     public ResponseEntity<byte[]> downloadFile(@RequestParam String filePath) {
         try (S3ObjectInputStream inputStream = awsS3Utils.downloadFile(filePath)) {
-            // 파일의 바이너리 데이터를 읽어들입니다.
             byte[] bytes = inputStream.readAllBytes();
 
             // 파일 이름을 추출 (예: kcc_pms/filename.ext -> filename.ext)
@@ -52,15 +51,13 @@ public class FileController {
         if(files == null || files.length == 0){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("파일이 선택되지 않았습니다.");
         }
-
         List<String> uploadedFileUrls = new ArrayList<>();
 
         for(MultipartFile file : files){
             if(file.isEmpty()){
                 continue; // 빈 파일은 건너뜀
             }
-
-            // 파일명 생성 (예: UUID 사용)
+            // 파일명 생성 (UUID 사용)
             String fileName = UUID.randomUUID().toString();
 
             try {
@@ -72,7 +69,6 @@ public class FileController {
                         .body("파일 업로드 중 오류가 발생했습니다.");
             }
         }
-
         return ResponseEntity.ok(uploadedFileUrls);
     }
 }
