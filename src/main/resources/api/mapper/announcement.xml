@@ -69,7 +69,23 @@
     </resultMap>
 
     <select id="selectAcceptionAnnouncementList" resultType="Announcement">
-        SELECT ann_no AS annno,
+        SELECT annno,
+        totalannno,
+        totaltitle,
+        competentministry,
+        specinstitution,
+        annTechFieldName,
+        anntype,
+        subanncount,
+        receptiontype,
+        status,
+        startedat,
+        closedat,
+        createdat,
+        updatedat
+        FROM (
+        SELECT
+        ann_no AS annno,
         total_ann_no AS totalannno,
         total_title AS totaltitle,
         competent_ministry AS competentministry,
@@ -83,30 +99,14 @@
         TO_CHAR(closed_at, 'YYYY-MM-DD') AS closedat,
         TO_CHAR(created_at, 'YYYY-MM-DD') AS createdat,
         TO_CHAR(updated_at, 'YYYY-MM-DD') AS updatedat,
-        ROWNUM AS rnum
-        FROM (
-        SELECT
-        ann_no,
-        total_ann_no,
-        total_title,
-        competent_ministry,
-        spec_institution,
-        ann_tech_field_name,
-        ann_type,
-        sub_ann_count,
-        reception_type,
-        status,
-        started_at,
-        closed_at,
-        created_at,
-        updated_at,
-        ROWNUM AS rnum
+        ROW_NUMBER() OVER (ORDER BY created_at DESC, ann_no DESC) AS rnum
         FROM announcement
         WHERE status = '접수중'
-        ORDER BY created_at ASC
         )
         WHERE rnum > #{offset} AND rnum &lt;= #{offset} + #{size}
+        ORDER BY createdat DESC, annno DESC
     </select>
+
 
 
     <select id="selectAcceptionAnnouncementList1" resultType="Announcement">
@@ -131,9 +131,32 @@
         WHERE
             status = '접수중'
         ORDER BY
-            created_at ASC
+            created_at DESC
     </select>
-
+    <select id="selectExpectedAnnouncementList1" resultType="Announcement">
+        SELECT
+            ann_no AS annno,
+            total_ann_no AS totalannno,
+            total_title AS totaltitle,
+            competent_ministry AS competentministry,
+            spec_institution AS specinstitution,
+            ann_tech_field_name AS annTechFieldName,
+            ann_type AS anntype,
+            sub_ann_count AS subanncount,
+            reception_type AS receptiontype,
+            status AS status,
+            TO_CHAR(started_at, 'YYYY-MM-DD') AS startedat,
+            TO_CHAR(closed_at, 'YYYY-MM-DD') AS closedat,
+            TO_CHAR(created_at, 'YYYY-MM-DD') AS createdat,
+            TO_CHAR(updated_at, 'YYYY-MM-DD') AS updatedat,
+            bucket_no AS bucketno
+        FROM
+            announcement
+        WHERE
+            status = '접수예정'
+        ORDER BY
+            created_at DESC
+    </select>
 
     <select id="selectExpectedAnnouncementList" resultType="Announcement">
         SELECT ann_no AS annno,
