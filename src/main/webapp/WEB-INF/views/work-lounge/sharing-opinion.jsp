@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ include file="../common/common-noheader.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +46,7 @@
         <table class="table table-bordered">
             <tbody>
             <tr class="text-center domain">
-<%--                <td>평가상태</td>--%>
+                <%--                <td>평가상태</td>--%>
                 <td colspan="2">과제명</td>
                 <td>계획서</td>
                 <td>주관연구기관</td>
@@ -55,7 +56,7 @@
             </tr>
             <c:if test="${not empty sharingOpinionList}">
                 <tr class="blue letter">
-<%--                    <td class="text-center"><c:out value="${sharingOpinionList[0].evalStatus}"/></td>--%>
+                        <%--                    <td class="text-center"><c:out value="${sharingOpinionList[0].evalStatus}"/></td>--%>
                     <td colspan="2" class="text-center"><c:out value="${sharingOpinionList[0].taskName}"/></td>
                     <td class="text-center">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
@@ -122,8 +123,12 @@
                             </p>
                             <div class="custom-divider">
                             </div>
-                            </c:forEach>
+
                         </div>
+                        </c:forEach>
+                        <c:if test="${not empty committeePersonList}">
+                        <div id="dynamicContent" data-id="${committeePersonList[0].evalCommitteeNo}"></div>
+                        </c:if>
                 </td>
             </tr>
             <tr>
@@ -145,32 +150,26 @@
                 </c:forEach>
             </tr>
             <tr>
-                <td colspan="7">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div style="width: 90%">
-                            <div class="form-group">
-                                <label for="postContent" class="font-weight-bold"><b>&nbsp;내용</b></label>
-                                <textarea class="form-control content_area" id="postContent" rows="3"
-                                          placeholder="게시글의 내용을 입력해주세요."></textarea>
+            <c:if test="${fn:contains(userRole, 'EVAL') or fn:contains(userRole, 'MGR')}">
+                    <td colspan="7">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div style="width: 90%">
+                                <div class="form-group">
+                                    <label for="postContent" class="font-weight-bold"><b>&nbsp;내용</b></label>
+                                    <textarea class="form-control content_area" id="postContent" rows="3"
+                                              placeholder="게시글의 내용을 입력해주세요."></textarea>
+                                </div>
+                            </div>
+                            <div class="w-10 d-flex flex-column align-items-end mt-3">
+                                <c:if test="${not empty sharingOpinionList}">
+                                    <button id="submitBtn1" class="btn btn-back-indigo" style="width: 90px"
+                                            data-id="${sharingOpinionList[0].rndPlanNo}">등록
+                                    </button>
+                                </c:if>
                             </div>
                         </div>
-                        <div class="w-10 d-flex flex-column align-items-end mt-3">
-                            <button id="uploadBtn" class="btn ctm-btn-small mb-2" style="background-color: #eaecef;">
-                                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
-                                     width="24px" fill="#5f6368">
-                                    <path d="M720-330q0 104-73 177T470-80q-104 0-177-73t-73-177v-370q0-75 52.5-127.5T400-880q75 0 127.5 52.5T580-700v350q0 46-32 78t-78 32q-46 0-78-32t-32-78v-370h80v370q0 13 8.5 21.5T470-320q13 0 21.5-8.5T500-350v-350q-1-42-29.5-71T400-800q-42 0-71 29t-29 71v370q-1 71 49 120.5T470-160q70 0 119-49.5T640-330v-390h80v390Z"/>
-                                </svg>
-                            </button>
-                            <c:if test="${not empty sharingOpinionList}">
-                                <button id="submitBtn1" class="btn btn-back-indigo" style="width: 90px"
-                                        data-id="${sharingOpinionList[0].rndPlanNo}">등록
-                                </button>
-                            </c:if>
-                        </div>
-                    </div>
-                </td>
-
-                </td>
+                    </td>
+                </c:if>
 
             </tr>
 
@@ -196,6 +195,13 @@
                             <label for="message-text" class="col-form-label">댓글 내용:</label>
                             <textarea class="form-control" id="message-text" placeholder="댓글을 입력하세요"></textarea>
                         </div>
+                        <%--                        <div class="mb-3">--%>
+                        <%--                            <div class="form-group">--%>
+                        <%--                                <label for="fileInput">파일 선택:</label>--%>
+                        <%--                                <input type="file" class="form-control-file" id="fileInput" aria-describedby="fileHelp">--%>
+                        <%--                                <small id="fileHelp" class="form-text text-muted">지원하는 파일 형식: jpg, png, pdf</small>--%>
+                        <%--                            </div>--%>
+                        <%--                        </div>--%>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -400,6 +406,36 @@
             });
         });
 
+        //  평가위원
+        $(document).ready(function () {
+            var committeeNo = $('#dynamicContent').data('id');
+
+            if (committeeNo) {
+                $.ajax({
+                    url: '/api/v1/work_lounge/researcher/' + committeeNo,
+                    method: 'GET',
+                    success: function (response) {
+                        console.log(response);  // API 응답을 콘솔에서 확인
+
+                        var content = '';  // content 초기화
+
+                        // 응답이 배열이므로, 배열의 각 항목을 순회
+                        response.forEach(function (item) {
+                            // evalPeople 값을 포함한 HTML을 추가
+                            content += '<p class="letter1">' + item.evalPeople + '</p>';
+                            content += '<div class="custom-divider"></div>';
+                        });
+
+                        // 동적으로 #dynamicContent div에 데이터 삽입
+                        $('#dynamicContent').html(content);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("데이터 가져오기 실패: " + error);
+                        $('#dynamicContent').html('<p>데이터를 가져오는 데 실패했습니다.</p>');
+                    }
+                });
+            }
+        });
 
 
     </script>

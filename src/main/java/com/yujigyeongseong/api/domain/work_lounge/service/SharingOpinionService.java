@@ -12,6 +12,8 @@ public interface SharingOpinionService {
 
     public List<SharingOpinionDTO> evalPeople(int rndPlanNo, int memNo);
 
+    public List<SharingOpinionDTO> researcher(int evalCommitteeNo, int memNo);
+
     public List<SharingOpinionDTO> getSelectCommitteePersonList(String taskName);
 
     public List<Opinion> getselectOpinionList();

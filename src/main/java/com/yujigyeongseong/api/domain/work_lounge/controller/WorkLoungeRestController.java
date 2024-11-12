@@ -242,7 +242,17 @@ public class WorkLoungeRestController {
         }
     }
 
-    // 미평가
+    // 의견공유 평가위원
+    @GetMapping("/researcher/{evalCommitteeNo}")
+    public List<SharingOpinionDTO> getResearcherOpinions(
+            @PathVariable("evalCommitteeNo") int evalCommitteeNo,
+            @AuthenticationPrincipal PrincipalDetail principal) {
+
+        Integer userId = Math.toIntExact(principal.getId());
+
+        // Service의 researcher 메서드를 호출하여 결과를 반환
+        return sharingOpinionService.researcher(evalCommitteeNo, userId);
+    }
 
 
 
@@ -276,6 +286,8 @@ public class WorkLoungeRestController {
 //            return "상태 업데이트 중 오류가 발생했습니다.";
 //        }
 //    }
+
+
 
 
 }
