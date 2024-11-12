@@ -43,7 +43,6 @@
                         <option value="2022">2022</option>
                         <option value="2021">2021</option>
                     </select>
-                    <p>전체 23건</p>
                 </div>
                 <div class="user-filter-wrap">
                     <input id="tag-input" class="tag-area" placeholder="원하는 태그를 추가하세요" value=""/>
