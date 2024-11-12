@@ -2,14 +2,18 @@ package com.yujigyeongseong.api.domain.common_aws;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "cloud.aws")
 @Getter
 @Setter
 public class EnvVariableProperties {
+    @Value("${credentials.access-key")
     private String accessKey;
+    @Value("${credentials.secret-key")
     private String secretKey;
+    @Value("${region.static")
     private String region;
     private S3 s3;
 
