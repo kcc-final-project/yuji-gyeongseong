@@ -19,9 +19,7 @@ jobs:
           java-version: 17
 
       - name: application.yml 파일 만들기
-        run: |
-          echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./src/main/resources/application.yml
-          echo "${{ secrets.APPLICATION_SECRET }}" > ./src/main/resources/application-secret.yml
+        run: echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./src/main/resources/application.yml
 
       - name: Change gradlew permissions
         run: chmod +x ./mvnw
