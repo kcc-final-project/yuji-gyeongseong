@@ -1,6 +1,7 @@
 package com.yujigyeongseong.api.domain.research_number.service;
 
 import com.yujigyeongseong.api.domain.research_number.dao.EvalCommitteeMapper;
+import com.yujigyeongseong.api.domain.research_number.dao.EvalComposeMapper;
 import com.yujigyeongseong.api.domain.research_number.dto.AcadAbility;
 import com.yujigyeongseong.api.domain.research_number.dto.Career;
 import com.yujigyeongseong.api.domain.research_number.dto.Noti;
@@ -20,6 +21,7 @@ import java.util.List;
 public class EvalCommitteeServiceImpl implements EvalCommitteeService {
 
     private final EvalCommitteeMapper evalCommitteeMapper;
+    private final EvalComposeMapper evalComposeMapper;
     private final SimpMessagingTemplate messagingTemplate; // WebSocket 메시지 전송 템플릿
 
     @Override
@@ -76,14 +78,13 @@ public class EvalCommitteeServiceImpl implements EvalCommitteeService {
 
         if (result > 0) {
             NotiReponse noti = NotiReponse.builder()
-                    .memNo(evalNotiRequest.getMemNo())
+                    .memName(evalComposeMapper.selectOneMemberById(evalNotiRequest.getMemNo()).getUsername())
                     .content(evalNotiRequest.getContent())
                     .notiType(evalNotiRequest.getNotiType())
                     .dataCategory(evalNotiRequest.getDataCategory())
                     .notiContentNo(evalNotiRequest.getNotiContentNo())
                     .createdAt(LocalDateTime.now().toString()) // 필요 시 형식 변경
                     .build();
-
 
             // WebSocket을 통해 알림 전송
             sendNotification(noti);
@@ -95,8 +96,8 @@ public class EvalCommitteeServiceImpl implements EvalCommitteeService {
     // WebSocket을 통해 알림 전송하는 메서드
     private void sendNotification(NotiReponse noti) {
         messagingTemplate.convertAndSendToUser(
-                "yun9869", // 사용자 식별자 (memNo를 문자열로 변환)
-                "/topic/notifications",     // 구독 경로
+                noti.getMemName(), // 사용자 식별자 (memNo를 문자열로 변환)
+                "/queue/notifications",       // 사용자별 큐 경로
                 noti                        // 전송할 메시지
         );
     }

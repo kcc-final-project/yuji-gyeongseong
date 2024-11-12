@@ -1,9 +1,6 @@
 package com.yujigyeongseong.api.domain.work_lounge.service;
 
-import com.yujigyeongseong.api.domain.work_lounge.dto.EvaluationTableDTO;
-import com.yujigyeongseong.api.domain.work_lounge.dto.FormDTO;
-import com.yujigyeongseong.api.domain.work_lounge.dto.PaperDTO;
-import com.yujigyeongseong.api.domain.work_lounge.dto.RegisterListDTO;
+import com.yujigyeongseong.api.domain.work_lounge.dto.*;
 
 import java.util.List;
 
@@ -16,4 +13,6 @@ public interface EvaluationTableListService {
 
     List<PaperDTO> getquestionList(String name);
 
+    //질문지 저장 용도
+    public void createEvaluationForm(EvaluationTable evaluationTable, List<Question> questions);
 }

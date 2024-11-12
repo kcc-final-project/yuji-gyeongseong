@@ -15,11 +15,17 @@
 
     <!-- 의견공유에 뜨는 사람 목록 -->
     <select id="evalPeople" parameterType="SharingOpinionDTO">
-        select ec.name as evalname, (SELECT name FROM member WHERE mem_no = emem.mem_no) as evalpeople
+        select ec.name as evalname, (SELECT name FROM member WHERE mem_no = emem.mem_no) as evalpeople, ec.eval_committee_no as evalCommitteeNo
         from eval_task et inner join rnd_plan rp on et.rnd_plan_no = rp.rnd_plan_no
                           inner join evaluation_member emem on emem.mem_no = et.mem_no
                           inner join eval_committee ec on ec.eval_committee_no = emem.eval_committee_no
-        where rp.rnd_plan_no = #{rndPlanNo} and emem.mem_no = #{memNo}
+        where rp.rnd_plan_no = #{rndPlanNo} and emem.mem_no = #{memNo} and ec.name = '평가위원회-01'
+    </select>
+
+    <select id="researcher" parameterType="SharingOpinionDTO">
+        select (SELECT name FROM member WHERE mem_no = em.mem_no) as evalpeople
+        from EVALUATION_MEMBER em inner join member m on em.MEM_NO = m.MEM_NO
+        where EVAL_COMMITTEE_NO = #{evalCommitteeNo}  AND m.MEM_NO != #{memNo}
     </select>
 
     <!--    의견공유-->

@@ -17,6 +17,10 @@ $(function () {
   handleScrollEffect();
 });
 
+
+var rndPlanNo = localStorage.getItem("rndPlanNo");
+
+
 // [공통] AJAX 페이지(jsp) 가져오기
 async function loadStepContent(currentStep) {
   const subAnnNo = $("#sub-ann-no").text();
@@ -28,10 +32,21 @@ async function loadStepContent(currentStep) {
   $spinnerContainer.show();
 
   try {
-    const res = await $.ajax({
-      url: `/rnd-plans${path}?subAnnNo=${subAnnNo}`,
-      type: "GET",
-    });
+
+    let res;
+
+    if(currentStep === 3){
+      res = await $.ajax({
+        url: `/rnd-plans${path}?subAnnNo=${rndPlanNo}`,
+        type: "GET",
+      });
+
+    }else{
+      res = await $.ajax({
+        url: `/rnd-plans${path}?subAnnNo=${subAnnNo}`,
+        type: "GET",
+      });
+    }
 
     $contentContainer.html(res);
   } catch (err) {
@@ -73,9 +88,9 @@ async function changeStep(stepNumber) {
       await getTaskSummaryData(rndPlanNo);
     }
 
-/*    if (currentStep === 3 && rndPlanNo) {
+    if (currentStep === 3 && rndPlanNo) {
       // await getRsrchInstitutionData(rndPlanNo);
-    }*/
+    }
   }
 }
 

@@ -50,12 +50,18 @@ public class RndPlanServiceImpl implements RndPlanService {
         Long rndPlanSeq = rndPlanMapper.selectRndPlanSequence();
         request.assignRndTaskNo(rndPlanSeq);
         request.assignRndPlanNo(rndPlanSeq);
+
         for (RndField rndField : request.getRndFields()) {
             rndField.assignRndPlanNo(rndPlanSeq);
         }
 
         rndPlanMapper.insertBasicInfo(request);
-        rndPlanMapper.insertRndFields(request.getRndFields());
+
+        for (RndField rndField : request.getRndFields()) {
+            rndPlanMapper.insertRndField(rndField);
+        }
+
+//        rndPlanMapper.insertRndFields(request.getRndFields());
 
         return rndPlanSeq;
     }
@@ -91,9 +97,12 @@ public class RndPlanServiceImpl implements RndPlanService {
             rndField.assignRndPlanNo(rndPlanNo);
         }
 
+
         rndPlanMapper.updateTaskNameByRndPlanNo(rndPlanNo, request.getTaskName());
         rndPlanMapper.deleteRndFieldsByRndPlanNo(rndPlanNo);
-        rndPlanMapper.insertRndFields(request.getRndFields());
+        for (RndField rndField : request.getRndFields()) {
+            rndPlanMapper.insertRndField(rndField);
+        }
     }
 
     // 과제요약 데이터 등록 API
@@ -110,10 +119,20 @@ public class RndPlanServiceImpl implements RndPlanService {
         rndPlanMapper.insertTaskSummaryByRndPlanNo(request);
 
         rndPlanMapper.deleteRndPeriodsByRndPlanNo(request.getRndPlanNo());
-        rndPlanMapper.insertRndPeriods(request.getRndPeriods());
+
+//        rndPlanMapper.insertRndPeriods(request.getRndPeriods());
+
+        for (RndPeriod rndPeriod : request.getRndPeriods()) {
+            rndPlanMapper.insertRndPeriod(rndPeriod);
+        }
 
         rndPlanMapper.deleteStageContentsByRndPlanNo(request.getRndPlanNo());
-        rndPlanMapper.insertStageContents(request.getStageContents());
+
+//        rndPlanMapper.insertStageContents(request.getStageContents());
+
+        for (StageContent stageContent : request.getStageContents()) {
+            rndPlanMapper.insertStageContent(stageContent);
+        }
 
         return currStep;
     }
@@ -154,15 +173,16 @@ public class RndPlanServiceImpl implements RndPlanService {
 
         for (ResearchRequest researchRequest : request.getRsrchMembersData()) {
             // 연구원 데이터 삽입 (rsrchNo 자동 생성 및 설정)
-            rndPlanMapper.insertResearcher(request.getRndPlanNo(), researchRequest);
+
+            Long memberNo = rndPlanMapper.selectMemberNoByMemberName(researchRequest.getName());
+
+            rndPlanMapper.insertResearcher(request.getRndPlanNo(), researchRequest, memberNo);
             Long generatedRsrchNo = researchRequest.getRsrchNo();
-            log.info("Inserted researcher with rsrchNo={} for name={}", generatedRsrchNo, researchRequest.getName());
 
             // 참여 기간 삽입
             for (Map.Entry<String, ResearchJoinPeriodRequest> periodEntry : researchRequest.getParticipationData().entrySet()) {
                 ResearchJoinPeriodRequest joinPeriodRequest = periodEntry.getValue();
                 joinPeriodRequest.setRsrchNo(generatedRsrchNo); // 수정된 부분
-                log.info("Inserting join period with rsrchNo={} for period={}", joinPeriodRequest.getRsrchNo(), periodEntry.getKey());
                 rndPlanMapper.insertResearchJoinPeriod(joinPeriodRequest);
             }
         }
@@ -192,6 +212,11 @@ public class RndPlanServiceImpl implements RndPlanService {
         }
 
         return currStep;
+    }
+
+    @Override
+    public String selectResearcherName(Long rndPlanNo) {
+        return rndPlanMapper.selectResearcherName(rndPlanNo);
     }
 
 }

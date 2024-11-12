@@ -5,14 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Question {
-    private Long questionNo;
-    private String type;
-    private String content;
-    private Timestamp createAt;
-    private Long techFieldNo;
+public class UpdatePlanStatusDto {
+    private Long subAnnNo;
+    private int rndPlanNo;
+    private String planStatus;
 }

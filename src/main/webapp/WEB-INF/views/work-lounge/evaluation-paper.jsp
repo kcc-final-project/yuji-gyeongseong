@@ -13,6 +13,17 @@
             rel="stylesheet"
             href="/resources/css/work-lounge/evaluation-paper.css"
     />
+    <!-- SweetAlert2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .custom-swal-popup {
+            width: 600px;
+        }
+    </style>
+
 </head>
 <body>
 <div class="main-container" style="width: 100%;height: 756px;">
@@ -21,7 +32,7 @@
     <%--        <h2>평가보고서</h2>--%>
     <%--    </div>--%>
     <%--    <div class="col-2"></div>--%>
-    <div class="container col-8 mt-2 mb-2">
+    <div class="container col-11 mt-2 mb-2">
         <table class="table table-bordered shadow table-container">
             <tbody>
             <c:if test="${not empty paperList}">
@@ -67,6 +78,7 @@
                         <li class="nav-item">
                             <a
                                     class="nav-link active evpaper"
+                                    style = "border-radius: 0.375rem 0.375rem 0 0; border-top: 1px solid #2f3f6a; border-left: 1px solid #2f3f6a; border-right: 1px solid #2f3f6a;"
                                     id="common-tab"
                                     data-toggle="tab"
                                     href="#common"
@@ -81,6 +93,7 @@
                         <li class="nav-item">
                             <a
                                     class="nav-link evpaper"
+                                    style = "border-radius: 0.375rem 0.375rem 0 0; border-top: 1px solid #2f3f6a; border-left: 1px solid #2f3f6a; border-right: 1px solid #2f3f6a;"
                                     id="skill-tab"
                                     data-toggle="tab"
                                     href="#skill"
@@ -109,7 +122,7 @@
                             <p class="text-end mt-2 shadow-sm p-1">
                                 총 합계 : <span id="result1">0</span>점
                             </p>
-                            <br>
+<%--                            <br>--%>
                                 <%--                            <div class="d-flex mt-5">--%>
                                 <%--                                <div class="col-4"></div>--%>
                                 <%--                                <button--%>
@@ -146,7 +159,7 @@
                                 총 합계 : <span id="result2">0</span>점
                             </p>
                             <br>
-                            <div class="d-flex mt-3 me-5">
+                            <div class="d-flex mt-2 me-4">
                                 <div class="col-4"></div>
                                 <button
                                         class="btn btn-primary save-button ctm-btn-white"
@@ -171,7 +184,7 @@
             </tbody>
         </table>
     </div>
-    <div class="col-2"></div>
+<%--    <div class="col-2"></div>--%>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -203,13 +216,27 @@
                 success: function (response) {
                     console.log("점수가 성공적으로 저장되었습니다.", response);
 
-                    alert("점수가 성공적으로 저장되었습니다.");
-
-                    window.close();
+                    Swal.fire({
+                        icon: 'success',
+                        title: '점수가 성공적으로 저장되었습니다.',
+                        text: '점수가 저장되었습니다.',
+                        confirmButtonText: '확인',
+                        customClass: {
+                            popup: 'custom-swal-popup'
+                        }
+                    }).then(() => {
+                        window.close();
+                    });
                 },
                 error: function (xhr, status, error) {
                     console.error("점수 저장 오류:", status, error);
-                    alert("점수 저장에 실패했습니다. 다시 시도해주세요.");
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: '점수 저장에 실패했습니다.',
+                        text: '다시 시도해주세요.',
+                        confirmButtonText: '확인'
+                    });
                 }
             });
         }

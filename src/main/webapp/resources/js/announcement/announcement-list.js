@@ -6,7 +6,6 @@ $(function () {
     let isSearchActive = false;
     loadAnnouncements();
 
-
     // 기본적으로 '접수중' 공고를 불러오는 함수
     function loadAnnouncements() {
         if (isSearchActive) return;
@@ -108,12 +107,11 @@ $(function () {
 
 
     $(window).on('scroll', function() {
-        // 현재 활성화된 상태에 따라 함수 호출
         if (isSearchActive) return;
         var activeStatus = $('.reception-status-wrap .active').text().trim();
 
-        // 문서 끝에서 10px 남았을 때 함수 호출
-        if ($(window).scrollTop() + $(window).height() >= $(document).height() - 10) {
+        // 스크롤이 90% 이하로 내려가면 새로운 공고를 로드
+        if ($(window).scrollTop() + $(window).height() >= $(document).height() *0.9) {
             if (activeStatus === "접수중") {
                 loadAnnouncements();
             } else if (activeStatus === "접수예정") {

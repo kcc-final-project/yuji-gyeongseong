@@ -29,7 +29,6 @@
                         <td class="ctm-th ctm-w5p align-middle" rowspan="2">단계</td>
                         <td class="ctm-th ctm-w5p align-middle fz14" rowspan="2">연차</td>
                         <td class="ctm-th ctm-w10p align-middle fz14" rowspan="2">기관 역할</td>
-                        <td class="ctm-th ctm-w10p align-middle fz14" rowspan="2">연구개발기관명</td>
                         <td class="ctm-th ctm-w5p text-center" colspan="2">정부지원금</td>
                         <td class="ctm-th ctm-w20p text-center" colspan="5">연구개발기관 부담금</td>
                         <td class="ctm-th ctm-w10p text-center" colspan="3">재원별 연구비 합계(A)</td>
@@ -41,7 +40,6 @@
                         <td class="ctm-th__sub ctm-w5p text-center">비율(%)</td>
                         <td class="ctm-th__sub ctm-w7p text-center">현물</td>
                         <td class="ctm-th__sub ctm-w5p text-center">비율(%)</td>
-                        <td class="ctm-th__sub ctm-w5p text-center">소계</td>
                         <td class="ctm-th__sub ctm-w6p  text-center">현금</td>
                         <td class="ctm-th__sub ctm-w6p  text-center">현물</td>
                         <td class="ctm-th__sub ctm-w6p  text-center">소계</td>
@@ -52,28 +50,26 @@
                         <td class="text-center ctm-th__sub">1단계</td>
                         <td class="text-center">1년차</td>
                         <td class="text-center">주관연구기관</td>
-                        <td class="text-center">서울대학교</td>
+                         
                         <td>
-                            <input class="form-control form-control-sm gov-cash-input" value="1234" type="text"/>
+                            <input class="form-control form-control-sm gov-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm gov-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm gov-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-inkind-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="25" readonly disabled type="text"/>
                         </td>
-                        <td>
-                            <input class="form-control form-control-sm inst-burden-subtotal-input" value="" readonly disabled type="text"/>
-                        </td>
+                          
                         <td>
                             <input class="form-control form-control-sm total-cash-input" value="" readonly disabled type="text"/>
                         </td>
@@ -88,28 +84,26 @@
                         <td class="text-center ctm-th__sub">1단계</td>
                         <td class="text-center">2년차</td>
                         <td class="text-center">주관연구기관</td>
-                        <td class="text-center">서울대학교</td>
+                         
                         <td>
                             <input class="form-control form-control-sm gov-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm gov-rate-input" value="" readonly disabled type="text"/>
+                              <input class="form-control form-control-sm gov-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-inkind-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="25" readonly disabled type="text"/>
                         </td>
-                        <td>
-                            <input class="form-control form-control-sm inst-burden-subtotal-input" value="" readonly disabled type="text"/>
-                        </td>
+                          
                         <td>
                             <input class="form-control form-control-sm total-cash-input" value="" readonly disabled type="text"/>
                         </td>
@@ -124,28 +118,26 @@
                         <td class="text-center ctm-th__sub">2단계</td>
                         <td class="text-center">1년차</td>
                         <td class="text-center">주관연구기관</td>
-                        <td class="text-center">서울대학교</td>
+                         
                         <td>
                             <input class="form-control form-control-sm gov-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm gov-rate-input" value="" readonly disabled type="text"/>
+                              <input class="form-control form-control-sm gov-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-inkind-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="25" readonly disabled type="text"/>
                         </td>
-                        <td>
-                            <input class="form-control form-control-sm inst-burden-subtotal-input" value="" readonly disabled type="text"/>
-                        </td>
+                          
                         <td>
                             <input class="form-control form-control-sm total-cash-input" value="" readonly disabled type="text"/>
                         </td>
@@ -160,28 +152,26 @@
                         <td class="text-center ctm-th__sub">2단계</td>
                         <td class="text-center">2년차</td>
                         <td class="text-center">주관연구기관</td>
-                        <td class="text-center">서울대학교</td>
+                         
                         <td>
                             <input class="form-control form-control-sm gov-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm gov-rate-input" value="" readonly disabled type="text"/>
+                              <input class="form-control form-control-sm gov-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-inkind-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="25" readonly disabled type="text"/>
                         </td>
-                        <td>
-                            <input class="form-control form-control-sm inst-burden-subtotal-input" value="" readonly disabled type="text"/>
-                        </td>
+                          
                         <td>
                             <input class="form-control form-control-sm total-cash-input" value="" readonly disabled type="text"/>
                         </td>
@@ -196,28 +186,26 @@
                         <td class="text-center ctm-th__sub">3단계</td>
                         <td class="text-center">1년차</td>
                         <td class="text-center">주관연구기관</td>
-                        <td class="text-center">서울대학교</td>
+                         
                         <td>
                             <input class="form-control form-control-sm gov-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm gov-rate-input" value="" readonly disabled type="text"/>
+                              <input class="form-control form-control-sm gov-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-inkind-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="25" readonly disabled type="text"/>
                         </td>
-                        <td>
-                            <input class="form-control form-control-sm inst-burden-subtotal-input" value="" readonly disabled type="text"/>
-                        </td>
+                          
                         <td>
                             <input class="form-control form-control-sm total-cash-input" value="" readonly disabled type="text"/>
                         </td>
@@ -249,7 +237,6 @@
                         <td class="ctm-th ctm-w5p align-middle" rowspan="2">단계</td>
                         <td class="ctm-th ctm-w5p align-middle fz14" rowspan="2">연차</td>
                         <td class="ctm-th ctm-w10p align-middle fz14" rowspan="2">기관 역할</td>
-                        <td class="ctm-th ctm-w10p align-middle fz14" rowspan="2">연구개발<br/>기관명</td>
                         <td class="ctm-th ctm-w5p text-center" colspan="2">총 인건비</td>
                         <td class="ctm-th ctm-w5p text-center" colspan="2">연구시설.장비비</td>
                         <td class="ctm-th ctm-w5p text-center" colspan="2">연구개발부담비</td>
@@ -275,7 +262,7 @@
                         <td class="text-center ctm-th__sub">1단계</td>
                         <td class="text-center">1년차</td>
                         <td class="text-center">주관연구기관</td>
-                        <td class="text-center">서울대학교</td>
+                         
                         <!-- 총 인건비 -->
                         <td>
                             <input class="form-control form-control-sm budget-labor-cash-input" value="" type="text"/>
@@ -319,7 +306,7 @@
                         <td class="text-center ctm-th__sub">1단계</td>
                         <td class="text-center">2년차</td>
                         <td class="text-center">주관연구기관</td>
-                        <td class="text-center">서울대학교</td>
+                         
                         <!-- 총 인건비 -->
                         <td>
                             <input class="form-control form-control-sm budget-labor-cash-input" value="" type="text"/>
@@ -363,7 +350,7 @@
                         <td class="text-center ctm-th__sub" >2단계</td>
                         <td class="text-center">1년차</td>
                         <td class="text-center">주관연구기관</td>
-                        <td class="text-center">서울대학교</td>
+                         
                         <!-- 총 인건비 -->
                         <td>
                             <input class="form-control form-control-sm budget-labor-cash-input" value="" type="text"/>
@@ -407,7 +394,7 @@
                         <td class="text-center ctm-th__sub" >2단계</td>
                         <td class="text-center">2년차</td>
                         <td class="text-center">주관연구기관</td>
-                        <td class="text-center">서울대학교</td>
+                         
                         <!-- 총 인건비 -->
                         <td>
                             <input class="form-control form-control-sm budget-labor-cash-input" value="" type="text"/>
@@ -451,7 +438,7 @@
                         <td class="text-center ctm-th__sub">3단계</td>
                         <td class="text-center">1년차</td>
                         <td class="text-center">주관연구기관</td>
-                        <td class="text-center">서울대학교</td>
+                         
                         <!-- 총 인건비 -->
                         <td>
                             <input class="form-control form-control-sm budget-labor-cash-input" value="" type="text"/>
@@ -526,7 +513,6 @@
                         <td class="ctm-th ctm-w5p align-middle" rowspan="2">단계</td>
                         <td class="ctm-th ctm-w5p align-middle fz14" rowspan="2">연차</td>
                         <td class="ctm-th ctm-w10p align-middle fz14" rowspan="2">기관 역할</td>
-                        <td class="ctm-th ctm-w10p align-middle fz14" rowspan="2">연구개발기관명</td>
                         <td class="ctm-th ctm-w10p text-center" colspan="3">재원별 연구비 합계(A)</td>
                         <td class="ctm-th ctm-w10p text-center" colspan="3">비목별 연구비 합계(B)</td>
                         <td class="ctm-th ctm-w10p text-center" colspan="3">차액(A-B)</td>
@@ -548,7 +534,7 @@
                         <td class="text-center ctm-th__sub">1단계</td>
                         <td class="text-center">1년차</td>
                         <td class="text-center">주관연구기관</td>
-                        <td class="text-center">서울대학교</td>
+                         
                         <!-- 재원별 연구비 합계(A) -->
                         <td>
                             <input class="form-control form-control-sm total-a-cash-input" value="" readonly disabled type="text"/>
@@ -584,7 +570,7 @@
                         <td class="text-center ctm-th__sub">1단계</td>
                         <td class="text-center">2년차</td>
                         <td class="text-center">주관연구기관</td>
-                        <td class="text-center">서울대학교</td>
+                         
                         <!-- 재원별 연구비 합계(A) -->
                         <td>
                             <input class="form-control form-control-sm total-a-cash-input" value="" readonly disabled type="text"/>
@@ -620,7 +606,7 @@
                         <td class="text-center ctm-th__sub">2단계</td>
                         <td class="text-center">1년차</td>
                         <td class="text-center">주관연구기관</td>
-                        <td class="text-center">서울대학교</td>
+                         
                         <!-- 재원별 연구비 합계(A) -->
                         <td>
                             <input class="form-control form-control-sm total-a-cash-input" value="" readonly disabled type="text"/>
@@ -656,7 +642,7 @@
                         <td class="text-center ctm-th__sub">2단계</td>
                         <td class="text-center">2년차</td>
                         <td class="text-center">주관연구기관</td>
-                        <td class="text-center">서울대학교</td>
+                         
                         <!-- 재원별 연구비 합계(A) -->
                         <td>
                             <input class="form-control form-control-sm total-a-cash-input" value="" readonly disabled type="text"/>
@@ -692,7 +678,7 @@
                         <td class="text-center ctm-th__sub">3단계</td>
                         <td class="text-center">1년차</td>
                         <td class="text-center">주관연구기관</td>
-                        <td class="text-center">서울대학교</td>
+                         
                         <!-- 재원별 연구비 합계(A) -->
                         <td>
                             <input class="form-control form-control-sm total-a-cash-input" value="" readonly disabled type="text"/>

@@ -181,3 +181,39 @@
   font-size: 14px;
 }
 
+
+.status {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.status.not-approved {
+  color: #ff4d4d;
+  border: 1px solid #ff4d4d;
+  background-color: #ffffff;
+}
+
+.status.approved {
+  color: #28a745;
+  border: 1px solid #28a745;
+  background-color: #ffffff;
+}
+
+.status.stayed {
+  color: #AAAAAA;
+  border: 1px solid #AAAAAA;
+  background-color: #ffffff;
+}
+
+/*그래프 크기 맞춤*/
+.chart-container {
+  width: 100%;
+  height: 520px; /* 원하는 높이로 설정 */
+}
+
+.chart-container iframe,
+.chart-container canvas {
+  width: 100%;
+  height: 100%;
+}

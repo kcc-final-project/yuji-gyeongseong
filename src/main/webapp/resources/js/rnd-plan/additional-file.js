@@ -18,4 +18,37 @@ $(function () {
             $(this).closest('tr').find('.filename').val(name);
         }
     });
+
+    //file upload
+    $('.ctm-btn-init__next').click(function(e) {
+        e.preventDefault(); // 기본 폼 제출 방지
+
+        var formData = new FormData();
+        var allFilesSelected = false;
+
+        $('.uploadFile').each(function() {
+            var files = this.files;
+            if (files.length > 0) {
+                allFilesSelected = true;
+                for (var i = 0; i < files.length; i++) {
+                    formData.append('files', files[i]);
+                }
+            }
+        });
+
+        $.ajax({
+            url: '/files/upload',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                console.log("업로드 성공", response);
+                alert("파일이 성공적으로 업로드되었습니다.");
+            },
+            error: function(jqXHR, textStatus) {
+                console.log("업로드 실패", textStatus);
+            }
+        });
+    });
 });

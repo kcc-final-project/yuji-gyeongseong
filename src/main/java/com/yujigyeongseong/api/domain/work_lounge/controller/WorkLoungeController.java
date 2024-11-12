@@ -20,6 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.security.Principal;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RequestMapping("/work-lounge")
 @Controller
@@ -135,11 +137,10 @@ public class WorkLoungeController {
 
     @GetMapping("/register-list")
     public String getRegisterAndCompleteList(@AuthenticationPrincipal PrincipalDetail principal, Model model) {
-        String name = principal.getName();
         Integer userId = Math.toIntExact(principal.getId());
         List<RegisterListDTO> registerList = registerListService.getRegisterList(userId);
         List<RegisterListDTO> completeList = registerListService.getCompleteList(userId);
-
+        // userRole을 model에 추가
         model.addAttribute("registerList", registerList);
         model.addAttribute("completeList", completeList);
 
