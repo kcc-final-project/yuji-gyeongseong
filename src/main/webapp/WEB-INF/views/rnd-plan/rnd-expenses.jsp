@@ -40,7 +40,6 @@
                         <td class="ctm-th__sub ctm-w5p text-center">비율(%)</td>
                         <td class="ctm-th__sub ctm-w7p text-center">현물</td>
                         <td class="ctm-th__sub ctm-w5p text-center">비율(%)</td>
-                        <td class="ctm-th__sub ctm-w5p text-center">소계</td>
                         <td class="ctm-th__sub ctm-w6p  text-center">현금</td>
                         <td class="ctm-th__sub ctm-w6p  text-center">현물</td>
                         <td class="ctm-th__sub ctm-w6p  text-center">소계</td>
@@ -56,23 +55,21 @@
                             <input class="form-control form-control-sm gov-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm gov-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm gov-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-inkind-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="25" readonly disabled type="text"/>
                         </td>
-                        <td>
-                            <input class="form-control form-control-sm inst-burden-subtotal-input" value="" readonly disabled type="text"/>
-                        </td>
+                          
                         <td>
                             <input class="form-control form-control-sm total-cash-input" value="" readonly disabled type="text"/>
                         </td>
@@ -92,23 +89,21 @@
                             <input class="form-control form-control-sm gov-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm gov-rate-input" value="" readonly disabled type="text"/>
+                              <input class="form-control form-control-sm gov-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-inkind-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="25" readonly disabled type="text"/>
                         </td>
-                        <td>
-                            <input class="form-control form-control-sm inst-burden-subtotal-input" value="" readonly disabled type="text"/>
-                        </td>
+                          
                         <td>
                             <input class="form-control form-control-sm total-cash-input" value="" readonly disabled type="text"/>
                         </td>
@@ -128,23 +123,21 @@
                             <input class="form-control form-control-sm gov-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm gov-rate-input" value="" readonly disabled type="text"/>
+                              <input class="form-control form-control-sm gov-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-inkind-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="25" readonly disabled type="text"/>
                         </td>
-                        <td>
-                            <input class="form-control form-control-sm inst-burden-subtotal-input" value="" readonly disabled type="text"/>
-                        </td>
+                          
                         <td>
                             <input class="form-control form-control-sm total-cash-input" value="" readonly disabled type="text"/>
                         </td>
@@ -164,23 +157,21 @@
                             <input class="form-control form-control-sm gov-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm gov-rate-input" value="" readonly disabled type="text"/>
+                              <input class="form-control form-control-sm gov-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-inkind-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="25" readonly disabled type="text"/>
                         </td>
-                        <td>
-                            <input class="form-control form-control-sm inst-burden-subtotal-input" value="" readonly disabled type="text"/>
-                        </td>
+                          
                         <td>
                             <input class="form-control form-control-sm total-cash-input" value="" readonly disabled type="text"/>
                         </td>
@@ -200,23 +191,21 @@
                             <input class="form-control form-control-sm gov-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm gov-rate-input" value="" readonly disabled type="text"/>
+                              <input class="form-control form-control-sm gov-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-cash-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-rate-input" value="25" readonly disabled type="text"/>
                         </td>
                         <td>
                             <input class="form-control form-control-sm inst-burden-inkind-input" value="" type="text"/>
                         </td>
                         <td>
-                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="" readonly disabled type="text"/>
+                            <input class="form-control form-control-sm inst-burden-inkind-rate-input" value="25" readonly disabled type="text"/>
                         </td>
-                        <td>
-                            <input class="form-control form-control-sm inst-burden-subtotal-input" value="" readonly disabled type="text"/>
-                        </td>
+                          
                         <td>
                             <input class="form-control form-control-sm total-cash-input" value="" readonly disabled type="text"/>
                         </td>
