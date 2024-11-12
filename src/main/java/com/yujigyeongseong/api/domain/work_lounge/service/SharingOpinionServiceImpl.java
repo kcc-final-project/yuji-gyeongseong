@@ -30,6 +30,11 @@ public class SharingOpinionServiceImpl implements SharingOpinionService {
     }
 
     @Override
+    public List<SharingOpinionDTO> researcher(int evalCommitteeNo, int memNo) {
+        return sharingOpinionMapper.researcher(evalCommitteeNo, memNo);
+    }
+
+    @Override
     public List<SharingOpinionDTO> getSelectCommitteePersonList(String taskName) {
         return sharingOpinionMapper.selectCommitteePersonList(taskName);
     }

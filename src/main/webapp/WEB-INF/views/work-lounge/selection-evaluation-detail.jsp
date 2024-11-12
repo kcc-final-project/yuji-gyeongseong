@@ -185,11 +185,11 @@
     <div class="custom-divider2 mt-3"></div>
     <div id="button-area" class="d-flex justify-content-between mt-2">
         <div class="d-flex">
-            <button
-                    class="btn ctm-btn-mirror"
-                    onclick="window.open('http://localhost:8082/rnd-plans/8','_blank','width=700, height=600, top=50, left=50, scrollbars=yes')">
-                계획서 상세 조회
-            </button>
+<%--            <button--%>
+<%--                    class="btn ctm-btn-mirror"--%>
+<%--                    onclick="window.open('http://localhost:8082/rnd-plans/8','_blank','width=700, height=600, top=50, left=50, scrollbars=yes')">--%>
+<%--                계획서 상세 조회--%>
+<%--            </button>--%>
 <%--            <button--%>
 <%--                    class="ms-3 btn ctm-btn-normal"--%>
 <%--                    onclick="submitEvaluation()">--%>

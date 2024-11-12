@@ -185,3 +185,35 @@
     position: relative;
     opacity: 0.5 !important;
 }
+
+
+
+
+
+
+.form-group {
+    /* 전체 그룹의 스타일 */
+    margin-bottom: 2rem;
+}
+
+.form-control-file {
+    /* 파일 입력 필드 */
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #0c0c0c;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    /* 추가 스타일 (예시) */
+    border-color: #2e406a; /* 테두리 색 변경 */
+    background-color: #f0f0f0; /* 배경색 변경 */
+}
+
+.form-text {
+    /* 설명 텍스트 */
+    color: #6c757d; /* 텍스트 색 변경 */
+}
