@@ -218,7 +218,7 @@
     <script>
         $(document).ready(function () {
             $.ajax({
-                url: 'http://localhost:8082/api/v1/work_lounge/opinion',
+                url: '/api/v1/work_lounge/opinion',
                 method: 'GET',
                 success: function (data) {
 
