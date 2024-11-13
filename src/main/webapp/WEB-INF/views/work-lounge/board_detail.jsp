@@ -50,7 +50,7 @@
         <tr>
             <td colspan="2">
                 <input type="button" value="목록보기"
-                       onclick="window.location.href='http://localhost:8082/work-lounge/board-list'">
+                       onclick="window.location.href='/work-lounge/board-list'">
                 <input type="button" value="댓글"
                        onclick="window.location.href='${pageContext.request.contextPath}/work-lounge/board_reply?opinionNo=${board.opinionNo}'">
                 <input type="button" value="삭제" onclick="deleteOpinion(${board.opinionNo})">
