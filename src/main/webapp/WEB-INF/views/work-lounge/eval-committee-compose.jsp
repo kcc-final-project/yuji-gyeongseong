@@ -32,12 +32,12 @@
             <div class="setting-text" style="margin-left: 10px">평가기간</div>
             <input id="evaluationStartDate" class="sedium"
             <%--                   value="<fmt:formatDate value='${evalCommittee.evalStartedAt}' pattern='yyyy-MM-dd' />" --%>
-                   value = "2024-10-21"
+                   value = "2024-11-14"
                    readonly/>
             <span style="color: white">~</span>
             <input id="evaluationEndDate" class="sedium"
             <%--                   value="<fmt:formatDate value='${evalCommittee.evalClosedAt}' pattern='yyyy-MM-dd' />" --%>
-                   value = "2024-10-30  "
+                   value = "2024-11-28"
                    readonly/>
         </div>
         <hr>
@@ -48,9 +48,9 @@
             <input id="personnelSetting" class="small" type="text" value="6" readonly/>
 
             <div class="setting-text" style="margin-left: 310px">수신기한 설정</div>
-            <input id="receptionStartDate" class="medium" type="date" value="2024-10-15"/>
+            <input id="receptionStartDate" class="medium" type="date" value="2024-11-14"/>
             <span style="color: white">~</span>
-            <input id="receptionEndDate" class="medium" type="date" value="2024-10-15"/>
+            <input id="receptionEndDate" class="medium" type="date" value="2024-11-19"/>
 
 
         </div>
