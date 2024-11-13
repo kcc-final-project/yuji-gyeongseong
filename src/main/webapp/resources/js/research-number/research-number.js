@@ -636,7 +636,8 @@ $(document).ready(function () {
       contentType: "application/json",
       data: JSON.stringify(SubmitResearchRequest),
       success: function (response) {
-        alert("학력 정보 저장 완료");
+
+
 
         $.ajax({
           url: "/api/v1/research-number/register/eval/" + memberId,
@@ -644,7 +645,17 @@ $(document).ready(function () {
           contentType: "application/json",
           data: JSON.stringify(EvalNotiRequest),
           success: function (response) {
-            window.location.href='/';
+
+            Swal.fire({
+              icon: 'success',
+              title: '학력 정보 저장 완료',
+              timer: 2000, // 2초 후에 팝업 자동 닫힘
+              timerProgressBar: true, // 타이머 진행 막대 표시
+              showConfirmButton: false // 확인 버튼 숨김
+            }).then(() => {
+              // 팝업이 닫힌 후 페이지 리다이렉트
+              window.location.href = '/';
+            });
           },
           error: function (error) {
             alert("저장 알림 실패");

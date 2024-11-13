@@ -2,7 +2,7 @@ $(function () {
     let pageAccepting = 0;  // 접수중 페이지 번호
     let pageExpected = 0;   // 접수예정 페이지 번호
     let pageDeadline = 0;
-    const size = 2;
+    const size = 5;
     let isSearchActive = false;
     loadAnnouncements();
 
