@@ -296,15 +296,16 @@
         </div>
     </div>
     <script>
+        // 카카오 네임스페이스 사용
         var mapContainer = document.getElementById('map'),
             mapOption = {
-                center: new daum.maps.LatLng(37.537187, 127.005476),
+                center: new kakao.maps.LatLng(37.537187, 127.005476),
                 level: 5
             };
         var map = new kakao.maps.Map(mapContainer, mapOption);
-        var geocoder = new daum.maps.services.Geocoder();
-        var marker = new daum.maps.Marker({
-            position: new daum.maps.LatLng(37.537187, 127.005476),
+        var geocoder = new kakao.maps.services.Geocoder();
+        var marker = new kakao.maps.Marker({
+            position: new kakao.maps.LatLng(37.537187, 127.005476),
             map: map
         });
 
@@ -318,20 +319,25 @@
                     document.getElementById("address-btn").style.border = '1px solid #dee2e6';
                     geocoder.addressSearch(data.address, function (results, status) {
 
-                        if (status === daum.maps.services.Status.OK) {
+                        if (status === kakao.maps.services.Status.OK) {
                             var result = results[0];
 
-                            var coords = new daum.maps.LatLng(result.y, result.x);
+                            var coords = new kakao.maps.LatLng(result.y, result.x);
 
                             mapContainer.style.display = "block";
                             map.relayout();
                             map.setCenter(coords);
-                            marker.setPosition(coords)
+                            marker.setPosition(coords);
+                        } else {
+                            console.error('주소 검색 실패: ' + status);
                         }
                     });
                 }
             }).open();
         }
+
+        // 디버깅: geocoder 객체 확인
+        console.log('Geocoder 객체:', geocoder);
     </script>
 </div>
 <script src="/resources/js/sign-in-sign-up/sign-up-3.js"></script>
