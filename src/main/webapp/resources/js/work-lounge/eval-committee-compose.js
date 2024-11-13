@@ -38,7 +38,7 @@ $(document).ready(function () {
 
   // 비율 입력 시 합계 검증
   $(".ratio-input input").on("input", function () {
-    adjustRatios();
+    // adjustRatios();
   });
   /*
       function adjustRatios() {
