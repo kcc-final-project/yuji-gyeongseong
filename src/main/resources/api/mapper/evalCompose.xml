@@ -88,8 +88,8 @@
                      target_eval_committee_no,
                      '평가위원회-' || i,
                      6,
-                     '2024-11-13',
-                     '2024-11-23',
+                     TO_DATE('2024-11-13', 'YYYY-MM-DD'),
+                     TO_DATE('2024-11-23', 'YYYY-MM-DD'),
                      '평가대기중',
                      target_sub_ann_no
                  );
@@ -115,8 +115,8 @@
                     )
         SELECT target_eval_committee_no,
                m.mem_no,
-               '2024-11-13',
-               '2024-11-23',
+               TO_DATE('2024-11-13', 'YYYY-MM-DD'),
+               TO_DATE('2024-11-23', 'YYYY-MM-DD'),
                '승인대기',
                'stayed'
         FROM (
@@ -143,8 +143,8 @@
                     )
         SELECT target_eval_committee_no,
                m.mem_no,
-               '2024-11-13',
-               '2024-11-23',
+               TO_DATE('2024-11-13', 'YYYY-MM-DD'),
+               TO_DATE('2024-11-23', 'YYYY-MM-DD'),
                '승인대기',
                'stayed'
         FROM (
@@ -171,8 +171,8 @@
                     )
         SELECT target_eval_committee_no,
                m.mem_no,
-               '2024-11-13',
-               '2024-11-23',
+               TO_DATE('2024-11-13', 'YYYY-MM-DD'),
+               TO_DATE('2024-11-23', 'YYYY-MM-DD'),
                '승인대기',
                'stayed'
         FROM (
