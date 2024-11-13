@@ -98,8 +98,8 @@
         VALUES (target_eval_committee_no,
                 '평가위원회-' || i,
                 6,
-                TO_DATE('2024-10-21', 'YYYY-MM-DD'),
-                TO_DATE('2024-10-28', 'YYYY-MM-DD'),
+                DATE '2024-11-13',
+                DATE '2024-11-23',
                 '평가대기중',
                 target_sub_ann_no);
         -- 비율에 따른 멤버 수 계산
@@ -128,8 +128,8 @@
                 )
         SELECT target_eval_committee_no,
                mem_no,
-               TO_DATE('2024-10-21', 'YYYY-MM-DD'),
-               TO_DATE('2024-10-28', 'YYYY-MM-DD'),
+               DATE '2024-11-13',
+               DATE '2024-11-23',
                '승인대기',
                'stayed'
         FROM (SELECT m.mem_no, ROW_NUMBER() OVER (ORDER BY DBMS_RANDOM.VALUE) AS rn
@@ -153,8 +153,8 @@
                 )
         SELECT target_eval_committee_no,
                mem_no,
-               TO_DATE('2024-10-21', 'YYYY-MM-DD'),
-               TO_DATE('2024-10-28', 'YYYY-MM-DD'),
+               DATE '2024-11-13',
+               DATE '2024-11-23',
                '승인대기',
                'stayed'
         FROM (SELECT m.mem_no, ROW_NUMBER() OVER (ORDER BY DBMS_RANDOM.VALUE) AS rn
@@ -178,8 +178,8 @@
                 )
         SELECT target_eval_committee_no,
                mem_no,
-               TO_DATE('2024-10-21', 'YYYY-MM-DD'),
-               TO_DATE('2024-10-28', 'YYYY-MM-DD'),
+               DATE '2024-11-13',
+               DATE '2024-11-23',
                '승인대기',
                'stayed'
         FROM (SELECT m.mem_no, ROW_NUMBER() OVER (ORDER BY DBMS_RANDOM.VALUE) AS rn
