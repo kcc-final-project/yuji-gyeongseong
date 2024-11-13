@@ -72,119 +72,119 @@
 
             <tr>
                 <td colspan="4">
-                <c:forEach var="paper" items="${paperList}">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <c:forEach var="paper" items="${paperList}">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
 
-                        <li class="nav-item">
-                            <a
-                                    class="nav-link active evpaper"
-                                    style = "border-radius: 0.375rem 0.375rem 0 0; border-top: 1px solid #2f3f6a; border-left: 1px solid #2f3f6a; border-right: 1px solid #2f3f6a;"
-                                    id="common-tab"
-                                    data-toggle="tab"
-                                    href="#common"
-                                    role="tab"
-                                    aria-controls="common"
-                                    aria-selected="true"
-                                    data-id="공통"
-                                    data-form-id="${paper.formType}"
-                            >공통 평가지</a
+                            <li class="nav-item">
+                                <a
+                                        class="nav-link active evpaper"
+                                        style="border-radius: 0.375rem 0.375rem 0 0; border-top: 1px solid #2f3f6a; border-left: 1px solid #2f3f6a; border-right: 1px solid #2f3f6a;"
+                                        id="common-tab"
+                                        data-toggle="tab"
+                                        href="#common"
+                                        role="tab"
+                                        aria-controls="common"
+                                        aria-selected="true"
+                                        data-id="공통"
+                                        data-form-id="${paper.formType}"
+                                >공통 평가지</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                        class="nav-link evpaper"
+                                        style="border-radius: 0.375rem 0.375rem 0 0; border-top: 1px solid #2f3f6a; border-left: 1px solid #2f3f6a; border-right: 1px solid #2f3f6a;"
+                                        id="skill-tab"
+                                        data-toggle="tab"
+                                        href="#skill"
+                                        role="tab"
+                                        aria-controls="skill"
+                                        aria-selected="false"
+                                        data-id="${paper.type}"
+                                        data-form-id="${paper.formType}"
+                                >기술분야 평가지 (${paper.tfName})</a>
+                            </li>
+
+                        </ul>
+
+                        <div class="tab-content" id="myTabContent">
+                            <div
+                                    class="tab-pane fade show active"
+                                    id="common"
+                                    role="tabpanel"
+                                    aria-labelledby="common-tab"
                             >
-                        </li>
-                        <li class="nav-item">
-                            <a
-                                    class="nav-link evpaper"
-                                    style = "border-radius: 0.375rem 0.375rem 0 0; border-top: 1px solid #2f3f6a; border-left: 1px solid #2f3f6a; border-right: 1px solid #2f3f6a;"
-                                    id="skill-tab"
-                                    data-toggle="tab"
-                                    href="#skill"
-                                    role="tab"
-                                    aria-controls="skill"
-                                    aria-selected="false"
-                                    data-id="${paper.type}"
-                                    data-form-id="${paper.formType}"
-                            >기술분야 평가지 (${paper.tfName})</a>
-                        </li>
-
-                    </ul>
-
-                    <div class="tab-content" id="myTabContent">
-                        <div
-                                class="tab-pane fade show active"
-                                id="common"
-                                role="tabpanel"
-                                aria-labelledby="common-tab"
-                        >
-                            <table class="table table-bordered common">
-                                <tbody>
-                                <!-- 여기 나옴. -->
-                                </tbody>
-                            </table>
-                            <p class="text-end mt-2 shadow-sm p-1">
-                                총 합계 : <span id="result1">0</span>점
-                            </p>
-<%--                            <br>--%>
-                                <%--                            <div class="d-flex mt-5">--%>
-                                <%--                                <div class="col-4"></div>--%>
-                                <%--                                <button--%>
-                                <%--                                        class="btn save-button ctm-btn-white"--%>
-                                <%--                                        onclick="saveSurvey()"--%>
-                                <%--                                >--%>
-                                <%--                                    취소--%>
-                                <%--                                </button>--%>
-                                <%--                                <div class="col-1"></div>--%>
-                                <%--                                <button--%>
-                                <%--                                        class="btn btn-primary edit-button ctm-btn-normal"--%>
-                                <%--                                        onclick="enableEditing()"--%>
-                                <%--                                >--%>
-                                <%--                                    완료--%>
-                                <%--                                </button>--%>
-                                <%--                            </div>--%>
-                            <br>
-                        </div>
-
-                        <div
-                                class="tab-pane fade"
-                                id="skill"
-                                role="tabpanel"
-                                aria-labelledby="skill-tab"
-                        >
-
-                            <table class="table table-bordered data-table ${paper.type}">
-                                <tbody>
-                                <!-- 여기 나옴. -->
-                                </tbody>
-                            </table>
-
-                            <p class="text-end mt-2 shadow-sm p-1">
-                                총 합계 : <span id="result2">0</span>점
-                            </p>
-                            <br>
-                            <div class="d-flex mt-2 me-4">
-                                <div class="col-4"></div>
-                                <button
-                                        class="btn btn-primary save-button ctm-btn-white"
-                                        onclick="window.close();"
-                                >
-                                    취소
-                                </button>
-                                <div class="col-1"></div>
-                                <button
-                                        class="btn btn-primary edit-button ctm-btn-normal"
-                                        onclick="saveScores();"
-                                >
-                                    완료
-                                </button>
+                                <table class="table table-bordered common">
+                                    <tbody>
+                                    <!-- 여기 나옴. -->
+                                    </tbody>
+                                </table>
+                                <p class="text-end mt-2 shadow-sm p-1">
+                                    총 합계 : <span id="result1">0</span>점
+                                </p>
+                                    <%--                            <br>--%>
+                                    <%--                            <div class="d-flex mt-5">--%>
+                                    <%--                                <div class="col-4"></div>--%>
+                                    <%--                                <button--%>
+                                    <%--                                        class="btn save-button ctm-btn-white"--%>
+                                    <%--                                        onclick="saveSurvey()"--%>
+                                    <%--                                >--%>
+                                    <%--                                    취소--%>
+                                    <%--                                </button>--%>
+                                    <%--                                <div class="col-1"></div>--%>
+                                    <%--                                <button--%>
+                                    <%--                                        class="btn btn-primary edit-button ctm-btn-normal"--%>
+                                    <%--                                        onclick="enableEditing()"--%>
+                                    <%--                                >--%>
+                                    <%--                                    완료--%>
+                                    <%--                                </button>--%>
+                                    <%--                            </div>--%>
+                                <br>
                             </div>
-                            <br>
-                        </div>
 
-                    </div>
+                            <div
+                                    class="tab-pane fade"
+                                    id="skill"
+                                    role="tabpanel"
+                                    aria-labelledby="skill-tab"
+                            >
+
+                                <table class="table table-bordered data-table ${paper.type}">
+                                    <tbody>
+                                    <!-- 여기 나옴. -->
+                                    </tbody>
+                                </table>
+
+                                <p class="text-end mt-2 shadow-sm p-1">
+                                    총 합계 : <span id="result2">0</span>점
+                                </p>
+                                <br>
+                                <div class="d-flex mt-2 me-4">
+                                    <div class="col-4"></div>
+                                    <button
+                                            class="btn btn-primary save-button ctm-btn-white"
+                                            onclick="window.close();"
+                                    >
+                                        취소
+                                    </button>
+                                    <div class="col-1"></div>
+                                    <button
+                                            class="btn btn-primary edit-button ctm-btn-normal"
+                                            onclick="saveScores();"
+                                    >
+                                        완료
+                                    </button>
+                                </div>
+                                <br>
+                            </div>
+
+                        </div>
                     </c:forEach>
                 </td>
             </tbody>
         </table>
     </div>
-<%--    <div class="col-2"></div>--%>
+    <%--    <div class="col-2"></div>--%>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -207,37 +207,49 @@
                 // evaluationTableNo: 1
             };
 
-            $.ajax({
-                url: "/work-lounge/score",
-                type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify(scoreData),
+            // $.ajax({
+            //     url: "/work-lounge/score",
+            //     type: "POST",
+            //     contentType: "application/json",
+            //     data: JSON.stringify(scoreData),
+            //
+            //     success: function (response) {
+            //         console.log("점수가 성공적으로 저장되었습니다.", response);
+            //
+            //         Swal.fire({
+            //             icon: 'success',
+            //             title: '점수가 성공적으로 저장되었습니다.',
+            //             text: '점수가 저장되었습니다.',
+            //             confirmButtonText: '확인',
+            //             customClass: {
+            //                 popup: 'custom-swal-popup'
+            //             }
+            //         }).then(() => {
+            //             window.close();
+            //         });
+            //     },
+            //     error: function (xhr, status, error) {
+            //         console.error("점수 저장 오류:", status, error);
+            //
+            //         Swal.fire({
+            //             icon: 'error',
+            //             title: '점수 저장에 실패했습니다.',
+            //             text: '다시 시도해주세요.',
+            //             confirmButtonText: '확인'
+            //         });
+            //     }
+            // });
 
-                success: function (response) {
-                    console.log("점수가 성공적으로 저장되었습니다.", response);
-
-                    Swal.fire({
-                        icon: 'success',
-                        title: '점수가 성공적으로 저장되었습니다.',
-                        text: '점수가 저장되었습니다.',
-                        confirmButtonText: '확인',
-                        customClass: {
-                            popup: 'custom-swal-popup'
-                        }
-                    }).then(() => {
-                        window.close();
-                    });
-                },
-                error: function (xhr, status, error) {
-                    console.error("점수 저장 오류:", status, error);
-
-                    Swal.fire({
-                        icon: 'error',
-                        title: '점수 저장에 실패했습니다.',
-                        text: '다시 시도해주세요.',
-                        confirmButtonText: '확인'
-                    });
+            Swal.fire({
+                icon: 'success',
+                title: '점수가 성공적으로 저장되었습니다.',
+                text: '점수가 저장되었습니다.',
+                confirmButtonText: '확인',
+                customClass: {
+                    popup: 'custom-swal-popup'
                 }
+            }).then(() => {
+                window.close();
             });
         }
 
