@@ -6,7 +6,12 @@ $(document).ready(function () {
     academicInfoCount++;
 
     const newAcademicInfo = `
-        <p class="title">추가학력정보</p>
+
+        <div class="title_warning">
+            <p class="title">추가학력정보</p> 
+            <button id="deleteAcademicInfoButton" class="ctm-btn-normal" style="width: 150px; margin-right : 900px">삭제</button>
+        </div>
+
         <hr class="academic-separator" style="background-color: #939292 ">
         <div class="academic-list" id="academicList${academicInfoCount}">
             <div class="list" id="list${academicInfoCount}">
@@ -89,7 +94,13 @@ $(document).ready(function () {
     careerInfoCount++;
 
     const newCareerInfo = `
-        <p class="title">추가경력정보</p>
+        
+               <div class="title_warning">
+            <p class="title">추가경력정보</p> 
+            <button id="deleteCareerInfoButton" class="ctm-btn-normal" style="width: 150px; margin-right : 900px">삭제</button>
+        </div>
+
+        
         <hr class="career-separator" style="background-color: #939292 ">
         <div class="career-list" id="careerList${careerInfoCount}">
             <div class="list" id="careerList${careerInfoCount}">
@@ -154,7 +165,15 @@ $(document).ready(function () {
 
     // 기술분야가 3개 이상이면 추가하지 않음
     if (numberOfTechnicalFields >= 3) {
-      alert("기술분야는 최대 3개까지만 추가할 수 있습니다.");
+      Swal.fire({
+        icon: 'warning',
+        title: '주의',
+        text: '기술분야는 최대 3개까지만 추가할 수 있습니다.',
+        confirmButtonText: '확인',
+        confirmButtonColor: '#3085d6',
+        timer: 3000, // 3초 후 자동으로 닫힘
+        timerProgressBar: true
+      });
       return; // 추가 프로세스 중지
     }
     $("#addTechnicalModal").modal("show");
@@ -534,7 +553,12 @@ $(document).ready(function () {
           !academicInfo.majorName ||
           !academicInfo.acquiredAt
       ) {
-        alert("모든 학력 정보 필드를 채워주세요.");
+          Swal.fire({
+            icon: 'warning', // 경고 아이콘
+            title: '주의',
+            text: '모든 정보 필드를 채워주세요.',
+            confirmButtonText: '확인' // 확인 버튼 텍스트
+          });
         isValid = false;
         break;
       }
