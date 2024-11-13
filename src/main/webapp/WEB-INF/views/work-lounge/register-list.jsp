@@ -53,7 +53,7 @@
                             <td class="pt-3"><c:out value="${register.planStatus}"/></td>
                             <td>
                                 <button type="button" class="btn btn-sm ctm-btn-blue btn-edit" style="margin: auto"
-                                        onclick="window.location.href='/rnd-plans/${register.rndPlanNo}'">
+                                        onclick="window.location.href='/rnd-plans/2'">
                                     수정
                                 </button>
                             </td>
