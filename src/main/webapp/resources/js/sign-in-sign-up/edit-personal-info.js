@@ -360,7 +360,11 @@ $(function () {
       data: {userNumber: userNumber},
       success: (response) => {
         if (response === true) {
-          alert("이메일 인증 완료");
+          Swal.fire(
+              '인증 완료!',
+              '이메일 인증이 완료되었습니다.',
+              'success'
+          )
           $('#send-mail-btn').prop('disabled', true);
           $('#email-success').css('display', 'block');
           $('#check-area').css('border', '1.4px solid #dee2e6');

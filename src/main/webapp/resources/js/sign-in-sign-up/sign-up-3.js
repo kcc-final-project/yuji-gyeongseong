@@ -198,7 +198,12 @@ $(function () {
                 },
                 error: function (xhr) {
                     if (xhr.status == 400) {
-                        alert("아이디가 중복되었습니다.");
+                        Swal.fire({
+                            icon: "warning",
+                            text: "아이디가 중복되었습니다.",
+                            confirmButtonText: "확인",
+                            confirmButtonColor: "#2e406a",
+                        });
                         $('#user-id').css('border','1px solid #dc3545');
                         $('#duplication-btn').css('border','1px solid #dc3545');
                         $('.success-id').text("사용할 수 없는 아이디 입니다.").css('color', 'red');
@@ -241,7 +246,11 @@ $(function () {
 
     $('#send-mail-btn').on('click', () => {
         let email = $('#email').val();
-        alert("인증코드가 전송되었습니다.");
+        Swal.fire(
+            '전송 완료!',
+            '이메일이 전송 되었습니다.',
+            'success'
+        )
         $.ajax({
             url: '/mail/userMailSend',
             type: 'POST',
@@ -261,7 +270,11 @@ $(function () {
             data: {userNumber: userNumber},
             success: (response) => {
                 if (response === true) {
-                    alert("이메일 인증 완료");
+                    Swal.fire(
+                        '인증 완료!',
+                        '이메일 인증이 완료되었습니다.',
+                        'success'
+                    )
                     $('#send-mail-btn').prop('disabled', true);
                     $('#email-success').css('display', 'block');
                     $('#check-area').css('border', '1.4px solid #dee2e6');
