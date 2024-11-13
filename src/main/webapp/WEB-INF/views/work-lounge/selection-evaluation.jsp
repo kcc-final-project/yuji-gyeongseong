@@ -111,7 +111,7 @@
                                     <td style="text-align: center; flex: 0 0 auto;">
                                         <button type="button"  style="margin-left: 10px" class="btn ctm-btn-orange
                                                 <c:if test='${noti.progStatus != "구성대기"}'>ctm-btn-gray</c:if>"
-                                                onclick="if('${noti.progStatus}' == '구성대기') { window.open('http://localhost:8082/work-lounge/eval-list/eval-compose/${noti.subAnnNo}', '_blank','width=1625, height=840, top=5, left=5, scrollbars=yes'); }"
+                                                onclick="if('${noti.progStatus}' == '구성대기') { window.open('/work-lounge/eval-list/eval-compose/${noti.subAnnNo}', '_blank','width=1625, height=840, top=5, left=5, scrollbars=yes'); }"
                                                 <c:if test='${noti.progStatus != "구성대기"}'>disabled</c:if>>
                                             위원구성
                                         </button>
@@ -121,7 +121,7 @@
                                     <td style="text-align: center; justify-content: center; margin: auto">
                                         <button type="button" class="btn ctm-btn-orange1
                                                 <c:if test='${noti.progStatus != "선정평가대기"}'>ctm-btn-gray disabled</c:if>"
-                                                onclick="if('${noti.progStatus}' == '선정평가대기') { window.open('http://localhost:8082/work-lounge/eval-list/evaluation-select/${noti.subAnnNo}', '_blank','width=1300, height=800, top=25, left=60, scrollbars=yes'); }"
+                                                onclick="if('${noti.progStatus}' == '선정평가대기') { window.open('/work-lounge/eval-list/evaluation-select/${noti.subAnnNo}', '_blank','width=1300, height=800, top=25, left=60, scrollbars=yes'); }"
                                                 <c:if test='${noti.progStatus != "선정평가대기"}'>disabled</c:if>>
                                             선정평가
                                         </button>
