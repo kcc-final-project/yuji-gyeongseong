@@ -44,6 +44,14 @@ public class AnnouncementRestController {
         return anno;
     }
 
+    @GetMapping("/topExpected")
+    public List<Announcement> selectExpectedAnnouncementList1(){
+        List<Announcement> anno;
+        anno = announcementMapper.selectExpectedAnnouncementList1();
+
+        return anno;
+    }
+
     @GetMapping("/expected")
     public List<Announcement> getExpectedAnnouncementList(@RequestParam int page, @RequestParam int size) {
         List<Announcement> anno;

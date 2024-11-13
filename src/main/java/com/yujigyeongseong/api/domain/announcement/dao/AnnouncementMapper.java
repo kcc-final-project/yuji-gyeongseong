@@ -23,6 +23,8 @@ public interface AnnouncementMapper {
 
     List<Announcement> selectAcceptionAnnouncementList1();
 
+    List<Announcement> selectExpectedAnnouncementList1();
+
     SubAnnouncementRequest selectAnnouncementByTotalAnnNo(int AnnNo);
 
     SubAnnouncementDetailRequest selectSubAnnouncementBySubAnnNo(Long subAnnoNo);
