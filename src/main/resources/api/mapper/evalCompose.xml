@@ -99,7 +99,7 @@
                 '평가위원회-' || i,
                 6,
                 sysdate,
-                sysdate,
+                sysdate + 5,
                 '평가대기중',
                 target_sub_ann_no);
         -- 비율에 따른 멤버 수 계산
@@ -129,7 +129,7 @@
         SELECT target_eval_committee_no,
                mem_no,
                sysdate,
-               sysdate,
+               sysdate + 5,
                '승인대기',
                'stayed'
         FROM (SELECT m.mem_no, ROW_NUMBER() OVER (ORDER BY DBMS_RANDOM.VALUE) AS rn
@@ -154,7 +154,7 @@
         SELECT target_eval_committee_no,
                mem_no,
                sysdate,
-               sysdate,
+               sysdate + 5,
                '승인대기',
                'stayed'
         FROM (SELECT m.mem_no, ROW_NUMBER() OVER (ORDER BY DBMS_RANDOM.VALUE) AS rn
@@ -179,7 +179,7 @@
         SELECT target_eval_committee_no,
                mem_no,
                sysdate,
-               sysdate,
+               sysdate + 5,
                '승인대기',
                'stayed'
         FROM (SELECT m.mem_no, ROW_NUMBER() OVER (ORDER BY DBMS_RANDOM.VALUE) AS rn
