@@ -264,7 +264,7 @@
                     var comment = $('#message-text').val();
 
                     // var summaryUrl = 'http://localhost:8082/api/v1/work_lounge/summary-id/' + opinionId;
-                    var summaryUrl = 'http://localhost:8082/api/v1/work_lounge/post/' + opinionId;
+                    var summaryUrl = '/api/v1/work_lounge/post/' + opinionId;
 
                     $.ajax({
                         url: summaryUrl,
@@ -373,7 +373,7 @@
                 // AJAX 요청 전송
                 $.ajax({
                     // url: 'http://localhost:8082/api/v1/work_lounge/post/' + opinionId,
-                    url: 'http://localhost:8082/api/v1/work_lounge/summary-id/' + opinionId,
+                    url: '/api/v1/work_lounge/summary-id/' + opinionId,
                     method: 'POST',
                     data: {content: content},
                     success: function (response) {
