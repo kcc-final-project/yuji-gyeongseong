@@ -82,7 +82,7 @@
             <tr>
                 <td colspan="5" style="text-align: center">
                     <button class="btn ctm-btn-back mb-3"
-                            onclick="window.location.href='http://localhost:8082/work-lounge/board_insert'">새글쓰기
+                            onclick="window.location.href='/work-lounge/board_insert'">새글쓰기
                     </button>
                 </td>
             </tr>
@@ -91,7 +91,7 @@
         </table>
         <div class="d-flex justify-content-center">
             <button class="btn ctm-btn-back mb-3"
-                    onclick="window.location.href='http://localhost:8082/work-lounge/evaluation-table'">뒤로
+                    onclick="window.location.href='/work-lounge/evaluation-table'">뒤로
             </button>
         </div>
     </div>

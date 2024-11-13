@@ -53,7 +53,7 @@
                             <td class="pt-3"><c:out value="${register.planStatus}"/></td>
                             <td>
                                 <button type="button" class="btn btn-sm ctm-btn-blue btn-edit" style="margin: auto"
-                                        onclick="window.location.href='http://localhost:8082/rnd-plans/${register.rndPlanNo}'">
+                                        onclick="window.location.href='/rnd-plans/${register.rndPlanNo}'">
                                     수정
                                 </button>
                             </td>
@@ -112,7 +112,7 @@
                         </td>
                         <td>
                             <button type="button" class="btn btn-sm ctm-btn-orange btn-opinion" style="margin: auto"
-                                    onclick="window.open('http://localhost:8082/work-lounge/sharing-opinion/${complete.rndPlanNo}','_blank','width=1150, height=800,top=25, left=140, scrollbars=no')">
+                                    onclick="window.open('/work-lounge/sharing-opinion/${complete.rndPlanNo}','_blank','width=1150, height=800,top=25, left=140, scrollbars=no')">
                                 의견공유
                             </button>
                         </td>
