@@ -15,15 +15,15 @@
     <h4><b>선정평가 목록</b></h4>
     <div class="line"></div>
     <div class="d-flex align-items-center gap-2">
-        <div class="col-9" style="margin-right: 100px !important"></div>
+        <div class="col-10" style="margin-right: 120px !important"></div>
         <div class="form-group">
-            <select onchange="filterTable(this.value)" class="form-control" style="border-radius: 5px;">
-                <option value="" disabled>필터 선택</option>
-                <option value="미평가">미평가</option>
-                <option value="평가완료">평가완료</option>
-            </select>
+<%--            <select onchange="filterTable(this.value)" class="form-control" style="border-radius: 5px;">--%>
+<%--                <option value="" disabled>필터 선택</option>--%>
+<%--                <option value="미평가">미평가</option>--%>
+<%--                <option value="평가완료">평가완료</option>--%>
+<%--            </select>--%>
         </div>
-        <button onclick="resetTable()"
+        <button  onclick="resetTable()"
                 style="background-color: #f1f1f1; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin: auto">
             <div style="margin-bottom: 4px">
             <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#5f6368">

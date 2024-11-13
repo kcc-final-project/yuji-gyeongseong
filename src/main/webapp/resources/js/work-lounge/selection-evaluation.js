@@ -61,17 +61,24 @@ $(document).ready(function () {
 });
 
 function filterTable(status) {
+  console.log(status)
   const table = document.querySelector(".table-hover tbody"); // 테이블 tbody 요소 선택
+  console.log(status)
   const rows = table.querySelectorAll("tr.clickable-row"); // 모든 'clickable-row' tr 요소 선택
+  console.log(status)
   let visibleRowCount = 0;
+  console.log(status)
 
   // 각 행을 순회하며 필터링
+  console.log(rows)
   rows.forEach((row) => {
+    console.log(row)
     // 평가 상태를 나타내는 span.status 선택
-    const statusCell = row.querySelector("td span.status");
-
+    const statusCell = row.querySelectorAll("td span.status");
+    console.log(statusCell)
     if (statusCell) {
-      const statusText = statusCell.textContent.trim(); // 상태 텍스트 추출
+      const statusText = statusCell.textContent // 상태 텍스트 추출
+      console.log(statusText)
 
       // 선택한 상태와 일치하는 행을 보이도록 설정
       if (statusText === status) {
