@@ -103,7 +103,7 @@
                 email = #{email},
             </if>
             <if test="birth != null">
-                birth = #{birth},
+                birth = TO_DATE(#{birth}, 'YYYY-MM-DD'),
             </if>
             <if test="gender != null">
                 gender = #{gender},
