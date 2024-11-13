@@ -39,6 +39,7 @@ build/
 ### VS Code ###
 .vscode/
 application.yml
+application-secret.yml
 
 ### npm
 node_modules/

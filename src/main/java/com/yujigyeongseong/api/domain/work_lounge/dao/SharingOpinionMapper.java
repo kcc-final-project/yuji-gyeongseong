@@ -15,6 +15,8 @@ public interface SharingOpinionMapper {
 
     public List<SharingOpinionDTO> evalPeople(int rndPlanNo, int memNo);
 
+    public List<SharingOpinionDTO> researcher(int evalCommitteeNo, int memNo);
+
     public List<SharingOpinionDTO> selectCommitteePersonList(String taskName);
 
 

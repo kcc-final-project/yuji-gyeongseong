@@ -3,7 +3,6 @@ $(function () {
     // detail-btn 클릭 이벤트
     $(document).on('click', '.detail-btn', function () {
         let subAnnNo = $(this).data("announcement-no");
-        console.log(subAnnNo);
         $.ajax({
             url: '/anno/detail/zoom-in/' + subAnnNo,
             type: 'GET',
@@ -14,6 +13,44 @@ $(function () {
                 console.error('Error:', error);
             }
         });
+
+
+
+        $.ajax({
+            url: '/anno/detail/file/' + subAnnNo,
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+
+                const tableBody = $('.file-body'); // 정확한 선택자인지 확인하세요.
+                tableBody.empty();
+
+                response.forEach((file, index) => {
+
+                    const row = `
+                <tr>
+                    <td class="index-number" style="text-align: center">${index + 1}</td>
+                    <td>${file.fileName || '파일 이름 없음'}</td>
+                    <td style="text-align: center">공모 관련 문서</td>
+                    <td style="text-align: center">
+                        <span class="material-icons pdf">picture_as_pdf</span>
+                    </td>
+                    <td style="text-align: center" >
+                        <a style="color: black" href="/files/download?filePath=${file.uploadPath || '#'}">
+                            <span class="material-icons">download</span>
+                        </a>
+                    </td>
+                </tr>
+            `;
+                    tableBody.append(row);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+
+
     });
 
     $(document).on('click', '.apply-btn', function () {
@@ -95,29 +132,6 @@ $(function () {
             container.append(cardHtml);
         });
     }
-
-
-
-    // apply-btn 클릭 이벤트
-    // $(document).on('click', '.apply-btn', function () {
-    //     const subAnnoNo = $(this).closest('.card').data('announcement-no');
-    //     console.log('subAnnoNo:', subAnnoNo); // 값 확인용 출력
-    //     console.log("isLoggedIn" + isLoggedIn);
-    //     if (isLoggedIn) {
-    //         if (subAnnoNo) {
-    //             window.location.href = '/rnd-plans/' + subAnnoNo;
-    //         } else {
-    //             alert("오류 발생: subAnnoNo를 찾을 수 없습니다.");
-    //         }
-    //     } else {
-    //         Swal.fire({
-    //             icon: "warning",
-    //             text: "로그인 후 이용 가능합니다.",
-    //             confirmButtonText: "확인",
-    //             confirmButtonColor: "#2e406a",
-    //         });
-    //     }
-    // });
 
 });
 

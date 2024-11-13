@@ -86,7 +86,38 @@
                 </table>
             </div>
             <div class="col-12" style="margin-top: 0;">
-                <div id="surveyContainer" class="survey-container col-12"></div>
+                <div id="surveyContainer" class="survey-container col-12">
+
+                    <div class="container mt-4 survey guidance-message">
+                        <div class="row justify-content-center">
+                            <!-- 안내 메시지 카드 -->
+                            <div class="col-12 col-md-8">
+                                <div class="card shadow-lg">
+                                    <div class="card-header text-center bg-info text-white" style="background-color: #2e406aff !important;">
+                                        <h4>공모분야 선택 안내</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- 안내 문구 -->
+                                        <p class="lead">
+                                            이 부분은 공모분야를 선택한 후에 해당 공모와 관련된 설문지 양식이 표시되는 영역입니다.
+                                            각 공모는 특정 분야와 관련된 질문을 포함하고 있으며, 공모분야를 선택하면 그에 맞는 설문 내용이 이곳에 자동으로 로드됩니다.
+                                        </p>
+                                        <p class="lead">
+                                            공모분야를 먼저 선택하고 설문을 작성해 주세요.
+                                        </p>
+                                        <!-- 공모분야 선택을 유도하는 버튼 -->
+                                        <div class="d-flex justify-content-center">
+                                            <button class="btn btn-primary btn-lg" type="button" id="selectCategoryBtn" style="background-color: #2e406aff !important;">
+                                                공모분야 선택하기
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
 
@@ -145,6 +176,11 @@
             var selectedValue = $(this).val();
             var selectedOption = $(this).find("option:selected");
             var committeeTitle = selectedOption.data("subtitle");
+
+            if (selectedValue !== "") {
+                // 안내 메시지 카드를 숨김
+                $(".guidance-message").hide();
+            }
 
             $.ajax({
                 url: 'http://localhost:8082/api/v1/work_lounge/evaluation-table/' + committeeTitle,
@@ -342,7 +378,7 @@
                                                         '<div class="new-div p-0" style="width: 25%; float: left;">' +
                                                         '<div class="card shadow" style="margin-top: 40px">' +
                                                         '<h4 class="text-center letter"><b>질문 목록</b></h4>' +
-                                                        '<div class="card-body" style="max-height: 340px; overflow-y: auto; padding: 5%">' +
+                                                        '<div class="card-body" style="max-height: 360px; overflow-y: auto; padding: 5%">' +
                                                         '</div>' +
                                                         '</div>' +
                                                         '</div>'
@@ -516,7 +552,7 @@
             '<div class="container">' +
             '<div class="d-flex justify-content-start align-items-center">' +
             '<button type="button" style="margin-right: 17px" class="btn mt-2 mb-2 new-button letter1 ctm-btn-blue" onclick="window.open(\'http://localhost:8082/work-lounge/evaluation-tables/' + tech1 + '/' + rule + '\', \'_blank\', \'width=700, height=600, top=50, left=50, scrollbars=yes\')">미리보기</button>' +
-            '<div class="col-7" style="margin-right: 33px">' +
+            '<div class="col-7" style="margin-right: 30px">' +
             '</div>' +
             '<button type="button" class="btn btn-secondary ms-1 ml-2 mt-2 mb-2 modify letter1">수정</button>' +
             '<button type="button" class="ms-2 btn btn-secondary ml-2 mt-2 mb-2 save letter1">저장</button>' +
@@ -565,7 +601,7 @@
                     '<div class="new-div p-0" style="width: 100%;">' +
                     '<div class="card shadow" style="margin-top: 40px">' +
                     '<h4 class="text-center letter"><b>질문 목록</b></h4>' +
-                    '<div class="card-body" style="max-height: 340px; overflow-y: auto; padding: 5%">' +
+                    '<div class="card-body" style="max-height: 360px; overflow-y: auto; padding: 5%">' +
                     '</div>' +
                     '</div>' +
                     '</div>'
@@ -659,6 +695,102 @@
             $('#targetArea').append(newDivContent);
         });
     }
+
+
+    // 질문지 저장 용도
+    $(document).off('click', '.save').on('click', '.save', function () {
+        const title = $('#floatingTextarea').val();
+        const description = $('#floatingTextarea2').val();
+        const questions = [];
+
+        // 질문 목록 준비
+        $('#targetArea .question').each(function () {
+            const content = $(this).find('textarea').val();
+            const questionType = 'Text';  // 질문 유형 (필요에 따라 수정)
+            const techFieldNo = 1;  // 기술 필드 번호 (필요에 따라 수정)
+
+
+            if (content.trim() !== '') {
+                questions.push({
+                    type: questionType,
+                    content: content,
+                    techFieldNo: techFieldNo
+                });
+            }
+        });
+
+
+        if (questions.length === 0) {
+            // 알림 표시
+            Swal.fire({
+                title: '경고!',
+                text: '적어도 하나의 질문을 추가해야 합니다.',
+                icon: 'warning',
+                confirmButtonText: '확인'
+            });
+            return;
+        }
+
+        // 요청 데이터 객체
+        const requestData = {
+            title: title,
+            description: description,
+            formType: 'Survey',
+            techFieldNo: 1,
+            questions: questions  // 질문 목록
+        };
+
+        // 요청 데이터 콘솔
+        console.log('Request Data:', JSON.stringify(requestData));
+
+        // AJAX 요청
+        $.ajax({
+            url: 'http://localhost:8082/api/v1/work_lounge/newForm',
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            data: JSON.stringify(requestData),
+            // success: function (response) {
+            //
+            //     alert('Form saved successfully!');
+            //     console.log('Server Response:', response);
+            //
+            // },
+            // error: function (xhr, status, error) {
+            //     console.log('XHR:', xhr);
+            //     console.error('Error:', error);
+            //     console.error('Status:', status);
+            //     console.error('Response:', xhr.responseText);
+            //     alert('Failed to save form: ' + error);
+            // }
+            success: function (response) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Form saved successfully!',
+                    text: 'The form has been saved successfully.',
+                    confirmButtonText: 'OK'
+                });
+                console.log('Server Response:', response);
+            },
+            error: function (xhr, status, error) {
+                console.log('XHR:', xhr);
+                console.error('Error:', error);
+                console.error('Status:', status);
+                console.error('Response:', xhr.responseText);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Failed to save form',
+                    text: 'Error: ' + error,
+                    confirmButtonText: 'OK'
+                });
+            }
+
+        });
+    });
+
+
+
+
 
 
 </script>

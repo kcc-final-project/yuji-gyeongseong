@@ -70,11 +70,6 @@ public class EvalComposeServiceImpl implements EvalComposeService {
     public int setEvalCommitteesBySubAnnNo(Long subAnnNo, int rndPlanCnt, EvalPercentRequest request) {
         SqlSession session = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
         try {
-//            for (int i = 0; i < rndPlanCnt; i++) {
-//                String committeeName = String.format("평가위원회-%02d", i); // "평가위원회-00" 형식으로 이름 생성
-//                evalComposeMapper.insertEvalCommitteesBySubAnnNo(subAnnNo, committeeName);
-//            }
-
             evalComposeMapper.insertEvalCommitteesBySubAnnNo(
                     subAnnNo,
                     rndPlanCnt,
@@ -82,7 +77,6 @@ public class EvalComposeServiceImpl implements EvalComposeService {
                     request.getEducationInstituteRate(),
                     request.getProfessionalInstituteRate()
             );
-
             session.flushStatements();  // 쌓인 배치 실행
             session.commit();  // 성공시 커밋
             return rndPlanCnt;  // 성공적으로 처리된 개수 반환

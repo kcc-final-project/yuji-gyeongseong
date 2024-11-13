@@ -22,6 +22,12 @@
     margin-top: 30px;
 }
 
+.form-check-input{
+    border: 1.5px solid #dddddd;
+    width: 19px;
+    height: 18px;
+}
+
 .common-btn {
     width: 25%;
     background-color: #E4EBFD;
@@ -68,8 +74,8 @@
 }
 
 .terms-of-use-contents {
-    width: 94%;
-    height: 87%;
+    width: 96%;
+    height: 90%;
     border: 1px solid #D4D4D4;
     border-radius: 10px;
     background-color: #f0f3f6;
@@ -104,7 +110,7 @@
 
 .final-agree-btn {
     width: 118px;
-
+    border-radius: 7px;
     background-color: #2E406A;
     color: white;
 }
@@ -112,9 +118,15 @@
 .final-agree-btn:hover {
     background-color: white;
     border: 1px solid #D4D4D4;
+    border-radius: 7px;
     color: black;
     padding: 6px;
     transition: .3s all;
+}
+
+.final-agree-btn:active{
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .final-dgree-btn {
@@ -122,6 +134,7 @@
     padding: 6px;
     background-color: white;
     border: 1px solid #D4D4D4;
+    border-radius: 7px;
 }
 
 .final-dgree-btn:hover {
@@ -129,6 +142,12 @@
     color: white;
     padding: 6px;
     transition: .3s all;
+    border-radius: 7px;
+}
+
+.final-dgree-btn:active{
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .footer-area {

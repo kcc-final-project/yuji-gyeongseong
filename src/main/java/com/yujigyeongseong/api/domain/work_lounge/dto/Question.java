@@ -14,4 +14,5 @@ public class Question {
     private String type;
     private String content;
     private Timestamp createAt;
+    private Long techFieldNo;
 }

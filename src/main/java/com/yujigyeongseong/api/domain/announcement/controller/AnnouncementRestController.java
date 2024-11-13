@@ -1,6 +1,7 @@
 package com.yujigyeongseong.api.domain.announcement.controller;
 
 import com.yujigyeongseong.api.domain.announcement.dao.AnnouncementMapper;
+import com.yujigyeongseong.api.domain.announcement.dto.AnnocementFile;
 import com.yujigyeongseong.api.domain.announcement.dto.Announcement;
 import com.yujigyeongseong.api.domain.announcement.dto.SubAnnouncement;
 import com.yujigyeongseong.api.domain.announcement.dto.SubAnnouncementApply;
@@ -43,6 +44,14 @@ public class AnnouncementRestController {
         return anno;
     }
 
+    @GetMapping("/topExpected")
+    public List<Announcement> selectExpectedAnnouncementList1(){
+        List<Announcement> anno;
+        anno = announcementMapper.selectExpectedAnnouncementList1();
+
+        return anno;
+    }
+
     @GetMapping("/expected")
     public List<Announcement> getExpectedAnnouncementList(@RequestParam int page, @RequestParam int size) {
         List<Announcement> anno;
@@ -60,7 +69,14 @@ public class AnnouncementRestController {
     @GetMapping("/detail/zoom-in/{subAnnNo}")
     public SubAnnouncementDetailRequest postDetailAnnouncement(@PathVariable("subAnnNo") Long subAnnNo) {
         SubAnnouncementDetailRequest sub = announcementListService.postDetailAnnouncement(subAnnNo);
+
         return sub;
+    }
+
+    @GetMapping("/detail/file/{subAnnNo}")
+    public List<AnnocementFile> postDetailAnnouncementFile(@PathVariable("subAnnNo") Long subAnnNo) {
+        List<AnnocementFile> files = announcementMapper.selectFileDetailSubAnno(subAnnNo);
+        return files;
     }
 
     @GetMapping("/search")

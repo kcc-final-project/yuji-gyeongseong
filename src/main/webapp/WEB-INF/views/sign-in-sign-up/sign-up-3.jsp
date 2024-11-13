@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert title here</title>
     <link rel="stylesheet" href="/resources/css/sign-in-sign-up/sign-up-3.css"/>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=adc05e07391cc2a24481a3bc047af95d&libraries=services"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
@@ -188,7 +188,9 @@
                             <label for="position" class="form-label">직위</label>
                             <input type="text" class="form-control" id="position" disabled>
                         </div>
+
                     </div>
+
                     <div class="row mb-3">
                         <%--                        <div class="col-md-6">--%>
                         <%--                            <label for="institution-email" class="form-label">기관 웹 메일</label>--%>
@@ -202,20 +204,23 @@
                         <%--                        </div>--%>
                         <div class="col-md-6">
                                 <label for="email" class="form-label" style="display: flex;">기관 웹메일 <span class="text-danger mail-danger" style="display: none; margin-left: 4px;">*</span></label>
-                            <small id="success-email"></small>
                             <div class="input-group">
                                 <input type="email" class="form-control" id="email" disabled
                                        placeholder="example@naver.com">
                                 <button class="btn btn-outline-secondary" type="button" id="send-mail-btn" disabled>인증코드 발송
                                 </button>
                             </div>
-                            <div class="d-flex align-items-center" style=" margin-top: 20px">
-                                <input type="text" class="form-control text-center me-2" id="check-area" disabled
-                                       style="width: 300px;">
-                                <button class="btn btn-outline-secondary" type="button" id="email-check" disabled>인증</button>
-                            </div>
+                            <small id="success-email"></small>
+
                         </div>
-                        <button type="button" class="add-organ-btn">기관추가</button>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center" style=" margin-top: 32px">
+                                    <input type="text" class="form-control me-2" id="check-area" disabled
+                                           style="width: 181px;">
+                                    <button class="btn btn-outline-secondary" type="button" id="email-check" disabled>인증</button>
+                                </div>
+                            </div>
+                        <button type="button" class="add-organ-btn" style="margin-top: 40px">기관추가</button>
                     </div>
                 </div>
                 <hr>
@@ -291,15 +296,16 @@
         </div>
     </div>
     <script>
+        // 카카오 네임스페이스 사용
         var mapContainer = document.getElementById('map'),
             mapOption = {
-                center: new daum.maps.LatLng(37.537187, 127.005476),
+                center: new kakao.maps.LatLng(37.537187, 127.005476),
                 level: 5
             };
-        var map = new daum.maps.Map(mapContainer, mapOption);
-        var geocoder = new daum.maps.services.Geocoder();
-        var marker = new daum.maps.Marker({
-            position: new daum.maps.LatLng(37.537187, 127.005476),
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+        var geocoder = new kakao.maps.services.Geocoder();
+        var marker = new kakao.maps.Marker({
+            position: new kakao.maps.LatLng(37.537187, 127.005476),
             map: map
         });
 
@@ -313,20 +319,25 @@
                     document.getElementById("address-btn").style.border = '1px solid #dee2e6';
                     geocoder.addressSearch(data.address, function (results, status) {
 
-                        if (status === daum.maps.services.Status.OK) {
+                        if (status === kakao.maps.services.Status.OK) {
                             var result = results[0];
 
-                            var coords = new daum.maps.LatLng(result.y, result.x);
+                            var coords = new kakao.maps.LatLng(result.y, result.x);
 
                             mapContainer.style.display = "block";
                             map.relayout();
                             map.setCenter(coords);
-                            marker.setPosition(coords)
+                            marker.setPosition(coords);
+                        } else {
+                            console.error('주소 검색 실패: ' + status);
                         }
                     });
                 }
             }).open();
         }
+
+        // 디버깅: geocoder 객체 확인
+        console.log('Geocoder 객체:', geocoder);
     </script>
 </div>
 <script src="/resources/js/sign-in-sign-up/sign-up-3.js"></script>
