@@ -160,11 +160,11 @@
                 </div>
 
                 <div id="radar" class="mt-3 chart-container card p-2 shadow">
-                    <iframe src="http://localhost:8082/work-lounge/radar-chart" width="100%" height="745px"></iframe>
+                    <iframe src="/work-lounge/radar-chart" width="100%" height="745px"></iframe>
                 </div>
 
                 <div id="bubble" class="mt-3 chart-container card p-2 shadow">
-                    <iframe src="http://localhost:8082/work-lounge/bubble-chart" width="100%" height="600px"></iframe>
+                    <iframe src="/work-lounge/bubble-chart" width="100%" height="600px"></iframe>
                 </div>
 
                 <script>

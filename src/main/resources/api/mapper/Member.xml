@@ -37,9 +37,16 @@
     </select>
 
     <insert id="insertMember" parameterType="SignUpMember">
-        INSERT INTO member (mem_no, username, password, name, email, birth, gender, tel, addr, affil_type, affil_dept, position, status, created_at, institution_no)
-        VALUES (seq_member.NEXTVAL, #{username}, #{password}, #{name}, #{email}, #{birth}, #{gender}, #{tel}, #{addr}, #{affilType}, #{affilDept}, #{position}, '활성', CURRENT_TIMESTAMP, #{institutionNo})
+        INSERT INTO member (
+            mem_no, username, password, name, email, birth, gender, tel, addr, affil_type,
+            affil_dept, position, status, created_at, institution_no
+        ) VALUES (
+                     seq_member.NEXTVAL, #{username}, #{password}, #{name}, #{email},
+                     TO_DATE(#{birth}, 'YYYY-MM-DD'), #{gender}, #{tel}, #{addr},
+                     #{affilType}, #{affilDept}, #{position}, '활성', CURRENT_TIMESTAMP, #{institutionNo}
+                 )
     </insert>
+
 
     <resultMap id="MemberLoginResultMap" type="MemberLogin">
         <id property="memNo" column="memNo"/>
@@ -76,7 +83,7 @@
         FROM member
         WHERE username = #{username}
     </select>
-    
+
     <insert id="insertRole" parameterType="int">
         INSERT INTO mem_role
         VALUES (#{memNo},1,CURRENT_TIMESTAMP)
