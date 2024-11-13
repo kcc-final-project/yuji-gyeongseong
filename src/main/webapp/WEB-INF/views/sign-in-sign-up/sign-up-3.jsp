@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert title here</title>
     <link rel="stylesheet" href="/resources/css/sign-in-sign-up/sign-up-3.css"/>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=adc05e07391cc2a24481a3bc047af95d&libraries=services"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
@@ -203,7 +203,7 @@
                         <%--                            <small class="text-success">※ 메일이 인증되었습니다.</small>--%>
                         <%--                        </div>--%>
                         <div class="col-md-6">
-                                <label for="email" class="form-label" style="display: flex;">기관 웹메일 <span class="text-danger mail-danger" style="display: none; margin-left: 4px;">*</span></label>
+                            <label for="email" class="form-label" style="display: flex;">기관 웹메일 <span class="text-danger mail-danger" style="display: none; margin-left: 4px;">*</span></label>
                             <div class="input-group">
                                 <input type="email" class="form-control" id="email" disabled
                                        placeholder="example@naver.com">
@@ -213,13 +213,13 @@
                             <small id="success-email"></small>
 
                         </div>
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center" style=" margin-top: 32px">
-                                    <input type="text" class="form-control me-2" id="check-area" disabled
-                                           style="width: 181px;">
-                                    <button class="btn btn-outline-secondary" type="button" id="email-check" disabled>인증</button>
-                                </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center" style=" margin-top: 32px">
+                                <input type="text" class="form-control me-2" id="check-area" disabled
+                                       style="width: 181px;">
+                                <button class="btn btn-outline-secondary" type="button" id="email-check" disabled>인증</button>
                             </div>
+                        </div>
                         <button type="button" class="add-organ-btn" style="margin-top: 40px">기관추가</button>
                     </div>
                 </div>
@@ -301,7 +301,7 @@
                 center: new daum.maps.LatLng(37.537187, 127.005476),
                 level: 5
             };
-        var map = new daum.maps.Map(mapContainer, mapOption);
+        var map = new kakao.maps.Map(mapContainer, mapOption);
         var geocoder = new daum.maps.services.Geocoder();
         var marker = new daum.maps.Marker({
             position: new daum.maps.LatLng(37.537187, 127.005476),
