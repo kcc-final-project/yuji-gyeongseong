@@ -17,18 +17,19 @@
     <div class="d-flex align-items-center gap-2">
         <div class="col-10" style="margin-right: 120px !important"></div>
         <div class="form-group">
-<%--            <select onchange="filterTable(this.value)" class="form-control" style="border-radius: 5px;">--%>
-<%--                <option value="" disabled>필터 선택</option>--%>
-<%--                <option value="미평가">미평가</option>--%>
-<%--                <option value="평가완료">평가완료</option>--%>
-<%--            </select>--%>
+            <%--            <select onchange="filterTable(this.value)" class="form-control" style="border-radius: 5px;">--%>
+            <%--                <option value="" disabled>필터 선택</option>--%>
+            <%--                <option value="미평가">미평가</option>--%>
+            <%--                <option value="평가완료">평가완료</option>--%>
+            <%--            </select>--%>
         </div>
-        <button  onclick="resetTable()"
+        <button onclick="resetTable()"
                 style="background-color: #f1f1f1; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; margin: auto">
             <div style="margin-bottom: 4px">
-            <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="#5f6368">
-                <path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z"/>
-            </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px"
+                     fill="#5f6368">
+                    <path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z"/>
+                </svg>
             </div>
         </button>
 
@@ -50,10 +51,65 @@
             </tr>
             </thead>
             <tbody>
+
+            <tr class="clickable-row" style="justify-items: center;text-align: center">
+                <th class="icon"><i class="arrow down"></i></th>
+                <td class="truncate-text" style="width: 613px; font-size: 16px;font-weight: normal; padding-top: 12px">
+                    <c:out
+                            value="2024년 문화콘텐츠 산업 육성 지원사업 공고"/></td>
+                <th></th>
+                <th></th>
+                <td style="text-align: center;justify-items: center; padding-top: 13px">
+                    <span class="status red">미평가</span>
+                </td>
+                <th class="ps-5 pe-5"></th>
+                <th class="ps-5 pe-5"></th>
+            </tr>
+
+            <tr class="hidden-row" style="font-size: 16px;">
+                <td colspan="7" class="blue" style="padding: 0px">
+                    <table class="table  table-sm text-center" style="background-color: #ffffff !important;">
+                        <tbody style="vertical-align: baseline;">
+                        <tr style="text-align: center;justify-items: center;font-size: 14px;font-weight: normal;">
+                            <th class="ps-3 pe-3">
+                            </th>
+                            <td class="truncate-text1" style="width: 642px"><c:out
+                                    value="차세대 문화콘텐츠 산업을 위한 투자와 육성"/></td>
+                            <td style="padding-left: 14px;">2024-11-10</td>
+                            <td class="pe-3" style="padding-left: 36px;">2024-11-30</td>
+                            <td style="margin-right: 20px !important;">
+                                <span class="status yellow">구성대기</span>
+                            </td>
+                            <td style="text-align: center; flex: 0 0 auto;">
+                                <button type="button" style="margin-left: 10px"
+                                        class="btn ctm-btn-orange"
+                                        onclick="window.open('/work-lounge/eval-list/eval-compose/40', '_blank', 'width=1625, height=840, top=5, left=5, scrollbars=yes');">
+                                    위원구성
+                                </button>
+                            </td>
+
+                            <td style="text-align: center; justify-content: center; margin: auto">
+                                <button type="button" class="btn ctm-btn-orange1
+                                                <c:if test='${noti.progStatus != "선정평가대기"}'>ctm-btn-gray disabled</c:if>"
+                                        onclick="if('${noti.progStatus}' == '선정평가대기') { window.open('/work-lounge/eval-list/evaluation-select/${noti.subAnnNo}', '_blank','width=1300, height=800, top=25, left=60, scrollbars=yes'); }"
+                                        <c:if test='${noti.progStatus != "선정평가대기"}'>disabled</c:if>>
+                                    선정평가
+                                </button>
+
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                </td>
+            </tr>
+
+
             <c:forEach items="${selectEvaluationList}" var="selectEvaluation" varStatus="status">
                 <tr class="clickable-row" style="justify-items: center;text-align: center">
                     <th class="icon"><i class="arrow down"></i></th>
-                    <td class="truncate-text" style="width: 613px; font-size: 16px;font-weight: normal; padding-top: 12px"><c:out
+                    <td class="truncate-text"
+                        style="width: 613px; font-size: 16px;font-weight: normal; padding-top: 12px"><c:out
                             value="${selectEvaluation.totalTitle}"/></td>
                     <th></th>
                     <th></th>
@@ -84,7 +140,8 @@
                                     <td class="truncate-text1" style="width: 642px"><c:out
                                             value="${noti.subTitle}"/></td>
                                     <td style="padding-left: 14px;"><c:out value="${noti.closedAt}"/></td>
-                                    <td class="pe-3" style="padding-left: 36px;"><c:out value="${noti.finalSelectedAt}"/></td>
+                                    <td class="pe-3" style="padding-left: 36px;"><c:out
+                                            value="${noti.finalSelectedAt}"/></td>
                                     <td style="margin-right: 20px !important;">
                                         <c:choose>
                                             <c:when test="${noti.progStatus == '평가대기중'}">
@@ -104,12 +161,12 @@
                                             </c:when>
                                             <c:otherwise>
                                                 <span class="status gray"
-                                                      >구성대기</span>
+                                                >구성대기</span>
                                             </c:otherwise>
                                         </c:choose>
                                     </td>
                                     <td style="text-align: center; flex: 0 0 auto;">
-                                        <button type="button"  style="margin-left: 10px" class="btn ctm-btn-orange
+                                        <button type="button" style="margin-left: 10px" class="btn ctm-btn-orange
                                                 <c:if test='${noti.progStatus != "구성대기"}'>ctm-btn-gray</c:if>"
                                                 onclick="if('${noti.progStatus}' == '구성대기') { window.open('/work-lounge/eval-list/eval-compose/${noti.subAnnNo}', '_blank','width=1625, height=840, top=5, left=5, scrollbars=yes'); }"
                                                 <c:if test='${noti.progStatus != "구성대기"}'>disabled</c:if>>
@@ -178,7 +235,6 @@
             }
         });
     });
-
 
 
 </script>
