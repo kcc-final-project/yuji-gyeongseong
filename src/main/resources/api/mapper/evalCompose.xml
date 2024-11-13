@@ -64,144 +64,141 @@
     <insert id="insertEvalCommitteesBySubAnnNo" statementType="CALLABLE">
     <![CDATA[
         DECLARE
-        target_sub_ann_no NUMBER := #{subAnnNo};
-        num_of_committees NUMBER := #{rndPlanCnt};
-
+        target_sub_ann_no NUMBER :=
+        #{subAnnNo};
+        num_of_committees
+        NUMBER :=
+        #{rndPlanCnt};
         -- 비율 변수
-        research_institute_rate NUMBER := #{researchInstituteRate};
-        education_institute_rate NUMBER := #{educationInstituteRate};
-        professional_institute_rate NUMBER := #{professionalInstituteRate};
-
-        target_eval_committee_no NUMBER;
-            num_research_members NUMBER;
-            num_education_members NUMBER;
-            num_professional_members NUMBER;
-            total_members NUMBER;
+        research_institute_rate
+        NUMBER :=
+        #{researchInstituteRate};
+        education_institute_rate
+        NUMBER :=
+        #{educationInstituteRate};
+        professional_institute_rate
+        NUMBER :=
+        #{professionalInstituteRate};
+        target_eval_committee_no
+        NUMBER;
+        num_research_members
+        NUMBER;
+        num_education_members
+        NUMBER;
+        num_professional_members
+        NUMBER;
+        total_members
+        NUMBER;
         BEGIN
         FOR i IN 1..num_of_committees LOOP
-                -- 새로운 eval_committee를 생성하고 번호를 저장
-                target_eval_committee_no := seq_eval_committee.NEXTVAL;
-
-        INSERT INTO eval_committee (
-            eval_committee_no, name, people_count, eval_started_at, eval_closed_at, prog_status, sub_ann_no
-        ) VALUES (
-                     target_eval_committee_no,
-                     '평가위원회-' || i,
-                     6,
-                     SYSDATE,
-                     SYSDATE,
-                     '평가대기중',
-                     target_sub_ann_no
-                 );
-
+            -- 새로운 eval_committee를 생성하고 번호를 저장
+            target_eval_committee_no := seq_eval_committee.NEXTVAL;
+        INSERT INTO eval_committee (eval_committee_no, name, people_count, eval_started_at, eval_closed_at, prog_status,
+                                    sub_ann_no)
+        VALUES (target_eval_committee_no,
+                '평가위원회-' || i,
+                6,
+                TO_DATE('2024-10-21', 'YYYY-MM-DD'),
+                TO_DATE('2024-10-28', 'YYYY-MM-DD'),
+                '평가대기중',
+                target_sub_ann_no);
         -- 비율에 따른 멤버 수 계산
-        num_research_members := ROUND(6 * research_institute_rate / 100);
-                num_education_members := ROUND(6 * education_institute_rate / 100);
-                num_professional_members := ROUND(6 * professional_institute_rate / 100);
-                total_members := num_research_members + num_education_members + num_professional_members;
-
-                -- 총 인원이 6명이 되도록 조정
-                IF total_members < 6 THEN
-                    num_professional_members := num_professional_members + (6 - total_members);
-                ELSIF total_members > 6 THEN
-                    num_professional_members := num_professional_members - (total_members - 6);
+        num_research_members
+        := ROUND(6 * research_institute_rate / 100);
+            num_education_members
+        := ROUND(6 * education_institute_rate / 100);
+            num_professional_members
+        := ROUND(6 * professional_institute_rate / 100);
+            total_members
+        := num_research_members + num_education_members + num_professional_members;
+            -- 총 인원이 6명이 되도록 조정
+            IF
+        total_members < 6 THEN
+                num_professional_members := num_professional_members + (6 - total_members);
+            ELSIF
+        total_members > 6 THEN
+                num_professional_members := num_professional_members - (total_members - 6);
         END IF;
-
-                -- 각 기관 유형별로 평가위원 선발
-                -- 1. 산업체 평가위원 선발
-                IF num_research_members > 0 THEN
-                    INSERT INTO evaluation_member (
-                        eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng
-                    )
+            -- 각 기관 유형별로 평가위원 선발
+            -- 1. 산업체 평가위원 선발
+            IF
+        num_research_members > 0 THEN
+                INSERT INTO evaluation_member (
+                    eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng
+                )
         SELECT target_eval_committee_no,
-               m.mem_no,
-               SYSDATE,
-               SYSDATE,
+               mem_no,
+               TO_DATE('2024-10-21', 'YYYY-MM-DD'),
+               TO_DATE('2024-10-28', 'YYYY-MM-DD'),
                '승인대기',
                'stayed'
-        FROM (
-                 SELECT m.mem_no
-                 FROM member m
-                          JOIN institution i ON m.institution_no = i.institution_no
-                 WHERE i.iar_type = '산업체'
-                   AND m.mem_no != 0
-                          AND m.mem_no NOT IN (
-                              SELECT em.mem_no
-                              FROM evaluation_member em
-                              JOIN eval_committee ec ON em.eval_committee_no = ec.eval_committee_no
-                              WHERE ec.sub_ann_no = target_sub_ann_no
-                          )
-                 ORDER BY DBMS_RANDOM.VALUE
-                     FETCH FIRST num_research_members ROWS ONLY
-             ) m;
+        FROM (SELECT m.mem_no, ROW_NUMBER() OVER (ORDER BY DBMS_RANDOM.VALUE) AS rn
+              FROM member m
+                       JOIN institution i ON m.institution_no = i.institution_no
+              WHERE i.iar_type = '산업체'
+                AND m.mem_no != 0
+                      AND m.mem_no NOT IN (
+                          SELECT em.mem_no
+                          FROM evaluation_member em
+                          JOIN eval_committee ec ON em.eval_committee_no = ec.eval_committee_no
+                          WHERE ec.sub_ann_no = target_sub_ann_no
+                      ))
+        WHERE rn <= num_research_members;
         END IF;
-
-                -- 2. 교육기관 평가위원 선발
-                IF num_education_members > 0 THEN
-                    INSERT INTO evaluation_member (
-                        eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng
-                    )
+            -- 2. 교육기관 평가위원 선발
+            IF
+        num_education_members > 0 THEN
+                INSERT INTO evaluation_member (
+                    eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng
+                )
         SELECT target_eval_committee_no,
-               m.mem_no,
-               SYSDATE,
-               SYSDATE,
+               mem_no,
+               TO_DATE('2024-10-21', 'YYYY-MM-DD'),
+               TO_DATE('2024-10-28', 'YYYY-MM-DD'),
                '승인대기',
                'stayed'
-        FROM (
-                 SELECT m.mem_no
-                 FROM member m
-                          JOIN institution i ON m.institution_no = i.institution_no
-                 WHERE i.iar_type = '교육기관'
-                   AND m.mem_no != 0
-                          AND m.mem_no NOT IN (
-                              SELECT em.mem_no
-                              FROM evaluation_member em
-                              JOIN eval_committee ec ON em.eval_committee_no = ec.eval_committee_no
-                              WHERE ec.sub_ann_no = target_sub_ann_no
-                          )
-                 ORDER BY DBMS_RANDOM.VALUE
-                     FETCH FIRST num_education_members ROWS ONLY
-             ) m;
+        FROM (SELECT m.mem_no, ROW_NUMBER() OVER (ORDER BY DBMS_RANDOM.VALUE) AS rn
+              FROM member m
+                       JOIN institution i ON m.institution_no = i.institution_no
+              WHERE i.iar_type = '교육기관'
+                AND m.mem_no != 0
+                      AND m.mem_no NOT IN (
+                          SELECT em.mem_no
+                          FROM evaluation_member em
+                          JOIN eval_committee ec ON em.eval_committee_no = ec.eval_committee_no
+                          WHERE ec.sub_ann_no = target_sub_ann_no
+                      ))
+        WHERE rn <= num_education_members;
         END IF;
-
-                -- 3. 연구기관 평가위원 선발
-                IF num_professional_members > 0 THEN
-                    INSERT INTO evaluation_member (
-                        eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng
-                    )
+            -- 3. 연구기관 평가위원 선발
+            IF
+        num_professional_members > 0 THEN
+                INSERT INTO evaluation_member (
+                    eval_committee_no, mem_no, recv_start_at, recv_close_at, recv_status, recv_status_eng
+                )
         SELECT target_eval_committee_no,
-               m.mem_no,
-               SYSDATE,
-               SYSDATE,
+               mem_no,
+               TO_DATE('2024-10-21', 'YYYY-MM-DD'),
+               TO_DATE('2024-10-28', 'YYYY-MM-DD'),
                '승인대기',
                'stayed'
-        FROM (
-                 SELECT m.mem_no
-                 FROM member m
-                          JOIN institution i ON m.institution_no = i.institution_no
-                 WHERE i.iar_type = '연구기관'
-                   AND m.mem_no != 0
-                          AND m.mem_no NOT IN (
-                              SELECT em.mem_no
-                              FROM evaluation_member em
-                              JOIN eval_committee ec ON em.eval_committee_no = ec.eval_committee_no
-                              WHERE ec.sub_ann_no = target_sub_ann_no
-                          )
-                 ORDER BY DBMS_RANDOM.VALUE
-                     FETCH FIRST num_professional_members ROWS ONLY
-             ) m;
+        FROM (SELECT m.mem_no, ROW_NUMBER() OVER (ORDER BY DBMS_RANDOM.VALUE) AS rn
+              FROM member m
+                       JOIN institution i ON m.institution_no = i.institution_no
+              WHERE i.iar_type = '연구기관'
+                AND m.mem_no != 0
+                      AND m.mem_no NOT IN (
+                          SELECT em.mem_no
+                          FROM evaluation_member em
+                          JOIN eval_committee ec ON em.eval_committee_no = ec.eval_committee_no
+                          WHERE ec.sub_ann_no = target_sub_ann_no
+                      ))
+        WHERE rn <= num_professional_members;
         END IF;
         END LOOP;
-        EXCEPTION
-            WHEN OTHERS THEN
-                -- 예외 발생 시 롤백 및 로깅
-                RAISE;
         END;
         ]]>
 </insert>
-
-
-
 
     <select id="selectEvalCommitteeCntById" parameterType="long">
         SELECT COUNT(*)
