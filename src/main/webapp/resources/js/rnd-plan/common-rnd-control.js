@@ -83,7 +83,7 @@ function showNextConfirmation() {
       }
 
       // 첨부파일 유효성 검사 후 페이지 이동
-      else if (currentStep === 4) {
+      else if (currentStep === 5) {
         // TODO: 저장 로직 처리
         currentStep += 1;
         updateProgressBar();
