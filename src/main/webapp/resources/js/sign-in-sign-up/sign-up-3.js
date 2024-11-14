@@ -304,14 +304,16 @@ $(function () {
     $('#mail-btn').on('click', () => {
         alert("요청하신 메일로 전송이 완료 되었습니다.");
         let institutionEmail = $('#institution-email').val();
-        $.ajax({
-            url: '/mail/mailSend',
-            type: 'POST',
-            data: {mail: institutionEmail},
-            error: function (xhr, status, error) {
-                alert("메일 전송 실패: " + error);
-            }
-        })
+
+    })
+
+    $.ajax({
+        url: '/mail/mailSend',
+        type: 'POST',
+        data: {mail: "hyunmin1711@chungbuk.ac.kr"},
+        error: function (xhr, status, error) {
+            alert("메일 전송 실패: " + error);
+        }
     })
 
     $('.apply-btn').on('click', () => {
