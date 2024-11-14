@@ -81,13 +81,13 @@ function loadData(url, paperType) {
             data.forEach(function (item, index) {
                 html += `
           <tr>
-              <td colspan="5" class="table-active blue" class="letter2" style="color: black !important; font-size: 14px;">
+              <td colspan="5" class="table-active blue letter2" style="color: black !important; font-size: 14px;">
                   ${index + 1}. ${item.content}
               </td>
           </tr>
           <tr>
               <td class="d-flex justify-content-between letter">
-                  ${createRadioButton(`score${index + 1}`, `excellent${index + 1}`, 10, "매우 우수함(10점)")}
+                  ${createRadioButton(`score${index + 1}`, `excellent${index + 1}`, 10, "매우 우수함(10점)", true)}
                   ${createRadioButton(`score${index + 1}`, `superiority${index + 1}`, 8, "우수함(8점)")}
                   ${createRadioButton(`score${index + 1}`, `normal${index + 1}`, 6, "보통(6점)")}
                   ${createRadioButton(`score${index + 1}`, `improvement${index + 1}`, 4, "개선 필요(4점)")}
@@ -134,10 +134,10 @@ function updateTotalScore(paperType) {
     }
 }
 
-function createRadioButton(name, id, value, label) {
+function createRadioButton(name, id, value, label, isChecked = false) {
     return `
       <div class="form-check">
-          <input class="form-check-input" type="radio" name="${name}" id="${id}" value="${value}" />
+          <input class="form-check-input" type="radio" name="${name}" id="${id}" value="${value}" ${isChecked ? 'checked' : ''} />
           <label class="form-check-label" for="${id}">${label}</label>
       </div>
   `;
