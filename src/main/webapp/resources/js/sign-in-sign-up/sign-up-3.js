@@ -184,7 +184,7 @@ $(function () {
     });
 
     $('#duplication-btn').on('click', () => {
-        if ($('.success-id').text() === "옳바른 아이디 형식입니다.") {
+        if ($('.success-id').text() === "올바른 아이디 형식입니다.") {
             let id = $('#user-id').val();
             $.ajax({
                 url: "/member/duplicateCheck",
@@ -316,7 +316,7 @@ $(function () {
 
     $('.apply-btn').on('click', () => {
         let idCheck = $('.success-id').text() === "사용 가능한 아이디 입니다.";
-        let pwCheck = $('.success-pw').text() === "옳바른 비밀번호 형식입니다.";
+        let pwCheck = $('.success-pw').text() === "올바른 비밀번호 형식입니다.";
         let pwMatch = $('#pwConfirm').text() === "비밀번호가 일치합니다.";
         let emailCheck = $('#success-email').text() === "이메일 인증에 성공하셨습니다.";
         let map = $('#sample5_address').val();
@@ -339,7 +339,7 @@ $(function () {
 
 
         if (!pwCheck) {
-            errorMessages.push("비밀번호가 옳바른 형식이 아닙니다.");
+            errorMessages.push("비밀번호가 올바른 형식이 아닙니다.");
             $('#password').css('border', '1.4px solid #dc3545');
         }
 
