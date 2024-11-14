@@ -9,8 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert title here</title>
     <link rel="stylesheet" href="/resources/css/sign-in-sign-up/sign-up-3.css"/>
-    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=adc05e07391cc2a24481a3bc047af95d&libraries=services"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=adc05e07391cc2a24481a3bc047af95d&libraries=services"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
@@ -47,7 +47,9 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="user-name" class="form-label">이름 <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="user-name" value="${sessionScope.name}"
+                                <%--                                <input type="text" class="form-control" id="user-name" value="${sessionScope.name}"--%>
+                                <%--                                       disabled>--%>
+                                <input type="text" class="form-control" id="user-name" value="김상학"
                                        disabled>
 
                             </div>
@@ -73,7 +75,9 @@
                             <div class="col-md-6">
                                 <label for="birth-date" class="form-label">생년월일 <span
                                         class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="birth-date" value="${sessionScope.birth}"
+                                <%--                                <input type="text" class="form-control" id="birth-date" value="${sessionScope.birth}"--%>
+                                <%--                                       disabled>--%>
+                                <input type="text" class="form-control" id="birth-date" value="2000-02-17"
                                        disabled>
                             </div>
                             <div class="col-md-6">
@@ -96,7 +100,8 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="phone" class="form-label">휴대전화번호 <span class="text-danger">*</span></label>
-                                <input type="tel" class="form-control" id="phone" value="${sessionScope.tel}" disabled>
+                                <%--                                <input type="tel" class="form-control" id="phone" value="${sessionScope.tel}" disabled>--%>
+                                <input type="tel" class="form-control" id="phone" value="01089786088" disabled>
                             </div>
                             <%--                            <div class="col-md-6">--%>
                             <%--                                <label for="email" class="form-label">이메일 <span class="text-danger">*</span></label>--%>
@@ -203,23 +208,26 @@
                         <%--                            <small class="text-success">※ 메일이 인증되었습니다.</small>--%>
                         <%--                        </div>--%>
                         <div class="col-md-6">
-                                <label for="email" class="form-label" style="display: flex;">기관 웹메일 <span class="text-danger mail-danger" style="display: none; margin-left: 4px;">*</span></label>
+                            <label for="email" class="form-label" style="display: flex;">기관 웹메일 <span class="text-danger mail-danger" style="display: none; margin-left: 4px;">*</span></label>
                             <div class="input-group">
                                 <input type="email" class="form-control" id="email" disabled
-                                       placeholder="example@naver.com">
-                                <button class="btn btn-outline-secondary" type="button" id="send-mail-btn" disabled>인증코드 발송
+                                       style="border-radius: 6px">
+                                <p style="font-weight: bold; padding-top: 10px; color: gray; margin-left: 3px; margin-right: 3px">@</p>
+                                <input type="text" class="form-control" id="email-back" style="border-radius: 6px" disabled
+                                >
+                                <button class="btn btn-outline-secondary" type="button" id="send-mail-btn" style="margin-left: 9px" disabled>인증코드 발송
                                 </button>
                             </div>
                             <small id="success-email"></small>
 
                         </div>
-                            <div class="col-md-6">
-                                <div class="d-flex align-items-center" style=" margin-top: 32px">
-                                    <input type="text" class="form-control me-2" id="check-area" disabled
-                                           style="width: 181px;">
-                                    <button class="btn btn-outline-secondary" type="button" id="email-check" disabled>인증</button>
-                                </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-center" style=" margin-top: 32px">
+                                <input type="text" class="form-control me-2" id="check-area" disabled
+                                       style="width: 181px;">
+                                <button class="btn btn-outline-secondary" type="button" id="email-check" disabled>인증</button>
                             </div>
+                        </div>
                         <button type="button" class="add-organ-btn" style="margin-top: 40px">기관추가</button>
                     </div>
                 </div>
@@ -296,16 +304,15 @@
         </div>
     </div>
     <script>
-        // 카카오 네임스페이스 사용
         var mapContainer = document.getElementById('map'),
             mapOption = {
-                center: new kakao.maps.LatLng(37.537187, 127.005476),
+                center: new daum.maps.LatLng(37.537187, 127.005476),
                 level: 5
             };
-        var map = new kakao.maps.Map(mapContainer, mapOption);
-        var geocoder = new kakao.maps.services.Geocoder();
-        var marker = new kakao.maps.Marker({
-            position: new kakao.maps.LatLng(37.537187, 127.005476),
+        var map = new daum.maps.Map(mapContainer, mapOption);
+        var geocoder = new daum.maps.services.Geocoder();
+        var marker = new daum.maps.Marker({
+            position: new daum.maps.LatLng(37.537187, 127.005476),
             map: map
         });
 
@@ -319,25 +326,20 @@
                     document.getElementById("address-btn").style.border = '1px solid #dee2e6';
                     geocoder.addressSearch(data.address, function (results, status) {
 
-                        if (status === kakao.maps.services.Status.OK) {
+                        if (status === daum.maps.services.Status.OK) {
                             var result = results[0];
 
-                            var coords = new kakao.maps.LatLng(result.y, result.x);
+                            var coords = new daum.maps.LatLng(result.y, result.x);
 
                             mapContainer.style.display = "block";
                             map.relayout();
                             map.setCenter(coords);
-                            marker.setPosition(coords);
-                        } else {
-                            console.error('주소 검색 실패: ' + status);
+                            marker.setPosition(coords)
                         }
                     });
                 }
             }).open();
         }
-
-        // 디버깅: geocoder 객체 확인
-        console.log('Geocoder 객체:', geocoder);
     </script>
 </div>
 <script src="/resources/js/sign-in-sign-up/sign-up-3.js"></script>

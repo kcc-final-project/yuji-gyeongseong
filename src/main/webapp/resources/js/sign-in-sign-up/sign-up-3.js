@@ -2,10 +2,10 @@ function pwCheck() {
     const reg = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{9,16}$/;
     const password = $('#password').val(); // 비밀번호 입력 필드의 값을 가져옴
     if (reg.test(password)) {
-        $('.success-pw').text("옳바른 비밀번호 형식입니다.").css('color', 'green');
+        $('.success-pw').text("올바른 비밀번호 형식입니다.").css('color', 'green');
         $('#password').css('border','1px solid #dee2e6');
     } else {
-        $('.success-pw').text("옳바르지 않은 비밀번호 형식입니다.").css('color', 'red');
+        $('.success-pw').text("올바르지 않은 비밀번호 형식입니다.").css('color', 'red');
         $('#password').css('border','1px solid #dc3545');
     }
 
@@ -21,10 +21,10 @@ function pwCheck() {
 function idCheck() {
     const regex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{5,16}$/;
     if (regex.test($('#user-id').val())) { // 괄호를 올바르게 닫음
-        $('.success-id').text("옳바른 아이디 형식입니다.").css('color', 'green');
+        $('.success-id').text("올바른 아이디 형식입니다.").css('color', 'green');
         $('#user-id').css('border','1px solid #dee2e6');
     } else {
-        $('.success-id').text("옳바르지 않은 아이디 형식입니다.").css('color', 'red');
+        $('.success-id').text("올바르지 않은 아이디 형식입니다.").css('color', 'red');
         $('#user-id').css('border','1px solid #dc3545');
     }
 }
@@ -49,6 +49,7 @@ function importOrgan(data) {
         $('#exampleModal').modal('hide');
         $('.modal-backdrop').remove();
         $('#organization').val(title);
+        $('#email-back').val("chungbuk.ac.kr");
         $('#organization').attr('data-initno', institutionNo); // HTML에 data-initno 추가
     });
 
@@ -246,6 +247,8 @@ $(function () {
 
     $('#send-mail-btn').on('click', () => {
         let email = $('#email').val();
+        let emailBack = "@" + $('#email-back').val();
+        let emailTotal = email + emailBack;
         Swal.fire(
             '전송 완료!',
             '이메일이 전송 되었습니다.',
@@ -254,7 +257,7 @@ $(function () {
         $.ajax({
             url: '/mail/userMailSend',
             type: 'POST',
-            data: {mail: email},
+            data: {mail: emailTotal},
             error: function (xhr, status, error) {
                 alert("인증번호 전송 실패: " + error);
             }

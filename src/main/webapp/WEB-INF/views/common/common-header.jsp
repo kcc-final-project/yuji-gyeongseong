@@ -118,7 +118,7 @@
                                 <a href="/member/sign/in" style="color: inherit; text-decoration: none;">
                                     <span class="common-header__item common-header__item__pointer">로그인</span>
                                 </a>
-                                <a href="/member/sign/up1" style="color: inherit; text-decoration: none;">
+                                <a href="/member/sign/up3" style="color: inherit; text-decoration: none;">
                                     <span class="common-header__item common-header__item__pointer">회원가입</span>
                                 </a>
                             </div>
