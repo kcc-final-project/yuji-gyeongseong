@@ -18,7 +18,7 @@ $(function () {
             $(this).closest('tr').find('.filename').val(name);
         }
     });
-
+/*
     //file upload
     $('.ctm-btn-init__next').click(function(e) {
         e.preventDefault(); // 기본 폼 제출 방지
@@ -50,5 +50,5 @@ $(function () {
                 console.log("업로드 실패", textStatus);
             }
         });
-    });
+    });*/
 });
